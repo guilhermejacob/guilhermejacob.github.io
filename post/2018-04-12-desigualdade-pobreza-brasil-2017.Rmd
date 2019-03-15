@@ -372,7 +372,7 @@ ggplot( gini_stack , aes( area , def_vd5002 , group = year ) ) +
          plot.title = element_text(lineheight=.8, face="bold") )
 ```
 
-E, a propósito, podemos ver que os números de 2017^[Os números de 2016 do nosso post são um pouco diferentes, já que, ao contrário da publicação do IBGE, ajustamos as rendas para preços médios de 2017.] coincidem com [esta publicação do IBGE](https://biblioteca.ibge.gov.br/visualizacao/livros/liv101559_informativo.pdf):
+E, a propósito, podemos ver que os números coincidem com [esta publicação do IBGE](https://biblioteca.ibge.gov.br/visualizacao/livros/liv101559_informativo.pdf):
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE , results="asis" , cache=FALSE}
 # reproduz publicação: https://biblioteca.ibge.gov.br/visualizacao/livros/liv101559_informativo.pdf
