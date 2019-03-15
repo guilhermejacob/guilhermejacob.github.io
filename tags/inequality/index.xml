@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Inequality on Something Random</title>
+    <link>https://guilhermejacob.github.io/tags/inequality/</link>
+    <description>Recent content in Inequality on Something Random</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 24 Apr 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://guilhermejacob.github.io/tags/inequality/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>PNAD Contínua 2017: extrema pobreza na infância e desigualdade</title>
+      <link>https://guilhermejacob.github.io/2018/04/desigualdade-pobreza-infancia-2017/</link>
+      <pubDate>Tue, 24 Apr 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://guilhermejacob.github.io/2018/04/desigualdade-pobreza-infancia-2017/</guid>
+      <description>Atualização (19/05/2018): passei a usar a nova tabela de deflatores, ajustando para preços médios do ano da pesquisa.
+Atualização (20/05/2018): fixei os valores a preços médios de 2017.
+ Interrompendo o meu hiato de alguns meses, resolvi voltar com uma comparação os dados de renda das PNADCs anuais 2016-2017. No entanto, vamos falar um pouco da desigualdade em geral e, então, partir para uma questão mais específica: pobreza na infância1.</description>
+    </item>
+    
+    <item>
+      <title>O que a PNAD Contínua 2016 diz sobre desigualdade e pobreza nos estados?</title>
+      <link>https://guilhermejacob.github.io/2017/12/desigualdade-pobreza-estados-2016/</link>
+      <pubDate>Sun, 03 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://guilhermejacob.github.io/2017/12/desigualdade-pobreza-estados-2016/</guid>
+      <description>Atualização (19/05/2018): corrigi alguns erros no código que afetavam as estimativas das capitais.
+Já que os intervalos de confiança das estimativas de capitais não permitiam uma análise mais profunda, resolvi mudar para análise das UFs.
+As rendas foram ajustadas para preços médios de 2016.
+ Na última quarta (29/11), o IBGE finalmente apresentou as estimativas relativas aos rendimentos de todas as fontes, além de disponibilizar os microdados para os cálculos.</description>
+    </item>
+    
+    <item>
+      <title>ENEM e desigualdade na educação: uma análise dos dados de 2015</title>
+      <link>https://guilhermejacob.github.io/2017/11/enem-desigualdade-educa%C3%A7%C3%A3o/</link>
+      <pubDate>Wed, 15 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://guilhermejacob.github.io/2017/11/enem-desigualdade-educa%C3%A7%C3%A3o/</guid>
+      <description>Há alguns dias atrás, rolou o ENEM desse ano. E daí veio a ideia para este post: analisar a desigualdade na educação entre os jovens do Ensino Médio a partir das pontuações dos candidatos. Usando R, como sempre.
+Vou tentar manter as complicações matemáticas fora da questão e focar na aplicação da técnica para entender o contexto da desigualdade educacional. Assim, pretendo trazer gente de outras áreas, como pedagogos e sociólogos, que podem se beneficiar de mais uma ferramenta para analisar o problema, além de contribuir com novas perspectivas para “aqueles que só pensam com números”1.</description>
+    </item>
+    
+    <item>
+      <title>Inequality, Poverty Mapping, Small Area Estimation, and Random Forests: Brazilian municipalities in 2010</title>
+      <link>https://guilhermejacob.github.io/2017/11/inequality-poverty-mapping-sae-random-forests-brazil-2010/</link>
+      <pubDate>Mon, 13 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://guilhermejacob.github.io/2017/11/inequality-poverty-mapping-sae-random-forests-brazil-2010/</guid>
+      <description>After a (somewhat long) break, I came back for a new post. Yey! This time, we’re not discussing educational stuff, but another big theme: inequality in Brazil. What happens when we combine 2010 Brazilian Census microdata, Small Area Estimation and Random Forests? Interesting, right?
+2010 Brazilian Census Well, it’s not really the 2010 Census, but the sample. Maybe this needs further explanation.</description>
+    </item>
+    
+  </channel>
+</rss>

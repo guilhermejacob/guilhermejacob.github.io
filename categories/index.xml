@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Categories on Something Random</title>
+    <link>https://guilhermejacob.github.io/categories/</link>
+    <description>Recent content in Categories on Something Random</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="https://guilhermejacob.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Complex Survey</title>
+      <link>https://guilhermejacob.github.io/categories/complex-survey/</link>
+      <pubDate>Fri, 18 May 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://guilhermejacob.github.io/categories/complex-survey/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Official Statistics</title>
+      <link>https://guilhermejacob.github.io/categories/official-statistics/</link>
+      <pubDate>Fri, 18 May 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://guilhermejacob.github.io/categories/official-statistics/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Public Records</title>
+      <link>https://guilhermejacob.github.io/categories/public-records/</link>
+      <pubDate>Mon, 11 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://guilhermejacob.github.io/categories/public-records/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>R</title>
+      <link>https://guilhermejacob.github.io/categories/r/</link>
+      <pubDate>Fri, 18 May 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://guilhermejacob.github.io/categories/r/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

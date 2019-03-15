@@ -1,0 +1,887 @@
+
+
+  
+    
+  
+
+
+  
+
+
+
+
+
+  
+
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Hugo 0.47 with theme Tranquilpeak 0.4.3-BETA">
+    <title>Inequality, Poverty Mapping, Small Area Estimation, and Random Forests: Brazilian municipalities in 2010</title>
+    <meta name="author" content="Guilherme Jacob">
+    <meta name="keywords" content="">
+
+    <link rel="icon" href="https://guilhermejacob.github.io/favicon.png">
+    
+
+    
+    <meta name="description" content="After a (somewhat long) break, I came back for a new post. Yey! This time, we’re not discussing educational stuff, but another big theme: inequality in Brazil. What happens when we combine 2010 Brazilian Census microdata, Small Area Estimation and Random Forests? Interesting, right?
+2010 Brazilian Census Well, it’s not really the 2010 Census, but the sample. Maybe this needs further explanation.">
+    <meta property="og:description" content="After a (somewhat long) break, I came back for a new post. Yey! This time, we’re not discussing educational stuff, but another big theme: inequality in Brazil. What happens when we combine 2010 Brazilian Census microdata, Small Area Estimation and Random Forests? Interesting, right?
+2010 Brazilian Census Well, it’s not really the 2010 Census, but the sample. Maybe this needs further explanation.">
+    <meta property="og:type" content="blog">
+    <meta property="og:title" content="Inequality, Poverty Mapping, Small Area Estimation, and Random Forests: Brazilian municipalities in 2010">
+    <meta property="og:url" content="/2017/11/inequality-poverty-mapping-sae-random-forests-brazil-2010/">
+    <meta property="og:site_name" content="Something Random">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Something Random">
+    <meta name="twitter:description" content="After a (somewhat long) break, I came back for a new post. Yey! This time, we’re not discussing educational stuff, but another big theme: inequality in Brazil. What happens when we combine 2010 Brazilian Census microdata, Small Area Estimation and Random Forests? Interesting, right?
+2010 Brazilian Census Well, it’s not really the 2010 Census, but the sample. Maybe this needs further explanation.">
+    
+    
+
+    
+    
+
+    
+      <meta property="og:image" content="https://guilhermejacob.github.io/files/20900788_1261769030617642_6094584381440292567_o.jpg">
+    
+
+    
+    
+    
+
+    
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.css" integrity="sha256-vuXZ9LGmmwtjqFX1F+EKin1ThZMub58gKULUyf0qECk=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU=" crossorigin="anonymous" />
+    
+    
+    <link rel="stylesheet" href="https://guilhermejacob.github.io/css/style-jsjn0006wyhpyzivf6yceb31gvpjatbcs3qzjvlumobfnugccvobqwxnnaj8.min.css" />
+    
+    
+
+    
+      
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="4">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://guilhermejacob.github.io/">Something Random</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://guilhermejacob.github.io/#about">
+    
+    
+    
+      
+        <img class="header-picture" src="https://guilhermejacob.github.io/files/20900788_1261769030617642_6094584381440292567_o.jpg" alt="Author&#39;s picture" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="4">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://guilhermejacob.github.io/#about">
+          <img class="sidebar-profile-picture" src="https://guilhermejacob.github.io/files/20900788_1261769030617642_6094584381440292567_o.jpg" alt="Author&#39;s picture" />
+        </a>
+        <h4 class="sidebar-profile-name">Guilherme Jacob</h4>
+        
+          <h5 class="sidebar-profile-bio"><strong>B.A. in Law</strong>, <strong>B.Sc. in Economics</strong>, and coding <strong>somewhere in between</strong>.<br>Born and raised in Manaus-AM, Brazil.</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://guilhermejacob.github.io/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">Home</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://guilhermejacob.github.io/#about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+      
+      <span class="sidebar-button-desc">About</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://guilhermejacob.github.io/tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">Tags</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://guilhermejacob.github.io/categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+      
+      <span class="sidebar-button-desc">Categories</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://guilhermejacob.github.io/archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">Archives</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/guilhermejacob" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="http://stackoverflow.com/users/6419956/guilherme-jacob" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-stack-overflow"></i>
+      
+      <span class="sidebar-button-desc">Stack Overflow</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://www.instagram.com/guilhermejacob9" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-instagram"></i>
+      
+      <span class="sidebar-button-desc">Instagram</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://guilhermejacob.github.io/sampling-thoughts/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-paragraph"></i>
+      
+      <span class="sidebar-button-desc">Personal Blog</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://guilhermejacob.github.io/files/cv_english.pdf">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-briefcase"></i>
+      
+      <span class="sidebar-button-desc">CV</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://guilhermejacob.github.io/research">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-code"></i>
+      
+      <span class="sidebar-button-desc">Research</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="mailto:guilhermejacob91@gmail.com" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-envelope-o"></i>
+      
+      <span class="sidebar-button-desc">Contact</span>
+    </a>
+  </li>
+
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="4"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title" itemprop="headline">
+      Inequality, Poverty Mapping, Small Area Estimation, and Random Forests: Brazilian municipalities in 2010
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2017-11-13T00:00:00Z">
+        
+  November 13, 2017
+
+      </time>
+    
+    
+  
+  
+    <span>in</span>
+    
+      <a class="category-link" href="https://guilhermejacob.github.io/categories/r">R</a>, 
+    
+      <a class="category-link" href="https://guilhermejacob.github.io/categories/complex-survey">Complex Survey</a>, 
+    
+      <a class="category-link" href="https://guilhermejacob.github.io/categories/official-statistics">Official Statistics</a>
+    
+  
+
+  </div>
+
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              <script src="https://guilhermejacob.github.io/rmarkdown-libs/htmlwidgets/htmlwidgets.js"></script>
+<script src="https://guilhermejacob.github.io/rmarkdown-libs/d3/d3.min.js"></script>
+<script src="https://guilhermejacob.github.io/rmarkdown-libs/d3-lasso/d3-lasso.min.js"></script>
+<link href="https://guilhermejacob.github.io/rmarkdown-libs/ggiraph/styles.css" rel="stylesheet" />
+<script src="https://guilhermejacob.github.io/rmarkdown-libs/ggiraph/ggiraph_utils.js"></script>
+<script src="https://guilhermejacob.github.io/rmarkdown-libs/ggiraph/ggiraph_over_effect.js"></script>
+<script src="https://guilhermejacob.github.io/rmarkdown-libs/ggiraph/ggiraph_zoom.js"></script>
+<script src="https://guilhermejacob.github.io/rmarkdown-libs/ggiraph/ggiraph_tooltip.js"></script>
+<script src="https://guilhermejacob.github.io/rmarkdown-libs/ggiraph/ggiraph_selector.js"></script>
+<script src="https://guilhermejacob.github.io/rmarkdown-libs/ggiraph-binding/ggiraph.js"></script>
+<script src="https://guilhermejacob.github.io/rmarkdown-libs/svg_1/scripts_svg_1.js"></script>
+
+
+<p>After a (somewhat long) break, I came back for a new post. Yey! This time, we’re not discussing educational stuff, but another big theme: inequality in Brazil. What happens when we combine 2010 Brazilian Census microdata, Small Area Estimation and Random Forests? Interesting, right?</p>
+<div id="brazilian-census" class="section level2">
+<h2>2010 Brazilian Census</h2>
+<p>Well, it’s not really the 2010 Census, but the sample. Maybe this needs further explanation. Every ten years, IBGE<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a> conducts this enormous survey, collecting information about all Brazilian households. Yet, there are two questionnaires: universal and sample. The sample one is longer and only applies for 10% of the households. So, yes: sample questionnaire is for a sample of the census. Or this is how I think it works, anyway.</p>
+<p>However, it is a truly massive sample: a dataset with over 17 million observations, with a complex survey design.</p>
+<p>If you want to work with this dataset, you <del>definitely</del> should take a look at <a href="http://asdfree.com/brazilian-censo-demografico-censo.html">this chapter of asdfree.com</a>, a courtesy of Djalma Pessoa and Anthony D’Amico.</p>
+</div>
+<div id="small-area-estimation" class="section level2">
+<h2>Small area estimation</h2>
+<p><strong>“Since this is a large sample, all estimates have a small variance, right?”</strong> Well, that depends. For national level estimates, that is <del>almost always</del> true. For subpopulations, that might not be the case.</p>
+<p>Take municipalities, for instance. Inequality estimates from large cities often show smaller variance than those of small towns. The plot below shows inequality estimates and their 95% confidence intervals for the two tails of the index distribution.</p>
+<div id="htmlwidget-1" style="width:672px;height:480px;" class="ggiraph html-widget"></div>
+<script type="application/json" data-for="htmlwidget-1">{"x":{"html":"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" id=\"svg_1\" viewBox=\"0 0 576.00 288.00\">\n  <g>\n    <defs>\n      <clipPath id=\"cl1_0\">\n        <rect x=\"0.00\" y=\"288.00\" width=\"0.00\" height=\"288.00\"/>\n      <\/clipPath>\n    <\/defs>\n    <rect x=\"0.00\" y=\"0.00\" width=\"576.00\" height=\"288.00\" id=\"1\" clip-path=\"url(#cl1_0)\" fill=\"#FFFFFF\" fill-opacity=\"1\" stroke-width=\"0.75\" stroke=\"#FFFFFF\" stroke-opacity=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/>\n    <defs>\n      <clipPath id=\"cl1_1\">\n        <rect x=\"0.00\" y=\"0.00\" width=\"576.00\" height=\"288.00\"/>\n      <\/clipPath>\n    <\/defs>\n    <rect x=\"0.00\" y=\"0.00\" width=\"576.00\" height=\"288.00\" id=\"2\" clip-path=\"url(#cl1_1)\" fill=\"#FFFFFF\" fill-opacity=\"1\" stroke-width=\"1.06698\" stroke=\"#FFFFFF\" stroke-opacity=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/>\n    <defs>\n      <clipPath id=\"cl1_2\">\n        <rect x=\"45.57\" y=\"38.81\" width=\"524.95\" height=\"213.53\"/>\n      <\/clipPath>\n    <\/defs>\n    <rect x=\"45.57\" y=\"38.81\" width=\"524.95\" height=\"213.53\" id=\"3\" clip-path=\"url(#cl1_2)\" fill=\"#FFFFFF\" fill-opacity=\"1\" stroke=\"none\"/>\n    <polyline points=\"45.57,252.34 570.52,252.34\" id=\"4\" clip-path=\"url(#cl1_2)\" fill=\"none\" stroke-width=\"0.533489\" stroke=\"#6B6B6B\" stroke-opacity=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"butt\"/>\n    <polyline points=\"45.57,230.99 570.52,230.99\" id=\"5\" clip-path=\"url(#cl1_2)\" fill=\"none\" stroke-width=\"0.533489\" stroke=\"#6B6B6B\" stroke-opacity=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"butt\"/>\n    <polyline points=\"45.57,209.63 570.52,209.63\" id=\"6\" clip-path=\"url(#cl1_2)\" fill=\"none\" stroke-width=\"0.533489\" stroke=\"#6B6B6B\" stroke-opacity=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"butt\"/>\n    <polyline points=\"45.57,188.28 570.52,188.28\" id=\"7\" clip-path=\"url(#cl1_2)\" fill=\"none\" stroke-width=\"0.533489\" stroke=\"#6B6B6B\" stroke-opacity=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"butt\"/>\n    <polyline points=\"45.57,166.93 570.52,166.93\" id=\"8\" clip-path=\"url(#cl1_2)\" fill=\"none\" stroke-width=\"0.533489\" stroke=\"#6B6B6B\" stroke-opacity=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"butt\"/>\n    <polyline points=\"45.57,145.57 570.52,145.57\" id=\"9\" clip-path=\"url(#cl1_2)\" fill=\"none\" stroke-width=\"0.533489\" stroke=\"#6B6B6B\" stroke-opacity=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"butt\"/>\n    <polyline points=\"45.57,124.22 570.52,124.22\" id=\"10\" clip-path=\"url(#cl1_2)\" fill=\"none\" stroke-width=\"0.533489\" stroke=\"#6B6B6B\" stroke-opacity=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"butt\"/>\n    <polyline points=\"45.57,102.87 570.52,102.87\" id=\"11\" clip-path=\"url(#cl1_2)\" fill=\"none\" stroke-width=\"0.533489\" stroke=\"#6B6B6B\" stroke-opacity=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"butt\"/>\n    <polyline points=\"45.57,81.52 570.52,81.52\" id=\"12\" clip-path=\"url(#cl1_2)\" fill=\"none\" stroke-width=\"0.533489\" stroke=\"#6B6B6B\" stroke-opacity=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"butt\"/>\n    <polyline points=\"45.57,60.16 570.52,60.16\" id=\"13\" clip-path=\"url(#cl1_2)\" fill=\"none\" stroke-width=\"0.533489\" stroke=\"#6B6B6B\" stroke-opacity=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"butt\"/>\n    <circle cx=\"53.41\" cy=\"79.70\" r=\"0.67pt\" id=\"14\" clip-path=\"url(#cl1_2)\" fill=\"#8F00CC\" fill-opacity=\"1\" stroke-width=\"0.708661\" stroke=\"#8F00CC\" stroke-opacity=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/>\n    <circle cx=\"66.47\" cy=\"82.21\" r=\"0.67pt\" id=\"15\" clip-path=\"url(#cl1_2)\" fill=\"#EA0049\" fill-opacity=\"1\" stroke-width=\"0.708661\" stroke=\"#EA0049\" stroke-opacity=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/>\n    <circle cx=\"79.52\" cy=\"84.03\" r=\"0.67pt\" id=\"16\" clip-path=\"url(#cl1_2)\" fill=\"#C30092\" fill-opacity=\"1\" stroke-width=\"0.708661\" stroke=\"#C30092\" stroke-opacity=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/>\n    <circle cx=\"92.58\" cy=\"85.13\" r=\"0.67pt\" id=\"17\" clip-path=\"url(#cl1_2)\" fill=\"#FF0000\" fill-opacity=\"1\" stroke-width=\"0.708661\" stroke=\"#FF0000\" stroke-opacity=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/>\n    <circle cx=\"105.64\" cy=\"86.03\" r=\"0.67pt\" id=\"18\" clip-path=\"url(#cl1_2)\" fill=\"#EA004B\" fill-opacity=\"1\" stroke-width=\"0.708661\" stroke=\"#EA004B\" stroke-opacity=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/>\n    <circle cx=\"118.70\" cy=\"86.18\" r=\"0.67pt\" id=\"19\" clip-path=\"url(#cl1_2)\" fill=\"#3E00F7\" fill-opacity=\"1\" stroke-width=\"0.708661\" stroke=\"#3E00F7\" stroke-opacity=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/>\n    <circle cx=\"131.76\" cy=\"86.64\" r=\"0.67pt\" id=\"20\" clip-path=\"url(#cl1_2)\" fill=\"#3A00F8\" fill-opacity=\"1\" stroke-width=\"0.708661\" stroke=\"#3A00F8\" stroke-opacity=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/>\n    <circle cx=\"144.82\" cy=\"86.94\" r=\"0.67pt\" id=\"21\" clip-path=\"url(#cl1_2)\" fill=\"#9B00C2\" fill-opacity=\"1\" stroke-width=\"0.708661\" stroke=\"#9B00C2\" stroke-opacity=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/>\n    <circle cx=\"157.87\" cy=\"87.23\" r=\"0.67pt\" id=\"22\" clip-path=\"url(#cl1_2)\" fill=\"#4700F4\" fill-opacity=\"1\" stroke-width=\"0.708661\" stroke=\"#4700F4\" stroke-opacity=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/>\n    <circle cx=\"170.93\" cy=\"90.06\" r=\"0.67pt\" id=\"23\" clip-path=\"url(#cl1_2)\" fill=\"#7000E2\" fill-opacity=\"1\" stroke-width=\"0.708661\" stroke=\"#7000E2\" stroke-opacity=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/>\n    <circle cx=\"183.99\" cy=\"91.80\" r=\"0.67pt\" id=\"24\" clip-path=\"url(#cl1_2)\" fill=\"#1B00FD\" fill-opacity=\"1\" stroke-width=\"0.708661\" stroke=\"#1B00FD\" stroke-opacity=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/>\n    <circle cx=\"197.05\" cy=\"93.56\" r=\"0.67pt\" id=\"25\" clip-path=\"url(#cl1_2)\" fill=\"#6B00E5\" fill-opacity=\"1\" stroke-width=\"0.708661\" stroke=\"#6B00E5\" stroke-opacity=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/>\n    <circle cx=\"210.11\" cy=\"94.34\" r=\"0.67pt\" id=\"26\" clip-path=\"url(#cl1_2)\" fill=\"#0000FF\" fill-opacity=\"1\" stroke-width=\"0.708661\" stroke=\"#0000FF\" stroke-opacity=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/>\n    <circle cx=\"223.17\" cy=\"94.99\" r=\"0.67pt\" id=\"27\" clip-path=\"url(#cl1_2)\" fill=\"#4E00F2\" fill-opacity=\"1\" stroke-width=\"0.708661\" stroke=\"#4E00F2\" stroke-opacity=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/>\n    <circle cx=\"236.22\" cy=\"95.60\" r=\"0.67pt\" id=\"28\" clip-path=\"url(#cl1_2)\" fill=\"#7200E1\" fill-opacity=\"1\" stroke-width=\"0.708661\" stroke=\"#7200E1\" stroke-opacity=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/>\n    <circle cx=\"249.28\" cy=\"95.76\" r=\"0.67pt\" id=\"29\" clip-path=\"url(#cl1_2)\" fill=\"#A000BC\" fill-opacity=\"1\" stroke-width=\"0.708661\" stroke=\"#A000BC\" stroke-opacity=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/>\n    <circle cx=\"262.34\" cy=\"96.65\" r=\"0.67pt\" id=\"30\" clip-path=\"url(#cl1_2)\" fill=\"#C10094\" fill-opacity=\"1\" stroke-width=\"0.708661\" stroke=\"#C10094\" stroke-opacity=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/>\n    <circle cx=\"275.40\" cy=\"96.67\" r=\"0.67pt\" id=\"31\" clip-path=\"url(#cl1_2)\" fill=\"#4A00F3\" fill-opacity=\"1\" stroke-width=\"0.708661\" stroke=\"#4A00F3\" stroke-opacity=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/>\n    <circle cx=\"288.46\" cy=\"96.75\" r=\"0.67pt\" id=\"32\" clip-path=\"url(#cl1_2)\" fill=\"#B200A8\" fill-opacity=\"1\" stroke-width=\"0.708661\" stroke=\"#B200A8\" stroke-opacity=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/>\n    <circle cx=\"301.52\" cy=\"97.31\" r=\"0.67pt\" id=\"33\" clip-path=\"url(#cl1_2)\" fill=\"#8E00CD\" fill-opacity=\"1\" stroke-width=\"0.708661\" stroke=\"#8E00CD\" stroke-opacity=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/>\n    <circle cx=\"314.58\" cy=\"180.81\" r=\"0.67pt\" id=\"34\" clip-path=\"url(#cl1_2)\" fill=\"#9800C4\" fill-opacity=\"1\" stroke-width=\"0.708661\" stroke=\"#9800C4\" stroke-opacity=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/>\n    <circle cx=\"327.63\" cy=\"180.93\" r=\"0.67pt\" id=\"35\" clip-path=\"url(#cl1_2)\" fill=\"#6400E9\" fill-opacity=\"1\" stroke-width=\"0.708661\" stroke=\"#6400E9\" stroke-opacity=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/>\n    <circle cx=\"340.69\" cy=\"181.08\" r=\"0.67pt\" id=\"36\" clip-path=\"url(#cl1_2)\" fill=\"#8C00CF\" fill-opacity=\"1\" stroke-width=\"0.708661\" stroke=\"#8C00CF\" stroke-opacity=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/>\n    <circle cx=\"353.75\" cy=\"181.16\" r=\"0.67pt\" id=\"37\" clip-path=\"url(#cl1_2)\" fill=\"#4900F3\" fill-opacity=\"1\" stroke-width=\"0.708661\" stroke=\"#4900F3\" stroke-opacity=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/>\n    <circle cx=\"366.81\" cy=\"181.30\" r=\"0.67pt\" id=\"38\" clip-path=\"url(#cl1_2)\" fill=\"#5800EE\" fill-opacity=\"1\" stroke-width=\"0.708661\" stroke=\"#5800EE\" stroke-opacity=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/>\n    <circle cx=\"379.87\" cy=\"181.80\" r=\"0.67pt\" id=\"39\" clip-path=\"url(#cl1_2)\" fill=\"#8D00CE\" fill-opacity=\"1\" stroke-width=\"0.708661\" stroke=\"#8D00CE\" stroke-opacity=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/>\n    <circle cx=\"392.93\" cy=\"182.11\" r=\"0.67pt\" id=\"40\" clip-path=\"url(#cl1_2)\" fill=\"#5300F0\" fill-opacity=\"1\" stroke-width=\"0.708661\" stroke=\"#5300F0\" stroke-opacity=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/>\n    <circle cx=\"405.98\" cy=\"182.18\" r=\"0.67pt\" id=\"41\" clip-path=\"url(#cl1_2)\" fill=\"#A200BB\" fill-opacity=\"1\" stroke-width=\"0.708661\" stroke=\"#A200BB\" stroke-opacity=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/>\n    <circle cx=\"419.04\" cy=\"182.73\" r=\"0.67pt\" id=\"42\" clip-path=\"url(#cl1_2)\" fill=\"#8500D4\" fill-opacity=\"1\" stroke-width=\"0.708661\" stroke=\"#8500D4\" stroke-opacity=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/>\n    <circle cx=\"432.10\" cy=\"183.18\" r=\"0.67pt\" id=\"43\" clip-path=\"url(#cl1_2)\" fill=\"#6400E8\" fill-opacity=\"1\" stroke-width=\"0.708661\" stroke=\"#6400E8\" stroke-opacity=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/>\n    <circle cx=\"445.16\" cy=\"184.09\" r=\"0.67pt\" id=\"44\" clip-path=\"url(#cl1_2)\" fill=\"#8A00D0\" fill-opacity=\"1\" stroke-width=\"0.708661\" stroke=\"#8A00D0\" stroke-opacity=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/>\n    <circle cx=\"458.22\" cy=\"184.51\" r=\"0.67pt\" id=\"45\" clip-path=\"url(#cl1_2)\" fill=\"#6000EA\" fill-opacity=\"1\" stroke-width=\"0.708661\" stroke=\"#6000EA\" stroke-opacity=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/>\n    <circle cx=\"471.28\" cy=\"186.31\" r=\"0.67pt\" id=\"46\" clip-path=\"url(#cl1_2)\" fill=\"#5700EE\" fill-opacity=\"1\" stroke-width=\"0.708661\" stroke=\"#5700EE\" stroke-opacity=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/>\n    <circle cx=\"484.33\" cy=\"186.42\" r=\"0.67pt\" id=\"47\" clip-path=\"url(#cl1_2)\" fill=\"#7700DE\" fill-opacity=\"1\" stroke-width=\"0.708661\" stroke=\"#7700DE\" stroke-opacity=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/>\n    <circle cx=\"497.39\" cy=\"186.42\" r=\"0.67pt\" id=\"48\" clip-path=\"url(#cl1_2)\" fill=\"#7600DE\" fill-opacity=\"1\" stroke-width=\"0.708661\" stroke=\"#7600DE\" stroke-opacity=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/>\n    <circle cx=\"510.45\" cy=\"187.13\" r=\"0.67pt\" id=\"49\" clip-path=\"url(#cl1_2)\" fill=\"#8000D8\" fill-opacity=\"1\" stroke-width=\"0.708661\" stroke=\"#8000D8\" stroke-opacity=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/>\n    <circle cx=\"523.51\" cy=\"189.49\" r=\"0.67pt\" id=\"50\" clip-path=\"url(#cl1_2)\" fill=\"#6800E7\" fill-opacity=\"1\" stroke-width=\"0.708661\" stroke=\"#6800E7\" stroke-opacity=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/>\n    <circle cx=\"536.57\" cy=\"190.17\" r=\"0.67pt\" id=\"51\" clip-path=\"url(#cl1_2)\" fill=\"#9100CB\" fill-opacity=\"1\" stroke-width=\"0.708661\" stroke=\"#9100CB\" stroke-opacity=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/>\n    <circle cx=\"549.63\" cy=\"191.28\" r=\"0.67pt\" id=\"52\" clip-path=\"url(#cl1_2)\" fill=\"#6900E6\" fill-opacity=\"1\" stroke-width=\"0.708661\" stroke=\"#6900E6\" stroke-opacity=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/>\n    <circle cx=\"562.69\" cy=\"191.53\" r=\"0.67pt\" id=\"53\" clip-path=\"url(#cl1_2)\" fill=\"#6100EA\" fill-opacity=\"1\" stroke-width=\"0.708661\" stroke=\"#6100EA\" stroke-opacity=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/>\n    <polyline points=\"52.75,58.98 54.06,58.98\" id=\"54\" clip-path=\"url(#cl1_2)\" fill=\"none\" stroke-width=\"1.06698\" stroke=\"#8F00CC\" stroke-opacity=\"0.5\" stroke-linejoin=\"round\" stroke-linecap=\"butt\"/>\n    <polyline points=\"53.41,58.98 53.41,100.41\" id=\"55\" clip-path=\"url(#cl1_2)\" fill=\"none\" stroke-width=\"1.06698\" stroke=\"#8F00CC\" stroke-opacity=\"0.5\" stroke-linejoin=\"round\" stroke-linecap=\"butt\"/>\n    <polyline points=\"52.75,100.41 54.06,100.41\" id=\"56\" clip-path=\"url(#cl1_2)\" fill=\"none\" stroke-width=\"1.06698\" stroke=\"#8F00CC\" stroke-opacity=\"0.5\" stroke-linejoin=\"round\" stroke-linecap=\"butt\"/>\n    <polyline points=\"65.81,26.47 67.12,26.47\" id=\"57\" clip-path=\"url(#cl1_2)\" fill=\"none\" stroke-width=\"1.06698\" stroke=\"#EA0049\" stroke-opacity=\"0.5\" stroke-linejoin=\"round\" stroke-linecap=\"butt\"/>\n    <polyline points=\"66.47,26.47 66.47,137.96\" id=\"58\" clip-path=\"url(#cl1_2)\" fill=\"none\" stroke-width=\"1.06698\" stroke=\"#EA0049\" stroke-opacity=\"0.5\" stroke-linejoin=\"round\" stroke-linecap=\"butt\"/>\n    <polyline points=\"65.81,137.96 67.12,137.96\" id=\"59\" clip-path=\"url(#cl1_2)\" fill=\"none\" stroke-width=\"1.06698\" stroke=\"#EA0049\" stroke-opacity=\"0.5\" stroke-linejoin=\"round\" stroke-linecap=\"butt\"/>\n    <polyline points=\"78.87,48.37 80.18,48.37\" id=\"60\" clip-path=\"url(#cl1_2)\" fill=\"none\" stroke-width=\"1.06698\" stroke=\"#C30092\" stroke-opacity=\"0.5\" stroke-linejoin=\"round\" stroke-linecap=\"butt\"/>\n    <polyline points=\"79.52,48.37 79.52,119.69\" id=\"61\" clip-path=\"url(#cl1_2)\" fill=\"none\" stroke-width=\"1.06698\" stroke=\"#C30092\" stroke-opacity=\"0.5\" stroke-linejoin=\"round\" stroke-linecap=\"butt\"/>\n    <polyline points=\"78.87,119.69 80.18,119.69\" id=\"62\" clip-path=\"url(#cl1_2)\" fill=\"none\" stroke-width=\"1.06698\" stroke=\"#C30092\" stroke-opacity=\"0.5\" stroke-linejoin=\"round\" stroke-linecap=\"butt\"/>\n    <polyline points=\"91.93,16.69 93.23,16.69\" id=\"63\" clip-path=\"url(#cl1_2)\" fill=\"none\" stroke-width=\"1.06698\" stroke=\"#FF0000\" stroke-opacity=\"0.5\" stroke-linejoin=\"round\" stroke-linecap=\"butt\"/>\n    <polyline points=\"92.58,16.69 92.58,153.57\" id=\"64\" clip-path=\"url(#cl1_2)\" fill=\"none\" stroke-width=\"1.06698\" stroke=\"#FF0000\" stroke-opacity=\"0.5\" stroke-linejoin=\"round\" stroke-linecap=\"butt\"/>\n    <polyline points=\"91.93,153.57 93.23,153.57\" id=\"65\" clip-path=\"url(#cl1_2)\" fill=\"none\" stroke-width=\"1.06698\" stroke=\"#FF0000\" stroke-opacity=\"0.5\" stroke-linejoin=\"round\" stroke-linecap=\"butt\"/>\n    <polyline points=\"104.99,32.00 106.29,32.00\" id=\"66\" clip-path=\"url(#cl1_2)\" fill=\"none\" stroke-width=\"1.06698\" stroke=\"#EA004B\" stroke-opacity=\"0.5\" stroke-linejoin=\"round\" stroke-linecap=\"butt\"/>\n    <polyline points=\"105.64,32.00 105.64,140.05\" id=\"67\" clip-path=\"url(#cl1_2)\" fill=\"none\" stroke-width=\"1.06698\" stroke=\"#EA004B\" stroke-opacity=\"0.5\" stroke-linejoin=\"round\" stroke-linecap=\"butt\"/>\n    <polyline points=\"104.99,140.05 106.29,140.05\" id=\"68\" clip-path=\"url(#cl1_2)\" fill=\"none\" stroke-width=\"1.06698\" stroke=\"#EA004B\" stroke-opacity=\"0.5\" stroke-linejoin=\"round\" stroke-linecap=\"butt\"/>\n    <polyline points=\"118.05,76.95 119.35,76.95\" id=\"69\" clip-path=\"url(#cl1_2)\" fill=\"none\" stroke-width=\"1.06698\" stroke=\"#3E00F7\" stroke-opacity=\"0.5\" stroke-linejoin=\"round\" stroke-linecap=\"butt\"/>\n    <polyline points=\"118.70,76.95 118.70,95.40\" id=\"70\" clip-path=\"url(#cl1_2)\" fill=\"none\" stroke-width=\"1.06698\" stroke=\"#3E00F7\" stroke-opacity=\"0.5\" stroke-linejoin=\"round\" stroke-linecap=\"butt\"/>\n    <polyline points=\"118.05,95.40 119.35,95.40\" id=\"71\" clip-path=\"url(#cl1_2)\" fill=\"none\" stroke-width=\"1.06698\" stroke=\"#3E00F7\" stroke-opacity=\"0.5\" stroke-linejoin=\"round\" stroke-linecap=\"butt\"/>\n    <polyline points=\"131.10,77.67 132.41,77.67\" id=\"72\" clip-path=\"url(#cl1_2)\" fill=\"none\" stroke-width=\"1.06698\" stroke=\"#3A00F8\" stroke-opacity=\"0.5\" stroke-linejoin=\"round\" stroke-linecap=\"butt\"/>\n    <polyline points=\"131.76,77.67 131.76,95.61\" id=\"73\" clip-path=\"url(#cl1_2)\" fill=\"none\" stroke-width=\"1.06698\" stroke=\"#3A00F8\" stroke-opacity=\"0.5\" stroke-linejoin=\"round\" stroke-linecap=\"butt\"/>\n    <polyline points=\"131.10,95.61 132.41,95.61\" id=\"74\" clip-path=\"url(#cl1_2)\" fill=\"none\" stroke-width=\"1.06698\" stroke=\"#3A00F8\" stroke-opacity=\"0.5\" stroke-linejoin=\"round\" stroke-linecap=\"butt\"/>\n    <polyline points=\"144.16,64.44 145.47,64.44\" id=\"75\" clip-path=\"url(#cl1_2)\" fill=\"none\" stroke-width=\"1.06698\" stroke=\"#9B00C2\" stroke-opacity=\"0.5\" stroke-linejoin=\"round\" stroke-linecap=\"butt\"/>\n    <polyline points=\"144.82,64.44 144.82,109.43\" id=\"76\" clip-path=\"url(#cl1_2)\" fill=\"none\" stroke-width=\"1.06698\" stroke=\"#9B00C2\" stroke-opacity=\"0.5\" stroke-linejoin=\"round\" stroke-linecap=\"butt\"/>\n    <polyline points=\"144.16,109.43 145.47,109.43\" id=\"77\" clip-path=\"url(#cl1_2)\" fill=\"none\" stroke-width=\"1.06698\" stroke=\"#9B00C2\" stroke-opacity=\"0.5\" stroke-linejoin=\"round\" stroke-linecap=\"butt\"/>\n    <polyline points=\"157.22,77.38 158.53,77.38\" id=\"78\" clip-path=\"url(#cl1_2)\" fill=\"none\" stroke-width=\"1.06698\" stroke=\"#4700F4\" stroke-opacity=\"0.5\" stroke-linejoin=\"round\" stroke-linecap=\"butt\"/>\n    <polyline points=\"157.87,77.38 157.87,97.09\" id=\"79\" clip-path=\"url(#cl1_2)\" fill=\"none\" stroke-width=\"1.06698\" stroke=\"#4700F4\" stroke-opacity=\"0.5\" stroke-linejoin=\"round\" stroke-linecap=\"butt\"/>\n    <polyline points=\"157.22,97.09 158.53,97.09\" id=\"80\" clip-path=\"url(#cl1_2)\" fill=\"none\" stroke-width=\"1.06698\" stroke=\"#4700F4\" stroke-opacity=\"0.5\" stroke-linejoin=\"round\" stroke-linecap=\"butt\"/>\n    <polyline points=\"170.28,76.02 171.59,76.02\" id=\"81\" clip-path=\"url(#cl1_2)\" fill=\"none\" stroke-width=\"1.06698\" stroke=\"#7000E2\" stroke-opacity=\"0.5\" stroke-linejoin=\"round\" stroke-linecap=\"butt\"/>\n    <polyline points=\"170.93,76.02 170.93,104.11\" id=\"82\" clip-path=\"url(#cl1_2)\" fill=\"none\" stroke-width=\"1.06698\" stroke=\"#7000E2\" stroke-opacity=\"0.5\" stroke-linejoin=\"round\" stroke-linecap=\"butt\"/>\n    <polyline points=\"170.28,104.11 171.59,104.11\" id=\"83\" clip-path=\"url(#cl1_2)\" fill=\"none\" stroke-width=\"1.06698\" stroke=\"#7000E2\" stroke-opacity=\"0.5\" stroke-linejoin=\"round\" stroke-linecap=\"butt\"/>\n    <polyline points=\"183.34,84.40 184.64,84.40\" id=\"84\" clip-path=\"url(#cl1_2)\" fill=\"none\" stroke-width=\"1.06698\" stroke=\"#1B00FD\" stroke-opacity=\"0.5\" stroke-linejoin=\"round\" stroke-linecap=\"butt\"/>\n    <polyline points=\"183.99,84.40 183.99,99.20\" id=\"85\" clip-path=\"url(#cl1_2)\" fill=\"none\" stroke-width=\"1.06698\" stroke=\"#1B00FD\" stroke-opacity=\"0.5\" stroke-linejoin=\"round\" stroke-linecap=\"butt\"/>\n    <polyline points=\"183.34,99.20 184.64,99.20\" id=\"86\" clip-path=\"url(#cl1_2)\" fill=\"none\" stroke-width=\"1.06698\" stroke=\"#1B00FD\" stroke-opacity=\"0.5\" stroke-linejoin=\"round\" stroke-linecap=\"butt\"/>\n    <polyline points=\"196.40,80.47 197.70,80.47\" id=\"87\" clip-path=\"url(#cl1_2)\" fill=\"none\" stroke-width=\"1.06698\" stroke=\"#6B00E5\" stroke-opacity=\"0.5\" stroke-linejoin=\"round\" stroke-linecap=\"butt\"/>\n    <polyline points=\"197.05,80.47 197.05,106.64\" id=\"88\" clip-path=\"url(#cl1_2)\" fill=\"none\" stroke-width=\"1.06698\" stroke=\"#6B00E5\" stroke-opacity=\"0.5\" stroke-linejoin=\"round\" stroke-linecap=\"butt\"/>\n    <polyline points=\"196.40,106.64 197.70,106.64\" id=\"89\" clip-path=\"url(#cl1_2)\" fill=\"none\" stroke-width=\"1.06698\" stroke=\"#6B00E5\" stroke-opacity=\"0.5\" stroke-linejoin=\"round\" stroke-linecap=\"butt\"/>\n    <polyline points=\"209.45,87.51 210.76,87.51\" id=\"90\" clip-path=\"url(#cl1_2)\" fill=\"none\" stroke-width=\"1.06698\" stroke=\"#0000FF\" stroke-opacity=\"0.5\" stroke-linejoin=\"round\" stroke-linecap=\"butt\"/>\n    <polyline points=\"210.11,87.51 210.11,101.17\" id=\"91\" clip-path=\"url(#cl1_2)\" fill=\"none\" stroke-width=\"1.06698\" stroke=\"#0000FF\" stroke-opacity=\"0.5\" stroke-linejoin=\"round\" stroke-linecap=\"butt\"/>\n    <polyline points=\"209.45,101.17 210.76,101.17\" id=\"92\" clip-path=\"url(#cl1_2)\" fill=\"none\" stroke-width=\"1.06698\" stroke=\"#0000FF\" stroke-opacity=\"0.5\" stroke-linejoin=\"round\" stroke-linecap=\"butt\"/>\n    <polyline points=\"222.51,85.02 223.82,85.02\" id=\"93\" clip-path=\"url(#cl1_2)\" fill=\"none\" stroke-width=\"1.06698\" stroke=\"#4E00F2\" stroke-opacity=\"0.5\" stroke-linejoin=\"round\" stroke-linecap=\"butt\"/>\n    <polyline points=\"223.17,85.02 223.17,104.95\" id=\"94\" clip-path=\"url(#cl1_2)\" fill=\"none\" stroke-width=\"1.06698\" stroke=\"#4E00F2\" stroke-opacity=\"0.5\" stroke-linejoin=\"round\" stroke-linecap=\"butt\"/>\n    <polyline points=\"222.51,104.95 223.82,104.95\" id=\"95\" clip-path=\"url(#cl1_2)\" fill=\"none\" stroke-width=\"1.06698\" stroke=\"#4E00F2\" stroke-opacity=\"0.5\" stroke-linejoin=\"round\" stroke-linecap=\"butt\"/>\n    <polyline points=\"235.57,81.66 236.88,81.66\" id=\"96\" clip-path=\"url(#cl1_2)\" fill=\"none\" stroke-width=\"1.06698\" stroke=\"#7200E1\" stroke-opacity=\"0.5\" stroke-linejoin=\"round\" stroke-linecap=\"butt\"/>\n    <polyline points=\"236.22,81.66 236.22,109.53\" id=\"97\" clip-path=\"url(#cl1_2)\" fill=\"none\" stroke-width=\"1.06698\" stroke=\"#7200E1\" stroke-opacity=\"0.5\" stroke-linejoin=\"round\" stroke-linecap=\"butt\"/>\n    <polyline points=\"235.57,109.53 236.88,109.53\" id=\"98\" clip-path=\"url(#cl1_2)\" fill=\"none\" stroke-width=\"1.06698\" stroke=\"#7200E1\" stroke-opacity=\"0.5\" stroke-linejoin=\"round\" stroke-linecap=\"butt\"/>\n    <polyline points=\"248.63,73.15 249.94,73.15\" id=\"99\" clip-path=\"url(#cl1_2)\" fill=\"none\" stroke-width=\"1.06698\" stroke=\"#A000BC\" stroke-opacity=\"0.5\" stroke-linejoin=\"round\" stroke-linecap=\"butt\"/>\n    <polyline points=\"249.28,73.15 249.28,118.36\" id=\"100\" clip-path=\"url(#cl1_2)\" fill=\"none\" stroke-width=\"1.06698\" stroke=\"#A000BC\" stroke-opacity=\"0.5\" stroke-linejoin=\"round\" stroke-linecap=\"butt\"/>\n    <polyline points=\"248.63,118.36 249.94,118.36\" id=\"101\" clip-path=\"url(#cl1_2)\" fill=\"none\" stroke-width=\"1.06698\" stroke=\"#A000BC\" stroke-opacity=\"0.5\" stroke-linejoin=\"round\" stroke-linecap=\"butt\"/>\n    <polyline points=\"261.69,64.30 262.99,64.30\" id=\"102\" clip-path=\"url(#cl1_2)\" fill=\"none\" stroke-width=\"1.06698\" stroke=\"#C10094\" stroke-opacity=\"0.5\" stroke-linejoin=\"round\" stroke-linecap=\"butt\"/>\n    <polyline points=\"262.34,64.30 262.34,128.99\" id=\"103\" clip-path=\"url(#cl1_2)\" fill=\"none\" stroke-width=\"1.06698\" stroke=\"#C10094\" stroke-opacity=\"0.5\" stroke-linejoin=\"round\" stroke-linecap=\"butt\"/>\n    <polyline points=\"261.69,128.99 262.99,128.99\" id=\"104\" clip-path=\"url(#cl1_2)\" fill=\"none\" stroke-width=\"1.06698\" stroke=\"#C10094\" stroke-opacity=\"0.5\" stroke-linejoin=\"round\" stroke-linecap=\"butt\"/>\n    <polyline points=\"274.75,87.19 276.05,87.19\" id=\"105\" clip-path=\"url(#cl1_2)\" fill=\"none\" stroke-width=\"1.06698\" stroke=\"#4A00F3\" stroke-opacity=\"0.5\" stroke-linejoin=\"round\" stroke-linecap=\"butt\"/>\n    <polyline points=\"275.40,87.19 275.40,106.15\" id=\"106\" clip-path=\"url(#cl1_2)\" fill=\"none\" stroke-width=\"1.06698\" stroke=\"#4A00F3\" stroke-opacity=\"0.5\" stroke-linejoin=\"round\" stroke-linecap=\"butt\"/>\n    <polyline points=\"274.75,106.15 276.05,106.15\" id=\"107\" clip-path=\"url(#cl1_2)\" fill=\"none\" stroke-width=\"1.06698\" stroke=\"#4A00F3\" stroke-opacity=\"0.5\" stroke-linejoin=\"round\" stroke-linecap=\"butt\"/>\n    <polyline points=\"287.81,69.38 289.11,69.38\" id=\"108\" clip-path=\"url(#cl1_2)\" fill=\"none\" stroke-width=\"1.06698\" stroke=\"#B200A8\" stroke-opacity=\"0.5\" stroke-linejoin=\"round\" stroke-linecap=\"butt\"/>\n    <polyline points=\"288.46,69.38 288.46,124.11\" id=\"109\" clip-path=\"url(#cl1_2)\" fill=\"none\" stroke-width=\"1.06698\" stroke=\"#B200A8\" stroke-opacity=\"0.5\" stroke-linejoin=\"round\" stroke-linecap=\"butt\"/>\n    <polyline points=\"287.81,124.11 289.11,124.11\" id=\"110\" clip-path=\"url(#cl1_2)\" fill=\"none\" stroke-width=\"1.06698\" stroke=\"#B200A8\" stroke-opacity=\"0.5\" stroke-linejoin=\"round\" stroke-linecap=\"butt\"/>\n    <polyline points=\"300.86,78.81 302.17,78.81\" id=\"111\" clip-path=\"url(#cl1_2)\" fill=\"none\" stroke-width=\"1.06698\" stroke=\"#8E00CD\" stroke-opacity=\"0.5\" stroke-linejoin=\"round\" stroke-linecap=\"butt\"/>\n    <polyline points=\"301.52,78.81 301.52,115.80\" id=\"112\" clip-path=\"url(#cl1_2)\" fill=\"none\" stroke-width=\"1.06698\" stroke=\"#8E00CD\" stroke-opacity=\"0.5\" stroke-linejoin=\"round\" stroke-linecap=\"butt\"/>\n    <polyline points=\"300.86,115.80 302.17,115.80\" id=\"113\" clip-path=\"url(#cl1_2)\" fill=\"none\" stroke-width=\"1.06698\" stroke=\"#8E00CD\" stroke-opacity=\"0.5\" stroke-linejoin=\"round\" stroke-linecap=\"butt\"/>\n    <polyline points=\"313.92,171.37 315.23,171.37\" id=\"114\" clip-path=\"url(#cl1_2)\" fill=\"none\" stroke-width=\"1.06698\" stroke=\"#9800C4\" stroke-opacity=\"0.5\" stroke-linejoin=\"round\" stroke-linecap=\"butt\"/>\n    <polyline points=\"314.58,171.37 314.58,190.25\" id=\"115\" clip-path=\"url(#cl1_2)\" fill=\"none\" stroke-width=\"1.06698\" stroke=\"#9800C4\" stroke-opacity=\"0.5\" stroke-linejoin=\"round\" stroke-linecap=\"butt\"/>\n    <polyline points=\"313.92,190.25 315.23,190.25\" id=\"116\" clip-path=\"url(#cl1_2)\" fill=\"none\" stroke-width=\"1.06698\" stroke=\"#9800C4\" stroke-opacity=\"0.5\" stroke-linejoin=\"round\" stroke-linecap=\"butt\"/>\n    <polyline points=\"326.98,175.44 328.29,175.44\" id=\"117\" clip-path=\"url(#cl1_2)\" fill=\"none\" stroke-width=\"1.06698\" stroke=\"#6400E9\" stroke-opacity=\"0.5\" stroke-linejoin=\"round\" stroke-linecap=\"butt\"/>\n    <polyline points=\"327.63,175.44 327.63,186.41\" id=\"118\" clip-path=\"url(#cl1_2)\" fill=\"none\" stroke-width=\"1.06698\" stroke=\"#6400E9\" stroke-opacity=\"0.5\" stroke-linejoin=\"round\" stroke-linecap=\"butt\"/>\n    <polyline points=\"326.98,186.41 328.29,186.41\" id=\"119\" clip-path=\"url(#cl1_2)\" fill=\"none\" stroke-width=\"1.06698\" stroke=\"#6400E9\" stroke-opacity=\"0.5\" stroke-linejoin=\"round\" stroke-linecap=\"butt\"/>\n    <polyline points=\"340.04,172.81 341.35,172.81\" id=\"120\" clip-path=\"url(#cl1_2)\" fill=\"none\" stroke-width=\"1.06698\" stroke=\"#8C00CF\" stroke-opacity=\"0.5\" stroke-linejoin=\"round\" stroke-linecap=\"butt\"/>\n    <polyline points=\"340.69,172.81 340.69,189.36\" id=\"121\" clip-path=\"url(#cl1_2)\" fill=\"none\" stroke-width=\"1.06698\" stroke=\"#8C00CF\" stroke-opacity=\"0.5\" stroke-linejoin=\"round\" stroke-linecap=\"butt\"/>\n    <polyline points=\"340.04,189.36 341.35,189.36\" id=\"122\" clip-path=\"url(#cl1_2)\" fill=\"none\" stroke-width=\"1.06698\" stroke=\"#8C00CF\" stroke-opacity=\"0.5\" stroke-linejoin=\"round\" stroke-linecap=\"butt\"/>\n    <polyline points=\"353.10,176.84 354.40,176.84\" id=\"123\" clip-path=\"url(#cl1_2)\" fill=\"none\" stroke-width=\"1.06698\" stroke=\"#4900F3\" stroke-opacity=\"0.5\" stroke-linejoin=\"round\" stroke-linecap=\"butt\"/>\n    <polyline points=\"353.75,176.84 353.75,185.48\" id=\"124\" clip-path=\"url(#cl1_2)\" fill=\"none\" stroke-width=\"1.06698\" stroke=\"#4900F3\" stroke-opacity=\"0.5\" stroke-linejoin=\"round\" stroke-linecap=\"butt\"/>\n    <polyline points=\"353.10,185.48 354.40,185.48\" id=\"125\" clip-path=\"url(#cl1_2)\" fill=\"none\" stroke-width=\"1.06698\" stroke=\"#4900F3\" stroke-opacity=\"0.5\" stroke-linejoin=\"round\" stroke-linecap=\"butt\"/>\n    <polyline points=\"366.16,176.42 367.46,176.42\" id=\"126\" clip-path=\"url(#cl1_2)\" fill=\"none\" stroke-width=\"1.06698\" stroke=\"#5800EE\" stroke-opacity=\"0.5\" stroke-linejoin=\"round\" stroke-linecap=\"butt\"/>\n    <polyline points=\"366.81,176.42 366.81,186.19\" id=\"127\" clip-path=\"url(#cl1_2)\" fill=\"none\" stroke-width=\"1.06698\" stroke=\"#5800EE\" stroke-opacity=\"0.5\" stroke-linejoin=\"round\" stroke-linecap=\"butt\"/>\n    <polyline points=\"366.16,186.19 367.46,186.19\" id=\"128\" clip-path=\"url(#cl1_2)\" fill=\"none\" stroke-width=\"1.06698\" stroke=\"#5800EE\" stroke-opacity=\"0.5\" stroke-linejoin=\"round\" stroke-linecap=\"butt\"/>\n    <polyline points=\"379.21,173.53 380.52,173.53\" id=\"129\" clip-path=\"url(#cl1_2)\" fill=\"none\" stroke-width=\"1.06698\" stroke=\"#8D00CE\" stroke-opacity=\"0.5\" stroke-linejoin=\"round\" stroke-linecap=\"butt\"/>\n    <polyline points=\"379.87,173.53 379.87,190.06\" id=\"130\" clip-path=\"url(#cl1_2)\" fill=\"none\" stroke-width=\"1.06698\" stroke=\"#8D00CE\" stroke-opacity=\"0.5\" stroke-linejoin=\"round\" stroke-linecap=\"butt\"/>\n    <polyline points=\"379.21,190.06 380.52,190.06\" id=\"131\" clip-path=\"url(#cl1_2)\" fill=\"none\" stroke-width=\"1.06698\" stroke=\"#8D00CE\" stroke-opacity=\"0.5\" stroke-linejoin=\"round\" stroke-linecap=\"butt\"/>\n    <polyline points=\"392.27,177.48 393.58,177.48\" id=\"132\" clip-path=\"url(#cl1_2)\" fill=\"none\" stroke-width=\"1.06698\" stroke=\"#5300F0\" stroke-opacity=\"0.5\" stroke-linejoin=\"round\" stroke-linecap=\"butt\"/>\n    <polyline points=\"392.93,177.48 392.93,186.74\" id=\"133\" clip-path=\"url(#cl1_2)\" fill=\"none\" stroke-width=\"1.06698\" stroke=\"#5300F0\" stroke-opacity=\"0.5\" stroke-linejoin=\"round\" stroke-linecap=\"butt\"/>\n    <polyline points=\"392.27,186.74 393.58,186.74\" id=\"134\" clip-path=\"url(#cl1_2)\" fill=\"none\" stroke-width=\"1.06698\" stroke=\"#5300F0\" stroke-opacity=\"0.5\" stroke-linejoin=\"round\" stroke-linecap=\"butt\"/>\n    <polyline points=\"405.33,171.84 406.64,171.84\" id=\"135\" clip-path=\"url(#cl1_2)\" fill=\"none\" stroke-width=\"1.06698\" stroke=\"#A200BB\" stroke-opacity=\"0.5\" stroke-linejoin=\"round\" stroke-linecap=\"butt\"/>\n    <polyline points=\"405.98,171.84 405.98,192.52\" id=\"136\" clip-path=\"url(#cl1_2)\" fill=\"none\" stroke-width=\"1.06698\" stroke=\"#A200BB\" stroke-opacity=\"0.5\" stroke-linejoin=\"round\" stroke-linecap=\"butt\"/>\n    <polyline points=\"405.33,192.52 406.64,192.52\" id=\"137\" clip-path=\"url(#cl1_2)\" fill=\"none\" stroke-width=\"1.06698\" stroke=\"#A200BB\" stroke-opacity=\"0.5\" stroke-linejoin=\"round\" stroke-linecap=\"butt\"/>\n    <polyline points=\"418.39,175.25 419.70,175.25\" id=\"138\" clip-path=\"url(#cl1_2)\" fill=\"none\" stroke-width=\"1.06698\" stroke=\"#8500D4\" stroke-opacity=\"0.5\" stroke-linejoin=\"round\" stroke-linecap=\"butt\"/>\n    <polyline points=\"419.04,175.25 419.04,190.22\" id=\"139\" clip-path=\"url(#cl1_2)\" fill=\"none\" stroke-width=\"1.06698\" stroke=\"#8500D4\" stroke-opacity=\"0.5\" stroke-linejoin=\"round\" stroke-linecap=\"butt\"/>\n    <polyline points=\"418.39,190.22 419.70,190.22\" id=\"140\" clip-path=\"url(#cl1_2)\" fill=\"none\" stroke-width=\"1.06698\" stroke=\"#8500D4\" stroke-opacity=\"0.5\" stroke-linejoin=\"round\" stroke-linecap=\"butt\"/>\n    <polyline points=\"431.45,177.84 432.75,177.84\" id=\"141\" clip-path=\"url(#cl1_2)\" fill=\"none\" stroke-width=\"1.06698\" stroke=\"#6400E8\" stroke-opacity=\"0.5\" stroke-linejoin=\"round\" stroke-linecap=\"butt\"/>\n    <polyline points=\"432.10,177.84 432.10,188.52\" id=\"142\" clip-path=\"url(#cl1_2)\" fill=\"none\" stroke-width=\"1.06698\" stroke=\"#6400E8\" stroke-opacity=\"0.5\" stroke-linejoin=\"round\" stroke-linecap=\"butt\"/>\n    <polyline points=\"431.45,188.52 432.75,188.52\" id=\"143\" clip-path=\"url(#cl1_2)\" fill=\"none\" stroke-width=\"1.06698\" stroke=\"#6400E8\" stroke-opacity=\"0.5\" stroke-linejoin=\"round\" stroke-linecap=\"butt\"/>\n    <polyline points=\"444.51,176.29 445.81,176.29\" id=\"144\" clip-path=\"url(#cl1_2)\" fill=\"none\" stroke-width=\"1.06698\" stroke=\"#8A00D0\" stroke-opacity=\"0.5\" stroke-linejoin=\"round\" stroke-linecap=\"butt\"/>\n    <polyline points=\"445.16,176.29 445.16,191.88\" id=\"145\" clip-path=\"url(#cl1_2)\" fill=\"none\" stroke-width=\"1.06698\" stroke=\"#8A00D0\" stroke-opacity=\"0.5\" stroke-linejoin=\"round\" stroke-linecap=\"butt\"/>\n    <polyline points=\"444.51,191.88 445.81,191.88\" id=\"146\" clip-path=\"url(#cl1_2)\" fill=\"none\" stroke-width=\"1.06698\" stroke=\"#8A00D0\" stroke-opacity=\"0.5\" stroke-linejoin=\"round\" stroke-linecap=\"butt\"/>\n    <polyline points=\"457.57,179.46 458.87,179.46\" id=\"147\" clip-path=\"url(#cl1_2)\" fill=\"none\" stroke-width=\"1.06698\" stroke=\"#6000EA\" stroke-opacity=\"0.5\" stroke-linejoin=\"round\" stroke-linecap=\"butt\"/>\n    <polyline points=\"458.22,179.46 458.22,189.56\" id=\"148\" clip-path=\"url(#cl1_2)\" fill=\"none\" stroke-width=\"1.06698\" stroke=\"#6000EA\" stroke-opacity=\"0.5\" stroke-linejoin=\"round\" stroke-linecap=\"butt\"/>\n    <polyline points=\"457.57,189.56 458.87,189.56\" id=\"149\" clip-path=\"url(#cl1_2)\" fill=\"none\" stroke-width=\"1.06698\" stroke=\"#6000EA\" stroke-opacity=\"0.5\" stroke-linejoin=\"round\" stroke-linecap=\"butt\"/>\n    <polyline points=\"470.62,181.81 471.93,181.81\" id=\"150\" clip-path=\"url(#cl1_2)\" fill=\"none\" stroke-width=\"1.06698\" stroke=\"#5700EE\" stroke-opacity=\"0.5\" stroke-linejoin=\"round\" stroke-linecap=\"butt\"/>\n    <polyline points=\"471.28,181.81 471.28,190.82\" id=\"151\" clip-path=\"url(#cl1_2)\" fill=\"none\" stroke-width=\"1.06698\" stroke=\"#5700EE\" stroke-opacity=\"0.5\" stroke-linejoin=\"round\" stroke-linecap=\"butt\"/>\n    <polyline points=\"470.62,190.82 471.93,190.82\" id=\"152\" clip-path=\"url(#cl1_2)\" fill=\"none\" stroke-width=\"1.06698\" stroke=\"#5700EE\" stroke-opacity=\"0.5\" stroke-linejoin=\"round\" stroke-linecap=\"butt\"/>\n    <polyline points=\"483.68,180.29 484.99,180.29\" id=\"153\" clip-path=\"url(#cl1_2)\" fill=\"none\" stroke-width=\"1.06698\" stroke=\"#7700DE\" stroke-opacity=\"0.5\" stroke-linejoin=\"round\" stroke-linecap=\"butt\"/>\n    <polyline points=\"484.33,180.29 484.33,192.55\" id=\"154\" clip-path=\"url(#cl1_2)\" fill=\"none\" stroke-width=\"1.06698\" stroke=\"#7700DE\" stroke-opacity=\"0.5\" stroke-linejoin=\"round\" stroke-linecap=\"butt\"/>\n    <polyline points=\"483.68,192.55 484.99,192.55\" id=\"155\" clip-path=\"url(#cl1_2)\" fill=\"none\" stroke-width=\"1.06698\" stroke=\"#7700DE\" stroke-opacity=\"0.5\" stroke-linejoin=\"round\" stroke-linecap=\"butt\"/>\n    <polyline points=\"496.74,180.35 498.05,180.35\" id=\"156\" clip-path=\"url(#cl1_2)\" fill=\"none\" stroke-width=\"1.06698\" stroke=\"#7600DE\" stroke-opacity=\"0.5\" stroke-linejoin=\"round\" stroke-linecap=\"butt\"/>\n    <polyline points=\"497.39,180.35 497.39,192.50\" id=\"157\" clip-path=\"url(#cl1_2)\" fill=\"none\" stroke-width=\"1.06698\" stroke=\"#7600DE\" stroke-opacity=\"0.5\" stroke-linejoin=\"round\" stroke-linecap=\"butt\"/>\n    <polyline points=\"496.74,192.50 498.05,192.50\" id=\"158\" clip-path=\"url(#cl1_2)\" fill=\"none\" stroke-width=\"1.06698\" stroke=\"#7600DE\" stroke-opacity=\"0.5\" stroke-linejoin=\"round\" stroke-linecap=\"butt\"/>\n    <polyline points=\"509.80,180.48 511.10,180.48\" id=\"159\" clip-path=\"url(#cl1_2)\" fill=\"none\" stroke-width=\"1.06698\" stroke=\"#8000D8\" stroke-opacity=\"0.5\" stroke-linejoin=\"round\" stroke-linecap=\"butt\"/>\n    <polyline points=\"510.45,180.48 510.45,193.79\" id=\"160\" clip-path=\"url(#cl1_2)\" fill=\"none\" stroke-width=\"1.06698\" stroke=\"#8000D8\" stroke-opacity=\"0.5\" stroke-linejoin=\"round\" stroke-linecap=\"butt\"/>\n    <polyline points=\"509.80,193.79 511.10,193.79\" id=\"161\" clip-path=\"url(#cl1_2)\" fill=\"none\" stroke-width=\"1.06698\" stroke=\"#8000D8\" stroke-opacity=\"0.5\" stroke-linejoin=\"round\" stroke-linecap=\"butt\"/>\n    <polyline points=\"522.86,184.47 524.16,184.47\" id=\"162\" clip-path=\"url(#cl1_2)\" fill=\"none\" stroke-width=\"1.06698\" stroke=\"#6800E7\" stroke-opacity=\"0.5\" stroke-linejoin=\"round\" stroke-linecap=\"butt\"/>\n    <polyline points=\"523.51,184.47 523.51,194.51\" id=\"163\" clip-path=\"url(#cl1_2)\" fill=\"none\" stroke-width=\"1.06698\" stroke=\"#6800E7\" stroke-opacity=\"0.5\" stroke-linejoin=\"round\" stroke-linecap=\"butt\"/>\n    <polyline points=\"522.86,194.51 524.16,194.51\" id=\"164\" clip-path=\"url(#cl1_2)\" fill=\"none\" stroke-width=\"1.06698\" stroke=\"#6800E7\" stroke-opacity=\"0.5\" stroke-linejoin=\"round\" stroke-linecap=\"butt\"/>\n    <polyline points=\"535.92,182.57 537.22,182.57\" id=\"165\" clip-path=\"url(#cl1_2)\" fill=\"none\" stroke-width=\"1.06698\" stroke=\"#9100CB\" stroke-opacity=\"0.5\" stroke-linejoin=\"round\" stroke-linecap=\"butt\"/>\n    <polyline points=\"536.57,182.57 536.57,197.77\" id=\"166\" clip-path=\"url(#cl1_2)\" fill=\"none\" stroke-width=\"1.06698\" stroke=\"#9100CB\" stroke-opacity=\"0.5\" stroke-linejoin=\"round\" stroke-linecap=\"butt\"/>\n    <polyline points=\"535.92,197.77 537.22,197.77\" id=\"167\" clip-path=\"url(#cl1_2)\" fill=\"none\" stroke-width=\"1.06698\" stroke=\"#9100CB\" stroke-opacity=\"0.5\" stroke-linejoin=\"round\" stroke-linecap=\"butt\"/>\n    <polyline points=\"548.97,186.35 550.28,186.35\" id=\"168\" clip-path=\"url(#cl1_2)\" fill=\"none\" stroke-width=\"1.06698\" stroke=\"#6900E6\" stroke-opacity=\"0.5\" stroke-linejoin=\"round\" stroke-linecap=\"butt\"/>\n    <polyline points=\"549.63,186.35 549.63,196.21\" id=\"169\" clip-path=\"url(#cl1_2)\" fill=\"none\" stroke-width=\"1.06698\" stroke=\"#6900E6\" stroke-opacity=\"0.5\" stroke-linejoin=\"round\" stroke-linecap=\"butt\"/>\n    <polyline points=\"548.97,196.21 550.28,196.21\" id=\"170\" clip-path=\"url(#cl1_2)\" fill=\"none\" stroke-width=\"1.06698\" stroke=\"#6900E6\" stroke-opacity=\"0.5\" stroke-linejoin=\"round\" stroke-linecap=\"butt\"/>\n    <polyline points=\"562.03,186.99 563.34,186.99\" id=\"171\" clip-path=\"url(#cl1_2)\" fill=\"none\" stroke-width=\"1.06698\" stroke=\"#6100EA\" stroke-opacity=\"0.5\" stroke-linejoin=\"round\" stroke-linecap=\"butt\"/>\n    <polyline points=\"562.69,186.99 562.69,196.06\" id=\"172\" clip-path=\"url(#cl1_2)\" fill=\"none\" stroke-width=\"1.06698\" stroke=\"#6100EA\" stroke-opacity=\"0.5\" stroke-linejoin=\"round\" stroke-linecap=\"butt\"/>\n    <polyline points=\"562.03,196.06 563.34,196.06\" id=\"173\" clip-path=\"url(#cl1_2)\" fill=\"none\" stroke-width=\"1.06698\" stroke=\"#6100EA\" stroke-opacity=\"0.5\" stroke-linejoin=\"round\" stroke-linecap=\"butt\"/>\n    <defs>\n      <clipPath id=\"cl1_3\">\n        <rect x=\"0.00\" y=\"0.00\" width=\"576.00\" height=\"288.00\"/>\n      <\/clipPath>\n    <\/defs>\n    <g clip-path=\"url(#cl1_3)\">\n      <text x=\"18.62\" y=\"255.49\" id=\"174\" font-size=\"6.60pt\" fill=\"#4D4D4D\" fill-opacity=\"1\" font-family=\"Arial\">0.000<\/text>\n    <\/g>\n    <g clip-path=\"url(#cl1_3)\">\n      <text x=\"18.62\" y=\"234.13\" id=\"175\" font-size=\"6.60pt\" fill=\"#4D4D4D\" fill-opacity=\"1\" font-family=\"Arial\">0.100<\/text>\n    <\/g>\n    <g clip-path=\"url(#cl1_3)\">\n      <text x=\"18.62\" y=\"212.78\" id=\"176\" font-size=\"6.60pt\" fill=\"#4D4D4D\" fill-opacity=\"1\" font-family=\"Arial\">0.200<\/text>\n    <\/g>\n    <g clip-path=\"url(#cl1_3)\">\n      <text x=\"18.62\" y=\"191.43\" id=\"177\" font-size=\"6.60pt\" fill=\"#4D4D4D\" fill-opacity=\"1\" font-family=\"Arial\">0.300<\/text>\n    <\/g>\n    <g clip-path=\"url(#cl1_3)\">\n      <text x=\"18.62\" y=\"170.08\" id=\"178\" font-size=\"6.60pt\" fill=\"#4D4D4D\" fill-opacity=\"1\" font-family=\"Arial\">0.400<\/text>\n    <\/g>\n    <g clip-path=\"url(#cl1_3)\">\n      <text x=\"18.62\" y=\"148.72\" id=\"179\" font-size=\"6.60pt\" fill=\"#4D4D4D\" fill-opacity=\"1\" font-family=\"Arial\">0.500<\/text>\n    <\/g>\n    <g clip-path=\"url(#cl1_3)\">\n      <text x=\"18.62\" y=\"127.37\" id=\"180\" font-size=\"6.60pt\" fill=\"#4D4D4D\" fill-opacity=\"1\" font-family=\"Arial\">0.600<\/text>\n    <\/g>\n    <g clip-path=\"url(#cl1_3)\">\n      <text x=\"18.62\" y=\"106.02\" id=\"181\" font-size=\"6.60pt\" fill=\"#4D4D4D\" fill-opacity=\"1\" font-family=\"Arial\">0.700<\/text>\n    <\/g>\n    <g clip-path=\"url(#cl1_3)\">\n      <text x=\"18.62\" y=\"84.67\" id=\"182\" font-size=\"6.60pt\" fill=\"#4D4D4D\" fill-opacity=\"1\" font-family=\"Arial\">0.800<\/text>\n    <\/g>\n    <g clip-path=\"url(#cl1_3)\">\n      <text x=\"18.62\" y=\"63.31\" id=\"183\" font-size=\"6.60pt\" fill=\"#4D4D4D\" fill-opacity=\"1\" font-family=\"Arial\">0.900<\/text>\n    <\/g>\n    <polyline points=\"42.83,252.34 45.57,252.34\" id=\"184\" clip-path=\"url(#cl1_3)\" fill=\"none\" stroke-width=\"0.533489\" stroke=\"#333333\" stroke-opacity=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"butt\"/>\n    <polyline points=\"42.83,230.99 45.57,230.99\" id=\"185\" clip-path=\"url(#cl1_3)\" fill=\"none\" stroke-width=\"0.533489\" stroke=\"#333333\" stroke-opacity=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"butt\"/>\n    <polyline points=\"42.83,209.63 45.57,209.63\" id=\"186\" clip-path=\"url(#cl1_3)\" fill=\"none\" stroke-width=\"0.533489\" stroke=\"#333333\" stroke-opacity=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"butt\"/>\n    <polyline points=\"42.83,188.28 45.57,188.28\" id=\"187\" clip-path=\"url(#cl1_3)\" fill=\"none\" stroke-width=\"0.533489\" stroke=\"#333333\" stroke-opacity=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"butt\"/>\n    <polyline points=\"42.83,166.93 45.57,166.93\" id=\"188\" clip-path=\"url(#cl1_3)\" fill=\"none\" stroke-width=\"0.533489\" stroke=\"#333333\" stroke-opacity=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"butt\"/>\n    <polyline points=\"42.83,145.57 45.57,145.57\" id=\"189\" clip-path=\"url(#cl1_3)\" fill=\"none\" stroke-width=\"0.533489\" stroke=\"#333333\" stroke-opacity=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"butt\"/>\n    <polyline points=\"42.83,124.22 45.57,124.22\" id=\"190\" clip-path=\"url(#cl1_3)\" fill=\"none\" stroke-width=\"0.533489\" stroke=\"#333333\" stroke-opacity=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"butt\"/>\n    <polyline points=\"42.83,102.87 45.57,102.87\" id=\"191\" clip-path=\"url(#cl1_3)\" fill=\"none\" stroke-width=\"0.533489\" stroke=\"#333333\" stroke-opacity=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"butt\"/>\n    <polyline points=\"42.83,81.52 45.57,81.52\" id=\"192\" clip-path=\"url(#cl1_3)\" fill=\"none\" stroke-width=\"0.533489\" stroke=\"#333333\" stroke-opacity=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"butt\"/>\n    <polyline points=\"42.83,60.16 45.57,60.16\" id=\"193\" clip-path=\"url(#cl1_3)\" fill=\"none\" stroke-width=\"0.533489\" stroke=\"#333333\" stroke-opacity=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"butt\"/>\n    <g clip-path=\"url(#cl1_3)\">\n      <text x=\"275.03\" y=\"265.69\" id=\"194\" font-size=\"8.25pt\" font-family=\"Arial\">Municipalities<\/text>\n    <\/g>\n    <g clip-path=\"url(#cl1_3)\">\n      <text transform=\"translate(13.35,170.34) rotate(-90)\" id=\"195\" font-size=\"8.25pt\" font-family=\"Arial\">Gini Index<\/text>\n    <\/g>\n    <g clip-path=\"url(#cl1_3)\">\n      <text x=\"45.57\" y=\"30.81\" id=\"196\" font-size=\"8.25pt\" font-family=\"Arial\">40 municipalities of with the largest or lowest estimates.<\/text>\n    <\/g>\n    <g clip-path=\"url(#cl1_3)\">\n      <text x=\"45.57\" y=\"14.93\" id=\"197\" font-size=\"9.90pt\" font-weight=\"bold\" font-family=\"Arial\">Gini index estimates and 95% CIs<\/text>\n    <\/g>\n    <g clip-path=\"url(#cl1_3)\">\n      <text x=\"383.19\" y=\"280.00\" id=\"198\" font-size=\"6.60pt\" font-family=\"Arial\">Source: Brazil 2010 Census Sample. Microdata.<\/text>\n    <\/g>\n  <\/g>\n<\/svg>\n","css":".tooltip_svg_1 {position:absolute;pointer-events:none;z-index:999;padding:5px;background:black;color:white;border-radius:2px 2px 2px 2px;}\n.hover_svg_1{fill:orange;stroke:gray;}\n.clicked_svg_1{fill:orange;stroke:gray;}","ui_html":"<div class='ggiraph-toolbar'><div class='ggiraph-toolbar-block shinyonly'><a class='ggiraph-toolbar-icon neutral' title='lasso selection' href='javascript:lasso_on(\"svg_1\", true, \"array_selected_svg_1\", \"clicked_svg_1\");'><svg width='15pt' height='15pt' viewBox='0 0 230 230'><g><ellipse ry='65.5' rx='86.5' cy='94' cx='115.5' stroke-width='20' fill='transparent'/><ellipse ry='11.500001' rx='10.5' cy='153' cx='91.5' stroke-width='20' fill='transparent'/><line y2='210.5' x2='105' y1='164.5' x1='96' stroke-width='20'/><\/g><\/svg><\/a><a class='ggiraph-toolbar-icon drop' title='lasso anti-selection' href='javascript:lasso_on(\"svg_1\", false, \"array_selected_svg_1\", \"clicked_svg_1\");'><svg width='15pt' height='15pt' viewBox='0 0 230 230'><g><ellipse ry='65.5' rx='86.5' cy='94' cx='115.5' stroke-width='20' fill='transparent'/><ellipse ry='11.500001' rx='10.5' cy='153' cx='91.5' stroke-width='20' fill='transparent'/><line y2='210.5' x2='105' y1='164.5' x1='96' stroke-width='20'/><\/g><\/svg><\/a><\/div><div class='ggiraph-toolbar-block'><a class='ggiraph-toolbar-icon neutral' title='pan-zoom reset' href='javascript:zoom_identity_ggiraph(\"svg_1\", zoom_svg_1);'><svg width='15pt' height='15pt' viewBox='0 0 512 512'><g><polygon points='274,209.7 337.9,145.9 288,96 416,96 416,224 366.1,174.1 302.3,238 '/><polygon points='274,302.3 337.9,366.1 288,416 416,416 416,288 366.1,337.9 302.3,274'/><polygon points='238,302.3 174.1,366.1 224,416 96,416 96,288 145.9,337.9 209.7,274'/><polygon points='238,209.7 174.1,145.9 224,96 96,96 96,224 145.9,174.1 209.7,238'/><\/g><svg><\/a><a class='ggiraph-toolbar-icon neutral' title='activate pan-zoom' href='javascript:zoom_on_ggiraph(\"svg_1\", zoom_svg_1);'><svg width='15pt' height='15pt' viewBox='0 0 512 512'><g><ellipse ry='150' rx='150' cy='213' cx='203.5' stroke-width='50' fill='transparent'/><line y2='455.5' x2='416' y1='331.5' x1='301' stroke-width='50'/><\/g><\/svg><\/a><a class='ggiraph-toolbar-icon neutral' title='desactivate pan-zoom' href='javascript:zoom_off_ggiraph(\"svg_1\", zoom_svg_1);'><svg width='15pt' height='15pt' viewBox='0 0 512 512'><g><ellipse ry='150' rx='150' cy='213' cx='203.5' stroke-width='50' fill='transparent'/><line y2='455.5' x2='416' y1='331.5' x1='301' stroke-width='50'/><line y2='455' x2='0' y1='0' x1='416' stroke-width='30'/><\/g><\/svg><\/a><\/div><\/div>","uid":"svg_1","width":"100%","funname":"init_prop_svg_1","sel_array_name":"array_selected_svg_1","selected_class":"clicked_svg_1","tooltip_opacity":0.7,"tooltip_offx":10,"tooltip_offy":0,"zoom_max":5,"selection_type":"multiple"},"evals":[],"jsHooks":[]}</script>
+<p>Some of those numbers have prohibitively large standard errors. Does that make them useless? Not at all! There is a branch of modern statistical techniques called <em>Small Area Estimation</em><a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a>, and it is <strong>just beautiful</strong>. There are several methods for doing it<a href="#fn3" class="footnoteRef" id="fnref3"><sup>3</sup></a>, but the basic idea is to “borrow strength” from auxiliary data. Also, it can be seen as a bias-variance tradeoff: the direct estimates are unbiased but have higher variance, while the synthetic estimates are more precise but subjected to bias<a href="#fn4" class="footnoteRef" id="fnref4"><sup>4</sup></a>.</p>
+<p>One of the seminal techniques comes from <span class="citation">Fay and Herriot (1979)</span>, where a model is proposed to correct survey estimates. The final estimates can be seen as convex linear combinations of the direct and synthetic estimates; i.e.,</p>
+<p><span class="math display">\[ \hat{\theta}_i = \lambda_i \hat{y}^{DIR}_i + (1 - \lambda_i) \hat{y}^{SYN}_i, \\ \lambda_i \in [0,1], \hat{\lambda}_i = f(\hat{\sigma}^{DIR}_i , \hat{\sigma}^{SYN}_i) \]</span></p>
+<p>where <span class="math inline">\(\lambda\)</span> is a parameter that “balances” the linear combinations. Given a function <span class="math inline">\(f\)</span> such that:</p>
+<p><span class="math display">\[ \lambda_i = f(\hat{\sigma}^{DIR}_i , \hat{\sigma}^{SYN}_i) = \frac{ \hat{\sigma}^{SYN}_i }{ \hat{\sigma}^{DIR}_i + \hat{\sigma}^{SYN}_i } \text{ ,}\]</span></p>
+<p>this means that, as the direct estimate variance gets smaller, <span class="math inline">\(\lambda\)</span> gets closer to 1; hence, the “weight” assigned to the synthetic estimate diminishes. Conversely, when direct estimate variance gets larger, <span class="math inline">\(\lambda\)</span> gets closer to 0; hence, the “weight” assigned to the synthetic estimate increases. Clearly, we are simply balancing survey estimates and model estimates based on their precision!</p>
+</div>
+<div id="poverty-mapping" class="section level2">
+<h2>Poverty Mapping</h2>
+<p>Put simply, poverty mapping is an application of small area estimation to the spatial analysis of poverty and inequality. Since the publishing of now classic <span class="citation">Elbers, Lanjouw, and Lanjouw (2003)</span>, given the recent advances in terms of data access and data mining techniques, this topic has gained more attention and, as a result, new books and articles are being published.</p>
+<p>I should also mention that <span class="citation">Pratesi (2016)</span> provides an excellent guide to the subject, including SAS and R codes.</p>
+</div>
+<div id="random-forests" class="section level2">
+<h2>Random Forests</h2>
+<p>The main inspiration to this post is <span class="citation">Bilton et al. (2017)</span>, where the application of classification trees for poverty mapping is explored. A similar (yet different!) idea with another set of data mining techniques is presented in <span class="citation">Plulíková (2016)</span>. I must <del>respectfully</del> admit I envy not having those ideas.</p>
+<blockquote>
+<p><strong>Caution:</strong> Since I’m writing a blog post and not a thesis, I will be very superficial in many aspects. For everything that I’m unable to explain throughly, I suggest the reader to take a look at the references in the end. That said, let’s proceed.</p>
+</blockquote>
+<p>Decision trees are a somewhat new technique for data analysis. Well, it has been around for 50 years <span class="citation">(Loh 2014)</span>, it is quite recent if we consider how long linear regression has been around… Decision trees is a general term that falls into two techniques: classification trees and regression trees. Put simply, classification trees are used to predict a discrete variable, while regression trees applies to a continuous variable.</p>
+<p>The idea here is using objects’ features to produce a set of rules that predicts which class/value a certain (predicted) variable will take. This set of rules is called a <em>decision tree</em>. If you, like myself, come from an econometrics background, that might look a bit weird. But don’t worry too much: there are statistical tests and theories for that.</p>
+<p>But what about Random Forests? A forest is lot of trees. A random forest is a bunch of random trees. So, I guess this explains it :)</p>
+<p>Jokes aside, here’s a simplified explanation of how the random forest algorithm works:</p>
+<ol style="list-style-type: decimal">
+<li>Take a dataset and re-sample several times;</li>
+<li>At each re-sample, choose a random set of features;</li>
+<li>Given a re-sample and a random set of features, estimate a decision tree;</li>
+<li>Aggregate the set of estimated decision trees in order into get a single decision tree.</li>
+</ol>
+<p>This procedure relates to the “bagging”<a href="#fn5" class="footnoteRef" id="fnref5"><sup>5</sup></a> technique, but the choice of a random set of features is the key behind the Random Forests algorithm. By doing this, we aggregate a set of uncorrelated decision trees.</p>
+<p><del>In the end: <em>several trees <span class="math inline">\(\rightarrow\)</span> a forest</em>.</del></p>
+</div>
+<div id="in-practice" class="section level2">
+<h2>In practice</h2>
+<p>First, we take the Gini index estimates and their variances for every municipality of the country. For this exercise, I used the <del>lovely</del> <code>convey</code> R package to estimate them <span class="citation">(Pessoa, Damico, and Jacob 2017)</span><a href="#fn6" class="footnoteRef" id="fnref6"><sup>6</sup></a>. This is the same data used in the previous plot. Here’s how it looks in a map.</p>
+<div class="figure">
+<img src="../../../img/gini_map_init.png" alt="Map with the original Gini index estimates." />
+<p class="caption">Map with the original Gini index estimates.</p>
+</div>
+<p>The non-transparent areas have prohibitively large CVs for the estimate. Let’s try to circumvent that. After training the Random Forest predictor, we get these results:</p>
+<pre><code>## MSE: 0.01373</code></pre>
+<pre><code>## MAD: 0.00526</code></pre>
+<p>Those are the cross-validated results from the Random Forest model. It’s quite good, apparently. Maybe too good. Still, here’s the new map.</p>
+<!-- <div style="width:15000px; height=20000px"> -->
+<!-- ![Image](../../../img/gini_map_final.pdf) -->
+<!-- </div> -->
+<div class="figure">
+<img src="../../../img/gini_map_final.png" alt="Map after the Random Forests-SAE procedure." />
+<p class="caption">Map after the Random Forests-SAE procedure.</p>
+</div>
+<p>You can see that differences have diminished a lot. That’s probably a consequence of the bias-variance tradeoff. Finally, an open question I have after all this is: how do we calculate the variance of the final small area estimates? I’ll think about that for a while.</p>
+<p>Maybe I will come up with an answer. Maybe I won’t.</p>
+<p><em>C’est la vie</em>.</p>
+</div>
+<div id="references" class="section level2 unnumbered">
+<h2>References</h2>
+<div id="refs" class="references">
+<div id="ref-bilton2017">
+<p>Bilton, Penny, Geoff Jones, Siva Ganesh, and Steve Haslett. 2017. “Classification Trees for Poverty Mapping.” <em>Computational Statistics &amp; Data Analysis</em> 115: 53–66. doi:<a href="https://doi.org/10.1016/j.csda.2017.05.009">10.1016/j.csda.2017.05.009</a>.</p>
+</div>
+<div id="ref-elbers2003">
+<p>Elbers, Chris, Jean O. Lanjouw, and Peter Lanjouw. 2003. “Micro–Level Estimation of Poverty and Inequality.” <em>Econometrica</em> 71 (1). John Wiley; Sons. doi:<a href="https://doi.org/10.1111/1468-0262.00399">10.1111/1468-0262.00399</a>.</p>
+</div>
+<div id="ref-fay1979">
+<p>Fay, Robert E., and Roger A. Herriot. 1979. “Estimates of Income for Small Places: An Application of James-Stein Procedures to Census Data.” <em>Journal of the American Statistical Association</em> 74 (366a). American Statistical Association. doi:<a href="https://doi.org/10.1080/01621459.1979.10482505">10.1080/01621459.1979.10482505</a>.</p>
+</div>
+<div id="ref-ghosh1994">
+<p>Ghosh, M., and J. N. K. Rao. 1994. “Small Area Estimation: An Appraisal.” <em>Statist. Sci.</em> 9 (1). The Institute of Mathematical Statistics: 55–76. doi:<a href="https://doi.org/10.1214/ss/1177010647">10.1214/ss/1177010647</a>.</p>
+</div>
+<div id="ref-loh2014">
+<p>Loh, Wei-Yin. 2014. “Fifty Years of Classification and Regression Trees.” <em>International Statistical Review</em> 82 (3): 329–48. doi:<a href="https://doi.org/10.1111/insr.12016">10.1111/insr.12016</a>.</p>
+</div>
+<div id="ref-pessoa2017">
+<p>Pessoa, Djalma, Anthony Damico, and Guilherme Jacob. 2017. <em>Convey: Income Concentration Analysis with Complex Survey Samples</em>. <a href="https://CRAN.R-project.org/package=convey" class="uri">https://CRAN.R-project.org/package=convey</a>.</p>
+</div>
+<div id="ref-pluli2016">
+<p>Plulíková, Nataša. 2016. “Poverty Analysis Using Machine Learning Methods.” Bachelor Thesis, Comenius University in Bratislava.</p>
+</div>
+<div id="ref-pratesi2016">
+<p>Pratesi, Monica. 2016. <em>Analysis of Poverty Data by Small Area Estimation</em>. 1st ed. Wiley Series in Survey Methodology. Wiley.</p>
+</div>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p><strong>Instituto Brasileiro de Geografia e Estatística</strong> (i.e., “Brazilian Institute for Geography and Statistics”).<a href="#fnref1">↩</a></p></li>
+<li id="fn2"><p>This term and “small domain estimation” are synonyms. Nonetheless, the latter emphasizes the fact that such methods are not limited to areas in a spatial sense, but to subpopulations in general.<a href="#fnref2">↩</a></p></li>
+<li id="fn3"><p>A nice survey of methods is given by <span class="citation">Ghosh and Rao (1994)</span>.<a href="#fnref3">↩</a></p></li>
+<li id="fn4"><p>In this case, the terms “direct estimate” and “synthetic estimate” mean survey estimate and model estimate, respectively.<a href="#fnref4">↩</a></p></li>
+<li id="fn5"><p>“Bagging” is a short term for “bootstrap aggregation”.<a href="#fnref5">↩</a></p></li>
+<li id="fn6"><p>More info about this package and how to use them can be found <a href="https://guilhermejacob.github.io/context/">here</a>. Mas, se você prefere algo em português, veja o capítulo 4 <a href="https://pt.scribd.com/document/361600824/Statistics-With-R-Inovacao-no-Mercado-Profissional">deste livro</a>.<a href="#fnref6">↩</a></p></li>
+</ol>
+</div>
+
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">TAGGED IN</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://guilhermejacob.github.io/tags/poverty-mapping/">Poverty Mapping</a>
+
+  <a class="tag tag--primary tag--small" href="https://guilhermejacob.github.io/tags/rstats/">Rstats</a>
+
+  <a class="tag tag--primary tag--small" href="https://guilhermejacob.github.io/tags/brazil/">Brazil</a>
+
+  <a class="tag tag--primary tag--small" href="https://guilhermejacob.github.io/tags/inequality/">Inequality</a>
+
+  <a class="tag tag--primary tag--small" href="https://guilhermejacob.github.io/tags/dataviz/">DataViz</a>
+
+                  </div>
+                
+              
+            
+            
+  <div class="post-actions-wrap">
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://guilhermejacob.github.io/2017/11/enem-desigualdade-educa%C3%A7%C3%A3o/" data-tooltip="ENEM e desigualdade na educação: uma análise dos dados de 2015">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://guilhermejacob.github.io/2017/05/out-of-school-children-in-brazil-an-exercise-on-data-visualization/" data-tooltip="Out of school children in Brazil: an exercise on data visualization">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://guilhermejacob.github.io/2017/11/inequality-poverty-mapping-sae-random-forests-brazil-2010/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://guilhermejacob.github.io/2017/11/inequality-poverty-mapping-sae-random-forests-brazil-2010/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://guilhermejacob.github.io/2017/11/inequality-poverty-mapping-sae-random-forests-brazil-2010/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+
+            
+              
+            
+          </div>
+        </article>
+        <script src="//yihui.name/js/math-code.js"></script>
+<script async
+    src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+<footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2018 Guilherme Jacob. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+        
+  <div class="post-actions-wrap">
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://guilhermejacob.github.io/2017/11/enem-desigualdade-educa%C3%A7%C3%A3o/" data-tooltip="ENEM e desigualdade na educação: uma análise dos dados de 2015">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://guilhermejacob.github.io/2017/05/out-of-school-children-in-brazil-an-exercise-on-data-visualization/" data-tooltip="Out of school children in Brazil: an exercise on data visualization">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://guilhermejacob.github.io/2017/11/inequality-poverty-mapping-sae-random-forests-brazil-2010/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://guilhermejacob.github.io/2017/11/inequality-poverty-mapping-sae-random-forests-brazil-2010/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://guilhermejacob.github.io/2017/11/inequality-poverty-mapping-sae-random-forests-brazil-2010/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="4">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fguilhermejacob.github.io%2F2017%2F11%2Finequality-poverty-mapping-sae-random-forests-brazil-2010%2F">
+          <i class="fa fa-facebook-official"></i><span>Share on Facebook</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Fguilhermejacob.github.io%2F2017%2F11%2Finequality-poverty-mapping-sae-random-forests-brazil-2010%2F">
+          <i class="fa fa-twitter"></i><span>Share on Twitter</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https%3A%2F%2Fguilhermejacob.github.io%2F2017%2F11%2Finequality-poverty-mapping-sae-random-forests-brazil-2010%2F">
+          <i class="fa fa-google-plus"></i><span>Share on Google&#43;</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://guilhermejacob.github.io/files/20900788_1261769030617642_6094584381440292567_o.jpg" alt="Author&#39;s picture" />
+    
+    <h4 id="about-card-name">Guilherme Jacob</h4>
+    
+      <div id="about-card-bio"><strong>B.A. in Law</strong>, <strong>B.Sc. in Economics</strong>, and coding <strong>somewhere in between</strong>.<br>Born and raised in Manaus-AM, Brazil.</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        Data Analyst
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        Unknown
+      </div>
+    
+  </div>
+</div>
+
+    <div id="algolia-search-modal" class="modal-container">
+  <div class="modal">
+    <div class="modal-header">
+      <span class="close-button"><i class="fa fa-close"></i></span>
+      <a href="https://algolia.com" target="_blank" rel="noopener" class="searchby-algolia text-color-light link-unstyled">
+        <span class="searchby-algolia-text text-color-light text-small">by</span>
+        <img class="searchby-algolia-logo" src="https://www.algolia.com/static_assets/images/press/downloads/algolia-light.svg">
+      </a>
+      <i class="search-icon fa fa-search"></i>
+      <form id="algolia-search-form">
+        <input type="text" id="algolia-search-input" name="search"
+          class="form-control input--large search-input" placeholder="Search" />
+      </form>
+    </div>
+    <div class="modal-body">
+      <div class="no-result text-color-light text-center">no post found</div>
+      <div class="results">
+        
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://guilhermejacob.github.io/2018/05/temer-desemprego-2018/">
+                <h3 class="media-heading">Temer, desemprego e procura de empregos: entendendo conceitos da PNAD Contínua</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  May 5, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Uma controvérsia relativamente recente foi protagonizada pelo Temer, durante uma palestra na ESPM. Ele teria afirmado que não houve aumento da taxa de desemprego, mas, sim, aumento das pessoas procurando emprego. Antes da divulgação dos dados da PNADC do 1º trimestre de 2018, tive uma conversa com um professor a respeito de até onde aquilo faz ou não faz sentido.
+Escolhi esperar1 até os microdados saírem…
+Pois bem: saíram ontem, dia 17.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://guilhermejacob.github.io/2018/05/partos-brasil-2016/">
+                <h3 class="media-heading">Qual a relação entre a hora de nascimento e o tipo de parto?</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  May 5, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">O último post foi corrido, eu sei. Esse vai ser um pouco menos corrido, acho.
+Se você quiser pular direto para a análise, clique aqui.
+Muita coisa acontecendo por aqui.
+Semana passada, fui pro Rio. Serei propositalmente misterioso neste ponto, mas acho que vem coisa por aí.
+Na volta para Manaus, fiz uma mini-maratona para visitar amigos em Brasília nas 7 horas de escala. Para quem eu fiquei devendo visita: vou para a Campus Party Brasília no fim de maio!</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://guilhermejacob.github.io/2018/04/desigualdade-pobreza-infancia-2017/">
+                <h3 class="media-heading">PNAD Contínua 2017: extrema pobreza na infância e desigualdade</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Apr 4, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Atualização (19/05/2018): passei a usar a nova tabela de deflatores, ajustando para preços médios do ano da pesquisa.
+Atualização (20/05/2018): fixei os valores a preços médios de 2017.
+ Interrompendo o meu hiato de alguns meses, resolvi voltar com uma comparação os dados de renda das PNADCs anuais 2016-2017. No entanto, vamos falar um pouco da desigualdade em geral e, então, partir para uma questão mais específica: pobreza na infância1.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://guilhermejacob.github.io/2017/12/analise-censo-superior-genero-2016/">
+                <h3 class="media-heading">Censo da Educação Superior: gênero e cursos em 2016</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Dec 12, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Encerrando1 as análises usando bases de dados públicas, vamos focar no ensino superior.
+Inicialmente, vamos explicar o que é o Censo da Educação Superior. Depois, vamos mostrar como montar as bases de dados. E, concluindo, vamos fazer um pequeno exercício de visualização de dados.
+Ah, e eu vou ser muito breve neste post, por motivos de: tenho que escrever um projeto de pesquisa (:
+Censo da Educação Superior O Censo da Educação Superior é conduzido anualmente pelo Inep.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://guilhermejacob.github.io/2017/12/desigualdade-pobreza-estados-2016/">
+                <h3 class="media-heading">O que a PNAD Contínua 2016 diz sobre desigualdade e pobreza nos estados?</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Dec 12, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Atualização (19/05/2018): corrigi alguns erros no código que afetavam as estimativas das capitais.
+Já que os intervalos de confiança das estimativas de capitais não permitiam uma análise mais profunda, resolvi mudar para análise das UFs.
+As rendas foram ajustadas para preços médios de 2016.
+ Na última quarta (29/11), o IBGE finalmente apresentou as estimativas relativas aos rendimentos de todas as fontes, além de disponibilizar os microdados para os cálculos.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://guilhermejacob.github.io/2017/11/microdados-obmigra/">
+                <h3 class="media-heading">CGIg/CNIg e SINCRE: analisando os microdados do OBMigra</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Nov 11, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">O assunto de hoje são os microdados do OBMigra. Mas, antes disso, vamos apresentar um pouco do contexto institucional.
+OBMigra O Observatório das migrações internacionais (OBMigra) é fruto de um convênio estabelecido entre o Ministério do Trabalho (MTb), Conselho Nacional de Imigração (CNIg) e Universidade de Brasília (UnB). Sua finalidade é ampliar o conhecimento a respeito dos fluxos migratórios internacionais no Brasil, através de estudos e análises empíricas, e fornecer subsídios para a formulação de estratégias de política pública.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://guilhermejacob.github.io/2017/11/rais-caged-r/">
+                <h3 class="media-heading">Analisando RAIS e CAGED com R</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Nov 11, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Dando sequência ao post anterior, vamos analisar outra base de dados. Ou outras bases de dados?
+Dessa vez, falaremos dos microdados do RAIS e CAGED. Vamos?
+Bases do Ministério do Trabalho O Ministério do Trabalho (MTb) permite que o usuário acesse os microdados de duas bases muito interessantes: RAIS e CAGED. Bom, além de serem mais dois elementos na “sopa de letrinhas” de microdados brasileiros, o que são exatamente esses dados?</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://guilhermejacob.github.io/2017/11/amostra-cadunico-r/">
+                <h3 class="media-heading">Analisando a amostra do Cadastro Único com R</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Nov 11, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Atualização (18/08/2018): atualizei o procedimento e os resultados para coincidir com as novas bases disponibilizadas no site.
+ Você sabe o que é o Cadastro Único? Sabe que uma amostra dos microdados está disponível? Sabe que dá pra analisar no R?
+Não? Até uns dias atrás, eu também não.
+Se você tem interesse nessa base de dados, vamos lá!
+Caso contrário, assista esse vídeo do MDS. Se, ainda assim, você não estiver interessado, bom… tem um presente no fim do post.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://guilhermejacob.github.io/2017/11/birth-registration-map/">
+                <h3 class="media-heading">Mapeando crianças sem registro civil</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Nov 11, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Esse post é um pequeno follow-up da discussão sobre mapas de densidade de pontos, mas com um pouco mais de diretos da infância e adolescência. Vamos analisar como se distribuem espacialmente as crianças com e sem registro de nascimento, usando dados dos agregados de setores censitários do Censo 2010.
+Dessa vez, vamos focar em 4 capitais: Belém, Manaus , Fortaleza e São Luís.
+Sem mais conversa, prossigamos.
+Belém  Manaus  Fortaleza  São Luís  </div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://guilhermejacob.github.io/2017/11/ethnic-composition-brazilian-cities/">
+                <h3 class="media-heading">Ethnic composition of major Brazilian cities using Dot Density Maps</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Nov 11, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">You can find the R code for this post here.
+ Some time ago, I came across this nice post showing how ethnicity is distributed in London. This is very interesting, as it reveals patterns about how communities are organized and how inequality express itself upon housing locations.
+Our task today is to apply the same procedure to large Brazilian cities. Here’s our list of municipalities: São Paulo, Rio de Janeiro, Brasília, Recife, Salvador, and home Manaus.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+      </div>
+    </div>
+    <div class="modal-footer">
+      <p class="results-count text-medium"
+         data-message-zero="no post found"
+         data-message-one="1 post found"
+         data-message-other="{n} posts found">
+         13 posts found
+      </p>
+    </div>
+  </div>
+</div>
+    
+  
+    
+    <div id="cover" style="background-image:url('https://lh3.googleusercontent.com/EMXvd11C1LUgHF62uBqt-VCw8BPI9XsdOPl0o8CHBu6xwoHGZ5NoH03Phepmv75YW6_0aTp2w_X8I-j1r7xwnDqDO3A7Srh305oXGL_k-YQ_aTlaNUNf6Zbmm9yvVYhtxj5to0WffqTpj5mpvwbf6bm5cRaXI4SvsfGc7jdeJqyyvog35SuXO-VhCTH1sCrs57it-lmJ0C-UeUuHouhkyQ9JpGvba_MJCIY0svtfOPEujv2NEZhGZXzv-uJhpXBrUNuZJx3opiUCoFrrJarStPo24PMrK4WEn8DGpHpDJOZjfGGGOtPjfjD0VqdPEhOw2goJ68luwdLqrSzqtzNSHBgav1SPnZKlLD_S6G8FxlD0-PxvWwrsB7EOK4EjrGtawQn3O6erbODkJFOyBFAQYUU71-MpVcpb40jxt8ntcrM6MFiynXKzx0JeT-jWyUj5U1-OPhoZQrG8HIlTKFArsRpZxhO3NbXeBQPqfOrmsLd3VCKWOVUzkB1s2shVStoz5ihqmD5UEHbr5AYEW1Rl4wCjGJU0gL1b_A9Wm-cjSWz1zQhEf2H5tquDpbNolIXysKv47XY_X2HpCioPAaWjSCIRtc1smn4dux0noag1Gg=w2176-h1652-no');"></div>
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js" integrity="sha256-GEAnjcTqVP+vBp3SSc8bEDQqvWAZMiHyUSIorrWwH50=" crossorigin="anonymous"></script>
+
+
+<script src="https://guilhermejacob.github.io/js/script-qi9wbxp2ya2j6p7wx1i6tgavftewndznf4v0hy2gvivk1rxgc3lm7njqb6bz.min.js"></script>
+
+
+
+
+  
+    
+  
+
+
+
+    
+  </body>
+</html>
+

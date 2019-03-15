@@ -1,0 +1,194 @@
+---
+title: "Censo da Educação Superior: gênero e cursos em 2016"
+author: ~
+date: '2017-12-11'
+slug: analise-censo-superior-genero-2016
+categories: ["R" , "Public Records" ]
+tags: [ "Rstats" , "DataViz" , "Brazil" , "Education" ]
+draft: false
+---
+
+Encerrando^[Por esse ano, pelo menos.] as análises usando bases de dados públicas, vamos focar no ensino superior.  
+Inicialmente, vamos explicar o que é o Censo da Educação Superior. Depois, vamos mostrar como montar as bases de dados. E, concluindo, vamos fazer um pequeno exercício de visualização de dados. 
+
+Ah, e eu vou ser muito breve neste post, por motivos de: tenho que escrever um projeto de pesquisa (:
+
+## Censo da Educação Superior
+
+O [Censo da Educação Superior](http://portal.inep.gov.br/censo-da-educacao-superior) é conduzido anualmente pelo [Inep](http://portal.inep.gov.br/web/guest/sobre-o-inep). Ele consiste, basicamente, em uma compilação de registros administrativos de todas as instituições de ensino superior (IES), informando sobre seus alunos, docentes, cursos ofertados, etc.
+Desde 2009, eles seguem ~~mais ou menos~~ a mesma estrutura, embora existam dados desde 1995.
+
+### Montando a base
+
+Para facilitar o processo de baixar e montar a base de dados, escrevi [esse script](https://github.com/guilhermejacob/guilhermejacob.github.io/blob/master/scripts/censo_superior.R) com três funções para facilitar esse procedimento. O bloco de código abaixo mostra como fazer essa tarefa:
+
+<!--html_preserve-->
+{{< alert info >}}
+Esse procedimento pode ser um pouco demorado, dependendo da sua conexão com a internet e seu computador.
+{{< /alert >}}
+<!--/html_preserve-->
+
+```{r build_dataset, echo=TRUE, message=FALSE, warning=FALSE , eval=FALSE }
+# instala os pacotes:
+libs <- c("DBI", "MonetDBLite" , "devtools" )
+libs.novas <- libs[ !( libs %in% installed.packages()[ , "Package" ] ) ]
+if( length( libs.novas ) ) install.packages( libs.novas )
+
+# vamos usar algumas funções deste pacote também
+devtools::install_github( "ajdamico/lodown" )
+
+# carrega os pacotes necessários
+library(DBI)
+library(MonetDBLite)
+library(lodown)
+
+# carrega funções do script
+downloader::source_url("https://github.com/guilhermejacob/guilhermejacob.github.io/blob/master/scripts/censo_superior.R")
+
+# define o diretório onde serão depositados os dados
+output_dir <- file.path( tempdir() , "Censo Superior" )
+
+# coleta o "catálogo de dados" no site do MDS:
+catalog <- get_catalog_cadunico( output_dir )
+
+# O próximo passo é opcional:
+# Aqui, escolho apenas os dados do último ano
+catalog <- catalog[ catalog$year == 2016 , ]
+
+# Vamos usar esse "catálogo" como o argumento da função build_cadunico
+# Essa última função vai montar a base de dados
+build_cadunico( catalog )
+
+# Conecta à base
+db <- dbConnect( db , MonetDBLite() , file.path( output_dir , "MonetDB" ) )
+# AVISO: na primeira conexão após montar a base, esse passo pode demorar um pouco mais que o de costume.
+
+# lista tabelas na base
+dbListTables( db )
+
+# disconecta da base e fecha o cliente
+dbDisconnect( db , shutdown = TRUE )
+
+```
+
+E é isso! Só aguardar o processo encerrar e você terá uma base de dados em [MonetDB](https://github.com/hannesmuehleisen/MonetDBLite-R).
+
+### Uma análise com treemaps
+
+Bom, essa análise é bem superficial, mas vamos lá. A ideia aqui é tentar visualizar como se distribuem os sexos entre os cursos superiores, usando as classificações da OCDE. A cor vermelha implica mais mulheres e a cor azul, mais homens. Além disso, você pode ir clicando no gráfico, afinal ele é interativo (;
+
+```{r interactive_treemap, echo=FALSE, fig.height=2.5, fig.width=5, message=FALSE, warning=FALSE, cache=TRUE }
+# define directories
+output_dir <- "~/Bases/Censo Superior"
+
+# análise
+library(DBI)
+library(MonetDBLite)
+library(dplyr)
+library(tidyr)
+
+db <- dbConnect( MonetDBLite() , file.path( output_dir , "MonetDB" ) )
+
+tab3 <- dbGetQuery( db , "SELECT no_ocde_area_geral , no_ocde_area_especifica , no_ocde_area_detalhada , ds_sexo_aluno , COUNT(*) as n_mat FROM aluno_2016 WHERE co_aluno_situacao = 2 AND co_grau_academico = 1 GROUP BY no_ocde_area_geral , no_ocde_area_especifica , no_ocde_area_detalhada , ds_sexo_aluno ORDER BY n_mat ")
+
+# fix mispelling
+tab3[ , grep( "^no_" , colnames( tab3 ) ) ] <- apply( tab3[ , grep( "^no_" , colnames( tab3 ) ) ] , 2 , function( x ) gsub( "segurnça" , "segurança" , x ) )
+
+# disconnect from database
+dbDisconnect( db , shutdown = TRUE )
+
+# plotting
+library(d3treeR)
+library(data.tree)
+library(treemap)
+
+tab3_1 <- tab3 %>% spread( ds_sexo_aluno , n_mat , fill = 0 ) 
+tab3_1[ , c( "Total" ) ] <- rowSums( tab3_1[ , c( "Feminino" , "Masculino" ) ] )
+tab3_1[ , paste0( "prop_" , c( "Feminino" , "Masculino" ) ) ] <- tab3_1[ , c( "Feminino" , "Masculino" ) ] / tab3_1[ , c( "Total" ) ]
+# tab3_1[ , c( "Feminino" , "Masculino" ) ] <- NULL
+
+# convert data.frame to data.tree structure
+tab3_1$pathString <- paste("Graduações", tab3_1$no_ocde_area_geral , tab3_1$no_ocde_area_especifica , tab3_1$no_ocde_area_detalhada , sep = "/")
+tree <- as.Node(tab3_1[,])
+# n$Feminino$`Humanidades e artes`$`Humanidades e letras`$`Filosofia e ética`$n_mat
+
+# aggregation
+tree$Do(function(x) { x$Total <- Aggregate(node = x, attribute = "Total", aggFun = sum) }, traversal = "post-order" )
+tree$Do(function(x) { x$Feminino <- Aggregate(node = x, attribute = "Feminino", aggFun = sum) }, traversal = "post-order" )
+tree$Do(function(x) { x$Masculino <- Aggregate(node = x, attribute = "Masculino", aggFun = sum) }, traversal = "post-order" )
+tree$Do(function(x) { x$prop_Feminino <- x$Feminino / x$Total }, traversal = "post-order" )
+
+# sort
+Sort(tree, attribute = "Total", decreasing = TRUE, recursive = TRUE)
+
+# cumulate among siblings
+tree$Do(function(x) x$cumTotal <- Cumulate(x, "Total", sum))
+
+# pruning
+myPruneFun <- function(x, cutoff = 0.5, maxItems = 5) {
+if (isNotLeaf(x)) return (TRUE)
+if (x$position > maxItems) return (FALSE)
+return (x$cumTotal < (x$parent$Total * cutoff))
+}
+
+# create a prunned tree
+treeClone <- Clone(tree, pruneFun = myPruneFun)
+
+# create residual categories
+treeClone$Do(function(x) {
+  missing <- x$Total - sum(sapply(x$children, function(x) x$Total))
+  other <- x$AddChild("Outros")
+  other$no_ocde_area_especifica <- paste0("Outros(", x$origTotal, ")")
+  other$ocde_area_detalhada <- "Outros"
+  # other$Feminino <- x$Feminino - sum(sapply(x$children, function(x) x$Feminino))
+  other$Total <- missing
+  other$prop_Feminino <- other$Feminino / other$Total
+  } , 
+  filterFun = function(x) x$level == 2 )
+
+# print(treeClone$Serviços, "Total", pruneMethod = "simple", limit = 20)
+
+
+
+# plot
+df <- ToDataFrameTable( tree , "no_ocde_area_geral" , "no_ocde_area_especifica" , "no_ocde_area_detalhada" , "Total" , "prop_Feminino" )
+df$prop_Feminino_color <- scales::col_numeric( c( "blue" , "white" , "red" ) , c(0,1) ) ( df$prop_Feminino )
+
+tm <- treemap(df,
+              index=c( "no_ocde_area_geral" , "no_ocde_area_especifica" , "no_ocde_area_detalhada" ) ,
+              vSize="Total" ,
+              vColor = "prop_Feminino_color" , type="color" , 
+              draw = FALSE )
+
+d3tree( tm , height = "1000" , width = "1080" )
+```
+
+Além das coisas óbvias ~~engenharias~~, tem alguns resultados interessantes: 
+
+- "Religião e teologia" tem uma preponderância masculina;
+- "Engenharia florestal" apresenta proporções similares entre masculino e feminino;
+- Nas grande área "ciências sociais e comportamentais", economia é a única com preponderância masculina.
+
+*O que isso quer dizer?*  
+
+- Quer dizer que o assunto desse post acabou; e
+- Qualquer comentário além desse é **mera especulação**; e/ou
+- Estou **evitando polêmicas** (:
+
+<!--html_preserve-->
+<p align="center"><iframe align="middle" src="https://giphy.com/embed/y65VoOlimZaus" width="480" height="439" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p align="center">¯\_(ツ)_/¯</p>
+<!--/html_preserve-->
+
+## Concluindo
+
+Bom, (acho que) estou encerrando a série sobre como baixar e montar base de dados públicos. Por enquanto, pelo menos.  
+
+No entanto, acho que os *próximos capítulos serão igualmente interessantes*! Estou reunindo forças para avançar em novos tópicos sobre desigualdade e polarização, além de incluir novas funções no [`convey`](https://github.com/DjalmaPessoa/convey). Algumas palestras sobre teorias econômicas da justiça, talvez.  
+Enfim, *bastante* coisa.  
+
+Até 2018!
+
+E fiquem com esse vídeo direto de 1978: *Weather Report* tocando *Birdland*. PS.: Jaco Pastorius é um espetáculo à parte.
+<!--html_preserve-->
+<div style="position:relative;height:0;padding-bottom:56.21%"><iframe src="https://www.youtube.com/embed/TsuDWMPcAHI" align="center" style="position:absolute;width:100%;height:100%;left:0" width="641" height="360" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe></div>
+<!--/html_preserve-->

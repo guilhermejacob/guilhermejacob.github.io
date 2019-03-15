@@ -1,0 +1,348 @@
+---
+title: "Temer, desemprego e procura de empregos: entendendo conceitos da PNAD Contínua"
+author: ~
+date: '2018-05-18'
+slug: temer-desemprego-2018
+draft: false
+categories: [ "R" , "Complex Survey" , "Official Statistics" ]
+tags: [ "Employment" , "Brazil" ]
+language: "pt-br"
+---
+```{r setup, include=FALSE , cache = FALSE }
+knitr::opts_chunk$set( message = FALSE, warning = FALSE, cache = TRUE , echo = FALSE )
+```
+
+Uma controvérsia relativamente recente foi protagonizada pelo Temer, durante uma palestra na ESPM. [Ele teria afirmado que não houve aumento da taxa de desemprego, mas, sim, aumento das pessoas procurando emprego](https://g1.globo.com/sp/sao-paulo/noticia/temer-diz-que-desemprego-nao-cresceu-mas-aumentou-numero-dos-que-procuram-emprego.ghtml). *Antes da divulgação dos dados da PNADC do 1º trimestre de 2018*, tive uma conversa com um professor a respeito de até onde aquilo faz ~~ou não faz~~ sentido. 
+
+Escolhi esperar^[Sim, #EuEscolhiEsperar.] até os microdados saírem...  
+Pois bem: saíram ontem, dia 17. O processo de análise me fez escrever o presente texto.
+
+Esse post visa ajudar a entender os novos conceitos relacionados ao mercado de trabalho usados na PNAD Contínua. Se você estudou economia, já deve ter ouvido falar de desemprego, força de trabalho, etc., mas "desalento", por exemplo, é um conceito menos conhecido.  
+Vamos entender o que cada coisa significa e, então, analisaremos a afirmação de *sua excelência*.
+
+### Novos indicadores do mercado de trabalho na PNAD Contínua
+
+Com o fim da dupla PNAD/PME e adoção da PNAD Contínua, houve algumas alterações nos indicadores de mercado de trabalho. Muita coisa continua como era, mas novos conceitos foram introduzidos para enriquecer as análises.  
+Os conceitos aqui apresentados se referem à **população em idade ativa**, isto é, pessoas de 14 anos ou mais. Copiando diretamente do [glossário da PNAD Contínua](ftp://ftp.ibge.gov.br/Trabalho_e_Rendimento/Pesquisa_Nacional_por_Amostra_de_Domicilios_continua/Mensal/glossario_pnadc_mensal.pdf), listamos as principais definições:
+
+> **População desocupada**: são classificadas como desocupadas na semana de referência as pessoas não ocupadas nesse período, que tomaram alguma providência efetiva para conseguir um trabalho no período de referência de 30 dias e que estavam disponíveis para iniciar um trabalho na semana de referência. Também são classificadas como desocupadas as pessoas não ocupadas e disponíveis para iniciar um trabalho na semana de referência que, no entanto, não tomaram providência efetiva para conseguir trabalho no período de referência de 30 dias porque já haviam conseguido trabalho para começar após a semana de referência.
+
+> **População ocupada**: são classificadas como ocupadas na semana de referência as pessoas que, nesse período, trabalharam pelo menos uma hora completa em trabalho remunerado em dinheiro, produtos, mercadorias ou benefícios (moradia, alimentação, roupas, treinamento etc.) ou em trabalho sem remuneração direta em ajuda à atividade econômica de membro do domicílio ou, ainda, as pessoas que tinham trabalho remunerado do qual estavam temporariamente afastadas nessa semana.
+Consideram-se como ocupadas temporariamente afastadas de trabalho remunerado as pessoas que não trabalharam durante pelo menos uma hora completa na semana de referência por motivo de: férias, folga, jornada de trabalho variável, licença maternidade e fatores ocasionais.  
+Assim, também foram consideradas as pessoas que, na data de referência, estavam, por período inferior a 4 meses: afastadas do trabalho em licença remunerada por motivo de doença ou acidente da própria pessoa ou outro tipo de licença remunerada; afastadas do próprio empreendimento sem serem remuneradas por instituto de previdência; em greve ou paralisação. Além disso, também, foram consideradas ocupadas as pessoas afastadas por motivos diferentes dos já citados, desde que tivessem continuado a receber ao menos uma parte do pagamento e o período transcorrido do afastamento fosse inferior a 4 meses.
+
+> **Força de Trabalho**: compreende as pessoas ocupadas e as pessoas desocupadas na semana de referência.
+
+> **Taxa de desocupação**: é o percentual de pessoas desocupadas em relação às pessoas na força de trabalho. Popularmente conhecida como *taxa de desemprego*.
+
+Estes são conceitos mais tradicionais. Vamos conceituar alguns dos *novos indicadores*, encontrados [nesta](ftp://ftp.ibge.gov.br/Trabalho_e_Rendimento/Pesquisa_Nacional_por_Amostra_de_Domicilios_continua/Trimestral/Novos_Indicadores_Sobre_a_Forca_de_Trabalho/pnadc_201201_201704_trimestre_novos_indicadores.pdf) e [nesta publicação](https://agenciadenoticias.ibge.gov.br/agencia-sala-de-imprensa/2013-agencia-de-noticias/releases/20117-pnad-continua-tri-subutilizacao-da-forca-de-trabalho-e-de-23-6-no-4-tri-e-fecha-2017-em-23-8.html):
+
+> **Força de trabalho potencial**: é definida como o conjunto de pessoas de 14 anos ou mais de idade que não estavam ocupadas nem desocupadas na semana de referência, mas que possuíam um potencial de se transformarem em força de trabalho.
+
+> **População desalentada**: são aqueles que estavam fora da força de trabalho por um dos seguintes motivos: não conseguia trabalho, não tinha experiência, era muito jovem ou idosa, ou não encontrou trabalho na localidade – e que, se tivesse conseguido trabalho, estaria disponível para assumir a vaga. Faz parte da força de trabalho potencial.
+
+> **Pessoas subocupadas por insuficiência de horas trabalhadas**: são aqueles que trabalhavam habitualmente menos de 40 horas no conjunto de todos os seus trabalhos que realizava e gostariam de trabalhar mais, estando disponíveis para trabalhar mais horas no período de 30 dias, contados a partir do primeiro dia da semana de referência. Por simplicidade, chamaremos de *população subocupada*.
+
+Estes conceitos se agregam numa ideia geral expressa pela **taxa de subutilização da força de trabalho**, definida como o total dos desocupados, subocupados, desalentados e força de trabalho potencial, dividida pela força de trabalho ampliada. Por sua vez, a **força de trabalho ampliada** é o total das forças de trabalho efetiva e potencial.
+
+### Qual a relação entre desemprego e desalento?
+
+Bom, já definimos desemprego (ou desocupação) e desalento. Resta entender como as duas se relacionam. 
+
+A pergunta central pode ser formulada desta maneira: como variações da população desalentada afetam a população desocupada?  
+A resposta é um tanto simples. A partir do momento que uma pessoa passa a procurar emprego, ela sai da força de trabalho potencial e entra na força de trabalho propriamente dita. Se esta pessoa consegue emprego, ela entra para a população ocupada; caso contrário, ela entra na população desocupada.
+
+O desalento é basicamente uma forma mais extrema de desocupação, refletindo desesperança do indivíduo a respeito da possibilidade ou qualidade do emprego. E isto tem maior importância em momentos de crise econômica. Se a expectativa de conseguir o emprego é ruim, algumas pessoas podem acabar desistindo.
+
+Suponha que, em virtude de uma crise econômica prolongada, *coeteris paribus*, algumas pessoas desistam de procurar emprego, aumentando o tamanho da população desalentada. O impacto desse aumento é relativamente maior no numerador. Assim, paradoxalmente, a taxa de desocupação cai.  
+O outro lado dessa moeda parece ser o que Temer afirma estar ocorrendo agora. Isto é, pessoas deixando o desalento podem aumentar a taxa de desocupação.  
+Diante disso, parece um tanto míope olhar apenas a taxa de desocupação. A análise da conjuntura deve ser complementada com a taxa de desalento.
+
+### Desocupação, desalento e subutilização: 2012-2018
+
+<!--html_preserve-->
+{{< alert warning >}}
+<b>Atualização (19/08/2018):</b> o IBGE fez uma [atualização recente (16)](https://www.ibge.gov.br/estatisticas-novoportal/sociais/trabalho/9173-pesquisa-nacional-por-amostra-de-domicilios-continua-trimestral.html?edicao=22193&t=microdados), explicitando que há uma quebra na série de subocupação.<br>
+A partir do 4º trimestre de 2015, a definição de subocupação passa a se basear no número de horas habitualmente trabalhadas em todos os trabalhos, em vez de horas efetivamente trabalhadas (como era feito anteriormente).<br>
+A análise abaixo utiliza as duas informações como sinônimas. Cuidado com as comparações!
+{{< /alert >}}
+<!--/html_preserve-->
+
+```{r calc_stack, message=FALSE, warning=FALSE, include=FALSE, paged.print=FALSE , cache=TRUE}
+# define arquivos
+these_files <- list.files( "~/Bases/PNAD Contínua/Trimestral" , full.names = TRUE , recursive = TRUE , pattern = ".fst" )
+these_files <- these_files [ grepl( "(201[2-7] 0[1-4]|2018 01)\\." , basename( these_files ) ) ]
+# this_file <- these_files[ 1 ]
+
+stacked_results <- plyr::llply( these_files , function(this_file) {
+  
+  # load packages and set conservative SEs option
+  library(fst)
+  library(survey)
+  options( survey.lonely.psu = "adjust" )
+  
+  # preliminary survey design
+  these_cols <- c( "upa"  , "estrato" , "v1027" , "posest" , "v1029" , "v2009" , paste0("vd400" , 1:5 ) )
+  if ( grepl( "(2015 04|201[6-8] 0[1-4])" , basename( this_file ) ) ) { these_cols <- c( these_cols , "vd4004a" ) }
+  pnadc_df <- read_fst( this_file , columns = these_cols , as.data.table = FALSE )
+  if ( !grepl( "(2015 04|201[6-8] 0[1-4])" , basename( this_file ) ) ) { pnadc_df$vd4004a <- NA }
+  
+  # define time stamp
+  this_year <- strsplit( gsub( ".*pnadc |\\..*" , "" , basename(this_file) ) , " " )[[1]][[1]]
+  this_quarter <- strsplit( gsub( ".*pnadc |\\..*" , "" , basename(this_file) ) , " " )[[1]][[2]]
+  
+  # read file and subset columns
+  pre_stratified <-
+    svydesign(
+      ids = ~ upa , 
+      strata = ~ estrato , 
+      weights = ~ v1027 , 
+      data = pnadc_df ,
+      nest = TRUE
+    )
+  # warning: do not use `pre_stratified` in your analyses!
+  # you must use the `pnadc_design` object created below.
+  
+  # post-stratification targets
+  df_pos <- data.frame( posest = unique( pnadc_df$posest ) , Freq = unique( pnadc_df$v1029 ) )
+  
+  # final survey design object
+  pnadc_design <- postStratify( pre_stratified , ~ posest , df_pos )
+  
+  # remove the `pnadc_df` data.frame object
+  # and the `pre_stratified` design before stratification
+  rm( pnadc_df , pre_stratified , df_pos ) ; gc()
+  
+  # update design
+  pnadc_design <- 
+    update( 
+      pnadc_design , 
+      pia = v2009 >= 14 ,
+      age_categories = factor( 1 + findInterval( v2009 , c( 14 , seq( 20 , 60 , 10 ) ) ) ) ,
+      ft_amp = ifelse( pia , ifelse( vd4001 == 1 | vd4003 == 1 , 1 , 0 ) , NA ) ,
+      cod_fte = ifelse( pia , ifelse( !is.na( vd4001 ) & vd4001 == 1 , 1 , 0 ) , NA ) ,
+      cod_ocupado = ifelse( pia , ifelse( !is.na( vd4002 ) & ( vd4002 == 1 ) , 1 , 0 ) , NA ) ,
+      cod_desocupado = ifelse( pia , ifelse( !is.na( vd4002 ) & ( vd4002 == 2 ) , 1 , 0 ) , NA ) ,
+      cod_ftp = ifelse( pia , ifelse( !is.na( vd4003 ) & ( vd4003 == 1 ) , 1 , 0 ) , NA ) ,
+      cod_desocupado_ftp = ifelse( pia , ifelse( cod_ftp == 1 | cod_desocupado == 1 , 1 , 0 ) , NA ) ,
+      cod_subocupado = ifelse( pia , ifelse( is.na( vd4004 ) & is.na( vd4004a ) , 0 , 1 ) , NA ) ,
+      cod_desocupado_subocupado = ifelse( pia , ifelse( cod_desocupado == 1 | cod_subocupado == 1 , 1 , 0 ) , NA ) ,
+      cod_desalento = ifelse( pia , ifelse( is.na( vd4005 ) , 0 , 1 ) , NA ) ,
+      cod_subutilizacao = ifelse( pia , ifelse( cod_desocupado + cod_ftp + cod_subocupado + cod_desalento >= 1 , 1 , 0 ) , NA ) ,
+      status_ftt = ifelse( pia , 
+                           ifelse( cod_ocupado == 1 & cod_subocupado == 0 , "Ocupado" ,
+                                   ifelse( cod_desocupado == 1 , "Desocupado" , 
+                                           ifelse( cod_subocupado == 1 , "Subocupado" ,
+                                                   ifelse( cod_desalento == 1 , "Desalentado" ,
+                                                           ifelse( cod_ftp == 1 , "F.T. Potencial" , NA ) ) ) ) ) , NA ) 
+    )
+  
+  # calcula estimativas
+  tx_desocupac <- svymean( ~cod_desocupado , subset( pnadc_design , cod_fte == 1 ), na.rm = TRUE )
+  tx_subdsocup <- svymean( ~cod_desocupado_subocupado , subset( pnadc_design , cod_fte == 1 ), na.rm = TRUE )
+  tx_desocftpl <- svymean( ~cod_desocupado_ftp , subset( pnadc_design , ft_amp == 1 ), na.rm = TRUE )
+  tx_subutiliz <- svymean( ~cod_subutilizacao , subset( pnadc_design , ft_amp == 1 ), na.rm = TRUE )
+  tx_desalento <- svymean( ~cod_desalento , subset( pnadc_design , ft_amp == 1 ), na.rm = TRUE )
+  prop_subutil <- svymean( ~status_ftt , subset( pnadc_design , cod_subutilizacao == 1 ), na.rm = TRUE )
+  total_ftamp  <- svytotal( ~status_ftt , subset( pnadc_design , ft_amp == 1 ), na.rm = TRUE )
+  
+  # salva resultados
+  list( this_year , this_quarter , tx_desocupac , tx_subdsocup , tx_desocftpl , tx_subutiliz , tx_desalento , total_ftamp , prop_subutil )
+  
+} , .progress = "text" )
+
+# deleta objetos
+rm( list = ls()[ !( ls() %in% "stacked_results" ) ] )
+
+```
+
+```{r series, echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
+library(survey)
+library(dplyr)
+library(tidyr)
+
+res1_p <- plyr::ldply( stacked_results , function( x ) { data.frame( year = x[[1]] , quarter = x[[2]] , variable = "tx_desoc" , estimate = coef( x[[3]] )[[1]] , ci_l = confint( x[[3]] )[[1]] , ci_u = confint( x[[3]] )[[2]] ) } )
+res2_p <- plyr::ldply( stacked_results , function( x ) { data.frame( year = x[[1]] , quarter = x[[2]] , variable = "tx_subdsocup" , estimate = coef( x[[4]] )[[1]] , ci_l = confint( x[[4]] )[[1]] , ci_u = confint( x[[4]] )[[2]] ) } )
+res3_p <- plyr::ldply( stacked_results , function( x ) { data.frame( year = x[[1]] , quarter = x[[2]] , variable = "tx_desocftpl" , estimate = coef( x[[5]] )[[1]] , ci_l = confint( x[[5]] )[[1]] , ci_u = confint(x[[5]])[[2]] ) } )
+res4_p <- plyr::ldply( stacked_results , function( x ) { data.frame( year = x[[1]] , quarter = x[[2]] , variable = "tx_subutilizacao" , estimate = coef( x[[6]] )[[1]] , ci_l = confint( x[[6]] )[[1]] , ci_u = confint( x[[6]] )[[2]] ) } )
+res5_p <- plyr::ldply( stacked_results , function( x ) { data.frame( year = x[[1]] , quarter = x[[2]] , variable = "tx_desalento" , estimate = coef( x[[7]] )[[1]] , ci_l = confint( x[[7]] )[[1]] , ci_u = confint( x[[7]] )[[2]] ) } )
+
+plot_data <- do.call( rbind , list( res1_p , res2_p , res3_p , res4_p , res5_p ) )
+plot_data$time <- paste0( plot_data$year , "/" , as.numeric(plot_data$quarter) )
+# levels( plot_data$variable ) <- c( "Taxa de desocupação" , "Taxa de subocupação por insuficiência de horas trabalhadas e desocupação" , "Taxa de desocupação e força de trabalho potencial" , "Taxa total de subutilização da força de trabalho" , "Taxa de desalento na força de trabalho ampliada" )
+levels( plot_data$variable ) <- c( "Desocupação" , "Subocupação + Desocupação" , "Desocupação e F. T. Potencial" , "Subutilização" , "Desalento" )
+
+library( ggplot2 )
+library( scales )
+
+plot_data <- plot_data %>% filter( variable %in% c( "Desocupação" , "Subutilização" , "Desalento" ) )
+
+# gráfico
+ggplot( data = plot_data , aes( x = time , y = estimate , group = variable , color = variable , ymin=ci_l, ymax=ci_u ) ) +
+  geom_line( alpha = .5 ) + geom_errorbar( width=.25 ) +
+  # geom_segment( x = 14.5, xend = 14.5 , y = 0 , yend = .5 , color = "lightgrey" , alpha = .4 ) +
+  scale_y_continuous( labels = percent , expand = c(0,0) , limits = c(0,.32) , breaks = seq(0,1,.1) ) +
+  # scale_x_continuous( expand = c(0,0) , limits = c(0,23) , breaks = seq( 0 , 24 , 3 ) ) +
+  # scale_color_manual( values = c( "#fdcc8a" , "#b30000" , "#fc8d59" , "#e34a33" ) ) +
+  guides( color = guide_legend( "Taxas" ) ) +
+  labs( x = NULL , y = NULL, 
+        title = "Indicadores do mercado de trabalho, 2012/1-2018/1" , 
+        caption = "Fonte: PNAD Contínua 2012-2018. Microdados.") +
+  theme( panel.background = element_blank() ,
+         panel.grid.major.x = element_blank() ,
+         # legend.position="bottom" ,
+         # panel.grid.minor.x = element_blank() , 
+         # panel.grid.minor.x = element_line( linetype = 3 , color = "lightgrey" , size = .2 ) ,
+         panel.grid.major.y = element_line( linetype = 3 , color = "grey" , size = .3 ) ,
+         panel.grid.minor.y = element_line( linetype = 3 , color = "grey" , size = .15 ) ,
+         axis.text.x = element_text(hjust = .5 , vjust = .5 , angle = 90 ) ,
+         plot.title = element_text(lineheight=.8, face="bold") )
+
+```
+
+Vamos analisar as séries de desemprego, desalento e subocupação, apresentada na Figura \ref{#fig:series}. O desemprego aumentou em relação ao trimestre anterior, subindo de 11.8% para 13.1%. Isso, no entanto, reflete um comportamento sazonal, visível também nos anos anteriores. O desemprego no primeiro trimestre sempre costuma ser maior do que o trimestre imediatamente anterior. De fato, uma comparação mais justa seria com o mesmo trimestre do ano anterior. Neste caso, houve queda: era 13.7% no início de 2017, como vemos na Tabela \ref{#tab:season_tab1}.
+
+```{r season_tab1, echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
+library(knitr)
+library(kableExtra)
+options( knitr.kable.NA = "-" )
+
+table_data <- list( res1_p , res2_p , res3_p , res4_p , res5_p )
+table_data <- do.call( rbind , table_data )
+rm( res1_p , res2_p , res3_p , res4_p , res5_p )
+table_data[ , 4:6 ] <- 100 * table_data[ , 4:6 ]
+
+res1 <- subset( table_data , variable == "tx_desoc" )
+res1 <- res1[ , c("year","quarter","estimate") ]
+res1 <- tidyr::spread( res1 , quarter , estimate , fill = NA )
+
+# knitr::kable( res1 , format = "html" , digits = 3 , col.names = c( "Ano" , paste0( 1:4 , "º Trim." ) ) ,  )
+kable( res1 , format = "html", longtable = TRUE , booktabs = FALSE , caption = "Taxa de desemprego, por trimestre - Brasil, 2012/1-2018/1" , col.names = c( "Ano" , paste0( 1:4 , "º Trim." ) ) , digits = 1 ) %>% 
+  kable_styling( full_width = FALSE , font_size = 10 ) %>%
+  add_header_above( c(" " = 1, "%" = 4 ) ) %>%
+  # collapse_rows( columns = 1 ) %>% 
+  column_spec(2:5, width = "8em") %>% 
+  footnote(general = "PNAD Contínua 2012-2018. Microdados.", general_title = "Fonte:" , footnote_as_chunk = T )
+```
+
+Por outro lado, como mostra a Tabela \ref{#tab:season_tab2}, o desalento aumentou, chegando ao nível mais alto da série histórica. De 2013/3 a 2017/1, o desalento foi de 1.8% para 3.7%. A princípio, esse aumento não parece ser estatisticamente significativo^[Com um nível de confiança de 95%.], podendo ser atribuído à variabilidade da amostra. Mas, descontando a correlação pela sobreposição de amostras ou usando outros métodos menos conservadores para estimação dos intervalos de confiança, pode ser que essa diferença seja, de fato, estatisticamente significante.
+
+```{r season_tab2, echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
+library(knitr)
+library(kableExtra)
+options( knitr.kable.NA = "-" )
+
+res2 <- subset( table_data , variable == "tx_desalento" )
+res2 <- res2[ , c("year","quarter","estimate") ]
+res2 <- tidyr::spread( res2 , quarter , estimate , fill = NA )
+
+# knitr::kable( res1 , format = "html" , digits = 3 , col.names = c( "Ano" , paste0( 1:4 , "º Trim." ) ) ,  )
+kable( res2 , format = "html", longtable = TRUE , booktabs = FALSE , caption = "Taxa de desalento, por trimestre - Brasil, 2012/1-2018/1" , col.names = c( "Ano" , paste0( 1:4 , "º Trim." ) ) , digits = 1 ) %>% 
+  kable_styling( full_width = FALSE , font_size = 10 ) %>%
+  add_header_above( c(" " = 1, "%" = 4 ) ) %>%
+  # collapse_rows( columns = 1 ) %>% 
+  column_spec(2:5, width = "8em") %>% 
+  footnote(general = "PNAD Contínua 2012-2018. Microdados.", general_title = "Fonte:" , footnote_as_chunk = T )
+```
+
+Outro recorde é a taxa de subutilização (24.7%). Em relação ao mesmo período do ano anterior, este indicador cresceu 4 p.p., conforme Tabela \ref{#tab:season_tab3}. Assim, aproximadamente 1 em cada 4 pessoas na força de trabalho ampliada se encontra em situação de subutilização, o que lança dúvidas a respeito da "qualidade" da queda do desemprego neste período.
+
+```{r season_tab3, echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
+library(knitr)
+library(kableExtra)
+options( knitr.kable.NA = "-" )
+
+res3 <- subset( table_data , variable == "tx_subutilizacao" )
+res3 <- res3[ , c("year","quarter","estimate") ]
+res3 <- tidyr::spread( res3 , quarter , estimate , fill = NA )
+
+# knitr::kable( res1 , format = "html" , digits = 3 , col.names = c( "Ano" , paste0( 1:4 , "º Trim." ) ) ,  )
+kable( res3 , format = "html", longtable = TRUE , booktabs = FALSE , caption = "Taxa de subutilização da força de trabalho, por trimestre - Brasil, 2012/1-2018/1" , col.names = c( "Ano" , paste0( 1:4 , "º Trim." ) ) , digits = 1 ) %>% 
+  kable_styling( full_width = FALSE , font_size = 10 ) %>%
+  add_header_above( c(" " = 1, "%" = 4 ) ) %>%
+  # collapse_rows( columns = 1 ) %>% 
+  column_spec(2:5, width = "8em") %>% 
+  footnote(general = "PNAD Contínua 2012-2018. Microdados.", general_title = "Fonte:" , footnote_as_chunk = T )
+```
+
+A Figura \ref{#fig:plot_subutilizacao} traz a decomposição da subutilização por categoria e mostra um salto na proporção de desalentados a partir do 4º trimestre de 2015, indo de 9.7% para 14.5%. Deste período até o início de 2017, a área representada por desocupados e desalentados cresceu, sendo interrompida por uma "transferência" dos desocupados para os subocupados.
+
+```{r plot_subutilizacao, echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
+props_ftt <- plyr::ldply( stacked_results , function( x ) { data.frame( year = x[[1]] , quarter = x[[2]] , variable = gsub( "status_ftt" , "" , names(x[[9]]) ) , estimate = coef( x[[9]] ) , ci_l = confint( x[[9]] )[ ,1] , ci_u = confint( x[[9]] )[,2] , stringsAsFactors = TRUE ) } )
+props_ftt <- props_ftt[ !( props_ftt$variable %in% "Ocupado" ) , ]
+props_ftt$time <- paste0( props_ftt$year , "/" , as.numeric( props_ftt$quarter ) )
+
+props_ftt$variable <- factor( props_ftt$variable , rev( levels( props_ftt$variable ) [c(1,2,5,3,4)] ) , ordered = TRUE )
+
+library( ggplot2 )
+library( scales )
+
+ggplot( data = props_ftt , aes( x = time , y = estimate , group = variable , fill = variable , color = variable ) ) +
+  geom_area( alpha = .6 , position = 'stack' , color = "transparent" ) +
+  # geom_line( alpha = 1 ) +
+  scale_y_continuous( labels = percent , expand = c(0,0) , limits = c(0,1) , breaks = seq(0,1,.1) ) +
+  scale_x_discrete( expand = c(0,0) ) +
+  scale_fill_manual( values = c( "#fdcc8a" , "#fc8d59" , "#e34a33" , "#b30000" ) ) +
+  # scale_color_manual( values = c( "#fdcc8a" , "#fc8d59" , "#e34a33" , "#b30000" ) ) +
+  guides( fill = guide_legend( "Categoria" ) ) +
+  labs( x = NULL , y = NULL, 
+        title = "Decomposição da força de trabalho subutilizada, por tipo - 2012/1-2018/1" , 
+        caption = "Fonte: PNAD Contínua 2012-2018. Microdados.") +
+  theme( panel.background = element_blank() ,
+         panel.grid.major.x = element_blank() ,
+         # legend.position="bottom" ,
+         # panel.grid.minor.x = element_blank() , 
+         # panel.grid.minor.x = element_line( linetype = 3 , color = "lightgrey" , size = .2 ) ,
+         panel.grid.major.y = element_line( linetype = 3 , color = "grey" , size = .3 ) ,
+         panel.grid.minor.y = element_line( linetype = 3 , color = "grey" , size = .15 ) ,
+         axis.text.x = element_text(hjust = .5 , vjust = .5 , angle = 90 ) ,
+         plot.title = element_text(lineheight=.8, face="bold") )
+
+```
+
+Comparado com mesmo período do ano anterior, o número absoluto de desocupados caiu. Entretanto, o total de subocupados e de desalentados cresceu. Com efeito, essa última categoria vem crescendo desde o 4º trimestre de 2015, como mostra a Figura \ref{#fig:series_subutilizacao}.
+
+```{r series_subutilizacao, echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
+totals_ftt <- plyr::ldply( stacked_results , function( x ) { data.frame( year = x[[1]] , quarter = x[[2]] , variable = gsub( "status_ftt" , "" , names(x[[8]]) ) , estimate = coef( x[[8]] ) , ci_l = confint( x[[8]] )[ ,1] , ci_u = confint( x[[8]] )[,2] ) } )
+totals_ftt <- totals_ftt[ !( totals_ftt$variable %in% "Ocupado" ) , ]
+totals_ftt$time <- paste0( totals_ftt$year , "/" , as.numeric( totals_ftt$quarter ) )
+
+totals_ftt$variable <- factor( totals_ftt$variable , rev( levels( totals_ftt$variable ) [c(1,2,5,3,4)] ) , ordered = TRUE )
+
+
+# gráfico
+ggplot( data = totals_ftt , aes( x = time , y = estimate , group = variable , color = variable , ymin=ci_l, ymax=ci_u ) ) +
+  geom_line( alpha = .5 ) + geom_errorbar( width=.25 ) +
+  # geom_segment( x = 14.5, xend = 14.5 , y = 0 , yend = .5 , color = "lightgrey" , alpha = .4 ) +
+  scale_y_continuous( labels = function(x) {format(x , big.mark = " ", scientific = FALSE, trim = TRUE)} , expand = c(0,0) , limits = c(0,17*10^6) , breaks = seq(0,20*10^6 , 5*10^6 ) ) +
+  scale_color_manual( values = c( "#fdcc8a" , "#fc8d59" , "#e34a33" , "#b30000" ) ) +
+  guides( color = guide_legend( "Taxas" ) ) +
+  labs( x = NULL , y = NULL, 
+        title = "Totais da força de trabalho subutilizada, por tipo - 2012/1-2018/1" , 
+        caption = "Fonte: PNAD Contínua 2012-2018. Microdados.") +
+  theme( panel.background = element_blank() ,
+         panel.grid.major.x = element_blank() ,
+         # legend.position="bottom" ,
+         # panel.grid.minor.x = element_blank() , 
+         # panel.grid.minor.x = element_line( linetype = 3 , color = "lightgrey" , size = .2 ) ,
+         panel.grid.major.y = element_line( linetype = 3 , color = "grey" , size = .3 ) ,
+         panel.grid.minor.y = element_line( linetype = 3 , color = "grey" , size = .15 ) ,
+         axis.text.x = element_text(hjust = .5 , vjust = .5 , angle = 90 ) ,
+         plot.title = element_text(lineheight=.8, face="bold") )
+
+```
+
+### Concluindo
+
+Resta a pergunta: *o desemprego aumentou porque diminuiu o número de desalentados?*
+
+- A análise mais coerente aponta que, na verdade, **o desemprego caiu**. Continua em níveis bastante elevados, aumentou em relação ao trimestre anterior, mas caiu em comparação com o mesmo trimestre do ano anterior.
+- A **taxa de desalento não apresenta sinal de queda**. Pelo contrário: métodos menos conservadores apontam que ela pode ter aumentado. 
+
+Então, porque o desemprego caiu, enquanto o desalento aumentou, **a afirmação é falsa**. E, antes que me apedrejem, [essa também é a conclusão do IBGE](https://agenciadenoticias.ibge.gov.br/agencia-sala-de-imprensa/2013-agencia-de-noticias/releases/21246-pnad-continua-tri-taxa-de-subutilizacao-da-forca-de-trabalho-e-de-24-7-no-primeiro-tri-de-2018.html).
+
+Finalizo sugerindo a leitura de algumas matérias que saíram esses dias:
+
+  - [*"IBGE: Desemprego cresce em todas as regiões e 16 unidades da federação"* - Valor Econômico](http://www.valor.com.br/brasil/5531299/ibge-desemprego-cresce-em-todas-regioes-e-16-unidades-da-federacao). Esse aqui até merece um comentário especial por **diferenciar variações estatisticamente significativas das não significativas**.
+  - [*"Desemprego, subocupação e desalento: a crise do trabalho no Brasil"* - Nexo](https://www.nexojornal.com.br/expresso/2018/05/18/Desemprego-subocupação-e-desalento-a-crise-do-trabalho-no-Brasil). Achei os gráficos bem interessantes.
+  - [*"Desalento recorde limita alta na taxa de desemprego, diz IBGE"* - Folha de São Paulo](https://www1.folha.uol.com.br/mercado/2018/05/desalento-recorde-limita-alta-na-taxa-de-desemprego-diz-ibge.shtml).

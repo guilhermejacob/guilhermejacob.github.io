@@ -1,0 +1,1 @@
+function init_prop_svg_1(){};var array_selected_svg_1 = [];var zoom_svg_1 = d3.zoom().scaleExtent([1.00, 5.00]);var lasso_svg_1 = d3.lasso();

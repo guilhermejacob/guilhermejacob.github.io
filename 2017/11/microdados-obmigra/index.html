@@ -1,0 +1,900 @@
+
+
+  
+    
+  
+
+
+  
+
+
+
+
+
+  
+
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Hugo 0.47 with theme Tranquilpeak 0.4.3-BETA">
+    <title>CGIg/CNIg e SINCRE: analisando os microdados do OBMigra</title>
+    <meta name="author" content="Guilherme Jacob">
+    <meta name="keywords" content="">
+
+    <link rel="icon" href="https://guilhermejacob.github.io/favicon.png">
+    
+
+    
+    <meta name="description" content="O assunto de hoje são os microdados do OBMigra. Mas, antes disso, vamos apresentar um pouco do contexto institucional.
+OBMigra O Observatório das migrações internacionais (OBMigra) é fruto de um convênio estabelecido entre o Ministério do Trabalho (MTb), Conselho Nacional de Imigração (CNIg) e Universidade de Brasília (UnB). Sua finalidade é ampliar o conhecimento a respeito dos fluxos migratórios internacionais no Brasil, através de estudos e análises empíricas, e fornecer subsídios para a formulação de estratégias de política pública.">
+    <meta property="og:description" content="O assunto de hoje são os microdados do OBMigra. Mas, antes disso, vamos apresentar um pouco do contexto institucional.
+OBMigra O Observatório das migrações internacionais (OBMigra) é fruto de um convênio estabelecido entre o Ministério do Trabalho (MTb), Conselho Nacional de Imigração (CNIg) e Universidade de Brasília (UnB). Sua finalidade é ampliar o conhecimento a respeito dos fluxos migratórios internacionais no Brasil, através de estudos e análises empíricas, e fornecer subsídios para a formulação de estratégias de política pública.">
+    <meta property="og:type" content="blog">
+    <meta property="og:title" content="CGIg/CNIg e SINCRE: analisando os microdados do OBMigra">
+    <meta property="og:url" content="/2017/11/microdados-obmigra/">
+    <meta property="og:site_name" content="Something Random">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Something Random">
+    <meta name="twitter:description" content="O assunto de hoje são os microdados do OBMigra. Mas, antes disso, vamos apresentar um pouco do contexto institucional.
+OBMigra O Observatório das migrações internacionais (OBMigra) é fruto de um convênio estabelecido entre o Ministério do Trabalho (MTb), Conselho Nacional de Imigração (CNIg) e Universidade de Brasília (UnB). Sua finalidade é ampliar o conhecimento a respeito dos fluxos migratórios internacionais no Brasil, através de estudos e análises empíricas, e fornecer subsídios para a formulação de estratégias de política pública.">
+    
+    
+
+    
+    
+
+    
+      <meta property="og:image" content="https://guilhermejacob.github.io/files/20900788_1261769030617642_6094584381440292567_o.jpg">
+    
+
+    
+    
+    
+
+    
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.css" integrity="sha256-vuXZ9LGmmwtjqFX1F+EKin1ThZMub58gKULUyf0qECk=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU=" crossorigin="anonymous" />
+    
+    
+    <link rel="stylesheet" href="https://guilhermejacob.github.io/css/style-jsjn0006wyhpyzivf6yceb31gvpjatbcs3qzjvlumobfnugccvobqwxnnaj8.min.css" />
+    
+    
+
+    
+      
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="4">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://guilhermejacob.github.io/">Something Random</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://guilhermejacob.github.io/#about">
+    
+    
+    
+      
+        <img class="header-picture" src="https://guilhermejacob.github.io/files/20900788_1261769030617642_6094584381440292567_o.jpg" alt="Author&#39;s picture" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="4">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://guilhermejacob.github.io/#about">
+          <img class="sidebar-profile-picture" src="https://guilhermejacob.github.io/files/20900788_1261769030617642_6094584381440292567_o.jpg" alt="Author&#39;s picture" />
+        </a>
+        <h4 class="sidebar-profile-name">Guilherme Jacob</h4>
+        
+          <h5 class="sidebar-profile-bio"><strong>B.A. in Law</strong>, <strong>B.Sc. in Economics</strong>, and coding <strong>somewhere in between</strong>.<br>Born and raised in Manaus-AM, Brazil.</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://guilhermejacob.github.io/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">Home</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://guilhermejacob.github.io/#about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+      
+      <span class="sidebar-button-desc">About</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://guilhermejacob.github.io/tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">Tags</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://guilhermejacob.github.io/categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+      
+      <span class="sidebar-button-desc">Categories</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://guilhermejacob.github.io/archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">Archives</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/guilhermejacob" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="http://stackoverflow.com/users/6419956/guilherme-jacob" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-stack-overflow"></i>
+      
+      <span class="sidebar-button-desc">Stack Overflow</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://www.instagram.com/guilhermejacob9" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-instagram"></i>
+      
+      <span class="sidebar-button-desc">Instagram</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://guilhermejacob.github.io/sampling-thoughts/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-paragraph"></i>
+      
+      <span class="sidebar-button-desc">Personal Blog</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://guilhermejacob.github.io/files/cv_english.pdf">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-briefcase"></i>
+      
+      <span class="sidebar-button-desc">CV</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://guilhermejacob.github.io/research">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-code"></i>
+      
+      <span class="sidebar-button-desc">Research</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="mailto:guilhermejacob91@gmail.com" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-envelope-o"></i>
+      
+      <span class="sidebar-button-desc">Contact</span>
+    </a>
+  </li>
+
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="4"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title" itemprop="headline">
+      CGIg/CNIg e SINCRE: analisando os microdados do OBMigra
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2017-11-29T00:00:00Z">
+        
+  November 29, 2017
+
+      </time>
+    
+    
+  
+  
+    <span>in</span>
+    
+      <a class="category-link" href="https://guilhermejacob.github.io/categories/r">R</a>, 
+    
+      <a class="category-link" href="https://guilhermejacob.github.io/categories/public-records">Public Records</a>, 
+    
+      <a class="category-link" href="https://guilhermejacob.github.io/categories/official-statistics">Official Statistics</a>
+    
+  
+
+  </div>
+
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              <p>O assunto de hoje são os microdados do OBMigra. Mas, antes disso, vamos apresentar um pouco do contexto institucional.</p>
+<div id="obmigra" class="section level3">
+<h3>OBMigra</h3>
+<p>O <a href="http://obmigra.mte.gov.br"><em>Observatório das migrações internacionais (OBMigra)</em></a> é fruto de um convênio estabelecido entre o Ministério do Trabalho (MTb), Conselho Nacional de Imigração (CNIg) e Universidade de Brasília (UnB). Sua finalidade é ampliar o conhecimento a respeito dos fluxos migratórios internacionais no Brasil, através de estudos e análises empíricas, e fornecer subsídios para a formulação de estratégias de política pública.</p>
+<p>As principais bases de dados fornecidas pelo OBMigra são:</p>
+<ul>
+<li>SINCRE</li>
+<li>CGIg/CNIg</li>
+</ul>
+<p>Vamos fazer uma breve introdução ao que cada base contém.</p>
+<div id="sincre" class="section level4">
+<h4>SINCRE</h4>
+<p>A base do <em>Sistema Nacional de Cadastramento de Registro de Estrangeiros (SINCRE)</em> é fruto da compilação de registros administrativos realizados pela Polícia Federal. Ele traz a lista de estrangeiros que entraram com pedido de cadastro para a emissão do <em>Registro Nacional de Estrangeiro (RNE)</em>.</p>
+</div>
+<div id="cgigcnig" class="section level4">
+<h4>CGIg/CNIg</h4>
+<p>A base da <em>Coordenação Geral de Imigração (CGIg)</em> é uma compilação dos estrangeiros que protocolaram pedido de autorização de trabalho no Brasil, seja ele temporário ou permanente. Por sua vez, a base do <em>Conselho Nacional de Imigração (CNIg)</em> – órgão responsável por tratar os casos especiais ou omissos nas <em>Resoluções Normativas (RN)</em> da CGIg, é semelhante à da CGIg.</p>
+<p>Uma característica interessante das bases acima é que elas trazem o <strong>amparo legal</strong> que baseia o pedido, o que pode ser muito interessante para pesquisa empírica em Direito, por exemplo. <del>Fica a dica para quem gosta do assunto.</del></p>
+</div>
+</div>
+<div id="na-pratica" class="section level3">
+<h3>Na prática</h3>
+<p>Para facilitar o processo de baixar e montar a base de dados, escrevi <a href="https://github.com/guilhermejacob/guilhermejacob.github.io/blob/master/scripts/obmigra.R">esse script</a> com três funções para facilitar esse procedimento:</p>
+<ol style="list-style-type: decimal">
+<li><code>catalog_obmigra</code>: lista os dados do site em um catálogo;</li>
+<li><code>datavault_obmigra</code>: baixa os arquivos de dados brutos para um diretório local específico;</li>
+<li><code>build_obmigra</code>: constrói a base de dados</li>
+</ol>
+<p>A função <code>datavault_obmigra</code> é <strong>opcional</strong>, mas ajuda bastante caso você não queira repetir os downloads toda vez que precisar montar a base de novo. O bloco de código abaixo mostra como fazer essa tarefa:</p>
+<pre class="r"><code># instala libraries
+libs &lt;- c(&quot;DBI&quot;, &quot;RSQLite&quot; , &quot;downloader&quot; , &quot;archive&quot; , &quot;dplyr&quot; , &quot;dbplyr&quot; , &quot;tidyr&quot; )
+libs.novas &lt;- libs[ !( libs %in% installed.packages()[ , &quot;Package&quot; ] ) ]
+if( length( libs.novas ) ) install.packages( libs.novas )
+
+# carrega libraries
+library(DBI)
+library(RSQLite)
+
+# define diretórios
+output_dir &lt;- file.path( tempdir() , &quot;OBMigra&quot; ) 
+datavault_dir &lt;- file.path( tempdir() , &quot;OBMigra_DV&quot; ) 
+
+# carrega funções
+downloader::source_url( &quot;https://github.com/guilhermejacob/guilhermejacob.github.io/blob/master/scripts/obmigra.R&quot; )
+
+# cria catálogo de dados
+catalog &lt;- catalog_obmigra( output_dir = output_dir )
+
+# cria datavault
+# esse passo é opcional!
+catalog &lt;- datavault_obmigra( catalog = catalog, datavault_dir = datavault_dir )
+
+# constrói base de dados
+build_obmigra( catalog = catalog )</code></pre>
+<p>Caso você já conheça linguagem <a href="https://pt.wikipedia.org/wiki/SQL">SQL</a>, pode conectar direto à base de dados e enviar as <em>queries</em>.<br />
+Caso contrário, não se desespere! Se você conhece um pouco do <a href="https://cran.r-project.org/web/packages/dplyr/vignettes/dplyr.html"><code>dplyr</code></a>, já é o suficiente para analisar utilizando o seu “pacote irmão” <a href="https://cran.r-project.org/web/packages/dbplyr/vignettes/dbplyr.html"><code>dbplyr</code></a>. Vejamos:</p>
+<pre class="r"><code># carrega os pacotes necessários
+library( DBI )
+library( RSQLite )
+library( dplyr )
+library( dbplyr )
+library( tidyr )
+
+# conecta com a base de dados
+con &lt;- dbConnect( SQLite() , file.path( output_dir , &quot;obmigra.sqlite&quot; ) )
+
+# lista tabelas na base
+dbListTables( con )
+
+
+# cria referência para tabela de registros do SINCRE
+sincre &lt;- tbl( con , &quot;sincre&quot; )
+
+# dá uma olhada na tabela
+sincre
+
+# número total de estrangeiros, segundo classificação, por ano de registro, 2000-2014.
+sincre %&gt;% 
+  filter( ano_reg &gt;= 2000 &amp; ano_reg &lt;= 2014 ) %&gt;%
+  group_by( ano_reg , classificacao ) %&gt;% 
+  summarise( nobs = n() ) %&gt;% 
+  arrange( -ano_reg , classificacao ) %&gt;% 
+  data.frame() %&gt;% 
+  spread( . , key = ano_reg , value = nobs , fill = 0 )
+
+#   classificacao  2000  2001  2002  2003  2004  2005  2006  2007  2008  2009  2010  2011  2012  2013  2014
+# 1       ASILADO     0     1     0     0     1     1     0     0     0     0     0     0     0     0     0
+# 2   FRONTEIRIÇO   204   254   169   135   540   596   479   428   420   633   694  1026  1180  1522  1828
+# 3        OUTROS   158   116   121    47    69   147   141   149    93   208   146   139   194   469  1389
+# 4    PERMANENTE 10708  8235  9484 12783 12297 16027 24918 18263 15379 45828 20861 27868 34382 26993 36211
+# 5    PROVISÓRIO   415   138    41    20    33   114  2115   693   347  9441   959   114    48     8    24
+# 6    TEMPORÁRIO 12010 12132 12116 12904 14544 16508 17642 20234 24001 32134 32492 46743 64969 83615 83194</code></pre>
+<p>Esses números coincidem com a Tabela 1.1.1 desse <a href="http://obmigra.mte.gov.br/index.php/anuarios/item/download/37_37a922b62de319b94214ba6c9cb594b8">arquivo</a>. Confira:</p>
+<div class="figure">
+<img src="../../../img/tabela_sincre.png" alt="Tabela extraída do Anuário SINCRE" />
+<p class="caption">Tabela extraída do Anuário SINCRE</p>
+</div>
+<p>Agora, vamos olhar os dados do CGIg/CNIg e calcular agregados.</p>
+<pre class="r"><code># cria referência para tabela de pedidos do cgig/cnig
+cnig &lt;- tbl( con , &quot;cnig&quot; )
+
+# dá uma olhada em como a tabela parece
+cnig
+
+# número de autorizações de trabalho, 
+# segundo manifestação, por mês em 2015
+cnig %&gt;% 
+  filter( andamento %in% c( &quot;MANIFESTAÇÃO CONTRÁRIA&quot; , &quot;MANIFESTAÇÃO FAVORÁVEL&quot; ) ) %&gt;% 
+  filter( ano == 2015 ) %&gt;% 
+  group_by( mes , andamento ) %&gt;% 
+  summarise( nobs = n() ) %&gt;% 
+  arrange( mes , andamento ) %&gt;% 
+  data.frame() %&gt;% 
+  spread( . , key = mes , value = nobs , fill = 0 )
+#                andamento    1   2    3   4   5   6   7   8   9  10  11  12
+# 1 MANIFESTAÇÃO CONTRÁRIA  620 728 1134 936 528 128 500 741 575 169  85  63
+# 2 MANIFESTAÇÃO FAVORÁVEL 1052 936  702 430 384 680 214 325 360 156 100 125
+
+# disconecta da base de dados
+dbDisconnect( con )</code></pre>
+<p>Mas será que esses números fazem sentido? Vamos comparar com a Tabela 2.9 na página 20 <a href="http://acesso.mte.gov.br/data/files/8A7C816A4FF110CB0153321BB87F5A40/Relatório%20CGIg.29.02.2016.pdf">deste documento</a>:</p>
+<div class="figure">
+<img src="../../../img/tabela_cnig.png" alt="Tabela 2.9 na publicação." />
+<p class="caption">Tabela 2.9 na publicação.</p>
+</div>
+<p><em>Acertamos!</em></p>
+</div>
+<div id="presente-para-quem-chegou-ate-o-fim-do-post" class="section level3">
+<h3>Presente para quem chegou até o fim do post!</h3>
+<p>A trilha sonora de hoje chama “A Vingança de Cunhã”, do Projeto Pietá. Essa letra <del>maravilhosa</del> do Thiago Thiago de Mello<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a> fala da lenda do boto, que, em noite de festa, virava moço bonito pra encantar e <em>malinar</em> das cunhantãs. Mas, um dia, ele cruzou com a cunhã errada.<br />
+Pra mim, essa música traz uma saudade da infância na beira do rio, ouvindo os contos do meu avô. <div style="position:relative;height:0;padding-bottom:56.21%"><iframe src="https://www.youtube.com/embed/V6udqPvETy8?ecver=2" style="position:absolute;width:100%;height:100%;left:0" width="641" height="360" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe></div></p>
+</div>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>Sim, esse é o nome dele.<a href="#fnref1">↩</a></p></li>
+</ol>
+</div>
+
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">TAGGED IN</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://guilhermejacob.github.io/tags/migration/">Migration</a>
+
+  <a class="tag tag--primary tag--small" href="https://guilhermejacob.github.io/tags/brazil/">Brazil</a>
+
+                  </div>
+                
+              
+            
+            
+  <div class="post-actions-wrap">
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://guilhermejacob.github.io/2017/12/desigualdade-pobreza-estados-2016/" data-tooltip="O que a PNAD Contínua 2016 diz sobre desigualdade e pobreza nos estados?">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://guilhermejacob.github.io/2017/11/rais-caged-r/" data-tooltip="Analisando RAIS e CAGED com R">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://guilhermejacob.github.io/2017/11/microdados-obmigra/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://guilhermejacob.github.io/2017/11/microdados-obmigra/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://guilhermejacob.github.io/2017/11/microdados-obmigra/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+
+            
+              
+            
+          </div>
+        </article>
+        <script src="//yihui.name/js/math-code.js"></script>
+<script async
+    src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+<footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2018 Guilherme Jacob. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+        
+  <div class="post-actions-wrap">
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://guilhermejacob.github.io/2017/12/desigualdade-pobreza-estados-2016/" data-tooltip="O que a PNAD Contínua 2016 diz sobre desigualdade e pobreza nos estados?">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://guilhermejacob.github.io/2017/11/rais-caged-r/" data-tooltip="Analisando RAIS e CAGED com R">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://guilhermejacob.github.io/2017/11/microdados-obmigra/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://guilhermejacob.github.io/2017/11/microdados-obmigra/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://guilhermejacob.github.io/2017/11/microdados-obmigra/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="4">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fguilhermejacob.github.io%2F2017%2F11%2Fmicrodados-obmigra%2F">
+          <i class="fa fa-facebook-official"></i><span>Share on Facebook</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Fguilhermejacob.github.io%2F2017%2F11%2Fmicrodados-obmigra%2F">
+          <i class="fa fa-twitter"></i><span>Share on Twitter</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https%3A%2F%2Fguilhermejacob.github.io%2F2017%2F11%2Fmicrodados-obmigra%2F">
+          <i class="fa fa-google-plus"></i><span>Share on Google&#43;</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://guilhermejacob.github.io/files/20900788_1261769030617642_6094584381440292567_o.jpg" alt="Author&#39;s picture" />
+    
+    <h4 id="about-card-name">Guilherme Jacob</h4>
+    
+      <div id="about-card-bio"><strong>B.A. in Law</strong>, <strong>B.Sc. in Economics</strong>, and coding <strong>somewhere in between</strong>.<br>Born and raised in Manaus-AM, Brazil.</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        Data Analyst
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        Unknown
+      </div>
+    
+  </div>
+</div>
+
+    <div id="algolia-search-modal" class="modal-container">
+  <div class="modal">
+    <div class="modal-header">
+      <span class="close-button"><i class="fa fa-close"></i></span>
+      <a href="https://algolia.com" target="_blank" rel="noopener" class="searchby-algolia text-color-light link-unstyled">
+        <span class="searchby-algolia-text text-color-light text-small">by</span>
+        <img class="searchby-algolia-logo" src="https://www.algolia.com/static_assets/images/press/downloads/algolia-light.svg">
+      </a>
+      <i class="search-icon fa fa-search"></i>
+      <form id="algolia-search-form">
+        <input type="text" id="algolia-search-input" name="search"
+          class="form-control input--large search-input" placeholder="Search" />
+      </form>
+    </div>
+    <div class="modal-body">
+      <div class="no-result text-color-light text-center">no post found</div>
+      <div class="results">
+        
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://guilhermejacob.github.io/2018/05/temer-desemprego-2018/">
+                <h3 class="media-heading">Temer, desemprego e procura de empregos: entendendo conceitos da PNAD Contínua</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  May 5, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Uma controvérsia relativamente recente foi protagonizada pelo Temer, durante uma palestra na ESPM. Ele teria afirmado que não houve aumento da taxa de desemprego, mas, sim, aumento das pessoas procurando emprego. Antes da divulgação dos dados da PNADC do 1º trimestre de 2018, tive uma conversa com um professor a respeito de até onde aquilo faz ou não faz sentido.
+Escolhi esperar1 até os microdados saírem…
+Pois bem: saíram ontem, dia 17.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://guilhermejacob.github.io/2018/05/partos-brasil-2016/">
+                <h3 class="media-heading">Qual a relação entre a hora de nascimento e o tipo de parto?</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  May 5, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">O último post foi corrido, eu sei. Esse vai ser um pouco menos corrido, acho.
+Se você quiser pular direto para a análise, clique aqui.
+Muita coisa acontecendo por aqui.
+Semana passada, fui pro Rio. Serei propositalmente misterioso neste ponto, mas acho que vem coisa por aí.
+Na volta para Manaus, fiz uma mini-maratona para visitar amigos em Brasília nas 7 horas de escala. Para quem eu fiquei devendo visita: vou para a Campus Party Brasília no fim de maio!</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://guilhermejacob.github.io/2018/04/desigualdade-pobreza-infancia-2017/">
+                <h3 class="media-heading">PNAD Contínua 2017: extrema pobreza na infância e desigualdade</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Apr 4, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Atualização (19/05/2018): passei a usar a nova tabela de deflatores, ajustando para preços médios do ano da pesquisa.
+Atualização (20/05/2018): fixei os valores a preços médios de 2017.
+ Interrompendo o meu hiato de alguns meses, resolvi voltar com uma comparação os dados de renda das PNADCs anuais 2016-2017. No entanto, vamos falar um pouco da desigualdade em geral e, então, partir para uma questão mais específica: pobreza na infância1.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://guilhermejacob.github.io/2017/12/analise-censo-superior-genero-2016/">
+                <h3 class="media-heading">Censo da Educação Superior: gênero e cursos em 2016</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Dec 12, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Encerrando1 as análises usando bases de dados públicas, vamos focar no ensino superior.
+Inicialmente, vamos explicar o que é o Censo da Educação Superior. Depois, vamos mostrar como montar as bases de dados. E, concluindo, vamos fazer um pequeno exercício de visualização de dados.
+Ah, e eu vou ser muito breve neste post, por motivos de: tenho que escrever um projeto de pesquisa (:
+Censo da Educação Superior O Censo da Educação Superior é conduzido anualmente pelo Inep.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://guilhermejacob.github.io/2017/12/desigualdade-pobreza-estados-2016/">
+                <h3 class="media-heading">O que a PNAD Contínua 2016 diz sobre desigualdade e pobreza nos estados?</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Dec 12, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Atualização (19/05/2018): corrigi alguns erros no código que afetavam as estimativas das capitais.
+Já que os intervalos de confiança das estimativas de capitais não permitiam uma análise mais profunda, resolvi mudar para análise das UFs.
+As rendas foram ajustadas para preços médios de 2016.
+ Na última quarta (29/11), o IBGE finalmente apresentou as estimativas relativas aos rendimentos de todas as fontes, além de disponibilizar os microdados para os cálculos.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://guilhermejacob.github.io/2017/11/microdados-obmigra/">
+                <h3 class="media-heading">CGIg/CNIg e SINCRE: analisando os microdados do OBMigra</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Nov 11, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">O assunto de hoje são os microdados do OBMigra. Mas, antes disso, vamos apresentar um pouco do contexto institucional.
+OBMigra O Observatório das migrações internacionais (OBMigra) é fruto de um convênio estabelecido entre o Ministério do Trabalho (MTb), Conselho Nacional de Imigração (CNIg) e Universidade de Brasília (UnB). Sua finalidade é ampliar o conhecimento a respeito dos fluxos migratórios internacionais no Brasil, através de estudos e análises empíricas, e fornecer subsídios para a formulação de estratégias de política pública.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://guilhermejacob.github.io/2017/11/rais-caged-r/">
+                <h3 class="media-heading">Analisando RAIS e CAGED com R</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Nov 11, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Dando sequência ao post anterior, vamos analisar outra base de dados. Ou outras bases de dados?
+Dessa vez, falaremos dos microdados do RAIS e CAGED. Vamos?
+Bases do Ministério do Trabalho O Ministério do Trabalho (MTb) permite que o usuário acesse os microdados de duas bases muito interessantes: RAIS e CAGED. Bom, além de serem mais dois elementos na “sopa de letrinhas” de microdados brasileiros, o que são exatamente esses dados?</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://guilhermejacob.github.io/2017/11/amostra-cadunico-r/">
+                <h3 class="media-heading">Analisando a amostra do Cadastro Único com R</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Nov 11, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Atualização (18/08/2018): atualizei o procedimento e os resultados para coincidir com as novas bases disponibilizadas no site.
+ Você sabe o que é o Cadastro Único? Sabe que uma amostra dos microdados está disponível? Sabe que dá pra analisar no R?
+Não? Até uns dias atrás, eu também não.
+Se você tem interesse nessa base de dados, vamos lá!
+Caso contrário, assista esse vídeo do MDS. Se, ainda assim, você não estiver interessado, bom… tem um presente no fim do post.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://guilhermejacob.github.io/2017/11/birth-registration-map/">
+                <h3 class="media-heading">Mapeando crianças sem registro civil</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Nov 11, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Esse post é um pequeno follow-up da discussão sobre mapas de densidade de pontos, mas com um pouco mais de diretos da infância e adolescência. Vamos analisar como se distribuem espacialmente as crianças com e sem registro de nascimento, usando dados dos agregados de setores censitários do Censo 2010.
+Dessa vez, vamos focar em 4 capitais: Belém, Manaus , Fortaleza e São Luís.
+Sem mais conversa, prossigamos.
+Belém  Manaus  Fortaleza  São Luís  </div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://guilhermejacob.github.io/2017/11/ethnic-composition-brazilian-cities/">
+                <h3 class="media-heading">Ethnic composition of major Brazilian cities using Dot Density Maps</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Nov 11, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">You can find the R code for this post here.
+ Some time ago, I came across this nice post showing how ethnicity is distributed in London. This is very interesting, as it reveals patterns about how communities are organized and how inequality express itself upon housing locations.
+Our task today is to apply the same procedure to large Brazilian cities. Here’s our list of municipalities: São Paulo, Rio de Janeiro, Brasília, Recife, Salvador, and home Manaus.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+      </div>
+    </div>
+    <div class="modal-footer">
+      <p class="results-count text-medium"
+         data-message-zero="no post found"
+         data-message-one="1 post found"
+         data-message-other="{n} posts found">
+         13 posts found
+      </p>
+    </div>
+  </div>
+</div>
+    
+  
+    
+    <div id="cover" style="background-image:url('https://lh3.googleusercontent.com/EMXvd11C1LUgHF62uBqt-VCw8BPI9XsdOPl0o8CHBu6xwoHGZ5NoH03Phepmv75YW6_0aTp2w_X8I-j1r7xwnDqDO3A7Srh305oXGL_k-YQ_aTlaNUNf6Zbmm9yvVYhtxj5to0WffqTpj5mpvwbf6bm5cRaXI4SvsfGc7jdeJqyyvog35SuXO-VhCTH1sCrs57it-lmJ0C-UeUuHouhkyQ9JpGvba_MJCIY0svtfOPEujv2NEZhGZXzv-uJhpXBrUNuZJx3opiUCoFrrJarStPo24PMrK4WEn8DGpHpDJOZjfGGGOtPjfjD0VqdPEhOw2goJ68luwdLqrSzqtzNSHBgav1SPnZKlLD_S6G8FxlD0-PxvWwrsB7EOK4EjrGtawQn3O6erbODkJFOyBFAQYUU71-MpVcpb40jxt8ntcrM6MFiynXKzx0JeT-jWyUj5U1-OPhoZQrG8HIlTKFArsRpZxhO3NbXeBQPqfOrmsLd3VCKWOVUzkB1s2shVStoz5ihqmD5UEHbr5AYEW1Rl4wCjGJU0gL1b_A9Wm-cjSWz1zQhEf2H5tquDpbNolIXysKv47XY_X2HpCioPAaWjSCIRtc1smn4dux0noag1Gg=w2176-h1652-no');"></div>
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js" integrity="sha256-GEAnjcTqVP+vBp3SSc8bEDQqvWAZMiHyUSIorrWwH50=" crossorigin="anonymous"></script>
+
+
+<script src="https://guilhermejacob.github.io/js/script-qi9wbxp2ya2j6p7wx1i6tgavftewndznf4v0hy2gvivk1rxgc3lm7njqb6bz.min.js"></script>
+
+
+
+
+  
+    
+  
+
+
+
+    
+  </body>
+</html>
+

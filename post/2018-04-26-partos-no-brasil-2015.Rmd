@@ -1,0 +1,375 @@
+---
+title: "Qual a relação entre a hora de nascimento e o tipo de parto?"
+author: ~
+date: '2018-05-02'
+slug: partos-brasil-2016
+categories: [R, Official Statistics]
+tags: [Health, Reproductive Rights, Brazil]
+draft: false
+language: "pt-br"
+bibliography: [kotelchuck.bib]
+csl: associacao-brasileira-de-normas-tecnicas-ipea.csl
+---
+```{r setup, include=FALSE , cache = FALSE }
+knitr::opts_chunk$set( message = FALSE, warning = FALSE, cache = TRUE , echo = FALSE )
+```
+
+O último post foi corrido, eu sei. Esse vai ser um pouco menos corrido, acho.  
+Se você quiser pular direto para a análise, [clique aqui](#sinasc).
+
+Muita coisa acontecendo por aqui.  
+Semana passada, fui pro Rio. Serei propositalmente misterioso neste ponto, mas acho que vem coisa por aí.  
+Na volta para Manaus, fiz uma mini-maratona para visitar amigos em Brasília nas 7 horas de escala. Para quem eu fiquei devendo visita: vou para a [Campus Party Brasília](http://brasil.campus-party.org/cpbrasilia/) no *fim de maio*! A trabalho, é verdade, mas acho que rola uns cafés.
+
+<!--html_preserve-->
+<blockquote class="instagram-media" data-instgrm-captioned data-instgrm-permalink="https://www.instagram.com/p/BiCp5OlnSCK/" data-instgrm-version="8" style=" background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px; max-width:658px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);"><div style="padding:8px;"> <div style=" background:#F8F8F8; line-height:0; margin-top:40px; padding:50.0% 0; text-align:center; width:100%;"> <div style=" background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAAsCAMAAAApWqozAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAMUExURczMzPf399fX1+bm5mzY9AMAAADiSURBVDjLvZXbEsMgCES5/P8/t9FuRVCRmU73JWlzosgSIIZURCjo/ad+EQJJB4Hv8BFt+IDpQoCx1wjOSBFhh2XssxEIYn3ulI/6MNReE07UIWJEv8UEOWDS88LY97kqyTliJKKtuYBbruAyVh5wOHiXmpi5we58Ek028czwyuQdLKPG1Bkb4NnM+VeAnfHqn1k4+GPT6uGQcvu2h2OVuIf/gWUFyy8OWEpdyZSa3aVCqpVoVvzZZ2VTnn2wU8qzVjDDetO90GSy9mVLqtgYSy231MxrY6I2gGqjrTY0L8fxCxfCBbhWrsYYAAAAAElFTkSuQmCC); display:block; height:44px; margin:0 auto -44px; position:relative; top:-22px; width:44px;"></div></div> <p style=" margin:8px 0 0 0; padding:0 4px;"> <a href="https://www.instagram.com/p/BiCp5OlnSCK/" style=" color:#000; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:normal; line-height:17px; text-decoration:none; word-wrap:break-word;" target="_blank">😍 #riodejaneiro</a></p> <p style=" color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; line-height:17px; margin-bottom:0; margin-top:8px; overflow:hidden; padding:8px 0 7px; text-align:center; text-overflow:ellipsis; white-space:nowrap;">Uma publicação compartilhada por <a href="https://www.instagram.com/guilhermejacob9/" style=" color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:normal; line-height:17px;" target="_blank"> Guilherme Jacob</a> (@guilhermejacob9) em <time style=" font-family:Arial,sans-serif; font-size:14px; line-height:17px;" datetime="2018-04-26T17:08:12+00:00">26 de Abr, 2018 às 10:08 PDT</time></p></div></blockquote> <script async defer src="//www.instagram.com/embed.js"></script>
+<!--/html_preserve-->
+
+Mas, bem, vamos ao que interessa!
+
+# Analisando os microdados do SINASC {#sinasc}
+
+Este post é bem curtinho, movido mais por curiosidade do que qualquer outra coisa. O [Sistema de Informação sobre Nascidos Vivos (SINASC)](http://www2.datasus.gov.br/DATASUS/index.php?area=060702) é um produto do [Departamento de Informática do Sistema Único de Saúde (DATASUS)](http://datasus.saude.gov.br/datasus) e, como o nome indica, traz informações sobre os nascimentos ocorridos no país. Com esses dados, eu tento responder duas questões: [(1) que horas nascem as crianças no Brasil](#hora); e [(2) como idade e escolaridade das mães se relacionam com o índice de Kotelchuck](#kotelchuck).
+
+## Horário dos nascimentos {#hora}
+
+Nas análises abaixo, vamos focar em nascimentos do período 2014-2016 cuja informação da hora exata do nascimento estavam presentes. As observações com dados incompletos ou mal-preenchidos foram descartadas.
+
+```{r collect_data, include=FALSE , cache = TRUE }
+# load libraries
+library(data.table)
+library(fst)
+library(knitr)
+library(kableExtra)
+library(ggplot2)
+library(gridExtra)
+library(scales)
+
+# set age breaks
+age_breaks <- c( seq(10 , 35 , 5 ) , Inf )
+age_labels <- sapply( seq_along(age_breaks[-1]), function(x) { if( !is.infinite(age_breaks[ x+1] ) ) { paste( "De" , age_breaks[ x ] , "a" , age_breaks[ x + 1 ] - 1 , "anos"  ) } else { paste( age_breaks[ x ] , "anos ou mais" ) } }  )
+
+# list data files
+these_files <- list.files( "/home/guilherme/Bases/DataSUS/sinasc/nov/dnres", pattern = "fst", full.names = TRUE )
+these_files <- these_files[ grepl( "dn[A-Z]{2}201[4-6]" , basename( these_files ) , ignore.case = TRUE ) ]
+
+# select columns
+cols.keep <- c( "dtnasc" , "idademae" , "horanasc" , "racacor" , "gestacao" , "consultas" , "parto" , "locnasc" , "escmae2010" , "kotelchuck" , "tprobson" )
+
+# read and stack files
+database <- plyr::llply( these_files , .fun = function( this_file ) { 
+  x <- read.fst( this_file , columns = cols.keep , as.data.table = TRUE ) 
+  x[, femae := cut( as.numeric(idademae) , breaks = age_breaks , labels = age_labels , right = FALSE )]
+  x[ , .( n_nasc = .N ) , by = c( colnames(x)[!( colnames(x) %in% "idademae" ) ] ) ]
+} , .progress = "text" )
+
+database <- rbindlist( database , use.names = TRUE )
+# format( object.size( database ) , units = "Mb" )
+
+# recodes and subsets
+database[, anonasc := as.numeric( substring( stringr::str_pad( dtnasc , width = 8 , pad = "0" ) , 5 , 8 ) ) ]
+
+database <- database[ anonasc >= 2014 & anonasc <= 2016 ]
+database[ , parto := factor( parto , levels = c(1,2,9) , labels = c( "Vaginal" , "Cesáreo" , "Ignorado" ) ) ]
+
+database[ , horanasc := gsub( "\\:|;|\\-|\\.|\\,|\\/| " , "" , horanasc ) ]
+database[ , horanasc := stringr::str_pad( horanasc , 4 , "left" , "0" ) ]
+
+database[ , parto_hora := substr( horanasc , 1 , 2 ) ]
+database[ , parto_min := substr( horanasc , 3 , 4 ) ]
+database[ , c( "parto_hora" , "parto_min" ) := lapply( .SD , as.numeric ) , .SDcols = c( "parto_hora" , "parto_min" ) ]
+
+database[ , locnasc := factor( locnasc , levels = c(1:5,9) , labels = c( "Hospital" ,"Outro Estabelecimento de Saúde" , "Domicílio" , "Outros" , "Não Informado" , "Ignorado" ) )]
+database[ , gestacao := factor( gestacao , levels = c(1:6,9) , labels = c( "Menos de 22 semanas" ,"22 a 27 semanas" , "28 a 31 semanas" , "32 a 36 semanas" , "37 a 41 semanas" , "42 semanas ou mais" , "Ignorado" ) ) ]
+database[ , racacor2 := ifelse( racacor == 4 , 2 , racacor ) ]
+database[ , racacor2 := factor( racacor2 , levels = c(1:3,5,9) , labels = c( "Branca" ,"Negra" , "Amarela" , "Indígena" , "Ignorada" ) ) ]
+database[ , racacor := factor( racacor , levels = c(1:5,9) , labels = c( "Branca" ,"Preta" , "Amarela" , "Parda" , "Indígena" , "Ignorada" ) ) ]
+
+database[ , kotelchuck := factor( kotelchuck , levels = c(1:5,9) , labels = c( "Não fez pré-natal" , "Inadequado" , "Intermediário" , "Adequado" , "Mais que adequado" , "Não classificado" ) ) ]
+database[ , escmae2010 := factor( escmae2010 , levels = c(0:5,9) , labels = c( "Sem escolaridade" ,"Fundamental I (1ª a 4ª Série)" , "Fundamental II (5ª a 8ª Série)" , "Ensino Médio" , "Superior Incompleto" , "Superior Completo" , "Ignorado" ) ) ]
+
+dt.tipo <- database[ , .( n_nasc = sum( n_nasc , na.rm = TRUE ) ) , by = .( anonasc , femae , parto_hora , parto_min , gestacao , consultas , parto , locnasc , racacor2 ) ] 
+dt.kotel <- database[ , .( n_nasc = sum( n_nasc , na.rm = TRUE ) ) , by = .(anonasc , femae , escmae2010 , kotelchuck , tprobson) ] 
+
+# mantém apenas objetos úteis
+rm( database )
+
+# subsets
+dt.tipo <- dt.tipo[ anonasc >= 2014 ]
+dt.tipo <- dt.tipo[ !is.na( parto ) ]
+dt.tipo <- dt.tipo[ !( parto_hora > 23 | parto_min > 59 ) ]
+dt.tipo <- dt.tipo[ !( is.na( parto_hora ) | is.na( parto_min ) ) ]
+
+dt.kotel <- dt.kotel[ anonasc >= 2014 ]
+dt.kotel <- dt.kotel[ !is.na(femae) ]
+dt.kotel <- dt.kotel[ !is.na(kotelchuck) ]
+
+```
+
+O gráfico abaixo mostra como o número de partos se distribui ao longo do dia. O *horário de pico* dos nascimentos é por volta das 10 horas da manhã, concentrando aproximadamente 7% dos nascimentos ao longo do dia.
+
+```{r dist_hour , echo=FALSE , out.width = "75%" }
+# gráfico
+tempdata <- dt.tipo[ , .( n_nasc = sum( n_nasc , na.rm = TRUE ) ) , by = .( parto_hora ) ][ , p_nasc := n_nasc / sum(n_nasc) ]
+
+ggplot( tempdata , aes( x = parto_hora , y = p_nasc ) ) +
+  geom_line( color = "lightblue" ) +
+  # stat_smooth(method = "lm", formula = y ~ poly(x, 21), se = FALSE) +
+  # scale_color_continuous( low = "red" , high = "blue" ) +
+  scale_y_continuous( labels = percent , expand = c(0,0) , limits = c(0,.1) , breaks = seq(0,1,.05) ) +
+  scale_x_continuous( expand = c(0,0) , limits = c(0,23) , breaks = seq( 0 , 24 , 3 ) ) +
+  annotate("text", x = 10, y = .0725, label = "10:00" , color = "blue" , size = 3 ) +
+  geom_segment( x = 10, xend = 10 , y = 0 , yend = 0.06760613 , color = "blue" ) +
+  guides( color = FALSE ) +
+  labs( x = "Hora do dia" , y = "%", 
+        title = "Distribuição de nascimentos ao longo do dia" ,
+        subtitle = "Por hora" ,
+        caption = "Fonte: MS/DataSUS/SINASC.") +
+  theme( panel.background = element_blank() ,
+         panel.grid.major.x = element_blank() ,
+         # panel.grid.minor.x = element_blank() , 
+         # panel.grid.minor.x = element_line( linetype = 3 , color = "lightgrey" , size = .2 ) ,
+         panel.grid.major.y = element_line( linetype = 1 , color = "grey" , size = .2 ) ,
+         panel.grid.minor.y = element_line( linetype = 3 , color = "grey" , size = .2 ) ,
+         # axis.text.x = element_text(hjust = .5 , vjust = .5 ) ,
+         plot.title = element_text(lineheight=.8, face="bold" ) ,
+         plot.subtitle = element_text( color="#666666" ) ,
+         plot.caption = element_text( color="#AAAAAA", size=6 ) )
+
+```
+
+As coisas ficam mais interessantes quando separamos por tipo de parto. Enquanto os partos vaginais ficam no intervalo de 3% e 5% ao longo do dia, as cesáreas oscilam significativamente: de 1% às 4 da manhã até 8% às 10 da manhã. Faz sentido que os partos vaginais variem menos, afinal **os bebês não nascem com relógio!** Isto é, em partos vaginais, a chance de nascer às 3 da manhã é praticamente a mesma de nascer às 3 da tarde. Por outro lado, cesáreas podem ser agendadas e, de fato, exigem uma variedade de cuidados cirúrgicos, como a presença de um médico.^[O Brasil é um dos países com o maior número de cesáreas. Em 2017, o Unicef Brasil já fez uma campanha interessante sobre o assunto (embora eu não curta o nome): [*Quem espera, espera*](http://www.quemesperaespera.org.br).]
+
+```{r dist_hour_tipo , echo=FALSE , out.width = "75%" }
+tempdata <- dt.tipo[ parto != "Ignorado" , .( n_nasc = sum( n_nasc , na.rm = TRUE ) ) , by = .( parto_hora , parto ) ]
+tempdata[ , p_nasc := n_nasc / sum(n_nasc) , by = .( parto ) ] 
+
+ggplot( tempdata , 
+        aes( x = parto_hora , y = p_nasc , group = parto , color = parto ) ) +
+  geom_line( ) +
+  # stat_smooth(method = "lm", formula = y ~ poly(x, 21), se = FALSE) +
+  scale_color_manual( values = c( "#b3cec7" , "#6B3074" ) ) +
+  scale_y_continuous( labels = percent , expand = c(0,0) , limits = c(0,.1) , breaks = seq(0,1,.025) ) +
+  scale_x_continuous( expand = c(0,0) , limits = c(0,23) , breaks = seq( 0 , 24 , 3 ) ) +
+  # annotate("text", x = 10, y = .0725, label = "10:00" , color = "blue" , size = 3 ) +
+  # geom_segment( x = 10, xend = 10 , y = 0 , yend = 0.06760613 , color = "blue" ) +
+  guides( color = guide_legend( "Tipo de Parto" ) ) +
+  labs( x = "Hora do dia" , y = "%", 
+        title = "Distribuição de nascimentos ao longo do dia" ,
+        subtitle = "Por hora e tipo de parto" ,
+        caption = "Fonte: MS/DataSUS/SINASC.") +
+  theme( panel.background = element_blank() ,
+         panel.grid.major.x = element_blank() ,
+         legend.key = element_rect( colour = "transparent" , fill = NA ) ,
+         # panel.grid.minor.x = element_blank() , 
+         # panel.grid.minor.x = element_line( linetype = 3 , color = "lightgrey" , size = .2 ) ,
+         panel.grid.major.y = element_line( linetype = 1 , color = "grey" , size = .2 ) ,
+         panel.grid.minor.y = element_line( linetype = 3 , color = "grey" , size = .2 ) ,
+         # axis.text.x = element_text(hjust = .5 , vjust = .5 ) ,
+         plot.title = element_text(lineheight=.8, face="bold" ) ,
+         plot.subtitle = element_text( color="#666666" ) ,
+         plot.caption = element_text( color="#AAAAAA", size=6 ) )
+```
+
+O gráfico abaixo mostra como o tipo de parto e o horário de nascimento estão correlaciondos. Em geral, as cesáreas tendem a ser mais comuns durante o "horário comercial", enquanto partos vaginais são mais comuns durante a madrugada. 
+Isso significa que o médico induz cesáreas? Bom, aqui temos o clássico problema de *correlação e causalidade*. De fato, pode ser que os médicos tendam mais a realizar cesáreas. Porém, só o que sabemos é que cesáreas são mais comuns nos horários em que há mais médicos.
+
+```{r grafico_tipo, echo=FALSE , out.width = "75%" }
+tempdata <- dt.tipo[ , .( n_nasc = sum( n_nasc , na.rm = TRUE ) ) , by = .( parto , parto_hora ) ]
+tempdata <- tempdata[ parto != "Ignorado" ]
+tempdata[ , p_nasc := sum(n_nasc) , by = .( parto_hora ) ][ , p_nasc := p_nasc / sum(n_nasc) ]
+tempdata[ , perc := n_nasc / sum(n_nasc) , by = .( parto_hora ) ]
+tempdata <- tempdata[ parto == "Vaginal" ]
+
+# plot
+ggplot( tempdata , aes( x = parto_hora , y = perc , color = perc ) ) +
+  geom_line( ) +
+  # stat_smooth(method = "lm", formula = y ~ poly(x, 21), se = FALSE) +
+  scale_color_continuous( low = "red" , high = "blue" ) +
+  scale_y_continuous( labels = percent , expand = c(0,0) , limits = c(0,1) , breaks = seq(0,1,.25) ) +
+  scale_x_continuous( expand = c(0,0) , limits = c(0,23) , breaks = seq( 0 , 24 , 3 ) ) +
+  guides( color = FALSE ) +
+  labs( x = "Hora do dia" , y = "% de nascidos vivos de partos vaginais", 
+        title = "Partos ao longo do dia" ,
+        # subtitle = "Por cor/raça" ,
+        caption = "Fonte: MS/DataSUS/SINASC.") +
+  theme( panel.background = element_blank() ,
+         panel.grid.major.x = element_blank() ,
+         # panel.grid.minor.x = element_blank() , 
+         # panel.grid.minor.x = element_line( linetype = 3 , color = "lightgrey" , size = .2 ) ,
+         panel.grid.major.y = element_line( linetype = 3 , color = "grey" , size = .2 ) ,
+         panel.grid.minor.y = element_line( linetype = 3 , color = "grey" , size = .1 ) ,
+         # axis.text.x = element_text(hjust = .5 , vjust = .5 ) ,
+         plot.title = element_text(lineheight=.8, face="bold" ) ,
+         plot.subtitle = element_text( color="#666666" ) ,
+         plot.caption = element_text( color="#AAAAAA", size=6 ) )
+```
+
+Existem variações significativas entre cor/raça. Por exemplo, para os bebês indígenas, a chance de parto vaginal é sempre maior que 60% a qualquer hora. Já entre o parto de bebês brancos, especialmente entre 7 e 11 da manhã, 3 em cada 4 nasceram de cesárea. De fato, devemos considerar que a proporção de partos domiciliares entre mães indígenas é significativamente maior do que entre mães brancas.
+
+```{r grafico_tipo_corraca , echo=FALSE , out.width = "75%" }
+# gráfico
+tempdata <- dt.tipo[ , .( n_nasc = sum( n_nasc , na.rm = TRUE ) ) , by = .( parto , parto_hora , racacor2 ) ]
+tempdata <- tempdata[ parto != "Ignorado" ]
+tempdata[ , perc := n_nasc / sum(n_nasc) , by = .( racacor2 , parto_hora ) ]
+tempdata <- tempdata[ parto == "Vaginal" ]
+tempdata <- tempdata[ racacor2 != "Ignorada" ]
+
+ggplot( tempdata , aes( x = parto_hora , y = perc , color = racacor2 , group = racacor2 ) ) +
+  geom_line( ) +
+  # stat_smooth(method = "lm", formula = y ~ poly(x, 21), se = FALSE) +
+  # scale_color_continuous( low = "red" , high = "blue" ) +
+  scale_y_continuous( labels = percent , expand = c(0,0) , limits = c(0,1) , breaks = seq(0,1,.25) ) +
+  scale_x_continuous( expand = c(0,0) , limits = c(0,23) , breaks = seq( 0 , 24 , 3 ) ) +
+  guides( color = guide_legend( "Cor/Raça" ) ) +
+  labs( x = "Hora do dia" , y = "% de nascidos vivos de partos vaginais", 
+        title = "Partos ao longo do dia" ,
+        subtitle = "Por cor/raça" ,
+        caption = "Fonte: MS/DataSUS/SINASC.") +
+  theme( panel.background = element_blank() ,
+         panel.grid.major.x = element_blank() ,
+         legend.key = element_rect( colour = "transparent" , fill = NA ) ,
+         # panel.grid.minor.x = element_blank() , 
+         # panel.grid.minor.x = element_line( linetype = 3 , color = "lightgrey" , size = .2 ) ,
+         panel.grid.major.y = element_line( linetype = 3 , color = "grey" , size = .2 ) ,
+         panel.grid.minor.y = element_line( linetype = 3 , color = "grey" , size = .1 ) ,
+         # axis.text.x = element_text(hjust = .5 , vjust = .5 ) ,
+         plot.title = element_text(lineheight=.8, face="bold" ) ,
+         plot.subtitle = element_text( color="#666666" ) ,
+         plot.caption = element_text( color="#AAAAAA", size=6 ) )
+```
+
+Também há variabilidade quanto às faixas etárias das mães. As mães mais jovens tendem a fazer mais partos vaginais a qualquer hora do dia, mas as cesáreas se tornam mais comuns ao passo em que a idade das mães aumenta.
+
+```{r grafico_faixaetaria , echo=FALSE , out.width = "75%" }
+# gráfico
+tempdata <- dt.tipo[ , .( n_nasc = sum( n_nasc , na.rm = TRUE ) ) , by = .( parto , parto_hora , femae ) ]
+tempdata <- tempdata[ parto != "Ignorado" ]
+tempdata <- tempdata[ !is.na(femae) ]
+tempdata[ , perc := n_nasc / sum(n_nasc) , by = .( femae , parto_hora ) ]
+tempdata <- tempdata[ parto == "Vaginal" ]
+tempdata <- tempdata[ femae %in% age_labels[3:6] ]
+
+ggplot( tempdata , aes( x = parto_hora , y = perc , color = femae , group = femae ) ) +
+  geom_line( ) +
+  # stat_smooth(method = "lm", formula = y ~ poly(x, 21), se = FALSE) +
+  # scale_color_continuous( low = "red" , high = "blue" ) +
+  scale_y_continuous( labels = percent , expand = c(0,0) , limits = c(0,1) , breaks = seq(0,1,.25) ) +
+  scale_x_continuous( expand = c(0,0) , limits = c(0,23) , breaks = seq( 0 , 24 , 3 ) ) +
+  guides( color = guide_legend( "Faixa Etária\nda Mãe" ) ) +
+  labs( x = "Hora do dia" , y = "% de nascidos vivos de partos vaginais", 
+        title = "Partos ao longo do dia" ,
+        subtitle = "Por faixa etária da mãe" ,
+        caption = "Fonte: MS/DataSUS/SINASC.") +
+  theme( panel.background = element_blank() ,
+         panel.grid.major.x = element_blank() ,
+         legend.key = element_rect( colour = "transparent" , fill = NA ) ,
+         # panel.grid.minor.x = element_blank() , 
+         # panel.grid.minor.x = element_line( linetype = 3 , color = "lightgrey" , size = .2 ) ,
+         panel.grid.major.y = element_line( linetype = 3 , color = "grey" , size = .2 ) ,
+         panel.grid.minor.y = element_line( linetype = 3 , color = "grey" , size = .1 ) ,
+         # axis.text.x = element_text(hjust = .5 , vjust = .5 ) ,
+         plot.title = element_text(lineheight=.8, face="bold" ) ,
+         plot.subtitle = element_text( color="#666666" ) ,
+         plot.caption = element_text( color="#AAAAAA", size=6 ) )
+```
+
+## Índice de Kotelchuck {#kotelchuck}
+
+<!--html_preserve-->
+{{< alert warning >}}
+Os meus conhecimentos da área de saúde se limitam àqueles adquiridos no ensino médio e outras leituras científicas aqui e ali.<br>Caso você identifique algum erro, pode entrar em contato [neste e-mail](mailto:guilhermejacob91@gmail.com) e eu corrigirei com o maior prazer.
+{{< /alert >}}
+<!--/html_preserve-->
+
+Proposto por @kotel1994, este índice, também chamado de *Índice de Utilização do Pré-natal*, usa dados do registro de nascimento para combinar dois aspectos do cuidado pré-natal: quando se iniciou o prénatal (temporalidade) e o número de consultas realizadas (utilização).
+
+Eu não consegui informações detalhadas no site do DataSUS, mas, ao que me parece, estamos usando uma versão modificada deste índice. Usando a tabela de @leal2004 [p. S65], temos:
+
+```{r kotelchuck_leal , echo = FALSE , as.is = TRUE }
+output <- 
+  matrix( c("Não tem." , "Não fez pré-natal." , "Gestantes que iniciaram o pré-natal após o 4º mês de gestação e fizeram menos de 50% das consultas esperadas." , "Idem mais as mulheres que haviam iniciado o pré-natal após o 4º mês e que fizeram um número de consultas maior do que 50% do esperado, bem como mulheres que tiveram um número de consultas abaixo de 50% do esperado, embora tenham iniciado o pré-natal até o 4º mês de gestação." , "Gestantes que iniciaram os cuidados pré-natais antes ou durante o 4º mês e fizeram 50 a 79% das consultas." , "Idem." , "Gestantes que iniciaram o pré-natal antes ou durante o 4º mês e fizeram 80 a 109% de consultas (adequado)." , "Idem." , "Gestantes que tiveram o início do pré-natal antes ou durante o 4º mês e tiveram 110% de consultas ou mais em relação ao esperado para a idade gestacional (mais que adequado)." ,  "Idem." ), dimnames = list( NULL ,c("Índice de Kotelchuck original" , "Índice de Kotelchuck modificado")) ,
+          ncol=2, byrow = TRUE)
+
+
+knitr::kable(output , "html" , align = c("l", "l")) %>% 
+  # kable_styling(full_width = T) %>%
+  kable_styling(bootstrap_options = "striped") %>%
+  footnote(general = "Vide @leal2004 [p. S65].",
+           general_title = "Nota: " ,
+           footnote_as_chunk = T )
+```
+
+### Idade
+
+É interessante ver como varia, ao longo da vida, o percentual na categoria inadequado. O grupo das mães de 10 a 14 anos^["Mães de 10 a 14 anos" é uma expressão que eu tenho certa aversão. Parece que ela naturaliza um evento que, muitas vezes, é fruto de um crime absolutamente bárbaro.] é o único a apresentar um percentual de inadequados superior aos muito adequados. Isso pode decorrer de inúmeras razões, embora uma seja um tanto direta: estas gestações raramente são esperadas, o que pode levar a um atraso no início das consultas pré-natais. Em todo caso, saúde sexual e reprodutiva continua sendo um direito dessa população.
+
+```{r kotelchuck_idade , echo = FALSE , out.width = "75%" }
+tempdata <- dt.kotel[ , .( n_nasc = sum( n_nasc , na.rm = TRUE ) ) , by = .( kotelchuck , femae ) ]
+tempdata <- tempdata[ , p_nasc := n_nasc / sum( n_nasc , na.rm = TRUE ) , by = .( femae ) ]
+
+ggplot( tempdata , aes(x = femae, y = p_nasc , fill = kotelchuck )) + 
+  geom_bar( stat = "identity", position = "dodge") +
+  scale_fill_manual( values = c( "#C22326" , "#F37338" , "#FDB632" , "#027878" , "#085DAD" , "#8C9C9A" ) ) +
+  scale_y_continuous( labels = percent , expand = c(0,0) , limits = c(0,.85) , breaks = seq(0,1,.1) ) +
+  # scale_x_continuous( expand = c(0,0) , limits = c(0,23) , breaks = seq( 0 , 24 , 3 ) ) +
+  guides( fill = guide_legend( "Índice de Kotelchuck" ) ) +
+  labs( x = NULL , y = "% de nascidos vivos", 
+        title = "Índice de Kotelchuck" , 
+        subtitle = "Por nível de escolaridade da mãe" ,
+        caption = "Fonte: MS/DataSUS/SINASC.") +
+  theme( panel.background = element_blank() ,
+         panel.grid.major.x = element_blank() ,
+         # panel.grid.minor.x = element_blank() , 
+         # panel.grid.minor.x = element_line( linetype = 3 , color = "lightgrey" , size = .2 ) ,
+         panel.grid.major.y = element_line( linetype = 3 , color = "grey" , size = .2 ) ,
+         panel.grid.minor.y = element_line( linetype = 3 , color = "grey" , size = .1 ) ,
+         axis.text.x = element_text(hjust = 1 , vjust = 1 , angle = 45 ) ,
+         plot.title = element_text(lineheight=.8, face="bold" ) ,
+         plot.subtitle = element_text( color="#666666" ) ,
+         plot.caption = element_text( color="#AAAAAA", size=6 ) )
+```
+
+### Escolaridade
+
+Correlacionado à isto, temos a questão da escolaridade da mãe. O gráfico abaixo mostra claramente que a escolaridade da mãe tende a melhorar o índice. Isto se relaciona a dois aspectos. Por um lado, mães com maior escolaridade têm acesso a um volume maior de informações a respeito da gravidez, conseguindo se planejar com mais facilidade. Por outro lado, o acesso à educação é correlacionado a outros aspectos, como, por exemplo, o acesso ao serviço de saúde. Assim, é possível que o problema não tenha "causa" na escolaridade, mas seja resultado do mesmo processo que impede o acesso à educação.
+
+```{r kotelchuck_educacao , echo = FALSE , out.width = "75%" }
+tempdata <- dt.kotel[ , .( n_nasc = sum( n_nasc , na.rm = TRUE ) ) , by = .( kotelchuck , escmae2010 ) ]
+tempdata <- tempdata[ !( is.na( escmae2010 ) | escmae2010 == "Ignorado" ) ]
+# tempdata <- tempdata[ !( is.na( kotelchuck ) | kotelchuck == "Não classificado" ) ]
+tempdata <- tempdata[ , p_nasc := n_nasc / sum( n_nasc , na.rm = TRUE ) , by = .( escmae2010 ) ]
+
+ggplot( tempdata , aes(x = escmae2010, y = p_nasc , fill = kotelchuck )) + 
+  geom_bar( stat = "identity", position = "dodge") +
+  scale_fill_manual( values = c( "#C22326" , "#F37338" , "#FDB632" , "#027878" , "#085DAD" , "#8C9C9A" ) ) +
+  scale_y_continuous( labels = percent , expand = c(0,0) , limits = c(0,.85) , breaks = seq(0,1,.1) ) +
+  # scale_x_continuous( expand = c(0,0) , limits = c(0,23) , breaks = seq( 0 , 24 , 3 ) ) +
+  guides( fill = guide_legend( "Índice de Kotelchuck" ) ) +
+  labs( x = NULL , y = "% de nascidos vivos", 
+        title = "Índice de Kotelchuck" , 
+        subtitle = "Por nível de escolaridade da mãe" ,
+        caption = "Fonte: MS/DataSUS/SINASC.") +
+  theme( panel.background = element_blank() ,
+         panel.grid.major.x = element_blank() ,
+         # panel.grid.minor.x = element_blank() , 
+         # panel.grid.minor.x = element_line( linetype = 3 , color = "lightgrey" , size = .2 ) ,
+         panel.grid.major.y = element_line( linetype = 3 , color = "grey" , size = .2 ) ,
+         panel.grid.minor.y = element_line( linetype = 3 , color = "grey" , size = .1 ) ,
+         axis.text.x = element_text(hjust = 1 , vjust = 1 , angle = 45 ) ,
+         plot.title = element_text(lineheight=.8, face="bold" ) ,
+         plot.subtitle = element_text( color="#666666" ) ,
+         plot.caption = element_text( color="#AAAAAA", size=6 ) )
+```
+
+## Concluindo
+
+Os microdados do SINASC apresentam diversas possibilidades de análise. É possível saber até mesmo o peso do recém-nascido. Enfim, sempre vale a pena investigar o que as bases de dados têm para nos oferecer.
+
+Antes de partir, vou deixar uma música de uma banda manauara. Se o ritmo já é um espetáculo, a letra é outro. Para quem gosta de experimentar coisas novas, essa é a minha sugestão:
+<!--html_preserve-->
+<br>
+<iframe width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/241629509&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>
+<!--/html_preserve-->
+
+## Referências

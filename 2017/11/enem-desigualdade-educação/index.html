@@ -1,0 +1,930 @@
+
+
+  
+    
+  
+
+
+  
+
+
+
+
+
+  
+
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Hugo 0.47 with theme Tranquilpeak 0.4.3-BETA">
+    <title>ENEM e desigualdade na educação: uma análise dos dados de 2015</title>
+    <meta name="author" content="Guilherme Jacob">
+    <meta name="keywords" content="">
+
+    <link rel="icon" href="https://guilhermejacob.github.io/favicon.png">
+    
+
+    
+    <meta name="description" content="Há alguns dias atrás, rolou o ENEM desse ano. E daí veio a ideia para este post: analisar a desigualdade na educação entre os jovens do Ensino Médio a partir das pontuações dos candidatos. Usando R, como sempre.
+Vou tentar manter as complicações matemáticas fora da questão e focar na aplicação da técnica para entender o contexto da desigualdade educacional. Assim, pretendo trazer gente de outras áreas, como pedagogos e sociólogos, que podem se beneficiar de mais uma ferramenta para analisar o problema, além de contribuir com novas perspectivas para “aqueles que só pensam com números”1.">
+    <meta property="og:description" content="Há alguns dias atrás, rolou o ENEM desse ano. E daí veio a ideia para este post: analisar a desigualdade na educação entre os jovens do Ensino Médio a partir das pontuações dos candidatos. Usando R, como sempre.
+Vou tentar manter as complicações matemáticas fora da questão e focar na aplicação da técnica para entender o contexto da desigualdade educacional. Assim, pretendo trazer gente de outras áreas, como pedagogos e sociólogos, que podem se beneficiar de mais uma ferramenta para analisar o problema, além de contribuir com novas perspectivas para “aqueles que só pensam com números”1.">
+    <meta property="og:type" content="blog">
+    <meta property="og:title" content="ENEM e desigualdade na educação: uma análise dos dados de 2015">
+    <meta property="og:url" content="/2017/11/enem-desigualdade-educa%C3%A7%C3%A3o/">
+    <meta property="og:site_name" content="Something Random">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Something Random">
+    <meta name="twitter:description" content="Há alguns dias atrás, rolou o ENEM desse ano. E daí veio a ideia para este post: analisar a desigualdade na educação entre os jovens do Ensino Médio a partir das pontuações dos candidatos. Usando R, como sempre.
+Vou tentar manter as complicações matemáticas fora da questão e focar na aplicação da técnica para entender o contexto da desigualdade educacional. Assim, pretendo trazer gente de outras áreas, como pedagogos e sociólogos, que podem se beneficiar de mais uma ferramenta para analisar o problema, além de contribuir com novas perspectivas para “aqueles que só pensam com números”1.">
+    
+    
+
+    
+    
+
+    
+      <meta property="og:image" content="https://guilhermejacob.github.io/files/20900788_1261769030617642_6094584381440292567_o.jpg">
+    
+
+    
+    
+    
+
+    
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.css" integrity="sha256-vuXZ9LGmmwtjqFX1F+EKin1ThZMub58gKULUyf0qECk=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU=" crossorigin="anonymous" />
+    
+    
+    <link rel="stylesheet" href="https://guilhermejacob.github.io/css/style-jsjn0006wyhpyzivf6yceb31gvpjatbcs3qzjvlumobfnugccvobqwxnnaj8.min.css" />
+    
+    
+
+    
+      
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="4">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://guilhermejacob.github.io/">Something Random</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://guilhermejacob.github.io/#about">
+    
+    
+    
+      
+        <img class="header-picture" src="https://guilhermejacob.github.io/files/20900788_1261769030617642_6094584381440292567_o.jpg" alt="Author&#39;s picture" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="4">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://guilhermejacob.github.io/#about">
+          <img class="sidebar-profile-picture" src="https://guilhermejacob.github.io/files/20900788_1261769030617642_6094584381440292567_o.jpg" alt="Author&#39;s picture" />
+        </a>
+        <h4 class="sidebar-profile-name">Guilherme Jacob</h4>
+        
+          <h5 class="sidebar-profile-bio"><strong>B.A. in Law</strong>, <strong>B.Sc. in Economics</strong>, and coding <strong>somewhere in between</strong>.<br>Born and raised in Manaus-AM, Brazil.</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://guilhermejacob.github.io/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">Home</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://guilhermejacob.github.io/#about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+      
+      <span class="sidebar-button-desc">About</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://guilhermejacob.github.io/tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">Tags</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://guilhermejacob.github.io/categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+      
+      <span class="sidebar-button-desc">Categories</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://guilhermejacob.github.io/archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">Archives</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/guilhermejacob" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="http://stackoverflow.com/users/6419956/guilherme-jacob" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-stack-overflow"></i>
+      
+      <span class="sidebar-button-desc">Stack Overflow</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://www.instagram.com/guilhermejacob9" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-instagram"></i>
+      
+      <span class="sidebar-button-desc">Instagram</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://guilhermejacob.github.io/sampling-thoughts/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-paragraph"></i>
+      
+      <span class="sidebar-button-desc">Personal Blog</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://guilhermejacob.github.io/files/cv_english.pdf">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-briefcase"></i>
+      
+      <span class="sidebar-button-desc">CV</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://guilhermejacob.github.io/research">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-code"></i>
+      
+      <span class="sidebar-button-desc">Research</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="mailto:guilhermejacob91@gmail.com" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-envelope-o"></i>
+      
+      <span class="sidebar-button-desc">Contact</span>
+    </a>
+  </li>
+
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="4"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title" itemprop="headline">
+      ENEM e desigualdade na educação: uma análise dos dados de 2015
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2017-11-15T00:00:00Z">
+        
+  November 15, 2017
+
+      </time>
+    
+    
+  
+  
+    <span>in</span>
+    
+      <a class="category-link" href="https://guilhermejacob.github.io/categories/r">R</a>, 
+    
+      <a class="category-link" href="https://guilhermejacob.github.io/categories/public-records">Public Records</a>
+    
+  
+
+  </div>
+
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              <p>Há alguns dias atrás, rolou o ENEM desse ano. E daí veio a ideia para este post: analisar a desigualdade na educação entre os jovens do Ensino Médio a partir das pontuações dos candidatos. Usando R, como sempre.</p>
+<p>Vou tentar manter as complicações matemáticas fora da questão e focar na aplicação da técnica para entender o contexto da desigualdade educacional. Assim, pretendo trazer gente de outras áreas, como pedagogos e sociólogos, que podem se beneficiar de mais uma ferramenta para analisar o problema, além de contribuir com novas perspectivas para “aqueles que só pensam com números”<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a>.</p>
+<p>E, sim, hoje vai ser tudo em português.</p>
+<p>Pegue seu café, sente-se confortavelmente e vamos lá!</p>
+<div id="enem" class="section level2">
+<h2>ENEM</h2>
+<p>O <em>Exame Nacional do Ensino Médio (ENEM)</em> é uma prova realizada anualmente pelo <em>Instituto Nacional de Estudos e Pesquisas Educacionais Anísio Teixeira (INEP)</em>, um órgão associado ao Ministério da Educação. A finalidade do ENEM é avaliar a qualidade do ensino médio e, <strong>desde 2009</strong>, tornou-se a principal forma de ingresso nas universidades públicas do Brasil. De fato, esse é o segundo maior vestibular do mundo, ficando atrás apenas do exame de admissão chinês.</p>
+<p>Embora a prova exista desde 1998, foi com o estabelecimento do SiSU que o número de examinados cresceu. Assim, o exame, antes composto majoritariamente por estudantes de escolas públicas, passou a ser amplamente utilizada pelos de escolas particulares. Essa mudança proporciona um experimento interessante sobre o desempenho dos estudantes do Brasil.</p>
+</div>
+<div id="desigualdade-e-educacao" class="section level2">
+<h2>Desigualdade e educação</h2>
+<div class="alert info ">
+  <p>Essa parte contém um pouco de matemática.<br>Mas, não se assuste: vou <del>tentar</del> explicar tudo sem muita complicação.</p>
+</div>
+<p>O estudo da desigualdade é uma mistura de economia, filosofia, matemática e estatística. Embora os estudos neste campo se voltem majoritariamente às distribuições de renda e riqueza, existem vários trabalhos discutindo outras formas de desigualdade.</p>
+<p>No entanto, o tipo de variável costuma ser o principal desafio: renda é uma variável contínua, enquanto o estado de saúde, por exemplo, costuma ser uma variável ordinal. Esse tipo de problema é comum na análise de aspectos qualitativos do bem-estar. Em outras palavras, quando perguntadas a respeito de sua saúde, as pessoas não respondem “estou com 75 de saúde” <del>a não ser que você esteja jogando LOL ou algo do tipo</del>, mas algo como “ruim” , “bem”, “excelente”. Quando temos esse tipo de resposta, não dá pra simplesmente calcular um índice de Gini. Caso você se interesse por esses problemas, <span class="citation">Cowell e Flachaire (2017)</span> é uma leitura obrigatória, mostrando como as medidas tradicionais falham e propondo uma classe de medidas que atende os axiomas propostos.</p>
+<p>Dito isso, cabe a pergunta: existe uma medida cardinal da desigualdade em educação? Se considerarmos o desempenho dos alunos em provas, pode-se dizer que sim. A lógica é mais ou menos essa: quanto mais preparado o aluno, melhor o desempenho na prova. Se o desempenho é medido em pontuação <em>e não em categorias</em>, podemos usar a pontuação para medir a desigualdade.</p>
+<p>Evidentemente, essa abordagem tem seus problemas, desde provas mal formuladas a seleção de alunos examinados. Esse último é particularmente sério. Como a média das notas de uma escola é tomada como uma indicação da qualidade do seu ensino, um diretor mais mal intencionado pode dificultar a candidatura dos alunos que teriam uma pontuação ruim. Desta forma, a amostra se torna viesada. Isso é mais possível em escolas particulares, já que é mais provável que os alunos tenham condições financeiras de ir para uma faculdade particular.</p>
+<p>A própria percepção do diferencial de desempenho entre escolas públicas e particulares pode ser causar um viés na amostra. O aluno que pensa não ter chance no vestibular não tem muito incentivo para fazer a prova. Existe uma miríade de aspectos socioeconômicos que fazem com que esse comportamento ocorra.</p>
+<p>Com essas ressalvas em mente, prossigamos.</p>
+</div>
+<div id="algumas-estatisticas-sobre-o-enem-2015" class="section level2">
+<h2>Algumas estatísticas sobre o ENEM 2015</h2>
+<p>Para entender um pouco de como se distribuem resultados, vamos analisar quem são os 1000 melhores e os 1000 piores de acordo com o desempenho nas provas. No exercício a seguir, analisaremos apenas os dados dos alunos que:</p>
+<ul>
+<li>Estavam concluindo o ensino médio em 2015, e</li>
+<li>Estiveram presentes em todas as provas, e</li>
+<li>Não tiveram qualquer problema na redação, e</li>
+<li>Não estavam fazendo a prova apenas para medir seus conhecimentos.</li>
+</ul>
+<p>Só para confirmar: estamos trabalhando com a <em>interseção</em> destes quatro conjuntos de examinados, <em>não a união</em>.</p>
+<p>O gráfico  abaixo mostra como as notas dos extremos se distribuem. Enquanto os melhores desempenhos tendem a se concentrar mais entre domicílios mais ricos, os piores desempenhos se concentram ainda mais entre os domicílios mais pobres. Ou seja, é bem mais provável que uma “nota baixa” venha de um domicílio de baixa renda. O “monte” em vermelho entre os domicílios de catagoria “B” e “C” mostra isso. E a queda se comparado a categoria “A” se deve principalmente a raridade destes indivíduos, seja porque realmente existem poucos domicílios com nenhuma renda, seja porque as pessoas destes domicílios tendem a não fazer a prova.</p>
+<p><img src="https://guilhermejacob.github.io/post/2017-11-12-enem-e-desigualdade-na-educa%C3%A7%C3%A3o_files/figure-html/dist_extreme-1.png" width="672" /></p>
+<p>Ok, mas e as médias? A média da pontuação dos extremos é bem diferente, como de se esperar. De fato, a pontuação dos melhores é aproximadamente 2.7 vezes melhor que a dos piores. O gráfico  abaixo mostra esta discrepâncias. <img src="https://guilhermejacob.github.io/post/2017-11-12-enem-e-desigualdade-na-educa%C3%A7%C3%A3o_files/figure-html/avg_extreme-1.png" width="672" /></p>
+</div>
+<div id="como-medir-um-exercicio-de-decomposicao-por-subgrupos." class="section level2">
+<h2>Como medir: um exercício de decomposição por subgrupos.</h2>
+<p>Se você já leu alguma coisa sobre desigualdade, você deve ter visto estimativas do índice de Gini. Essa é, de longe, a medida de desigualdade mais conhecida. Mas também existem outras medidas bem interessantes. Uma medida recente é a J-divergência, proposta por <span class="citation">Rohde (2016)</span>. Ela tem uma vantagem sobre o índice de Gini: decomposição por subgrupos. I.e., a estimativa pode mostrar o quanto se deve a desigualdade entre grupos e intra-grupos.</p>
+<p>As duas medidas estão disponíveis no pacote <code>convey</code> <span class="citation">(Pessoa, Damico e Jacob, 2017a)</span>, incluindo a decomposição da J-divergência. Facilmente encontradas em <span class="citation">Pessoa, Damico e Jacob (2017b)</span>, as fórmulas dos indicadores são essas:</p>
+<p><span class="math display">\[
+\begin{aligned}
+G &amp;= 1 - 2 \int_{0}^{1} L(p)dp \\
+J &amp;= \int_{0}^{\infty} \bigg( \frac{ y_i - \mu }{ \mu } \bigg) \log \bigg( \frac{y_i}{\mu} \bigg) f \big( y_i \big) dy
+\end{aligned}
+\]</span> onde <span class="math inline">\(L(\cdot)\)</span> é a curva de Lorenz.</p>
+<p><del>Nota: talvez eu devesse parar com o marketing pessoal.</del></p>
+</div>
+<div id="na-pratica" class="section level2">
+<h2>Na prática</h2>
+<p>Vamos usar os dados do ENEM 2015, disponíveis na <a href="http://portal.inep.gov.br/web/guest/microdados">página de microdados do INEP</a>. Depois de colocar os dados numa base MonetDB, vou criar um “pseudo-desenho amostral”. Por que “pseudo”? Porque a base não é uma amostra propriamente dita. Então, por que fazer isso? As funções do <code>convey</code> só funcionam sobre objetos de desenho amostral. Além disso, o <code>convey</code> funciona bem com bases de dados externas, usando apenas as informações necessárias para o cálculo.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Área</th>
+<th align="right">Gini</th>
+<th align="right">J-divergência</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Brasil</td>
+<td align="right">0.0822</td>
+<td align="right">0.0211</td>
+</tr>
+<tr class="even">
+<td align="left">Norte</td>
+<td align="right">0.0765</td>
+<td align="right">0.0186</td>
+</tr>
+<tr class="odd">
+<td align="left">Nordeste</td>
+<td align="right">0.0834</td>
+<td align="right">0.0220</td>
+</tr>
+<tr class="even">
+<td align="left">Sudeste</td>
+<td align="right">0.0808</td>
+<td align="right">0.0203</td>
+</tr>
+<tr class="odd">
+<td align="left">Sul</td>
+<td align="right">0.0740</td>
+<td align="right">0.0171</td>
+</tr>
+<tr class="even">
+<td align="left">Centro-Oeste</td>
+<td align="right">0.0809</td>
+<td align="right">0.0207</td>
+</tr>
+</tbody>
+</table>
+<p>As primeiras coisas que percebemos ao olhar a tabela  são: (1) existe menos desigualdade nesta distribuição do que em distribuições de renda, e (2) o índice de Gini é maior que a J-divergência. A primeira observação decorre de um aspecto um tanto óbvio: as pontuações tem um limite superior, ao contrário das distribuições de renda. Em outras palavras, uma pessoa não pode ter mais do que 1 000 pontos, embora sua renda pode extrapolar esse limite. O segundo aspecto também é interessante: o índice de Gini é mais sensível às desigualdades próximas da média, enquanto a J-divergência tende a ser mais sensível às desigualdades nas caudas. Consequentemente, podemos supor que a maior parte da desigualdade está no meio da distribuição.</p>
+<p>É normal que a diferença entre categorias apresente um valor menor que a desigualdade dentro das categorias, mesmo para renda. Dito isso, a decomposição da J-divergência, na tabela  abaixo, mostra alguns padrões interessantes. <del>Apesar de todo retrocesso recente,</del> A desigualdade no desempenho entre os gêneros<a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a> praticamente não se deve a este aspecto. A decomposição captou impactos das diferenças entre cor/raça, embora esses sejam menores que os impactos decorrentes do tipo de escola<a href="#fn3" class="footnoteRef" id="fnref3"><sup>3</sup></a> ou da renda. No caso da renda, 30% da desigualdade pode ser atribuída à desigualdade entre as classes.</p>
+<table>
+<caption><span id="tab:tabela2">Table 1: </span>Decomposição da J-divergência - Brasil, 2015</caption>
+<thead>
+<tr class="header">
+<th></th>
+<th align="right">J-divergência</th>
+<th align="right">Entre</th>
+<th align="right">Intra</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Gênero</td>
+<td align="right">0.0211</td>
+<td align="right">0.0211</td>
+<td align="right">0.0001</td>
+</tr>
+<tr class="even">
+<td>Cor/Raça</td>
+<td align="right">0.0211</td>
+<td align="right">0.0199</td>
+<td align="right">0.0013</td>
+</tr>
+<tr class="odd">
+<td>Tipo de Escola</td>
+<td align="right">0.0211</td>
+<td align="right">0.0154</td>
+<td align="right">0.0058</td>
+</tr>
+<tr class="even">
+<td>Renda</td>
+<td align="right">0.0211</td>
+<td align="right">0.0152</td>
+<td align="right">0.0060</td>
+</tr>
+</tbody>
+</table>
+<div id="concluindo" class="section level3">
+<h3>Concluindo</h3>
+<p>Com esse exercício, quis mostrar que, embora os indicadores de desigualdade sejam normalmente associados às distribuições de renda, eles podem ser aplicados a outras distribuições. No caso, eles podem ajudar a entender aspectos da desigualdade na educação, desde que aplicados corretamente.</p>
+<p>No entanto, o problema da desigualdade com variáveis ordinais continua aberto. Ainda não existem muitos trabalhos a respeito de inferência estatística com este tipo de medida. Deixo aqui uma possível cena dos próximos capítulos: será que podemos calcular <em>desigualdade em saúde</em> usando a Pesquisa Nacional de Saúde levando em consideração o desenho amostral complexo?</p>
+<p><em>Peut être.</em></p>
+</div>
+</div>
+<div id="referencias" class="section level2 unnumbered">
+<h2>Referências</h2>
+<div id="refs" class="references">
+<div id="ref-cowell2017">
+<p>COWELL, F. A.; FLACHAIRE, E. Inequality with Ordinal Data. <strong>Economica</strong>, v. 84, n. 334, abr. 2017. </p>
+</div>
+<div id="ref-convey">
+<p>PESSOA, D.; DAMICO, A.; JACOB, G. <strong>convey: Income Concentration Analysis with Complex Survey Samples</strong>. [s.l: s.n.]. </p>
+</div>
+<div id="ref-context">
+<p>___. <strong>Poverty and Inequality with Complex Survey Data</strong>, 2017b. Disponível em: &lt;<a href="https://guilhermejacob.github.io/context" class="uri">https://guilhermejacob.github.io/context</a>&gt;</p>
+</div>
+<div id="ref-rohde2016">
+<p>ROHDE, N. J-divergence measurements of economic inequality. <strong>Journal of the Royal Statistical Society: Series A (Statistics in Society)</strong>, v. 179, n. 3, p. 847–870, 2016. </p>
+</div>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>Já me chamaram de coisa pior.<a href="#fnref1">↩</a></p></li>
+<li id="fn2"><p>Peço que me corrijam se eu estiver usando o termo incorretamente!<a href="#fnref2">↩</a></p></li>
+<li id="fn3"><p>Aqui, tipo de escola se refere à dependência administrativa.<a href="#fnref3">↩</a></p></li>
+</ol>
+</div>
+
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">TAGGED IN</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://guilhermejacob.github.io/tags/childrens-rights/">Children&#39;s Rights</a>
+
+  <a class="tag tag--primary tag--small" href="https://guilhermejacob.github.io/tags/rstats/">Rstats</a>
+
+  <a class="tag tag--primary tag--small" href="https://guilhermejacob.github.io/tags/dataviz/">DataViz</a>
+
+  <a class="tag tag--primary tag--small" href="https://guilhermejacob.github.io/tags/brazil/">Brazil</a>
+
+  <a class="tag tag--primary tag--small" href="https://guilhermejacob.github.io/tags/education/">Education</a>
+
+  <a class="tag tag--primary tag--small" href="https://guilhermejacob.github.io/tags/inequality/">Inequality</a>
+
+                  </div>
+                
+              
+            
+            
+  <div class="post-actions-wrap">
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://guilhermejacob.github.io/2017/11/ethnic-composition-brazilian-cities/" data-tooltip="Ethnic composition of major Brazilian cities using Dot Density Maps">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://guilhermejacob.github.io/2017/11/inequality-poverty-mapping-sae-random-forests-brazil-2010/" data-tooltip="Inequality, Poverty Mapping, Small Area Estimation, and Random Forests: Brazilian municipalities in 2010">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://guilhermejacob.github.io/2017/11/enem-desigualdade-educa%C3%A7%C3%A3o/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://guilhermejacob.github.io/2017/11/enem-desigualdade-educa%C3%A7%C3%A3o/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://guilhermejacob.github.io/2017/11/enem-desigualdade-educa%C3%A7%C3%A3o/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+
+            
+              
+            
+          </div>
+        </article>
+        <script src="//yihui.name/js/math-code.js"></script>
+<script async
+    src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+<footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2018 Guilherme Jacob. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+        
+  <div class="post-actions-wrap">
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://guilhermejacob.github.io/2017/11/ethnic-composition-brazilian-cities/" data-tooltip="Ethnic composition of major Brazilian cities using Dot Density Maps">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://guilhermejacob.github.io/2017/11/inequality-poverty-mapping-sae-random-forests-brazil-2010/" data-tooltip="Inequality, Poverty Mapping, Small Area Estimation, and Random Forests: Brazilian municipalities in 2010">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://guilhermejacob.github.io/2017/11/enem-desigualdade-educa%C3%A7%C3%A3o/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://guilhermejacob.github.io/2017/11/enem-desigualdade-educa%C3%A7%C3%A3o/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://guilhermejacob.github.io/2017/11/enem-desigualdade-educa%C3%A7%C3%A3o/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="4">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fguilhermejacob.github.io%2F2017%2F11%2Fenem-desigualdade-educa%25C3%25A7%25C3%25A3o%2F">
+          <i class="fa fa-facebook-official"></i><span>Share on Facebook</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Fguilhermejacob.github.io%2F2017%2F11%2Fenem-desigualdade-educa%25C3%25A7%25C3%25A3o%2F">
+          <i class="fa fa-twitter"></i><span>Share on Twitter</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https%3A%2F%2Fguilhermejacob.github.io%2F2017%2F11%2Fenem-desigualdade-educa%25C3%25A7%25C3%25A3o%2F">
+          <i class="fa fa-google-plus"></i><span>Share on Google&#43;</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://guilhermejacob.github.io/files/20900788_1261769030617642_6094584381440292567_o.jpg" alt="Author&#39;s picture" />
+    
+    <h4 id="about-card-name">Guilherme Jacob</h4>
+    
+      <div id="about-card-bio"><strong>B.A. in Law</strong>, <strong>B.Sc. in Economics</strong>, and coding <strong>somewhere in between</strong>.<br>Born and raised in Manaus-AM, Brazil.</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        Data Analyst
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        Unknown
+      </div>
+    
+  </div>
+</div>
+
+    <div id="algolia-search-modal" class="modal-container">
+  <div class="modal">
+    <div class="modal-header">
+      <span class="close-button"><i class="fa fa-close"></i></span>
+      <a href="https://algolia.com" target="_blank" rel="noopener" class="searchby-algolia text-color-light link-unstyled">
+        <span class="searchby-algolia-text text-color-light text-small">by</span>
+        <img class="searchby-algolia-logo" src="https://www.algolia.com/static_assets/images/press/downloads/algolia-light.svg">
+      </a>
+      <i class="search-icon fa fa-search"></i>
+      <form id="algolia-search-form">
+        <input type="text" id="algolia-search-input" name="search"
+          class="form-control input--large search-input" placeholder="Search" />
+      </form>
+    </div>
+    <div class="modal-body">
+      <div class="no-result text-color-light text-center">no post found</div>
+      <div class="results">
+        
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://guilhermejacob.github.io/2018/05/temer-desemprego-2018/">
+                <h3 class="media-heading">Temer, desemprego e procura de empregos: entendendo conceitos da PNAD Contínua</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  May 5, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Uma controvérsia relativamente recente foi protagonizada pelo Temer, durante uma palestra na ESPM. Ele teria afirmado que não houve aumento da taxa de desemprego, mas, sim, aumento das pessoas procurando emprego. Antes da divulgação dos dados da PNADC do 1º trimestre de 2018, tive uma conversa com um professor a respeito de até onde aquilo faz ou não faz sentido.
+Escolhi esperar1 até os microdados saírem…
+Pois bem: saíram ontem, dia 17.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://guilhermejacob.github.io/2018/05/partos-brasil-2016/">
+                <h3 class="media-heading">Qual a relação entre a hora de nascimento e o tipo de parto?</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  May 5, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">O último post foi corrido, eu sei. Esse vai ser um pouco menos corrido, acho.
+Se você quiser pular direto para a análise, clique aqui.
+Muita coisa acontecendo por aqui.
+Semana passada, fui pro Rio. Serei propositalmente misterioso neste ponto, mas acho que vem coisa por aí.
+Na volta para Manaus, fiz uma mini-maratona para visitar amigos em Brasília nas 7 horas de escala. Para quem eu fiquei devendo visita: vou para a Campus Party Brasília no fim de maio!</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://guilhermejacob.github.io/2018/04/desigualdade-pobreza-infancia-2017/">
+                <h3 class="media-heading">PNAD Contínua 2017: extrema pobreza na infância e desigualdade</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Apr 4, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Atualização (19/05/2018): passei a usar a nova tabela de deflatores, ajustando para preços médios do ano da pesquisa.
+Atualização (20/05/2018): fixei os valores a preços médios de 2017.
+ Interrompendo o meu hiato de alguns meses, resolvi voltar com uma comparação os dados de renda das PNADCs anuais 2016-2017. No entanto, vamos falar um pouco da desigualdade em geral e, então, partir para uma questão mais específica: pobreza na infância1.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://guilhermejacob.github.io/2017/12/analise-censo-superior-genero-2016/">
+                <h3 class="media-heading">Censo da Educação Superior: gênero e cursos em 2016</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Dec 12, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Encerrando1 as análises usando bases de dados públicas, vamos focar no ensino superior.
+Inicialmente, vamos explicar o que é o Censo da Educação Superior. Depois, vamos mostrar como montar as bases de dados. E, concluindo, vamos fazer um pequeno exercício de visualização de dados.
+Ah, e eu vou ser muito breve neste post, por motivos de: tenho que escrever um projeto de pesquisa (:
+Censo da Educação Superior O Censo da Educação Superior é conduzido anualmente pelo Inep.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://guilhermejacob.github.io/2017/12/desigualdade-pobreza-estados-2016/">
+                <h3 class="media-heading">O que a PNAD Contínua 2016 diz sobre desigualdade e pobreza nos estados?</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Dec 12, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Atualização (19/05/2018): corrigi alguns erros no código que afetavam as estimativas das capitais.
+Já que os intervalos de confiança das estimativas de capitais não permitiam uma análise mais profunda, resolvi mudar para análise das UFs.
+As rendas foram ajustadas para preços médios de 2016.
+ Na última quarta (29/11), o IBGE finalmente apresentou as estimativas relativas aos rendimentos de todas as fontes, além de disponibilizar os microdados para os cálculos.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://guilhermejacob.github.io/2017/11/microdados-obmigra/">
+                <h3 class="media-heading">CGIg/CNIg e SINCRE: analisando os microdados do OBMigra</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Nov 11, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">O assunto de hoje são os microdados do OBMigra. Mas, antes disso, vamos apresentar um pouco do contexto institucional.
+OBMigra O Observatório das migrações internacionais (OBMigra) é fruto de um convênio estabelecido entre o Ministério do Trabalho (MTb), Conselho Nacional de Imigração (CNIg) e Universidade de Brasília (UnB). Sua finalidade é ampliar o conhecimento a respeito dos fluxos migratórios internacionais no Brasil, através de estudos e análises empíricas, e fornecer subsídios para a formulação de estratégias de política pública.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://guilhermejacob.github.io/2017/11/rais-caged-r/">
+                <h3 class="media-heading">Analisando RAIS e CAGED com R</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Nov 11, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Dando sequência ao post anterior, vamos analisar outra base de dados. Ou outras bases de dados?
+Dessa vez, falaremos dos microdados do RAIS e CAGED. Vamos?
+Bases do Ministério do Trabalho O Ministério do Trabalho (MTb) permite que o usuário acesse os microdados de duas bases muito interessantes: RAIS e CAGED. Bom, além de serem mais dois elementos na “sopa de letrinhas” de microdados brasileiros, o que são exatamente esses dados?</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://guilhermejacob.github.io/2017/11/amostra-cadunico-r/">
+                <h3 class="media-heading">Analisando a amostra do Cadastro Único com R</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Nov 11, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Atualização (18/08/2018): atualizei o procedimento e os resultados para coincidir com as novas bases disponibilizadas no site.
+ Você sabe o que é o Cadastro Único? Sabe que uma amostra dos microdados está disponível? Sabe que dá pra analisar no R?
+Não? Até uns dias atrás, eu também não.
+Se você tem interesse nessa base de dados, vamos lá!
+Caso contrário, assista esse vídeo do MDS. Se, ainda assim, você não estiver interessado, bom… tem um presente no fim do post.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://guilhermejacob.github.io/2017/11/birth-registration-map/">
+                <h3 class="media-heading">Mapeando crianças sem registro civil</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Nov 11, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Esse post é um pequeno follow-up da discussão sobre mapas de densidade de pontos, mas com um pouco mais de diretos da infância e adolescência. Vamos analisar como se distribuem espacialmente as crianças com e sem registro de nascimento, usando dados dos agregados de setores censitários do Censo 2010.
+Dessa vez, vamos focar em 4 capitais: Belém, Manaus , Fortaleza e São Luís.
+Sem mais conversa, prossigamos.
+Belém  Manaus  Fortaleza  São Luís  </div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://guilhermejacob.github.io/2017/11/ethnic-composition-brazilian-cities/">
+                <h3 class="media-heading">Ethnic composition of major Brazilian cities using Dot Density Maps</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Nov 11, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">You can find the R code for this post here.
+ Some time ago, I came across this nice post showing how ethnicity is distributed in London. This is very interesting, as it reveals patterns about how communities are organized and how inequality express itself upon housing locations.
+Our task today is to apply the same procedure to large Brazilian cities. Here’s our list of municipalities: São Paulo, Rio de Janeiro, Brasília, Recife, Salvador, and home Manaus.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+      </div>
+    </div>
+    <div class="modal-footer">
+      <p class="results-count text-medium"
+         data-message-zero="no post found"
+         data-message-one="1 post found"
+         data-message-other="{n} posts found">
+         13 posts found
+      </p>
+    </div>
+  </div>
+</div>
+    
+  
+    
+    <div id="cover" style="background-image:url('https://lh3.googleusercontent.com/EMXvd11C1LUgHF62uBqt-VCw8BPI9XsdOPl0o8CHBu6xwoHGZ5NoH03Phepmv75YW6_0aTp2w_X8I-j1r7xwnDqDO3A7Srh305oXGL_k-YQ_aTlaNUNf6Zbmm9yvVYhtxj5to0WffqTpj5mpvwbf6bm5cRaXI4SvsfGc7jdeJqyyvog35SuXO-VhCTH1sCrs57it-lmJ0C-UeUuHouhkyQ9JpGvba_MJCIY0svtfOPEujv2NEZhGZXzv-uJhpXBrUNuZJx3opiUCoFrrJarStPo24PMrK4WEn8DGpHpDJOZjfGGGOtPjfjD0VqdPEhOw2goJ68luwdLqrSzqtzNSHBgav1SPnZKlLD_S6G8FxlD0-PxvWwrsB7EOK4EjrGtawQn3O6erbODkJFOyBFAQYUU71-MpVcpb40jxt8ntcrM6MFiynXKzx0JeT-jWyUj5U1-OPhoZQrG8HIlTKFArsRpZxhO3NbXeBQPqfOrmsLd3VCKWOVUzkB1s2shVStoz5ihqmD5UEHbr5AYEW1Rl4wCjGJU0gL1b_A9Wm-cjSWz1zQhEf2H5tquDpbNolIXysKv47XY_X2HpCioPAaWjSCIRtc1smn4dux0noag1Gg=w2176-h1652-no');"></div>
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js" integrity="sha256-GEAnjcTqVP+vBp3SSc8bEDQqvWAZMiHyUSIorrWwH50=" crossorigin="anonymous"></script>
+
+
+<script src="https://guilhermejacob.github.io/js/script-qi9wbxp2ya2j6p7wx1i6tgavftewndznf4v0hy2gvivk1rxgc3lm7njqb6bz.min.js"></script>
+
+
+
+
+  
+    
+  
+
+
+
+    
+  </body>
+</html>
+

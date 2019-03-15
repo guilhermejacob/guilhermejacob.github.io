@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Childrens Rights on Something Random</title>
+    <link>https://guilhermejacob.github.io/tags/childrens-rights/</link>
+    <description>Recent content in Childrens Rights on Something Random</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 15 Nov 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://guilhermejacob.github.io/tags/childrens-rights/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>ENEM e desigualdade na educação: uma análise dos dados de 2015</title>
+      <link>https://guilhermejacob.github.io/2017/11/enem-desigualdade-educa%C3%A7%C3%A3o/</link>
+      <pubDate>Wed, 15 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://guilhermejacob.github.io/2017/11/enem-desigualdade-educa%C3%A7%C3%A3o/</guid>
+      <description>Há alguns dias atrás, rolou o ENEM desse ano. E daí veio a ideia para este post: analisar a desigualdade na educação entre os jovens do Ensino Médio a partir das pontuações dos candidatos. Usando R, como sempre.
+Vou tentar manter as complicações matemáticas fora da questão e focar na aplicação da técnica para entender o contexto da desigualdade educacional. Assim, pretendo trazer gente de outras áreas, como pedagogos e sociólogos, que podem se beneficiar de mais uma ferramenta para analisar o problema, além de contribuir com novas perspectivas para “aqueles que só pensam com números”1.</description>
+    </item>
+    
+    <item>
+      <title>Out of school children in Brazil: an exercise on data visualization</title>
+      <link>https://guilhermejacob.github.io/2017/05/out-of-school-children-in-brazil-an-exercise-on-data-visualization/</link>
+      <pubDate>Wed, 17 May 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://guilhermejacob.github.io/2017/05/out-of-school-children-in-brazil-an-exercise-on-data-visualization/</guid>
+      <description>PNAD and the importance of household surveys The most common source for Brazilian information about living standards is the PNAD1. Usually, when some institution says something about poverty, inequality, education, housing, etc. in Brazil, they recur to the amazing publications produced by the Brazilian Institute for Geography and Statistics (IBGE).
+But that is how it’s usually done. IBGE also produces amazing microdata, available to everyone.</description>
+    </item>
+    
+  </channel>
+</rss>

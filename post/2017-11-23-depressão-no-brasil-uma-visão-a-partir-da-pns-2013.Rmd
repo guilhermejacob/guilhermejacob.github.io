@@ -1,0 +1,31 @@
+---
+title: 'Depressão no Brasil: uma visão a partir da PNS 2013'
+author: ~
+date: '2017-11-23'
+slug: depressao-pns-2013
+categories: []
+tags: []
+draft: true
+---
+
+Depressão: aquela coisa que dizem ser só uma fase, mas, na verdade, é bem mais sério. O suicídio entre jovens já é um problema em países desenvolvidos e pode também se tornar um problema no Brasil.
+
+Quando se lê a respeito da doença no Brasil, a maiora das estatísticas provém de estimativas relacionadas ao suicídio ou tentativas/automutilação. No entanto, nem todos os casos de depressão terminam de forma tão violenta. Pessoas podem conviver com a doença por anos, sem ser diagnosticada ou tratada.
+
+No pequeno texto de hoje, vamos dar uma olhada no que dizem os números da *Pesquisa Nacional de Saúde (PNS)* 2013.
+
+## Qual a dimensão do problema?
+
+Embora eu esteja longe de ser um profissional de saúde, a minha intenção é mais mostrar uma fonte que, ao meu ver, é pouco utilizada e pode trazer insights sobre o fenômeno. Também é válido lembrar que as entrevistas não perguntam diretamente sobre depressão, mas sobre o estado de humor recente do indivíduo. As perguntas que parecem tocar mais diretamente no assunto são:
+
+1. Nas duas últimas semanas, com que frequência o(a) Sr(a) teve problemas no sono, como dificuldade para adormecer, acordar frequentemente à noite ou dormir mais do que de costume? 
+2. Nas duas últimas semanas, com que frequência o(a) Sr(a) teve problemas por não se sentir descansado(a) e disposto(a) durante o dia, sentindo-se cansado(a), sem ter energia?
+3. Nas duas últimas semanas, com que frequência o(a) Sr(a) se sentiu incomodado por ter pouco interesse ou não sentiu prazer em fazer as coisas?
+4. Nas duas últimas semanas, com que frequência o(a) Sr(a) teve problemas para se concentrar nas suas atividades habituais? 
+5. Nas duas últimas semanas, com que frequência o(a) Sr(a) teve problemas na alimentação, como ter falta de apetite ou comer muito?
+6. Nas duas últimas semanas, com que frequência o(a) sr(a) teve lentidão para se movimentar ou falar, ou ao contrário, ficou muito agitado(a) ou inquieto(a)?
+7. Nas duas últimas semanas, com que frequência o(a) Sr(a) se sentiu deprimido(a), “pra baixo” ou sem perspectiva?
+8. Nas duas últimas semanas, com que frequência o(a) Sr(a) se sentiu mal consigo mesmo, se achando um fracasso ou achando que decepcionou sua família?
+9. Nas duas últimas semanas, com que frequência o(a) Sr(a) pensou em se ferir de alguma maneira ou achou que seria melhor estar morto?
+
+Vamos nos focar nas 3 últimas perguntas.

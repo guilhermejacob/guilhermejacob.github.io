@@ -1,0 +1,1344 @@
+
+
+  
+    
+  
+
+
+  
+
+
+
+
+
+  
+
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Hugo 0.47 with theme Tranquilpeak 0.4.3-BETA">
+    <title>Temer, desemprego e procura de empregos: entendendo conceitos da PNAD Contínua</title>
+    <meta name="author" content="Guilherme Jacob">
+    <meta name="keywords" content="">
+
+    <link rel="icon" href="https://guilhermejacob.github.io/favicon.png">
+    
+
+    
+    <meta name="description" content="Uma controvérsia relativamente recente foi protagonizada pelo Temer, durante uma palestra na ESPM. Ele teria afirmado que não houve aumento da taxa de desemprego, mas, sim, aumento das pessoas procurando emprego. Antes da divulgação dos dados da PNADC do 1º trimestre de 2018, tive uma conversa com um professor a respeito de até onde aquilo faz ou não faz sentido.
+Escolhi esperar1 até os microdados saírem…
+Pois bem: saíram ontem, dia 17.">
+    <meta property="og:description" content="Uma controvérsia relativamente recente foi protagonizada pelo Temer, durante uma palestra na ESPM. Ele teria afirmado que não houve aumento da taxa de desemprego, mas, sim, aumento das pessoas procurando emprego. Antes da divulgação dos dados da PNADC do 1º trimestre de 2018, tive uma conversa com um professor a respeito de até onde aquilo faz ou não faz sentido.
+Escolhi esperar1 até os microdados saírem…
+Pois bem: saíram ontem, dia 17.">
+    <meta property="og:type" content="blog">
+    <meta property="og:title" content="Temer, desemprego e procura de empregos: entendendo conceitos da PNAD Contínua">
+    <meta property="og:url" content="/2018/05/temer-desemprego-2018/">
+    <meta property="og:site_name" content="Something Random">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Something Random">
+    <meta name="twitter:description" content="Uma controvérsia relativamente recente foi protagonizada pelo Temer, durante uma palestra na ESPM. Ele teria afirmado que não houve aumento da taxa de desemprego, mas, sim, aumento das pessoas procurando emprego. Antes da divulgação dos dados da PNADC do 1º trimestre de 2018, tive uma conversa com um professor a respeito de até onde aquilo faz ou não faz sentido.
+Escolhi esperar1 até os microdados saírem…
+Pois bem: saíram ontem, dia 17.">
+    
+    
+
+    
+    
+
+    
+      <meta property="og:image" content="https://guilhermejacob.github.io/files/20900788_1261769030617642_6094584381440292567_o.jpg">
+    
+
+    
+    
+    
+
+    
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.css" integrity="sha256-vuXZ9LGmmwtjqFX1F+EKin1ThZMub58gKULUyf0qECk=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU=" crossorigin="anonymous" />
+    
+    
+    <link rel="stylesheet" href="https://guilhermejacob.github.io/css/style-jsjn0006wyhpyzivf6yceb31gvpjatbcs3qzjvlumobfnugccvobqwxnnaj8.min.css" />
+    
+    
+
+    
+      
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="4">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://guilhermejacob.github.io/">Something Random</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://guilhermejacob.github.io/#about">
+    
+    
+    
+      
+        <img class="header-picture" src="https://guilhermejacob.github.io/files/20900788_1261769030617642_6094584381440292567_o.jpg" alt="Author&#39;s picture" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="4">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://guilhermejacob.github.io/#about">
+          <img class="sidebar-profile-picture" src="https://guilhermejacob.github.io/files/20900788_1261769030617642_6094584381440292567_o.jpg" alt="Author&#39;s picture" />
+        </a>
+        <h4 class="sidebar-profile-name">Guilherme Jacob</h4>
+        
+          <h5 class="sidebar-profile-bio"><strong>B.A. in Law</strong>, <strong>B.Sc. in Economics</strong>, and coding <strong>somewhere in between</strong>.<br>Born and raised in Manaus-AM, Brazil.</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://guilhermejacob.github.io/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">Home</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://guilhermejacob.github.io/#about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+      
+      <span class="sidebar-button-desc">About</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://guilhermejacob.github.io/tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">Tags</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://guilhermejacob.github.io/categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+      
+      <span class="sidebar-button-desc">Categories</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://guilhermejacob.github.io/archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">Archives</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/guilhermejacob" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="http://stackoverflow.com/users/6419956/guilherme-jacob" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-stack-overflow"></i>
+      
+      <span class="sidebar-button-desc">Stack Overflow</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://www.instagram.com/guilhermejacob9" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-instagram"></i>
+      
+      <span class="sidebar-button-desc">Instagram</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://guilhermejacob.github.io/sampling-thoughts/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-paragraph"></i>
+      
+      <span class="sidebar-button-desc">Personal Blog</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://guilhermejacob.github.io/files/cv_english.pdf">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-briefcase"></i>
+      
+      <span class="sidebar-button-desc">CV</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://guilhermejacob.github.io/research">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-code"></i>
+      
+      <span class="sidebar-button-desc">Research</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="mailto:guilhermejacob91@gmail.com" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-envelope-o"></i>
+      
+      <span class="sidebar-button-desc">Contact</span>
+    </a>
+  </li>
+
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="4"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title" itemprop="headline">
+      Temer, desemprego e procura de empregos: entendendo conceitos da PNAD Contínua
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2018-05-18T00:00:00Z">
+        
+  May 18, 2018
+
+      </time>
+    
+    
+  
+  
+    <span>in</span>
+    
+      <a class="category-link" href="https://guilhermejacob.github.io/categories/r">R</a>, 
+    
+      <a class="category-link" href="https://guilhermejacob.github.io/categories/complex-survey">Complex Survey</a>, 
+    
+      <a class="category-link" href="https://guilhermejacob.github.io/categories/official-statistics">Official Statistics</a>
+    
+  
+
+  </div>
+
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              <script src="https://guilhermejacob.github.io/rmarkdown-libs/kePrint/kePrint.js"></script>
+
+
+<p>Uma controvérsia relativamente recente foi protagonizada pelo Temer, durante uma palestra na ESPM. <a href="https://g1.globo.com/sp/sao-paulo/noticia/temer-diz-que-desemprego-nao-cresceu-mas-aumentou-numero-dos-que-procuram-emprego.ghtml">Ele teria afirmado que não houve aumento da taxa de desemprego, mas, sim, aumento das pessoas procurando emprego</a>. <em>Antes da divulgação dos dados da PNADC do 1º trimestre de 2018</em>, tive uma conversa com um professor a respeito de até onde aquilo faz <del>ou não faz</del> sentido.</p>
+<p>Escolhi esperar<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a> até os microdados saírem…<br />
+Pois bem: saíram ontem, dia 17. O processo de análise me fez escrever o presente texto.</p>
+<p>Esse post visa ajudar a entender os novos conceitos relacionados ao mercado de trabalho usados na PNAD Contínua. Se você estudou economia, já deve ter ouvido falar de desemprego, força de trabalho, etc., mas “desalento”, por exemplo, é um conceito menos conhecido.<br />
+Vamos entender o que cada coisa significa e, então, analisaremos a afirmação de <em>sua excelência</em>.</p>
+<div id="novos-indicadores-do-mercado-de-trabalho-na-pnad-continua" class="section level3">
+<h3>Novos indicadores do mercado de trabalho na PNAD Contínua</h3>
+<p>Com o fim da dupla PNAD/PME e adoção da PNAD Contínua, houve algumas alterações nos indicadores de mercado de trabalho. Muita coisa continua como era, mas novos conceitos foram introduzidos para enriquecer as análises.<br />
+Os conceitos aqui apresentados se referem à <strong>população em idade ativa</strong>, isto é, pessoas de 14 anos ou mais. Copiando diretamente do <a href="ftp://ftp.ibge.gov.br/Trabalho_e_Rendimento/Pesquisa_Nacional_por_Amostra_de_Domicilios_continua/Mensal/glossario_pnadc_mensal.pdf">glossário da PNAD Contínua</a>, listamos as principais definições:</p>
+<blockquote>
+<p><strong>População desocupada</strong>: são classificadas como desocupadas na semana de referência as pessoas não ocupadas nesse período, que tomaram alguma providência efetiva para conseguir um trabalho no período de referência de 30 dias e que estavam disponíveis para iniciar um trabalho na semana de referência. Também são classificadas como desocupadas as pessoas não ocupadas e disponíveis para iniciar um trabalho na semana de referência que, no entanto, não tomaram providência efetiva para conseguir trabalho no período de referência de 30 dias porque já haviam conseguido trabalho para começar após a semana de referência.</p>
+</blockquote>
+<blockquote>
+<p><strong>População ocupada</strong>: são classificadas como ocupadas na semana de referência as pessoas que, nesse período, trabalharam pelo menos uma hora completa em trabalho remunerado em dinheiro, produtos, mercadorias ou benefícios (moradia, alimentação, roupas, treinamento etc.) ou em trabalho sem remuneração direta em ajuda à atividade econômica de membro do domicílio ou, ainda, as pessoas que tinham trabalho remunerado do qual estavam temporariamente afastadas nessa semana. Consideram-se como ocupadas temporariamente afastadas de trabalho remunerado as pessoas que não trabalharam durante pelo menos uma hora completa na semana de referência por motivo de: férias, folga, jornada de trabalho variável, licença maternidade e fatores ocasionais.<br />
+Assim, também foram consideradas as pessoas que, na data de referência, estavam, por período inferior a 4 meses: afastadas do trabalho em licença remunerada por motivo de doença ou acidente da própria pessoa ou outro tipo de licença remunerada; afastadas do próprio empreendimento sem serem remuneradas por instituto de previdência; em greve ou paralisação. Além disso, também, foram consideradas ocupadas as pessoas afastadas por motivos diferentes dos já citados, desde que tivessem continuado a receber ao menos uma parte do pagamento e o período transcorrido do afastamento fosse inferior a 4 meses.</p>
+</blockquote>
+<blockquote>
+<p><strong>Força de Trabalho</strong>: compreende as pessoas ocupadas e as pessoas desocupadas na semana de referência.</p>
+</blockquote>
+<blockquote>
+<p><strong>Taxa de desocupação</strong>: é o percentual de pessoas desocupadas em relação às pessoas na força de trabalho. Popularmente conhecida como <em>taxa de desemprego</em>.</p>
+</blockquote>
+<p>Estes são conceitos mais tradicionais. Vamos conceituar alguns dos <em>novos indicadores</em>, encontrados <a href="ftp://ftp.ibge.gov.br/Trabalho_e_Rendimento/Pesquisa_Nacional_por_Amostra_de_Domicilios_continua/Trimestral/Novos_Indicadores_Sobre_a_Forca_de_Trabalho/pnadc_201201_201704_trimestre_novos_indicadores.pdf">nesta</a> e <a href="https://agenciadenoticias.ibge.gov.br/agencia-sala-de-imprensa/2013-agencia-de-noticias/releases/20117-pnad-continua-tri-subutilizacao-da-forca-de-trabalho-e-de-23-6-no-4-tri-e-fecha-2017-em-23-8.html">nesta publicação</a>:</p>
+<blockquote>
+<p><strong>Força de trabalho potencial</strong>: é definida como o conjunto de pessoas de 14 anos ou mais de idade que não estavam ocupadas nem desocupadas na semana de referência, mas que possuíam um potencial de se transformarem em força de trabalho.</p>
+</blockquote>
+<blockquote>
+<p><strong>População desalentada</strong>: são aqueles que estavam fora da força de trabalho por um dos seguintes motivos: não conseguia trabalho, não tinha experiência, era muito jovem ou idosa, ou não encontrou trabalho na localidade – e que, se tivesse conseguido trabalho, estaria disponível para assumir a vaga. Faz parte da força de trabalho potencial.</p>
+</blockquote>
+<blockquote>
+<p><strong>Pessoas subocupadas por insuficiência de horas trabalhadas</strong>: são aqueles que trabalhavam habitualmente menos de 40 horas no conjunto de todos os seus trabalhos que realizava e gostariam de trabalhar mais, estando disponíveis para trabalhar mais horas no período de 30 dias, contados a partir do primeiro dia da semana de referência. Por simplicidade, chamaremos de <em>população subocupada</em>.</p>
+</blockquote>
+<p>Estes conceitos se agregam numa ideia geral expressa pela <strong>taxa de subutilização da força de trabalho</strong>, definida como o total dos desocupados, subocupados, desalentados e força de trabalho potencial, dividida pela força de trabalho ampliada. Por sua vez, a <strong>força de trabalho ampliada</strong> é o total das forças de trabalho efetiva e potencial.</p>
+</div>
+<div id="qual-a-relacao-entre-desemprego-e-desalento" class="section level3">
+<h3>Qual a relação entre desemprego e desalento?</h3>
+<p>Bom, já definimos desemprego (ou desocupação) e desalento. Resta entender como as duas se relacionam.</p>
+<p>A pergunta central pode ser formulada desta maneira: como variações da população desalentada afetam a população desocupada?<br />
+A resposta é um tanto simples. A partir do momento que uma pessoa passa a procurar emprego, ela sai da força de trabalho potencial e entra na força de trabalho propriamente dita. Se esta pessoa consegue emprego, ela entra para a população ocupada; caso contrário, ela entra na população desocupada.</p>
+<p>O desalento é basicamente uma forma mais extrema de desocupação, refletindo desesperança do indivíduo a respeito da possibilidade ou qualidade do emprego. E isto tem maior importância em momentos de crise econômica. Se a expectativa de conseguir o emprego é ruim, algumas pessoas podem acabar desistindo.</p>
+<p>Suponha que, em virtude de uma crise econômica prolongada, <em>coeteris paribus</em>, algumas pessoas desistam de procurar emprego, aumentando o tamanho da população desalentada. O impacto desse aumento é relativamente maior no numerador. Assim, paradoxalmente, a taxa de desocupação cai.<br />
+O outro lado dessa moeda parece ser o que Temer afirma estar ocorrendo agora. Isto é, pessoas deixando o desalento podem aumentar a taxa de desocupação.<br />
+Diante disso, parece um tanto míope olhar apenas a taxa de desocupação. A análise da conjuntura deve ser complementada com a taxa de desalento.</p>
+</div>
+<div id="desocupacao-desalento-e-subutilizacao-2012-2018" class="section level3">
+<h3>Desocupação, desalento e subutilização: 2012-2018</h3>
+
+<div class="alert warning ">
+  <p><b>Atualização (19/08/2018):</b> o IBGE fez uma <a href="https://www.ibge.gov.br/estatisticas-novoportal/sociais/trabalho/9173-pesquisa-nacional-por-amostra-de-domicilios-continua-trimestral.html?edicao=22193&amp;t=microdados">atualização recente (16)</a>, explicitando que há uma quebra na série de subocupação.<br>
+A partir do 4º trimestre de 2015, a definição de subocupação passa a se basear no número de horas habitualmente trabalhadas em todos os trabalhos, em vez de horas efetivamente trabalhadas (como era feito anteriormente).<br>
+A análise abaixo utiliza as duas informações como sinônimas. Cuidado com as comparações!</p>
+</div>
+
+<p><img src="https://guilhermejacob.github.io/post/2018-05-05-temer-desemprego-2018_files/figure-html/series-1.png" width="672" /></p>
+<p>Vamos analisar as séries de desemprego, desalento e subocupação, apresentada na Figura . O desemprego aumentou em relação ao trimestre anterior, subindo de 11.8% para 13.1%. Isso, no entanto, reflete um comportamento sazonal, visível também nos anos anteriores. O desemprego no primeiro trimestre sempre costuma ser maior do que o trimestre imediatamente anterior. De fato, uma comparação mais justa seria com o mesmo trimestre do ano anterior. Neste caso, houve queda: era 13.7% no início de 2017, como vemos na Tabela .</p>
+<table class="table" style="font-size: 10px; width: auto !important; margin-left: auto; margin-right: auto;">
+<caption style="font-size: initial !important;">
+(#tab:season_tab1)Taxa de desemprego, por trimestre - Brasil, 2012/1-2018/1
+</caption>
+<thead>
+<tr>
+<th style="border-bottom:hidden" colspan="1">
+</th>
+<th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="4">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px;">
+%
+</div>
+</th>
+</tr>
+<tr>
+<th style="text-align:left;">
+Ano
+</th>
+<th style="text-align:right;">
+1º Trim.
+</th>
+<th style="text-align:right;">
+2º Trim.
+</th>
+<th style="text-align:right;">
+3º Trim.
+</th>
+<th style="text-align:right;">
+4º Trim.
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+2012
+</td>
+<td style="text-align:right;width: 8em; ">
+7.9
+</td>
+<td style="text-align:right;width: 8em; ">
+7.5
+</td>
+<td style="text-align:right;width: 8em; ">
+7.1
+</td>
+<td style="text-align:right;width: 8em; ">
+6.9
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2013
+</td>
+<td style="text-align:right;width: 8em; ">
+8.0
+</td>
+<td style="text-align:right;width: 8em; ">
+7.4
+</td>
+<td style="text-align:right;width: 8em; ">
+6.9
+</td>
+<td style="text-align:right;width: 8em; ">
+6.2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2014
+</td>
+<td style="text-align:right;width: 8em; ">
+7.2
+</td>
+<td style="text-align:right;width: 8em; ">
+6.8
+</td>
+<td style="text-align:right;width: 8em; ">
+6.8
+</td>
+<td style="text-align:right;width: 8em; ">
+6.5
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2015
+</td>
+<td style="text-align:right;width: 8em; ">
+7.9
+</td>
+<td style="text-align:right;width: 8em; ">
+8.3
+</td>
+<td style="text-align:right;width: 8em; ">
+8.9
+</td>
+<td style="text-align:right;width: 8em; ">
+9.0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2016
+</td>
+<td style="text-align:right;width: 8em; ">
+10.9
+</td>
+<td style="text-align:right;width: 8em; ">
+11.3
+</td>
+<td style="text-align:right;width: 8em; ">
+11.8
+</td>
+<td style="text-align:right;width: 8em; ">
+12.0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2017
+</td>
+<td style="text-align:right;width: 8em; ">
+13.7
+</td>
+<td style="text-align:right;width: 8em; ">
+13.0
+</td>
+<td style="text-align:right;width: 8em; ">
+12.4
+</td>
+<td style="text-align:right;width: 8em; ">
+11.8
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2018
+</td>
+<td style="text-align:right;width: 8em; ">
+13.1
+</td>
+<td style="text-align:right;width: 8em; ">
+<ul>
+<li></td>
+<td style="text-align:right;width: 8em; ">
+<ul>
+<li></td>
+<td style="text-align:right;width: 8em; ">
+<ul>
+<li></td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td style="padding: 0; border: 0;" colspan="100%">
+<span style="font-style: italic;">Fonte:</span> <sup></sup> PNAD Contínua 2012-2018. Microdados.
+</td>
+</tr>
+</tfoot>
+</table></li>
+</ul></li>
+</ul></li>
+</ul>
+<p>Por outro lado, como mostra a Tabela , o desalento aumentou, chegando ao nível mais alto da série histórica. De 2013/3 a 2017/1, o desalento foi de 1.8% para 3.7%. A princípio, esse aumento não parece ser estatisticamente significativo<a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a>, podendo ser atribuído à variabilidade da amostra. Mas, descontando a correlação pela sobreposição de amostras ou usando outros métodos menos conservadores para estimação dos intervalos de confiança, pode ser que essa diferença seja, de fato, estatisticamente significante.</p>
+<table class="table" style="font-size: 10px; width: auto !important; margin-left: auto; margin-right: auto;">
+<caption style="font-size: initial !important;">
+(#tab:season_tab2)Taxa de desalento, por trimestre - Brasil, 2012/1-2018/1
+</caption>
+<thead>
+<tr>
+<th style="border-bottom:hidden" colspan="1">
+</th>
+<th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="4">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px;">
+%
+</div>
+</th>
+</tr>
+<tr>
+<th style="text-align:left;">
+Ano
+</th>
+<th style="text-align:right;">
+1º Trim.
+</th>
+<th style="text-align:right;">
+2º Trim.
+</th>
+<th style="text-align:right;">
+3º Trim.
+</th>
+<th style="text-align:right;">
+4º Trim.
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+2012
+</td>
+<td style="text-align:right;width: 8em; ">
+1.9
+</td>
+<td style="text-align:right;width: 8em; ">
+1.9
+</td>
+<td style="text-align:right;width: 8em; ">
+1.9
+</td>
+<td style="text-align:right;width: 8em; ">
+1.9
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2013
+</td>
+<td style="text-align:right;width: 8em; ">
+2.0
+</td>
+<td style="text-align:right;width: 8em; ">
+1.8
+</td>
+<td style="text-align:right;width: 8em; ">
+1.8
+</td>
+<td style="text-align:right;width: 8em; ">
+1.6
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2014
+</td>
+<td style="text-align:right;width: 8em; ">
+1.5
+</td>
+<td style="text-align:right;width: 8em; ">
+1.4
+</td>
+<td style="text-align:right;width: 8em; ">
+1.4
+</td>
+<td style="text-align:right;width: 8em; ">
+1.5
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2015
+</td>
+<td style="text-align:right;width: 8em; ">
+1.6
+</td>
+<td style="text-align:right;width: 8em; ">
+1.6
+</td>
+<td style="text-align:right;width: 8em; ">
+1.8
+</td>
+<td style="text-align:right;width: 8em; ">
+2.5
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2016
+</td>
+<td style="text-align:right;width: 8em; ">
+2.7
+</td>
+<td style="text-align:right;width: 8em; ">
+3.0
+</td>
+<td style="text-align:right;width: 8em; ">
+3.3
+</td>
+<td style="text-align:right;width: 8em; ">
+3.5
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2017
+</td>
+<td style="text-align:right;width: 8em; ">
+3.7
+</td>
+<td style="text-align:right;width: 8em; ">
+3.6
+</td>
+<td style="text-align:right;width: 8em; ">
+3.8
+</td>
+<td style="text-align:right;width: 8em; ">
+3.9
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2018
+</td>
+<td style="text-align:right;width: 8em; ">
+4.1
+</td>
+<td style="text-align:right;width: 8em; ">
+<ul>
+<li></td>
+<td style="text-align:right;width: 8em; ">
+<ul>
+<li></td>
+<td style="text-align:right;width: 8em; ">
+<ul>
+<li></td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td style="padding: 0; border: 0;" colspan="100%">
+<span style="font-style: italic;">Fonte:</span> <sup></sup> PNAD Contínua 2012-2018. Microdados.
+</td>
+</tr>
+</tfoot>
+</table></li>
+</ul></li>
+</ul></li>
+</ul>
+<p>Outro recorde é a taxa de subutilização (24.7%). Em relação ao mesmo período do ano anterior, este indicador cresceu 4 p.p., conforme Tabela . Assim, aproximadamente 1 em cada 4 pessoas na força de trabalho ampliada se encontra em situação de subutilização, o que lança dúvidas a respeito da “qualidade” da queda do desemprego neste período.</p>
+<table class="table" style="font-size: 10px; width: auto !important; margin-left: auto; margin-right: auto;">
+<caption style="font-size: initial !important;">
+(#tab:season_tab3)Taxa de subutilização da força de trabalho, por trimestre - Brasil, 2012/1-2018/1
+</caption>
+<thead>
+<tr>
+<th style="border-bottom:hidden" colspan="1">
+</th>
+<th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="4">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px;">
+%
+</div>
+</th>
+</tr>
+<tr>
+<th style="text-align:left;">
+Ano
+</th>
+<th style="text-align:right;">
+1º Trim.
+</th>
+<th style="text-align:right;">
+2º Trim.
+</th>
+<th style="text-align:right;">
+3º Trim.
+</th>
+<th style="text-align:right;">
+4º Trim.
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+2012
+</td>
+<td style="text-align:right;width: 8em; ">
+20.9
+</td>
+<td style="text-align:right;width: 8em; ">
+18.9
+</td>
+<td style="text-align:right;width: 8em; ">
+17.1
+</td>
+<td style="text-align:right;width: 8em; ">
+16.7
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2013
+</td>
+<td style="text-align:right;width: 8em; ">
+17.9
+</td>
+<td style="text-align:right;width: 8em; ">
+16.8
+</td>
+<td style="text-align:right;width: 8em; ">
+16.0
+</td>
+<td style="text-align:right;width: 8em; ">
+14.9
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2014
+</td>
+<td style="text-align:right;width: 8em; ">
+15.6
+</td>
+<td style="text-align:right;width: 8em; ">
+14.9
+</td>
+<td style="text-align:right;width: 8em; ">
+14.8
+</td>
+<td style="text-align:right;width: 8em; ">
+14.9
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2015
+</td>
+<td style="text-align:right;width: 8em; ">
+16.5
+</td>
+<td style="text-align:right;width: 8em; ">
+17.2
+</td>
+<td style="text-align:right;width: 8em; ">
+18.0
+</td>
+<td style="text-align:right;width: 8em; ">
+13.5
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2016
+</td>
+<td style="text-align:right;width: 8em; ">
+15.4
+</td>
+<td style="text-align:right;width: 8em; ">
+16.4
+</td>
+<td style="text-align:right;width: 8em; ">
+16.8
+</td>
+<td style="text-align:right;width: 8em; ">
+17.4
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2017
+</td>
+<td style="text-align:right;width: 8em; ">
+19.3
+</td>
+<td style="text-align:right;width: 8em; ">
+18.5
+</td>
+<td style="text-align:right;width: 8em; ">
+18.3
+</td>
+<td style="text-align:right;width: 8em; ">
+17.8
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2018
+</td>
+<td style="text-align:right;width: 8em; ">
+19.2
+</td>
+<td style="text-align:right;width: 8em; ">
+<ul>
+<li></td>
+<td style="text-align:right;width: 8em; ">
+<ul>
+<li></td>
+<td style="text-align:right;width: 8em; ">
+<ul>
+<li></td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td style="padding: 0; border: 0;" colspan="100%">
+<span style="font-style: italic;">Fonte:</span> <sup></sup> PNAD Contínua 2012-2018. Microdados.
+</td>
+</tr>
+</tfoot>
+</table></li>
+</ul></li>
+</ul></li>
+</ul>
+<p>A Figura  traz a decomposição da subutilização por categoria e mostra um salto na proporção de desalentados a partir do 4º trimestre de 2015, indo de 9.7% para 14.5%. Deste período até o início de 2017, a área representada por desocupados e desalentados cresceu, sendo interrompida por uma “transferência” dos desocupados para os subocupados.</p>
+<p><img src="https://guilhermejacob.github.io/post/2018-05-05-temer-desemprego-2018_files/figure-html/plot_subutilizacao-1.png" width="672" /></p>
+<p>Comparado com mesmo período do ano anterior, o número absoluto de desocupados caiu. Entretanto, o total de subocupados e de desalentados cresceu. Com efeito, essa última categoria vem crescendo desde o 4º trimestre de 2015, como mostra a Figura .</p>
+<p><img src="https://guilhermejacob.github.io/post/2018-05-05-temer-desemprego-2018_files/figure-html/series_subutilizacao-1.png" width="672" /></p>
+</div>
+<div id="concluindo" class="section level3">
+<h3>Concluindo</h3>
+<p>Resta a pergunta: <em>o desemprego aumentou porque diminuiu o número de desalentados?</em></p>
+<ul>
+<li>A análise mais coerente aponta que, na verdade, <strong>o desemprego caiu</strong>. Continua em níveis bastante elevados, aumentou em relação ao trimestre anterior, mas caiu em comparação com o mesmo trimestre do ano anterior.</li>
+<li>A <strong>taxa de desalento não apresenta sinal de queda</strong>. Pelo contrário: métodos menos conservadores apontam que ela pode ter aumentado.</li>
+</ul>
+<p>Então, porque o desemprego caiu, enquanto o desalento aumentou, <strong>a afirmação é falsa</strong>. E, antes que me apedrejem, <a href="https://agenciadenoticias.ibge.gov.br/agencia-sala-de-imprensa/2013-agencia-de-noticias/releases/21246-pnad-continua-tri-taxa-de-subutilizacao-da-forca-de-trabalho-e-de-24-7-no-primeiro-tri-de-2018.html">essa também é a conclusão do IBGE</a>.</p>
+<p>Finalizo sugerindo a leitura de algumas matérias que saíram esses dias:</p>
+<ul>
+<li><a href="http://www.valor.com.br/brasil/5531299/ibge-desemprego-cresce-em-todas-regioes-e-16-unidades-da-federacao"><em>“IBGE: Desemprego cresce em todas as regiões e 16 unidades da federação”</em> - Valor Econômico</a>. Esse aqui até merece um comentário especial por <strong>diferenciar variações estatisticamente significativas das não significativas</strong>.</li>
+<li><a href="https://www.nexojornal.com.br/expresso/2018/05/18/Desemprego-subocupação-e-desalento-a-crise-do-trabalho-no-Brasil"><em>“Desemprego, subocupação e desalento: a crise do trabalho no Brasil”</em> - Nexo</a>. Achei os gráficos bem interessantes.</li>
+<li><a href="https://www1.folha.uol.com.br/mercado/2018/05/desalento-recorde-limita-alta-na-taxa-de-desemprego-diz-ibge.shtml"><em>“Desalento recorde limita alta na taxa de desemprego, diz IBGE”</em> - Folha de São Paulo</a>.</li>
+</ul>
+</div>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>Sim, #EuEscolhiEsperar.<a href="#fnref1">↩</a></p></li>
+<li id="fn2"><p>Com um nível de confiança de 95%.<a href="#fnref2">↩</a></p></li>
+</ol>
+</div>
+
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">TAGGED IN</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://guilhermejacob.github.io/tags/employment/">Employment</a>
+
+  <a class="tag tag--primary tag--small" href="https://guilhermejacob.github.io/tags/brazil/">Brazil</a>
+
+                  </div>
+                
+              
+            
+            
+  <div class="post-actions-wrap">
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://guilhermejacob.github.io/2018/05/partos-brasil-2016/" data-tooltip="Qual a relação entre a hora de nascimento e o tipo de parto?">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://guilhermejacob.github.io/2018/05/temer-desemprego-2018/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://guilhermejacob.github.io/2018/05/temer-desemprego-2018/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://guilhermejacob.github.io/2018/05/temer-desemprego-2018/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+
+            
+              
+            
+          </div>
+        </article>
+        <script src="//yihui.name/js/math-code.js"></script>
+<script async
+    src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+<footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2018 Guilherme Jacob. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+        
+  <div class="post-actions-wrap">
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://guilhermejacob.github.io/2018/05/partos-brasil-2016/" data-tooltip="Qual a relação entre a hora de nascimento e o tipo de parto?">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://guilhermejacob.github.io/2018/05/temer-desemprego-2018/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://guilhermejacob.github.io/2018/05/temer-desemprego-2018/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://guilhermejacob.github.io/2018/05/temer-desemprego-2018/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="4">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fguilhermejacob.github.io%2F2018%2F05%2Ftemer-desemprego-2018%2F">
+          <i class="fa fa-facebook-official"></i><span>Share on Facebook</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Fguilhermejacob.github.io%2F2018%2F05%2Ftemer-desemprego-2018%2F">
+          <i class="fa fa-twitter"></i><span>Share on Twitter</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https%3A%2F%2Fguilhermejacob.github.io%2F2018%2F05%2Ftemer-desemprego-2018%2F">
+          <i class="fa fa-google-plus"></i><span>Share on Google&#43;</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://guilhermejacob.github.io/files/20900788_1261769030617642_6094584381440292567_o.jpg" alt="Author&#39;s picture" />
+    
+    <h4 id="about-card-name">Guilherme Jacob</h4>
+    
+      <div id="about-card-bio"><strong>B.A. in Law</strong>, <strong>B.Sc. in Economics</strong>, and coding <strong>somewhere in between</strong>.<br>Born and raised in Manaus-AM, Brazil.</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        Data Analyst
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        Unknown
+      </div>
+    
+  </div>
+</div>
+
+    <div id="algolia-search-modal" class="modal-container">
+  <div class="modal">
+    <div class="modal-header">
+      <span class="close-button"><i class="fa fa-close"></i></span>
+      <a href="https://algolia.com" target="_blank" rel="noopener" class="searchby-algolia text-color-light link-unstyled">
+        <span class="searchby-algolia-text text-color-light text-small">by</span>
+        <img class="searchby-algolia-logo" src="https://www.algolia.com/static_assets/images/press/downloads/algolia-light.svg">
+      </a>
+      <i class="search-icon fa fa-search"></i>
+      <form id="algolia-search-form">
+        <input type="text" id="algolia-search-input" name="search"
+          class="form-control input--large search-input" placeholder="Search" />
+      </form>
+    </div>
+    <div class="modal-body">
+      <div class="no-result text-color-light text-center">no post found</div>
+      <div class="results">
+        
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://guilhermejacob.github.io/2018/05/temer-desemprego-2018/">
+                <h3 class="media-heading">Temer, desemprego e procura de empregos: entendendo conceitos da PNAD Contínua</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  May 5, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Uma controvérsia relativamente recente foi protagonizada pelo Temer, durante uma palestra na ESPM. Ele teria afirmado que não houve aumento da taxa de desemprego, mas, sim, aumento das pessoas procurando emprego. Antes da divulgação dos dados da PNADC do 1º trimestre de 2018, tive uma conversa com um professor a respeito de até onde aquilo faz ou não faz sentido.
+Escolhi esperar1 até os microdados saírem…
+Pois bem: saíram ontem, dia 17.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://guilhermejacob.github.io/2018/05/partos-brasil-2016/">
+                <h3 class="media-heading">Qual a relação entre a hora de nascimento e o tipo de parto?</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  May 5, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">O último post foi corrido, eu sei. Esse vai ser um pouco menos corrido, acho.
+Se você quiser pular direto para a análise, clique aqui.
+Muita coisa acontecendo por aqui.
+Semana passada, fui pro Rio. Serei propositalmente misterioso neste ponto, mas acho que vem coisa por aí.
+Na volta para Manaus, fiz uma mini-maratona para visitar amigos em Brasília nas 7 horas de escala. Para quem eu fiquei devendo visita: vou para a Campus Party Brasília no fim de maio!</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://guilhermejacob.github.io/2018/04/desigualdade-pobreza-infancia-2017/">
+                <h3 class="media-heading">PNAD Contínua 2017: extrema pobreza na infância e desigualdade</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Apr 4, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Atualização (19/05/2018): passei a usar a nova tabela de deflatores, ajustando para preços médios do ano da pesquisa.
+Atualização (20/05/2018): fixei os valores a preços médios de 2017.
+ Interrompendo o meu hiato de alguns meses, resolvi voltar com uma comparação os dados de renda das PNADCs anuais 2016-2017. No entanto, vamos falar um pouco da desigualdade em geral e, então, partir para uma questão mais específica: pobreza na infância1.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://guilhermejacob.github.io/2017/12/analise-censo-superior-genero-2016/">
+                <h3 class="media-heading">Censo da Educação Superior: gênero e cursos em 2016</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Dec 12, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Encerrando1 as análises usando bases de dados públicas, vamos focar no ensino superior.
+Inicialmente, vamos explicar o que é o Censo da Educação Superior. Depois, vamos mostrar como montar as bases de dados. E, concluindo, vamos fazer um pequeno exercício de visualização de dados.
+Ah, e eu vou ser muito breve neste post, por motivos de: tenho que escrever um projeto de pesquisa (:
+Censo da Educação Superior O Censo da Educação Superior é conduzido anualmente pelo Inep.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://guilhermejacob.github.io/2017/12/desigualdade-pobreza-estados-2016/">
+                <h3 class="media-heading">O que a PNAD Contínua 2016 diz sobre desigualdade e pobreza nos estados?</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Dec 12, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Atualização (19/05/2018): corrigi alguns erros no código que afetavam as estimativas das capitais.
+Já que os intervalos de confiança das estimativas de capitais não permitiam uma análise mais profunda, resolvi mudar para análise das UFs.
+As rendas foram ajustadas para preços médios de 2016.
+ Na última quarta (29/11), o IBGE finalmente apresentou as estimativas relativas aos rendimentos de todas as fontes, além de disponibilizar os microdados para os cálculos.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://guilhermejacob.github.io/2017/11/microdados-obmigra/">
+                <h3 class="media-heading">CGIg/CNIg e SINCRE: analisando os microdados do OBMigra</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Nov 11, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">O assunto de hoje são os microdados do OBMigra. Mas, antes disso, vamos apresentar um pouco do contexto institucional.
+OBMigra O Observatório das migrações internacionais (OBMigra) é fruto de um convênio estabelecido entre o Ministério do Trabalho (MTb), Conselho Nacional de Imigração (CNIg) e Universidade de Brasília (UnB). Sua finalidade é ampliar o conhecimento a respeito dos fluxos migratórios internacionais no Brasil, através de estudos e análises empíricas, e fornecer subsídios para a formulação de estratégias de política pública.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://guilhermejacob.github.io/2017/11/rais-caged-r/">
+                <h3 class="media-heading">Analisando RAIS e CAGED com R</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Nov 11, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Dando sequência ao post anterior, vamos analisar outra base de dados. Ou outras bases de dados?
+Dessa vez, falaremos dos microdados do RAIS e CAGED. Vamos?
+Bases do Ministério do Trabalho O Ministério do Trabalho (MTb) permite que o usuário acesse os microdados de duas bases muito interessantes: RAIS e CAGED. Bom, além de serem mais dois elementos na “sopa de letrinhas” de microdados brasileiros, o que são exatamente esses dados?</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://guilhermejacob.github.io/2017/11/amostra-cadunico-r/">
+                <h3 class="media-heading">Analisando a amostra do Cadastro Único com R</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Nov 11, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Atualização (18/08/2018): atualizei o procedimento e os resultados para coincidir com as novas bases disponibilizadas no site.
+ Você sabe o que é o Cadastro Único? Sabe que uma amostra dos microdados está disponível? Sabe que dá pra analisar no R?
+Não? Até uns dias atrás, eu também não.
+Se você tem interesse nessa base de dados, vamos lá!
+Caso contrário, assista esse vídeo do MDS. Se, ainda assim, você não estiver interessado, bom… tem um presente no fim do post.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://guilhermejacob.github.io/2017/11/birth-registration-map/">
+                <h3 class="media-heading">Mapeando crianças sem registro civil</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Nov 11, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Esse post é um pequeno follow-up da discussão sobre mapas de densidade de pontos, mas com um pouco mais de diretos da infância e adolescência. Vamos analisar como se distribuem espacialmente as crianças com e sem registro de nascimento, usando dados dos agregados de setores censitários do Censo 2010.
+Dessa vez, vamos focar em 4 capitais: Belém, Manaus , Fortaleza e São Luís.
+Sem mais conversa, prossigamos.
+Belém  Manaus  Fortaleza  São Luís  </div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://guilhermejacob.github.io/2017/11/ethnic-composition-brazilian-cities/">
+                <h3 class="media-heading">Ethnic composition of major Brazilian cities using Dot Density Maps</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Nov 11, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">You can find the R code for this post here.
+ Some time ago, I came across this nice post showing how ethnicity is distributed in London. This is very interesting, as it reveals patterns about how communities are organized and how inequality express itself upon housing locations.
+Our task today is to apply the same procedure to large Brazilian cities. Here’s our list of municipalities: São Paulo, Rio de Janeiro, Brasília, Recife, Salvador, and home Manaus.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+      </div>
+    </div>
+    <div class="modal-footer">
+      <p class="results-count text-medium"
+         data-message-zero="no post found"
+         data-message-one="1 post found"
+         data-message-other="{n} posts found">
+         13 posts found
+      </p>
+    </div>
+  </div>
+</div>
+    
+  
+    
+    <div id="cover" style="background-image:url('https://lh3.googleusercontent.com/EMXvd11C1LUgHF62uBqt-VCw8BPI9XsdOPl0o8CHBu6xwoHGZ5NoH03Phepmv75YW6_0aTp2w_X8I-j1r7xwnDqDO3A7Srh305oXGL_k-YQ_aTlaNUNf6Zbmm9yvVYhtxj5to0WffqTpj5mpvwbf6bm5cRaXI4SvsfGc7jdeJqyyvog35SuXO-VhCTH1sCrs57it-lmJ0C-UeUuHouhkyQ9JpGvba_MJCIY0svtfOPEujv2NEZhGZXzv-uJhpXBrUNuZJx3opiUCoFrrJarStPo24PMrK4WEn8DGpHpDJOZjfGGGOtPjfjD0VqdPEhOw2goJ68luwdLqrSzqtzNSHBgav1SPnZKlLD_S6G8FxlD0-PxvWwrsB7EOK4EjrGtawQn3O6erbODkJFOyBFAQYUU71-MpVcpb40jxt8ntcrM6MFiynXKzx0JeT-jWyUj5U1-OPhoZQrG8HIlTKFArsRpZxhO3NbXeBQPqfOrmsLd3VCKWOVUzkB1s2shVStoz5ihqmD5UEHbr5AYEW1Rl4wCjGJU0gL1b_A9Wm-cjSWz1zQhEf2H5tquDpbNolIXysKv47XY_X2HpCioPAaWjSCIRtc1smn4dux0noag1Gg=w2176-h1652-no');"></div>
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js" integrity="sha256-GEAnjcTqVP+vBp3SSc8bEDQqvWAZMiHyUSIorrWwH50=" crossorigin="anonymous"></script>
+
+
+<script src="https://guilhermejacob.github.io/js/script-qi9wbxp2ya2j6p7wx1i6tgavftewndznf4v0hy2gvivk1rxgc3lm7njqb6bz.min.js"></script>
+
+
+
+
+  
+    
+  
+
+
+
+    
+  </body>
+</html>
+
