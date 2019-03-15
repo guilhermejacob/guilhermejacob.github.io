@@ -31,286 +31,23 @@ Todos as estimativas a seguir foram feitas por mim.<br>Assim, nem IBGE, nem qual
 
 Nas análises abaixo, as rendas foram ajustadas para valores de julho de 2017, de modo que seja possível comparar as mesmas cestas de consumo. Sem mais delongas, vamos às estimativas!^[Todas as estimativas foram realizadas utilizando a *library* [`convey`](https://cran.r-project.org/web/packages/convey/index.html).]
 
-```{r database_setup_2016, message=FALSE, warning=FALSE, cache=TRUE, include=FALSE}
-# define diretórios
-output_dir <- "~/Bases/PNAD Contínua/Anual/Dados"
-
-# cria tabela de ufs
-uf <-
-  structure(list(V1 = c(11L, 12L, 13L, 14L, 15L, 16L, 17L, 21L, 
-                        22L, 23L, 24L, 25L, 26L, 27L, 28L, 29L, 31L, 32L, 33L, 35L, 41L, 
-                        42L, 43L, 50L, 51L, 52L, 53L), 
-                 V2 = structure(c(22L, 1L, 4L, 
-                                  23L, 14L, 3L, 27L, 10L, 18L, 6L, 20L, 15L, 17L, 2L, 26L, 5L, 
-                                  13L, 8L, 19L, 25L, 16L, 24L, 21L, 12L, 11L, 9L, 7L), 
-                                .Label = c("Acre", "Alagoas", "Amapá", "Amazonas", "Bahia", "Ceará", "Distrito Federal", 
-                                           "Espírito Santo", "Goiás", "Maranhão", "Mato Grosso", "Mato Grosso do Sul", 
-                                           "Minas Gerais", "Pará", "Paraíba", "Paraná", "Pernambuco", "Piauí", 
-                                           "Rio de Janeiro", "Rio Grande do Norte", "Rio Grande do Sul", 
-                                           "Rondônia", "Roraima", "Santa Catarina", "São Paulo", "Sergipe", 
-                                           "Tocantins"), class = "factor")), .Names = c("uf", "uf_name"), 
-            class = "data.frame", row.names = c(NA, -27L))
-uf$cp_name <- c("Porto Velho" , "Rio Branco" , "Manaus", "Boa Vista", "Belém", "Macapá", "Palmas", "São Luís", "Teresina", 
-                "Fortaleza" , "Natal", "João Pessoa" , "Recife" , "Maceió" , "Aracaju", "Salvador", "Belo Horizonte" , 
-                "Vitória" , "Rio de Janeiro", "São Paulo" , "Curitiba", "Florianópolis" , "Porto Alegre", "Campo Grande", 
-                "Cuiabá", "Goiânia" , "Brasília" )
-uf$rg_name <- factor( substr( uf$uf , 1 , 1 ) , levels = 1:5 , labels = c( "Norte" , "Nordeste" , "Sudeste" , "Sul" , "Centro-Oeste" ) )
-
-
-
-
-# monta tabela com deflatores
-# faz download da tabela
-tf <- tempfile()
-download.file( "ftp://ftp.ibge.gov.br/Trabalho_e_Rendimento/Pesquisa_Nacional_por_Amostra_de_Domicilios_continua/Anual/Microdados/Documentacao/deflator_2017_pnadc.xls" , tf )
-
-# lê arquivo do excel
-deflat_tab <- readxl::read_xls( tf , sheet = 1 )
-
-# ajusta nomes
-colnames( deflat_tab ) <- tolower( colnames( deflat_tab ) )
-colnames( deflat_tab )[ colnames( deflat_tab ) %in% "trim" ] <- "trimestre"
-
-# transforma para preços médios de 2017:
-mid_year_price <- lapply( split( deflat_tab[ , c(1:3,6)] , f = list( deflat_tab$ano , deflat_tab$uf ) ) , function (x) { data.frame( ano = x[ 1 , 1 ] , uf = x[ 1 , 3 ] , deflt = sum( x[ , 2:3 ] )/4 ) } )
-mid_year_price <- do.call( rbind , mid_year_price )
-mid_year_price <- lapply( split( mid_year_price , f = list( mid_year_price$uf ) ) , function (x) { x[ , "ratio" ] <- x[ , "deflt" ] / x[ x$ano == 2017 , "deflt" ] ; x[ , c(1:2,4) ] })
-mid_year_price <- do.call( rbind , mid_year_price )
-
-# prepara deflator
-deflat_tab <- merge( deflat_tab , mid_year_price , by = c( "ano" , "uf" ) )
-deflat_tab$deflt <- deflat_tab$co1 / deflat_tab$ratio
-
-# formata tabela
-deflat_tab <- deflat_tab[ , c( "ano" , "trimestre" , "uf" , "deflt" ) ]
-
-
-# monta desenho amostral
-# carrega os pacotes necessários
+```{r database_setup, message=FALSE, warning=FALSE, cache=TRUE, include=FALSE}
+# carrega libraries
+library(downloader)
+library(readxl)
+library(data.table)
 library(fst)
-library( survey )
-library( convey )
+library(survey)
+library(convey)
+
+# opções para a library `survey`
 options( survey.lonely.psu = "adjust" )
 options( survey.multicore = TRUE )
 
-# list files
-these_designs <- list.files( output_dir , full.names = TRUE )
-
-these_designs <- these_designs[ grepl( "2016 1" , these_designs ) ]
-
-this_file <- these_designs[[1]]
-
-# read dataset
-these_columns <- c( "upa" , "estrato" , "v1031" , "v1030" , "posest" , "ano" , "trimestre" , "uf" , "capital" , "v2010" , "v2009" , "vd4016" , paste0( "vd500" , 1:6 ) , "v3002" , paste0( "vd402" , c(0,2) ) , "vd2002" , "v20082" )
-pnadc_df <- read_fst( this_file , columns = these_columns )
-
-# merge data
-pnadc_df <- merge( pnadc_df , uf , by = "uf" )
-
-# add one column
-pnadc_df$one <- 1
-
-# add age column
-pnadc_df$age <- ifelse( !is.na( pnadc_df$v20082 ) , 2016 - pnadc_df$v20082 , NA )
-
-# create region
-pnadc_df$regiao <- substr( pnadc_df$uf , 1 , 1 )
-
-# combina deflator
-pnadc_df <- merge( pnadc_df , deflat_tab , by = c( "ano" , "trimestre" , "uf" ) , all.x = TRUE , all.y = FALSE )
-
-# deflaciona os rendas
-pnadc_df[ , paste0( "def_" , paste0( "vd500" , c(1:2,4:5) ) ) ] <- ( pnadc_df[ , paste0( "vd500" , c(1:2,4:5) ) ] * pnadc_df$deflt )
-pnadc_df[ , paste0( "def_" , paste0( "vd402" , c(0,2) ) ) ] <- ( pnadc_df[ , paste0( "vd402" , c(0,2) ) ] * pnadc_df$deflt )
-
-# preliminary survey design
-pre_stratified <-
-  svydesign(
-    ids = ~ upa , 
-    strata = ~ estrato , 
-    weights = ~ v1031 , 
-    data = pnadc_df ,
-    nest = TRUE
-  )
-# warning: do not use `pre_stratified` in your analyses!
-# you must use the `pnadc_design` object created below.
-
-# post-stratification targets
-df_pos <- data.frame( posest = unique( pnadc_df$posest ) , Freq = unique( pnadc_df$v1030 ) )
-
-# final survey design object
-pnadc_design <- postStratify( pre_stratified , ~ posest , df_pos )
-
-# remove the `pnadc_df` data.frame object
-# and the `pre_stratified` design before stratification
-rm( pnadc_df , pre_stratified , df_pos )
-
-# aplica convey
-pnadc_design <- convey_prep( pnadc_design )
-
-# crianças e adolescentes
-pnadc_design_chld <- subset( pnadc_design , age <= 17 )
-
-# estima índice de gini
-br_gini <- svyby( ~def_vd5002 , ~one , pnadc_design , svygini , na.rm = TRUE )
-rg_gini <- svyby( ~def_vd5002 , ~rg_name , pnadc_design , svygini , na.rm = TRUE )
-# uf_gini <- svyby( ~def_vd5002 , ~uf_name , pnadc_design , svygini , na.rm = TRUE )
-# cp_gini <- svyby( ~def_vd5002 , ~cp_name , pnadc_design , svygini , na.rm = TRUE )
-
-# res1 <- list( br_gini , rg_gini , uf_gini , cp_gini )
-res1 <- list( br_gini , rg_gini )
-
-# build result set
-res1 <- lapply( res1 , function( x ) {
-  this_est <- data.frame( x ) 
-  colnames( this_est )[1] <- c( "area" )
-  
-  this_ci <- data.frame( confint( x ) )
-  colnames( this_ci ) <- c( "ci_l" , "ci_u" ) 
-  
-  this_cv <- data.frame( cv( x ) )
-  colnames( this_cv ) <- "cv"
-  
-  this_result <- cbind( set = names( x[1] ), this_est , this_ci , this_cv )
-  rownames( this_result ) <- NULL
-  
-  if ( length( this_result$set ) == 1 & ( "one" %in% this_result$set ) ) this_result$area <- "Brasil"
-  
-  this_result
-} )
-res1 <- do.call( rbind , res1 )
-
-# estima índices de palma
-br_palma <- svyby( ~def_vd5002 , ~one , pnadc_design , svyqsr , alpha2 = .1 , alpha1 = .4 , na.rm = TRUE )
-rg_palma <- svyby( ~def_vd5002 , ~rg_name , pnadc_design , svyqsr , alpha2 = .1 , alpha1 = .4 , na.rm = TRUE )
-# uf_palma <- svyby( ~def_vd5002 , ~uf_name , pnadc_design , svyqsr , alpha2 = .1 , alpha1 = .4 , na.rm = TRUE )
-# cp_palma <- svyby( ~def_vd5002 , ~cp_name , pnadc_design , svyqsr , alpha2 = .1 , alpha1 = .4 , na.rm = TRUE )
-
-# res2 <- list( br_palma , rg_palma , uf_palma , cp_palma )
-res2 <- list( br_palma , rg_palma )
-
-# build result set
-res2 <- lapply( res2 , function( x ) {
-  this_est <- data.frame( x ) 
-  colnames( this_est )[1] <- c( "area" )
-  
-  this_ci <- data.frame( confint( x ) )
-  colnames( this_ci ) <- c( "ci_l" , "ci_u" ) 
-  
-  this_cv <- data.frame( cv( x ) )
-  colnames( this_cv ) <- "cv"
-  
-  this_result <- cbind( set = names( x[1] ), this_est , this_ci , this_cv )
-  rownames( this_result ) <- NULL
-  
-  if ( length( this_result$set ) == 1 & ( "one" %in% this_result$set ) ) this_result$area <- "Brasil"
-  
-  this_result
-} )
-res2 <- do.call( rbind , res2 )
-
-# estima fgt0
-br_fgt0 <- svyby( ~def_vd5002 , ~one , pnadc_design_chld , svyfgt , g = 0 , abs_thresh = 235 , na.rm = TRUE )
-rg_fgt0 <- svyby( ~def_vd5002 , ~rg_name , pnadc_design_chld , svyfgt , g = 0 , abs_thresh = 235 , na.rm = TRUE )
-# uf_fgt0 <- svyby( ~def_vd5002 , ~uf_name , pnadc_design , svyfgt , g = 0 , abs_thresh = 235 , na.rm = TRUE )
-# cp_fgt0 <- svyby( ~def_vd5002 , ~cp_name , pnadc_design , svyfgt , g = 0 , abs_thresh = 235 , na.rm = TRUE )
-
-# res4 <- list( br_fgt0 , rg_fgt0 , uf_fgt0 , cp_fgt0 )
-res4 <- list( br_fgt0 , rg_fgt0 )
-
-# build result set
-res4 <- lapply( res4 , function( x ) {
-  this_est <- data.frame( x ) 
-  colnames( this_est )[1] <- c( "area" )
-  
-  this_ci <- data.frame( confint( x ) )
-  colnames( this_ci ) <- c( "ci_l" , "ci_u" ) 
-  
-  this_cv <- data.frame( cv( x ) )
-  colnames( this_cv ) <- "cv"
-  
-  this_result <- cbind( set = names( x[1] ), this_est , this_ci , this_cv )
-  rownames( this_result ) <- NULL
-  
-  if ( length( this_result$set ) == 1 & ( "one" %in% this_result$set ) ) this_result$area <- "Brasil"
-  
-  this_result
-} )
-res4 <- do.call( rbind , res4 )
-
-
-# estima fgt1
-br_fgt1 <- svyby( ~def_vd5002 , ~one , pnadc_design_chld , svyfgt , g = 1 , abs_thresh = 235 , na.rm = TRUE )
-rg_fgt1 <- svyby( ~def_vd5002 , ~rg_name , pnadc_design_chld , svyfgt , g = 1 , abs_thresh = 235 , na.rm = TRUE )
-# uf_fgt1 <- svyby( ~def_vd5002 , ~uf_name , pnadc_design , svyfgt , g = 1 , abs_thresh = 235 , na.rm = TRUE )
-# cp_fgt1 <- svyby( ~def_vd5002 , ~cp_name , pnadc_design , svyfgt , g = 1 , abs_thresh = 235 , na.rm = TRUE )
-
-# res5 <- list( br_fgt1 , rg_fgt1 , uf_fgt1 , cp_fgt1 )
-res5 <- list( br_fgt1 , rg_fgt1 )
-
-# build result set
-res5 <- lapply( res5 , function( x ) {
-  this_est <- data.frame( x ) 
-  colnames( this_est )[1] <- c( "area" )
-  
-  this_ci <- data.frame( confint( x ) )
-  colnames( this_ci ) <- c( "ci_l" , "ci_u" ) 
-  
-  this_cv <- data.frame( cv( x ) )
-  colnames( this_cv ) <- "cv"
-  
-  this_result <- cbind( set = names( x[1] ), this_est , this_ci , this_cv )
-  rownames( this_result ) <- NULL
-  
-  if ( length( this_result$set ) == 1 & ( "one" %in% this_result$set ) ) this_result$area <- "Brasil"
-  
-  this_result
-} )
-res5 <- do.call( rbind , res5 )
-
-# estima fgt2
-br_fgt2 <- svyby( ~def_vd5002 , ~one , pnadc_design_chld , svyfgt , g = 2 , abs_thresh = 235 , na.rm = TRUE )
-rg_fgt2 <- svyby( ~def_vd5002 , ~rg_name , pnadc_design_chld , svyfgt , g = 2 , abs_thresh = 235 , na.rm = TRUE )
-# uf_fgt2 <- svyby( ~def_vd5002 , ~uf_name , pnadc_design , svyfgt , g = 2 , abs_thresh = 235 , na.rm = TRUE )
-# cp_fgt2 <- svyby( ~def_vd5002 , ~cp_name , pnadc_design , svyfgt , g = 2 , abs_thresh = 235 , na.rm = TRUE )
-
-# res6 <- list( br_fgt2 , rg_fgt2 , uf_fgt2 , cp_fgt2 )
-res6 <- list( br_fgt2 , rg_fgt2 )
-
-# build result set
-res6 <- lapply( res6 , function( x ) {
-  this_est <- data.frame( x ) 
-  colnames( this_est )[1] <- c( "area" )
-  
-  this_ci <- data.frame( confint( x ) )
-  colnames( this_ci ) <- c( "ci_l" , "ci_u" ) 
-  
-  this_cv <- data.frame( cv( x ) )
-  colnames( this_cv ) <- "cv"
-  
-  this_result <- cbind( set = names( x[1] ), this_est , this_ci , this_cv )
-  rownames( this_result ) <- NULL
-  
-  if ( length( this_result$set ) == 1 & ( "one" %in% this_result$set ) ) this_result$area <- "Brasil"
-  
-  this_result
-} )
-res6 <- do.call( rbind , res6 )
-
-# save results
-est2016 <- list( res1 , res2 , res4 , res5 , res6 )
-
-# clean workspace
-rm( list = grep( "^est[0-9].*" , ls() , invert = TRUE , value = TRUE ) )
-```
-```{r database_setup_2017, message=FALSE, warning=FALSE, cache=TRUE, include=FALSE}
-# tentativa de replicar números da publicação:
-# https://biblioteca.ibge.gov.br/visualizacao/livros/liv101559_informativo.pdf
-
 # define diretórios
-output_dir <- "~/Bases/PNAD Contínua/Anual/Dados" 
+output_dir <- "~/Bases/PNAD Contínua/Anual"
 
-# cria tabela de ufs
+# set uf table
 uf <-
   structure(list(V1 = c(11L, 12L, 13L, 14L, 15L, 16L, 17L, 21L, 
                         22L, 23L, 24L, 25L, 26L, 27L, 28L, 29L, 31L, 32L, 33L, 35L, 41L, 
@@ -340,243 +77,253 @@ tf <- tempfile()
 download.file( "ftp://ftp.ibge.gov.br/Trabalho_e_Rendimento/Pesquisa_Nacional_por_Amostra_de_Domicilios_continua/Anual/Microdados/Documentacao/deflator_2017_pnadc.xls" , tf )
 
 # lê arquivo do excel
-deflat_tab <- readxl::read_xls( tf , sheet = 1 )
+deflat_tab <- read_xls( tf , sheet = 1 )
+
+# converte para data.table
+deflat_tab <- as.data.table( deflat_tab )
 
 # ajusta nomes
 colnames( deflat_tab ) <- tolower( colnames( deflat_tab ) )
 colnames( deflat_tab )[ colnames( deflat_tab ) %in% "trim" ] <- "trimestre"
 
 # transforma para preços médios de 2017:
-mid_year_price <- lapply( split( deflat_tab[ , c(1:3,6)] , f = list( deflat_tab$ano , deflat_tab$uf ) ) , function (x) { data.frame( ano = x[ 1 , 1 ] , uf = x[ 1 , 3 ] , deflt = sum( x[ , 2:3 ] )/4 ) } )
-mid_year_price <- do.call( rbind , mid_year_price )
-mid_year_price <- lapply( split( mid_year_price , f = list( mid_year_price$uf ) ) , function (x) { x[ , "ratio" ] <- x[ , "deflt" ] / x[ x$ano == 2017 , "deflt" ] ; x[ , c(1:2,4) ] })
-mid_year_price <- do.call( rbind , mid_year_price )
-
-# prepara deflator
-deflat_tab <- merge( deflat_tab , mid_year_price , by = c( "ano" , "uf" ) )
-deflat_tab$deflt <- deflat_tab$co1 / deflat_tab$ratio
+deflat_tab[ , myp := sum( co1 ) / 4 , by = .( ano , uf ) ]
+deflat_tab[ , myp_2016 := myp[ ano == 2017 ] , by = .( uf ) ]
+deflat_tab[ , ratio := myp / myp_2016 ]
+deflat_tab[ , deflt := co1 / ratio ]
 
 # formata tabela
-deflat_tab <- deflat_tab[ , c( "ano" , "trimestre" , "uf" , "deflt" ) ]
+deflat_tab <- deflat_tab[ , c( "ano" , "trimestre" , "uf" , "deflt" ) , with = FALSE ]
 
 
 # monta desenho amostral
-# carrega os pacotes necessários
-library( survey )
-library( convey )
-options( survey.lonely.psu = "adjust" )
-options( survey.multicore = TRUE )
 
 # list files
-these_designs <- list.files( output_dir , full.names = TRUE )
+these_files <- list.files( output_dir , full.names = TRUE )
 
-these_designs <- these_designs[ grepl( "2017 1" , these_designs ) ]
+# filter for 2016-2017 data
+these_files <- these_files[ grepl( "201(6|7) 1" , basename( these_files ) ) ]
 
-this_file <- these_designs[[1]]
-
-# read dataset
-these_columns <- c("upa", "estrato", "v1031", "v1030", "posest", "ano", "trimestre", "uf", "capital", "v2010", "v2009", "vd4016", "vd5001", "vd5002", "vd5003", "vd5004", "vd5005", "vd5006", "v3002", "vd4020", "vd2002", "v20082")
-pnadc_df <- read_fst( this_file , columns = these_columns )
-
-# merge data
-pnadc_df <- merge( pnadc_df , uf , by = "uf" )
-
-# add one column
-pnadc_df$one <- 1
-
-# add age column
-pnadc_df$age <- ifelse( !is.na( pnadc_df$v20082 ) , 2017 - pnadc_df$v20082 , NA )
-
-# create region
-pnadc_df$regiao <- substr( pnadc_df$uf , 1 , 1 )
-
-# combina deflator
-pnadc_df <- merge( pnadc_df , deflat_tab , by = c( "ano" , "trimestre" , "uf" ) , all.x = TRUE , all.y = FALSE )
-
-# deflaciona os rendas
-pnadc_df[ , paste0( "def_" , paste0( "vd500" , c(1:2,4:5) ) ) ] <- ( pnadc_df[ , paste0( "vd500" , c(1:2,4:5) ) ] * pnadc_df$deflt )
-# pnadc_df[ , paste0( "def_" , paste0( "vd402" , c(0,2) ) ) ] <- ( pnadc_df[ , paste0( "vd402" , c(0,2) ) ] * pnadc_df$deflt )
-
-# preliminary survey design
-pre_stratified <-
-  svydesign(
-    ids = ~ upa , 
-    strata = ~ estrato , 
-    weights = ~ v1031 , 
-    data = pnadc_df ,
-    nest = TRUE
-  )
-# warning: do not use `pre_stratified` in your analyses!
-# you must use the `pnadc_design` object created below.
-
-# post-stratification targets
-df_pos <- data.frame( posest = unique( pnadc_df$posest ) , Freq = unique( pnadc_df$v1030 ) )
-
-# final survey design object
-pnadc_design <- postStratify( pre_stratified , ~ posest , df_pos )
-
-# remove the `pnadc_df` data.frame object
-# and the `pre_stratified` design before stratification
-rm( pnadc_df , pre_stratified , df_pos )
-
-# aplica convey
-pnadc_design <- convey_prep( pnadc_design )
-
-# crianças e adolescentes
-pnadc_design_chld <- subset( pnadc_design , age <= 17 )
-pnadc_design_chld_abrinq <- subset( pnadc_design , age <= 14 )
-
-# estima índice de gini
-br_gini <- svyby( ~def_vd5002 , ~one , pnadc_design , svygini , na.rm = TRUE )
-rg_gini <- svyby( ~def_vd5002 , ~rg_name , pnadc_design , svygini , na.rm = TRUE )
-# uf_gini <- svyby( ~def_vd5002 , ~uf_name , pnadc_design , svygini , na.rm = TRUE )
-# cp_gini <- svyby( ~def_vd5002 , ~cp_name , pnadc_design , svygini , na.rm = TRUE )
-
-# res1 <- list( br_gini , rg_gini , uf_gini , cp_gini )
-res1 <- list( br_gini , rg_gini )
-
-# build result set
-res1 <- lapply( res1 , function( x ) {
-  this_est <- data.frame( x ) 
-  colnames( this_est )[1] <- c( "area" )
+# loop through files
+these_results <- lapply( these_files, function(this_file) {
   
-  this_ci <- data.frame( confint( x ) )
-  colnames( this_ci ) <- c( "ci_l" , "ci_u" ) 
+  # define columns to read
+  these_columns <- c( "upa" , "estrato" , "v1031" , "v1030" , "posest" , "ano" , "trimestre" , "uf" , "capital" , "v2010" , "v2009" , "vd4016" , paste0( "vd500" , 1:6 ) , "v3002" , paste0( "vd402" , c(0,2) ) , "vd2002" , "v20082" )
   
-  this_cv <- data.frame( cv( x ) )
-  colnames( this_cv ) <- "cv"
+  # read dataset
+  pnadc_df <- read_fst( this_file , columns = these_columns , as.data.table = TRUE )
   
-  this_result <- cbind( set = names( x[1] ), this_est , this_ci , this_cv )
-  rownames( this_result ) <- NULL
+  # merge data
+  pnadc_df <- merge( pnadc_df , uf , by = "uf" )
   
-  if ( length( this_result$set ) == 1 & ( "one" %in% this_result$set ) ) this_result$area <- "Brasil"
+  # add one column
+  pnadc_df[, one := 1]
   
-  this_result
-} )
-res1 <- do.call( rbind , res1 )
+  # add age column
+  pnadc_df[, age := ifelse( !is.na( v20082 ) , 2016 - v20082 , NA ) ]
+  
+  # create region
+  pnadc_df[, regiao := substr( uf , 1 , 1 )]
+  
+  # combina deflator
+  pnadc_df <- merge( pnadc_df , deflat_tab , by = c( "ano" , "trimestre" , "uf" ) , all.x = TRUE , all.y = FALSE )
+  
+  # deflaciona os rendas
+  these_inc_cols <- c( paste0( "vd500" , c(1:2,4:5) ) , paste0( "vd402" , c(0,2) ) )
+  pnadc_df[ , paste0( "def_" , these_inc_cols ) := lapply( .SD , function(x) x * deflt ) , .SDcols = these_inc_cols ]
+  
+  # preliminary survey design
+  pre_stratified <-
+    svydesign(
+      ids = ~ upa , 
+      strata = ~ estrato , 
+      weights = ~ v1031 , 
+      data = pnadc_df ,
+      nest = TRUE
+    )
+  # warning: do not use `pre_stratified` in your analyses!
+  # you must use the `pnadc_design` object created below.
+  
+  # post-stratification targets
+  df_pos <- data.frame( posest = unique( pnadc_df$posest ) , Freq = unique( pnadc_df$v1030 ) )
+  
+  # final survey design object
+  pnadc_design <- postStratify( pre_stratified , ~ posest , df_pos )
+  
+  # remove the `pnadc_df` data.frame object
+  # and the `pre_stratified` design before stratification
+  rm( pnadc_df , pre_stratified , df_pos )
+  
+  # aplica convey
+  pnadc_design <- convey_prep( pnadc_design )
+  
+  # crianças e adolescentes
+  pnadc_design_chld <- subset( pnadc_design , age <= 17 )
+  
+  # desenho especial abrinq
+  pnadc_design_chld_abrinq <- subset( pnadc_design , age <= 14 )
+  
+  # estima índice de gini
+  br_gini <- svyby( ~def_vd5002 , ~one , pnadc_design , svygini , na.rm = TRUE )
+  rg_gini <- svyby( ~def_vd5002 , ~rg_name , pnadc_design , svygini , na.rm = TRUE )
+  # uf_gini <- svyby( ~def_vd5002 , ~uf_name , pnadc_design , svygini , na.rm = TRUE )
+  # cp_gini <- svyby( ~def_vd5002 , ~cp_name , pnadc_design , svygini , na.rm = TRUE )
+  
+  # res1 <- list( br_gini , rg_gini , uf_gini , cp_gini )
+  res1 <- list( br_gini , rg_gini )
+  
+  # build result set
+  res1 <- lapply( res1 , function( x ) {
+    this_est <- data.frame( x ) 
+    colnames( this_est )[1] <- c( "area" )
+    
+    this_ci <- data.frame( confint( x ) )
+    colnames( this_ci ) <- c( "ci_l" , "ci_u" ) 
+    
+    this_cv <- data.frame( cv( x ) )
+    colnames( this_cv ) <- "cv"
+    
+    this_result <- cbind( set = names( x[1] ), this_est , this_ci , this_cv )
+    rownames( this_result ) <- NULL
+    
+    if ( length( this_result$set ) == 1 & ( "one" %in% this_result$set ) ) this_result$area <- "Brasil"
+    
+    this_result
+  } )
+  res1 <- do.call( rbind , res1 )
+  
+  # estima índices de palma
+  br_palma <- svyby( ~def_vd5002 , ~one , pnadc_design , svyqsr , alpha2 = .1 , alpha1 = .4 , na.rm = TRUE )
+  rg_palma <- svyby( ~def_vd5002 , ~rg_name , pnadc_design , svyqsr , alpha2 = .1 , alpha1 = .4 , na.rm = TRUE )
+  # uf_palma <- svyby( ~def_vd5002 , ~uf_name , pnadc_design , svyqsr , alpha2 = .1 , alpha1 = .4 , na.rm = TRUE )
+  # cp_palma <- svyby( ~def_vd5002 , ~cp_name , pnadc_design , svyqsr , alpha2 = .1 , alpha1 = .4 , na.rm = TRUE )
+  
+  # res2 <- list( br_palma , rg_palma , uf_palma , cp_palma )
+  res2 <- list( br_palma , rg_palma )
+  
+  # build result set
+  res2 <- lapply( res2 , function( x ) {
+    this_est <- data.frame( x ) 
+    colnames( this_est )[1] <- c( "area" )
+    
+    this_ci <- data.frame( confint( x ) )
+    colnames( this_ci ) <- c( "ci_l" , "ci_u" ) 
+    
+    this_cv <- data.frame( cv( x ) )
+    colnames( this_cv ) <- "cv"
+    
+    this_result <- cbind( set = names( x[1] ), this_est , this_ci , this_cv )
+    rownames( this_result ) <- NULL
+    
+    if ( length( this_result$set ) == 1 & ( "one" %in% this_result$set ) ) this_result$area <- "Brasil"
+    
+    this_result
+  } )
+  res2 <- do.call( rbind , res2 )
+  
+  # estima fgt0
+  br_fgt0 <- svyby( ~def_vd5002 , ~one , pnadc_design_chld , svyfgt , g = 0 , abs_thresh = 235 , na.rm = TRUE )
+  rg_fgt0 <- svyby( ~def_vd5002 , ~rg_name , pnadc_design_chld , svyfgt , g = 0 , abs_thresh = 235 , na.rm = TRUE )
+  # uf_fgt0 <- svyby( ~def_vd5002 , ~uf_name , pnadc_design , svyfgt , g = 0 , abs_thresh = 235 , na.rm = TRUE )
+  # cp_fgt0 <- svyby( ~def_vd5002 , ~cp_name , pnadc_design , svyfgt , g = 0 , abs_thresh = 235 , na.rm = TRUE )
+  
+  # res4 <- list( br_fgt0 , rg_fgt0 , uf_fgt0 , cp_fgt0 )
+  res4 <- list( br_fgt0 , rg_fgt0 )
+  
+  # build result set
+  res4 <- lapply( res4 , function( x ) {
+    this_est <- data.frame( x ) 
+    colnames( this_est )[1] <- c( "area" )
+    
+    this_ci <- data.frame( confint( x ) )
+    colnames( this_ci ) <- c( "ci_l" , "ci_u" ) 
+    
+    this_cv <- data.frame( cv( x ) )
+    colnames( this_cv ) <- "cv"
+    
+    this_result <- cbind( set = names( x[1] ), this_est , this_ci , this_cv )
+    rownames( this_result ) <- NULL
+    
+    if ( length( this_result$set ) == 1 & ( "one" %in% this_result$set ) ) this_result$area <- "Brasil"
+    
+    this_result
+  } )
+  res4 <- do.call( rbind , res4 )
+  
+  
+  # estima fgt1
+  br_fgt1 <- svyby( ~def_vd5002 , ~one , pnadc_design_chld , svyfgt , g = 1 , abs_thresh = 235 , na.rm = TRUE )
+  rg_fgt1 <- svyby( ~def_vd5002 , ~rg_name , pnadc_design_chld , svyfgt , g = 1 , abs_thresh = 235 , na.rm = TRUE )
+  # uf_fgt1 <- svyby( ~def_vd5002 , ~uf_name , pnadc_design , svyfgt , g = 1 , abs_thresh = 235 , na.rm = TRUE )
+  # cp_fgt1 <- svyby( ~def_vd5002 , ~cp_name , pnadc_design , svyfgt , g = 1 , abs_thresh = 235 , na.rm = TRUE )
+  
+  # res5 <- list( br_fgt1 , rg_fgt1 , uf_fgt1 , cp_fgt1 )
+  res5 <- list( br_fgt1 , rg_fgt1 )
+  
+  # build result set
+  res5 <- lapply( res5 , function( x ) {
+    this_est <- data.frame( x ) 
+    colnames( this_est )[1] <- c( "area" )
+    
+    this_ci <- data.frame( confint( x ) )
+    colnames( this_ci ) <- c( "ci_l" , "ci_u" ) 
+    
+    this_cv <- data.frame( cv( x ) )
+    colnames( this_cv ) <- "cv"
+    
+    this_result <- cbind( set = names( x[1] ), this_est , this_ci , this_cv )
+    rownames( this_result ) <- NULL
+    
+    if ( length( this_result$set ) == 1 & ( "one" %in% this_result$set ) ) this_result$area <- "Brasil"
+    
+    this_result
+  } )
+  res5 <- do.call( rbind , res5 )
+  
+  # estima fgt2
+  br_fgt2 <- svyby( ~def_vd5002 , ~one , pnadc_design_chld , svyfgt , g = 2 , abs_thresh = 235 , na.rm = TRUE )
+  rg_fgt2 <- svyby( ~def_vd5002 , ~rg_name , pnadc_design_chld , svyfgt , g = 2 , abs_thresh = 235 , na.rm = TRUE )
+  # uf_fgt2 <- svyby( ~def_vd5002 , ~uf_name , pnadc_design , svyfgt , g = 2 , abs_thresh = 235 , na.rm = TRUE )
+  # cp_fgt2 <- svyby( ~def_vd5002 , ~cp_name , pnadc_design , svyfgt , g = 2 , abs_thresh = 235 , na.rm = TRUE )
+  
+  # res6 <- list( br_fgt2 , rg_fgt2 , uf_fgt2 , cp_fgt2 )
+  res6 <- list( br_fgt2 , rg_fgt2 )
+  
+  # build result set
+  res6 <- lapply( res6 , function( x ) {
+    this_est <- data.frame( x ) 
+    colnames( this_est )[1] <- c( "area" )
+    
+    this_ci <- data.frame( confint( x ) )
+    colnames( this_ci ) <- c( "ci_l" , "ci_u" ) 
+    
+    this_cv <- data.frame( cv( x ) )
+    colnames( this_cv ) <- "cv"
+    
+    this_result <- cbind( set = names( x[1] ), this_est , this_ci , this_cv )
+    rownames( this_result ) <- NULL
+    
+    if ( length( this_result$set ) == 1 & ( "one" %in% this_result$set ) ) this_result$area <- "Brasil"
+    
+    this_result
+  } )
+  res6 <- do.call( rbind , res6 )
+  
+  # return results
+  list( list( res1 , res2 , res4 , res5 , res6 ) , pnadc_design_chld_abrinq )
+  
+})
 
-# estima índices de palma
-br_palma <- svyby( ~def_vd5002 , ~one , pnadc_design , svyqsr , alpha2 = .1 , alpha1 = .4 , na.rm = TRUE )
-rg_palma <- svyby( ~def_vd5002 , ~rg_name , pnadc_design , svyqsr , alpha2 = .1 , alpha1 = .4 , na.rm = TRUE )
-# uf_palma <- svyby( ~def_vd5002 , ~uf_name , pnadc_design , svyqsr , alpha2 = .1 , alpha1 = .4 , na.rm = TRUE )
-# cp_palma <- svyby( ~def_vd5002 , ~cp_name , pnadc_design , svyqsr , alpha2 = .1 , alpha1 = .4 , na.rm = TRUE )
 
-# res2 <- list( br_palma , rg_palma , uf_palma , cp_palma )
-res2 <- list( br_palma , rg_palma )
+# save estimates
+est2016 <- these_results[[1]][[1]]
+est2017 <- these_results[[2]][[1]]
 
-# build result set
-res2 <- lapply( res2 , function( x ) {
-  this_est <- data.frame( x ) 
-  colnames( this_est )[1] <- c( "area" )
-  
-  this_ci <- data.frame( confint( x ) )
-  colnames( this_ci ) <- c( "ci_l" , "ci_u" ) 
-  
-  this_cv <- data.frame( cv( x ) )
-  colnames( this_cv ) <- "cv"
-  
-  this_result <- cbind( set = names( x[1] ), this_est , this_ci , this_cv )
-  rownames( this_result ) <- NULL
-  
-  if ( length( this_result$set ) == 1 & ( "one" %in% this_result$set ) ) this_result$area <- "Brasil"
-  
-  this_result
-} )
-res2 <- do.call( rbind , res2 )
-
-# estima fgt0
-br_fgt0 <- svyby( ~def_vd5002 , ~one , pnadc_design_chld , svyfgt , g = 0 , abs_thresh = 235 , na.rm = TRUE )
-rg_fgt0 <- svyby( ~def_vd5002 , ~rg_name , pnadc_design_chld , svyfgt , g = 0 , abs_thresh = 235 , na.rm = TRUE )
-# uf_fgt0 <- svyby( ~def_vd5002 , ~uf_name , pnadc_design , svyfgt , g = 0 , abs_thresh = 235 , na.rm = TRUE )
-# cp_fgt0 <- svyby( ~def_vd5002 , ~cp_name , pnadc_design , svyfgt , g = 0 , abs_thresh = 235 , na.rm = TRUE )
-
-# res4 <- list( br_fgt0 , rg_fgt0 , uf_fgt0 , cp_fgt0 )
-res4 <- list( br_fgt0 , rg_fgt0 )
-
-# build result set
-res4 <- lapply( res4 , function( x ) {
-  this_est <- data.frame( x ) 
-  colnames( this_est )[1] <- c( "area" )
-  
-  this_ci <- data.frame( confint( x ) )
-  colnames( this_ci ) <- c( "ci_l" , "ci_u" ) 
-  
-  this_cv <- data.frame( cv( x ) )
-  colnames( this_cv ) <- "cv"
-  
-  this_result <- cbind( set = names( x[1] ), this_est , this_ci , this_cv )
-  rownames( this_result ) <- NULL
-  
-  if ( length( this_result$set ) == 1 & ( "one" %in% this_result$set ) ) this_result$area <- "Brasil"
-  
-  this_result
-} )
-res4 <- do.call( rbind , res4 )
-
-
-# estima fgt1
-br_fgt1 <- svyby( ~def_vd5002 , ~one , pnadc_design_chld , svyfgt , g = 1 , abs_thresh = 235 , na.rm = TRUE )
-rg_fgt1 <- svyby( ~def_vd5002 , ~rg_name , pnadc_design_chld , svyfgt , g = 1 , abs_thresh = 235 , na.rm = TRUE )
-# uf_fgt1 <- svyby( ~def_vd5002 , ~uf_name , pnadc_design , svyfgt , g = 1 , abs_thresh = 235 , na.rm = TRUE )
-# cp_fgt1 <- svyby( ~def_vd5002 , ~cp_name , pnadc_design , svyfgt , g = 1 , abs_thresh = 235 , na.rm = TRUE )
-
-# res5 <- list( br_fgt1 , rg_fgt1 , uf_fgt1 , cp_fgt1 )
-res5 <- list( br_fgt1 , rg_fgt1 )
-
-# build result set
-res5 <- lapply( res5 , function( x ) {
-  this_est <- data.frame( x ) 
-  colnames( this_est )[1] <- c( "area" )
-  
-  this_ci <- data.frame( confint( x ) )
-  colnames( this_ci ) <- c( "ci_l" , "ci_u" ) 
-  
-  this_cv <- data.frame( cv( x ) )
-  colnames( this_cv ) <- "cv"
-  
-  this_result <- cbind( set = names( x[1] ), this_est , this_ci , this_cv )
-  rownames( this_result ) <- NULL
-  
-  if ( length( this_result$set ) == 1 & ( "one" %in% this_result$set ) ) this_result$area <- "Brasil"
-  
-  this_result
-} )
-res5 <- do.call( rbind , res5 )
-
-# estima fgt2
-br_fgt2 <- svyby( ~def_vd5002 , ~one , pnadc_design_chld , svyfgt , g = 2 , abs_thresh = 235 , na.rm = TRUE )
-rg_fgt2 <- svyby( ~def_vd5002 , ~rg_name , pnadc_design_chld , svyfgt , g = 2 , abs_thresh = 235 , na.rm = TRUE )
-# uf_fgt2 <- svyby( ~def_vd5002 , ~uf_name , pnadc_design , svyfgt , g = 2 , abs_thresh = 235 , na.rm = TRUE )
-# cp_fgt2 <- svyby( ~def_vd5002 , ~cp_name , pnadc_design , svyfgt , g = 2 , abs_thresh = 235 , na.rm = TRUE )
-
-# res6 <- list( br_fgt2 , rg_fgt2 , uf_fgt2 , cp_fgt2 )
-res6 <- list( br_fgt2 , rg_fgt2 )
-
-# build result set
-res6 <- lapply( res6 , function( x ) {
-  this_est <- data.frame( x ) 
-  colnames( this_est )[1] <- c( "area" )
-  
-  this_ci <- data.frame( confint( x ) )
-  colnames( this_ci ) <- c( "ci_l" , "ci_u" ) 
-  
-  this_cv <- data.frame( cv( x ) )
-  colnames( this_cv ) <- "cv"
-  
-  this_result <- cbind( set = names( x[1] ), this_est , this_ci , this_cv )
-  rownames( this_result ) <- NULL
-  
-  if ( length( this_result$set ) == 1 & ( "one" %in% this_result$set ) ) this_result$area <- "Brasil"
-  
-  this_result
-} )
-res6 <- do.call( rbind , res6 )
-
-# save results
-est2017 <- list( res1 , res2 , res4 , res5 , res6 )
+# save special design
+pnadc_design_chld_abrinq <- these_results[[2]][[2]]
 
 # clean workspace
-rm( list = grep( "^est[0-9].*|pnadc_design_chld_abrinq" , ls() , invert = TRUE , value = TRUE ) ) ; gc()
+rm( these_results ) ; gc()
 ```
 
 ### Desigualdade

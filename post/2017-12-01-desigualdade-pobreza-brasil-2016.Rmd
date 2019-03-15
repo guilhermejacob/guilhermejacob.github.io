@@ -42,12 +42,24 @@ Todos as estimativas a seguir foram feitas por mim.<br>Assim, nem IBGE, nem qual
 
 ```{r database_setup, message=FALSE, warning=FALSE, include=FALSE , cache=FALSE }
 # tentativa de replicar números da publicação:
-# https://biblioteca.ibge.gov.br/visualizacao/livros/liv101390.pdf
+# https://biblioteca.ibge.gov.br/visualizacao/livros/liv101390_informativo.pdf
+# https://economia.estadao.com.br/noticias/geral,desigualdade-piora-em-4-das-5-grandes-regioes-do-pais-em-2017-diz-ibge,70002263916
+# https://agenciadenoticias.ibge.gov.br/agencia-sala-de-imprensa/2013-agencia-de-noticias/releases/18376-pnad-continua-2016-10-da-populacao-com-maiores-rendimentos-concentra-quase-metade-da-renda
 
+# carrega libraries
 library(downloader)
+library(readxl)
+library(data.table)
+library(fst)
+library(survey)
+library(convey)
+
+# opções para a library `survey`
+options( survey.lonely.psu = "adjust" )
+options( survey.multicore = TRUE )
 
 # define diretórios
-output_dir <- "~/Bases/PNAD Contínua/Anual/Dados"
+output_dir <- "~/Bases/PNAD Contínua/Anual"
 
 # set uf table
 uf <-
@@ -79,63 +91,60 @@ tf <- tempfile()
 download.file( "ftp://ftp.ibge.gov.br/Trabalho_e_Rendimento/Pesquisa_Nacional_por_Amostra_de_Domicilios_continua/Anual/Microdados/Documentacao/deflator_2017_pnadc.xls" , tf )
 
 # lê arquivo do excel
-deflat_tab <- readxl::read_xls( tf , sheet = 1 )
+deflat_tab <- read_xls( tf , sheet = 1 )
+
+# converte para data.table
+deflat_tab <- as.data.table( deflat_tab )
 
 # ajusta nomes
 colnames( deflat_tab ) <- tolower( colnames( deflat_tab ) )
 colnames( deflat_tab )[ colnames( deflat_tab ) %in% "trim" ] <- "trimestre"
 
 # transforma para preços médios de 2017:
-mid_year_price <- lapply( split( deflat_tab[ , c(1:3,6)] , f = list( deflat_tab$ano , deflat_tab$uf ) ) , function (x) { data.frame( ano = x[ 1 , 1 ] , uf = x[ 1 , 3 ] , deflt = sum( x[ , 2:3 ] )/4 ) } )
-mid_year_price <- do.call( rbind , mid_year_price )
-mid_year_price <- lapply( split( mid_year_price , f = list( mid_year_price$uf ) ) , function (x) { x[ , "ratio" ] <- x[ , "deflt" ] / x[ x$ano == 2016 , "deflt" ] ; x[ , c(1:2,4) ] })
-mid_year_price <- do.call( rbind , mid_year_price )
-
-# prepara deflator
-deflat_tab <- merge( deflat_tab , mid_year_price , by = c( "ano" , "uf" ) )
-deflat_tab$deflt <- deflat_tab$co1 / deflat_tab$ratio
+deflat_tab[ , myp := sum( co1 ) / 4 , by = .( ano , uf ) ]
+deflat_tab[ , myp_2016 := myp[ ano == 2016 ] , by = .( uf ) ]
+deflat_tab[ , ratio := myp / myp_2016 ]
+deflat_tab[ , deflt := co1 / ratio ]
 
 # formata tabela
-deflat_tab <- deflat_tab[ , c( "ano" , "trimestre" , "uf" , "deflt" ) ]
+deflat_tab <- deflat_tab[ , c( "ano" , "trimestre" , "uf" , "deflt" ) , with = FALSE ]
 
 
 # monta desenho amostral
-# carrega os pacotes necessários
-library(fst)
-library( survey )
-library( convey )
-options( survey.lonely.psu = "adjust" )
-options( survey.multicore = TRUE )
 
 # list files
-these_designs <- list.files( output_dir , full.names = TRUE )
+these_files <- list.files( output_dir , full.names = TRUE )
 
-these_designs <- these_designs[ grepl( "2016 1" , these_designs ) ]
+# filter 2016
+these_files <- these_files[ grepl( "2016 1" , basename( these_files ) ) ]
 
-this_file <- these_designs[[1]]
+# define file
+this_file <- these_files[[1]]
+
+# define columns to read
+these_columns <- c( "upa" , "estrato" , "v1031" , "v1030" , "posest" , "ano" , "trimestre" , "uf" , "capital" , "v2010" , "v2009" , "vd4016" , paste0( "vd500" , 1:6 ) , "v3002" , paste0( "vd402" , c(0,2) ) , "vd2002" , "v20082" )
 
 # read dataset
-these_columns <- c( "upa" , "estrato" , "v1031" , "v1030" , "posest" , "ano" , "trimestre" , "uf" , "capital" , "v2010" , "v2009" , "vd4016" , paste0( "vd500" , 1:6 ) , "v3002" , paste0( "vd402" , c(0,2) ) , "vd2002" , "v20082" )
-pnadc_df <- read_fst( this_file , columns = these_columns )
+pnadc_df <- read_fst( this_file , columns = these_columns , as.data.table = TRUE )
 
 # merge data
 pnadc_df <- merge( pnadc_df , uf , by = "uf" )
 
-# fix cp_name
-pnadc_df$cp_name <- ifelse( !is.na( pnadc_df$capital ) , pnadc_df$cp_name , NA )
-
 # add one column
-pnadc_df$one <- 1
+pnadc_df[, one := 1]
+
+# add age column
+pnadc_df[, age := ifelse( !is.na( v20082 ) , 2016 - v20082 , NA ) ]
 
 # create region
-pnadc_df$regiao <- substr( pnadc_df$uf , 1 , 1 )
+pnadc_df[, regiao := substr( uf , 1 , 1 )]
 
 # combina deflator
 pnadc_df <- merge( pnadc_df , deflat_tab , by = c( "ano" , "trimestre" , "uf" ) , all.x = TRUE , all.y = FALSE )
 
 # deflaciona os rendas
-pnadc_df[ , paste0( "def_" , paste0( "vd500" , c(1:2,4:5) ) ) ] <- ( pnadc_df[ , paste0( "vd500" , c(1:2,4:5) ) ] * pnadc_df$deflt )
-pnadc_df[ , paste0( "def_" , paste0( "vd402" , c(0,2) ) ) ] <- ( pnadc_df[ , paste0( "vd402" , c(0,2) ) ] * pnadc_df$deflt )
+these_inc_cols <- c( paste0( "vd500" , c(1:2,4:5) ) , paste0( "vd402" , c(0,2) ) )
+pnadc_df[ , paste0( "def_" , these_inc_cols ) := lapply( .SD , function(x) x * deflt ) , .SDcols = these_inc_cols ]
 
 # preliminary survey design
 pre_stratified <-
@@ -190,25 +199,23 @@ res1 <- lapply( res1 , function( x ) {
 } )
 res1 <- do.call( rbind , res1 )
 
+
 # plotting
-library(dplyr)
 library(ggplot2)
 library(gridExtra)
 library(grid)
 library(scales)
 library(ggiraph)
 
-# plot.order <- res1 %>% filter( set %in% c("one" , "uf_name")) %>% select(order)
-# plot.order <- plot.order[,1]
-# plot.order[-1] <- order( plot.order[-1] ) + 1
+# convert to data.table
+res1 <- as.data.table( res1 )
 
-plot.order <- res1 %>% filter( set %in% c("one" , "uf_name")) %>% select( area , def_vd5002 )
-plot.order <- plot.order %>% arrange( -def_vd5002 )
-plot.order <- rbind( plot.order[ plot.order[ , "area" ] == "Brasil" , ] , plot.order[ plot.order[ , "area" ] != "Brasil" , ] )
-plot.order <- plot.order[ , "area" ]
+# get plot order
+plot.order <- c( "Brasil" , res1[ area != "Brasil" ][ order( -def_vd5002 ) ][ , area ] )
 
+# create plot object
 gini_cp <- 
-  ggplot( res1 %>% filter( set %in% c("one" , "uf_name")), aes( area, def_vd5002 , group = area , color = area ) ) +
+  ggplot( res1 , aes( area, def_vd5002 , group = area , color = area ) ) +
   geom_line( alpha = .3 ) + 
   geom_errorbar(aes(ymin=ci_l, ymax=ci_u), width=.1 , alpha = .5 ) +
   geom_point( size = 1) +
@@ -268,19 +275,15 @@ res2 <- lapply( res2 , function( x ) {
 } )
 res2 <- do.call( rbind , res2 )
 
-# plotting
+# convert to data.table
+res2 <- as.data.table( res2 )
 
-# plot.order <- res2 %>% filter( set %in% c("one" , "uf_name")) %>% select(order)
-# plot.order <- plot.order[,1]
-# plot.order[-1] <- order( plot.order[-1] ) + 1
+# get plot order
+plot.order <- c( "Brasil" , res2[ area != "Brasil" ][ order( -def_vd5002 ) ][ , area ] )
 
-plot.order <- res2 %>% filter( set %in% c("one" , "uf_name")) %>% select( area , def_vd5002 )
-plot.order <- plot.order %>% arrange( -def_vd5002 )
-plot.order <- rbind( plot.order[ plot.order[ , "area" ] == "Brasil" , ] , plot.order[ plot.order[ , "area" ] != "Brasil" , ] )
-plot.order <- plot.order[ , "area" ]
-
+# create plot object
 palma_cp <- 
-  ggplot( res2 %>% filter( set %in% c("one" , "uf_name")), aes( area, def_vd5002 , group = area , color = area ) ) +
+  ggplot( res2 , aes( area, def_vd5002 , group = area , color = area ) ) +
   geom_line( alpha = .3 ) + 
   geom_errorbar(aes(ymin=ci_l, ymax=ci_u), width=.1 , alpha = .5 ) +
   geom_point( size = 1) +
@@ -339,19 +342,15 @@ res3 <- lapply( res3 , function( x ) {
 } )
 res3 <- do.call( rbind , res3 )
 
-# plotting
+# convert to data.table
+res3 <- as.data.table( res3 )
 
-# plot.order <- res3 %>% filter( set %in% c("one" , "uf_name")) %>% select(order)
-# plot.order <- plot.order[,1]
-# plot.order[-1] <- order( plot.order[-1] ) + 1
+# get plot order
+plot.order <- c( "Brasil" , res3[ area != "Brasil" ][ order( -def_vd5002 ) ][ , area ] )
 
-plot.order <- res3 %>% filter( set %in% c("one" , "uf_name")) %>% select( area , def_vd5002 )
-plot.order <- plot.order %>% arrange( -def_vd5002 )
-plot.order <- rbind( plot.order[ plot.order[ , "area" ] == "Brasil" , ] , plot.order[ plot.order[ , "area" ] != "Brasil" , ] )
-plot.order <- plot.order[ , "area" ]
-
+# create plot object
 zenga_cp <- 
-  ggplot( res3 %>% filter( set %in% c("one" , "uf_name")), aes( area, def_vd5002 , group = area , color = area ) ) +
+  ggplot( res3 , aes( area, def_vd5002 , group = area , color = area ) ) +
   geom_line( alpha = .3 ) + 
   geom_errorbar(aes(ymin=ci_l, ymax=ci_u), width=.1 , alpha = .5 ) +
   geom_point( size = 1) +
@@ -418,19 +417,15 @@ res4 <- lapply( res4 , function( x ) {
 } )
 res4 <- do.call( rbind , res4 )
 
-# plotting
+# convert to data.table
+res4 <- as.data.table( res4 )
 
-# plot.order <- res3 %>% filter( set %in% c("one" , "uf_name")) %>% select(order)
-# plot.order <- plot.order[,1]
-# plot.order[-1] <- order( plot.order[-1] ) + 1
+# get plot order
+plot.order <- c( "Brasil" , res4[ area != "Brasil" ][ order( -def_vd5002 ) ][ , area ] )
 
-plot.order <- res4 %>% filter( set %in% c("one" , "uf_name")) %>% select( area , def_vd5002 )
-plot.order <- plot.order %>% arrange( -def_vd5002 )
-plot.order <- rbind( plot.order[ plot.order[ , "area" ] == "Brasil" , ] , plot.order[ plot.order[ , "area" ] != "Brasil" , ] )
-plot.order <- plot.order[ , "area" ]
-
+# create plot object
 fgt0_cp <- 
-  ggplot( res4 %>% filter( set %in% c("one" , "uf_name")), aes( area, def_vd5002 , group = area , color = area ) ) +
+  ggplot( res4 , aes( area, def_vd5002 , group = area , color = area ) ) +
   geom_line( alpha = .3 ) + 
   geom_errorbar(aes(ymin=ci_l, ymax=ci_u), width=.1 , alpha = .5 ) +
   geom_point( size = 1) +
@@ -489,19 +484,15 @@ res5 <- lapply( res5 , function( x ) {
 } )
 res5 <- do.call( rbind , res5 )
 
-# plotting
+# convert to data.table
+res5 <- as.data.table( res5 )
 
-# plot.order <- res3 %>% filter( set %in% c("one" , "uf_name")) %>% select(order)
-# plot.order <- plot.order[,1]
-# plot.order[-1] <- order( plot.order[-1] ) + 1
+# get plot order
+plot.order <- c( "Brasil" , res5[ area != "Brasil" ][ order( -def_vd5002 ) ][ , area ] )
 
-plot.order <- res5 %>% filter( set %in% c("one" , "uf_name")) %>% select( area , def_vd5002 )
-plot.order <- plot.order %>% arrange( -def_vd5002 )
-plot.order <- rbind( plot.order[ plot.order[ , "area" ] == "Brasil" , ] , plot.order[ plot.order[ , "area" ] != "Brasil" , ] )
-plot.order <- plot.order[ , "area" ]
-
+# create plot object
 fgt1_cp <- 
-  ggplot( res5 %>% filter( set %in% c("one" , "uf_name")), aes( area, def_vd5002 , group = area , color = area ) ) +
+  ggplot( res5 , aes( area, def_vd5002 , group = area , color = area ) ) +
   geom_line( alpha = .3 ) + 
   geom_errorbar(aes(ymin=ci_l, ymax=ci_u), width=.1 , alpha = .5 ) +
   geom_point( size = 1) +
@@ -572,17 +563,13 @@ res6 <- lapply( res6 , function( x ) {
 } )
 res6 <- do.call( rbind , res6 )
 
-# plotting
+# convert to data.table
+res6 <- as.data.table( res6 )
 
-# plot.order <- res3 %>% filter( set %in% c("one" , "uf_name")) %>% select(order)
-# plot.order <- plot.order[,1]
-# plot.order[-1] <- order( plot.order[-1] ) + 1
+# get plot order
+plot.order <- c( "Brasil" , res6[ area != "Brasil" ][ order( -def_vd5002 ) ][ , area ] )
 
-plot.order <- res6 %>% filter( set %in% c("one" , "uf_name")) %>% select( area , def_vd5002 )
-plot.order <- plot.order %>% arrange( -def_vd5002 )
-plot.order <- rbind( plot.order[ plot.order[ , "area" ] == "Brasil" , ] , plot.order[ plot.order[ , "area" ] != "Brasil" , ] )
-plot.order <- plot.order[ , "area" ]
-
+# create plot object
 fgt2_cp <- 
   ggplot( res6 %>% filter( set %in% c("one" , "uf_name")), aes( area, def_vd5002 , group = area , color = area ) ) +
   geom_line( alpha = .3 ) + 
@@ -643,9 +630,12 @@ res7 <- res7[ , !grepl( "igr" , colnames( res7 ) ) ]
 
 # table
 
-table_res7 <- res7 %>% filter( set %in% c("one" , "uf_name"))
-table_res7 <- table_res7 %>% arrange( -fgt2 )
-table_res7 <- rbind( table_res7[ table_res7[ , "area" ] == "Brasil" , ] , table_res7[ table_res7[ , "area" ] != "Brasil" , ] )
+# convert to data.table
+res7 <- as.data.table( res7 )
+
+# arrange and fix order
+table_res7 <- res7[ order( -fgt2) ]
+table_res7 <- rbind( table_res7[  area == "Brasil" ] , table_res7[ area != "Brasil" ] )
 table_res7 <- table_res7[ , 2:6 ]
 
 tb7_names <- c( "Área" , "FGT(2)" , "FGT(0)" , "FGT(1)" , "GEI(2)" )

@@ -122,7 +122,7 @@ Our task today is to apply the same procedure to large Brazilian cities. Here’
       
       <guid>https://guilhermejacob.github.io/2017/11/inequality-poverty-mapping-sae-random-forests-brazil-2010/</guid>
       <description>After a (somewhat long) break, I came back for a new post. Yey! This time, we’re not discussing educational stuff, but another big theme: inequality in Brazil. What happens when we combine 2010 Brazilian Census microdata, Small Area Estimation and Random Forests? Interesting, right?
-2010 Brazilian Census Well, it’s not really the 2010 Census, but the sample. Maybe this needs further explanation.</description>
+2010 Brazilian Census Well, it’s not really the 2010 Census, but the sample. Maybe this needs further explanation. Every ten years, IBGE1 conducts this enormous survey, collecting information about all Brazilian households.</description>
     </item>
     
     <item>
@@ -132,7 +132,7 @@ Our task today is to apply the same procedure to large Brazilian cities. Here’
       
       <guid>https://guilhermejacob.github.io/2017/05/out-of-school-children-in-brazil-an-exercise-on-data-visualization/</guid>
       <description>PNAD and the importance of household surveys The most common source for Brazilian information about living standards is the PNAD1. Usually, when some institution says something about poverty, inequality, education, housing, etc. in Brazil, they recur to the amazing publications produced by the Brazilian Institute for Geography and Statistics (IBGE).
-But that is how it’s usually done. IBGE also produces amazing microdata, available to everyone.</description>
+But that is how it’s usually done. IBGE also produces amazing microdata, available to everyone. Using it, researchers can focus on specific questions regarding any topic investigated in the survey.</description>
     </item>
     
   </channel>
