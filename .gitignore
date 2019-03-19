@@ -21,3 +21,4 @@ private_scripts/mtps_monetdb.R
 private_scripts/pnadc_anual.R
 private_scripts/pnadc_sup.R
 private_scripts/pnadc_trimestral.R
+*.Rmd

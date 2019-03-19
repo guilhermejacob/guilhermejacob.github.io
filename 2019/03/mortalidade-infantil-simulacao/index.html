@@ -20,7 +20,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="Hugo 0.47 with theme Tranquilpeak 0.4.3-BETA">
-    <title>Analisando a amostra do Cadastro Único com R</title>
+    <title>Mortalidade infantil, proporções e confiabilidade</title>
     <meta name="author" content="Guilherme Jacob">
     <meta name="keywords" content="">
 
@@ -28,27 +28,18 @@
     
 
     
-    <meta name="description" content="Atualização (18/08/2018): atualizei o procedimento e os resultados para coincidir com as novas bases disponibilizadas no site.
- Você sabe o que é o Cadastro Único? Sabe que uma amostra dos microdados está disponível? Sabe que dá pra analisar no R?
-Não? Até uns dias atrás, eu também não.
-Se você tem interesse nessa base de dados, vamos lá!
-Caso contrário, assista esse vídeo do MDS. Se, ainda assim, você não estiver interessado, bom… tem um presente no fim do post.">
-    <meta property="og:description" content="Atualização (18/08/2018): atualizei o procedimento e os resultados para coincidir com as novas bases disponibilizadas no site.
- Você sabe o que é o Cadastro Único? Sabe que uma amostra dos microdados está disponível? Sabe que dá pra analisar no R?
-Não? Até uns dias atrás, eu também não.
-Se você tem interesse nessa base de dados, vamos lá!
-Caso contrário, assista esse vídeo do MDS. Se, ainda assim, você não estiver interessado, bom… tem um presente no fim do post.">
+    <meta name="description" content="Retomando! Faz muito tempo que eu não escrevo aqui. Mas há motivos:
+Ano passado, eu tive uma vida um tanto intensa. Trabalhei bastante até meados de setembro. Meus hábitos não-tão-saudáveis acabaram por desenvolver alguns problemas de saúde que exigiram que eu me distanciasse um pouco de trabalho e pesquisa. Estive estudando para o mestrado da ENCE. E passei! Tive que mudar pro Rio e tudo mais. As aulas começaram no dia 11 de março.">
+    <meta property="og:description" content="Retomando! Faz muito tempo que eu não escrevo aqui. Mas há motivos:
+Ano passado, eu tive uma vida um tanto intensa. Trabalhei bastante até meados de setembro. Meus hábitos não-tão-saudáveis acabaram por desenvolver alguns problemas de saúde que exigiram que eu me distanciasse um pouco de trabalho e pesquisa. Estive estudando para o mestrado da ENCE. E passei! Tive que mudar pro Rio e tudo mais. As aulas começaram no dia 11 de março.">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="Analisando a amostra do Cadastro Único com R">
-    <meta property="og:url" content="/2017/11/amostra-cadunico-r/">
+    <meta property="og:title" content="Mortalidade infantil, proporções e confiabilidade">
+    <meta property="og:url" content="/2019/03/mortalidade-infantil-simulacao/">
     <meta property="og:site_name" content="Something Random">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Something Random">
-    <meta name="twitter:description" content="Atualização (18/08/2018): atualizei o procedimento e os resultados para coincidir com as novas bases disponibilizadas no site.
- Você sabe o que é o Cadastro Único? Sabe que uma amostra dos microdados está disponível? Sabe que dá pra analisar no R?
-Não? Até uns dias atrás, eu também não.
-Se você tem interesse nessa base de dados, vamos lá!
-Caso contrário, assista esse vídeo do MDS. Se, ainda assim, você não estiver interessado, bom… tem um presente no fim do post.">
+    <meta name="twitter:description" content="Retomando! Faz muito tempo que eu não escrevo aqui. Mas há motivos:
+Ano passado, eu tive uma vida um tanto intensa. Trabalhei bastante até meados de setembro. Meus hábitos não-tão-saudáveis acabaram por desenvolver alguns problemas de saúde que exigiram que eu me distanciasse um pouco de trabalho e pesquisa. Estive estudando para o mestrado da ENCE. E passei! Tive que mudar pro Rio e tudo mais. As aulas começaram no dia 11 de março.">
     
     
 
@@ -263,148 +254,88 @@ Caso contrário, assista esse vídeo do MDS. Se, ainda assim, você não estiver
             <div class="post-header main-content-wrap text-left">
   
     <h1 class="post-title" itemprop="headline">
-      Analisando a amostra do Cadastro Único com R
+      Mortalidade infantil, proporções e confiabilidade
     </h1>
   
   
   <div class="postShorten-meta post-meta">
     
-      <time itemprop="datePublished" datetime="2017-11-23T00:00:00Z">
+      <time itemprop="datePublished" datetime="2019-03-18T00:00:00Z">
         
-  November 23, 2017
+  March 18, 2019
 
       </time>
     
     
-  
-  
-    <span>in</span>
-    
-      <a class="category-link" href="https://guilhermejacob.github.io/categories/r">R</a>, 
-    
-      <a class="category-link" href="https://guilhermejacob.github.io/categories/complex-survey">Complex Survey</a>, 
-    
-      <a class="category-link" href="https://guilhermejacob.github.io/categories/official-statistics">Official Statistics</a>
-    
-  
-
   </div>
 
 </div>
           
           <div class="post-content markdown" itemprop="articleBody">
             <div class="main-content-wrap">
-              <div class="alert warning ">
-  <p><b>Atualização (18/08/2018):</b> atualizei o procedimento e os resultados para coincidir com as novas bases disponibilizadas no site.</p>
-</div>
-
-<p>Você sabe o que é o Cadastro Único? Sabe que uma amostra dos microdados está disponível? Sabe que dá pra analisar no R?</p>
-<p>Não? Até uns dias atrás, eu também não.<br />
-Se você tem interesse nessa base de dados, vamos lá!<br />
-Caso contrário, assista esse <a href="https://www.youtube.com/watch?v=fRISNWsZh_4">vídeo do MDS</a>. Se, ainda assim, você não estiver interessado, bom… tem um presente no fim do post. Não tem <del>nada</del> muito a ver, mas <em>vale a pena</em>!</p>
-<div id="o-que-e" class="section level2">
-<h2>O que é?</h2>
-<p>Segundo o <a href="http://mds.gov.br/assuntos/cadastro-unico/o-que-e-e-para-que-serve">MDS</a><a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a>, O <em>Cadastro Único para Programas Sociais do Governo Federal</em> (doravante, <em>CadÚnico</em>) identifica e coleta informações sobre as famílias de baixa renda, fornecendo informações detalhadas a respeito dos seus domicílios, escolaridade, renda, etc. Embora o CadÚnico exista desde 2001, foi com o advento do <a href="http://mds.gov.br/assuntos/bolsa-familia/o-que-e">Programa Bolsa Família</a>, em 2003, que ele ficou conhecido.</p>
-<p>O Bolsa Família <del>ainda</del> é<a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a> considerado o maior programa de transferência de renda do mundo. E todos os beneficiários do Bolsa Família fazem parte do CadÚnico. Em poucas palavras, <em>beneficiários do Bolsa Família</em> <span class="math inline">\(\subset\)</span> <em>CadÚnico</em>.<br />
-Além disso, o CadÚnico também tem informações sobre outros programas sociais, como o <em>Minha Casa Minha Vida</em>, <em>Bolsa Verde</em>, <em>Água para Todos</em>, <em>Bolsa Estiagem</em>, etc.</p>
-<p>Então, <em>não seria maravilhoso se tivéssemos acesso a esses dados?</em> Bom, sim. Mas ter acesso à informações que podem identificar pessoas é uma violação do direito à privacidade. Além disso, colocaria em risco as pessoas que já estão em uma situação de vulnerabilidade social. Embora o acesso à base de dados pode ser concedido para pesquisadores através de um procedimento administrativo, existe uma alternativa.</p>
-</div>
-<div id="microdados-da-amostra" class="section level2">
-<h2>Microdados da Amostra</h2>
-<p>Há pouco tempo, a SAGI<a href="#fn3" class="footnoteRef" id="fnref3"><sup>3</sup></a> disponibilizou amostras desidentificadas do CadÚnico, referentes ao mês de dezembro do período de 2012 a 2016. Para assegurar a validade da amostra, foram utilizados procedimentos de amostragem complexa<a href="#fn4" class="footnoteRef" id="fnref4"><sup>4</sup></a>, o que garante a segurança das informações pessoais.</p>
-<p>Entretanto, essa técnica exige cuidados na hora de analisar os dados. Muitos procedimentos que usam a suposição de <em>amostra aleatória simples</em> precisam ser adaptados para fornecer estimativas não-viesadas e precisas. Felizmente, a library <code>survey</code> traz todas as ferramentas necessárias para essa tarefa.</p>
-</div>
-<div id="na-pratica" class="section level2">
-<h2>Na prática</h2>
-<p>Em alguns sites de discussão sobre análise de dados, comentava-se que o R não consegue lidar com bases de dados grandes. Bom, isso foi contornado de diversas maneiras.</p>
-<div id="montando-a-base" class="section level3">
-<h3>Montando a base</h3>
-<p>Para facilitar o processo de baixar e montar a base de dados, escrevi <a href="https://github.com/guilhermejacob/guilhermejacob.github.io/blob/master/scripts/cadunico.R">esse script</a> com duas funções para facilitar esse procedimento. O bloco de código abaixo mostra como fazer essa tarefa:</p>
-
-<div class="alert info ">
-  <p>Esse procedimento pode ser um pouco demorado, dependendo da sua conexão com a internet e seu computador.</p>
-</div>
-
-<pre class="r"><code># instala os pacotes:
-libs &lt;- c(&quot;DBI&quot;, &quot;MonetDBLite&quot; , &quot;fst&quot; , &quot;survey&quot;)
-libs.novas &lt;- libs[ !( libs %in% installed.packages()[ , &quot;Package&quot; ] ) ]
-if( length( libs.novas ) ) install.packages( libs.novas )
-
-# carrega os pacotes necessários
-library(DBI)
-library(MonetDBLite)
-library(survey)
-
-# carrega funções do script
-downloader::source_url(&quot;https://github.com/guilhermejacob/guilhermejacob.github.io/blob/master/scripts/cadunico.R&quot;)
-
-# define o diretório onde serão depositados os dados
-output_dir &lt;- file.path( tempdir() , &quot;CadUnico&quot; )
-
-# coleta o &quot;catálogo de dados&quot; no site do MDS:
-catalog &lt;- get_catalog_cadunico( output_dir )
-
-# O próximo passo é opcional:
-# Aqui, escolho apenas os dados do último ano
-catalog &lt;- catalog[ catalog$year == 2016 , ]
-
-# Vamos usar esse &quot;catálogo&quot; como o argumento da função build_cadunico
-# Essa última função vai montar a base de dados
-build_cadunico( catalog )</code></pre>
-<p><em>Voilà!</em> Sua base de dados foi lida e montada com sucesso.</p>
-</div>
-<div id="mas-como-analisar" class="section level3">
-<h3>Mas como analisar?</h3>
-<p>O código abaixo mostra como analisar os dados utilizando o desenho amostral <del>e sem sobrecarregar a memória RAM</del>, graças à integração do pacote <code>survey</code> e drivers de bases de dados:</p>
-<pre class="r"><code># carrega os pacotes necessários
-library(DBI)
-library(MonetDBLite)
-library(survey)
-
-# lê o objeto com o desenho amostral
-pes.design &lt;- readRDS( file.path( output_dir , &quot;cadunico 2016 design.rds&quot; ) )
-
-# abre a conexão do objeto com a base em MonetDBLite
-pes.design &lt;- open( pes.design , driver = MonetDBLite() )
-
-# conta o número de observações na base
-dim( pes.design )
-# [1] 14836037       61
-
-# calcula o número de crianças e adolescentes (menores de 18 anos) no CadÚnico
-total.cea &lt;- svytotal( ~I(idade &lt; 18) , pes.design , na.rm = TRUE )
-#                       total    SE
-# I(idade &lt; 18)FALSE 45785152 10432
-# I(idade &lt; 18)TRUE  31087134 14075
-
-# calcula intervalo de confiança
-confint( total.cea ) 
-#                       2.5 %   97.5 %
-# I(idade &lt; 18)FALSE 45764705 45805599
-# I(idade &lt; 18)TRUE  31059547 31114722
-
-# fecha a conexão com a base de dados
-close( pes.design , shutdown = TRUE )</code></pre>
-<p>15 milhões de linhas parece um número bem razoável para uma planilha, não? E considerando que essas linhas representam mais de 70 milhões de pessoas, ainda melhor.<br />
-Vale dizer: o <code>survey</code> permite que você use praticamente tudo que você usaria em uma base guardada na memória. Por exemplo, modelos lineares generalizados com <code>svyglm</code>, curvas de sobrevivência de Kaplan-Meier com <code>svykm</code>, etc.</p>
-<p>Ah, e se você quiser saber mais sobre como usar o R com o SQLite, vale dar uma lida <a href="https://swcarpentry.github.io/sql-novice-survey/11-prog-R/">aqui</a>.</p>
-<div id="bonus" class="section level4">
-<h4>Bônus!</h4>
-<p>Meu presente para você que chegou até o fim desse post. Não precisa agradecer ;)</p>
-
-<div style="position:relative;height:0;padding-bottom:56.21%"><iframe src="https://www.youtube.com/embed/-iDnM4SSJzA?ecver=2" style="position:absolute;width:100%;height:100%;left:0" width="641" height="360" frameborder="0" gesture="media" allowfullscreen></iframe></div>
-
-</div>
-</div>
-</div>
-<div class="footnotes">
-<hr />
-<ol>
-<li id="fn1"><p>Ministério do Desenvolvimento Social.<a href="#fnref1">↩</a></p></li>
-<li id="fn2"><p>Ultimamente, eu já nem sei.<a href="#fnref2">↩</a></p></li>
-<li id="fn3"><p>Secretaria de Avaliação e Gestão da Informação/MDS.<a href="#fnref3">↩</a></p></li>
-<li id="fn4"><p>Para aprender mais sobre o tema, sugiro ler <a href="https://djalmapessoa.github.io/adac/">esse livro</a> , feito pelo Djalma Pessoa e Pedro Nascimento Silva.<a href="#fnref4">↩</a></p></li>
+              <div id="retomando" class="section level1">
+<h1>Retomando!</h1>
+<p>Faz muito tempo que eu não escrevo aqui. Mas há motivos:</p>
+<ol style="list-style-type: decimal">
+<li>Ano passado, eu tive uma vida um tanto intensa. Trabalhei bastante até meados de setembro.</li>
+<li>Meus hábitos não-tão-saudáveis acabaram por desenvolver alguns problemas de saúde que exigiram que eu me distanciasse um pouco de trabalho e pesquisa.</li>
+<li>Estive estudando para o mestrado da <a href="http://ence.ibge.gov.br/">ENCE</a>. <em>E passei!</em> Tive que mudar pro Rio e tudo mais. As aulas começaram no dia 11 de março.</li>
 </ol>
+<p>Nesse ritmo de volta às aulas, resolvi escrever um texto curto sobre as coisas que andei pensando na última semana.</p>
+</div>
+<div id="misturando-trabalho-e-estudo" class="section level1">
+<h1>Misturando trabalho e estudo</h1>
+<p>Na época em que eu trabalhava mais diretamente com estimativas de mortalidade infantil, de vez em quando surgia uma pergunta:</p>
+<blockquote>
+<p>“Guilherme, você pode calcular a mortalidade infantil do município X? Tem no DataSUS.”</p>
+</blockquote>
+<p>Bom, isso nem sempre era fácil, especialmente quando era um município pequeno no meio da Amazônia, por exemplo. Além de toda questão envolvendo a qualidade dos dados e o subregistro, temos o problema de denominadores muito pequenos. Este último sempre gerava discussões. Basicamente, minha resposta era:</p>
+<blockquote>
+<p>Posso, mas não sei se o resultado <em>realmente significa alguma coisa</em>.</p>
+</blockquote>
+<p>E, com isso em mente, resolvi explicar qual o problema analisando um exemplo.</p>
+<div id="estimando" class="section level2">
+<h2>Estimando</h2>
+
+<div class="alert warning ">
+  <p>As estimativas a seguir são resultados de um exercício simples e não devem ser usadas para outra finalidade!</p>
+</div>
+
+<p>Um dos municípios que eu analisei em 2015 teve 272 nascidos vivos. Destes, 6 morreram antes de completar um ano. Logo, a <a href="">taxa de mortalidade infantil</a> estimada é aprox. 22,1 por 1.000 nascidos vivos.</p>
+<p>A maioria dos analistas/especialistas que usam estimativas calculados por outras pessoas já se daria por satisfeita com estes números. No entanto, devemos nos perguntar: <em>será que isso realmente significa alguma coisa?</em></p>
+<p>É importante pensar que a TMI não é apenas um número, mas um <em>dado</em>. Ou seja, um <strong>número com significado</strong>. Calculamos a TMI porque ela expressa algo a respeito da situação de saúde de um lugar em um dado período.</p>
+</div>
+<div id="por-que" class="section level2">
+<h2>Por que?</h2>
+<p>Inicialmente, precisamos saber duas coisas:</p>
+<ul>
+<li><em>Inferência</em> é o processo através do qual usamos uma amostra para <em>advinhar</em> informações sobre a população.</li>
+<li>Dado um número de nascimentos, o número de óbitos pode ser visto como uma amostra de uma <em>distribuição binomial</em>.</li>
+</ul>
+<div id="multiplos-universos-um-momento-rick-morty" class="section level3">
+<h3>Múltiplos universos: um momento Rick &amp; Morty</h3>
+<p>Suponha que tivéssemos uma máquina especial à nossa disposição. Esta máquina é capaz de computar este número de óbitos de 1.000 outros universos paralelos cujo número de nascimento ainda é 272 e a TMI “real” é 22,1. Teríamos, consequentemente, 1.000 TMIs.</p>
+<p>Assim, em metade destes univesos, os totais de óbitos variam de 3 a 9. Nossas estimativas da TMI iriam de 11,0 a 33,1 por 1.000 nascidos vivos! Levando em consideração estes dois extremos, o gestor do primeiro seria premiado; o gestor do segundo seria criticado e/ou demitido. No entanto, <em>o processo que gera o número de óbitos é essencialmente o mesmo</em>.</p>
+<p>Diante disso, a pergunta que segue é: eles teriam condição de saber que podem estar na mesma situação?</p>
+</div>
+</div>
+<div id="intervalos-de-confianca" class="section level2">
+<h2>Intervalos de confiança</h2>
+<p>Vamos calcular os intervalos de confiança das estimativas.</p>
+<pre><code>## 
+##  2-sample test for equality of proportions with continuity
+##  correction
+## 
+## data:  3, 9 out of 272, 272
+## X-squared = 2.1303, df = 1, p-value = 0.1444
+## alternative hypothesis: two.sided
+## 95 percent confidence interval:
+##  -0.050350201  0.006232554
+## sample estimates:
+##     prop 1     prop 2 
+## 0.01102941 0.03308824</code></pre>
+<p>Considerando um nível de significância de 5%, a diferença entre as TMIs estimadas pelas duas amostras não é significativa. Ou seja: as duas amostras podem representar a mesma TMI subjacente. Diante disso, não há razão para achar que é melhor nascer no primeiro ou no segundo universo!</p>
+</div>
 </div>
 
               
@@ -412,20 +343,6 @@ Vale dizer: o <code>survey</code> permite que você use praticamente tudo que vo
           </div>
           <div id="post-footer" class="post-footer main-content-wrap">
             
-              
-                
-                
-                  <div class="post-footer-tags">
-                    <span class="text-color-light text-small">TAGGED IN</span><br/>
-                    
-  <a class="tag tag--primary tag--small" href="https://guilhermejacob.github.io/tags/cadastro-%C3%BAnico/">Cadastro Único</a>
-
-  <a class="tag tag--primary tag--small" href="https://guilhermejacob.github.io/tags/bolsa-fam%C3%ADlia/">Bolsa Família</a>
-
-  <a class="tag tag--primary tag--small" href="https://guilhermejacob.github.io/tags/brazil/">Brazil</a>
-
-                  </div>
-                
               
             
             
@@ -435,7 +352,7 @@ Vale dizer: o <code>survey</code> permite que você use praticamente tudo que vo
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://guilhermejacob.github.io/2017/11/rais-caged-r/" data-tooltip="Analisando RAIS e CAGED com R">
+                <a class="post-action-btn btn btn--disabled">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
@@ -443,7 +360,7 @@ Vale dizer: o <code>survey</code> permite que você use praticamente tudo que vo
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://guilhermejacob.github.io/2017/11/birth-registration-map/" data-tooltip="Mapeando crianças sem registro civil">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://guilhermejacob.github.io/2018/05/temer-desemprego-2018/" data-tooltip="Temer, desemprego e procura de empregos: entendendo conceitos da PNAD Contínua">
               
                   <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
                   <i class="fa fa-angle-right"></i>
@@ -461,19 +378,19 @@ Vale dizer: o <code>survey</code> permite que você use praticamente tudo que vo
         </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://guilhermejacob.github.io/2017/11/amostra-cadunico-r/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://guilhermejacob.github.io/2019/03/mortalidade-infantil-simulacao/">
               <i class="fa fa-facebook-official"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://guilhermejacob.github.io/2017/11/amostra-cadunico-r/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://guilhermejacob.github.io/2019/03/mortalidade-infantil-simulacao/">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://guilhermejacob.github.io/2017/11/amostra-cadunico-r/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://guilhermejacob.github.io/2019/03/mortalidade-infantil-simulacao/">
               <i class="fa fa-google-plus"></i>
             </a>
           </li>
@@ -515,7 +432,7 @@ Vale dizer: o <code>survey</code> permite que você use praticamente tudo que vo
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://guilhermejacob.github.io/2017/11/rais-caged-r/" data-tooltip="Analisando RAIS e CAGED com R">
+                <a class="post-action-btn btn btn--disabled">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
@@ -523,7 +440,7 @@ Vale dizer: o <code>survey</code> permite que você use praticamente tudo que vo
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://guilhermejacob.github.io/2017/11/birth-registration-map/" data-tooltip="Mapeando crianças sem registro civil">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://guilhermejacob.github.io/2018/05/temer-desemprego-2018/" data-tooltip="Temer, desemprego e procura de empregos: entendendo conceitos da PNAD Contínua">
               
                   <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
                   <i class="fa fa-angle-right"></i>
@@ -541,19 +458,19 @@ Vale dizer: o <code>survey</code> permite que você use praticamente tudo que vo
         </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://guilhermejacob.github.io/2017/11/amostra-cadunico-r/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://guilhermejacob.github.io/2019/03/mortalidade-infantil-simulacao/">
               <i class="fa fa-facebook-official"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://guilhermejacob.github.io/2017/11/amostra-cadunico-r/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://guilhermejacob.github.io/2019/03/mortalidade-infantil-simulacao/">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://guilhermejacob.github.io/2017/11/amostra-cadunico-r/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://guilhermejacob.github.io/2019/03/mortalidade-infantil-simulacao/">
               <i class="fa fa-google-plus"></i>
             </a>
           </li>
@@ -577,19 +494,19 @@ Vale dizer: o <code>survey</code> permite que você use praticamente tudo que vo
   <ul class="share-options">
     
       <li class="share-option">
-        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fguilhermejacob.github.io%2F2017%2F11%2Famostra-cadunico-r%2F">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fguilhermejacob.github.io%2F2019%2F03%2Fmortalidade-infantil-simulacao%2F">
           <i class="fa fa-facebook-official"></i><span>Share on Facebook</span>
         </a>
       </li>
     
       <li class="share-option">
-        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Fguilhermejacob.github.io%2F2017%2F11%2Famostra-cadunico-r%2F">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Fguilhermejacob.github.io%2F2019%2F03%2Fmortalidade-infantil-simulacao%2F">
           <i class="fa fa-twitter"></i><span>Share on Twitter</span>
         </a>
       </li>
     
       <li class="share-option">
-        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https%3A%2F%2Fguilhermejacob.github.io%2F2017%2F11%2Famostra-cadunico-r%2F">
+        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https%3A%2F%2Fguilhermejacob.github.io%2F2019%2F03%2Fmortalidade-infantil-simulacao%2F">
           <i class="fa fa-google-plus"></i><span>Share on Google&#43;</span>
         </a>
       </li>
