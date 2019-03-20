@@ -7,7 +7,7 @@
 
 ### funções auxiliares
 link_scrape <- function( x ) {
-  library(RCurl)
+  library(RCurl , quietly = TRUE )
   custom_recodes <- c( "í" = "%ED" , "á" = "%E1" , "ã" = "%E3" , " " = "%20" )
   custom_recodes <- NULL
   if ( !is.null( x ) ){
@@ -192,7 +192,8 @@ build_datasus <- function( catalog ) {
     # ajusta formato da variável sexo em 2014
     if ( "sexo" %in% names(x) ) {
       x[ !( sexo %in% c("1","2","M","F") ) , sexo := NA ]
-      x[ sexo == "M" , sexo := 1 ] ; x[ sexo == "F" , sexo := 2 ] 
+      x[ sexo == "M" , sexo := "1" ] ; x[ sexo == "F" , sexo := "2" ]
+      x[ , sexo := as.numeric( sexo) ]
     }
     
     # descobre quais colunas podem ser numéricas
