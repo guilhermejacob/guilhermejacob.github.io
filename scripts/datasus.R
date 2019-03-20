@@ -1,297 +1,227 @@
-downloader::source_url( "https://raw.githubusercontent.com/guilhermejacob/guilhermejacob.github.io/master/scripts/install_packages.R" , quiet = TRUE , prompt = TRUE )
+# DATASUS: SIM, SINASC e SISPRENATAL.
 
-# auxilliary functions
-# create local data catalog:
-catalog_datasus <- function( output_dir ){
-  
-  # sus_htmls <- "ftp://ftp.datasus.gov.br/dissemin/publicos/"
-  sus_htmls <- paste0( "ftp://ftp.datasus.gov.br/dissemin/publicos/" , c( "SIM" , "SINASC" , "SISPRENATAL" ) , "/" )
-  # sus_htmls <- sus_htmls[1:2]
-  
-  these_links <- datasus_ftp_scrape( sus_htmls )
-  # these_links <- datasus_ftp_scrape( sus_htmls[1] )
-  these_links <- these_links[ !grepl( "\\/prelim" , these_links , ignore.case = TRUE ) ]
-  these_links <- these_links[ !grepl( "^D.*BR[0-9]{4}" , basename( these_links ) , ignore.case = FALSE ) ]
-  these_links <- these_links[ grepl( "\\.(dbc|dbf)$" , these_links , ignore.case = TRUE ) ]
-  # these_links <- these_links[ !( grepl( "ANT" , these_links ) & grepl( "2014" , these_links ) ) ]
-  
-  catalog <-
-    data.frame(
-      full_url = these_links ,
-      stringsAsFactors = FALSE
-    )
-  
-  
-  catalog$type <-
-    ifelse( grepl( sus_htmls[1] , catalog$full_url ) , "sim" ,
-            ifelse( grepl( sus_htmls[2] , catalog$full_url ) , "sinasc" ,
-                    ifelse( grepl( sus_htmls[3] , catalog$full_url ) , "sisprenatal" , NA ) ) )
-  
-  catalog$output_filename <-
-    gsub( "dados/" , "" ,
-          gsub( "201201_/" , "" ,
-                gsub( "dbc$" , "rds" ,
-                      gsub( "ftp://ftp.datasus.gov.br/dissemin/publicos" , output_dir , catalog$full_url ) ,
-                      ignore.case = TRUE )
-          )
-    )
-  
-  year_lines <- gsub( "[^0-9]" , "" , basename( catalog$full_url ) )
-  
-  catalog$year <-
-    ifelse( nchar( year_lines ) == 2 & as.numeric( year_lines ) < 79 , 2000 + as.numeric( year_lines ) ,
-            ifelse( nchar( year_lines ) == 2 & as.numeric( year_lines ) >= 79 , 1900 + as.numeric( year_lines ) ,
-                    ifelse( nchar( year_lines ) == 4 & as.numeric( year_lines ) >= 1996 , as.numeric( year_lines ) ,
-                            ifelse( nchar( year_lines ) == 4 & as.numeric( year_lines ) < 1996 , 2000 + as.numeric( substr( year_lines , 1 , 2 ) ) , NA ) ) ) )
-  catalog$year <- ifelse( grepl( "\\.dbc$" , catalog$full_url , ignore.case = TRUE ) , catalog$year , NA )
-  
-  original_fn <- catalog$output_filename
-  catalog$output_filename <- tolower( catalog$output_filename )
-  
-  catalog$db_tablename <-
-    ifelse( !grepl( "dbc$" , catalog$full_url , ignore.case = TRUE ) , NA ,
-            ifelse( grepl( "/dofet" , catalog$output_filename ) ,
-                    paste0( substr( basename( catalog$output_filename ) , 3 , 5 ) , ifelse( grepl( "/cid9" , catalog$output_filename ) , "_cid9" , "_cid10" ) ) ,
-                    ifelse( grepl( "/dores" , catalog$output_filename ) ,
-                            paste0( "geral" , ifelse( grepl( "/cid9" , catalog$output_filename ) , "_cid9" , "_cid10" ) ) ,
-                            ifelse( grepl( "/sinasc" , catalog$output_filename ) ,
-                                    ifelse( grepl( "/dnign" , catalog$output_filename ) , "nign" ,
-                                            paste0( "nasc" , ifelse( grepl( "/ant" , catalog$output_filename ) , "_cid9" , "_cid10" ) ) ) ,
-                                    ifelse( grepl( "/sisprenatal" , catalog$output_filename ) , "pn" ,
-                                            ifelse( grepl( "doign" , catalog$output_filename ) , "dign" , NA ) ) ) ) ) )
-  
-  
-  catalog$dbfolder <- ifelse( is.na( catalog$db_tablename ) , NA , paste0( output_dir , "/MonetDB" ) )
-  
-  catalog$output_filename <- original_fn
-  
-  catalog
-  
-}
+### Este arquivo contém as principais funções necessárias para
+### montas as bases de dados do SIM, SINASC e SISPRENATAL do DataSUS.
+### A idéia é construir um catálogo com a função catalog_datasus(),
+### filtrar (ou não) os dados desejados, depois montar a base de dados no disco.
 
-# datavault
-datavault_datasus <- function( catalog , datavault_dir , skipExist = TRUE ) {
-  
-  catalog[ , "datavault_file" ] <- gsub( "ftp://ftp.datasus.gov.br/dissemin/publicos" , datavault_dir , catalog$full_url )
-  catalog[ , "datavault_file" ] <- gsub( "//" , "/" , catalog[ , "datavault_file" ] , ignore.case = TRUE )
-  
-  # check for existing files
-  existing_files <- file.exists( catalog[ , "datavault_file" ] )
-  
-  for (i in seq_along( catalog$full_url ) ) {
-    
-    # skip existing file
-    if( skipExist & existing_files[ i ] ){ cat( "file" , i , "out of" , nrow( catalog ) , "downloaded to" , datavault_dir , "\r") ; next() }
-    
-    if ( !dir.exists( dirname( catalog[ i , "datavault_file" ] ) ) ) { dir.create( dirname( catalog[ i , "datavault_file" ] ) , recursive = TRUE ) }
-    
-    # download file
-    download.file( catalog[ i , "full_url" ], catalog[ i , "datavault_file" ] , mode = "wb" , quiet = TRUE )
-    
-    # process tracker
-    cat( "file" , i , "out of" , nrow( catalog ) , "downloaded to" , datavault_dir , "\r")
-    
+### funções auxiliares
+link_scrape <- function( x ) {
+  library(RCurl)
+  custom_recodes <- c( "í" = "%ED" , "á" = "%E1" , "ã" = "%E3" , " " = "%20" )
+  custom_recodes <- NULL
+  if ( !is.null( x ) ){
+    this_text <- getURL( x , .encoding = 'ISO-8859-1' , .opts = list(timeout = 10 , dirlistonly = TRUE , ftplistonly = TRUE , ftp.use.epsv = FALSE ) )
+    this_text <- unlist( strsplit( this_text , "\n" ) )
+    this_text <- curlPercentEncode( this_text , codes = custom_recodes )
+    paste0( x , this_text )
+  } else { 
+    NULL 
   }
-  
-  # print message
-  cat( "\ndatasus datavault was built at" , datavault_dir , "\n" )
-  
-  # return catalog
-  catalog
-  
 }
 
-# build dataset from catalog:
-build_datasus <- function( catalog ) {
+getlisting <- function( these_urls ) {
   
-  # create all folders:
-  for ( this_dir in unique( dirname( catalog$output_filename ) ) ) { dir.create( this_dir , recursive = TRUE )  }
+  library(future.apply)
+  plan(multiprocess)
   
-  if ( !requireNamespace( "read.dbc" , quietly = TRUE ) ) stop( "read.dbc needed for this function to work. to install it, type `install.packages( 'read.dbc' )`" , call. = FALSE )
-  
-  tf <- tempfile()
-  
-  for ( i in seq_len( nrow( catalog ) ) ){
-    
-    # download the file
-    if ( is.null( catalog[ i , "datavault_file" ] ) ) {
-      download.file( catalog[ i , "full_url" ] , tf , quiet = TRUE , mode = "wb" )
-    } else if ( is.na( catalog[ i , "datavault_file" ] ) ) {
-      download.file( catalog[ i , "full_url" ] , tf , quiet = TRUE , mode = "wb" ) 
-    } else {
-      file.copy( catalog[ i , "datavault_file" ] , tf )
-    }
-    
-    if ( !grepl( "dbc$" , catalog[ i , 'full_url' ] , ignore.case = TRUE ) ) {
-      
-      if ( !dir.exists( dirname( catalog[ i , 'output_filename' ] ) ) ) dir.create( dirname( catalog[ i , 'output_filename' ] ) , showWarnings = FALSE , recursive = TRUE )
-      if ( !file.exists( catalog[ i , 'output_filename' ] ) ) file.create( catalog[ i , 'output_filename' ] , showWarnings = FALSE )
-      file.copy( tf , catalog[ i , 'output_filename' ] , overwrite = TRUE )
-      
-    } else {
-      # read dbc file
-      x <- read.dbc::read.dbc( tf , as.is = TRUE )
-      
-      # convert all column names to lowercase
-      names( x ) <- tolower( names( x ) )
-      
-      # add underscores after monetdb illegal names
-      for ( j in names( x )[ toupper( names( x ) ) %in% getFromNamespace( "reserved_monetdb_keywords" , "MonetDBLite" ) ] ) names( x )[ names( x ) == j ] <- paste0( j , "_" )
-      
-      # remove trailing spaces
-      names( x ) <- trimws( names( x ) , which = "both" )
-      
-      # coerce factor columns to character
-      x[ sapply( x , class ) == "factor" ] <- sapply( x[ sapply( x , class ) == "factor" ] , as.character )
-      
-      # figure out which columns really ought to be numeric
-      for( this_col in names( x ) ){
-        
-        # if the column can be coerced without a warning, coerce it to numeric
-        this_result <- tryCatch( as.numeric( x[ , this_col ] ) , warning = function(c) NULL , error = function(c) NULL )
-        
-        if( !is.null( this_result ) ) x[ , this_col ] <- as.numeric( x[ , this_col ] )
-        
-      }
-      
-      # force dates to numeric:
-      # x[ , grep( "^dt|^data" , colnames(x) ) ] <- apply( x[ , grep( "^dt|^data" , colnames(x) ) ] , 2 , as.numeric )
-      
-      catalog[ i , 'case_count' ] <- nrow( x )
-      
-      saveRDS( x , file = catalog[ i , 'output_filename' ] )
-      
-      these_cols <- sapply( x , class )
-      
-      these_cols <- data.frame( col_name = names( these_cols ) , col_type = these_cols , stringsAsFactors = FALSE )
-      
-      if( exists( catalog[ i , 'db_tablename' ] ) ){
-        
-        same_table_cols <- get( catalog[ i , 'db_tablename' ] )
-        same_table_cols <- unique( rbind( these_cols , same_table_cols ) )
-        
-      } else same_table_cols <- these_cols
-      
-      dupe_cols <- same_table_cols$col_name[ duplicated( same_table_cols$col_name ) ]
-      
-      # if there's a duplicate, remove the numeric typed column
-      same_table_cols <- same_table_cols[ !( same_table_cols$col_type == 'numeric' & same_table_cols$col_name %in% dupe_cols ) , ]
-      
-      assign( catalog[ i , 'db_tablename' ] , same_table_cols )
-      
-      # process tracker
-      cat( paste0( "datasus catalog entry " , i , " of " , nrow( catalog ) , " stored at '" , catalog[ i , 'output_filename' ] , "'\r" ) )
-      
-      
-      # if this is the final catalog entry for the unique db_tablename, then write them all to the database
-      if ( i == max( which( catalog$db_tablename == catalog[ i , 'db_tablename' ] ) ) ) {
-        
-        correct_columns <- get( catalog[ i , 'db_tablename' ] )
-        
-        # open the connection to the monetdblite database
-        db <- DBI::dbConnect( MonetDBLite::MonetDBLite() , catalog[ i , 'dbfolder' ] )
-        
-        cat("\n")
-        # loop through all tables that match the current db_tablename
-        for( this_file in catalog[ catalog$db_tablename %in% catalog[ i , 'db_tablename' ] , 'output_filename' ] ){
-          
-          x <- readRDS( file = this_file )
-          
-          for( this_col in setdiff( correct_columns$col_name , names( x ) ) ) x[ , this_col ] <- NA
-          
-          # get final table types
-          same_table_cols <- get( catalog[ i , 'db_tablename' ] )
-          
-          for( this_row in seq( nrow( same_table_cols ) ) ){
-            
-            if( same_table_cols[ this_row , 'col_type' ] != class( x[ , same_table_cols[ this_row , 'col_name' ] ] ) ){
-              
-              if( same_table_cols[ this_row , 'col_type' ] == 'numeric' ) x[ , same_table_cols[ this_row , 'col_name' ] ] <- as.numeric( x[ , same_table_cols[ this_row , 'col_name' ] ] )
-              if( same_table_cols[ this_row , 'col_type' ] == 'character' ) x[ , same_table_cols[ this_row , 'col_name' ] ] <- as.character( x[ , same_table_cols[ this_row , 'col_name' ] ] )
-              
-            }
-            
-          }
-          
-          # put the columns of x in alphabetical order so they're always the same
-          x <- x[ sort( names( x ) ) ]
-          
-          # re-save the file
-          saveRDS( x , file = this_file )
-          
-          # append the file to the database
-          DBI::dbWriteTable( db , catalog[ i , 'db_tablename' ] , x , append = TRUE , row.names = FALSE )
-          
-          file_index <- seq_along( catalog[ ( catalog[ i , 'db_tablename' ] == catalog$db_tablename ) & ! is.na( catalog$db_tablename ) , 'output_filename' ] ) [ this_file == catalog[ ( catalog[ i , 'db_tablename' ] == catalog$db_tablename ) & ! is.na( catalog$db_tablename ) , 'output_filename' ] ]
-          cat( paste0( "datasus entry " , file_index , " of " , nrow( catalog[ catalog$db_tablename == catalog[ i , 'db_tablename' ] , ] ) , " stored at '" , catalog[ i , 'db_tablename' ] , "'\r" ) )
-          
-        }
-        
-        cat( "\n" )
-        
-        # disconnect from the current monet database
-        DBI::dbDisconnect( db , shutdown = TRUE )
-        
-      }
-      
-      
-    }
-    
-    
-    # delete the temporary files
-    suppressWarnings( file.remove( tf ) )
-    
-  }
-  
-  catalog
-  
-}
-
-# recursive ftp scrape
-datasus_getlisting <- function( these_urls ) {
   these_urls <- ifelse( grepl( "\\/$" , these_urls ) , these_urls , paste0( these_urls , "/" ) )
-  # res <- lapply( these_urls , function( x ) { if ( !is.null( x ) ) paste0( x , unlist( strsplit( RCurl::getURL( x, dirlistonly = TRUE ) , "\n" ) ) ) else NULL } )
-  res <- plyr::llply( these_urls , function( x ) { if ( !is.null( x ) ) paste0( x , unlist( strsplit( RCurl::getURL( x, dirlistonly = TRUE ) , "\n" ) ) ) else NULL } , .progress = "text" )
+  res <- future_lapply( these_urls , link_scrape )
   res <- unlist( res )
   res <- res[ !grepl( "SISPRENATAL\\/201201_\\/Doc$", res ) ] # folder not loading in server
-  is.file <- unlist( lapply( res , function(x) grepl( "\\." , basename( x ) ) ) )
+  is.file <- grepl( "\\." , basename( res ) , ignore.case = TRUE )
   res[ !is.file ] <- ifelse( grepl( "\\/$" , res[ !is.file ] ) , res[ !is.file ] , paste0( res[ !is.file ] , "/" ) )
   list( dirs = if ( any(!is.file) ) { res[ !is.file ] } else { NULL } , 
         files = if ( any(is.file) ) { res[ is.file ] } else { NULL } )
 }
 
-
-# datasus_ftp_scrape <- function( main_url ) {
-#   
-#   final_files <- NULL
-#   
-#   directories <- datasus_getlisting(main_url)[[1]]
-#   
-#   while ( length(directories) > 0) {
-#     listing <- datasus_getlisting(directories)
-#     directories <- listing[[1]]
-#     files <- listing[[2]]
-#     final_files <- c(final_files, files)
-#   }
-#   
-#   final_files
-#   
-# }
-
-
-datasus_ftp_scrape <- function( main_url ) {
+recursive_ftp_scrape <- function( main_url , max.iter = Inf ) {
   
   final_files <- NULL
   
   directories <- main_url
   
-  while ( length(directories) > 0) {
-    listing <- datasus_getlisting(directories)
+  i=0
+  while ( length(directories) > 0 ) {
+    i=i+1
+    if ( i > max.iter ) { break() }
+    listing <- getlisting(directories)
     directories <- listing[[1]]
     files <- listing[[2]]
-    final_files <- c(final_files, files)
+    final_files <- c(final_files, files )
+    if ( length( directories) > 0 ) cat( length(directories) , "new directories found.\n" ) else cat( "done!\n" )
   }
   
-  final_files
+  return( final_files )
+  
+}
+
+### cria catálogo de dados
+catalog_datasus <- function( output_dir , drop.prelim = TRUE ){
+  
+  # define pastas-raízes
+  sus_htmls <- paste0( "ftp://ftp.datasus.gov.br/dissemin/publicos/" , c( "SIM" , "SINASC" , "SISPRENATAL" ) , "/" )
+  
+  # percorre diretórios
+  these_links <- recursive_ftp_scrape( sus_htmls )
+  
+  # remove arquivos preliminares
+  if ( drop.prelim ) { these_links <- these_links[ !grepl( "\\/prelim" , these_links , ignore.case = TRUE ) ] }
+  
+  # deleta arquivos "empilhados"
+  these_links <- these_links[ !grepl( "^D.*BR[0-9]{4}" , basename( these_links ) , ignore.case = FALSE ) ]
+  
+  # mantém apenas arquivos de dados
+  these_links <- these_links[ grepl( "\\.dbc$" , these_links , ignore.case = TRUE ) ]
+  
+  # cria catálogo de links
+  catalog <-
+    data.frame(
+      full_url = these_links ,
+      type = ifelse( grepl( sus_htmls[1] , these_links ) , "sim" ,
+                     ifelse( grepl( sus_htmls[2] , these_links ) , "sinasc" ,
+                             ifelse( grepl( sus_htmls[3] , these_links ) , "sisprenatal" , NA ) ) ) ,
+      stringsAsFactors = FALSE
+    )
+  
+  # define nome do arquivo destino
+  catalog$output_filename <-
+    gsub( "dados/" , "" ,
+          gsub( "201201_/" , "" ,
+                gsub( "\\.dbc$" , ".fst" ,
+                      gsub( "ftp://ftp.datasus.gov.br/dissemin/publicos" , output_dir , tolower( these_links ) ) ,
+                      ignore.case = TRUE )
+          )
+    )
+  
+  # define anos
+  year_lines <- gsub( "[^0-9]" , "" , basename( these_links ) )
+  catalog$year <-
+    ifelse( nchar( year_lines ) == 2 & as.numeric( year_lines ) < 79 , 2000 + as.numeric( year_lines ) ,
+            ifelse( nchar( year_lines ) == 2 & as.numeric( year_lines ) >= 79 , 1900 + as.numeric( year_lines ) ,
+                    ifelse( nchar( year_lines ) == 4 & as.numeric( year_lines ) >= 1996 , as.numeric( year_lines ) ,
+                            ifelse( nchar( year_lines ) == 4 & as.numeric( year_lines ) < 1996 , 2000 + as.numeric( substr( year_lines , 1 , 2 ) ) , NA ) ) ) )
+  catalog$year <- ifelse( grepl( "\\.dbc$" , these_links , ignore.case = TRUE ) , catalog$year , NA )
+  
+  # retorna catálogo
+  catalog
+  
+}
+
+# cria datavault
+datavault_datasus <- function( catalog , datavault_dir , skipExist = TRUE ) {
+  
+  # carrega libraries
+  library(future.apply)
+  
+  # define processamento paralelo
+  plan(multiprocess)
+  
+  # define pastas do datavault
+  catalog[ , "datavault_file" ] <- gsub( "ftp://ftp.datasus.gov.br/dissemin/publicos" , datavault_dir , catalog$full_url )
+  catalog[ , "datavault_file" ] <- gsub( "//" , "/" , catalog[ , "datavault_file" ] , ignore.case = TRUE )
+  
+  # procura arquivos existentes
+  existing_files <- file.exists( catalog[ , "datavault_file" ] )
+  
+  # baixa arquivos
+  future_lapply( seq_along( catalog$full_url ) , function( this_entry ) {
+    
+    # pula arquivos existentes
+    if ( file.exists( catalog[ this_entry , "datavault_file" ] ) ){ cat( "file" , this_entry , "out of" , nrow( catalog ) , "downloaded to" , datavault_dir , "\r") ; return( NULL ) }
+    
+    # cria pasta destino
+    dir.create( dirname( catalog[ this_entry , "datavault_file" ] ) , recursive = TRUE , showWarnings = FALSE )
+    
+    # baixa arquivo
+    download.file( catalog[ this_entry , "full_url" ], catalog[ this_entry , "datavault_file" ] , mode = "wb" , quiet = TRUE )
+    
+    # acompanhamento de processo
+    cat( "file" , this_entry , "out of" , nrow( catalog ) , "downloaded to" , datavault_dir , "\r")
+    
+  } )
+  
+  # mostra mensagem
+  cat( "\ndatasus datavault was built at" , datavault_dir , "\n" )
+  
+  # returna catálogo
+  catalog
+  
+}
+
+
+### monta bases de dados
+build_datasus <- function( catalog ) {
+  
+  # carrega pacotes
+  library(data.table)
+  library(read.dbc)
+  library(fst)
+  
+  # cria arquivo temporário
+  tf <- tempfile()
+  
+  # "circula" pelas entradas do catálogo
+  for ( i in seq_len( nrow( catalog ) ) ){
+    
+    # baixa arquivo de dados
+    if ( is.null( catalog[ i , "datavault_file" ] ) ) {
+      download.file( catalog[ i , "full_url" ] , tf , quiet = TRUE , mode = "wb" )
+    } else if ( is.na( catalog[ i , "datavault_file" ] ) ) {
+      download.file( catalog[ i , "full_url" ] , tf , quiet = TRUE , mode = "wb" ) 
+    } else {
+      file.copy( catalog[ i , "datavault_file" ] , tf , overwrite = TRUE )
+    }
+    
+    # lê arquivo .dbc
+    x <- read.dbc( tf , as.is = TRUE )
+    
+    # converte para data.table
+    x <- data.table( x )
+    
+    # nomes das colunas em minúsculo
+    names( x ) <- tolower( names( x ) )
+    
+    # remove espaços desnecessários nos nomes
+    names( x ) <- trimws( names( x ) , which = "both" )
+    
+    # força variáveis de códigos para caractere
+    code_vars <- names( x )[ grepl( "^(cod|causabas|linha|ocup|dt|numero|idade|sexo)" , names( x ) ) ]
+    x[ , (code_vars) := lapply( .SD , as.character ) , .SDcols = code_vars ]
+    
+    # ajusta formato da variável sexo em 2014
+    if ( "sexo" %in% names(x) ) {
+      x[ !( sexo %in% c("1","2","M","F") ) , sexo := NA ]
+      x[ sexo == "M" , sexo := 1 ] ; x[ sexo == "F" , sexo := 2 ] 
+    }
+    
+    # descobre quais colunas podem ser numéricas
+    for( this_col in names( x )[ !grepl( "^(cod|causabas|linha|ocup|dt|numero|idade|sexo)" , names( x ) ) ] ){
+      
+      # se pode ser convertida sem alerta, converte para númerico
+      this_result <- tryCatch( as.numeric( x[[this_col]] ) , warning = function(c) NULL , error = function(c) NULL )
+      
+      # converte para numérico
+      if( !is.null( this_result ) ) x[ , (this_col) := lapply( .SD , as.numeric ) , .SDcols = this_col ]
+      
+    }
+    
+    # salva contagem de casos
+    catalog[ i , 'case_count' ] <- nrow( x )
+    
+    # salva arquivo no disco
+    dir.create( dirname( catalog[ i , 'output_filename' ] ) , recursive = TRUE , showWarnings = FALSE )
+    write_fst( x , path = catalog[ i , 'output_filename' ] , compress = 100 )
+    
+    # acompanhamento de processo
+    cat( paste0( "datasus catalog entry " , i , " of " , nrow( catalog ) , " stored at '" , catalog[ i , 'output_filename' ] , "'\r" ) )
+    
+    # deleta arquivo temporário
+    suppressWarnings( file.remove( tf ) )
+    
+  }
+  
+  # retorna catálogo
+  catalog
   
 }
