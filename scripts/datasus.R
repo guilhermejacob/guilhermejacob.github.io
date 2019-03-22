@@ -3,7 +3,8 @@
 ### Este arquivo contém as principais funções necessárias para
 ### montas as bases de dados do SIM, SINASC e SISPRENATAL do DataSUS.
 ### A idéia é construir um catálogo com a função catalog_datasus(),
-### filtrar (ou não) os dados desejados, depois montar a base de dados no disco.
+### filtrar (ou não) os dados desejados, depois montar as bases de dados
+### no disco usando a função build_datasus().
 
 ### funções auxiliares
 link_scrape <- function( x ) {
@@ -103,6 +104,25 @@ catalog_datasus <- function( output_dir , drop.prelim = TRUE ){
                             ifelse( nchar( year_lines ) == 4 & as.numeric( year_lines ) < 1996 , 2000 + as.numeric( substr( year_lines , 1 , 2 ) ) , NA ) ) ) )
   catalog$year <- ifelse( grepl( "\\.dbc$" , these_links , ignore.case = TRUE ) , catalog$year , NA )
   
+  # cria nomes das tabelas na base de dados
+  catalog$db_tablename <-
+    ifelse( !grepl( "dbc$" , catalog$full_url , ignore.case = TRUE ) , NA ,
+            ifelse( grepl( "/dofet" , catalog$output_filename ) ,
+                    paste0( substr( basename( catalog$output_filename ) , 3 , 5 ) , ifelse( grepl( "/cid9" , catalog$output_filename ) , "_cid9" , "_cid10" ) ) ,
+                    ifelse( grepl( "/dores" , catalog$output_filename ) ,
+                            paste0( "geral" , ifelse( grepl( "/cid9" , catalog$output_filename ) , "_cid9" , "_cid10" ) ) ,
+                            ifelse( grepl( "/sinasc" , catalog$output_filename ) ,
+                                    ifelse( grepl( "/dnign" , catalog$output_filename ) , "nign" ,
+                                            paste0( "nasc" , ifelse( grepl( "/ant" , catalog$output_filename ) , "_cid9" , "_cid10" ) ) ) ,
+                                    ifelse( grepl( "/sisprenatal" , catalog$output_filename ) , "pn" ,
+                                            ifelse( grepl( "doign" , catalog$output_filename ) , "dign" , NA ) ) ) ) ) )
+  
+  # adiciona sufixo de ano
+  catalog$db_tablename <- paste( catalog$db_tablename , catalog$year , sep = "_" )
+  
+  # cria endereço da base de dados
+  catalog$dbfolder <- ifelse( is.na( catalog$db_tablename ) , NA , paste0( output_dir , "/MonetDB" ) )
+  
   # retorna catálogo
   catalog
   
@@ -151,7 +171,7 @@ datavault_datasus <- function( catalog , datavault_dir , skipExist = TRUE ) {
 
 
 ### monta bases de dados
-build_datasus <- function( catalog ) {
+build_datasus <- function( catalog , skipExist = TRUE ) {
   
   # carrega pacotes
   library(data.table)
@@ -163,6 +183,12 @@ build_datasus <- function( catalog ) {
   
   # "circula" pelas entradas do catálogo
   for ( i in seq_len( nrow( catalog ) ) ){
+    
+    # pula arquivo existente
+    if (skipExist & file.exists( catalog[ i , "output_filename"] ) ) {
+      cat( paste0( catalog[ i , 'output_filename' ] , " already exists. Skippping.\r" ) )
+      next()
+    } 
     
     # baixa arquivo de dados
     if ( is.null( catalog[ i , "datavault_file" ] ) ) {
@@ -185,9 +211,13 @@ build_datasus <- function( catalog ) {
     # remove espaços desnecessários nos nomes
     names( x ) <- trimws( names( x ) , which = "both" )
     
+    # adiciona underscores depois de nomes reservados do monetdb
+    for ( j in names( x )[ toupper( names( x ) ) %in% getFromNamespace( "reserved_monetdb_keywords" , "MonetDBLite" ) ] ) names( x )[ names( x ) == j ] <- paste0( j , "_" )
+    
     # força variáveis de códigos para caractere
     code_vars <- names( x )[ grepl( "^(cod|causabas|linha|ocup|dt|numero|idade|sexo)" , names( x ) ) ]
     x[ , (code_vars) := lapply( .SD , as.character ) , .SDcols = code_vars ]
+    
     
     # ajusta formato da variável sexo em 2014
     if ( "sexo" %in% names(x) ) {
@@ -224,5 +254,103 @@ build_datasus <- function( catalog ) {
   
   # retorna catálogo
   catalog
+  
+}
+
+### cria base de dados monetdb
+monetdb_datasus <- function( catalog ) {
+  
+  # carrega libraries
+  library(data.table)
+  library(fst)
+  library(DBI)
+  library(MonetDBLite)
+  
+  # combinações únicas de bases de dados e tabelas
+  dbentries <- unique( catalog[ , c( "dbfolder" , "db_tablename" ) ] )
+  
+  # # deleta bases de dados preexistentes
+  # for ( this_folder in unique( dbentries[ , "dbfolder" ] ) ) { unlink( this_folder , recursive = TRUE ) }
+  
+  # para cada base de dados e tabela associada
+  for ( i in nrow(dbentries) ) {
+    
+    # abre conexão com a tabela
+    db <- dbConnect( MonetDBLite() , dbentries[ i , "dbfolder" ] )
+    
+    # deleta tabela se ela existir:
+    if ( dbExistsTable( db , dbentries[ i , "db_tablename" ] ) ) { dbRemoveTable( db , dbentries[ i , "db_tablename" ] ) }
+    
+    # lista todos os arquivos desta tabela
+    these_files <- subset( catalog, dbfolder == dbentries[ i , "dbfolder" ] & db_tablename == dbentries[ i , "db_tablename" ] ) [ , 'output_filename' ]
+    
+    # coleta nomes e formatos de colunas em todos os arquivos desta base
+    these_dts <- lapply( these_files , function(this_file) {
+      
+      # pula arquivos inexistentes
+      if ( !file.exists( this_file ) ) return( NULL )
+      
+      # lê metadados
+      x <- read_fst( this_file , as.data.table = TRUE , from = 1 , to = 1 )
+      
+      # coleta nome de colunas
+      these_cols <- colnames( x )
+      
+      # coleta formato de colunas
+      these_formats <- sapply( x , typeof )
+      
+      # monta data.table
+      data.table( filename = this_file , column_name = these_cols , column_format = these_formats )
+      
+    } )
+    
+    # empilha dados
+    data_structure <- rbindlist( these_dts , use.names = TRUE )
+    
+    # reformata estrutura
+    data_structure <- dcast( data_structure , column_name ~ column_format , fill = "double" , drop = FALSE , value.var = "column_format" , fun.aggregate = unique )
+    
+    # define formato final da coluna
+    data_structure <- as.data.frame( data_structure )
+    data_structure$col_format <- apply( data_structure[ , -1 ] , 1 , function( y ) { ifelse( any( y %in% c( "character", "date" ) ) , "character" ,"numeric" ) } )
+    
+    # cria estrutura final
+    data_structure <- data_structure[ , c( "column_name" , "col_format" ) ]
+    
+    # lê arquivo, formata colunas e salva dados na tabela da base de dados
+    for ( this_file in these_files ) {
+      
+      # lê arquivo
+      x <- read_fst( this_file , as.data.table = TRUE )
+      
+      # cria colunas ausentes
+      missing_cols <- data_structure$column_name [ !is.element( data_structure$column_name , colnames(x) ) ]
+      if ( length( missing_cols ) > 0 )  x[ , (missing_cols) := NA ]
+      
+      # altera formatos
+      these_num_cols <- data_structure$column_name[ data_structure$col_format == "numeric" ]
+      x[ , (these_num_cols) := lapply( .SD , as.numeric ) , .SDcols = these_num_cols ]
+      these_char_cols <- data_structure$column_name[ data_structure$col_format == "character" ]
+      x[ , (these_char_cols) := lapply( .SD , as.character ) , .SDcols = these_char_cols ]
+      
+      # reordena colunas
+      setcolorder( x , data_structure$column_name )
+      
+      # salva dados na tabela
+      dbWriteTable( db , dbentries[ i , "db_tablename" ] , x , append = TRUE )
+      rm( x ) ; gc()
+      
+      # acompanhamento de processo
+      cat( basename( this_file ) , "stored at" , dbentries[ i , "db_tablename" ] , "\r" )
+      
+    }
+    
+    # disconecta da base de dados
+    dbDisconnect( db , shutdown = TRUE )
+    
+  }
+  
+  # acompanhamento de processo
+  cat( "\ndatasus monetdb database was built." )
   
 }
