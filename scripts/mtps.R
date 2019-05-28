@@ -26,7 +26,7 @@ link_scrape <- function( x ) {
     h <- getCurlHandle()
     this_text <- getURL( x , curl = h , .encoding = 'ISO-8859-1' , .opts = list( timeout = 240 , dirlistonly = TRUE , ftplistonly = TRUE , ftp.use.epsv = FALSE ) )
     reset(h)
-    this_text <- unlist( strsplit( this_text , "\n" ) )
+    this_text <- unlist( strsplit( this_text , ifelse( Sys.info()["sysname"] == "Windows" , "\r\n" , "\n" ) ) )
     this_text <- curlPercentEncode( this_text , codes = custom_recodes )
     paste0( x , this_text )
   } else { 
