@@ -14,6 +14,7 @@ link_scrape <- function( x ) {
   if ( !is.null( x ) ){
     this_text <- getURL( x , .encoding = 'ISO-8859-1' , .opts = list(timeout = 10 , dirlistonly = TRUE , ftplistonly = TRUE , ftp.use.epsv = FALSE ) )
     this_text <- unlist( strsplit( this_text , "\n" ) )
+    this_text <- gsub( "\\r$" , "" , this_text )
     this_text <- curlPercentEncode( this_text , codes = custom_recodes )
     paste0( x , this_text )
   } else { 
@@ -192,9 +193,6 @@ build_datasus <- function( catalog , skipExist = TRUE ) {
     
     # remove espaços desnecessários nos nomes
     names( x ) <- trimws( names( x ) , which = "both" )
-    
-    # adiciona underscores depois de nomes reservados do monetdb
-    for ( j in names( x )[ toupper( names( x ) ) %in% getFromNamespace( "reserved_monetdb_keywords" , "MonetDBLite" ) ] ) names( x )[ names( x ) == j ] <- paste0( j , "_" )
     
     # força variáveis de códigos para caractere
     code_vars <- names( x )[ grepl( "^(cod|causabas|linha|ocup|dt|numero|idade|sexo)" , names( x ) ) ]

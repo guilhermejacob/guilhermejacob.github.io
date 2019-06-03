@@ -1,3 +1,8 @@
+<<<<<<< HEAD
+=======
+# downloader::source_url( "https://raw.githubusercontent.com/guilhermejacob/guilhermejacob.github.io/master/scripts/install_packages.R" , quiet = TRUE , prompt = FALSE )
+
+>>>>>>> 762acc3c41deba439217be898db4474f0bf5a232
 string_to_num_with_commas <- function( string ) {
   tryCatch( as.numeric( gsub( ",", "." , string ) ) , error=function(e) string )
 }
@@ -81,7 +86,10 @@ catalog_mtps <-
     # set main ftp directory
     url_path <- "ftp://ftp.mtps.gov.br/pdet/microdados/"
     
+<<<<<<< HEAD
     # scrape files
+=======
+>>>>>>> 762acc3c41deba439217be898db4474f0bf5a232
     mtps_files <- recursive_ftp_scrape( url_path )
     
     # # drop "caged_ajustes"
@@ -238,6 +246,7 @@ build_mtps <-
           # remove files and delete temporary unzips folder
           file.remove( tf )
           suppressWarnings( unlink( file.path( td , "unzipped" ) , recursive = TRUE ) )
+<<<<<<< HEAD
           
           # convert all column names to lowercase
           names( x ) <- tolower( names( x ) )
@@ -285,6 +294,55 @@ build_mtps <-
           dir.create( dirname( catalog[ i , 'output_filename' ] ) , recursive = TRUE , showWarnings = FALSE )
           write.fst( x , path = catalog[ i , 'output_filename' ] , compress = 100 )
           
+=======
+          
+          # convert all column names to lowercase
+          names( x ) <- tolower( names( x ) )
+          
+          # remove special characters
+          names( x ) <- remove_special_character( names( x ) )
+          
+          # remove trailing spaces
+          names( x ) <- trimws( names( x ) , which = "both" )
+          
+          # remove special characters
+          names( x ) <- gsub( "\\.$|\\(|\\)" , "" , names( x ) )
+          
+          # change dots and spaces for underscore
+          names( x ) <- gsub( "\\.| |\\/|\\-" , "_" , names( x ) )
+          
+          # # fix NAs
+          # x[ , ] <- apply( x[ , ] , 2 , function( this_vec ) { this_vec [ this_vec == -1 ] <- NA ; return( this_vec ) } )
+          
+          # figure out which columns really ought to be numeric
+          # figure out which columns really ought to be numeric
+          if (catalog[i,"type"] %in% c( "caged" , "caged_ajustes" ) ) {
+            this_pattern <- "cnae|cbo|regiao|municipio|tipo|regioes|ibge|uf|faixa|grau|ind_|sexo|bairro|distrito|raca_cor|competencia|admitidos|saldo"
+            these_cols <- names( x )[ !grepl( this_pattern , names(x) ) ]
+          } else {
+            this_pattern <- "^(qtd|vl|tempo|rem)"
+            these_cols <- names( x )[ grepl( this_pattern , names(x) ) ]
+          }
+          for( this_col in these_cols ){
+            
+            # if the column can be coerced without a warning, coerce it to numeric
+            this_result <- tryCatch( as.numeric( gsub( "," , "." , x[ , this_col , with = F ][[1]] ) ), warning = function(c) NULL )
+            
+            if( !is.null( this_result ) ) x[ , (this_col) := lapply( .SD , function(y) as.numeric( gsub( ",", "." , y ) ) ) , .SDcols = this_col  ]
+            
+          }
+          
+          # force uf to numeric
+          suppressWarnings( x[ , uf := as.numeric( uf ) ] )
+          
+          # store case count
+          catalog[ i , 'case_count' ] <- nrow( x )
+          
+          # save file
+          dir.create( dirname( catalog[ i , 'output_filename' ] ) , recursive = TRUE , showWarnings = FALSE )
+          write.fst( x , path = catalog[ i , 'output_filename' ] , compress = 100 )
+          
+>>>>>>> 762acc3c41deba439217be898db4474f0bf5a232
         } else {
           x <- read_fst( path = catalog[ i , 'output_filename' ] , as.data.table = TRUE )
           catalog[ i , 'case_count' ] <- nrow( x )
@@ -369,4 +427,3 @@ build_mtps <-
     catalog
     
   }
-
