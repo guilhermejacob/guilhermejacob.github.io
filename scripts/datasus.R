@@ -1,7 +1,7 @@
 # DATASUS: SIM, SINASC e SISPRENATAL.
 
 ### Este arquivo contém as principais funções necessárias para
-### montas as bases de dados do SIM, SINASC e SISPRENATAL do DataSUS.
+### montar as bases de dados do SIM, SINASC e SISPRENATAL do DataSUS.
 ### A idéia é construir um catálogo com a função catalog_datasus(),
 ### filtrar (ou não) os dados desejados, depois montar as bases de dados
 ### no disco usando a função build_datasus().
@@ -104,25 +104,6 @@ catalog_datasus <- function( output_dir , drop.prelim = TRUE ){
                             ifelse( nchar( year_lines ) == 4 & as.numeric( year_lines ) < 1996 , 2000 + as.numeric( substr( year_lines , 1 , 2 ) ) , NA ) ) ) )
   catalog$year <- ifelse( grepl( "\\.dbc$" , these_links , ignore.case = TRUE ) , catalog$year , NA )
   
-  # cria nomes das tabelas na base de dados
-  catalog$db_tablename <-
-    ifelse( !grepl( "dbc$" , catalog$full_url , ignore.case = TRUE ) , NA ,
-            ifelse( grepl( "/dofet" , catalog$output_filename ) ,
-                    paste0( substr( basename( catalog$output_filename ) , 3 , 5 ) , ifelse( grepl( "/cid9" , catalog$output_filename ) , "_cid9" , "_cid10" ) ) ,
-                    ifelse( grepl( "/dores" , catalog$output_filename ) ,
-                            paste0( "geral" , ifelse( grepl( "/cid9" , catalog$output_filename ) , "_cid9" , "_cid10" ) ) ,
-                            ifelse( grepl( "/sinasc" , catalog$output_filename ) ,
-                                    ifelse( grepl( "/dnign" , catalog$output_filename ) , "nign" ,
-                                            paste0( "nasc" , ifelse( grepl( "/ant" , catalog$output_filename ) , "_cid9" , "_cid10" ) ) ) ,
-                                    ifelse( grepl( "/sisprenatal" , catalog$output_filename ) , "pn" ,
-                                            ifelse( grepl( "doign" , catalog$output_filename ) , "dign" , NA ) ) ) ) ) )
-  
-  # adiciona sufixo de ano
-  catalog$db_tablename <- paste( catalog$db_tablename , catalog$year , sep = "_" )
-  
-  # cria endereço da base de dados
-  catalog$dbfolder <- ifelse( is.na( catalog$db_tablename ) , NA , paste0( output_dir , "/MonetDB" ) )
-  
   # retorna catálogo
   catalog
   
@@ -177,6 +158,7 @@ build_datasus <- function( catalog , skipExist = TRUE ) {
   library(data.table)
   library(read.dbc)
   library(fst)
+  library(stringr)
   
   # cria arquivo temporário
   tf <- tempfile()
@@ -218,6 +200,21 @@ build_datasus <- function( catalog , skipExist = TRUE ) {
     code_vars <- names( x )[ grepl( "^(cod|causabas|linha|ocup|dt|numero|idade|sexo)" , names( x ) ) ]
     x[ , (code_vars) := lapply( .SD , as.character ) , .SDcols = code_vars ]
     
+    # ajusta data de nascimento corrompida em DOGO2005.dbc
+    if ( basename(catalog[i, "full_url"]) == "DOGO2005.dbc") { x[ 16599 , dtnasc := "28091950" ] }
+    
+    # ajusta datas corrompidas no sim
+    if ( catalog[i, "type"] == "sim" ) { 
+      
+      for( this_col in names( x )[ grepl( "^dt" , names( x ) ) ] ){
+        
+        x[ suppressWarnings( is.na( as.numeric( get(this_col) ) ) ) , (this_col) := NA ]
+        x[ nchar(get(this_col)) < 4 , (this_col) := NA ]
+        x[ nchar(get(this_col)) < 8 , (this_col) := str_pad( get(this_col) , 8 , pad = "0" ) ]
+        
+      }
+      
+    }
     
     # ajusta formato da variável sexo em 2014
     if ( "sexo" %in% names(x) ) {
@@ -266,6 +263,25 @@ monetdb_datasus <- function( catalog ) {
   library(DBI)
   library(MonetDBLite)
   
+  # cria nomes das tabelas na base de dados
+  catalog$db_tablename <-
+    ifelse( !grepl( "dbc$" , catalog$full_url , ignore.case = TRUE ) , NA ,
+            ifelse( grepl( "/dofet" , catalog$output_filename ) ,
+                    paste0( substr( basename( catalog$output_filename ) , 3 , 5 ) , ifelse( grepl( "/cid9" , catalog$output_filename ) , "_cid9" , "_cid10" ) ) ,
+                    ifelse( grepl( "/dores" , catalog$output_filename ) ,
+                            paste0( "geral" , ifelse( grepl( "/cid9" , catalog$output_filename ) , "_cid9" , "_cid10" ) ) ,
+                            ifelse( grepl( "/sinasc" , catalog$output_filename ) ,
+                                    ifelse( grepl( "/dnign" , catalog$output_filename ) , "nign" ,
+                                            paste0( "nasc" , ifelse( grepl( "/ant" , catalog$output_filename ) , "_cid9" , "_cid10" ) ) ) ,
+                                    ifelse( grepl( "/sisprenatal" , catalog$output_filename ) , "pn" ,
+                                            ifelse( grepl( "doign" , catalog$output_filename ) , "dign" , NA ) ) ) ) ) )
+  
+  # # adiciona sufixo de ano
+  # catalog$db_tablename <- paste( catalog$db_tablename , catalog$year , sep = "_" )
+  
+  # cria endereço da base de dados
+  catalog$dbfolder <- ifelse( is.na( catalog$db_tablename ) , NA , paste0( output_dir , "/MonetDB" ) )
+  
   # combinações únicas de bases de dados e tabelas
   dbentries <- unique( catalog[ , c( "dbfolder" , "db_tablename" ) ] )
   
@@ -273,7 +289,7 @@ monetdb_datasus <- function( catalog ) {
   # for ( this_folder in unique( dbentries[ , "dbfolder" ] ) ) { unlink( this_folder , recursive = TRUE ) }
   
   # para cada base de dados e tabela associada
-  for ( i in nrow(dbentries) ) {
+  for ( i in seq_len( nrow(dbentries) ) ) {
     
     # abre conexão com a tabela
     db <- dbConnect( MonetDBLite() , dbentries[ i , "dbfolder" ] )

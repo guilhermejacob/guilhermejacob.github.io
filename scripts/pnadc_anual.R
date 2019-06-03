@@ -64,12 +64,15 @@ catalog_pnadc_anual <-
     # keep .zip only
     pnadc_data_files <- file_list[ grepl( "\\.zip$" , basename( file_list ) , ignore.case = TRUE ) ]
     
+    # non supplementary
+    pnadc_data_files <- pnadc_data_files[ grepl( "visita", basename(pnadc_data_files))]
+    
     # build catalog
     catalog <-
       data.frame(
         full_url = pnadc_data_files ,
-        year = gsub( "PNADC_|_entr.*" , "" , basename( pnadc_data_files ) ),
-        visit = as.numeric( gsub( ".*_entr|(_|\\.).*" , "" , basename( pnadc_data_files ) ) ) ,
+        year = gsub( "PNADC_|_.*" , "" , basename( pnadc_data_files ) ),
+        visit = as.numeric( gsub( ".*visita|(\\.|_).*" , "" , basename( pnadc_data_files ) ) ) ,
         stringsAsFactors = FALSE
       )
     
@@ -77,9 +80,9 @@ catalog_pnadc_anual <-
     pnadc_input_files <- file_list[ grepl( "Input_.*\\.txt$" , basename( file_list ) ) ]
     catalog[ , "input_file" ] <- NULL
     for( i in seq_along( pnadc_data_files ) ) {
-      pattern0 <- paste0( "_" , ifelse( catalog[ i , "year" ] <= 2014 , 2014 , catalog[ i , "year" ] ) )
-      pattern1 <- paste0( catalog[ i , "visit" ] , "entr_" )
-      this_input <- pnadc_input_files [ grepl( pattern0 , basename( pnadc_input_files ) ) & grepl( pattern1 , basename( pnadc_input_files ) ) ]
+      pattern0 <- paste0( "_" , ifelse( catalog[ i , "year" ] <= 2014 , 2012 , catalog[ i , "year" ] ) )
+      pattern1 <- paste0( catalog[ i , "visit" ] , "_visita" )
+      this_input <- pnadc_input_files [ grepl( paste0( pattern1 , pattern0 ) , basename( pnadc_input_files ) ) ]
       catalog[ i , "input_file" ] <- this_input
     }
     
@@ -87,23 +90,24 @@ catalog_pnadc_anual <-
     pnadc_dict_files <- file_list[ grepl( "dicionario_.*\\.xls$" , basename( file_list ) ) ]
     catalog[ , "dict_file" ] <- NULL
     for( i in seq_along( pnadc_data_files ) ) {
-      pattern0 <- paste0( "_" , ifelse( catalog[ i , "year" ] <= 2014 , 2014 , catalog[ i , "year" ] ) )
+      pattern0 <- paste0( "_" , ifelse( catalog[ i , "year" ] <= 2014 , 2012 , catalog[ i , "year" ] ) )
       pattern1 <- paste0( catalog[ i , "visit" ] , "_visita" )
-      this_dict <- pnadc_dict_files [ grepl( pattern0 , basename( pnadc_dict_files ) ) & grepl( pattern1 , basename( pnadc_dict_files ) ) ]
+      this_dict <- pnadc_dict_files [ grepl( paste0( pattern1 , pattern0 ) , basename( pnadc_dict_files ) ) ]
       catalog[ i , "dict_file" ] <- this_dict
     }
     
     # define file date
-    these_dates <- gsub( ".*_entr[1-9]|_|\\..*" , "" , basename( pnadc_data_files ) , ignore.case = TRUE )
+    these_dates <- gsub( ".*_visita[1-9]|_|\\..*" , "" , basename( pnadc_data_files ) , ignore.case = TRUE )
     these_dates <- ifelse( nchar( these_dates ) == 8 , these_dates , NA )
     catalog[ , "file_date" ] <- these_dates
     
     # define filename
-    catalog[ , "output_filename" ] <- paste0( output_dir , paste( catalog[ , "year" ] , catalog[ , "visit" ] , "pnadc anual.Rds" ) )
+    catalog[ , "output_filename" ] <- paste0( output_dir , paste( catalog[ , "year" ] , catalog[ , "visit" ] , "pnadc anual.fst" ) )
     
     # reorder
     catalog <- catalog[ order( catalog[, "year"] , catalog[, "visit"] , decreasing = FALSE ) , ]
     
+    # return catalog
     catalog
     
   }
@@ -176,12 +180,15 @@ datavault_pnadc_anual <- function( catalog , datavault_dir , skipExist = TRUE ) 
 build_pnadc_anual <-
   function( catalog , ... ){
     
+    # load libraries
+    library(fst)
+    library(lodown)
+    
+    # create temporary files
     tf <- tempfile()
     tf2 <- tempfile()
     
-    # create directory structure
-    for ( i in seq_len( nrow( catalog ) ) )  if ( !dir.exists( dirname( catalog[ i , 'output_filename' ] ) ) ) { dir.create( dirname( catalog[ i , 'output_filename' ] ) , recursive = TRUE ) }
-    
+    # loop through entries
     for ( i in seq_len( nrow( catalog ) ) ){
       
       # download the file
@@ -200,6 +207,7 @@ build_pnadc_anual <-
         file.copy( catalog[ i , "input_file" ] , tf2 )
       }
       
+      # extract file
       unzip( tf , exdir = paste0( tempdir() , "/unzips" ) )
       
       unzipped_files <- list.files( paste0( tempdir() , "/unzips" ) , full.names = TRUE )
@@ -219,8 +227,13 @@ build_pnadc_anual <-
       # convert all column names to lowercase
       names( x ) <- tolower( names( x ) )
       
-      saveRDS( x , file = catalog[ i , 'output_filename' ] )
+      # create output folder
+      dir.create( dirname( catalog[ i , 'output_filename' ] ) , showW )
       
+      # save data
+      write.fst( x , path = catalog[ i , 'output_filename' ] , compress = 100 )
+      
+      # store case count
       catalog[ i , 'case_count' ] <- nrow( x )
       
       # delete the temporary files

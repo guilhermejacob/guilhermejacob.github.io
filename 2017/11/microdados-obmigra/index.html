@@ -307,28 +307,20 @@ OBMigra O Observatório das migrações internacionais (OBMigra) é fruto de um 
 </div>
 <div id="na-pratica" class="section level3">
 <h3>Na prática</h3>
-<p>Para facilitar o processo de baixar e montar a base de dados, escrevi <a href="https://github.com/guilhermejacob/guilhermejacob.github.io/blob/master/scripts/obmigra.R">esse script</a> com três funções para facilitar esse procedimento:</p>
+<p>Para facilitar o processo de baixar e montar a base de dados, escrevi <a href="https://github.com/guilhermejacob/guilhermejacob.github.io/blob/master/scripts/obmigra.R">esse script</a> com quatro funções para facilitar esse procedimento:</p>
 <ol style="list-style-type: decimal">
 <li><code>catalog_obmigra</code>: lista os dados do site em um catálogo;</li>
 <li><code>datavault_obmigra</code>: baixa os arquivos de dados brutos para um diretório local específico;</li>
 <li><code>build_obmigra</code>: constrói a base de dados</li>
+<li><code>monetdb_obmigra</code>: constrói a base de dados em SQL a partir dos arquivos.</li>
 </ol>
 <p>A função <code>datavault_obmigra</code> é <strong>opcional</strong>, mas ajuda bastante caso você não queira repetir os downloads toda vez que precisar montar a base de novo. O bloco de código abaixo mostra como fazer essa tarefa:</p>
-<pre class="r"><code># instala libraries
-libs &lt;- c(&quot;DBI&quot;, &quot;RSQLite&quot; , &quot;downloader&quot; , &quot;archive&quot; , &quot;dplyr&quot; , &quot;dbplyr&quot; , &quot;tidyr&quot; )
-libs.novas &lt;- libs[ !( libs %in% installed.packages()[ , &quot;Package&quot; ] ) ]
-if( length( libs.novas ) ) install.packages( libs.novas )
-
-# carrega libraries
-library(DBI)
-library(RSQLite)
-
-# define diretórios
+<pre class="r"><code># define diretórios
 output_dir &lt;- file.path( tempdir() , &quot;OBMigra&quot; ) 
 datavault_dir &lt;- file.path( tempdir() , &quot;OBMigra_DV&quot; ) 
 
 # carrega funções
-downloader::source_url( &quot;https://github.com/guilhermejacob/guilhermejacob.github.io/blob/master/scripts/obmigra.R&quot; )
+downloader::source_url( &quot;https://raw.githubusercontent.com/guilhermejacob/guilhermejacob.github.io/master/scripts/obmigra.R&quot; , prompt = FALSE )
 
 # cria catálogo de dados
 catalog &lt;- catalog_obmigra( output_dir = output_dir )
@@ -338,18 +330,23 @@ catalog &lt;- catalog_obmigra( output_dir = output_dir )
 catalog &lt;- datavault_obmigra( catalog = catalog, datavault_dir = datavault_dir )
 
 # constrói base de dados
-build_obmigra( catalog = catalog )</code></pre>
+build_obmigra( catalog = catalog )
+
+# monta base de dados monetdb
+# este passo é opcional, mas depende da build_obmigra.
+# use apenas se você quiser a base em MonetDB
+monetdb_obmigra(catalog)</code></pre>
 <p>Caso você já conheça linguagem <a href="https://pt.wikipedia.org/wiki/SQL">SQL</a>, pode conectar direto à base de dados e enviar as <em>queries</em>.<br />
 Caso contrário, não se desespere! Se você conhece um pouco do <a href="https://cran.r-project.org/web/packages/dplyr/vignettes/dplyr.html"><code>dplyr</code></a>, já é o suficiente para analisar utilizando o seu “pacote irmão” <a href="https://cran.r-project.org/web/packages/dbplyr/vignettes/dbplyr.html"><code>dbplyr</code></a>. Vejamos:</p>
 <pre class="r"><code># carrega os pacotes necessários
 library( DBI )
-library( RSQLite )
+library( MonetDBLite )
 library( dplyr )
 library( dbplyr )
 library( tidyr )
 
 # conecta com a base de dados
-con &lt;- dbConnect( SQLite() , file.path( output_dir , &quot;obmigra.sqlite&quot; ) )
+con &lt;- dbConnect( MonetDBLite() , file.path( output_dir , &quot;MonetDB&quot; ) )
 
 # lista tabelas na base
 dbListTables( con )
@@ -361,12 +358,15 @@ sincre &lt;- tbl( con , &quot;sincre&quot; )
 # dá uma olhada na tabela
 sincre
 
+# cria variável ano_reg
+sincre &lt;- sincre %&gt;% mutate( ano_reg = substr( data_registro , 1 , 4 ) )
+
 # número total de estrangeiros, segundo classificação, por ano de registro, 2000-2014.
 sincre %&gt;% 
   filter( ano_reg &gt;= 2000 &amp; ano_reg &lt;= 2014 ) %&gt;%
   group_by( ano_reg , classificacao ) %&gt;% 
   summarise( nobs = n() ) %&gt;% 
-  arrange( -ano_reg , classificacao ) %&gt;% 
+  arrange( ano_reg , classificacao ) %&gt;% 
   data.frame() %&gt;% 
   spread( . , key = ano_reg , value = nobs , fill = 0 )
 
@@ -384,14 +384,14 @@ sincre %&gt;%
 </div>
 <p>Agora, vamos olhar os dados do CGIg/CNIg e calcular agregados.</p>
 <pre class="r"><code># cria referência para tabela de pedidos do cgig/cnig
-cnig &lt;- tbl( con , &quot;cnig&quot; )
+cgig_cnig &lt;- tbl( con , &quot;cgig_cnig&quot; )
 
 # dá uma olhada em como a tabela parece
-cnig
+cgig_cnig
 
 # número de autorizações de trabalho, 
 # segundo manifestação, por mês em 2015
-cnig %&gt;% 
+cgig_cnig %&gt;% 
   filter( andamento %in% c( &quot;MANIFESTAÇÃO CONTRÁRIA&quot; , &quot;MANIFESTAÇÃO FAVORÁVEL&quot; ) ) %&gt;% 
   filter( ano == 2015 ) %&gt;% 
   group_by( mes , andamento ) %&gt;% 
@@ -404,7 +404,7 @@ cnig %&gt;%
 # 2 MANIFESTAÇÃO FAVORÁVEL 1052 936  702 430 384 680 214 325 360 156 100 125
 
 # disconecta da base de dados
-dbDisconnect( con )</code></pre>
+dbDisconnect( con , shutdown = TRUE )</code></pre>
 <p>Mas será que esses números fazem sentido? Vamos comparar com a Tabela 2.9 na página 20 <a href="http://acesso.mte.gov.br/data/files/8A7C816A4FF110CB0153321BB87F5A40/Relatório%20CGIg.29.02.2016.pdf">deste documento</a>:</p>
 <div class="figure">
 <img src="../../../img/tabela_cnig.png" alt="Tabela 2.9 na publicação." />
@@ -415,7 +415,10 @@ dbDisconnect( con )</code></pre>
 <div id="presente-para-quem-chegou-ate-o-fim-do-post" class="section level3">
 <h3>Presente para quem chegou até o fim do post!</h3>
 <p>A trilha sonora de hoje chama “A Vingança de Cunhã”, do Projeto Pietá. Essa letra <del>maravilhosa</del> do Thiago Thiago de Mello<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a> fala da lenda do boto, que, em noite de festa, virava moço bonito pra encantar e <em>malinar</em> das cunhantãs. Mas, um dia, ele cruzou com a cunhã errada.<br />
-Pra mim, essa música traz uma saudade da infância na beira do rio, ouvindo os contos do meu avô. <div style="position:relative;height:0;padding-bottom:56.21%"><iframe src="https://www.youtube.com/embed/V6udqPvETy8?ecver=2" style="position:absolute;width:100%;height:100%;left:0" width="641" height="360" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe></div></p>
+Pra mim, essa música traz uma saudade da infância na beira do rio, ouvindo os contos do meu avô.</p>
+
+<div style="position:relative;height:0;padding-bottom:56.21%"><iframe src="https://www.youtube.com/embed/V6udqPvETy8?ecver=2" style="position:absolute;width:100%;height:100%;left:0" width="641" height="360" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe></div>
+
 </div>
 <div class="footnotes">
 <hr />

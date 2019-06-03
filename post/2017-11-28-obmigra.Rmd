@@ -33,37 +33,29 @@ Uma característica interessante das bases acima é que elas trazem o **amparo l
 
 ### Na prática
 
-Para facilitar o processo de baixar e montar a base de dados, escrevi [esse script](https://github.com/guilhermejacob/guilhermejacob.github.io/blob/master/scripts/obmigra.R) com três funções para facilitar esse procedimento:
+Para facilitar o processo de baixar e montar a base de dados, escrevi [esse script](https://github.com/guilhermejacob/guilhermejacob.github.io/blob/master/scripts/obmigra.R) com quatro funções para facilitar esse procedimento:
 
 1. `catalog_obmigra`: lista os dados do site em um catálogo;
 2. `datavault_obmigra`: baixa os arquivos de dados brutos para um diretório local específico;
 3. `build_obmigra`: constrói a base de dados
+4. `monetdb_obmigra`: constrói a base de dados em SQL a partir dos arquivos.
 
 A função `datavault_obmigra` é **opcional**, mas ajuda bastante caso você não queira repetir os downloads toda vez que precisar montar a base de novo. O bloco de código abaixo mostra como fazer essa tarefa:
 
 ```{r obmigra_setup_true , include=FALSE , eval=FALSE }
-output_dir <- file.path( "~/Bases/OBMigra" ) 
-datavault_dir <- file.path( "/media/guilherme/DataVault/OBMigra" ) 
+output_dir <- "/home/guilherme/Bases/OBMigra"
+datavault_dir <- "/home/guilherme/DataVault/OBMigra/Antigo"
 # unlink( output_dir , recursive = TRUE )
 # unlink( datavault_dir , recursive = TRUE )
-source( "~/GitLab/src-website/content/scripts/obmigra.R" , verbose = FALSE )
+source( "/home/guilherme/GitLab/src-website/content/scripts/obmigra.R" , verbose = FALSE )
 ```
 ```{r obmigra_setup, eval=FALSE, message=FALSE, warning=FALSE, include=TRUE}
-# instala libraries
-libs <- c("DBI", "RSQLite" , "downloader" , "archive" , "dplyr" , "dbplyr" , "tidyr" )
-libs.novas <- libs[ !( libs %in% installed.packages()[ , "Package" ] ) ]
-if( length( libs.novas ) ) install.packages( libs.novas )
-
-# carrega libraries
-library(DBI)
-library(RSQLite)
-
 # define diretórios
 output_dir <- file.path( tempdir() , "OBMigra" ) 
 datavault_dir <- file.path( tempdir() , "OBMigra_DV" ) 
 
 # carrega funções
-downloader::source_url( "https://github.com/guilhermejacob/guilhermejacob.github.io/blob/master/scripts/obmigra.R" )
+downloader::source_url( "https://raw.githubusercontent.com/guilhermejacob/guilhermejacob.github.io/master/scripts/obmigra.R" , prompt = FALSE )
 
 # cria catálogo de dados
 catalog <- catalog_obmigra( output_dir = output_dir )
@@ -74,6 +66,12 @@ catalog <- datavault_obmigra( catalog = catalog, datavault_dir = datavault_dir )
 
 # constrói base de dados
 build_obmigra( catalog = catalog )
+
+# monta base de dados monetdb
+# este passo é opcional, mas depende da build_obmigra.
+# use apenas se você quiser a base em MonetDB
+monetdb_obmigra(catalog)
+
 ```
 
 Caso você já conheça linguagem [SQL](https://pt.wikipedia.org/wiki/SQL), pode conectar direto à base de dados e enviar as *queries*.  
@@ -82,13 +80,13 @@ Caso contrário, não se desespere! Se você conhece um pouco do [`dplyr`](https
 ```{r analysis_example_1, eval=FALSE, echo=TRUE, message=FALSE, warning=FALSE, include=TRUE }
 # carrega os pacotes necessários
 library( DBI )
-library( RSQLite )
+library( MonetDBLite )
 library( dplyr )
 library( dbplyr )
 library( tidyr )
 
 # conecta com a base de dados
-con <- dbConnect( SQLite() , file.path( output_dir , "obmigra.sqlite" ) )
+con <- dbConnect( MonetDBLite() , file.path( output_dir , "MonetDB" ) )
 
 # lista tabelas na base
 dbListTables( con )
@@ -100,12 +98,15 @@ sincre <- tbl( con , "sincre" )
 # dá uma olhada na tabela
 sincre
 
+# cria variável ano_reg
+sincre <- sincre %>% mutate( ano_reg = substr( data_registro , 1 , 4 ) )
+
 # número total de estrangeiros, segundo classificação, por ano de registro, 2000-2014.
 sincre %>% 
   filter( ano_reg >= 2000 & ano_reg <= 2014 ) %>%
   group_by( ano_reg , classificacao ) %>% 
   summarise( nobs = n() ) %>% 
-  arrange( -ano_reg , classificacao ) %>% 
+  arrange( ano_reg , classificacao ) %>% 
   data.frame() %>% 
   spread( . , key = ano_reg , value = nobs , fill = 0 )
 
@@ -126,14 +127,14 @@ Agora, vamos olhar os dados do CGIg/CNIg e calcular agregados.
 
 ```{r analysis_example_2, eval=FALSE, echo=TRUE, message=FALSE, warning=FALSE, include=TRUE }
 # cria referência para tabela de pedidos do cgig/cnig
-cnig <- tbl( con , "cnig" )
+cgig_cnig <- tbl( con , "cgig_cnig" )
 
 # dá uma olhada em como a tabela parece
-cnig
+cgig_cnig
 
 # número de autorizações de trabalho, 
 # segundo manifestação, por mês em 2015
-cnig %>% 
+cgig_cnig %>% 
   filter( andamento %in% c( "MANIFESTAÇÃO CONTRÁRIA" , "MANIFESTAÇÃO FAVORÁVEL" ) ) %>% 
   filter( ano == 2015 ) %>% 
   group_by( mes , andamento ) %>% 
@@ -146,7 +147,7 @@ cnig %>%
 # 2 MANIFESTAÇÃO FAVORÁVEL 1052 936  702 430 384 680 214 325 360 156 100 125
 
 # disconecta da base de dados
-dbDisconnect( con )
+dbDisconnect( con , shutdown = TRUE )
 ```
 
 Mas será que esses números fazem sentido? Vamos comparar com a Tabela 2.9 na página 20 [deste documento](http://acesso.mte.gov.br/data/files/8A7C816A4FF110CB0153321BB87F5A40/Relatório%20CGIg.29.02.2016.pdf):
@@ -159,6 +160,7 @@ Mas será que esses números fazem sentido? Vamos comparar com a Tabela 2.9 na p
 
 A trilha sonora de hoje chama "A Vingança de Cunhã", do Projeto Pietá. Essa letra ~~maravilhosa~~ do Thiago Thiago de Mello^[Sim, esse é o nome dele.] fala da lenda do boto, que, em noite de festa, virava moço bonito pra encantar e *malinar* das cunhantãs. Mas, um dia, ele cruzou com a cunhã errada.  
 Pra mim, essa música traz uma saudade da infância na beira do rio, ouvindo os contos do meu avô.
-```{r bonus_video, echo=FALSE, message=FALSE, warning=FALSE}
-htmltools::HTML('<div style="position:relative;height:0;padding-bottom:56.21%"><iframe src="https://www.youtube.com/embed/V6udqPvETy8?ecver=2" style="position:absolute;width:100%;height:100%;left:0" width="641" height="360" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe></div>')
-```
+
+<!--html_preserve-->
+<div style="position:relative;height:0;padding-bottom:56.21%"><iframe src="https://www.youtube.com/embed/V6udqPvETy8?ecver=2" style="position:absolute;width:100%;height:100%;left:0" width="641" height="360" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe></div>
+<!--/html_preserve-->

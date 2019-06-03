@@ -99,7 +99,7 @@ deflat_tab <- deflat_tab[ , c( "ano" , "trimestre" , "uf" , "deflt" ) , with = F
 # monta desenho amostral
 
 # list files
-these_files <- list.files( output_dir , full.names = TRUE )
+these_files <- list.files( output_dir , full.names = TRUE , recursive = TRUE )
 
 # filter for 2016-2017 data
 these_files <- these_files[ grepl( "201(6|7) 1" , basename( these_files ) ) ]

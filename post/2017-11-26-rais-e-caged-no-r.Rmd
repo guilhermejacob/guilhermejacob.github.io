@@ -81,7 +81,7 @@ output_dir <- file.path( tempdir() , "MTPS" )
 datavault_dir <- file.path( tempdir() , "MTPS_DV" ) 
 
 # carrega funções
-downloader::source_url( "https://github.com/guilhermejacob/guilhermejacob.github.io/blob/master/scripts/mtps.R" )
+downloader::source_url( "https://raw.githubusercontent.com/guilhermejacob/guilhermejacob.github.io/master/scripts/mtps.R" , prompt = FALSE )
 
 # cria catálogo de dados
 catalog <- catalog_mtps( output_dir = output_dir )
@@ -164,6 +164,7 @@ Porém, existem outras bases de dados interessantes. *O que vocês acham de anal
 
 **Tem, sim!**  
 A trilha sonora de hoje é Casuarina tocando Caymmi:
-```{r bonus_video, echo=FALSE, message=FALSE, warning=FALSE}
-htmltools::HTML('<div style="position:relative;height:0;padding-bottom:56.21%"><iframe src="https://www.youtube.com/embed/7_Agt_nLHPY?ecver=2" style="position:absolute;width:100%;height:100%;left:0" width="641" height="360" frameborder="0" gesture="media" allowfullscreen></iframe></div>')
-```
+
+<!--html_preserve-->
+<div style="position:relative;height:0;padding-bottom:56.21%"><iframe src="https://www.youtube.com/embed/7_Agt_nLHPY?ecver=2" style="position:absolute;width:100%;height:100%;left:0" width="641" height="360" frameborder="0" gesture="media" allowfullscreen></iframe></div>
+<!--/html_preserve-->

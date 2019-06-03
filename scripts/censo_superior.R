@@ -1,17 +1,26 @@
-downloader::source_url( "https://raw.githubusercontent.com/guilhermejacob/guilhermejacob.github.io/master/scripts/install_packages.R" , quiet = TRUE , prompt = FALSE )
+# downloader::source_url( "https://raw.githubusercontent.com/guilhermejacob/guilhermejacob.github.io/master/scripts/install_packages.R" , quiet = TRUE , prompt = FALSE )
 
 # catalog function
 catalog_censo_superior <- function( output_dir ) {
   
+  # load libraries
+  library(xml2)
+  library(rvest)
+  
+  # set main data page
   inep_portal <- "http://portal.inep.gov.br/web/guest/microdados"
   
-  inep_html <- xml2::read_html(inep_portal)
-  w <- rvest::html_attr( rvest::html_nodes( inep_html , "a" ) , "href" )
+  # scrape links
+  inep_html <- read_html(inep_portal)
+  w <- html_attr( html_nodes( inep_html , "a" ) , "href" )
   
+  # filter data links
   these_links <- w[ grepl( "superior(.*)\\.zip" , w) ]
   
+  # collect years
   these_years <- as.numeric( gsub( ".*superior|.*superior_|\\..*" , "" , basename( these_links ) ) )
   
+  # build data catalog
   catalog <- data.frame(
     year =  these_years ,
     full_url = these_links ,
@@ -19,11 +28,13 @@ catalog_censo_superior <- function( output_dir ) {
     dbfolder = file.path( output_dir , "MonetDB" ) ,
     stringsAsFactors = FALSE )
   
+  # order catalog
   catalog <- catalog[ order(catalog$year) , ]
   
-  # subset for 2009 onwards
-  catalog <- catalog[ catalog$year >= 2009 , ]
+  # # subset for 2009 onwards
+  # catalog <- catalog[ catalog$year >= 2009 , ]
   
+  # return catalog
   catalog
   
 }
@@ -42,7 +53,7 @@ datavault_censo_superior <- function( catalog , datavault_dir , skipExist = TRUE
   existing_files <- file.exists( catalog[ , "datavault_file" ] )
   
   # create directories
-  lapply( unique( dirname( catalog[ , "datavault_file" ] ) ), function( this_dir ){ if ( !dir.exists( this_dir ) ) dir.create( this_dir , recursive = TRUE ) } )
+  # lapply( unique( dirname( catalog[ , "datavault_file" ] ) ), function( this_dir ){ if ( !dir.exists( this_dir ) ) dir.create( this_dir , recursive = TRUE ) } )
   
   # if there isn't any non-downloaded, run download procedure:
   if ( any( !existing_files ) ) {
@@ -57,13 +68,11 @@ datavault_censo_superior <- function( catalog , datavault_dir , skipExist = TRUE
       if( skipExist & existing_files[ i ] ) next()
       
       # download file
+      if ( !dir.exists( dirname( catalog[ i , "datavault_file" ] ) ) ) dir.create( dirname( catalog[ i , "datavault_file" ] ) , recursive = TRUE )
       download.file( catalog[ i , "full_url" ] , catalog[ i , "datavault_file" ] , quiet = FALSE )
-      
-      # process tracker
-      cat( "file" , i , "out of" , nrow( catalog ) , "downloaded to" , datavault_dir , "\r")
-      
-    }
     
+    }
+  
   }
   
   # print message
@@ -77,6 +86,14 @@ datavault_censo_superior <- function( catalog , datavault_dir , skipExist = TRUE
 # build censo superior
 build_censo_superior <- function( catalog ) {
   
+  # load libraries
+  library(DBI)
+  library(MonetDBLite)
+  library(archive)
+  library(data.table)
+  library(lodown)
+  
+  # create temporary file and folder
   tf <- tempfile()
   td <- file.path( tempdir() , "unzip" ) 
   
@@ -84,10 +101,9 @@ build_censo_superior <- function( catalog ) {
     
     # create folders
     if ( !dir.exists( dirname( catalog[ i , "dbfolder" ] ) ) ) dir.create( dirname( catalog[ i , "dbfolder" ] ) , recursive = TRUE )
-    # if ( !dir.exists( catalog[ i , "output_folder" ] ) ) dir.create( catalog[ i , "output_folder" ] , recursive = TRUE )
     
     # opens connection to database
-    db <- DBI::dbConnect( MonetDBLite::MonetDBLite() , catalog[ i , "dbfolder" ] )
+    db <- dbConnect( MonetDBLite() , catalog[ i , "dbfolder" ] )
     
     # download the file
     if ( is.null( catalog[ i , "datavault_file" ] ) ) {
@@ -121,7 +137,6 @@ build_censo_superior <- function( catalog ) {
     }
     
     # remove temporary folder
-    # file.remove( file.path( td ) )
     unlink( td , recursive = TRUE , force = TRUE )
     
     # apply year-specific procedures
@@ -130,34 +145,32 @@ build_censo_superior <- function( catalog ) {
       # get data files
       datafiles <- grep( "\\.(rar|zip|csv)$" , list.files( catalog[ i , "output_folder" ] , full.names = TRUE , recursive = TRUE ) , ignore.case = TRUE , value = TRUE )
       
-      # extract if any
-      if ( any( grepl( "\\.rar$" , datafiles , ignore.case = TRUE ) ) ) { 
-        for ( this_rar_file in datafiles [ grepl( "\\.rar$" , datafiles , ignore.case = TRUE ) ] ) {
-          archive::archive_extract( this_rar_file , dir = dirname( this_rar_file ) )
-          file.remove( this_rar_file )
-        }
-      }
-      if ( any( grepl( "\\.zip$" , datafiles , ignore.case = TRUE ) ) ) { 
-        for ( this_zip_file in datafiles [ grepl( "\\.rar$" , datafiles , ignore.case = TRUE ) ] ) {
-          unzip( this_zip_file , exdir = dirname( this_zip_file ) )
-          file.remove( this_zip_file )
-        }
-      }
-      
-      # get data files, again
-      datafiles <- grep( "\\.csv$" , list.files( catalog[ i , "output_folder" ] , full.names = TRUE , recursive = TRUE ) , ignore.case = TRUE , value = TRUE )
-      
       # tablesizes vector
       tablesize <- NULL
       
+      # loop through tables
       for ( this_datafile in datafiles ) {
+        
+        # get table index
+        k <- which( datafiles %in% this_datafile )
+        
+        # extract if any
+        if ( grepl( "\\.rar$" , this_datafile , ignore.case = TRUE ) ) { 
+          archive_extract( this_datafile , dir = td ) 
+          file.remove( this_datafile )
+          this_datafile <- list.files( td , full.names = TRUE )
+          }
+        if ( grepl( "\\.zip$" , this_datafile , ignore.case = TRUE ) ) { 
+          unzip( this_datafile , exdir = td )
+          file.remove( this_datafile )
+          this_datafile <- list.files( td , full.names = TRUE )
+        }
         
         # define tablename
         this_tablename <- paste0( gsub( "dm_|\\..*" , "" , tolower( basename(this_datafile) ) ) , "_" , catalog[ i , "year" ] )
         
         # read data
-        # x <- suppressMessages( readr::read_delim( this_datafile , delim = "|" ) )
-        x <- data.table::fread( this_datafile , sep = "|" , data.table = TRUE )
+        x <- fread( this_datafile , sep = "|" , data.table = TRUE , showProgress = FALSE )
         
         # fix column names
         colnames(x) <- tolower( colnames(x) ) # lowercase
@@ -168,7 +181,7 @@ build_censo_superior <- function( catalog ) {
         x[ , (these_cols) := lapply( .SD , function( this_vector ) { iconv( this_vector , from = "windows-1252" ) } ) , .SDcols = these_cols ]
         
         # write data to database
-        DBI::dbWriteTable( db , this_tablename , x )
+        dbWriteTable( db , this_tablename , x )
         
         # drop data and datafile
         rm( x ) ; file.remove( this_datafile ) ; gc()
@@ -177,8 +190,7 @@ build_censo_superior <- function( catalog ) {
         cat( basename( this_datafile ) , "stored at" , this_tablename , "\n" )
         
         # collect table sizes
-        k <- which( this_datafile %in% datafiles )
-        tablesize[ k ] <- DBI::dbGetQuery( db , paste0( "SELECT COUNT(*) FROM ", this_tablename ) )[ 1 , 1 ]
+        tablesize[ k ] <- dbGetQuery( db , paste0( "SELECT COUNT(*) FROM ", this_tablename ) )[ 1 , 1 ]
         
       }
       
@@ -186,24 +198,6 @@ build_censo_superior <- function( catalog ) {
       
       # get data files
       datafiles <- grep( "dados/.*\\.(rar|zip|txt)$" , list.files( catalog[ i , "output_folder" ] , full.names = FALSE , recursive = TRUE ) , ignore.case = TRUE , value = TRUE )
-      datafiles <- file.path( catalog[ i , "output_folder" ] , datafiles )
-      
-      # extract if any
-      if ( any( grepl( "\\.rar$" , datafiles , ignore.case = TRUE ) ) ) { 
-        for ( this_rar_file in datafiles [ grepl( "\\.rar$" , datafiles , ignore.case = TRUE ) ] ) {
-          archive::archive_extract( this_rar_file , dir = dirname( this_rar_file ) )
-          file.remove( this_rar_file )
-        }
-      }
-      if ( any( grepl( "\\.zip$" , datafiles , ignore.case = TRUE ) ) ) { 
-        for ( this_zip_file in datafiles [ grepl( "\\.rar$" , datafiles , ignore.case = TRUE ) ] ) {
-          unzip( this_zip_file , exdir = dirname( this_zip_file ) )
-          file.remove( this_zip_file )
-        }
-      }
-      
-      # get data files, again
-      datafiles <- grep( "dados/.*\\.txt$" , list.files( catalog[ i , "output_folder" ] , full.names = FALSE , recursive = TRUE ) , ignore.case = TRUE , value = TRUE )
       datafiles <- file.path( catalog[ i , "output_folder" ] , datafiles )
       
       # get input files
@@ -226,13 +220,28 @@ build_censo_superior <- function( catalog ) {
       # tablesizes vector
       tablesize <- NULL
       
+      # create secondary temporary file 
       tf2 <- tempfile()
       
+      # loop through files
       for ( j in seq_along(datafiles) ) {
         
+        # assign files
         this_datafile <- datafiles[[j]]
         this_inputfile <- inputfiles[[j]]
         this_tablename <- paste0( gsub( "_sup.*|_[1-9].*" , "" , gsub( "\\..*" , "" , tolower( basename( this_datafile ) ) ) ), "_" , catalog[ i , "year" ] )
+        
+        # extract if any
+        if ( grepl( "\\.rar$" , this_datafile , ignore.case = TRUE ) ) { 
+          archive_extract( this_datafile , dir = td ) 
+          file.remove( this_datafile )
+          this_datafile <- list.files( td , full.names = TRUE )
+        }
+        if ( grepl( "\\.zip$" , this_datafile , ignore.case = TRUE ) ) { 
+          unzip( this_datafile , exdir = td )
+          file.remove( this_datafile )
+          this_datafile <- list.files( td , full.names = TRUE )
+        }
         
         # read input code
         this_sas <- file( this_inputfile , 'r' , encoding = 'windows-1252' )
@@ -257,15 +266,17 @@ build_censo_superior <- function( catalog ) {
         # w <- gsub( '\\.' , '' , w )
         w <- gsub( "quit.*" , "" , w , ignore.case = TRUE )
         
-        
         # write code to a temporary file
         writeLines( w , tf2 )
         
         # read data, finally
-        readLines( this_datafile , n = 5 )
+        # readLines( this_datafile , n = 5 )
         x <- suppressWarnings( lodown:::read_SAScii( this_datafile , tf2 ) )
         file.remove( tf2 )
         file.remove( this_datafile )
+        
+        # convert to data.table
+        x <- as.data.table(x)
         
         # convert column names to lowercase
         names( x ) <- tolower( names( x ) )
@@ -273,21 +284,31 @@ build_censo_superior <- function( catalog ) {
         # remove special characters
         names( x ) <- remove_special_character( names( x ) )
         
+        # decode fields
+        these_cols <- colnames(x)[ sapply( x , class ) %in% "character" ]
+        x[ , (these_cols) := lapply( .SD , function( this_vector ) { iconv( this_vector , from = "windows-1252" ) } ) , .SDcols = these_cols ]
+        
         # write data to table in database
-        DBI::dbWriteTable( db , this_tablename , x )
+        dbWriteTable( db , this_tablename , x )
         
-        rm( x )
+        # remove object from memory
+        rm( x ) ; gc()
         
-        cat( tolower( gsub( "\\..*" , "" , basename( this_datafile ) ) ) , "stored at" , this_tablename , "\r\n\n" )
+        # process tracker
+        cat( tolower( gsub( "\\..*" , "" , basename( this_datafile ) ) ) , "stored at" , this_tablename , "\n" )
         
-        catalog[ i , 'case_count' ] <- max( catalog[ i , 'case_count' ] , DBI::dbGetQuery( db , paste( "SELECT COUNT(*) FROM" , this_tablename ) )[ 1 , 1 ] , na.rm = TRUE )
+        # collect table sizes
+        tablesize[ j ] <- dbGetQuery( db , paste0( "SELECT COUNT(*) FROM ", this_tablename ) )[ 1 , 1 ]
         
       }
       
     }
     
+    # store case count
+    catalog[ i , "case_count" ] <- max( tablesize , na.rm = TRUE )
+    
     # close database connetion
-    DBI::dbDisconnect( db , shutdown = TRUE )
+    dbDisconnect( db , shutdown = TRUE )
     
     # add number of data files read
     # catalog[ i , "dfs_read" ] <- length( datafiles )
@@ -299,7 +320,7 @@ build_censo_superior <- function( catalog ) {
     
   }
   
-  
+  # return final catalog
   catalog
   
 }

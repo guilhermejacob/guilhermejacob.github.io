@@ -27,11 +27,11 @@ Embora a prova exista desde 1998, foi com o estabelecimento do SiSU que o númer
 
 ## Desigualdade e educação
 
-```{r info_tag, echo=FALSE, message=FALSE, warning=FALSE}
-htmltools::HTML("{{< alert info >}}
+<!--html_preserve-->
+{{< alert info >}}
 Essa parte contém um pouco de matemática.<br>Mas, não se assuste: vou <del>tentar</del> explicar tudo sem muita complicação.
-{{< /alert >}}")
-```
+{{< /alert >}}
+<!--/html_preserve-->
 
 O estudo da desigualdade é uma mistura de economia, filosofia, matemática e estatística. Embora os estudos neste campo se voltem majoritariamente às distribuições de renda e riqueza, existem vários trabalhos discutindo outras formas de desigualdade. 
 

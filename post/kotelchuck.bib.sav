@@ -1,0 +1,32 @@
+% Encoding: UTF-8
+
+
+@article{leal2004,
+	Author = {Leal, Maria do Carmo and Gama, Silvana Granado Nogueira da and Ratto, Katia Maria Netto and Cunha, Cynthia Braga da},
+	Crossref = {10.1590/S0102-311X2004000700007},
+	Issn = {0102-311X},
+	Journal = {Cad. Saúde Pública},
+	Language = {pt},
+	Pages = {S63 - S72},
+	Publisher = {scielo},
+	Title = {Uso do índice de Kotelchuck modificado na avaliação da assistência pré-natal e sua relação com as características maternas e o peso do recém-nascido no Município do Rio de Janeiro},
+	Url = {http://www.scielo.br/scielo.php?script=sci_arttext&pid=S0102-311X2004000700007&nrm=iso},
+	Volume = {20},
+	Year = {2004},
+	Bdsk-Url-1 = {http://www.scielo.br/scielo.php?script=sci_arttext&pid=S0102-311X2004000700007&nrm=iso}}
+
+@article{kotel1994,
+	Abstract = {OBJECTIVES. The assessment of the adequacy of prenatal care utilization is heavily shaped by the way in which utilization is measured. Although it is widely used, the current major index of utilization, the Kessner/Institute of Medicine Index, has not been subjected to systematic examination. This paper provides such an examination. METHODS. Data from the 1980 National Natality Survey are used to disaggregate the components of the Kessner Index for detailed analysis. An alternative two-part index, the Adequacy of Prenatal Care Utilization Index, is proposed that combines independent assessments of the timing of prenatal care initiation and the frequency of visits received after initiation. RESULTS. The Kessner Index is seriously flawed. It is heavily weighted toward timing of prenatal care initiation does not distinguish timing of initiation from poor subsequent utilization, inaccurately measures utilization for full- or post-term pregnancies, and lacks sufficient documentation for consistent computer programming. CONCLUSIONS. The Adequacy of Prenatal Care Utilization Index offers a more accurate and comprehensive set of measures of prenatal care utilization than the Kessner Index.},
+	Author = {Kotelchuck, Milton},
+	Isbn = {0090-0036; 1541-0048},
+	J1 = {Am J Public Health},
+	Journal = {American Journal of Public Health},
+	Month = {09},
+	Number = {9},
+	Pages = {1414--1420},
+	Title = {An evaluation of the Kessner Adequacy of Prenatal Care Index and a proposed Adequacy of Prenatal Care Utilization Index.},
+	Url = {http://www.ncbi.nlm.nih.gov/pmc/articles/PMC1615177/},
+	Volume = {84},
+	Year = {1994}}
+
+@Comment{jabref-meta: databaseType:bibtex;}

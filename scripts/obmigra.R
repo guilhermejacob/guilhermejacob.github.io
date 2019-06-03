@@ -1,4 +1,6 @@
-downloader::source_url( "https://raw.githubusercontent.com/guilhermejacob/guilhermejacob.github.io/master/scripts/install_packages.R" , quiet = TRUE , prompt = TRUE )
+string_to_num_with_commas <- function( string ) {
+  tryCatch( as.numeric( gsub( ",", "." , string ) ) , error=function(e) string )
+}
 
 get_common_dir <- function(paths, delim = "/") {
   path_chunks <- strsplit(paths, delim)
@@ -13,12 +15,54 @@ get_common_dir <- function(paths, delim = "/") {
   
 }
 
-files_in_ftp_dir <- function( main_url ) {
-  main_list <- gsub( "//" , "/" , file.path( main_url , unlist( strsplit( RCurl::getURL( main_url , ftp.use.epsv = TRUE , dirlistonly = TRUE ) , "\n" ) ) ) ) 
-  main_list <- unlist( main_list )
-  main_list <- ifelse( !grepl( "\\." , basename( main_list ) ) , paste0( main_list , "/" ) , main_list )
-  gsub( "vínculos" , "v%EDnculos" , main_list )
-  # unlist( sapply( main_list, URLencode , USE.NAMES = FALSE , simplify = TRUE ) )
+# recursive ftp scrape
+link_scrape <- function( x ) {
+  library(RCurl)
+  custom_recodes <- c( "í" = "%ED" , "á" = "%E1" , "ã" = "%E3" , " " = "%20" )
+  if ( !is.null( x ) ){
+    Sys.sleep(runif(1,.2,1))
+    h <- getCurlHandle()
+    this_text <- getURL( x , curl = h , .encoding = 'ISO-8859-1' , .opts = list( timeout = 240 , dirlistonly = TRUE , ftplistonly = TRUE , ftp.use.epsv = FALSE ) )
+    reset(h)
+    this_text <- unlist( strsplit( this_text , "\n" ) )
+    this_text <- curlPercentEncode( this_text , codes = custom_recodes )
+    paste0( x , this_text )
+  } else { 
+    NULL 
+  }
+}
+
+getlisting <- function( these_urls ) {
+  library(future.apply)
+  these_urls <- ifelse( grepl( "\\/$" , these_urls ) , these_urls , paste0( these_urls , "/" ) )
+  res <- future.apply::future_lapply( these_urls , link_scrape )
+  res <- unlist( res )
+  res <- res[ !grepl( "\\/EEC" , res ) ] # drop EEC folder
+  is.file <- grepl( "\\." , basename( res ) , ignore.case = TRUE )
+  res[ !is.file ] <- ifelse( grepl( "\\/$" , res[ !is.file ] ) , res[ !is.file ] , paste0( res[ !is.file ] , "/" ) )
+  list( dirs = if ( any(!is.file) ) { res[ !is.file ] } else { NULL } , 
+        files = if ( any(is.file) ) { res[ is.file ] } else { NULL } )
+}
+
+recursive_ftp_scrape <- function( main_url , max.iter = Inf ) {
+  
+  final_files <- NULL
+  
+  directories <- main_url
+  
+  i=0
+  while ( length(directories) > 0 ) {
+    i=i+1
+    if ( i > max.iter ) { break() }
+    listing <- getlisting(directories)
+    directories <- listing[[1]]
+    files <- listing[[2]]
+    final_files <- c(final_files, files )
+    if ( length( directories) > 0 ) cat( length(directories) , "new directories found.\n" ) else cat( "done!\n" )
+  }
+  
+  return( final_files )
+  
 }
 
 remove_special_character <- function(x) {
@@ -31,83 +75,50 @@ remove_special_character <- function(x) {
 catalog_obmigra <-
   function( output_dir , ... ){
     
-    output_dir <- ifelse( !grepl( "/$" , output_dir ) , paste0( output_dir , "/" ) , output_dir )
-    
+    # define main page
     url_path <- "ftp://ftp.mtps.gov.br/obmigra/dados/microdados/"
     
-    file_list <- files_in_ftp_dir( url_path )
-    file_list <- unlist( sapply( unique( file_list ) , function( this_url ) {
-      if ( grepl( "\\." , basename( this_url ) ) ) { return( this_url ) } else { this_url <- paste0( this_url , "/" ) }
-      gsub( "//" , "/" , files_in_ftp_dir( this_url ) )
-    } , USE.NAMES = FALSE , simplify = TRUE ) )
-    file_list <- unlist( sapply( unique( file_list ) , function( this_url ) {
-      if ( grepl( "\\." , basename( this_url ) ) ) { return( this_url ) } else { this_url <- paste0( this_url , "/" ) }
-      gsub( "//" , "/" , files_in_ftp_dir( this_url ) )
-    } , USE.NAMES = FALSE , simplify = TRUE ) )
+    # scrape files
+    file_list <- recursive_ftp_scrape(url_path)
     
-    # fix beggining
-    file_list <- gsub( "^ftp:/" , "ftp://" , file_list )
+    # create intermediary object
+    obm_files <- file_list
     
-    # keep files only
-    obmigra_files <- file_list[ grepl( "\\." , basename( file_list ) ) ]
+    # drop layout
+    obm_files <- obm_files[ !grepl("layout" , obm_files , ignore.case = TRUE ) ]
     
-    
+    # creates catalog
     catalog <-
       data.frame(
-        full_url = obmigra_files ,
+        full_url = obm_files ,
+        type = ifelse( grepl( "rais" , obm_files ) , "rais" , ifelse( grepl( "cnig" , obm_files ) , "cgig_cnig" , ifelse( grepl( "sincre" , obm_files ) , "sincre" , NA ) ) ) ,
         stringsAsFactors = FALSE
       )
     
-    catalog$type <-
-      ifelse( grepl( "layout|xls$|pdf$" , catalog$full_url , ignore.case = TRUE ) , "docs" ,
-              ifelse( grepl( "rais" , catalog$full_url ) , "rais" ,
-                      ifelse( grepl( "cnig" , catalog$full_url ) , "cnig" , 
-                              ifelse( grepl( "sincre" , catalog$full_url ) , "sincre" , NA ) ) )
-      )
-    
-    catalog$subtype[ catalog$type == "cnig" ] <- 
-      gsub( ".*(CNIg\\.|CNIg\\_)|(\\.|_).*" , "" , basename( catalog$full_url[ catalog$type == "cnig" ] ) )
+    # creates subtype
+    catalog$subtype[ catalog$type == "cgig_cnig" ] <- gsub( ".*CNIg(_|\\.)|s(\\.|_).*" , "" , basename( obm_files[ catalog$type == "cgig_cnig" ] ) )
     
     # fix names
-    catalog$subtype <- ifelse( grepl( "^ind" , catalog$subtype ) , "indeferido" ,
-                               ifelse( grepl( "^pror" , catalog$subtype ) , "prorrogado" ,
-                                       ifelse( grepl( "^def" , catalog$subtype ) , "deferido" , 
-                                               ifelse( grepl( "^canc" , catalog$subtype ) , "cancelado" , NA ) ) ) )
+    catalog[ grepl( "^prorro" , catalog$subtype ) , "subtype" ] <- "prorrogado"
+    catalog[ grepl( "^ind" , catalog$subtype ) , "subtype" ] <- "indeferido"
     
-    catalog$year <- NULL
-    catalog$year <- ifelse( catalog$type == "rais" , gsub( ".*\\-|\\..*" , "" , basename( catalog$full_url ) ) ,
-                            ifelse( catalog$type == "sincre" , gsub( "SINCRE\\.|\\..*" , "" , basename( catalog$full_url ) ) ,
-                                    ifelse( catalog$type == "cnig" , gsub( ".*\\/" , "" , dirname( catalog$full_url ) ) , NA ) ) )
+    # get years
+    catalog[ , "year" ] <- gsub( "[[:alpha:]]|[[:punct:]]" , "" , basename( obm_files ) )
     
-    catalog$output_filename <- NULL
-    catalog$output_filename <- gsub( "\\.csv$" , ".rds" , gsub( url_path , output_dir , tolower( catalog$full_url ) , ignore.case = TRUE ) , ignore.case = TRUE )
-    catalog$output_filename[ !( catalog$type == "docs" ) ] <-
-      file.path( dirname( catalog$output_filename[ !( catalog$type == "docs" ) ] ) , 
-                 paste0( catalog$type , ifelse( !is.na( catalog$subtype ) , paste0( "_" , catalog$subtype ) , "" ), "_" , catalog$year , ".rds" )[ !( catalog$type == "docs" ) ] )
+    # creates filename
+    catalog[ , "output_filename" ] <- file.path( output_dir , catalog[,"type"] , paste0( ifelse( is.na(catalog[,"subtype"]) , catalog[,"type"] , catalog[,"subtype"] ) , "_" , catalog[,"year"] , ".fst" ) )
     
-    # catalog$db_tablename[ catalog$type %in% c( "cnig" , "rais" , "sincre" ) ] <-
-    #   paste0( catalog$type[ catalog$type %in% c( "cnig" , "rais" , "sincre" ) ] , 
-    #           ifelse( !is.na( catalog$subtype[ catalog$type %in% c( "cnig" , "rais" , "sincre" ) ] ) , 
-    #                   paste0( "_" , catalog$subtype[ catalog$type %in% c( "cnig" , "rais" , "sincre" ) ] ) , "" ) )
+    # creates database folder
+    catalog[ , "dbfolder" ] <- file.path( output_dir , "MonetDB" )
     
-    # stack by data type
-    catalog$db_tablename[ catalog$type %in% c( "cnig" , "rais" , "sincre" ) ] <- catalog$type[ catalog$type %in% c( "cnig" , "rais" , "sincre" ) ]
+    # create tablenames
+    # catalog[ , "db_tablename" ] <- paste0( catalog[ , "type" ] , ifelse( is.na( catalog[ , "subtype" ] ) , "" , paste0( "_" , catalog[ , "subtype" ] ) ) )
+    catalog[ , "db_tablename" ] <- catalog[ , "type" ]
     
-    # divide rais in before and after 2015
-    catalog$db_tablename[ catalog$type %in% "rais" ] <- 
-      ifelse( catalog$year[ catalog$type %in% "rais" ] >= 2015 , "rais0" , "rais1" )
+    # # drop RAIS
+    # catalog <- catalog[ !grepl( "rais" , catalog$full_url , ignore.case = TRUE ) , ]
     
-    catalog$dbfile <- ifelse( is.na( catalog$db_tablename ) , NA , paste0( output_dir , "/obmigra.sqlite" ) )
-    catalog$dbfile <- gsub( "//" , "/" , catalog$dbfile )
-    
-    catalog$dateformat <- 
-      ifelse( catalog$type == "cnig" , "%d/%m/%Y" ,
-              ifelse( catalog$type == "rais" , ifelse( catalog$year == 2000 , "%Y%m%d" , "%d%m%Y" ) ,
-                      ifelse( catalog$type == "sincre" , ifelse( catalog$year == 2000 , "%d/%m/%Y" , "%Y-%m-%d" ) , NA ) ) )
-    
-    # drop RAIS
-    catalog <- catalog[ !grepl( "rais" , catalog$full_url , ignore.case = TRUE ) , ]
-    
+    # return catalog
     catalog
     
   }
@@ -115,18 +126,17 @@ catalog_obmigra <-
 # build datavault
 datavault_obmigra <- function( catalog , datavault_dir , skipExist = TRUE ) {
   
-  # get common directory
-  url_path <- get_common_dir( tolower( catalog$full_url ) )
+  # # get common directory
+  # url_path <- get_common_dir( tolower( catalog$full_url ) )
   
   # create datavault links
-  catalog$datavault_file <- gsub( url_path , paste0( datavault_dir , "/" ), tolower( catalog$full_url ) , ignore.case = TRUE )
-  catalog$datavault_file <- gsub( "//" , "/" , catalog$datavault_file , ignore.case = TRUE )
+  catalog$datavault_file <- file.path( datavault_dir , basename(catalog$full_url) )
   
   # check for existing files
   existing_files <- file.exists( catalog$datavault_file )
   
-  # create directories
-  lapply( unique( dirname( catalog$datavault_file ) ), function( this_dir ){ if ( !dir.exists( this_dir ) ) dir.create( this_dir , recursive = TRUE ) } )
+  # create temporary file
+  tf <- tempfile()
   
   # if there isn't any non-downloaded, run download procedure:
   if ( any( !existing_files ) ) {
@@ -140,8 +150,15 @@ datavault_obmigra <- function( catalog , datavault_dir , skipExist = TRUE ) {
       # skip existing file
       if( skipExist & existing_files[ i ] ) next()
       
-      # download file
-      download.file( catalog$full_url[ i ] , catalog$datavault_file[ i ] , quiet = FALSE , mode = "wb" )
+      # download to temporary file
+      download.file( catalog[ i , "full_url" ] , tf , quiet = FALSE , mode = "wb" )
+      
+      # upon download completion, copy to main file
+      dir.create( dirname( catalog[ i , "datavault_file" ] ) , recursive = TRUE , showWarnings = FALSE )
+      file.copy( tf , catalog[ i , "datavault_file" ] , overwrite = TRUE )
+      
+      # remove temporary file
+      file.remove(tf)
       
       # process tracker
       cat( "file" , i , "out of" , nrow( catalog ) , "downloaded to" , datavault_dir , "\r")
@@ -151,7 +168,7 @@ datavault_obmigra <- function( catalog , datavault_dir , skipExist = TRUE ) {
   }
   
   # print message
-  cat( "\nobmigra datavault was built at" , datavault_dir , "\n" )
+  cat( "\nobmigra datavault was built at" , datavault_dir )
   
   # return catalog
   catalog
@@ -159,14 +176,17 @@ datavault_obmigra <- function( catalog , datavault_dir , skipExist = TRUE ) {
 }
 
 build_obmigra <-
-  function( catalog , ... ){
+  function( catalog ){
     
+    # load libraries
+    library(data.table)
+    library(readxl)
+    library(fst)
+    
+    # create temporary file
     tf <- tempfile()
     
-    # create directory structure
-    for ( i in seq_len( nrow( catalog ) ) )  if ( !dir.exists( dirname( catalog[ i , 'output_filename' ] ) ) ) { dir.create( dirname( catalog[ i , 'output_filename' ] ) , recursive = TRUE ) }
-    for ( i in seq_len( nrow( catalog ) ) )  if ( !dir.exists( dirname( catalog[ i , "dbfile" ] ) ) ) { dir.create( dirname( catalog[ i , "dbfile" ] ) , recursive = TRUE ) }
-    
+    # loop through catalog entries
     for ( i in seq_len( nrow( catalog ) ) ) {
       
       # download the file
@@ -178,141 +198,166 @@ build_obmigra <-
         file.copy( catalog[ i , "datavault_file" ] , tf )
       }
       
-      if ( catalog[ i , 'type' ] == "docs" ) {
-        
-        file.copy( tf , catalog[ i , 'output_filename' ] )
-        
-        # process tracker
-        cat( paste0( "obmigra catalog entry " , i , " of " , nrow( catalog ) , " stored at '" , catalog[ i , 'output_filename' ] , "'\r\n\n" ) )
-        
+      # read data
+      if ( grepl( "xls" , catalog[ i , "full_url" ] ) ) {
+        x <- suppressWarnings( read_xlsx( tf , sheet = 1 ) )
+        x <- as.data.table( x )
+        x$ano <- catalog[ i , "year" ]
       } else {
-        
-        # read data
-        if ( catalog[ i , "type" ] == "rais" & catalog[ i , "year" ] == 2015 ) {
-          x <- suppressWarnings( readxl::read_xlsx( tf , sheet = 1 ) )
-          x <- as.data.frame( x )
-          x$ano <- catalog[ i , "year" ]
-        } else {
-          x <- utils::read.csv( tf , sep = ";" , dec = "," , header = TRUE , fileEncoding = "latin1" , as.is = TRUE )
-        }
-        
-        # convert all column names to lowercase
-        names( x ) <- tolower( names( x ) )
-        
-        # remove special characters
-        names( x ) <- remove_special_character( names( x ) )
-        
-        # remove trailing spaces
-        names( x ) <- trimws( names( x ) , which = "both" )
-        
-        # change dots for underscore
-        names( x ) <- gsub( "\\.$" , "" , names( x ) )
-        names( x ) <- gsub( "\\.|\\.\\." , "_" , names( x ) )
-        
-        # change space for underscore
-        names( x ) <- gsub( " " , "_" , names( x ) )
-        
-        if ( catalog[ i , "type" ] == "sincre" & catalog[ i , "year" ] == 2000 ) x$ano_reg <- 2000
-        
-        # change dates
-        for( this_col in grep( "^data_" , names( x ) , value = TRUE ) ) {
-          if ( catalog[ i , "type" ] %in% "rais" ) x[ , this_col ] <- stringr::str_pad( x[ , this_col ] , width = "8" , pad = "0" , side = "left" )
-          this_result <- as.character( as.Date( x[ , this_col ] , format = catalog[ i , "dateformat" ] ) )
-          # x[ , paste0( "rec_" , this_col ) ] <- this_result
-          x[ , this_col ] <- this_result
-        }
-        
-        # figure out which columns really ought to be numeric
-        for( this_col in names( x ) ){
-          
-          # if the column can be coerced without a warning, coerce it to numeric
-          this_result <- tryCatch( as.numeric( x[ , this_col ] ) , warning = function(c) NULL , error = function(c) NULL )
-          
-          if( !is.null( this_result ) ) x[ , this_col ] <- as.numeric( x[ , this_col ] )
-          
-        }
-        
-        catalog[ i , 'case_count' ] <- nrow( x )
-        
-        saveRDS( x , file = catalog[ i , 'output_filename' ] )
-        
-        these_cols <- sapply( x , class )
-        
-        these_cols <- data.frame( col_name = names( these_cols ) , col_type = these_cols , stringsAsFactors = FALSE )
-        
-        if ( exists( catalog[ i , 'db_tablename' ] ) ) {
-          
-          same_table_cols <- get( catalog[ i , 'db_tablename' ] )
-          same_table_cols <- unique( rbind( these_cols , same_table_cols ) )
-          
-        } else same_table_cols <- these_cols
-        
-        dupe_cols <- same_table_cols$col_name[ duplicated( same_table_cols$col_name ) ]
-        
-        # if there's a duplicate, remove the numeric typed column
-        same_table_cols <- same_table_cols[ !( same_table_cols$col_type == 'numeric' & same_table_cols$col_name %in% dupe_cols ) , ]
-        
-        assign( catalog[ i , 'db_tablename' ] , same_table_cols )
-        
-        # process tracker
-        cat( paste0( "obmigra catalog entry " , i , " of " , nrow( catalog ) , " stored at '" , catalog[ i , 'output_filename' ] , "'\r\n\n" ) )
-        
-        # if this is the final catalog entry for the unique db_tablename, then write them all to the database
-        if( i == max( which( catalog$db_tablename == catalog[ i , 'db_tablename' ] ) ) ) {
-          
-          correct_columns <- get( catalog[ i , 'db_tablename' ] )
-          
-          # open the connection to the sqlite database
-          db <- DBI::dbConnect( RSQLite::SQLite() , catalog[ i , 'dbfile' ] )
-          
-          # loop through all tables that match the current db_tablename
-          for( this_file in catalog[ catalog$db_tablename %in% catalog[ i , 'db_tablename' ] , 'output_filename' ] ) {
-            
-            x <- readRDS( this_file )
-            
-            for( this_col in setdiff( correct_columns$col_name , names( x ) ) ) x[ , this_col ] <- NA
-            
-            # get final table types
-            same_table_cols <- get( catalog[ i , 'db_tablename' ] )
-            
-            for( this_row in seq( nrow( same_table_cols ) ) ){
-              
-              if( same_table_cols[ this_row , 'col_type' ] != class( x[ , same_table_cols[ this_row , 'col_name' ] ] ) ) {
-                
-                if( same_table_cols[ this_row , 'col_type' ] == 'numeric' ) x[ , same_table_cols[ this_row , 'col_name' ] ] <- as.numeric( x[ , same_table_cols[ this_row , 'col_name' ] ] )
-                if( same_table_cols[ this_row , 'col_type' ] == 'character' ) x[ , same_table_cols[ this_row , 'col_name' ] ] <- as.character( x[ , same_table_cols[ this_row , 'col_name' ] ] )
-                
-              }
-              
-            }
-            
-            # put the columns of x in alphabetical order so they're always the same
-            x <- x[ sort( names( x ) ) ]
-            
-            # re-save the file
-            saveRDS( x , file = this_file )
-            
-            # append the file to the database
-            DBI::dbWriteTable( db , catalog[ i , 'db_tablename' ] , x , append = TRUE , row.names = FALSE )
-            
-            file_index <- seq_along( catalog[ ( catalog[ i , 'db_tablename' ] == catalog$db_tablename ) & ! is.na( catalog$db_tablename ) , 'output_filename' ] ) [ this_file == catalog[ ( catalog[ i , 'db_tablename' ] == catalog$db_tablename ) & ! is.na( catalog$db_tablename ) , 'output_filename' ] ]
-            cat( "\r", paste0( "obmigra entry " , file_index , " of " , nrow( catalog[ !is.na( catalog$db_tablename ) & catalog$db_tablename == catalog[ i , 'db_tablename' ] , ] ) , " stored at '" , catalog[ i , 'db_tablename' ] , "'\r" ) )
-            
-          }
-          
-          # disconnect from the current database
-          DBI::dbDisconnect( db )
-          
-        }
-        
+        x <- fread( tf , sep = ";" , dec = "," , encoding = "Latin-1" , data.table = TRUE , showProgress = FALSE )
       }
       
-      # delete the temporary files
+      # convert all column names to lowercase
+      names( x ) <- tolower( names( x ) )
+      
+      # remove special characters
+      names( x ) <- remove_special_character( names( x ) )
+      
+      # remove dots
+      names( x ) <- gsub( "\\." , "_" , names( x ) )
+      
+      # remove trailing spaces
+      names( x ) <- trimws( names( x ) , which = "both" )
+      
+      # remove duplicated columns
+      if ( any( duplicated( names(x) ) ) ) x <- x[ , !duplicated( names(x) ) , with = FALSE ]
+      
+      # find some columns character that should be numeric
+      vl_cols <- names(x)[ grepl( "_vl"  , names(x) ) & (sapply( x , typeof ) == "character") ]
+      
+      # transform them to numeric
+      suppressWarnings( x[ , ( vl_cols ):= lapply( .SD , function(z) as.numeric( gsub( "," , "." , z ) ) ) , .SDcols = vl_cols ] )
+      
+      # fix date
+      if ( catalog[ i , "type"] == "sincre" & catalog[ i , "year"] == 2000 ) {
+        date_cols <- grep( "^data_" , names(x) , value = TRUE )
+        x[ , ( date_cols ) := lapply( .SD , function(z) as.character( as.Date( z , format = "%d/%m/%Y" ) ) ) , .SDcols = date_cols ]
+      }
+      
+      # fix formatting
+      if ( !grepl( "xls" , catalog[ i , "full_url" ] ) ) {
+        char_cols <- colnames(x) [sapply( x , typeof ) == "character"]
+        # x[ , ( char_cols ) := lapply( .SD , function(z) iconv( z , from = "latin1" , to = "ASCII//TRANSLIT" ) ) , .SDcols = char_cols ]
+        x[ , ( char_cols ) := lapply( .SD , function(z) iconv( z , from = "latin1" ) ) , .SDcols = char_cols ]
+      }
+      
+      # store case count
+      catalog[ i , 'case_count' ] <- nrow( x )
+      
+      # save data
+      dir.create( dirname( catalog[ i , "output_filename" ] ) , recursive = TRUE , showWarnings = FALSE )
+      write_fst( x , catalog[ i , "output_filename" ] , compress = 100 )
+      
+      # delete temporary file
       suppressWarnings( file.remove( tf ) )
+      
+      # process tracker
+      cat( paste0( "\robmigra catalog entry " , i , " of " , nrow( catalog ) , " stored at '" , catalog[ i , 'output_filename' ] , "'" ) )
       
     }
     
+    # return catalog
     catalog
     
   }
 
+# cria base monetdb
+monetdb_obmigra <- function( catalog ) {
+  
+  # carrega libraries
+  library(data.table)
+  library(fst)
+  library(DBI)
+  library(MonetDBLite)
+  
+  # # deleta base de dados
+  # unlink( dbentries[ 1 , "dbfolder" ] , recursive = TRUE )
+  
+  # combinações únicas de bases de dados e tabelas
+  dbentries <- unique( catalog[ , c( "dbfolder" , "db_tablename" ) ] )
+  
+  # # deleta bases de dados preexistentes
+  # for ( this_folder in unique( dbentries[ , "dbfolder" ] ) ) { unlink( this_folder , recursive = TRUE ) }
+  
+  # para cada base de dados e tabela associada
+  for ( i in seq_len( nrow(dbentries) ) ) {
+    
+    # abre conexão com a tabela
+    db <- dbConnect( MonetDBLite() , dbentries[ i , "dbfolder" ] )
+    
+    # deleta tabela se ela existir:
+    if ( dbExistsTable( db , dbentries[ i , "db_tablename" ] ) ) { dbRemoveTable( db , dbentries[ i , "db_tablename" ] ) }
+    
+    # lista todos os arquivos desta tabela
+    these_files <- subset( catalog, dbfolder == dbentries[ i , "dbfolder" ] & db_tablename == dbentries[ i , "db_tablename" ] ) [ , 'output_filename' ]
+    
+    # coleta nomes e formatos de colunas em todos os arquivos desta base
+    these_dts <- lapply( these_files , function(this_file) {
+      
+      # pula arquivos inexistentes
+      if ( !file.exists( this_file ) ) return( NULL )
+      
+      # lê metadados
+      x <- read_fst( this_file , as.data.table = TRUE , from = 1 , to = 1 )
+      
+      # coleta nome de colunas
+      these_cols <- colnames( x )
+      
+      # coleta formato de colunas
+      these_formats <- sapply( x , typeof )
+      
+      # monta data.table
+      data.table( filename = this_file , column_name = these_cols , column_format = these_formats )
+      
+    } )
+    
+    # empilha dados
+    data_structure <- rbindlist( these_dts , use.names = TRUE )
+    
+    # reformata estrutura
+    data_structure <- dcast( data_structure , column_name ~ column_format , fill = "double" , drop = FALSE , value.var = "column_format" , fun.aggregate = unique )
+    
+    # define formato final da coluna
+    data_structure <- as.data.frame( data_structure )
+    data_structure$col_format <- apply( data_structure[ , -1 ] , 1 , function( y ) { ifelse( any( y %in% c( "character", "date" ) ) , "character" ,"numeric" ) } )
+    
+    # cria estrutura final
+    data_structure <- data_structure[ , c( "column_name" , "col_format" ) ]
+    
+    # lê arquivo, formata colunas e salva dados na tabela da base de dados
+    for ( this_file in these_files ) {
+      
+      # lê arquivo
+      x <- read_fst( this_file , as.data.table = TRUE )
+      
+      # cria colunas ausentes
+      missing_cols <- data_structure$column_name [ !is.element( data_structure$column_name , colnames(x) ) ]
+      if ( length( missing_cols ) > 0 )  x[ , (missing_cols) := NA ]
+      
+      # altera formatos
+      these_num_cols <- data_structure$column_name[ data_structure$col_format == "numeric" ]
+      x[ , (these_num_cols) := lapply( .SD , as.numeric ) , .SDcols = these_num_cols ]
+      these_char_cols <- data_structure$column_name[ data_structure$col_format == "character" ]
+      x[ , (these_char_cols) := lapply( .SD , as.character ) , .SDcols = these_char_cols ]
+      
+      # reordena colunas
+      setcolorder( x , data_structure$column_name )
+      
+      # salva dados na tabela
+      dbWriteTable( db , dbentries[ i , "db_tablename" ] , x , append = TRUE )
+      rm( x ) ; gc()
+      
+      # acompanhamento de processo
+      cat( basename( this_file ) , "stored at" , dbentries[ i , "db_tablename" ] , "\r" )
+      
+    }
+    
+    # disconecta da base de dados
+    dbDisconnect( db , shutdown = TRUE )
+    
+  }
+  
+  # acompanhamento de processo
+  cat( "\nobmigra monetdb database was built." )
+  
+}

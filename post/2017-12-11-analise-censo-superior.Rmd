@@ -43,7 +43,7 @@ library(MonetDBLite)
 library(lodown)
 
 # carrega funções do script
-downloader::source_url("https://github.com/guilhermejacob/guilhermejacob.github.io/blob/master/scripts/censo_superior.R")
+downloader::source_url("https://raw.githubusercontent.com/guilhermejacob/guilhermejacob.github.io/master/scripts/censo_superior.R")
 
 # define o diretório onde serão depositados os dados
 output_dir <- file.path( tempdir() , "Censo Superior" )
