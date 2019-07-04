@@ -14,7 +14,6 @@ link_scrape <- function( x ) {
   if ( !is.null( x ) ){
     this_text <- getURL( x , .encoding = 'ISO-8859-1' , .opts = list(timeout = 10 , dirlistonly = TRUE , ftplistonly = TRUE , ftp.use.epsv = FALSE ) )
     this_text <- unlist( strsplit( this_text , "\n" ) )
-    this_text <- gsub( "\\r$" , "" , this_text )
     this_text <- curlPercentEncode( this_text , codes = custom_recodes )
     paste0( x , this_text )
   } else { 
@@ -63,12 +62,13 @@ catalog_datasus <- function( output_dir , drop.prelim = TRUE ){
   
   # define pastas-raízes
   sus_htmls <- paste0( "ftp://ftp.datasus.gov.br/dissemin/publicos/" , c( "SIM" , "SINASC" , "SISPRENATAL" ) , "/" )
+  # sus_htmls <- paste0( "ftp://ftp.datasus.gov.br/dissemin/publicos/" , c( "SIM" , "SINASC" ) , "/" )
   
   # percorre diretórios
   these_links <- recursive_ftp_scrape( sus_htmls )
   
   # remove arquivos preliminares
-  if ( drop.prelim ) { these_links <- these_links[ !grepl( "\\/prelim" , these_links , ignore.case = TRUE ) ] }
+  if ( drop.prelim ) { these_links <- these_links[ !grepl( "/prelim" , tolower(these_links) , fixed = TRUE ) ] }
   
   # deleta arquivos "empilhados"
   these_links <- these_links[ !grepl( "^D.*BR[0-9]{4}" , basename( these_links ) , ignore.case = FALSE ) ]
@@ -85,6 +85,32 @@ catalog_datasus <- function( output_dir , drop.prelim = TRUE ){
                              ifelse( grepl( sus_htmls[3] , these_links ) , "sisprenatal" , NA ) ) ) ,
       stringsAsFactors = FALSE
     )
+  
+  # cria subtipo
+  #sim
+  catalog$cid[ catalog$type == "sim" ] <- ifelse( grepl( "cid9" , tolower(these_links) ) , "cid9" , "cid10" )[ catalog$type == "sim" ]
+  catalog$subtype[ catalog$type == "sim" & catalog$cid == "cid10" ] <- 
+    ifelse( grepl( "DOEXT" , basename(these_links) ) , "externa" , 
+            ifelse( grepl( "DOMAT" , basename(these_links) ) , "materna" , 
+                    ifelse( grepl( "DOFET" , basename(these_links) ) , "fetal" , 
+                            ifelse( grepl( "DOINF" , basename(these_links) ) , "infantil" ,  "geral" ) ) ) ) [ catalog$type == "sim" & catalog$cid == "cid10" ]
+  catalog$subtype[ catalog$type == "sim" & catalog$cid == "cid9" ] <- 
+    ifelse( grepl( "DOEXT" , basename(these_links) ) , "externa" , 
+            ifelse( grepl( "DOMAT" , basename(these_links) ) , "materna" , 
+                    ifelse( grepl( "DOFET" , basename(these_links) ) , "fetal" , 
+                            ifelse( grepl( "DOINF" , basename(these_links) ) , "infantil" ,  
+                                    ifelse( grepl( "DOIGN" , basename(these_links) ) , "ignorado" ,  "geral" ) ) ) ) ) [ catalog$type == "sim" & catalog$cid == "cid9" ]
+  catalog$cid[ catalog$type == "sinasc" ] <- ifelse( grepl( "nov" , tolower(these_links) ) , "nov" , "ant" )[ catalog$type == "sinasc" ]
+  catalog$subtype[ catalog$type == "sinasc" & catalog$cid == "ant" ] <- 
+    ifelse( grepl( "DNRIG" , basename(these_links) ) , "ignorado" , "geral" ) [ catalog$type == "sinasc" & catalog$cid == "ant" ]
+  catalog$subtype[ catalog$type == "sinasc" & catalog$cid == "nov" ] <- "geral"
+  catalog$cid[ catalog$type == "sisprenatal" ] <- "cid10"
+  catalog$subtype[ catalog$type == "sisprenatal" ] <- "geral"
+  
+  # testa consistência
+  stopifnot( all(!is.na(catalog$type)) )
+  stopifnot( all(!is.na(catalog$subtype)) )
+  stopifnot( all(!is.na(catalog$cid)) )
   
   # define nome do arquivo destino
   catalog$output_filename <-
@@ -120,8 +146,8 @@ datavault_datasus <- function( catalog , datavault_dir , skipExist = TRUE ) {
   plan(multiprocess)
   
   # define pastas do datavault
-  catalog[ , "datavault_file" ] <- gsub( "ftp://ftp.datasus.gov.br/dissemin/publicos" , datavault_dir , catalog$full_url )
-  catalog[ , "datavault_file" ] <- gsub( "//" , "/" , catalog[ , "datavault_file" ] , ignore.case = TRUE )
+  catalog[ , "datavault_file" ] <- gsub( "ftp://ftp.datasus.gov.br/dissemin/publicos" , datavault_dir , catalog$full_url , fixed = TRUE )
+  catalog[ , "datavault_file" ] <- gsub( "//" , "/" , catalog[ , "datavault_file" ] , fixed = TRUE )
   
   # procura arquivos existentes
   existing_files <- file.exists( catalog[ , "datavault_file" ] )
@@ -169,6 +195,7 @@ build_datasus <- function( catalog , skipExist = TRUE ) {
     
     # pula arquivo existente
     if (skipExist & file.exists( catalog[ i , "output_filename"] ) ) {
+      catalog[ i , 'case_count' ] <- fst.metadata( catalog[ i , "output_filename"] )$nrOfRows
       cat( paste0( catalog[ i , 'output_filename' ] , " already exists. Skippping.\r" ) )
       next()
     } 
@@ -193,6 +220,9 @@ build_datasus <- function( catalog , skipExist = TRUE ) {
     
     # remove espaços desnecessários nos nomes
     names( x ) <- trimws( names( x ) , which = "both" )
+    
+    # adiciona underscores depois de nomes reservados do monetdb
+    for ( j in names( x )[ toupper( names( x ) ) %in% getFromNamespace( "reserved_monetdb_keywords" , "MonetDBLite" ) ] ) names( x )[ names( x ) == j ] <- paste0( j , "_" )
     
     # força variáveis de códigos para caractere
     code_vars <- names( x )[ grepl( "^(cod|causabas|linha|ocup|dt|numero|idade|sexo)" , names( x ) ) ]
@@ -237,7 +267,7 @@ build_datasus <- function( catalog , skipExist = TRUE ) {
     
     # salva arquivo no disco
     dir.create( dirname( catalog[ i , 'output_filename' ] ) , recursive = TRUE , showWarnings = FALSE )
-    write_fst( x , path = catalog[ i , 'output_filename' ] , compress = 100 )
+    if ( nrow(x) > 0 ) write_fst( x , path = catalog[ i , 'output_filename' ] , compress = 100 )
     
     # acompanhamento de processo
     cat( paste0( "datasus catalog entry " , i , " of " , nrow( catalog ) , " stored at '" , catalog[ i , 'output_filename' ] , "'\r" ) )
@@ -253,7 +283,7 @@ build_datasus <- function( catalog , skipExist = TRUE ) {
 }
 
 ### cria base de dados monetdb
-monetdb_datasus <- function( catalog ) {
+monetdb_datasus <- function( catalog , skipExist = TRUE ) {
   
   # carrega libraries
   library(data.table)
@@ -262,20 +292,12 @@ monetdb_datasus <- function( catalog ) {
   library(MonetDBLite)
   
   # cria nomes das tabelas na base de dados
-  catalog$db_tablename <-
-    ifelse( !grepl( "dbc$" , catalog$full_url , ignore.case = TRUE ) , NA ,
-            ifelse( grepl( "/dofet" , catalog$output_filename ) ,
-                    paste0( substr( basename( catalog$output_filename ) , 3 , 5 ) , ifelse( grepl( "/cid9" , catalog$output_filename ) , "_cid9" , "_cid10" ) ) ,
-                    ifelse( grepl( "/dores" , catalog$output_filename ) ,
-                            paste0( "geral" , ifelse( grepl( "/cid9" , catalog$output_filename ) , "_cid9" , "_cid10" ) ) ,
-                            ifelse( grepl( "/sinasc" , catalog$output_filename ) ,
-                                    ifelse( grepl( "/dnign" , catalog$output_filename ) , "nign" ,
-                                            paste0( "nasc" , ifelse( grepl( "/ant" , catalog$output_filename ) , "_cid9" , "_cid10" ) ) ) ,
-                                    ifelse( grepl( "/sisprenatal" , catalog$output_filename ) , "pn" ,
-                                            ifelse( grepl( "doign" , catalog$output_filename ) , "dign" , NA ) ) ) ) ) )
-  
-  # # adiciona sufixo de ano
-  # catalog$db_tablename <- paste( catalog$db_tablename , catalog$year , sep = "_" )
+  catalog$db_tablename[ catalog$type == "sim" ] <- paste( catalog$type , catalog$subtype , catalog$cid , sep = "_" )[ catalog$type == "sim" ]
+  catalog$db_tablename[ catalog$type == "sinasc" ] <- paste( catalog$type , catalog$cid , sep = "_" )[ catalog$type == "sinasc" ]
+  catalog$db_tablename[ catalog$type == "sisprenatal" ] <- "sisprenatal"
+    
+  # adiciona sufixo de ano
+  catalog$db_tablename <- paste( catalog$db_tablename , catalog$year , sep = "_" )
   
   # cria endereço da base de dados
   catalog$dbfolder <- ifelse( is.na( catalog$db_tablename ) , NA , paste0( output_dir , "/MonetDB" ) )
@@ -283,17 +305,38 @@ monetdb_datasus <- function( catalog ) {
   # combinações únicas de bases de dados e tabelas
   dbentries <- unique( catalog[ , c( "dbfolder" , "db_tablename" ) ] )
   
+  # ajusta linhas
+  rownames(dbentries) <- NULL
+  
   # # deleta bases de dados preexistentes
   # for ( this_folder in unique( dbentries[ , "dbfolder" ] ) ) { unlink( this_folder , recursive = TRUE ) }
+  
+  # abre conexão com a tabela
+  db <- dbConnect( MonetDBLite() , unique( dbentries[ , "dbfolder" ] )[[1]] )
+  
+  # acompanhamento de processo
+  cat( "\ndatasus monetdb process started.\n" )
   
   # para cada base de dados e tabela associada
   for ( i in seq_len( nrow(dbentries) ) ) {
     
-    # abre conexão com a tabela
-    db <- dbConnect( MonetDBLite() , dbentries[ i , "dbfolder" ] )
+    # # abre conexão com a tabela
+    # db <- dbConnect( MonetDBLite() , dbentries[ i , "dbfolder" ] )
     
-    # deleta tabela se ela existir:
-    if ( dbExistsTable( db , dbentries[ i , "db_tablename" ] ) ) { dbRemoveTable( db , dbentries[ i , "db_tablename" ] ) }
+    # testa se a tabela já existe na base de dados
+    if ( dbExistsTable( db , dbentries[ i , "db_tablename" ] ) ) {
+      
+      # Se skipExist == TRUE, pula para a próxima tabela.
+      # Caso contrário, deleta tabela existente e processa os dados
+      if ( skipExist ) { 
+        cat( dbentries[ i , "db_tablename" ] , "already exists. Skipping.\r" )
+        next() 
+      } else { 
+        cat( dbentries[ i , "db_tablename" ] , "already exists. Removing.\r" )
+        dbRemoveTable( db , dbentries[ i , "db_tablename" ] ) 
+      }
+      
+    }
     
     # lista todos os arquivos desta tabela
     these_files <- subset( catalog, dbfolder == dbentries[ i , "dbfolder" ] & db_tablename == dbentries[ i , "db_tablename" ] ) [ , 'output_filename' ]
@@ -326,13 +369,16 @@ monetdb_datasus <- function( catalog ) {
     
     # define formato final da coluna
     data_structure <- as.data.frame( data_structure )
-    data_structure$col_format <- apply( data_structure[ , -1 ] , 1 , function( y ) { ifelse( any( y %in% c( "character", "date" ) ) , "character" ,"numeric" ) } )
+    data_structure$col_format <- apply( data_structure[ , -1 ] , 1 , function( y ) { ifelse( any( tolower(y) %in% c( "character", "date" ) ) , "character" ,"numeric" ) } )
     
     # cria estrutura final
     data_structure <- data_structure[ , c( "column_name" , "col_format" ) ]
     
     # lê arquivo, formata colunas e salva dados na tabela da base de dados
     for ( this_file in these_files ) {
+      
+      # pula arquivos inexistentes
+      if ( !file.exists( this_file ) ) next()
       
       # lê arquivo
       x <- read_fst( this_file , as.data.table = TRUE )
@@ -359,10 +405,13 @@ monetdb_datasus <- function( catalog ) {
       
     }
     
-    # disconecta da base de dados
-    dbDisconnect( db , shutdown = TRUE )
+    # # disconecta da base de dados
+    # dbDisconnect( db , shutdown = TRUE )
     
   }
+  
+  # disconecta da base de dados
+  dbDisconnect( db , shutdown = TRUE )
   
   # acompanhamento de processo
   cat( "\ndatasus monetdb database was built." )
