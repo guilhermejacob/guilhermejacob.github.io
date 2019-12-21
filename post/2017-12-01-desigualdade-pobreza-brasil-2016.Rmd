@@ -14,9 +14,7 @@ knitr::opts_chunk$set(cache=TRUE) # defaults to cacheing
 
 <!--html_preserve-->
 {{< alert warning >}}
-<b>Atualização (19/05/2018):</b> corrigi alguns erros no código que afetavam as estimativas das capitais.<br>
-Já que os intervalos de confiança das estimativas de capitais não permitiam uma análise mais profunda, resolvi mudar para análise das UFs.<br>
-As rendas foram ajustadas para preços médios de 2016.
+<b>Atualização (21/12/2019):</b> refiz todas as análises usando a nova definição de renda domiciliar per capita e seu respectivo deflator.<br>
 {{< /alert >}}
 <!--/html_preserve-->
 
@@ -38,16 +36,11 @@ Todos as estimativas a seguir foram feitas por mim.<br>Assim, nem IBGE, nem qual
 {{< /alert >}}
 <!--/html_preserve-->
 
-##### Índice de Gini
-
-```{r database_setup, message=FALSE, warning=FALSE, include=FALSE , cache=FALSE }
-# tentativa de replicar números da publicação:
-# https://biblioteca.ibge.gov.br/visualizacao/livros/liv101390_informativo.pdf
-# https://economia.estadao.com.br/noticias/geral,desigualdade-piora-em-4-das-5-grandes-regioes-do-pais-em-2017-diz-ibge,70002263916
-# https://agenciadenoticias.ibge.gov.br/agencia-sala-de-imprensa/2013-agencia-de-noticias/releases/18376-pnad-continua-2016-10-da-populacao-com-maiores-rendimentos-concentra-quase-metade-da-renda
+```{r database_setup, eval=FALSE, message=FALSE, warning=FALSE, cache=FALSE, include=FALSE}
+# calcula resultados
 
 # carrega libraries
-library(downloader)
+library(here)
 library(readxl)
 library(data.table)
 library(fst)
@@ -57,9 +50,6 @@ library(convey)
 # opções para a library `survey`
 options( survey.lonely.psu = "adjust" )
 options( survey.multicore = TRUE )
-
-# define diretórios
-output_dir <- "~/Bases/PNAD Contínua/Anual"
 
 # set uf table
 uf <-
@@ -80,152 +70,195 @@ uf$cp_name <- c("Porto Velho" , "Rio Branco" , "Manaus", "Boa Vista", "Belém", 
                 "Fortaleza" , "Natal", "João Pessoa" , "Recife" , "Maceió" , "Aracaju", "Salvador", "Belo Horizonte" , 
                 "Vitória" , "Rio de Janeiro", "São Paulo" , "Curitiba", "Florianópolis" , "Porto Alegre", "Campo Grande", 
                 "Cuiabá", "Goiânia" , "Brasília" )
-uf$rg_name <- factor( substr( uf$uf , 1 , 1 ) , levels = 1:5 , labels = c( "Norte" , "Nordeste" , "Sudeste" , "Sul" , "Centro-Oeste" ) )
-
-
-
 
 # monta tabela com deflatores
-# faz download da tabela
-tf <- tempfile()
-download.file( "ftp://ftp.ibge.gov.br/Trabalho_e_Rendimento/Pesquisa_Nacional_por_Amostra_de_Domicilios_continua/Anual/Microdados/Documentacao/deflator_2017_pnadc.xls" , tf )
-
 # lê arquivo do excel
-deflat_tab <- read_xls( tf , sheet = 1 )
+deflat_tab <- read_xls( here( "resources/deflator_2017_pnadc.xls" ) , sheet = 1 )
 
 # converte para data.table
 deflat_tab <- as.data.table( deflat_tab )
 
 # ajusta nomes
 colnames( deflat_tab ) <- tolower( colnames( deflat_tab ) )
-colnames( deflat_tab )[ colnames( deflat_tab ) %in% "trim" ] <- "trimestre"
+setnames( deflat_tab , "trim" , "trimestre" )
 
-# transforma para preços médios de 2017:
-deflat_tab[ , myp := sum( co1 ) / 4 , by = .( ano , uf ) ]
-deflat_tab[ , myp_2016 := myp[ ano == 2016 ] , by = .( uf ) ]
-deflat_tab[ , ratio := myp / myp_2016 ]
-deflat_tab[ , deflt := co1 / ratio ]
+# lista arquivos
+data_dir <- path.expand( "~/Bases/PNAD Contínua/Anual" )
+these_files <- list.files( data_dir , full.names = TRUE , recursive = TRUE )
 
-# formata tabela
-deflat_tab <- deflat_tab[ , c( "ano" , "trimestre" , "uf" , "deflt" ) , with = FALSE ]
+# filtra para 1ª entrevista
+these_files <- these_files[ grepl( "1 pnadc" , basename( these_files ) ) ]
 
+# filtra anos
+these_files <- these_files[ grepl( "2016" , basename( these_files ) ) ]
 
-# monta desenho amostral
+# cria objetos de desenho amostral
+pnadc_df <- lapply( these_files, function( this_file ) {
+  
+  # define colunas
+  these_columns <- c("ano", "trimestre", "uf", "capital", "upa", "estrato", "v1008" , "v1030", "v1031", "posest", 
+                     "v1022", "v2007" , "v2009" , "vd2002" , "vd2003" , "vd4016" , "vd4019" , "vd4048" )
+  
+  # ajusta colunas
+  these_columns <- intersect( fst.metadata( this_file )[[4]] , these_columns )
+  
+  # lê base de dados
+  pnadc_df <- read_fst( this_file , columns = these_columns , as.data.table = TRUE )
+  
+  # # total de moradores
+  # pnadc_df[ !(vd2002 %in% 17:19) , nmor := .N , by = .( upa , v1008 ) ]
+  
+  # cria agregados de renda domiciliar
+  pnadc_df[ !(vd2002 %in% 17:19) , rtrab := sum( vd4019 , na.rm = TRUE ) , by = .( upa , v1008 ) ] # habitual de todos os trabalhos
+  pnadc_df[ !(vd2002 %in% 17:19) , routr := sum( vd4048 , na.rm = TRUE ) , by = .( upa , v1008 ) ] # efetivo de outras fontes
+  pnadc_df[ !(vd2002 %in% 17:19) , rdom := rtrab + routr ] # rendimento domiciliar
+  pnadc_df[ !(vd2002 %in% 17:19) , rdpc := rdom / vd2003 ] # rendimento domiciliar per capita
+  
+  # combina deflator
+  pnadc_df <- merge( pnadc_df , deflat_tab , by = c( "ano" , "trimestre" , "uf" ) , all.x = TRUE , all.y = FALSE )
+  
+  # deflaciona os rendas: habitual
+  these_inc_cols <- c( intersect( c( "vd4016" , "vd4019" ) , these_columns ) , "rtrab" ) 
+  pnadc_df[ , paste0( "def_" , these_inc_cols ) := lapply( .SD , function(x) x * co2 ) , .SDcols = these_inc_cols ]
+  
+  # deflaciona os rendas: efetivo
+  these_inc_cols <- c( intersect( c( "vd5007" , "vd5008" , "vd4048" ) , these_columns ) , "routr" )
+  pnadc_df[ , paste0( "def_" , these_inc_cols ) := lapply( .SD , function(x) x * co2e ) , .SDcols = these_inc_cols ]
+  
+  # cria agregados de renda domiciliar deflacionado
+  pnadc_df[ !(vd2002 %in% 15:17) , def_rdom := def_rtrab + def_routr ] # rendimento domiciliar deflacionado
+  pnadc_df[ !(vd2002 %in% 15:17) , def_rdpc := def_rdom / vd2003 ] # rendimento domiciliar per capita deflacionado
+  
+  # adiciona nomes de uf
+  pnadc_df <- merge( pnadc_df , uf , by = "uf" )
+  
+  # ajusta capital
+  pnadc_df[ is.na( capital ), cp_name := NA ]
+  
+  # coluna unitária
+  pnadc_df[, one := 1]
+  
+  # cria regiao
+  pnadc_df[, regiao := factor( substr( uf , 1 , 1 ) , labels = c( "Norte" , "Nordeste" , "Sudeste" , "Sul" , "Centro-Oeste" ) ) ]
+  
+  # cria situação do domicílio
+  pnadc_df[, v1022 := factor( v1022 , labels = c( "Urbano" , "Rural" ) ) ]
+  
+  # cria sexo
+  pnadc_df[, v2007 := factor( v2007 , labels = c( "Homem" , "Mulher" ) ) ]
+  
+  # retorna objeto
+  pnadc_df
+  
+} )
 
-# list files
-these_files <- list.files( output_dir , full.names = TRUE , recursive = TRUE )
+# empilha bases de dados
+pnadc_df <- rbindlist( pnadc_df , use.names = TRUE )
 
-# filter 2016
-these_files <- these_files[ grepl( "2016 1" , basename( these_files ) ) ]
+# calcula totais de pós-estratificação
+df_pos <- pnadc_df[ !duplicated( pnadc_df[ , .( ano , posest ) ] ) ,  .( ano , posest , Freq = v1030 ) ]
+df_pos <- data.frame( df_pos , stringsAsFactors = FALSE )
 
-# define file
-this_file <- these_files[[1]]
+# transforma em data.frame
+pnadc_df <- data.frame( pnadc_df , stringsAsFactors = FALSE )
 
-# define columns to read
-these_columns <- c( "upa" , "estrato" , "v1031" , "v1030" , "posest" , "ano" , "trimestre" , "uf" , "capital" , "v2010" , "v2009" , "vd4016" , paste0( "vd500" , 1:6 ) , "v3002" , paste0( "vd402" , c(0,2) ) , "vd2002" , "v20082" )
-
-# read dataset
-pnadc_df <- read_fst( this_file , columns = these_columns , as.data.table = TRUE )
-
-# merge data
-pnadc_df <- merge( pnadc_df , uf , by = "uf" )
-
-# add one column
-pnadc_df[, one := 1]
-
-# add age column
-pnadc_df[, age := ifelse( !is.na( v20082 ) , 2016 - v20082 , NA ) ]
-
-# create region
-pnadc_df[, regiao := substr( uf , 1 , 1 )]
-
-# combina deflator
-pnadc_df <- merge( pnadc_df , deflat_tab , by = c( "ano" , "trimestre" , "uf" ) , all.x = TRUE , all.y = FALSE )
-
-# deflaciona os rendas
-these_inc_cols <- c( paste0( "vd500" , c(1:2,4:5) ) , paste0( "vd402" , c(0,2) ) )
-pnadc_df[ , paste0( "def_" , these_inc_cols ) := lapply( .SD , function(x) x * deflt ) , .SDcols = these_inc_cols ]
-
-# preliminary survey design
-pre_stratified <-
+# desenho amostral sem pós-estratificação
+pnadc_design <-
   svydesign(
     ids = ~ upa , 
-    strata = ~ estrato , 
+    strata = ~ interaction( ano , estrato ) , 
     weights = ~ v1031 , 
     data = pnadc_df ,
     nest = TRUE
   )
-# warning: do not use `pre_stratified` in your analyses!
-# you must use the `pnadc_design` object created below.
 
-# post-stratification targets
-df_pos <- data.frame( posest = unique( pnadc_df$posest ) , Freq = unique( pnadc_df$v1030 ) )
+# objeto de desenho amostral final
+pnadc_design <- postStratify( pnadc_design , ~ ano + posest , df_pos )
 
-# final survey design object
-pnadc_design <- postStratify( pre_stratified , ~ posest , df_pos )
-
-# remove the `pnadc_df` data.frame object
-# and the `pre_stratified` design before stratification
-rm( pnadc_df , pre_stratified , df_pos )
+# remove objetos desnecessários
+rm( pnadc_df , df_pos , uf , deflat_tab ) ; gc()
 
 # aplica convey
 pnadc_design <- convey_prep( pnadc_design )
+
+# define fórmulas
+formulae <- list( ~ano+one , ~ano+uf+uf_name )
+
+# estima índice de gini
+res1 <- lapply( formulae , function( this_formula ) svyby( ~def_rdpc , this_formula , pnadc_design , svygini , na.rm = TRUE , vartype = "ci" ) )
+
+# estima razão de palma
+res2 <- lapply( formulae , function( this_formula ) svyby( ~def_rdpc , this_formula , pnadc_design , svyqsr , alpha2 = .9 , alpha1 = .4 , na.rm = TRUE , vartype = "ci" ) )
+
+# estima índice de zenga
+res3 <- lapply( formulae , function( this_formula ) svyby( ~def_rdpc , this_formula , pnadc_design , svyzenga , na.rm = TRUE , vartype = "ci" ) )
+
+# estima fgt0
+res4 <- lapply( formulae , function( this_formula ) svyby( ~def_rdpc , this_formula , pnadc_design , svyfgt , g = 0 , abs_thresh = 220 , na.rm = TRUE , vartype = "ci" ) )
+
+# estima fgt1
+res5 <- lapply( formulae , function( this_formula ) svyby( ~def_rdpc , this_formula , pnadc_design , svyfgt , g = 1 , abs_thresh = 220 , na.rm = TRUE , vartype = "ci" ) )
+
+# estima fgt2
+res6 <- lapply( formulae , function( this_formula ) svyby( ~def_rdpc , this_formula , pnadc_design , svyfgt , g = 2 , abs_thresh = 220 , na.rm = TRUE , vartype = "ci" ) )
+
+# estima decomposição do fgt2
+res7 <- lapply( formulae , function( this_formula ) svyby( ~def_rdpc , this_formula , pnadc_design , svyfgtdec , g = 2 , abs_thresh = 220 , na.rm = TRUE ) )
+
+# clean workspace
+rm( pnadc_design , formulae , these_files , data_dir ) ; gc()
+
+# salva objetos
+save.image( here( "resources/despob_2016.Rds" ) )
 ```
-Vamos começar com a medida de desigualdade mais utilizada, o [índice de Gini](https://pt.wikipedia.org/wiki/Coeficiente_de_Gini). O Distrito Federal é o estado mais desigual do país. Ainda assim, os intervalos de confiança não permitem dizer que existam diferenças estatisticamente significativas entre muitos estados.
-```{r gini_plot, echo=FALSE, message=FALSE, warning=FALSE }
-# estima indices de gini
-br_gini <- svyby( ~def_vd5002 , ~one , pnadc_design , svygini , na.rm = TRUE )
-uf_gini <- svyby( ~def_vd5002 , ~uf_name , pnadc_design , svygini , na.rm = TRUE )
 
-res1 <- list( br_gini , uf_gini )
+##### Índice de Gini
 
-# build result set
-res1 <- lapply( res1 , function( x ) {
-  this_est <- data.frame( x ) 
-  colnames( this_est )[1] <- c( "area" )
-  
-  this_ci <- data.frame( confint( x ) )
-  colnames( this_ci ) <- c( "ci_l" , "ci_u" ) 
-  
-  this_cv <- data.frame( cv( x ) )
-  colnames( this_cv ) <- "cv"
-  
-  this_result <- cbind( set = names( x[1] ), this_est , this_ci , this_cv )
-  rownames( this_result ) <- NULL
-  
-  if ( length( this_result$set ) == 1 & ( "one" %in% this_result$set ) ) this_result$area <- "Brasil"
-  
-  this_result
-} )
-res1 <- do.call( rbind , res1 )
+```{r load_results, eval=TRUE, message=FALSE, warning=FALSE, cache=FALSE, include=FALSE}
+# carrega estatísticas
 
-
-# plotting
+# carrega libraries
+library(here)
+library(data.table)
+library(survey)
+library(convey)
 library(ggplot2)
 library(gridExtra)
 library(grid)
 library(scales)
-library(ggiraph)
+# library(ggiraph)
+library(knitr)
+library(kableExtra)
 
-# convert to data.table
-res1 <- as.data.table( res1 )
+# carrega dados
+load( here( "resources/despob_2016.Rds" ) )
+```
 
-# get plot order
-plot.order <- c( "Brasil" , res1[ area != "Brasil" ][ order( -def_vd5002 ) ][ , area ] )
+Vamos começar com a medida de desigualdade mais utilizada, o [índice de Gini](https://pt.wikipedia.org/wiki/Coeficiente_de_Gini). O Distrito Federal é o estado mais desigual do país. Ainda assim, os intervalos de confiança não permitem dizer que existam diferenças estatisticamente significativas entre muitos estados.
+```{r gini_plot, echo=FALSE, message=FALSE, warning=FALSE }
+# empilha gini
+res1 <- lapply( res1 , data.table )
+res1 <- rbindlist( res1 , use.names = TRUE , fill = TRUE )
+res1[ is.na( uf ) , area := "Brasil" ]
+res1[ !is.na( uf ) , area := uf_name ]
+res1 <- res1[ order( one , -def_rdpc , na.last = TRUE ) , ]
+plot_order <- rev( res1[ !is.na( uf ) | area == "Brasil" ]$area )
+
+gini_scale <- function(x) gsub( ".*\\." , "." , sprintf('%.3f', x ) )
 
 # create plot object
-gini_cp <- 
-  ggplot( res1 , aes( area, def_vd5002 , group = area , color = area ) ) +
+gini_uf <- 
+  ggplot( res1 , aes( area, def_rdpc , group = area , color = area ) ) +
   geom_line( alpha = .3 ) + 
   geom_errorbar(aes(ymin=ci_l, ymax=ci_u), width=.1 , alpha = .5 ) +
   geom_point( size = 1) +
-  scale_y_continuous( expand = c(0,0) ) +
-  scale_x_discrete(limits= rev( plot.order ) ) +
+  scale_y_continuous( labels = gini_scale , expand = c(0,0) ) +
+  scale_x_discrete( limits = plot_order ) +
   coord_flip( ylim=c(.3 , .72) ) +
   labs( x = NULL , y = "Índice de Gini", 
         title = "Índice de Gini da Renda Domiciliar Per Capita" , 
         subtitle ="Brasil e UFs, 2016.\nCom intervalo de confiança de 95%." ,
-        caption = "Fonte: PNAD Contínua 2016. Microdados.") +
+        caption = "Fonte: PNAD Contínua 2016, 1ª entrevista. Microdados.") +
   # scale_color_brewer(type = "qual" , palette = "Dark2" , direction = 1 ) +
   guides(color = FALSE ) +
   # theme_dark() +
@@ -237,8 +270,8 @@ gini_cp <-
          # axis.text.x = element_text(angle = 90, hjust = 1) ,
          plot.title = element_text(lineheight=.8, face="bold") ) 
 
-gini_cp
-# ggiraph( code = { print( gini_cp ) } , zoom_max = 1 , width = 1 , tooltip_opacity = .7 , width_svg = 8, height_svg= 5 )
+gini_uf
+# ggiraph( code = { print( gini_uf ) } , zoom_max = 1 , width = 1 , tooltip_opacity = .7 , width_svg = 8, height_svg= 5 )
 ```
 
 A outra coisa clara neste gráfico é que Santa Catarina é o estado menos desigual, embora a diferença em relação ao segundo menos desigual, Mato Grosso, não seja estatisticamente significativa.
@@ -249,51 +282,27 @@ No entanto, é importante lembrar que o índice de Gini tem seus problemas^[Sobr
 
 A [razão de Palma](http://www.un.org/esa/desa/papers/2015/wp143_2015.pdf) é bastante intuitiva. Basicamente, este índice é a razão entre as rendas dos 10% mais ricos sobre a dos 40% mais pobres. Dessa forma, ele consegue ser mais sensível aos extremos da distribuição de renda do que o índice de Gini, por exemplo. Vejamos os resultados para o Brasil.
 ```{r palma_plot, echo=FALSE, message=FALSE, warning=FALSE }
-# estima indices de palma
-br_palma <- svyby( ~def_vd5002 , ~one , pnadc_design , svyqsr , alpha2 = .1 , alpha1 = .4 , na.rm = TRUE )
-cp_palma <- svyby( ~def_vd5002 , ~uf_name , pnadc_design , svyqsr , alpha2 = .1 , alpha1 = .4 , na.rm = TRUE )
-
-res2 <- list( br_palma , cp_palma )
-
-# build result set
-res2 <- lapply( res2 , function( x ) {
-  this_est <- data.frame( x ) 
-  colnames( this_est )[1] <- c( "area" )
-  
-  this_ci <- data.frame( confint( x ) )
-  colnames( this_ci ) <- c( "ci_l" , "ci_u" ) 
-  
-  this_cv <- data.frame( cv( x ) )
-  colnames( this_cv ) <- "cv"
-  
-  this_result <- cbind( set = names( x[1] ), this_est , this_ci , this_cv )
-  rownames( this_result ) <- NULL
-  
-  if ( length( this_result$set ) == 1 & ( "one" %in% this_result$set ) ) this_result$area <- "Brasil"
-  
-  this_result
-} )
-res2 <- do.call( rbind , res2 )
-
-# convert to data.table
-res2 <- as.data.table( res2 )
-
-# get plot order
-plot.order <- c( "Brasil" , res2[ area != "Brasil" ][ order( -def_vd5002 ) ][ , area ] )
+# empilha razão de palma
+res2 <- lapply( res2 , data.table )
+res2 <- rbindlist( res2 , use.names = TRUE , fill = TRUE )
+res2[ is.na( uf ) , area := "Brasil" ]
+res2[ !is.na( uf ) , area := uf_name ]
+res2 <- res2[ order( one , -def_rdpc , na.last = TRUE ) , ]
+plot_order <- rev( res2[ !is.na( uf ) | area == "Brasil" ]$area )
 
 # create plot object
-palma_cp <- 
-  ggplot( res2 , aes( area, def_vd5002 , group = area , color = area ) ) +
+palma_uf <- 
+  ggplot( res2 , aes( area, def_rdpc , group = area , color = area ) ) +
   geom_line( alpha = .3 ) + 
   geom_errorbar(aes(ymin=ci_l, ymax=ci_u), width=.1 , alpha = .5 ) +
   geom_point( size = 1) +
-  scale_y_continuous(  expand = c(0,.5) , breaks = seq(4,20,2) ) +
-  scale_x_discrete(limits= rev( plot.order ) ) +
-  coord_flip( ylim=c( 4 , 19) ) +
+  scale_y_continuous(  expand = c(0,.5) , breaks = seq(1,6,1) ) +
+  scale_x_discrete( limits = plot_order ) +
+  coord_flip( ylim=c( 1 , 6) ) +
   labs( x = NULL , y = "Razão de Palma", 
         title = "Razão de Palma da Renda Domiciliar Per Capita" , 
         subtitle ="Brasil e UFs, 2016.\nCom intervalo de confiança de 95%." ,
-        caption = "Fonte: PNAD Contínua 2016. Microdados.") +
+        caption = "Fonte: PNAD Contínua 2016, 1ª entrevista. Microdados.") +
   # scale_color_brewer(type = "qual" , palette = "Dark2" , direction = 1 ) +
   guides(color = FALSE ) +
   # theme_dark() +
@@ -303,64 +312,40 @@ palma_cp <-
          # panel.grid.minor.x = element_line( linetype = 3 , color = "lightgrey" , size = .2 ) ,
          panel.grid.major.y = element_line( linetype = 3 , color = "lightgrey" , size = .2 ) ,
          # axis.text.x = element_text(angle = 90, hjust = 1) ,
-         plot.title = element_text(lineheight=.8, face="bold") ) 
-
-palma_cp
-# ggiraph( code = { print( palma_cp ) } , zoom_max = 1 , width = 1 , tooltip_opacity = .7 , width_svg = 8, height_svg= 5 )
+         plot.title = element_text(lineheight=.8, face="bold") )
+  
+palma_uf
+# ggiraph( code = { print( palma_uf ) } , zoom_max = 1 , width = 1 , tooltip_opacity = .7 , width_svg = 8, height_svg= 5 )
 ```
 
-Bom, o ordenamento muda um pouco. Embora o DF continue sendo o mais desigual, Pernambuco cai algumas posições. Isso se deve ao fato deste índice ser um pouco mais sensível aos extremos da distribuição.  
+Bom, o ordenamento muda um pouco. Embora o DF continue sendo o mais desigual, Pernambuco cai uma posição. Isso se deve ao fato deste índice ser um pouco mais sensível aos extremos da distribuição.
 Entretanto, este índice também sofre algumas críticas. De fato, ele não atende muitos axiomas esperados dos índices de desigualdade. Com isso em mente, incluiremos mais um índice.
 
 ##### Índice de Zenga
 
 O [índice de Zenga](https://link.springer.com/article/10.1007/s10687-013-0177-2) é uma medida relativamente recente. Ele satisfaz os mesmos axiomas que o índice de Gini, mas "pesa" todas as observações igualmente, mantendo a mesma sensibilidade ao longo de toda a distribuição de renda.
 ```{r zenga_plot, echo=FALSE, message=FALSE, warning=FALSE }
-# estima indices de zenga
-br_zenga <- svyby( ~def_vd5002 , ~one , pnadc_design , svyzenga , na.rm = TRUE )
-cp_zenga <- svyby( ~def_vd5002 , ~uf_name , pnadc_design , svyzenga , na.rm = TRUE )
-
-res3 <- list( br_zenga , cp_zenga )
-
-# build result set
-res3 <- lapply( res3 , function( x ) {
-  this_est <- data.frame( x ) 
-  colnames( this_est )[1] <- c( "area" )
-  
-  this_ci <- data.frame( confint( x ) )
-  colnames( this_ci ) <- c( "ci_l" , "ci_u" ) 
-  
-  this_cv <- data.frame( cv( x ) )
-  colnames( this_cv ) <- "cv"
-  
-  this_result <- cbind( set = names( x[1] ), this_est , this_ci , this_cv )
-  rownames( this_result ) <- NULL
-  
-  if ( length( this_result$set ) == 1 & ( "one" %in% this_result$set ) ) this_result$area <- "Brasil"
-  
-  this_result
-} )
-res3 <- do.call( rbind , res3 )
-
-# convert to data.table
-res3 <- as.data.table( res3 )
-
-# get plot order
-plot.order <- c( "Brasil" , res3[ area != "Brasil" ][ order( -def_vd5002 ) ][ , area ] )
+# empilha índice de zenga
+res3 <- lapply( res3 , data.table )
+res3 <- rbindlist( res3 , use.names = TRUE , fill = TRUE )
+res3[ is.na( uf ) , area := "Brasil" ]
+res3[ !is.na( uf ) , area := uf_name ]
+res3 <- res3[ order( one , -def_rdpc , na.last = TRUE ) , ]
+plot_order <- rev( res3[ !is.na( uf ) | area == "Brasil" ]$area )
 
 # create plot object
-zenga_cp <- 
-  ggplot( res3 , aes( area, def_vd5002 , group = area , color = area ) ) +
+zenga_uf <-
+  ggplot( res3 , aes( area, def_rdpc , group = area , color = area ) ) +
   geom_line( alpha = .3 ) + 
   geom_errorbar(aes(ymin=ci_l, ymax=ci_u), width=.1 , alpha = .5 ) +
   geom_point( size = 1) +
   scale_y_continuous(  expand = c(.05,.05) , breaks = seq(0 , 1 , .05) ) +
-  scale_x_discrete(limits= rev( plot.order ) ) +
+  scale_x_discrete( limits = plot_order ) +
   coord_flip( ylim=c( .7 , .9) ) +
   labs( x = NULL , y = "Índice de Zenga", 
         title = "Índice de Zenga da Renda Domiciliar Per Capita" , 
         subtitle ="Brasil e UFs, 2016.\nCom intervalo de confiança de 95%." ,
-        caption = "Fonte: PNAD Contínua 2016. Microdados.") +
+        caption = "Fonte: PNAD Contínua 2016, 1ª entrevista. Microdados.") +
   # scale_color_brewer(type = "qual" , palette = "Dark2" , direction = 1 ) +
   guides(color = FALSE ) +
   # theme_dark() +
@@ -370,10 +355,10 @@ zenga_cp <-
          # panel.grid.minor.x = element_line( linetype = 3 , color = "lightgrey" , size = .2 ) ,
          panel.grid.major.y = element_line( linetype = 3 , color = "lightgrey" , size = .2 ) ,
          # axis.text.x = element_text(angle = 90, hjust = 1) ,
-         plot.title = element_text(lineheight=.8, face="bold") ) 
+         plot.title = element_text(lineheight=.8, face="bold") )
 
-zenga_cp
-# ggiraph( code = { print( zenga_cp ) } , zoom_max = 1 , width = 1 , tooltip_opacity = .7 , width_svg = 8, height_svg= 5 )
+zenga_uf
+# ggiraph( code = { print( zenga_uf ) } , zoom_max = 1 , width = 1 , tooltip_opacity = .7 , width_svg = 8, height_svg= 5 )
 ```
 
 O gráfico revela uma distribuição similar ao da razão de Palma. 
@@ -388,54 +373,27 @@ Vejamos, então, as estatísticas de pobreza no Brasil.
 
 ##### Taxa de Pobreza
 
-O indicador mais utilizado quando se discute pobreza é a taxa de pobreza. Basicamente, essa medida é a proporção de pessoas pobres em determinada população.  
+O indicador mais utilizado quando se discute pobreza é a taxa de pobreza. Basicamente, essa medida é a proporção de pessoas consideradas pobres em determinada população.
 ```{r fgt0_plot, echo=FALSE, message=FALSE, warning=FALSE }
-# estima fgt0
-br_fgt0 <- svyby( ~def_vd5002 , ~one , pnadc_design , svyfgt , g = 0 , abs_thresh = 220 , na.rm = TRUE )
-cp_fgt0 <- svyby( ~def_vd5002 , ~uf_name , pnadc_design , svyfgt , g = 0 , abs_thresh = 220 , na.rm = TRUE )
+# empilha fgt0
+res4 <- lapply( res4 , data.table )
+res4 <- rbindlist( res4 , use.names = TRUE , fill = TRUE )
+res4[ is.na( uf ) , area := "Brasil" ]
+res4[ !is.na( uf ) , area := uf_name ]
+res4 <- res4[ order( one , -def_rdpc , na.last = TRUE ) , ]
+plot_order <- rev( res4[ !is.na( uf ) | area == "Brasil" ]$area )
 
-# res4 <- list( br_fgt0 , rg_fgt0 , uf_fgt0 , cp_fgt0 )
-res4 <- list( br_fgt0 , cp_fgt0 )
-
-# build result set
-res4 <- lapply( res4 , function( x ) {
-  this_est <- data.frame( x ) 
-  colnames( this_est )[1] <- c( "area" )
-  
-  this_ci <- data.frame( confint( x ) )
-  colnames( this_ci ) <- c( "ci_l" , "ci_u" ) 
-  
-  this_cv <- data.frame( cv( x ) )
-  colnames( this_cv ) <- "cv"
-  
-  this_result <- cbind( set = names( x[1] ), this_est , this_ci , this_cv )
-  rownames( this_result ) <- NULL
-  
-  if ( length( this_result$set ) == 1 & ( "one" %in% this_result$set ) ) this_result$area <- "Brasil"
-  
-  this_result
-} )
-res4 <- do.call( rbind , res4 )
-
-# convert to data.table
-res4 <- as.data.table( res4 )
-
-# get plot order
-plot.order <- c( "Brasil" , res4[ area != "Brasil" ][ order( -def_vd5002 ) ][ , area ] )
-
-# create plot object
-fgt0_cp <- 
-  ggplot( res4 , aes( area, def_vd5002 , group = area , color = area ) ) +
+fgt0_uf <- ggplot( res4 , aes( area, def_rdpc , group = area , color = area ) ) +
   geom_line( alpha = .3 ) + 
   geom_errorbar(aes(ymin=ci_l, ymax=ci_u), width=.1 , alpha = .5 ) +
   geom_point( size = 1) +
-  scale_y_continuous( labels = percent , breaks = seq(0 , 1 , .05 ) ) +
-  scale_x_discrete(limits= rev( plot.order ) ) +
+  scale_y_continuous( labels = percent_format( accuracy = 1 ) , breaks = seq(0 , 1 , .05 ) ) +
+  scale_x_discrete( limits = plot_order ) +
   coord_flip( ylim=c( 0 , .4) ) +
   labs( x = NULL , y = "FGT(0)", 
         title = "Taxa de Pobreza" , 
         subtitle ="Brasil e UFs, 2016. Linha de Pobreza: R$ 220,00.\nCom intervalo de confiança de 95%." ,
-        caption = "Fonte: PNAD Contínua 2016. Microdados.") +
+        caption = "Fonte: PNAD Contínua 2016, 1ª entrevista. Microdados.") +
   # scale_color_brewer(type = "qual" , palette = "Dark2" , direction = 1 ) +
   guides(color = FALSE ) +
   # theme_dark() +
@@ -445,10 +403,11 @@ fgt0_cp <-
          # panel.grid.minor.x = element_line( linetype = 3 , color = "lightgrey" , size = .2 ) ,
          panel.grid.major.y = element_line( linetype = 3 , color = "lightgrey" , size = .2 ) ,
          # axis.text.x = element_text(angle = 90, hjust = 1) ,
-         plot.title = element_text(lineheight=.8, face="bold") ) 
+         plot.title = element_text(lineheight=.8, face="bold") )
 
-fgt0_cp
-# ggiraph( code = { print( zenga_cp ) } , zoom_max = 1 , width = 1 , tooltip_opacity = .7 , width_svg = 8, height_svg= 5 )
+  
+fgt0_uf
+# ggiraph( code = { print( fgt0_uf ) } , zoom_max = 1 , width = 1 , tooltip_opacity = .7 , width_svg = 8, height_svg= 5 )
 ```
 As estimativas revelam que, na prática, existe um *empate* entre a proporção de pessoas pobres no Acre e Amazonas. Olhando o resto da lista, pode-se ver que os estados do Norte e Nordeste tendem a "liderar" neste ranking.
 
@@ -458,51 +417,25 @@ Em que pese a sua simplicidade, a taxa de pobreza tem um problema: a pessoa que 
 A classe *Foster-Greer-Thorbecke (FGT)* de índices de pobreza apresenta como solução o *Hiato de Pobreza*. Este índice pondera cada obervação pela distância em relação à linha de pobreza.
 
 ```{r fgt1_plot, echo=FALSE, message=FALSE, warning=FALSE }
-# estima fgt1
-br_fgt1 <- svyby( ~def_vd5002 , ~one , pnadc_design , svyfgt , g = 1 , abs_thresh = 220 , na.rm = TRUE )
-cp_fgt1 <- svyby( ~def_vd5002 , ~uf_name , pnadc_design , svyfgt , g = 1 , abs_thresh = 220 , na.rm = TRUE )
+# empilha fgt1
+res5 <- lapply( res5 , data.table )
+res5 <- rbindlist( res5 , use.names = TRUE , fill = TRUE )
+res5[ is.na( uf ) , area := "Brasil" ]
+res5[ !is.na( uf ) , area := uf_name ]
+res5 <- res5[ order( one , -def_rdpc , na.last = TRUE ) , ]
+plot_order <- rev( res5[ !is.na( uf ) | area == "Brasil" ]$area )
 
-res5 <- list( br_fgt1 , cp_fgt1 )
-
-# build result set
-res5 <- lapply( res5 , function( x ) {
-  this_est <- data.frame( x ) 
-  colnames( this_est )[1] <- c( "area" )
-  
-  this_ci <- data.frame( confint( x ) )
-  colnames( this_ci ) <- c( "ci_l" , "ci_u" ) 
-  
-  this_cv <- data.frame( cv( x ) )
-  colnames( this_cv ) <- "cv"
-  
-  this_result <- cbind( set = names( x[1] ), this_est , this_ci , this_cv )
-  rownames( this_result ) <- NULL
-  
-  if ( length( this_result$set ) == 1 & ( "one" %in% this_result$set ) ) this_result$area <- "Brasil"
-  
-  this_result
-} )
-res5 <- do.call( rbind , res5 )
-
-# convert to data.table
-res5 <- as.data.table( res5 )
-
-# get plot order
-plot.order <- c( "Brasil" , res5[ area != "Brasil" ][ order( -def_vd5002 ) ][ , area ] )
-
-# create plot object
-fgt1_cp <- 
-  ggplot( res5 , aes( area, def_vd5002 , group = area , color = area ) ) +
+fgt1_uf <- ggplot( res5 , aes( area, def_rdpc , group = area , color = area ) ) +
   geom_line( alpha = .3 ) + 
   geom_errorbar(aes(ymin=ci_l, ymax=ci_u), width=.1 , alpha = .5 ) +
   geom_point( size = 1) +
-  scale_y_continuous( labels = percent , breaks = seq(0 , 1 , .05 ) ) +
-  scale_x_discrete(limits= rev( plot.order ) ) +
-  coord_flip( ylim=c( 0 , .2) ) +
+  scale_y_continuous( labels = percent_format( accuracy = 1 ) , breaks = seq(0 , 1 , .05 ) ) +
+  scale_x_discrete( limits = plot_order ) +
+  coord_flip( ylim=c( 0 , .175) ) +
   labs( x = NULL , y = "FGT(1)", 
         title = "Índice do Hiato de Pobreza" , 
         subtitle ="Brasil e UFs, 2016. Linha de Pobreza: R$ 220,00.\nCom intervalo de confiança de 95%." ,
-        caption = "Fonte: PNAD Contínua 2016. Microdados.") +
+        caption = "Fonte: PNAD Contínua 2016, 1ª entrevista. Microdados.") +
   # scale_color_brewer(type = "qual" , palette = "Dark2" , direction = 1 ) +
   guides(color = FALSE ) +
   # theme_dark() +
@@ -512,13 +445,12 @@ fgt1_cp <-
          # panel.grid.minor.x = element_line( linetype = 3 , color = "lightgrey" , size = .2 ) ,
          panel.grid.major.y = element_line( linetype = 3 , color = "lightgrey" , size = .2 ) ,
          # axis.text.x = element_text(angle = 90, hjust = 1) ,
-         plot.title = element_text(lineheight=.8, face="bold") ) 
+         plot.title = element_text(lineheight=.8, face="bold") )
 
-fgt1_cp
-# ggiraph( code = { print( zenga_cp ) } , zoom_max = 1 , width = 1 , tooltip_opacity = .7 , width_svg = 8, height_svg= 5 )
+fgt1_uf
 ```
 
-Aqui, o ordenamento muda um pouco. Embora Maranhão continue liderando, o Amazonas cai algumas posições. Comparando Amazonas e Acre, Isto indica que, embora a *extensão* da pobreza entre as duas populações seja praticamente idêntica, a pobreza no Acre é *mais intensa*. Em outras palavras: a renda domiciliar per capita entre as pessoas em situação de pobreza neste estado é inferior à do Amazonas.  
+Aqui, o ordenamento muda um pouco. Embora Maranhão continue liderando, o Amazonas cai algumas posições. Comparando Amazonas e Acre, isto indica que, embora a *extensão* da pobreza entre as duas populações seja praticamente idêntica, a pobreza no Acre é *mais intensa*. Em outras palavras: a renda domiciliar per capita entre as pessoas em situação de pobreza neste estado é inferior à do Amazonas.  
 Isso tem impactos importantes quanto às políticas públicas. Por exemplo, um programa de transferência de renda exigiria, *proporcionalmente*, mais recursos no Acre do que no Amazonas.
 
 ##### Hiato Quadrático de Pobreza
@@ -535,53 +467,27 @@ $$
 
 onde $GEI_{2}^{*}$ é o índice GEI($\epsilon$=2) das insuficiências de renda.
 
-Vejamos os resultados dos estados brasileiras.
+Vejamos os resultados dos estados brasileiros.
 ```{r fgt2_plot, echo=FALSE, message=FALSE, warning=FALSE }
-# estima fgt2
-br_fgt2 <- svyby( ~def_vd5002 , ~one , pnadc_design , svyfgt , g = 2 , abs_thresh = 220 , na.rm = TRUE )
-cp_fgt2 <- svyby( ~def_vd5002 , ~uf_name , pnadc_design , svyfgt , g = 2 , abs_thresh = 220 , na.rm = TRUE )
+# empilha fgt2
+res6 <- lapply( res6 , data.table )
+res6 <- rbindlist( res6 , use.names = TRUE , fill = TRUE )
+res6[ is.na( uf ) , area := "Brasil" ]
+res6[ !is.na( uf ) , area := uf_name ]
+res6 <- res6[ order( one , -def_rdpc , na.last = TRUE ) , ]
+plot_order <- rev( res6[ !is.na( uf ) | area == "Brasil" ]$area )
 
-res6 <- list( br_fgt2 , cp_fgt2 )
-
-# build result set
-res6 <- lapply( res6 , function( x ) {
-  this_est <- data.frame( x ) 
-  colnames( this_est )[1] <- c( "area" )
-  
-  this_ci <- data.frame( confint( x ) )
-  colnames( this_ci ) <- c( "ci_l" , "ci_u" ) 
-  
-  this_cv <- data.frame( cv( x ) )
-  colnames( this_cv ) <- "cv"
-  
-  this_result <- cbind( set = names( x[1] ), this_est , this_ci , this_cv )
-  rownames( this_result ) <- NULL
-  
-  if ( length( this_result$set ) == 1 & ( "one" %in% this_result$set ) ) this_result$area <- "Brasil"
-  
-  this_result
-} )
-res6 <- do.call( rbind , res6 )
-
-# convert to data.table
-res6 <- as.data.table( res6 )
-
-# get plot order
-plot.order <- c( "Brasil" , res6[ area != "Brasil" ][ order( -def_vd5002 ) ][ , area ] )
-
-# create plot object
-fgt2_cp <- 
-  ggplot( res6 %>% filter( set %in% c("one" , "uf_name")), aes( area, def_vd5002 , group = area , color = area ) ) +
+fgt2_uf <- ggplot( res6 , aes( area, def_rdpc , group = area , color = area ) ) +
   geom_line( alpha = .3 ) + 
   geom_errorbar(aes(ymin=ci_l, ymax=ci_u), width=.1 , alpha = .5 ) +
   geom_point( size = 1) +
-  scale_y_continuous( labels = percent , breaks = seq(0 , 1 , .05 ) ) +
-  scale_x_discrete(limits= rev( plot.order ) ) +
-  coord_flip( ylim=c( 0 , .2) ) +
+  scale_y_continuous( labels = percent_format( accuracy = 1 ) , breaks = seq(0 , 1 , .05 ) ) +
+  scale_x_discrete( limits = plot_order ) +
+  coord_flip( ylim=c( 0 , .10 ) ) +
   labs( x = NULL , y = "FGT(2)", 
-        title = "Índice do Hiato Quadrático de Pobreza" , 
+      title = "Índice do Hiato Quadrático de Pobreza" , 
         subtitle ="Brasil e UFs, 2016. Linha de Pobreza: R$ 220,00.\nCom intervalo de confiança de 95%." ,
-        caption = "Fonte: PNAD Contínua 2016. Microdados.") +
+        caption = "Fonte: PNAD Contínua 2016, 1ª entrevista. Microdados.") +
   # scale_color_brewer(type = "qual" , palette = "Dark2" , direction = 1 ) +
   guides(color = FALSE ) +
   # theme_dark() +
@@ -591,57 +497,30 @@ fgt2_cp <-
          # panel.grid.minor.x = element_line( linetype = 3 , color = "lightgrey" , size = .2 ) ,
          panel.grid.major.y = element_line( linetype = 3 , color = "lightgrey" , size = .2 ) ,
          # axis.text.x = element_text(angle = 90, hjust = 1) ,
-         plot.title = element_text(lineheight=.8, face="bold") ) 
+         plot.title = element_text(lineheight=.8, face="bold") )
 
-fgt2_cp
-# ggiraph( code = { print( zenga_cp ) } , zoom_max = 1 , width = 1 , tooltip_opacity = .7 , width_svg = 8, height_svg= 5 )
+fgt2_uf
 ```
 
 De novo, Maranhão é o primeiro do ranking. Porém, o Amazonas se distancia bastante agora. O que isso quer dizer? Talvez a decomposição do índice pode nos ajudar a entender as diferenças nas estimativas do FGT(2) entre as populações.
 
 ```{r fgt2dec_table, echo=FALSE, message=FALSE, warning=FALSE }
-# estima fgt2
-br_fgt2_dec <- svyby( ~def_vd5002 , ~one , pnadc_design , svyfgtdec , g = 2 , abs_thresh = 220 , na.rm = TRUE )
-cp_fgt2_dec <- svyby( ~def_vd5002 , ~uf_name , pnadc_design , svyfgtdec , g = 2 , abs_thresh = 220 , na.rm = TRUE )
+# empilha decomposições do fgt2
+res7 <- lapply( res7 , data.table )
+res7 <- rbindlist( res7 , use.names = TRUE , fill = TRUE )
+res7[ is.na( uf ) , area := "Brasil" ]
+res7[ !is.na( uf ) , area := uf_name ]
+res7 <- res7[ order( one , -fgt2 , na.last = TRUE ) , ]
+plot_order <- rev( res7[ !is.na( uf ) | area == "Brasil" ]$area )
 
-res7 <- list( br_fgt2_dec , cp_fgt2_dec )
-
-# build result set
-res7 <- lapply( res7 , function( x ) {
-  this_est <- data.frame( x ) 
-  colnames( this_est )[1] <- c( "area" )
-  
-  # this_ci <- data.frame( confint( x ) )
-  # colnames( this_ci ) <- paste( c( "fgt2" , "fgt0" , "fgt1" , "igr" , "gei(poor;epsilon=2)" ) , c( "ci_l" , "ci_u" ) , sep = "_" ) 
-  this_cv <- data.frame( cv( x ) )
-  colnames( this_cv ) <- paste( "cv" , c( "fgt2" , "fgt0" , "fgt1" , "igr" , "gei(poor;epsilon=2)" ) , sep = "_" )
-  
-  this_result <- cbind( set = names( x[1] ), this_est , this_cv )
-  rownames( this_result ) <- NULL
-  
-  if ( length( this_result$set ) == 1 & ( "one" %in% this_result$set ) ) this_result$area <- "Brasil"
-  
-  this_result
-} )
-res7 <- do.call( rbind , res7 )
-
-# get rid of igr
-res7 <- res7[ , !grepl( "igr" , colnames( res7 ) ) ]
-
-# table
-
-# convert to data.table
-res7 <- as.data.table( res7 )
-
-# arrange and fix order
-table_res7 <- res7[ order( -fgt2) ]
-table_res7 <- rbind( table_res7[  area == "Brasil" ] , table_res7[ area != "Brasil" ] )
-table_res7 <- table_res7[ , 2:6 ]
-
+table_res7 <- res7[ , c(15,3,4,5,7) ]
 tb7_names <- c( "Área" , "FGT(2)" , "FGT(0)" , "FGT(1)" , "GEI(2)" )
 
-library(knitr)
-kable( table_res7 , col.names = tb7_names , row.names = FALSE , digits = c( 3,3,3,3 ) )
+table_res7 <- kable( table_res7 , col.names = tb7_names , row.names = FALSE , digits = c( 3,3,3,3 ), 
+                 format = "html", longtable = FALSE , booktabs = TRUE , align = c("l","l","r","r","r") ,
+                 caption = "Decomposição do Hiato Quadrático de Pobreza, 2016." , label = "tab_fgt" )
+table_res7 <- table_res7 %>% footnote( general = "PNAD Contínua 2016, 1ª entrevista. Microdados." , general_title = "Fonte:" )
+table_res7
 ```
 
 No caso, ainda que o Amazonas apresente maior desigualdade no renda-linha de pobreza dos domicílios pobres, as diferenças na extensão e intensidade são os determinantes deste ordenamento. Isso implica que embora a desigualdade seja mais intensa no Amazonas, a população em situação de pobreza ainda está, em média, numa situação melhor que a do Maranhão.

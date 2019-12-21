@@ -295,12 +295,13 @@ Censo da Educação Superior O Censo da Educação Superior é conduzido anualme
 <script src="https://guilhermejacob.github.io/rmarkdown-libs/d3tree-binding/d3tree.js"></script>
 
 
-<p>Encerrando<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a> as análises usando bases de dados públicas, vamos focar no ensino superior.<br />
+<p>Encerrando<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> as análises usando bases de dados públicas, vamos focar no ensino superior.<br />
 Inicialmente, vamos explicar o que é o Censo da Educação Superior. Depois, vamos mostrar como montar as bases de dados. E, concluindo, vamos fazer um pequeno exercício de visualização de dados.</p>
 <p>Ah, e eu vou ser muito breve neste post, por motivos de: tenho que escrever um projeto de pesquisa (:</p>
 <div id="censo-da-educacao-superior" class="section level2">
 <h2>Censo da Educação Superior</h2>
-<p>O <a href="http://portal.inep.gov.br/censo-da-educacao-superior">Censo da Educação Superior</a> é conduzido anualmente pelo <a href="http://portal.inep.gov.br/web/guest/sobre-o-inep">Inep</a>. Ele consiste, basicamente, em uma compilação de registros administrativos de todas as instituições de ensino superior (IES), informando sobre seus alunos, docentes, cursos ofertados, etc. Desde 2009, eles seguem <del>mais ou menos</del> a mesma estrutura, embora existam dados desde 1995.</p>
+<p>O <a href="http://portal.inep.gov.br/censo-da-educacao-superior">Censo da Educação Superior</a> é conduzido anualmente pelo <a href="http://portal.inep.gov.br/web/guest/sobre-o-inep">Inep</a>. Ele consiste, basicamente, em uma compilação de registros administrativos de todas as instituições de ensino superior (IES), informando sobre seus alunos, docentes, cursos ofertados, etc.
+Desde 2009, eles seguem <del>mais ou menos</del> a mesma estrutura, embora existam dados desde 1995.</p>
 <div id="montando-a-base" class="section level3">
 <h3>Montando a base</h3>
 <p>Para facilitar o processo de baixar e montar a base de dados, escrevi <a href="https://github.com/guilhermejacob/guilhermejacob.github.io/blob/master/scripts/censo_superior.R">esse script</a> com três funções para facilitar esse procedimento. O bloco de código abaixo mostra como fazer essa tarefa:</p>
@@ -378,14 +379,15 @@ dbDisconnect( db , shutdown = TRUE )</code></pre>
 <p>No entanto, acho que os <em>próximos capítulos serão igualmente interessantes</em>! Estou reunindo forças para avançar em novos tópicos sobre desigualdade e polarização, além de incluir novas funções no <a href="https://github.com/DjalmaPessoa/convey"><code>convey</code></a>. Algumas palestras sobre teorias econômicas da justiça, talvez.<br />
 Enfim, <em>bastante</em> coisa.</p>
 <p>Até 2018!</p>
-<p>E fiquem com esse vídeo direto de 1978: <em>Weather Report</em> tocando <em>Birdland</em>. PS.: Jaco Pastorius é um espetáculo à parte. 
+<p>E fiquem com esse vídeo direto de 1978: <em>Weather Report</em> tocando <em>Birdland</em>. PS.: Jaco Pastorius é um espetáculo à parte.
+
 <div style="position:relative;height:0;padding-bottom:56.21%"><iframe src="https://www.youtube.com/embed/TsuDWMPcAHI" align="center" style="position:absolute;width:100%;height:100%;left:0" width="641" height="360" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe></div>
 </p>
 </div>
 <div class="footnotes">
 <hr />
 <ol>
-<li id="fn1"><p>Por esse ano, pelo menos.<a href="#fnref1">↩</a></p></li>
+<li id="fn1"><p>Por esse ano, pelo menos.<a href="#fnref1" class="footnote-back">↩</a></p></li>
 </ol>
 </div>
 
@@ -634,6 +636,45 @@ Enfim, <em>bastante</em> coisa.</p>
           <div class="media">
             
             <div class="media-body">
+              <a class="link-unstyled" href="https://guilhermejacob.github.io/2019/12/varianca-adac/">
+                <h3 class="media-heading">Por que é tão difícil calcular variância com amostras complexas?</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Dec 12, 2019
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Já faz algum tempo que passei por essa situação mas acho que vale a pena pensar a respeito.
+Em um fórum de R, uma pessoa pergunta onde está a função pra calcular um determinado número com a PNAD. Eu vou dou uma olhada e vejo que, de fato, a função não existe. Explico para a pessoa que a função não existe porque ninguém escreveu ainda. E me responde: alguém pode fazer isso aí rapidinho?</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://guilhermejacob.github.io/2019/08/desigualdade-pobreza-log/">
+                <h3 class="media-heading">Desigualdade ou pobreza?</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Aug 8, 2019
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Pesquisando no repositório das piores ideias da humanidade1, não é raro encontrar a seguinte frase:
+ “A pobreza importa. A desigualdade, não.”
+ Aparentemente, tem gente que acredita nisso. Vou mostrar o quanto isso é estúpido.
+Considere a sociedade A, cuja renda média é $500.10 e o índice de Gini é 0.400. Vejamos a distribuição cumulativa.
+Agora considere a Sociedade B, produzida a partir de \(n\) transferências regressivas para o indivíduo mais rico de modo que os demais indivíduos não-pobres estejam quase na linha de pobreza.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
               <a class="link-unstyled" href="https://guilhermejacob.github.io/2019/03/mortalidade-infantil-simulacao/">
                 <h3 class="media-heading">Mortalidade infantil, proporções e confiabilidade</h3>
               </a>
@@ -700,9 +741,10 @@ Na volta para Manaus, fiz uma mini-maratona para visitar amigos em Brasília nas
                   Apr 4, 2018
                 </span>
               </span>
-              <div class="media-content hide-xs font-merryweather">Atualização (19/05/2018): passei a usar a nova tabela de deflatores, ajustando para preços médios do ano da pesquisa.
-Atualização (20/05/2018): fixei os valores a preços médios de 2017.
- Interrompendo o meu hiato de alguns meses, resolvi voltar com uma comparação os dados de renda das PNADCs anuais 2016-2017. No entanto, vamos falar um pouco da desigualdade em geral e, então, partir para uma questão mais específica: pobreza na infância1.</div>
+              <div class="media-content hide-xs font-merryweather">Atualização (21/12/2019): refiz todas as análises usando a nova definição de renda domiciliar per capita e seu respectivo deflator.
+ Interrompendo o meu hiato de alguns meses, resolvi voltar com uma comparação os dados de renda das PNADCs anuais 2016-2017. No entanto, vamos falar um pouco da desigualdade em geral e, então, partir para uma questão mais específica: pobreza na infância1.
+Mas, antes de tudo, um aviso:
+Todos as estimativas a seguir foram feitas por mim.</div>
             </div>
             <div style="clear:both;"></div>
             <hr>
@@ -739,10 +781,9 @@ Censo da Educação Superior O Censo da Educação Superior é conduzido anualme
                   Dec 12, 2017
                 </span>
               </span>
-              <div class="media-content hide-xs font-merryweather">Atualização (19/05/2018): corrigi alguns erros no código que afetavam as estimativas das capitais.
-Já que os intervalos de confiança das estimativas de capitais não permitiam uma análise mais profunda, resolvi mudar para análise das UFs.
-As rendas foram ajustadas para preços médios de 2016.
- Na última quarta (29/11), o IBGE finalmente apresentou as estimativas relativas aos rendimentos de todas as fontes, além de disponibilizar os microdados para os cálculos.</div>
+              <div class="media-content hide-xs font-merryweather">Atualização (21/12/2019): refiz todas as análises usando a nova definição de renda domiciliar per capita e seu respectivo deflator.
+ Na última quarta (29/11), o IBGE finalmente apresentou as estimativas relativas aos rendimentos de todas as fontes, além de disponibilizar os microdados para os cálculos.
+Ok, mas o que isso quer dizer? Aguardei ansiosamente1 para saber como as coisas irão funcionar com o fim da PNAD anual e introdução da PNAD Contínua.</div>
             </div>
             <div style="clear:both;"></div>
             <hr>
@@ -785,47 +826,6 @@ Bases do Ministério do Trabalho O Ministério do Trabalho (MTb) permite que o u
             <hr>
           </div>
         
-          <div class="media">
-            
-            <div class="media-body">
-              <a class="link-unstyled" href="https://guilhermejacob.github.io/2017/11/amostra-cadunico-r/">
-                <h3 class="media-heading">Analisando a amostra do Cadastro Único com R</h3>
-              </a>
-              <span class="media-meta">
-                <span class="media-date text-small">
-                  Nov 11, 2017
-                </span>
-              </span>
-              <div class="media-content hide-xs font-merryweather">Atualização (18/08/2018): atualizei o procedimento e os resultados para coincidir com as novas bases disponibilizadas no site.
- Você sabe o que é o Cadastro Único? Sabe que uma amostra dos microdados está disponível? Sabe que dá pra analisar no R?
-Não? Até uns dias atrás, eu também não.
-Se você tem interesse nessa base de dados, vamos lá!
-Caso contrário, assista esse vídeo do MDS. Se, ainda assim, você não estiver interessado, bom… tem um presente no fim do post.</div>
-            </div>
-            <div style="clear:both;"></div>
-            <hr>
-          </div>
-        
-          <div class="media">
-            
-            <div class="media-body">
-              <a class="link-unstyled" href="https://guilhermejacob.github.io/2017/11/birth-registration-map/">
-                <h3 class="media-heading">Mapeando crianças sem registro civil</h3>
-              </a>
-              <span class="media-meta">
-                <span class="media-date text-small">
-                  Nov 11, 2017
-                </span>
-              </span>
-              <div class="media-content hide-xs font-merryweather">Esse post é um pequeno follow-up da discussão sobre mapas de densidade de pontos, mas com um pouco mais de diretos da infância e adolescência. Vamos analisar como se distribuem espacialmente as crianças com e sem registro de nascimento, usando dados dos agregados de setores censitários do Censo 2010.
-Dessa vez, vamos focar em 4 capitais: Belém, Manaus , Fortaleza e São Luís.
-Sem mais conversa, prossigamos.
-Belém  Manaus  Fortaleza  São Luís  </div>
-            </div>
-            <div style="clear:both;"></div>
-            <hr>
-          </div>
-        
       </div>
     </div>
     <div class="modal-footer">
@@ -833,7 +833,7 @@ Belém  Manaus  Fortaleza  São Luís  </div>
          data-message-zero="no post found"
          data-message-one="1 post found"
          data-message-other="{n} posts found">
-         14 posts found
+         16 posts found
       </p>
     </div>
   </div>

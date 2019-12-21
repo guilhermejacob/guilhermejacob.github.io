@@ -28,24 +28,21 @@
     
 
     
-    <meta name="description" content="Atualização (19/05/2018): corrigi alguns erros no código que afetavam as estimativas das capitais.
-Já que os intervalos de confiança das estimativas de capitais não permitiam uma análise mais profunda, resolvi mudar para análise das UFs.
-As rendas foram ajustadas para preços médios de 2016.
- Na última quarta (29/11), o IBGE finalmente apresentou as estimativas relativas aos rendimentos de todas as fontes, além de disponibilizar os microdados para os cálculos.">
-    <meta property="og:description" content="Atualização (19/05/2018): corrigi alguns erros no código que afetavam as estimativas das capitais.
-Já que os intervalos de confiança das estimativas de capitais não permitiam uma análise mais profunda, resolvi mudar para análise das UFs.
-As rendas foram ajustadas para preços médios de 2016.
- Na última quarta (29/11), o IBGE finalmente apresentou as estimativas relativas aos rendimentos de todas as fontes, além de disponibilizar os microdados para os cálculos.">
+    <meta name="description" content="Atualização (21/12/2019): refiz todas as análises usando a nova definição de renda domiciliar per capita e seu respectivo deflator.
+ Na última quarta (29/11), o IBGE finalmente apresentou as estimativas relativas aos rendimentos de todas as fontes, além de disponibilizar os microdados para os cálculos.
+Ok, mas o que isso quer dizer? Aguardei ansiosamente1 para saber como as coisas irão funcionar com o fim da PNAD anual e introdução da PNAD Contínua.">
+    <meta property="og:description" content="Atualização (21/12/2019): refiz todas as análises usando a nova definição de renda domiciliar per capita e seu respectivo deflator.
+ Na última quarta (29/11), o IBGE finalmente apresentou as estimativas relativas aos rendimentos de todas as fontes, além de disponibilizar os microdados para os cálculos.
+Ok, mas o que isso quer dizer? Aguardei ansiosamente1 para saber como as coisas irão funcionar com o fim da PNAD anual e introdução da PNAD Contínua.">
     <meta property="og:type" content="blog">
     <meta property="og:title" content="O que a PNAD Contínua 2016 diz sobre desigualdade e pobreza nos estados?">
     <meta property="og:url" content="/2017/12/desigualdade-pobreza-estados-2016/">
     <meta property="og:site_name" content="Something Random">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Something Random">
-    <meta name="twitter:description" content="Atualização (19/05/2018): corrigi alguns erros no código que afetavam as estimativas das capitais.
-Já que os intervalos de confiança das estimativas de capitais não permitiam uma análise mais profunda, resolvi mudar para análise das UFs.
-As rendas foram ajustadas para preços médios de 2016.
- Na última quarta (29/11), o IBGE finalmente apresentou as estimativas relativas aos rendimentos de todas as fontes, além de disponibilizar os microdados para os cálculos.">
+    <meta name="twitter:description" content="Atualização (21/12/2019): refiz todas as análises usando a nova definição de renda domiciliar per capita e seu respectivo deflator.
+ Na última quarta (29/11), o IBGE finalmente apresentou as estimativas relativas aos rendimentos de todas as fontes, além de disponibilizar os microdados para os cálculos.
+Ok, mas o que isso quer dizer? Aguardei ansiosamente1 para saber como as coisas irão funcionar com o fim da PNAD anual e introdução da PNAD Contínua.">
     
     
 
@@ -291,17 +288,19 @@ As rendas foram ajustadas para preços médios de 2016.
           
           <div class="post-content markdown" itemprop="articleBody">
             <div class="main-content-wrap">
-              <div class="alert warning ">
-  <p><b>Atualização (19/05/2018):</b> corrigi alguns erros no código que afetavam as estimativas das capitais.<br>
-Já que os intervalos de confiança das estimativas de capitais não permitiam uma análise mais profunda, resolvi mudar para análise das UFs.<br>
-As rendas foram ajustadas para preços médios de 2016.</p>
+              <script src="https://guilhermejacob.github.io/rmarkdown-libs/kePrint/kePrint.js"></script>
+
+
+
+<div class="alert warning ">
+  <p><b>Atualização (21/12/2019):</b> refiz todas as análises usando a nova definição de renda domiciliar per capita e seu respectivo deflator.<br></p>
 </div>
 
 <p>Na última quarta (29/11), o IBGE <del>finalmente</del> apresentou as estimativas relativas aos rendimentos de todas as fontes, além de disponibilizar os microdados para os cálculos.</p>
-<p><em>Ok, mas o que isso quer dizer?</em> Aguardei ansiosamente<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a> para saber como as coisas irão funcionar com o fim da <em>PNAD</em> <del>anual</del> e introdução da <em>PNAD Contínua</em>.<br />
+<p><em>Ok, mas o que isso quer dizer?</em> Aguardei ansiosamente<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> para saber como as coisas irão funcionar com o fim da <em>PNAD</em> <del>anual</del> e introdução da <em>PNAD Contínua</em>.<br />
 Antes, a PNAD trazia informações referentes ao ano. Agora, a PNAD Contínua traz informações sobre os trimestres. E quanto às informações anuais?<br />
 Bom, isso acaba de ser respondido.</p>
-<p>Dito isso, vamos às estimativas<a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a>.</p>
+<p>Dito isso, vamos às estimativas<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a>.</p>
 <div id="desigualdade" class="section level3">
 <h3>Desigualdade</h3>
 <p>Eu tinha certa curiosidade a respeito do quanto as novas variáveis de renda diferenciam das antigas quando se trata de desigualdade. Essa dúvida não foi completamente respondida, já que os dados concomitantes de rendimento da PNAD Contínua e PNAD anual ainda não são estão disponíveis. Mas já podemos ter alguns números.</p>
@@ -312,20 +311,24 @@ Bom, isso acaba de ser respondido.</p>
 
 <div id="indice-de-gini" class="section level5">
 <h5>Índice de Gini</h5>
-<p>Vamos começar com a medida de desigualdade mais utilizada, o <a href="https://pt.wikipedia.org/wiki/Coeficiente_de_Gini">índice de Gini</a>. O Distrito Federal é o estado mais desigual do país. Ainda assim, os intervalos de confiança não permitem dizer que existam diferenças estatisticamente significativas entre muitos estados. <img src="https://guilhermejacob.github.io/post/2017-12-01-desigualdade-pobreza-brasil-2016_files/figure-html/gini_plot-1.png" width="672" /></p>
+<p>Vamos começar com a medida de desigualdade mais utilizada, o <a href="https://pt.wikipedia.org/wiki/Coeficiente_de_Gini">índice de Gini</a>. O Distrito Federal é o estado mais desigual do país. Ainda assim, os intervalos de confiança não permitem dizer que existam diferenças estatisticamente significativas entre muitos estados.
+<img src="https://guilhermejacob.github.io/post/2017-12-01-desigualdade-pobreza-brasil-2016_files/figure-html/gini_plot-1.png" width="672" /></p>
 <p>A outra coisa clara neste gráfico é que Santa Catarina é o estado menos desigual, embora a diferença em relação ao segundo menos desigual, Mato Grosso, não seja estatisticamente significativa.</p>
-<p>No entanto, é importante lembrar que o índice de Gini tem seus problemas<a href="#fn3" class="footnoteRef" id="fnref3"><sup>3</sup></a>. Por conta disso, vamos explorar algumas alternativas, como a razão de Palma e o índice de Zenga.</p>
+<p>No entanto, é importante lembrar que o índice de Gini tem seus problemas<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a>. Por conta disso, vamos explorar algumas alternativas, como a razão de Palma e o índice de Zenga.</p>
 </div>
 <div id="razao-de-palma" class="section level5">
 <h5>Razão de Palma</h5>
-<p>A <a href="http://www.un.org/esa/desa/papers/2015/wp143_2015.pdf">razão de Palma</a> é bastante intuitiva. Basicamente, este índice é a razão entre as rendas dos 10% mais ricos sobre a dos 40% mais pobres. Dessa forma, ele consegue ser mais sensível aos extremos da distribuição de renda do que o índice de Gini, por exemplo. Vejamos os resultados para o Brasil. <img src="https://guilhermejacob.github.io/post/2017-12-01-desigualdade-pobreza-brasil-2016_files/figure-html/palma_plot-1.png" width="672" /></p>
-<p>Bom, o ordenamento muda um pouco. Embora o DF continue sendo o mais desigual, Pernambuco cai algumas posições. Isso se deve ao fato deste índice ser um pouco mais sensível aos extremos da distribuição.<br />
+<p>A <a href="http://www.un.org/esa/desa/papers/2015/wp143_2015.pdf">razão de Palma</a> é bastante intuitiva. Basicamente, este índice é a razão entre as rendas dos 10% mais ricos sobre a dos 40% mais pobres. Dessa forma, ele consegue ser mais sensível aos extremos da distribuição de renda do que o índice de Gini, por exemplo. Vejamos os resultados para o Brasil.
+<img src="https://guilhermejacob.github.io/post/2017-12-01-desigualdade-pobreza-brasil-2016_files/figure-html/palma_plot-1.png" width="672" /></p>
+<p>Bom, o ordenamento muda um pouco. Embora o DF continue sendo o mais desigual, Pernambuco cai uma posição. Isso se deve ao fato deste índice ser um pouco mais sensível aos extremos da distribuição.
 Entretanto, este índice também sofre algumas críticas. De fato, ele não atende muitos axiomas esperados dos índices de desigualdade. Com isso em mente, incluiremos mais um índice.</p>
 </div>
 <div id="indice-de-zenga" class="section level5">
 <h5>Índice de Zenga</h5>
-<p>O <a href="https://link.springer.com/article/10.1007/s10687-013-0177-2">índice de Zenga</a> é uma medida relativamente recente. Ele satisfaz os mesmos axiomas que o índice de Gini, mas “pesa” todas as observações igualmente, mantendo a mesma sensibilidade ao longo de toda a distribuição de renda. <img src="https://guilhermejacob.github.io/post/2017-12-01-desigualdade-pobreza-brasil-2016_files/figure-html/zenga_plot-1.png" width="672" /></p>
-<p>O gráfico revela uma distribuição similar ao da razão de Palma. Em todos os casos, o Distrito Federal apresenta a maior desigualdade.</p>
+<p>O <a href="https://link.springer.com/article/10.1007/s10687-013-0177-2">índice de Zenga</a> é uma medida relativamente recente. Ele satisfaz os mesmos axiomas que o índice de Gini, mas “pesa” todas as observações igualmente, mantendo a mesma sensibilidade ao longo de toda a distribuição de renda.
+<img src="https://guilhermejacob.github.io/post/2017-12-01-desigualdade-pobreza-brasil-2016_files/figure-html/zenga_plot-1.png" width="672" /></p>
+<p>O gráfico revela uma distribuição similar ao da razão de Palma.
+Em todos os casos, o Distrito Federal apresenta a maior desigualdade.</p>
 </div>
 <div id="pobreza" class="section level4">
 <h4>Pobreza</h4>
@@ -334,15 +337,16 @@ Neste exercício, consideramos a linha de pobreza equivalente a 1/4 do salário 
 <p>Vejamos, então, as estatísticas de pobreza no Brasil.</p>
 <div id="taxa-de-pobreza" class="section level5">
 <h5>Taxa de Pobreza</h5>
-<p>O indicador mais utilizado quando se discute pobreza é a taxa de pobreza. Basicamente, essa medida é a proporção de pessoas pobres em determinada população.<br />
-<img src="https://guilhermejacob.github.io/post/2017-12-01-desigualdade-pobreza-brasil-2016_files/figure-html/fgt0_plot-1.png" width="672" /> As estimativas revelam que, na prática, existe um <em>empate</em> entre a proporção de pessoas pobres no Acre e Amazonas. Olhando o resto da lista, pode-se ver que os estados do Norte e Nordeste tendem a “liderar” neste ranking.</p>
+<p>O indicador mais utilizado quando se discute pobreza é a taxa de pobreza. Basicamente, essa medida é a proporção de pessoas consideradas pobres em determinada população.
+<img src="https://guilhermejacob.github.io/post/2017-12-01-desigualdade-pobreza-brasil-2016_files/figure-html/fgt0_plot-1.png" width="672" />
+As estimativas revelam que, na prática, existe um <em>empate</em> entre a proporção de pessoas pobres no Acre e Amazonas. Olhando o resto da lista, pode-se ver que os estados do Norte e Nordeste tendem a “liderar” neste ranking.</p>
 </div>
 <div id="hiato-de-pobreza" class="section level5">
 <h5>Hiato de Pobreza</h5>
 <p>Em que pese a sua simplicidade, a taxa de pobreza tem um problema: a pessoa que tem R$ 1 a menos da linha de pobreza recebe o mesmo peso da pessoa que tem R$ 200. Desta forma, perde muito da informação a respeito da intensidade da pobreza.<br />
 A classe <em>Foster-Greer-Thorbecke (FGT)</em> de índices de pobreza apresenta como solução o <em>Hiato de Pobreza</em>. Este índice pondera cada obervação pela distância em relação à linha de pobreza.</p>
 <p><img src="https://guilhermejacob.github.io/post/2017-12-01-desigualdade-pobreza-brasil-2016_files/figure-html/fgt1_plot-1.png" width="672" /></p>
-<p>Aqui, o ordenamento muda um pouco. Embora Maranhão continue liderando, o Amazonas cai algumas posições. Comparando Amazonas e Acre, Isto indica que, embora a <em>extensão</em> da pobreza entre as duas populações seja praticamente idêntica, a pobreza no Acre é <em>mais intensa</em>. Em outras palavras: a renda domiciliar per capita entre as pessoas em situação de pobreza neste estado é inferior à do Amazonas.<br />
+<p>Aqui, o ordenamento muda um pouco. Embora Maranhão continue liderando, o Amazonas cai algumas posições. Comparando Amazonas e Acre, isto indica que, embora a <em>extensão</em> da pobreza entre as duas populações seja praticamente idêntica, a pobreza no Acre é <em>mais intensa</em>. Em outras palavras: a renda domiciliar per capita entre as pessoas em situação de pobreza neste estado é inferior à do Amazonas.<br />
 Isso tem impactos importantes quanto às políticas públicas. Por exemplo, um programa de transferência de renda exigiria, <em>proporcionalmente</em>, mais recursos no Acre do que no Amazonas.</p>
 </div>
 <div id="hiato-quadratico-de-pobreza" class="section level5">
@@ -354,216 +358,522 @@ Isso tem impactos importantes quanto às políticas públicas. Por exemplo, um p
 FGT_{2}= \frac{FGT_1^2}{FGT_0} \cdot \bigg( 1 + 2 \cdot GEI_{2}^{*} \bigg) \text{ ,} 
 \]</span></p>
 <p>onde <span class="math inline">\(GEI_{2}^{*}\)</span> é o índice GEI(<span class="math inline">\(\epsilon\)</span>=2) das insuficiências de renda.</p>
-<p>Vejamos os resultados dos estados brasileiras. <img src="https://guilhermejacob.github.io/post/2017-12-01-desigualdade-pobreza-brasil-2016_files/figure-html/fgt2_plot-1.png" width="672" /></p>
+<p>Vejamos os resultados dos estados brasileiros.
+<img src="https://guilhermejacob.github.io/post/2017-12-01-desigualdade-pobreza-brasil-2016_files/figure-html/fgt2_plot-1.png" width="672" /></p>
 <p>De novo, Maranhão é o primeiro do ranking. Porém, o Amazonas se distancia bastante agora. O que isso quer dizer? Talvez a decomposição do índice pode nos ajudar a entender as diferenças nas estimativas do FGT(2) entre as populações.</p>
 <table>
+<caption>
+(#tab:tab_fgt)Decomposição do Hiato Quadrático de Pobreza, 2016.
+</caption>
 <thead>
-<tr class="header">
-<th align="left">Área</th>
-<th align="right">FGT(2)</th>
-<th align="right">FGT(0)</th>
-<th align="right">FGT(1)</th>
-<th align="right">GEI(2)</th>
+<tr>
+<th style="text-align:left;">
+Área
+</th>
+<th style="text-align:left;">
+FGT(2)
+</th>
+<th style="text-align:right;">
+FGT(0)
+</th>
+<th style="text-align:right;">
+FGT(1)
+</th>
+<th style="text-align:right;">
+GEI(2)
+</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td align="left">Brasil</td>
-<td align="right">0.038</td>
-<td align="right">0.121</td>
-<td align="right">0.056</td>
-<td align="right">0.223</td>
+<tr>
+<td style="text-align:left;">
+Brasil
+</td>
+<td style="text-align:left;">
+0.031
+</td>
+<td style="text-align:right;">
+0.106
+</td>
+<td style="text-align:right;">
+0.048
+</td>
+<td style="text-align:right;">
+0.223
+</td>
 </tr>
-<tr class="even">
-<td align="left">Maranhão</td>
-<td align="right">0.093</td>
-<td align="right">0.305</td>
-<td align="right">0.146</td>
-<td align="right">0.165</td>
+<tr>
+<td style="text-align:left;">
+Maranhão
+</td>
+<td style="text-align:left;">
+0.077
+</td>
+<td style="text-align:right;">
+0.274
+</td>
+<td style="text-align:right;">
+0.126
+</td>
+<td style="text-align:right;">
+0.165
+</td>
 </tr>
-<tr class="odd">
-<td align="left">Alagoas</td>
-<td align="right">0.076</td>
-<td align="right">0.243</td>
-<td align="right">0.116</td>
-<td align="right">0.191</td>
+<tr>
+<td style="text-align:left;">
+Alagoas
+</td>
+<td style="text-align:left;">
+0.068
+</td>
+<td style="text-align:right;">
+0.223
+</td>
+<td style="text-align:right;">
+0.105
+</td>
+<td style="text-align:right;">
+0.189
+</td>
 </tr>
-<tr class="even">
-<td align="left">Acre</td>
-<td align="right">0.075</td>
-<td align="right">0.277</td>
-<td align="right">0.122</td>
-<td align="right">0.198</td>
+<tr>
+<td style="text-align:left;">
+Ceará
+</td>
+<td style="text-align:left;">
+0.059
+</td>
+<td style="text-align:right;">
+0.209
+</td>
+<td style="text-align:right;">
+0.096
+</td>
+<td style="text-align:right;">
+0.178
+</td>
 </tr>
-<tr class="odd">
-<td align="left">Ceará</td>
-<td align="right">0.069</td>
-<td align="right">0.233</td>
-<td align="right">0.109</td>
-<td align="right">0.182</td>
+<tr>
+<td style="text-align:left;">
+Acre
+</td>
+<td style="text-align:left;">
+0.059
+</td>
+<td style="text-align:right;">
+0.245
+</td>
+<td style="text-align:right;">
+0.103
+</td>
+<td style="text-align:right;">
+0.183
+</td>
 </tr>
-<tr class="even">
-<td align="left">Piauí</td>
-<td align="right">0.067</td>
-<td align="right">0.244</td>
-<td align="right">0.111</td>
-<td align="right">0.163</td>
+<tr>
+<td style="text-align:left;">
+Pernambuco
+</td>
+<td style="text-align:left;">
+0.057
+</td>
+<td style="text-align:right;">
+0.190
+</td>
+<td style="text-align:right;">
+0.088
+</td>
+<td style="text-align:right;">
+0.197
+</td>
 </tr>
-<tr class="odd">
-<td align="left">Sergipe</td>
-<td align="right">0.065</td>
-<td align="right">0.217</td>
-<td align="right">0.100</td>
-<td align="right">0.209</td>
+<tr>
+<td style="text-align:left;">
+Sergipe
+</td>
+<td style="text-align:left;">
+0.056
+</td>
+<td style="text-align:right;">
+0.192
+</td>
+<td style="text-align:right;">
+0.087
+</td>
+<td style="text-align:right;">
+0.213
+</td>
 </tr>
-<tr class="even">
-<td align="left">Amazonas</td>
-<td align="right">0.064</td>
-<td align="right">0.276</td>
-<td align="right">0.113</td>
-<td align="right">0.199</td>
+<tr>
+<td style="text-align:left;">
+Bahia
+</td>
+<td style="text-align:left;">
+0.055
+</td>
+<td style="text-align:right;">
+0.201
+</td>
+<td style="text-align:right;">
+0.088
+</td>
+<td style="text-align:right;">
+0.205
+</td>
 </tr>
-<tr class="odd">
-<td align="left">Bahia</td>
-<td align="right">0.064</td>
-<td align="right">0.229</td>
-<td align="right">0.102</td>
-<td align="right">0.206</td>
+<tr>
+<td style="text-align:left;">
+Amazonas
+</td>
+<td style="text-align:left;">
+0.053
+</td>
+<td style="text-align:right;">
+0.248
+</td>
+<td style="text-align:right;">
+0.095
+</td>
+<td style="text-align:right;">
+0.214
+</td>
 </tr>
-<tr class="even">
-<td align="left">Pernambuco</td>
-<td align="right">0.063</td>
-<td align="right">0.209</td>
-<td align="right">0.097</td>
-<td align="right">0.206</td>
+<tr>
+<td style="text-align:left;">
+Amapá
+</td>
+<td style="text-align:left;">
+0.052
+</td>
+<td style="text-align:right;">
+0.197
+</td>
+<td style="text-align:right;">
+0.084
+</td>
+<td style="text-align:right;">
+0.232
+</td>
 </tr>
-<tr class="odd">
-<td align="left">Pará</td>
-<td align="right">0.060</td>
-<td align="right">0.245</td>
-<td align="right">0.102</td>
-<td align="right">0.219</td>
+<tr>
+<td style="text-align:left;">
+Piauí
+</td>
+<td style="text-align:left;">
+0.050
+</td>
+<td style="text-align:right;">
+0.217
+</td>
+<td style="text-align:right;">
+0.089
+</td>
+<td style="text-align:right;">
+0.182
+</td>
 </tr>
-<tr class="even">
-<td align="left">Amapá</td>
-<td align="right">0.055</td>
-<td align="right">0.208</td>
-<td align="right">0.088</td>
-<td align="right">0.238</td>
+<tr>
+<td style="text-align:left;">
+Pará
+</td>
+<td style="text-align:left;">
+0.046
+</td>
+<td style="text-align:right;">
+0.214
+</td>
+<td style="text-align:right;">
+0.082
+</td>
+<td style="text-align:right;">
+0.232
+</td>
 </tr>
-<tr class="odd">
-<td align="left">Rio Grande do Norte</td>
-<td align="right">0.052</td>
-<td align="right">0.180</td>
-<td align="right">0.082</td>
-<td align="right">0.207</td>
+<tr>
+<td style="text-align:left;">
+Rio Grande do Norte
+</td>
+<td style="text-align:left;">
+0.043
+</td>
+<td style="text-align:right;">
+0.156
+</td>
+<td style="text-align:right;">
+0.069
+</td>
+<td style="text-align:right;">
+0.211
+</td>
 </tr>
-<tr class="even">
-<td align="left">Paraíba</td>
-<td align="right">0.048</td>
-<td align="right">0.210</td>
-<td align="right">0.085</td>
-<td align="right">0.204</td>
+<tr>
+<td style="text-align:left;">
+Paraíba
+</td>
+<td style="text-align:left;">
+0.037
+</td>
+<td style="text-align:right;">
+0.175
+</td>
+<td style="text-align:right;">
+0.069
+</td>
+<td style="text-align:right;">
+0.189
+</td>
 </tr>
-<tr class="odd">
-<td align="left">Tocantins</td>
-<td align="right">0.043</td>
-<td align="right">0.153</td>
-<td align="right">0.065</td>
-<td align="right">0.271</td>
+<tr>
+<td style="text-align:left;">
+Tocantins
+</td>
+<td style="text-align:left;">
+0.033
+</td>
+<td style="text-align:right;">
+0.129
+</td>
+<td style="text-align:right;">
+0.053
+</td>
+<td style="text-align:right;">
+0.259
+</td>
 </tr>
-<tr class="even">
-<td align="left">Rondônia</td>
-<td align="right">0.041</td>
-<td align="right">0.118</td>
-<td align="right">0.057</td>
-<td align="right">0.250</td>
+<tr>
+<td style="text-align:left;">
+Rondônia
+</td>
+<td style="text-align:left;">
+0.031
+</td>
+<td style="text-align:right;">
+0.098
+</td>
+<td style="text-align:right;">
+0.044
+</td>
+<td style="text-align:right;">
+0.271
+</td>
 </tr>
-<tr class="odd">
-<td align="left">Roraima</td>
-<td align="right">0.037</td>
-<td align="right">0.146</td>
-<td align="right">0.057</td>
-<td align="right">0.321</td>
+<tr>
+<td style="text-align:left;">
+Roraima
+</td>
+<td style="text-align:left;">
+0.030
+</td>
+<td style="text-align:right;">
+0.116
+</td>
+<td style="text-align:right;">
+0.046
+</td>
+<td style="text-align:right;">
+0.331
+</td>
 </tr>
-<tr class="even">
-<td align="left">Espírito Santo</td>
-<td align="right">0.033</td>
-<td align="right">0.092</td>
-<td align="right">0.045</td>
-<td align="right">0.265</td>
+<tr>
+<td style="text-align:left;">
+Espírito Santo
+</td>
+<td style="text-align:left;">
+0.029
+</td>
+<td style="text-align:right;">
+0.079
+</td>
+<td style="text-align:right;">
+0.040
+</td>
+<td style="text-align:right;">
+0.230
+</td>
 </tr>
-<tr class="odd">
-<td align="left">Minas Gerais</td>
-<td align="right">0.031</td>
-<td align="right">0.091</td>
-<td align="right">0.044</td>
-<td align="right">0.244</td>
+<tr>
+<td style="text-align:left;">
+Rio de Janeiro
+</td>
+<td style="text-align:left;">
+0.025
+</td>
+<td style="text-align:right;">
+0.060
+</td>
+<td style="text-align:right;">
+0.032
+</td>
+<td style="text-align:right;">
+0.244
+</td>
 </tr>
-<tr class="even">
-<td align="left">Rio de Janeiro</td>
-<td align="right">0.026</td>
-<td align="right">0.066</td>
-<td align="right">0.034</td>
-<td align="right">0.264</td>
+<tr>
+<td style="text-align:left;">
+Minas Gerais
+</td>
+<td style="text-align:left;">
+0.023
+</td>
+<td style="text-align:right;">
+0.073
+</td>
+<td style="text-align:right;">
+0.034
+</td>
+<td style="text-align:right;">
+0.235
+</td>
 </tr>
-<tr class="odd">
-<td align="left">Goiás</td>
-<td align="right">0.025</td>
-<td align="right">0.065</td>
-<td align="right">0.033</td>
-<td align="right">0.247</td>
+<tr>
+<td style="text-align:left;">
+Goiás
+</td>
+<td style="text-align:left;">
+0.023
+</td>
+<td style="text-align:right;">
+0.056
+</td>
+<td style="text-align:right;">
+0.030
+</td>
+<td style="text-align:right;">
+0.218
+</td>
 </tr>
-<tr class="even">
-<td align="left">Mato Grosso</td>
-<td align="right">0.022</td>
-<td align="right">0.062</td>
-<td align="right">0.028</td>
-<td align="right">0.349</td>
+<tr>
+<td style="text-align:left;">
+Mato Grosso
+</td>
+<td style="text-align:left;">
+0.019
+</td>
+<td style="text-align:right;">
+0.052
+</td>
+<td style="text-align:right;">
+0.024
+</td>
+<td style="text-align:right;">
+0.334
+</td>
 </tr>
-<tr class="odd">
-<td align="left">Rio Grande do Sul</td>
-<td align="right">0.021</td>
-<td align="right">0.050</td>
-<td align="right">0.027</td>
-<td align="right">0.229</td>
+<tr>
+<td style="text-align:left;">
+São Paulo
+</td>
+<td style="text-align:left;">
+0.017
+</td>
+<td style="text-align:right;">
+0.040
+</td>
+<td style="text-align:right;">
+0.022
+</td>
+<td style="text-align:right;">
+0.234
+</td>
 </tr>
-<tr class="even">
-<td align="left">São Paulo</td>
-<td align="right">0.020</td>
-<td align="right">0.046</td>
-<td align="right">0.025</td>
-<td align="right">0.233</td>
+<tr>
+<td style="text-align:left;">
+Paraná
+</td>
+<td style="text-align:left;">
+0.014
+</td>
+<td style="text-align:right;">
+0.046
+</td>
+<td style="text-align:right;">
+0.020
+</td>
+<td style="text-align:right;">
+0.344
+</td>
 </tr>
-<tr class="odd">
-<td align="left">Paraná</td>
-<td align="right">0.017</td>
-<td align="right">0.055</td>
-<td align="right">0.023</td>
-<td align="right">0.346</td>
+<tr>
+<td style="text-align:left;">
+Distrito Federal
+</td>
+<td style="text-align:left;">
+0.013
+</td>
+<td style="text-align:right;">
+0.042
+</td>
+<td style="text-align:right;">
+0.018
+</td>
+<td style="text-align:right;">
+0.349
+</td>
 </tr>
-<tr class="even">
-<td align="left">Distrito Federal</td>
-<td align="right">0.016</td>
-<td align="right">0.053</td>
-<td align="right">0.023</td>
-<td align="right">0.330</td>
+<tr>
+<td style="text-align:left;">
+Rio Grande do Sul
+</td>
+<td style="text-align:left;">
+0.012
+</td>
+<td style="text-align:right;">
+0.037
+</td>
+<td style="text-align:right;">
+0.017
+</td>
+<td style="text-align:right;">
+0.277
+</td>
 </tr>
-<tr class="odd">
-<td align="left">Mato Grosso do Sul</td>
-<td align="right">0.016</td>
-<td align="right">0.056</td>
-<td align="right">0.023</td>
-<td align="right">0.313</td>
+<tr>
+<td style="text-align:left;">
+Santa Catarina
+</td>
+<td style="text-align:left;">
+0.012
+</td>
+<td style="text-align:right;">
+0.028
+</td>
+<td style="text-align:right;">
+0.015
+</td>
+<td style="text-align:right;">
+0.243
+</td>
 </tr>
-<tr class="even">
-<td align="left">Santa Catarina</td>
-<td align="right">0.014</td>
-<td align="right">0.033</td>
-<td align="right">0.018</td>
-<td align="right">0.243</td>
+<tr>
+<td style="text-align:left;">
+Mato Grosso do Sul
+</td>
+<td style="text-align:left;">
+0.010
+</td>
+<td style="text-align:right;">
+0.041
+</td>
+<td style="text-align:right;">
+0.016
+</td>
+<td style="text-align:right;">
+0.309
+</td>
 </tr>
 </tbody>
+<tfoot>
+<tr>
+<td style="padding: 0; border: 0;" colspan="100%">
+<span style="font-style: italic;">Fonte:</span>
+</td>
+</tr>
+<tr>
+<td style="padding: 0; border: 0;" colspan="100%">
+<sup></sup> PNAD Contínua 2016, 1ª entrevista. Microdados.
+</td>
+</tr>
+</tfoot>
 </table>
 <p>No caso, ainda que o Amazonas apresente maior desigualdade no renda-linha de pobreza dos domicílios pobres, as diferenças na extensão e intensidade são os determinantes deste ordenamento. Isso implica que embora a desigualdade seja mais intensa no Amazonas, a população em situação de pobreza ainda está, em média, numa situação melhor que a do Maranhão.</p>
 </div>
@@ -587,9 +897,9 @@ Nesse vídeo, Bruna Caram e Marina de la Riva interpretam <em>Bloco do Prazer</e
 <div class="footnotes">
 <hr />
 <ol>
-<li id="fn1"><p>Eu + ansiedade é, praticamente, <a href="https://pt.wikipedia.org/wiki/Pleonasmo">pleonasmo</a>.<a href="#fnref1">↩</a></p></li>
-<li id="fn2"><p>Todas as estimativas foram realizadas utilizando a <em>library</em> <a href="https://cran.r-project.org/web/packages/convey/index.html"><code>convey</code></a>.<a href="#fnref2">↩</a></p></li>
-<li id="fn3"><p>Sobre os potenciais problemas do índice de Gini, sugiro <a href="https://oxfamblogs.org/fp2p/on-inequality-lets-do-the-palma-because-the-gini-is-so-last-century/">esse artigo</a>.<a href="#fnref3">↩</a></p></li>
+<li id="fn1"><p>Eu + ansiedade é, praticamente, <a href="https://pt.wikipedia.org/wiki/Pleonasmo">pleonasmo</a>.<a href="#fnref1" class="footnote-back">↩</a></p></li>
+<li id="fn2"><p>Todas as estimativas foram realizadas utilizando a <em>library</em> <a href="https://cran.r-project.org/web/packages/convey/index.html"><code>convey</code></a>.<a href="#fnref2" class="footnote-back">↩</a></p></li>
+<li id="fn3"><p>Sobre os potenciais problemas do índice de Gini, sugiro <a href="https://oxfamblogs.org/fp2p/on-inequality-lets-do-the-palma-because-the-gini-is-so-last-century/">esse artigo</a>.<a href="#fnref3" class="footnote-back">↩</a></p></li>
 </ol>
 </div>
 
@@ -836,6 +1146,45 @@ Nesse vídeo, Bruna Caram e Marina de la Riva interpretam <em>Bloco do Prazer</e
           <div class="media">
             
             <div class="media-body">
+              <a class="link-unstyled" href="https://guilhermejacob.github.io/2019/12/varianca-adac/">
+                <h3 class="media-heading">Por que é tão difícil calcular variância com amostras complexas?</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Dec 12, 2019
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Já faz algum tempo que passei por essa situação mas acho que vale a pena pensar a respeito.
+Em um fórum de R, uma pessoa pergunta onde está a função pra calcular um determinado número com a PNAD. Eu vou dou uma olhada e vejo que, de fato, a função não existe. Explico para a pessoa que a função não existe porque ninguém escreveu ainda. E me responde: alguém pode fazer isso aí rapidinho?</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://guilhermejacob.github.io/2019/08/desigualdade-pobreza-log/">
+                <h3 class="media-heading">Desigualdade ou pobreza?</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Aug 8, 2019
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Pesquisando no repositório das piores ideias da humanidade1, não é raro encontrar a seguinte frase:
+ “A pobreza importa. A desigualdade, não.”
+ Aparentemente, tem gente que acredita nisso. Vou mostrar o quanto isso é estúpido.
+Considere a sociedade A, cuja renda média é $500.10 e o índice de Gini é 0.400. Vejamos a distribuição cumulativa.
+Agora considere a Sociedade B, produzida a partir de \(n\) transferências regressivas para o indivíduo mais rico de modo que os demais indivíduos não-pobres estejam quase na linha de pobreza.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
               <a class="link-unstyled" href="https://guilhermejacob.github.io/2019/03/mortalidade-infantil-simulacao/">
                 <h3 class="media-heading">Mortalidade infantil, proporções e confiabilidade</h3>
               </a>
@@ -902,9 +1251,10 @@ Na volta para Manaus, fiz uma mini-maratona para visitar amigos em Brasília nas
                   Apr 4, 2018
                 </span>
               </span>
-              <div class="media-content hide-xs font-merryweather">Atualização (19/05/2018): passei a usar a nova tabela de deflatores, ajustando para preços médios do ano da pesquisa.
-Atualização (20/05/2018): fixei os valores a preços médios de 2017.
- Interrompendo o meu hiato de alguns meses, resolvi voltar com uma comparação os dados de renda das PNADCs anuais 2016-2017. No entanto, vamos falar um pouco da desigualdade em geral e, então, partir para uma questão mais específica: pobreza na infância1.</div>
+              <div class="media-content hide-xs font-merryweather">Atualização (21/12/2019): refiz todas as análises usando a nova definição de renda domiciliar per capita e seu respectivo deflator.
+ Interrompendo o meu hiato de alguns meses, resolvi voltar com uma comparação os dados de renda das PNADCs anuais 2016-2017. No entanto, vamos falar um pouco da desigualdade em geral e, então, partir para uma questão mais específica: pobreza na infância1.
+Mas, antes de tudo, um aviso:
+Todos as estimativas a seguir foram feitas por mim.</div>
             </div>
             <div style="clear:both;"></div>
             <hr>
@@ -941,10 +1291,9 @@ Censo da Educação Superior O Censo da Educação Superior é conduzido anualme
                   Dec 12, 2017
                 </span>
               </span>
-              <div class="media-content hide-xs font-merryweather">Atualização (19/05/2018): corrigi alguns erros no código que afetavam as estimativas das capitais.
-Já que os intervalos de confiança das estimativas de capitais não permitiam uma análise mais profunda, resolvi mudar para análise das UFs.
-As rendas foram ajustadas para preços médios de 2016.
- Na última quarta (29/11), o IBGE finalmente apresentou as estimativas relativas aos rendimentos de todas as fontes, além de disponibilizar os microdados para os cálculos.</div>
+              <div class="media-content hide-xs font-merryweather">Atualização (21/12/2019): refiz todas as análises usando a nova definição de renda domiciliar per capita e seu respectivo deflator.
+ Na última quarta (29/11), o IBGE finalmente apresentou as estimativas relativas aos rendimentos de todas as fontes, além de disponibilizar os microdados para os cálculos.
+Ok, mas o que isso quer dizer? Aguardei ansiosamente1 para saber como as coisas irão funcionar com o fim da PNAD anual e introdução da PNAD Contínua.</div>
             </div>
             <div style="clear:both;"></div>
             <hr>
@@ -987,47 +1336,6 @@ Bases do Ministério do Trabalho O Ministério do Trabalho (MTb) permite que o u
             <hr>
           </div>
         
-          <div class="media">
-            
-            <div class="media-body">
-              <a class="link-unstyled" href="https://guilhermejacob.github.io/2017/11/amostra-cadunico-r/">
-                <h3 class="media-heading">Analisando a amostra do Cadastro Único com R</h3>
-              </a>
-              <span class="media-meta">
-                <span class="media-date text-small">
-                  Nov 11, 2017
-                </span>
-              </span>
-              <div class="media-content hide-xs font-merryweather">Atualização (18/08/2018): atualizei o procedimento e os resultados para coincidir com as novas bases disponibilizadas no site.
- Você sabe o que é o Cadastro Único? Sabe que uma amostra dos microdados está disponível? Sabe que dá pra analisar no R?
-Não? Até uns dias atrás, eu também não.
-Se você tem interesse nessa base de dados, vamos lá!
-Caso contrário, assista esse vídeo do MDS. Se, ainda assim, você não estiver interessado, bom… tem um presente no fim do post.</div>
-            </div>
-            <div style="clear:both;"></div>
-            <hr>
-          </div>
-        
-          <div class="media">
-            
-            <div class="media-body">
-              <a class="link-unstyled" href="https://guilhermejacob.github.io/2017/11/birth-registration-map/">
-                <h3 class="media-heading">Mapeando crianças sem registro civil</h3>
-              </a>
-              <span class="media-meta">
-                <span class="media-date text-small">
-                  Nov 11, 2017
-                </span>
-              </span>
-              <div class="media-content hide-xs font-merryweather">Esse post é um pequeno follow-up da discussão sobre mapas de densidade de pontos, mas com um pouco mais de diretos da infância e adolescência. Vamos analisar como se distribuem espacialmente as crianças com e sem registro de nascimento, usando dados dos agregados de setores censitários do Censo 2010.
-Dessa vez, vamos focar em 4 capitais: Belém, Manaus , Fortaleza e São Luís.
-Sem mais conversa, prossigamos.
-Belém  Manaus  Fortaleza  São Luís  </div>
-            </div>
-            <div style="clear:both;"></div>
-            <hr>
-          </div>
-        
       </div>
     </div>
     <div class="modal-footer">
@@ -1035,7 +1343,7 @@ Belém  Manaus  Fortaleza  São Luís  </div>
          data-message-zero="no post found"
          data-message-one="1 post found"
          data-message-other="{n} posts found">
-         14 posts found
+         16 posts found
       </p>
     </div>
   </div>

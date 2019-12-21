@@ -28,9 +28,10 @@ Pois bem: saíram ontem, dia 17.</description>
       <pubDate>Tue, 24 Apr 2018 00:00:00 +0000</pubDate>
       
       <guid>https://guilhermejacob.github.io/2018/04/desigualdade-pobreza-infancia-2017/</guid>
-      <description>Atualização (19/05/2018): passei a usar a nova tabela de deflatores, ajustando para preços médios do ano da pesquisa.
-Atualização (20/05/2018): fixei os valores a preços médios de 2017.
- Interrompendo o meu hiato de alguns meses, resolvi voltar com uma comparação os dados de renda das PNADCs anuais 2016-2017. No entanto, vamos falar um pouco da desigualdade em geral e, então, partir para uma questão mais específica: pobreza na infância1.</description>
+      <description>Atualização (21/12/2019): refiz todas as análises usando a nova definição de renda domiciliar per capita e seu respectivo deflator.
+ Interrompendo o meu hiato de alguns meses, resolvi voltar com uma comparação os dados de renda das PNADCs anuais 2016-2017. No entanto, vamos falar um pouco da desigualdade em geral e, então, partir para uma questão mais específica: pobreza na infância1.
+Mas, antes de tudo, um aviso:
+Todos as estimativas a seguir foram feitas por mim.</description>
     </item>
     
     <item>
@@ -39,10 +40,9 @@ Atualização (20/05/2018): fixei os valores a preços médios de 2017.
       <pubDate>Sun, 03 Dec 2017 00:00:00 +0000</pubDate>
       
       <guid>https://guilhermejacob.github.io/2017/12/desigualdade-pobreza-estados-2016/</guid>
-      <description>Atualização (19/05/2018): corrigi alguns erros no código que afetavam as estimativas das capitais.
-Já que os intervalos de confiança das estimativas de capitais não permitiam uma análise mais profunda, resolvi mudar para análise das UFs.
-As rendas foram ajustadas para preços médios de 2016.
- Na última quarta (29/11), o IBGE finalmente apresentou as estimativas relativas aos rendimentos de todas as fontes, além de disponibilizar os microdados para os cálculos.</description>
+      <description>Atualização (21/12/2019): refiz todas as análises usando a nova definição de renda domiciliar per capita e seu respectivo deflator.
+ Na última quarta (29/11), o IBGE finalmente apresentou as estimativas relativas aos rendimentos de todas as fontes, além de disponibilizar os microdados para os cálculos.
+Ok, mas o que isso quer dizer? Aguardei ansiosamente1 para saber como as coisas irão funcionar com o fim da PNAD anual e introdução da PNAD Contínua.</description>
     </item>
     
     <item>
