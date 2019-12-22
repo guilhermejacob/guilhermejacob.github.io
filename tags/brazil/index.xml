@@ -5,91 +5,11 @@
     <link>https://guilhermejacob.github.io/tags/brazil/</link>
     <description>Recent content in Brazil on Something Random</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Fri, 18 May 2018 00:00:00 +0000</lastBuildDate>
+    <language>pt-br</language>
+    <lastBuildDate>Thu, 23 Nov 2017 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://guilhermejacob.github.io/tags/brazil/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>Temer, desemprego e procura de empregos: entendendo conceitos da PNAD Contínua</title>
-      <link>https://guilhermejacob.github.io/2018/05/temer-desemprego-2018/</link>
-      <pubDate>Fri, 18 May 2018 00:00:00 +0000</pubDate>
-      
-      <guid>https://guilhermejacob.github.io/2018/05/temer-desemprego-2018/</guid>
-      <description>Uma controvérsia relativamente recente foi protagonizada pelo Temer, durante uma palestra na ESPM. Ele teria afirmado que não houve aumento da taxa de desemprego, mas, sim, aumento das pessoas procurando emprego. Antes da divulgação dos dados da PNADC do 1º trimestre de 2018, tive uma conversa com um professor a respeito de até onde aquilo faz ou não faz sentido.
-Escolhi esperar1 até os microdados saírem…
-Pois bem: saíram ontem, dia 17.</description>
-    </item>
-    
-    <item>
-      <title>Qual a relação entre a hora de nascimento e o tipo de parto?</title>
-      <link>https://guilhermejacob.github.io/2018/05/partos-brasil-2016/</link>
-      <pubDate>Wed, 02 May 2018 00:00:00 +0000</pubDate>
-      
-      <guid>https://guilhermejacob.github.io/2018/05/partos-brasil-2016/</guid>
-      <description>O último post foi corrido, eu sei. Esse vai ser um pouco menos corrido, acho.
-Se você quiser pular direto para a análise, clique aqui.
-Muita coisa acontecendo por aqui.
-Semana passada, fui pro Rio. Serei propositalmente misterioso neste ponto, mas acho que vem coisa por aí.
-Na volta para Manaus, fiz uma mini-maratona para visitar amigos em Brasília nas 7 horas de escala. Para quem eu fiquei devendo visita: vou para a Campus Party Brasília no fim de maio!</description>
-    </item>
-    
-    <item>
-      <title>PNAD Contínua 2017: extrema pobreza na infância e desigualdade</title>
-      <link>https://guilhermejacob.github.io/2018/04/desigualdade-pobreza-infancia-2017/</link>
-      <pubDate>Tue, 24 Apr 2018 00:00:00 +0000</pubDate>
-      
-      <guid>https://guilhermejacob.github.io/2018/04/desigualdade-pobreza-infancia-2017/</guid>
-      <description>Atualização (21/12/2019): refiz todas as análises usando a nova definição de renda domiciliar per capita e seu respectivo deflator.
- Interrompendo o meu hiato de alguns meses, resolvi voltar com uma comparação os dados de renda das PNADCs anuais 2016-2017. No entanto, vamos falar um pouco da desigualdade em geral e, então, partir para uma questão mais específica: pobreza na infância1.
-Mas, antes de tudo, um aviso:
-Todos as estimativas a seguir foram feitas por mim.</description>
-    </item>
-    
-    <item>
-      <title>Censo da Educação Superior: gênero e cursos em 2016</title>
-      <link>https://guilhermejacob.github.io/2017/12/analise-censo-superior-genero-2016/</link>
-      <pubDate>Mon, 11 Dec 2017 00:00:00 +0000</pubDate>
-      
-      <guid>https://guilhermejacob.github.io/2017/12/analise-censo-superior-genero-2016/</guid>
-      <description>Encerrando1 as análises usando bases de dados públicas, vamos focar no ensino superior.
-Inicialmente, vamos explicar o que é o Censo da Educação Superior. Depois, vamos mostrar como montar as bases de dados. E, concluindo, vamos fazer um pequeno exercício de visualização de dados.
-Ah, e eu vou ser muito breve neste post, por motivos de: tenho que escrever um projeto de pesquisa (:
-Censo da Educação Superior O Censo da Educação Superior é conduzido anualmente pelo Inep.</description>
-    </item>
-    
-    <item>
-      <title>O que a PNAD Contínua 2016 diz sobre desigualdade e pobreza nos estados?</title>
-      <link>https://guilhermejacob.github.io/2017/12/desigualdade-pobreza-estados-2016/</link>
-      <pubDate>Sun, 03 Dec 2017 00:00:00 +0000</pubDate>
-      
-      <guid>https://guilhermejacob.github.io/2017/12/desigualdade-pobreza-estados-2016/</guid>
-      <description>Atualização (21/12/2019): refiz todas as análises usando a nova definição de renda domiciliar per capita e seu respectivo deflator.
- Na última quarta (29/11), o IBGE finalmente apresentou as estimativas relativas aos rendimentos de todas as fontes, além de disponibilizar os microdados para os cálculos.
-Ok, mas o que isso quer dizer? Aguardei ansiosamente1 para saber como as coisas irão funcionar com o fim da PNAD anual e introdução da PNAD Contínua.</description>
-    </item>
-    
-    <item>
-      <title>CGIg/CNIg e SINCRE: analisando os microdados do OBMigra</title>
-      <link>https://guilhermejacob.github.io/2017/11/microdados-obmigra/</link>
-      <pubDate>Wed, 29 Nov 2017 00:00:00 +0000</pubDate>
-      
-      <guid>https://guilhermejacob.github.io/2017/11/microdados-obmigra/</guid>
-      <description>O assunto de hoje são os microdados do OBMigra. Mas, antes disso, vamos apresentar um pouco do contexto institucional.
-OBMigra O Observatório das migrações internacionais (OBMigra) é fruto de um convênio estabelecido entre o Ministério do Trabalho (MTb), Conselho Nacional de Imigração (CNIg) e Universidade de Brasília (UnB). Sua finalidade é ampliar o conhecimento a respeito dos fluxos migratórios internacionais no Brasil, através de estudos e análises empíricas, e fornecer subsídios para a formulação de estratégias de política pública.</description>
-    </item>
-    
-    <item>
-      <title>Analisando RAIS e CAGED com R</title>
-      <link>https://guilhermejacob.github.io/2017/11/rais-caged-r/</link>
-      <pubDate>Mon, 27 Nov 2017 00:00:00 +0000</pubDate>
-      
-      <guid>https://guilhermejacob.github.io/2017/11/rais-caged-r/</guid>
-      <description>Dando sequência ao post anterior, vamos analisar outra base de dados. Ou outras bases de dados?
-Dessa vez, falaremos dos microdados do RAIS e CAGED. Vamos?
-Bases do Ministério do Trabalho O Ministério do Trabalho (MTb) permite que o usuário acesse os microdados de duas bases muito interessantes: RAIS e CAGED. Bom, além de serem mais dois elementos na “sopa de letrinhas” de microdados brasileiros, o que são exatamente esses dados?</description>
-    </item>
     
     <item>
       <title>Analisando a amostra do Cadastro Único com R</title>
@@ -145,16 +65,6 @@ Vou tentar manter as complicações matemáticas fora da questão e focar na apl
       <guid>https://guilhermejacob.github.io/2017/11/inequality-poverty-mapping-sae-random-forests-brazil-2010/</guid>
       <description>After a (somewhat long) break, I came back for a new post. Yey! This time, we’re not discussing educational stuff, but another big theme: inequality in Brazil. What happens when we combine 2010 Brazilian Census microdata, Small Area Estimation and Random Forests? Interesting, right?
 2010 Brazilian Census Well, it’s not really the 2010 Census, but the sample. Maybe this needs further explanation. Every ten years, IBGE1 conducts this enormous survey, collecting information about all Brazilian households.</description>
-    </item>
-    
-    <item>
-      <title>Out of school children in Brazil: an exercise on data visualization</title>
-      <link>https://guilhermejacob.github.io/2017/05/out-of-school-children-in-brazil-an-exercise-on-data-visualization/</link>
-      <pubDate>Wed, 17 May 2017 00:00:00 +0000</pubDate>
-      
-      <guid>https://guilhermejacob.github.io/2017/05/out-of-school-children-in-brazil-an-exercise-on-data-visualization/</guid>
-      <description>PNAD and the importance of household surveys The most common source for Brazilian information about living standards is the PNAD1. Usually, when some institution says something about poverty, inequality, education, housing, etc. in Brazil, they recur to the amazing publications produced by the Brazilian Institute for Geography and Statistics (IBGE).
-But that is how it’s usually done. IBGE also produces amazing microdata, available to everyone. Using it, researchers can focus on specific questions regarding any topic investigated in the survey.</description>
     </item>
     
   </channel>

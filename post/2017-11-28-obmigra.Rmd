@@ -3,8 +3,8 @@ title: "CGIg/CNIg e SINCRE: analisando os microdados do OBMigra"
 author: ~
 date: '2017-11-29'
 slug: microdados-obmigra
-categories: [ "R" , "Public Records" , "Official Statistics" ]
-tags: [ "Migration" , "Brazil" ]
+categories: [ "Registros Administrativos" ]
+tags: [ "Migração" ]
 draft: false
 ---
 

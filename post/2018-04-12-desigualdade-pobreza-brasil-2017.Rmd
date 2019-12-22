@@ -3,8 +3,8 @@ title: "PNAD Contínua 2017: extrema pobreza na infância e desigualdade"
 author: "Guilherme Jacob"
 date: '2018-04-24'
 slug: desigualdade-pobreza-infancia-2017
-categories: [R, Complex Survey, Official Statistics]
-tags: [Poverty, Inequality, Brazil]
+categories: ["Amostragem"]
+tags: ["Pobreza", "Desigualdade", "rstats"]
 draft: false
 language: "pt-br"
 ---

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Variância on Something Random</title>
+    <link>https://guilhermejacob.github.io/tags/vari%C3%A2ncia/</link>
+    <description>Recent content in Variância on Something Random</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>pt-br</language>
+    <lastBuildDate>Fri, 20 Dec 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://guilhermejacob.github.io/tags/vari%C3%A2ncia/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Por que é tão difícil calcular variância com amostras complexas?</title>
+      <link>https://guilhermejacob.github.io/2019/12/varianca-adac/</link>
+      <pubDate>Fri, 20 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://guilhermejacob.github.io/2019/12/varianca-adac/</guid>
+      <description>Já faz algum tempo que passei por essa situação mas acho que vale a pena pensar a respeito.
+Em um fórum de R, uma pessoa pergunta onde está a função pra calcular um determinado número com a PNAD. Eu vou dou uma olhada e vejo que, de fato, a função não existe. Explico para a pessoa que a função não existe porque ninguém escreveu ainda. E me responde: alguém pode fazer isso aí rapidinho?</description>
+    </item>
+    
+  </channel>
+</rss>

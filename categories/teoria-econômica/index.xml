@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Teoria Econômica on Something Random</title>
+    <link>https://guilhermejacob.github.io/categories/teoria-econ%C3%B4mica/</link>
+    <description>Recent content in Teoria Econômica on Something Random</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>pt-br</language>
+    <lastBuildDate>Mon, 19 Aug 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://guilhermejacob.github.io/categories/teoria-econ%C3%B4mica/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Desigualdade ou pobreza?</title>
+      <link>https://guilhermejacob.github.io/2019/08/desigualdade-pobreza-log/</link>
+      <pubDate>Mon, 19 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://guilhermejacob.github.io/2019/08/desigualdade-pobreza-log/</guid>
+      <description>Pesquisando no repositório das piores ideias da humanidade1, não é raro encontrar a seguinte frase:
+ “A pobreza importa. A desigualdade, não.”
+ Aparentemente, tem gente que acredita nisso. Vou mostrar o quanto isso é estúpido.
+Considere a sociedade A, cuja renda média é $500.10 e o índice de Gini é 0.400. Vejamos a distribuição cumulativa.
+Agora considere a Sociedade B, produzida a partir de \(n\) transferências regressivas para o indivíduo mais rico de modo que os demais indivíduos não-pobres estejam quase na linha de pobreza.</description>
+    </item>
+    
+  </channel>
+</rss>

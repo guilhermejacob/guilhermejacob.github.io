@@ -3,8 +3,8 @@ title: "Censo da Educação Superior: gênero e cursos em 2016"
 author: ~
 date: '2017-12-11'
 slug: analise-censo-superior-genero-2016
-categories: ["R" , "Public Records" ]
-tags: [ "Rstats" , "DataViz" , "Brazil" , "Education" ]
+categories: ["Registros Administrativos" ]
+tags: [ "rstats" , "DataViz" , "Educação" ]
 draft: false
 ---
 

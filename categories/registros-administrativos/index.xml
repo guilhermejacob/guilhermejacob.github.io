@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Registros Administrativos on Something Random</title>
+    <link>https://guilhermejacob.github.io/categories/registros-administrativos/</link>
+    <description>Recent content in Registros Administrativos on Something Random</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>pt-br</language>
+    <lastBuildDate>Wed, 02 May 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://guilhermejacob.github.io/categories/registros-administrativos/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Qual a relação entre a hora de nascimento e o tipo de parto?</title>
+      <link>https://guilhermejacob.github.io/2018/05/partos-brasil-2016/</link>
+      <pubDate>Wed, 02 May 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://guilhermejacob.github.io/2018/05/partos-brasil-2016/</guid>
+      <description>O último post foi corrido, eu sei. Esse vai ser um pouco menos corrido, acho.
+Se você quiser pular direto para a análise, clique aqui.
+Muita coisa acontecendo por aqui.
+Semana passada, fui pro Rio. Serei propositalmente misterioso neste ponto, mas acho que vem coisa por aí.
+Na volta para Manaus, fiz uma mini-maratona para visitar amigos em Brasília nas 7 horas de escala. Para quem eu fiquei devendo visita: vou para a Campus Party Brasília no fim de maio!</description>
+    </item>
+    
+    <item>
+      <title>Censo da Educação Superior: gênero e cursos em 2016</title>
+      <link>https://guilhermejacob.github.io/2017/12/analise-censo-superior-genero-2016/</link>
+      <pubDate>Mon, 11 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://guilhermejacob.github.io/2017/12/analise-censo-superior-genero-2016/</guid>
+      <description>Encerrando1 as análises usando bases de dados públicas, vamos focar no ensino superior.
+Inicialmente, vamos explicar o que é o Censo da Educação Superior. Depois, vamos mostrar como montar as bases de dados. E, concluindo, vamos fazer um pequeno exercício de visualização de dados.
+Ah, e eu vou ser muito breve neste post, por motivos de: tenho que escrever um projeto de pesquisa (:
+Censo da Educação Superior O Censo da Educação Superior é conduzido anualmente pelo Inep.</description>
+    </item>
+    
+    <item>
+      <title>CGIg/CNIg e SINCRE: analisando os microdados do OBMigra</title>
+      <link>https://guilhermejacob.github.io/2017/11/microdados-obmigra/</link>
+      <pubDate>Wed, 29 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://guilhermejacob.github.io/2017/11/microdados-obmigra/</guid>
+      <description>O assunto de hoje são os microdados do OBMigra. Mas, antes disso, vamos apresentar um pouco do contexto institucional.
+OBMigra O Observatório das migrações internacionais (OBMigra) é fruto de um convênio estabelecido entre o Ministério do Trabalho (MTb), Conselho Nacional de Imigração (CNIg) e Universidade de Brasília (UnB). Sua finalidade é ampliar o conhecimento a respeito dos fluxos migratórios internacionais no Brasil, através de estudos e análises empíricas, e fornecer subsídios para a formulação de estratégias de política pública.</description>
+    </item>
+    
+    <item>
+      <title>Analisando RAIS e CAGED com R</title>
+      <link>https://guilhermejacob.github.io/2017/11/rais-caged-r/</link>
+      <pubDate>Mon, 27 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://guilhermejacob.github.io/2017/11/rais-caged-r/</guid>
+      <description>Dando sequência ao post anterior, vamos analisar outra base de dados. Ou outras bases de dados?
+Dessa vez, falaremos dos microdados do RAIS e CAGED. Vamos?
+Bases do Ministério do Trabalho O Ministério do Trabalho (MTb) permite que o usuário acesse os microdados de duas bases muito interessantes: RAIS e CAGED. Bom, além de serem mais dois elementos na “sopa de letrinhas” de microdados brasileiros, o que são exatamente esses dados?</description>
+    </item>
+    
+    <item>
+      <title>ENEM e desigualdade na educação: uma análise dos dados de 2015</title>
+      <link>https://guilhermejacob.github.io/2017/11/enem-desigualdade-educa%C3%A7%C3%A3o/</link>
+      <pubDate>Wed, 15 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://guilhermejacob.github.io/2017/11/enem-desigualdade-educa%C3%A7%C3%A3o/</guid>
+      <description>Há alguns dias atrás, rolou o ENEM desse ano. E daí veio a ideia para este post: analisar a desigualdade na educação entre os jovens do Ensino Médio a partir das pontuações dos candidatos. Usando R, como sempre.
+Vou tentar manter as complicações matemáticas fora da questão e focar na aplicação da técnica para entender o contexto da desigualdade educacional. Assim, pretendo trazer gente de outras áreas, como pedagogos e sociólogos, que podem se beneficiar de mais uma ferramenta para analisar o problema, além de contribuir com novas perspectivas para “aqueles que só pensam com números”1.</description>
+    </item>
+    
+  </channel>
+</rss>

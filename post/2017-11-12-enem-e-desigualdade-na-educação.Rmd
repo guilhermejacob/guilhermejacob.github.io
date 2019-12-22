@@ -3,8 +3,8 @@ title: "ENEM e desigualdade na educação: uma análise dos dados de 2015"
 author: ~
 date: '2017-11-15'
 slug: enem-desigualdade-educação
-categories: ["R" , "Public Records" ]
-tags: [ "Children's Rights" , "Rstats" , "DataViz" , "Brazil" , "Education" , "Inequality" ]
+categories: [ "Registros administrativos" ]
+tags: [ "rstats" , "DataViz" , "Brazil" , "Educação" , "Desigualdade" ]
 bibliography: [enem-post.bib]
 csl: associacao-brasileira-de-normas-tecnicas-ipea.csl
 # languageCode: "pt-br"
@@ -54,13 +54,13 @@ Para entender um pouco de como se distribuem resultados, vamos analisar quem sã
 * Não tiveram qualquer problema na redação, e
 * Não estavam fazendo a prova apenas para medir seus conhecimentos.
 
-Só para confirmar: estamos trabalhando com a *interseção* destes quatro conjuntos de examinados, *não a união*.
-
-```{r coleta_dados, message=FALSE, warning=FALSE, cache=TRUE, include=FALSE}
-# link para base de dados:
+```{r coleta_dados, message=FALSE, warning=FALSE, cache=FALSE, include=FALSE, eval=FALSE}
+# carrega libraries
 library(DBI)
 library(MonetDBLite)
+library(here)
 
+# diretório da base de dados
 dbfolder <- "~/Bases/ENEM/MonetDB"
 
 # conecta à base de dados
@@ -90,8 +90,6 @@ notas <- notas [ -grep( "comp" , notas ) ]
 
 # cria SELECT query com variável desempenho
 # desempenho_sql <- paste0( "( " , paste0( notas , collapse = " + " ) , " ) / 5 AS desempenho" )
-
-
 
 # cria view com essa distribuição
 # dbSendQuery( db , paste( "CREATE VIEW enem_data AS SELECT *," , desempenho_sql , "FROM enem2015" , subset_string , "ORDER BY desempenho" ) )
@@ -123,25 +121,44 @@ dbDisconnect( db , shutdown = TRUE )
 # mantém apenas objetos úteis
 rm( list = grep( "^(upper|lower)_" , ls() , value = TRUE , invert = TRUE ) )
 
+# salva imagem
+save.image( file = here( "resources/enem2015.RData" ) )
+```
+
+Em outras palavras: estamos trabalhando com a *interseção* destes quatro conjuntos de examinados, *não a união*.
+
+```{r carrega_resultados, echo=FALSE, message=FALSE, warning=FALSE , cache = FALSE } 
+# carrega libraries
+library(data.table)
+library(here)
+library(ggplot2)
+library(ggiraph)
+
+# carrega dados
+load( here( "resources/enem2015.RData" ) )
+
+# transforma em data.table
+lower_part <- data.table( lower_part ) 
+upper_part <- data.table( upper_part )
+
+# adiciona marcador
+upper_part[ , marcador := "Melhores"]
+lower_part[ , marcador := "Piores"]
+
+# empilha dados
+enem_df <- rbindlist( list( upper_part , lower_part ) )
+rm( list = c( "upper_part" , "lower_part" ) ) ; gc()
 ```
 
 O gráfico \ref{dist_extreme} abaixo mostra como as notas dos extremos se distribuem. Enquanto os melhores desempenhos tendem a se concentrar mais entre domicílios mais ricos, os piores desempenhos se concentram ainda mais entre os domicílios mais pobres. Ou seja, é bem mais provável que uma "nota baixa" venha de um domicílio de baixa renda. O "monte" em vermelho entre os domicílios de catagoria "B" e "C" mostra isso. E a queda se comparado a categoria "A" se deve principalmente a raridade destes indivíduos, seja porque realmente existem poucos domicílios com nenhuma renda, seja porque as pessoas destes domicílios tendem a não fazer a prova.
 
 ```{r dist_extreme, echo=FALSE, message=FALSE, warning=FALSE , cache = FALSE } 
 # remove caracteres especiais
-upper_part[ , grep( "^no_" , colnames(upper_part) , value = TRUE ) ] <- apply( upper_part[ , grep( "^no_" , colnames(upper_part) , value = TRUE ) ] , 2 , function(x) gsub( "'|\\^|~" , "" , x ) )
-lower_part[ , grep( "^no_" , colnames(lower_part) , value = TRUE ) ] <- apply( lower_part[ , grep( "^no_" , colnames(lower_part) , value = TRUE ) ] , 2 , function(x) gsub( "'|\\^|~" , "" , x ) )
-
-upper_part$marcador <- "Melhores"
-lower_part$marcador <- "Piores"
+these_cols <- grep( "^no_" , colnames( enem_df ) , value = TRUE )
+enem_df[ , c( these_cols ) := lapply( .SD , function(z) gsub("[[:punct:]]", "", z ) ) , .SDcols = these_cols ]
 
 # densidade
-library(ggplot2)
-library(ggiraph)
-
-stacked_data <- rbind( upper_part , lower_part )
-
-dist_extreme <- ggplot(stacked_data, aes( x = q006 , group = marcador , fill = marcador )) +
+dist_extreme <- ggplot( enem_df , aes( x = q006 , group = marcador , fill = marcador )) +
   geom_density(adjust = 5 , color = "transparent" , alpha = .7 ) +
   # geom_histogram( aes( color = marcador ) , adjust = 5 , alpha = .7 , stat = "density" ) +
   scale_fill_manual( values = c( "Piores" = "red" , "Melhores" = "blue" ) ) +
@@ -165,11 +182,10 @@ dist_extreme
 
 Ok, mas e as médias? A média da pontuação dos extremos é bem diferente, como de se esperar. De fato, a pontuação dos melhores é aproximadamente 2.7 vezes melhor que a dos piores. O gráfico \ref{avg_extreme} abaixo mostra esta discrepâncias.
 ```{r avg_extreme, echo=FALSE, message=FALSE, warning=FALSE , cache = FALSE } 
+# calcula médias
+media_desempenho <- enem_df[ , .( media = mean( desempenho ) ) , by = .( marcador ) ]
 
-library(dplyr)
-media_desempenho <- stacked_data %>%  group_by( marcador ) %>% summarise( media = mean( desempenho ) )
-media_desempenho$marcador <- factor( media_desempenho$marcador , levels = c( "Piores" , "Melhores" ) )
-
+# gera gráfico
 dist_media <- ggplot(media_desempenho, aes( x = marcador , y = media , group = marcador , fill = marcador ) ) +
   # geom_bar( stat = "identity" , width = .5 , alpha = .7 ) +
   geom_bar_interactive( stat = "identity" , width = .5 , alpha = .7 , show.legend = TRUE ) +
@@ -211,11 +227,13 @@ onde $L(\cdot)$ é a curva de Lorenz.
 ## Na prática
 
 Vamos usar os dados do ENEM 2015, disponíveis na [página de microdados do INEP](http://portal.inep.gov.br/web/guest/microdados). Depois de colocar os dados numa base MonetDB, vou criar um "pseudo-desenho amostral". Por que "pseudo"? Porque a base não é uma amostra propriamente dita. Então, por que fazer isso? As funções do `convey` só funcionam sobre objetos de desenho amostral. Além disso, o `convey` funciona bem com bases de dados externas, usando apenas as informações necessárias para o cálculo.
-```{r estima_desigualdade, echo=FALSE, message=FALSE, warning=FALSE , cache = TRUE , include = FALSE }
+```{r estima_desigualdade, echo=FALSE, message=FALSE, warning=FALSE , cache = FALSE , include = FALSE , eval=FALSE }
+# carrega libraries
 library(DBI)
 library(MonetDBLite)
 library(survey)
 library(convey)
+library(here)
 
 # link para base de dados:
 dbfolder <- "~/Bases/ENEM/MonetDB"
@@ -280,9 +298,20 @@ rm( enem_design )
 # mantém apenas objetos úteis
 rm( list = grep( "^(br|pp|rg|rd)_" , ls() , value = TRUE , invert = TRUE ) )
 
+# salva imagem
+save.image( file = here( "resources/enem2015_desigualdade.RData" ) )
 ```
-```{r tabela1, echo=FALSE, message=FALSE, warning=FALSE, cache=TRUE }
+```{r tabela1, echo=FALSE, message=FALSE, warning=FALSE, cache=FALSE }
+# carrega libraries
+library(here)
+library(survey)
+library(convey)
 library(knitr)
+
+# carrega dados
+load( here( "resources/enem2015_desigualdade.RData" ) )
+
+# gera tabela
 tabela1 <- data.frame( 
     Área = c( "Brasil" , "Norte" , "Nordeste" , "Sudeste" , "Sul" , "Centro-Oeste") , 
     Gini = round( c( coef( br_gini ) , coef( rg_gini ) ) , 4 ) , 
@@ -293,7 +322,7 @@ kable( tabela1 , col.names = c( "Área" , "Gini" , "J-divergência" ) , row.name
 As primeiras coisas que percebemos ao olhar a tabela \ref{tabela1} são: (1) existe menos desigualdade nesta distribuição do que em distribuições de renda, e (2) o índice de Gini é maior que a J-divergência. A primeira observação decorre de um aspecto um tanto óbvio: as pontuações tem um limite superior, ao contrário das distribuições de renda. Em outras palavras, uma pessoa não pode ter mais do que 1 000 pontos, embora sua renda pode extrapolar esse limite. O segundo aspecto também é interessante: o índice de Gini é mais sensível às desigualdades próximas da média, enquanto a J-divergência tende a ser mais sensível às desigualdades nas caudas. Consequentemente, podemos supor que a maior parte da desigualdade está no meio da distribuição.
 
 É normal que a diferença entre categorias apresente um valor menor que a desigualdade dentro das categorias, mesmo para renda. Dito isso, a decomposição da J-divergência, na tabela \ref{tabela2} abaixo, mostra alguns padrões interessantes. ~~Apesar de todo retrocesso recente,~~ A desigualdade no desempenho entre os gêneros^[Peço que me corrijam se eu estiver usando o termo incorretamente!] praticamente não se deve a este aspecto. A decomposição captou impactos das diferenças entre cor/raça, embora esses sejam menores que os impactos decorrentes do tipo de escola^[Aqui, tipo de escola se refere à dependência administrativa.] ou da renda. No caso da renda, 30% da desigualdade pode ser atribuída à desigualdade entre as classes.
-```{r tabela2, echo=FALSE, message=FALSE, warning=FALSE, cache=TRUE }
+```{r tabela2, echo=FALSE, message=FALSE, warning=FALSE, cache=FALSE }
 tabela2 <- rbind( coef( br_jdiv_rnd ) , coef( br_jdiv_adm ) , coef( br_jdiv_cor ) , coef( br_jdiv_gnr ) )
 tabela2 <- data.frame( tabela2 , row.names = c( "Renda" , "Tipo de Escola" , "Cor/Raça" , "Gênero" ) )
 tabela2 <- tabela2[ order( tabela2$between ) , ]

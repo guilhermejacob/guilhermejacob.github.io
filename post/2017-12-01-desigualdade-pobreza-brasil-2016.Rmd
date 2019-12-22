@@ -3,8 +3,8 @@ title: "O que a PNAD Contínua 2016 diz sobre desigualdade e pobreza nos estados
 author: ~
 date: '2017-12-03'
 slug: desigualdade-pobreza-estados-2016
-categories: [ "R" , "Complex Survey" , "Official Statistics" ]
-tags: [ "Poverty" , "Inequality" , "Brazil" ]
+categories: [ "Amostragem" ]
+tags: [ "Pobreza" , "Desigualdade" , "rstats" ]
 draft: false
 ---
 

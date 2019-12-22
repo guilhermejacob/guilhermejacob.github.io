@@ -5,11 +5,20 @@
     <link>https://guilhermejacob.github.io/</link>
     <description>Recent content on Something Random</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Fri, 20 Dec 2019 00:00:00 +0000</lastBuildDate>
+    <language>pt-br</language>
+    <lastBuildDate>Sun, 22 Dec 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://guilhermejacob.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Sopas, universos paralelos e modelos de superpopulação</title>
+      <link>https://guilhermejacob.github.io/2019/12/superpopulacao/</link>
+      <pubDate>Sun, 22 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://guilhermejacob.github.io/2019/12/superpopulacao/</guid>
+      <description>Tive a oportunidade de estudar amostragem e análise de dados amostrais na ENCE com excelentes professores1 esse ano. E foi incrível! Tentei aproveitar da melhor maneira possível. Entre algumas ideias exploradas, existem os modelos de superpopulação, que desempenham um papel fundamental na análise de dados amostrais. É uma ideia tão interessante que resolvi escrever um post sobre isso, mas com uma restrição: ser didático e, se possível, interessante para um público mais amplo.</description>
+    </item>
     
     <item>
       <title>Por que é tão difícil calcular variância com amostras complexas?</title>
@@ -32,16 +41,6 @@ Em um fórum de R, uma pessoa pergunta onde está a função pra calcular um det
  Aparentemente, tem gente que acredita nisso. Vou mostrar o quanto isso é estúpido.
 Considere a sociedade A, cuja renda média é $500.10 e o índice de Gini é 0.400. Vejamos a distribuição cumulativa.
 Agora considere a Sociedade B, produzida a partir de \(n\) transferências regressivas para o indivíduo mais rico de modo que os demais indivíduos não-pobres estejam quase na linha de pobreza.</description>
-    </item>
-    
-    <item>
-      <title>Mortalidade infantil, proporções e confiabilidade</title>
-      <link>https://guilhermejacob.github.io/2019/03/mortalidade-infantil-simulacao/</link>
-      <pubDate>Mon, 18 Mar 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://guilhermejacob.github.io/2019/03/mortalidade-infantil-simulacao/</guid>
-      <description>Retomando! Faz muito tempo que eu não escrevo aqui. Mas há motivos:
-Ano passado, eu tive uma vida um tanto intensa. Trabalhei bastante até meados de setembro. Meus hábitos não-tão-saudáveis acabaram por desenvolver alguns problemas de saúde que exigiram que eu me distanciasse um pouco de trabalho e pesquisa. Estive estudando para o mestrado da ENCE. E passei! Tive que mudar pro Rio e tudo mais. As aulas começaram no dia 11 de março.</description>
     </item>
     
     <item>
@@ -191,16 +190,6 @@ Vou tentar manter as complicações matemáticas fora da questão e focar na apl
       <guid>https://guilhermejacob.github.io/2017/11/inequality-poverty-mapping-sae-random-forests-brazil-2010/</guid>
       <description>After a (somewhat long) break, I came back for a new post. Yey! This time, we’re not discussing educational stuff, but another big theme: inequality in Brazil. What happens when we combine 2010 Brazilian Census microdata, Small Area Estimation and Random Forests? Interesting, right?
 2010 Brazilian Census Well, it’s not really the 2010 Census, but the sample. Maybe this needs further explanation. Every ten years, IBGE1 conducts this enormous survey, collecting information about all Brazilian households.</description>
-    </item>
-    
-    <item>
-      <title>Out of school children in Brazil: an exercise on data visualization</title>
-      <link>https://guilhermejacob.github.io/2017/05/out-of-school-children-in-brazil-an-exercise-on-data-visualization/</link>
-      <pubDate>Wed, 17 May 2017 00:00:00 +0000</pubDate>
-      
-      <guid>https://guilhermejacob.github.io/2017/05/out-of-school-children-in-brazil-an-exercise-on-data-visualization/</guid>
-      <description>PNAD and the importance of household surveys The most common source for Brazilian information about living standards is the PNAD1. Usually, when some institution says something about poverty, inequality, education, housing, etc. in Brazil, they recur to the amazing publications produced by the Brazilian Institute for Geography and Statistics (IBGE).
-But that is how it’s usually done. IBGE also produces amazing microdata, available to everyone. Using it, researchers can focus on specific questions regarding any topic investigated in the survey.</description>
     </item>
     
     <item>

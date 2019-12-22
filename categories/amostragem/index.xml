@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Amostragem on Something Random</title>
+    <link>https://guilhermejacob.github.io/categories/amostragem/</link>
+    <description>Recent content in Amostragem on Something Random</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>pt-br</language>
+    <lastBuildDate>Sun, 22 Dec 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://guilhermejacob.github.io/categories/amostragem/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Sopas, universos paralelos e modelos de superpopulação</title>
+      <link>https://guilhermejacob.github.io/2019/12/superpopulacao/</link>
+      <pubDate>Sun, 22 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://guilhermejacob.github.io/2019/12/superpopulacao/</guid>
+      <description>Tive a oportunidade de estudar amostragem e análise de dados amostrais na ENCE com excelentes professores1 esse ano. E foi incrível! Tentei aproveitar da melhor maneira possível. Entre algumas ideias exploradas, existem os modelos de superpopulação, que desempenham um papel fundamental na análise de dados amostrais. É uma ideia tão interessante que resolvi escrever um post sobre isso, mas com uma restrição: ser didático e, se possível, interessante para um público mais amplo.</description>
+    </item>
+    
+    <item>
+      <title>Por que é tão difícil calcular variância com amostras complexas?</title>
+      <link>https://guilhermejacob.github.io/2019/12/varianca-adac/</link>
+      <pubDate>Fri, 20 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://guilhermejacob.github.io/2019/12/varianca-adac/</guid>
+      <description>Já faz algum tempo que passei por essa situação mas acho que vale a pena pensar a respeito.
+Em um fórum de R, uma pessoa pergunta onde está a função pra calcular um determinado número com a PNAD. Eu vou dou uma olhada e vejo que, de fato, a função não existe. Explico para a pessoa que a função não existe porque ninguém escreveu ainda. E me responde: alguém pode fazer isso aí rapidinho?</description>
+    </item>
+    
+    <item>
+      <title>Temer, desemprego e procura de empregos: entendendo conceitos da PNAD Contínua</title>
+      <link>https://guilhermejacob.github.io/2018/05/temer-desemprego-2018/</link>
+      <pubDate>Fri, 18 May 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://guilhermejacob.github.io/2018/05/temer-desemprego-2018/</guid>
+      <description>Uma controvérsia relativamente recente foi protagonizada pelo Temer, durante uma palestra na ESPM. Ele teria afirmado que não houve aumento da taxa de desemprego, mas, sim, aumento das pessoas procurando emprego. Antes da divulgação dos dados da PNADC do 1º trimestre de 2018, tive uma conversa com um professor a respeito de até onde aquilo faz ou não faz sentido.
+Escolhi esperar1 até os microdados saírem…
+Pois bem: saíram ontem, dia 17.</description>
+    </item>
+    
+    <item>
+      <title>PNAD Contínua 2017: extrema pobreza na infância e desigualdade</title>
+      <link>https://guilhermejacob.github.io/2018/04/desigualdade-pobreza-infancia-2017/</link>
+      <pubDate>Tue, 24 Apr 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://guilhermejacob.github.io/2018/04/desigualdade-pobreza-infancia-2017/</guid>
+      <description>Atualização (21/12/2019): refiz todas as análises usando a nova definição de renda domiciliar per capita e seu respectivo deflator.
+ Interrompendo o meu hiato de alguns meses, resolvi voltar com uma comparação os dados de renda das PNADCs anuais 2016-2017. No entanto, vamos falar um pouco da desigualdade em geral e, então, partir para uma questão mais específica: pobreza na infância1.
+Mas, antes de tudo, um aviso:
+Todos as estimativas a seguir foram feitas por mim.</description>
+    </item>
+    
+    <item>
+      <title>O que a PNAD Contínua 2016 diz sobre desigualdade e pobreza nos estados?</title>
+      <link>https://guilhermejacob.github.io/2017/12/desigualdade-pobreza-estados-2016/</link>
+      <pubDate>Sun, 03 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://guilhermejacob.github.io/2017/12/desigualdade-pobreza-estados-2016/</guid>
+      <description>Atualização (21/12/2019): refiz todas as análises usando a nova definição de renda domiciliar per capita e seu respectivo deflator.
+ Na última quarta (29/11), o IBGE finalmente apresentou as estimativas relativas aos rendimentos de todas as fontes, além de disponibilizar os microdados para os cálculos.
+Ok, mas o que isso quer dizer? Aguardei ansiosamente1 para saber como as coisas irão funcionar com o fim da PNAD anual e introdução da PNAD Contínua.</description>
+    </item>
+    
+    <item>
+      <title>Analisando a amostra do Cadastro Único com R</title>
+      <link>https://guilhermejacob.github.io/2017/11/amostra-cadunico-r/</link>
+      <pubDate>Thu, 23 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://guilhermejacob.github.io/2017/11/amostra-cadunico-r/</guid>
+      <description>Atualização (18/08/2018): atualizei o procedimento e os resultados para coincidir com as novas bases disponibilizadas no site.
+ Você sabe o que é o Cadastro Único? Sabe que uma amostra dos microdados está disponível? Sabe que dá pra analisar no R?
+Não? Até uns dias atrás, eu também não.
+Se você tem interesse nessa base de dados, vamos lá!
+Caso contrário, assista esse vídeo do MDS. Se, ainda assim, você não estiver interessado, bom… tem um presente no fim do post.</description>
+    </item>
+    
+  </channel>
+</rss>

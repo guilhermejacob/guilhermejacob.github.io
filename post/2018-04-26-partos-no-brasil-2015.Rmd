@@ -3,8 +3,8 @@ title: "Qual a relação entre a hora de nascimento e o tipo de parto?"
 author: ~
 date: '2018-05-02'
 slug: partos-brasil-2016
-categories: [R, Official Statistics]
-tags: [Health, Reproductive Rights, Brazil]
+categories: ["Registros Administrativos"]
+tags: ["Saúde", "Direitos Reprodutivos"]
 draft: false
 language: "pt-br"
 bibliography: [kotelchuck.bib]

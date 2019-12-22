@@ -3,8 +3,8 @@ title: "Analisando RAIS e CAGED com R"
 author: ~
 date: '2017-11-27'
 slug: rais-caged-r
-categories: [ "R" , "Public Records" , "Official Statistics" ]
-tags: [ "CAGED" , "RAIS" , "Brazil" ]
+categories: [ "Registros administrativos" ]
+tags: [ "CAGED" , "RAIS" , "Mercado de Trabalho" ]
 draft: false
 ---
 

@@ -4,8 +4,8 @@ author: ~
 date: '2018-05-18'
 slug: temer-desemprego-2018
 draft: false
-categories: [ "R" , "Complex Survey" , "Official Statistics" ]
-tags: [ "Employment" , "Brazil" ]
+categories: [ "Amostragem" ]
+tags: [ "Mercado de Trabalho" , "Desemprego" ]
 language: "pt-br"
 ---
 ```{r setup, include=FALSE , cache = FALSE }

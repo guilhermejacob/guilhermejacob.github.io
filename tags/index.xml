@@ -5,7 +5,7 @@
     <link>https://guilhermejacob.github.io/tags/</link>
     <description>Recent content in Tags on Something Random</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
+    <language>pt-br</language>
     <lastBuildDate>Thu, 23 Nov 2017 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://guilhermejacob.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
@@ -23,7 +23,7 @@
     <item>
       <title>Brazil</title>
       <link>https://guilhermejacob.github.io/tags/brazil/</link>
-      <pubDate>Fri, 18 May 2018 00:00:00 +0000</pubDate>
+      <pubDate>Thu, 23 Nov 2017 00:00:00 +0000</pubDate>
       
       <guid>https://guilhermejacob.github.io/tags/brazil/</guid>
       <description></description>
@@ -48,15 +48,6 @@
     </item>
     
     <item>
-      <title>Childrens Rights</title>
-      <link>https://guilhermejacob.github.io/tags/childrens-rights/</link>
-      <pubDate>Wed, 15 Nov 2017 00:00:00 +0000</pubDate>
-      
-      <guid>https://guilhermejacob.github.io/tags/childrens-rights/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>Cities</title>
       <link>https://guilhermejacob.github.io/tags/cities/</link>
       <pubDate>Tue, 21 Nov 2017 00:00:00 +0000</pubDate>
@@ -75,29 +66,38 @@
     </item>
     
     <item>
-      <title>Education</title>
-      <link>https://guilhermejacob.github.io/tags/education/</link>
-      <pubDate>Mon, 11 Dec 2017 00:00:00 +0000</pubDate>
-      
-      <guid>https://guilhermejacob.github.io/tags/education/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Employment</title>
-      <link>https://guilhermejacob.github.io/tags/employment/</link>
+      <title>Desemprego</title>
+      <link>https://guilhermejacob.github.io/tags/desemprego/</link>
       <pubDate>Fri, 18 May 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://guilhermejacob.github.io/tags/employment/</guid>
+      <guid>https://guilhermejacob.github.io/tags/desemprego/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Health</title>
-      <link>https://guilhermejacob.github.io/tags/health/</link>
+      <title>Desigualdade</title>
+      <link>https://guilhermejacob.github.io/tags/desigualdade/</link>
+      <pubDate>Mon, 19 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://guilhermejacob.github.io/tags/desigualdade/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Direitos Reprodutivos</title>
+      <link>https://guilhermejacob.github.io/tags/direitos-reprodutivos/</link>
       <pubDate>Wed, 02 May 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://guilhermejacob.github.io/tags/health/</guid>
+      <guid>https://guilhermejacob.github.io/tags/direitos-reprodutivos/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Educação</title>
+      <link>https://guilhermejacob.github.io/tags/educa%C3%A7%C3%A3o/</link>
+      <pubDate>Mon, 11 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://guilhermejacob.github.io/tags/educa%C3%A7%C3%A3o/</guid>
       <description></description>
     </item>
     
@@ -113,7 +113,7 @@
     <item>
       <title>Inequality</title>
       <link>https://guilhermejacob.github.io/tags/inequality/</link>
-      <pubDate>Tue, 24 Apr 2018 00:00:00 +0000</pubDate>
+      <pubDate>Mon, 13 Nov 2017 00:00:00 +0000</pubDate>
       
       <guid>https://guilhermejacob.github.io/tags/inequality/</guid>
       <description></description>
@@ -129,20 +129,38 @@
     </item>
     
     <item>
-      <title>Migration</title>
-      <link>https://guilhermejacob.github.io/tags/migration/</link>
-      <pubDate>Wed, 29 Nov 2017 00:00:00 +0000</pubDate>
+      <title>Mercado De Trabalho</title>
+      <link>https://guilhermejacob.github.io/tags/mercado-de-trabalho/</link>
+      <pubDate>Fri, 18 May 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://guilhermejacob.github.io/tags/migration/</guid>
+      <guid>https://guilhermejacob.github.io/tags/mercado-de-trabalho/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Poverty</title>
-      <link>https://guilhermejacob.github.io/tags/poverty/</link>
-      <pubDate>Tue, 24 Apr 2018 00:00:00 +0000</pubDate>
+      <title>Migração</title>
+      <link>https://guilhermejacob.github.io/tags/migra%C3%A7%C3%A3o/</link>
+      <pubDate>Wed, 29 Nov 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://guilhermejacob.github.io/tags/poverty/</guid>
+      <guid>https://guilhermejacob.github.io/tags/migra%C3%A7%C3%A3o/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Modelos</title>
+      <link>https://guilhermejacob.github.io/tags/modelos/</link>
+      <pubDate>Sun, 22 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://guilhermejacob.github.io/tags/modelos/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Pobreza</title>
+      <link>https://guilhermejacob.github.io/tags/pobreza/</link>
+      <pubDate>Mon, 19 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://guilhermejacob.github.io/tags/pobreza/</guid>
       <description></description>
     </item>
     
@@ -165,38 +183,29 @@
     </item>
     
     <item>
-      <title>Reproductive Rights</title>
-      <link>https://guilhermejacob.github.io/tags/reproductive-rights/</link>
-      <pubDate>Wed, 02 May 2018 00:00:00 +0000</pubDate>
-      
-      <guid>https://guilhermejacob.github.io/tags/reproductive-rights/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>Rstats</title>
       <link>https://guilhermejacob.github.io/tags/rstats/</link>
-      <pubDate>Mon, 11 Dec 2017 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 24 Apr 2018 00:00:00 +0000</pubDate>
       
       <guid>https://guilhermejacob.github.io/tags/rstats/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Sampling</title>
-      <link>https://guilhermejacob.github.io/tags/sampling/</link>
-      <pubDate>Fri, 20 Dec 2019 00:00:00 +0000</pubDate>
+      <title>Saúde</title>
+      <link>https://guilhermejacob.github.io/tags/sa%C3%BAde/</link>
+      <pubDate>Wed, 02 May 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://guilhermejacob.github.io/tags/sampling/</guid>
+      <guid>https://guilhermejacob.github.io/tags/sa%C3%BAde/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Survey Data</title>
-      <link>https://guilhermejacob.github.io/tags/survey-data/</link>
+      <title>Variância</title>
+      <link>https://guilhermejacob.github.io/tags/vari%C3%A2ncia/</link>
       <pubDate>Fri, 20 Dec 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://guilhermejacob.github.io/tags/survey-data/</guid>
+      <guid>https://guilhermejacob.github.io/tags/vari%C3%A2ncia/</guid>
       <description></description>
     </item>
     

@@ -3,7 +3,7 @@ title: "Analisando a amostra do Cadastro Único com R"
 author: ~
 date: '2017-11-23'
 slug: amostra-cadunico-r
-categories: [ "R" , "Complex Survey" , "Official Statistics" ]
+categories: [ "Amostragem" ]
 tags: [ "Cadastro Único" , "Bolsa Família" , "Brazil" ]
 ---
 
