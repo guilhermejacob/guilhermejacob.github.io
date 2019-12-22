@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Modelos on Something Random</title>
-    <link>https://guilhermejacob.github.io/tags/modelos/</link>
+    <link>/tags/modelos/</link>
     <description>Recent content in Modelos on Something Random</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>pt-br</language>
     <lastBuildDate>Sun, 22 Dec 2019 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://guilhermejacob.github.io/tags/modelos/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/tags/modelos/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Sopas, universos paralelos e modelos de superpopulação</title>
-      <link>https://guilhermejacob.github.io/2019/12/superpopulacao/</link>
+      <link>/2019/12/superpopulacao/</link>
       <pubDate>Sun, 22 Dec 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://guilhermejacob.github.io/2019/12/superpopulacao/</guid>
+      <guid>/2019/12/superpopulacao/</guid>
       <description>Tive a oportunidade de estudar amostragem e análise de dados amostrais na ENCE com excelentes professores1 esse ano. E foi incrível! Tentei aproveitar da melhor maneira possível. Entre algumas ideias exploradas, existem os modelos de superpopulação, que desempenham um papel fundamental na análise de dados amostrais. É uma ideia tão interessante que resolvi escrever um post sobre isso, mas com uma restrição: ser didático e, se possível, interessante para um público mais amplo.</description>
     </item>
     

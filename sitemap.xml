@@ -3,288 +3,298 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://guilhermejacob.github.io/2019/12/superpopulacao/</loc>
+    <loc>/2019/12/superpopulacao/</loc>
     <lastmod>2019-12-22T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://guilhermejacob.github.io/2019/12/varianca-adac/</loc>
+    <loc>/2019/12/varianca-adac/</loc>
     <lastmod>2019-12-20T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://guilhermejacob.github.io/2019/08/desigualdade-pobreza-log/</loc>
+    <loc>/2019/08/desigualdade-pobreza-log/</loc>
     <lastmod>2019-08-19T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://guilhermejacob.github.io/2018/05/temer-desemprego-2018/</loc>
+    <loc>/2019/03/mortalidade-infantil-simulacao/</loc>
+    <lastmod>2019-03-18T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/2018/05/temer-desemprego-2018/</loc>
     <lastmod>2018-05-18T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://guilhermejacob.github.io/2018/05/partos-brasil-2016/</loc>
+    <loc>/2018/05/partos-brasil-2016/</loc>
     <lastmod>2018-05-02T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://guilhermejacob.github.io/2018/04/desigualdade-pobreza-infancia-2017/</loc>
+    <loc>/2018/04/desigualdade-pobreza-infancia-2017/</loc>
     <lastmod>2018-04-24T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://guilhermejacob.github.io/research/</loc>
+    <loc>/research/</loc>
     <lastmod>2018-03-03T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://guilhermejacob.github.io/2017/12/analise-censo-superior-genero-2016/</loc>
+    <loc>/2017/12/analise-censo-superior-genero-2016/</loc>
     <lastmod>2017-12-11T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://guilhermejacob.github.io/2017/12/desigualdade-pobreza-estados-2016/</loc>
+    <loc>/2017/12/desigualdade-pobreza-estados-2016/</loc>
     <lastmod>2017-12-03T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://guilhermejacob.github.io/2017/11/microdados-obmigra/</loc>
+    <loc>/2017/11/microdados-obmigra/</loc>
     <lastmod>2017-11-29T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://guilhermejacob.github.io/2017/11/rais-caged-r/</loc>
+    <loc>/2017/11/nexo-disparidade/</loc>
+    <lastmod>2017-11-28T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/2017/11/rais-caged-r/</loc>
     <lastmod>2017-11-27T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://guilhermejacob.github.io/2017/11/amostra-cadunico-r/</loc>
+    <loc>/2017/11/amostra-cadunico-r/</loc>
     <lastmod>2017-11-23T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://guilhermejacob.github.io/2017/11/birth-registration-map/</loc>
+    <loc>/2017/11/birth-registration-map/</loc>
     <lastmod>2017-11-21T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://guilhermejacob.github.io/2017/11/ethnic-composition-brazilian-cities/</loc>
+    <loc>/2017/11/ethnic-composition-brazilian-cities/</loc>
     <lastmod>2017-11-17T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://guilhermejacob.github.io/2017/11/enem-desigualdade-educa%C3%A7%C3%A3o/</loc>
+    <loc>/2017/11/enem-desigualdade-educa%C3%A7%C3%A3o/</loc>
     <lastmod>2017-11-15T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://guilhermejacob.github.io/2017/11/inequality-poverty-mapping-sae-random-forests-brazil-2010/</loc>
+    <loc>/2017/11/inequality-poverty-mapping-sae-random-forests-brazil-2010/</loc>
     <lastmod>2017-11-13T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://guilhermejacob.github.io/research/</loc>
+    <loc>/research/</loc>
   </url>
   
   <url>
-    <loc>https://guilhermejacob.github.io/categories/amostragem/</loc>
+    <loc>/categories/amostragem/</loc>
     <lastmod>2019-12-22T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://guilhermejacob.github.io/archives/</loc>
+    <loc>/archives/</loc>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://guilhermejacob.github.io/tags/bolsa-fam%C3%ADlia/</loc>
+    <loc>/tags/bolsa-fam%C3%ADlia/</loc>
     <lastmod>2017-11-23T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://guilhermejacob.github.io/tags/brazil/</loc>
+    <loc>/tags/brazil/</loc>
     <lastmod>2017-11-23T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://guilhermejacob.github.io/tags/cadastro-%C3%BAnico/</loc>
+    <loc>/tags/cadastro-%C3%BAnico/</loc>
     <lastmod>2017-11-23T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://guilhermejacob.github.io/tags/caged/</loc>
+    <loc>/tags/caged/</loc>
     <lastmod>2017-11-27T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://guilhermejacob.github.io/categories/</loc>
+    <loc>/categories/</loc>
     <lastmod>2019-12-22T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://guilhermejacob.github.io/tags/cities/</loc>
+    <loc>/tags/cities/</loc>
     <lastmod>2017-11-21T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://guilhermejacob.github.io/categories/complex-survey/</loc>
+    <loc>/categories/complex-survey/</loc>
     <lastmod>2017-11-13T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://guilhermejacob.github.io/tags/dataviz/</loc>
+    <loc>/tags/dataviz/</loc>
     <lastmod>2017-12-11T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://guilhermejacob.github.io/tags/desemprego/</loc>
+    <loc>/tags/desemprego/</loc>
     <lastmod>2018-05-18T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://guilhermejacob.github.io/tags/desigualdade/</loc>
+    <loc>/tags/desigualdade/</loc>
     <lastmod>2019-08-19T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://guilhermejacob.github.io/tags/direitos-reprodutivos/</loc>
+    <loc>/tags/direitos-reprodutivos/</loc>
     <lastmod>2018-05-02T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://guilhermejacob.github.io/tags/educa%C3%A7%C3%A3o/</loc>
+    <loc>/tags/educa%C3%A7%C3%A3o/</loc>
     <lastmod>2017-12-11T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://guilhermejacob.github.io/tags/human-rights/</loc>
+    <loc>/tags/human-rights/</loc>
     <lastmod>2017-11-21T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://guilhermejacob.github.io/tags/inequality/</loc>
+    <loc>/tags/inequality/</loc>
     <lastmod>2017-11-13T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://guilhermejacob.github.io/tags/mapping/</loc>
+    <loc>/tags/mapping/</loc>
     <lastmod>2017-11-21T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://guilhermejacob.github.io/tags/mercado-de-trabalho/</loc>
+    <loc>/tags/mercado-de-trabalho/</loc>
     <lastmod>2018-05-18T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://guilhermejacob.github.io/tags/migra%C3%A7%C3%A3o/</loc>
+    <loc>/tags/migra%C3%A7%C3%A3o/</loc>
     <lastmod>2017-11-29T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://guilhermejacob.github.io/tags/modelos/</loc>
+    <loc>/tags/modelos/</loc>
     <lastmod>2019-12-22T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://guilhermejacob.github.io/categories/official-statistics/</loc>
+    <loc>/categories/official-statistics/</loc>
     <lastmod>2017-11-21T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://guilhermejacob.github.io/tags/pobreza/</loc>
+    <loc>/tags/pobreza/</loc>
     <lastmod>2019-08-19T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://guilhermejacob.github.io/post/</loc>
+    <loc>/post/</loc>
     <lastmod>2019-12-22T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://guilhermejacob.github.io/tags/poverty-mapping/</loc>
+    <loc>/tags/poverty-mapping/</loc>
     <lastmod>2017-11-13T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://guilhermejacob.github.io/categories/r/</loc>
+    <loc>/categories/r/</loc>
     <lastmod>2017-11-21T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://guilhermejacob.github.io/tags/rais/</loc>
+    <loc>/tags/rais/</loc>
     <lastmod>2017-11-27T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://guilhermejacob.github.io/categories/registros-administrativos/</loc>
+    <loc>/categories/registros-administrativos/</loc>
     <lastmod>2018-05-02T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://guilhermejacob.github.io/tags/rstats/</loc>
+    <loc>/tags/rstats/</loc>
     <lastmod>2018-04-24T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://guilhermejacob.github.io/tags/sa%C3%BAde/</loc>
+    <loc>/tags/sa%C3%BAde/</loc>
     <lastmod>2018-05-02T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://guilhermejacob.github.io/</loc>
+    <loc>/</loc>
     <lastmod>2019-12-22T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://guilhermejacob.github.io/tags/</loc>
+    <loc>/tags/</loc>
     <lastmod>2017-11-23T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://guilhermejacob.github.io/categories/teoria/</loc>
+    <loc>/categories/teoria/</loc>
     <lastmod>2019-12-22T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://guilhermejacob.github.io/categories/teoria-econ%C3%B4mica/</loc>
+    <loc>/categories/teoria-econ%C3%B4mica/</loc>
     <lastmod>2019-08-19T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://guilhermejacob.github.io/tags/vari%C3%A2ncia/</loc>
+    <loc>/tags/vari%C3%A2ncia/</loc>
     <lastmod>2019-12-20T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>

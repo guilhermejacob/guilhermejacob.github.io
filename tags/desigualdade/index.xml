@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Desigualdade on Something Random</title>
-    <link>https://guilhermejacob.github.io/tags/desigualdade/</link>
+    <link>/tags/desigualdade/</link>
     <description>Recent content in Desigualdade on Something Random</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>pt-br</language>
     <lastBuildDate>Mon, 19 Aug 2019 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://guilhermejacob.github.io/tags/desigualdade/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/tags/desigualdade/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Desigualdade ou pobreza?</title>
-      <link>https://guilhermejacob.github.io/2019/08/desigualdade-pobreza-log/</link>
+      <link>/2019/08/desigualdade-pobreza-log/</link>
       <pubDate>Mon, 19 Aug 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://guilhermejacob.github.io/2019/08/desigualdade-pobreza-log/</guid>
+      <guid>/2019/08/desigualdade-pobreza-log/</guid>
       <description>Pesquisando no repositório das piores ideias da humanidade1, não é raro encontrar a seguinte frase:
  “A pobreza importa. A desigualdade, não.”
  Aparentemente, tem gente que acredita nisso. Vou mostrar o quanto isso é estúpido.
@@ -26,10 +26,10 @@ Agora considere a Sociedade B, produzida a partir de \(n\) transferências regre
     
     <item>
       <title>PNAD Contínua 2017: extrema pobreza na infância e desigualdade</title>
-      <link>https://guilhermejacob.github.io/2018/04/desigualdade-pobreza-infancia-2017/</link>
+      <link>/2018/04/desigualdade-pobreza-infancia-2017/</link>
       <pubDate>Tue, 24 Apr 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://guilhermejacob.github.io/2018/04/desigualdade-pobreza-infancia-2017/</guid>
+      <guid>/2018/04/desigualdade-pobreza-infancia-2017/</guid>
       <description>Atualização (21/12/2019): refiz todas as análises usando a nova definição de renda domiciliar per capita e seu respectivo deflator.
  Interrompendo o meu hiato de alguns meses, resolvi voltar com uma comparação os dados de renda das PNADCs anuais 2016-2017. No entanto, vamos falar um pouco da desigualdade em geral e, então, partir para uma questão mais específica: pobreza na infância1.
 Mas, antes de tudo, um aviso:
@@ -38,10 +38,10 @@ Todos as estimativas a seguir foram feitas por mim.</description>
     
     <item>
       <title>O que a PNAD Contínua 2016 diz sobre desigualdade e pobreza nos estados?</title>
-      <link>https://guilhermejacob.github.io/2017/12/desigualdade-pobreza-estados-2016/</link>
+      <link>/2017/12/desigualdade-pobreza-estados-2016/</link>
       <pubDate>Sun, 03 Dec 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://guilhermejacob.github.io/2017/12/desigualdade-pobreza-estados-2016/</guid>
+      <guid>/2017/12/desigualdade-pobreza-estados-2016/</guid>
       <description>Atualização (21/12/2019): refiz todas as análises usando a nova definição de renda domiciliar per capita e seu respectivo deflator.
  Na última quarta (29/11), o IBGE finalmente apresentou as estimativas relativas aos rendimentos de todas as fontes, além de disponibilizar os microdados para os cálculos.
 Ok, mas o que isso quer dizer? Aguardei ansiosamente1 para saber como as coisas irão funcionar com o fim da PNAD anual e introdução da PNAD Contínua.</description>
@@ -49,10 +49,10 @@ Ok, mas o que isso quer dizer? Aguardei ansiosamente1 para saber como as coisas 
     
     <item>
       <title>ENEM e desigualdade na educação: uma análise dos dados de 2015</title>
-      <link>https://guilhermejacob.github.io/2017/11/enem-desigualdade-educa%C3%A7%C3%A3o/</link>
+      <link>/2017/11/enem-desigualdade-educa%C3%A7%C3%A3o/</link>
       <pubDate>Wed, 15 Nov 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://guilhermejacob.github.io/2017/11/enem-desigualdade-educa%C3%A7%C3%A3o/</guid>
+      <guid>/2017/11/enem-desigualdade-educa%C3%A7%C3%A3o/</guid>
       <description>Há alguns dias atrás, rolou o ENEM desse ano. E daí veio a ideia para este post: analisar a desigualdade na educação entre os jovens do Ensino Médio a partir das pontuações dos candidatos. Usando R, como sempre.
 Vou tentar manter as complicações matemáticas fora da questão e focar na aplicação da técnica para entender o contexto da desigualdade educacional. Assim, pretendo trazer gente de outras áreas, como pedagogos e sociólogos, que podem se beneficiar de mais uma ferramenta para analisar o problema, além de contribuir com novas perspectivas para “aqueles que só pensam com números”1.</description>
     </item>

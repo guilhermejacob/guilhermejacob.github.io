@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Educação on Something Random</title>
-    <link>https://guilhermejacob.github.io/tags/educa%C3%A7%C3%A3o/</link>
+    <link>/tags/educa%C3%A7%C3%A3o/</link>
     <description>Recent content in Educação on Something Random</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>pt-br</language>
     <lastBuildDate>Mon, 11 Dec 2017 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://guilhermejacob.github.io/tags/educa%C3%A7%C3%A3o/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/tags/educa%C3%A7%C3%A3o/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Censo da Educação Superior: gênero e cursos em 2016</title>
-      <link>https://guilhermejacob.github.io/2017/12/analise-censo-superior-genero-2016/</link>
+      <link>/2017/12/analise-censo-superior-genero-2016/</link>
       <pubDate>Mon, 11 Dec 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://guilhermejacob.github.io/2017/12/analise-censo-superior-genero-2016/</guid>
+      <guid>/2017/12/analise-censo-superior-genero-2016/</guid>
       <description>Encerrando1 as análises usando bases de dados públicas, vamos focar no ensino superior.
 Inicialmente, vamos explicar o que é o Censo da Educação Superior. Depois, vamos mostrar como montar as bases de dados. E, concluindo, vamos fazer um pequeno exercício de visualização de dados.
 Ah, e eu vou ser muito breve neste post, por motivos de: tenho que escrever um projeto de pesquisa (:
@@ -25,10 +25,10 @@ Censo da Educação Superior O Censo da Educação Superior é conduzido anualme
     
     <item>
       <title>ENEM e desigualdade na educação: uma análise dos dados de 2015</title>
-      <link>https://guilhermejacob.github.io/2017/11/enem-desigualdade-educa%C3%A7%C3%A3o/</link>
+      <link>/2017/11/enem-desigualdade-educa%C3%A7%C3%A3o/</link>
       <pubDate>Wed, 15 Nov 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://guilhermejacob.github.io/2017/11/enem-desigualdade-educa%C3%A7%C3%A3o/</guid>
+      <guid>/2017/11/enem-desigualdade-educa%C3%A7%C3%A3o/</guid>
       <description>Há alguns dias atrás, rolou o ENEM desse ano. E daí veio a ideia para este post: analisar a desigualdade na educação entre os jovens do Ensino Médio a partir das pontuações dos candidatos. Usando R, como sempre.
 Vou tentar manter as complicações matemáticas fora da questão e focar na aplicação da técnica para entender o contexto da desigualdade educacional. Assim, pretendo trazer gente de outras áreas, como pedagogos e sociólogos, que podem se beneficiar de mais uma ferramenta para analisar o problema, além de contribuir com novas perspectivas para “aqueles que só pensam com números”1.</description>
     </item>
