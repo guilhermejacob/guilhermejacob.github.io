@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Mercado De Trabalho on Something Random</title>
-    <link>/tags/mercado-de-trabalho/</link>
+    <link>https://guilhermejacob.github.io/tags/mercado-de-trabalho/</link>
     <description>Recent content in Mercado De Trabalho on Something Random</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>pt-br</language>
     <lastBuildDate>Fri, 18 May 2018 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="/tags/mercado-de-trabalho/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://guilhermejacob.github.io/tags/mercado-de-trabalho/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Temer, desemprego e procura de empregos: entendendo conceitos da PNAD Contínua</title>
-      <link>/2018/05/temer-desemprego-2018/</link>
+      <link>https://guilhermejacob.github.io/2018/05/temer-desemprego-2018/</link>
       <pubDate>Fri, 18 May 2018 00:00:00 +0000</pubDate>
       
-      <guid>/2018/05/temer-desemprego-2018/</guid>
+      <guid>https://guilhermejacob.github.io/2018/05/temer-desemprego-2018/</guid>
       <description>Uma controvérsia relativamente recente foi protagonizada pelo Temer, durante uma palestra na ESPM. Ele teria afirmado que não houve aumento da taxa de desemprego, mas, sim, aumento das pessoas procurando emprego. Antes da divulgação dos dados da PNADC do 1º trimestre de 2018, tive uma conversa com um professor a respeito de até onde aquilo faz ou não faz sentido.
 Escolhi esperar1 até os microdados saírem…
 Pois bem: saíram ontem, dia 17.</description>
@@ -24,10 +24,10 @@ Pois bem: saíram ontem, dia 17.</description>
     
     <item>
       <title>Analisando RAIS e CAGED com R</title>
-      <link>/2017/11/rais-caged-r/</link>
+      <link>https://guilhermejacob.github.io/2017/11/rais-caged-r/</link>
       <pubDate>Mon, 27 Nov 2017 00:00:00 +0000</pubDate>
       
-      <guid>/2017/11/rais-caged-r/</guid>
+      <guid>https://guilhermejacob.github.io/2017/11/rais-caged-r/</guid>
       <description>Dando sequência ao post anterior, vamos analisar outra base de dados. Ou outras bases de dados?
 Dessa vez, falaremos dos microdados do RAIS e CAGED. Vamos?
 Bases do Ministério do Trabalho O Ministério do Trabalho (MTb) permite que o usuário acesse os microdados de duas bases muito interessantes: RAIS e CAGED. Bom, além de serem mais dois elementos na “sopa de letrinhas” de microdados brasileiros, o que são exatamente esses dados?</description>

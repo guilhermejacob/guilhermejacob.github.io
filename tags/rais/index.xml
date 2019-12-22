@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Rais on Something Random</title>
-    <link>/tags/rais/</link>
+    <link>https://guilhermejacob.github.io/tags/rais/</link>
     <description>Recent content in Rais on Something Random</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>pt-br</language>
     <lastBuildDate>Mon, 27 Nov 2017 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="/tags/rais/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://guilhermejacob.github.io/tags/rais/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Analisando RAIS e CAGED com R</title>
-      <link>/2017/11/rais-caged-r/</link>
+      <link>https://guilhermejacob.github.io/2017/11/rais-caged-r/</link>
       <pubDate>Mon, 27 Nov 2017 00:00:00 +0000</pubDate>
       
-      <guid>/2017/11/rais-caged-r/</guid>
+      <guid>https://guilhermejacob.github.io/2017/11/rais-caged-r/</guid>
       <description>Dando sequência ao post anterior, vamos analisar outra base de dados. Ou outras bases de dados?
 Dessa vez, falaremos dos microdados do RAIS e CAGED. Vamos?
 Bases do Ministério do Trabalho O Ministério do Trabalho (MTb) permite que o usuário acesse os microdados de duas bases muito interessantes: RAIS e CAGED. Bom, além de serem mais dois elementos na “sopa de letrinhas” de microdados brasileiros, o que são exatamente esses dados?</description>
