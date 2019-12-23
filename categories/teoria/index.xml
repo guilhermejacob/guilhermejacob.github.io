@@ -12,6 +12,17 @@
     
     
     <item>
+      <title>Mentiras, mentiras cabeludas e &#34;big data&#34;</title>
+      <link>https://guilhermejacob.github.io/2019/12/meng2018/</link>
+      <pubDate>Sun, 22 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://guilhermejacob.github.io/2019/12/meng2018/</guid>
+      <description>Eu queria fechar esse ano com um problema que andei lendo a respeito no passado recente: inferência descritiva com amostras não-probabilísticas. Alguns dos textos mais interessantes são Smith (1983), Meng (2014), Elliott e Valliant (2017) e Meng (2018). Vamos focar neste último. Ele tenta responder uma pergunta muito simples:1
+ O que é melhor: uma amostra probabilística de 5% da população ou uma amostra não-probabilística de 80% da população?
+ Esta pergunta é crucial e a resposta é importante para pensar sobre os cuidados no uso de registros administrativos e questionar o uso inadequado de big data.</description>
+    </item>
+    
+    <item>
       <title>Sopas, universos paralelos e modelos de superpopulação</title>
       <link>https://guilhermejacob.github.io/2019/12/superpopulacao/</link>
       <pubDate>Sun, 22 Dec 2019 00:00:00 +0000</pubDate>

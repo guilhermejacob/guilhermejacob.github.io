@@ -12,6 +12,17 @@
     
     
     <item>
+      <title>Mentiras, mentiras cabeludas e &#34;big data&#34;</title>
+      <link>https://guilhermejacob.github.io/2019/12/meng2018/</link>
+      <pubDate>Sun, 22 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://guilhermejacob.github.io/2019/12/meng2018/</guid>
+      <description>Eu queria fechar esse ano com um problema que andei lendo a respeito no passado recente: inferência descritiva com amostras não-probabilísticas. Alguns dos textos mais interessantes são Smith (1983), Meng (2014), Elliott e Valliant (2017) e Meng (2018). Vamos focar neste último. Ele tenta responder uma pergunta muito simples:1
+ O que é melhor: uma amostra probabilística de 5% da população ou uma amostra não-probabilística de 80% da população?
+ Esta pergunta é crucial e a resposta é importante para pensar sobre os cuidados no uso de registros administrativos e questionar o uso inadequado de big data.</description>
+    </item>
+    
+    <item>
       <title>Sopas, universos paralelos e modelos de superpopulação</title>
       <link>https://guilhermejacob.github.io/2019/12/superpopulacao/</link>
       <pubDate>Sun, 22 Dec 2019 00:00:00 +0000</pubDate>
@@ -162,14 +173,14 @@ Belém  Manaus  Fortaleza  São Luís  </description>
     </item>
     
     <item>
-      <title>Ethnic composition of major Brazilian cities using Dot Density Maps</title>
+      <title>Composição de cor/raça de algumas cidades brasileiras usando mapas de densidades de pontos</title>
       <link>https://guilhermejacob.github.io/2017/11/ethnic-composition-brazilian-cities/</link>
       <pubDate>Fri, 17 Nov 2017 00:00:00 +0000</pubDate>
       
       <guid>https://guilhermejacob.github.io/2017/11/ethnic-composition-brazilian-cities/</guid>
-      <description>You can find the R code for this post here.
- Some time ago, I came across this nice post showing how ethnicity is distributed in London. This is very interesting, as it reveals patterns about how communities are organized and how inequality express itself upon housing locations.
-Our task today is to apply the same procedure to large Brazilian cities. Here’s our list of municipalities: São Paulo, Rio de Janeiro, Brasília, Recife, Salvador, and home Manaus.</description>
+      <description>Você pode encontrar o código para as imagens deste post aqui.
+ Há algum tempo, eu encontrei este post, mostrando como as etnias se distribuem em Londres. Achei muito interessante, já que ele revela padrões sobre como as comunidades se organizam e como a deseigualdade se expressa através da localização dos domicílios.
+Nossa tarefa de hoje é aplicar a mesma técnica no Brasil. Aqui está a nossa lista de cidades: São Paulo, Rio de Janeiro, Brasília, Recife, Salvador, e minha terra natal Manaus.</description>
     </item>
     
     <item>
@@ -180,16 +191,6 @@ Our task today is to apply the same procedure to large Brazilian cities. Here’
       <guid>https://guilhermejacob.github.io/2017/11/enem-desigualdade-educa%C3%A7%C3%A3o/</guid>
       <description>Há alguns dias atrás, rolou o ENEM desse ano. E daí veio a ideia para este post: analisar a desigualdade na educação entre os jovens do Ensino Médio a partir das pontuações dos candidatos. Usando R, como sempre.
 Vou tentar manter as complicações matemáticas fora da questão e focar na aplicação da técnica para entender o contexto da desigualdade educacional. Assim, pretendo trazer gente de outras áreas, como pedagogos e sociólogos, que podem se beneficiar de mais uma ferramenta para analisar o problema, além de contribuir com novas perspectivas para “aqueles que só pensam com números”1.</description>
-    </item>
-    
-    <item>
-      <title>Inequality, Poverty Mapping, Small Area Estimation, and Random Forests: Brazilian municipalities in 2010</title>
-      <link>https://guilhermejacob.github.io/2017/11/inequality-poverty-mapping-sae-random-forests-brazil-2010/</link>
-      <pubDate>Mon, 13 Nov 2017 00:00:00 +0000</pubDate>
-      
-      <guid>https://guilhermejacob.github.io/2017/11/inequality-poverty-mapping-sae-random-forests-brazil-2010/</guid>
-      <description>After a (somewhat long) break, I came back for a new post. Yey! This time, we’re not discussing educational stuff, but another big theme: inequality in Brazil. What happens when we combine 2010 Brazilian Census microdata, Small Area Estimation and Random Forests? Interesting, right?
-2010 Brazilian Census Well, it’s not really the 2010 Census, but the sample. Maybe this needs further explanation. Every ten years, IBGE1 conducts this enormous survey, collecting information about all Brazilian households.</description>
     </item>
     
     <item>

@@ -1,0 +1,874 @@
+
+
+  
+    
+  
+
+
+  
+
+
+
+
+
+  
+
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Hugo 0.47 with theme Tranquilpeak 0.4.3-BETA">
+    <title>Mentiras, mentiras cabeludas e &#34;big data&#34;</title>
+    <meta name="author" content="Guilherme Jacob">
+    <meta name="keywords" content="">
+
+    <link rel="icon" href="https://guilhermejacob.github.io/favicon.png">
+    
+
+    
+    <meta name="description" content="Eu queria fechar esse ano com um problema que andei lendo a respeito no passado recente: inferência descritiva com amostras não-probabilísticas. Alguns dos textos mais interessantes são Smith (1983), Meng (2014), Elliott e Valliant (2017) e Meng (2018). Vamos focar neste último. Ele tenta responder uma pergunta muito simples:1
+ O que é melhor: uma amostra probabilística de 5% da população ou uma amostra não-probabilística de 80% da população?
+ Esta pergunta é crucial e a resposta é importante para pensar sobre os cuidados no uso de registros administrativos e questionar o uso inadequado de big data.">
+    <meta property="og:description" content="Eu queria fechar esse ano com um problema que andei lendo a respeito no passado recente: inferência descritiva com amostras não-probabilísticas. Alguns dos textos mais interessantes são Smith (1983), Meng (2014), Elliott e Valliant (2017) e Meng (2018). Vamos focar neste último. Ele tenta responder uma pergunta muito simples:1
+ O que é melhor: uma amostra probabilística de 5% da população ou uma amostra não-probabilística de 80% da população?
+ Esta pergunta é crucial e a resposta é importante para pensar sobre os cuidados no uso de registros administrativos e questionar o uso inadequado de big data.">
+    <meta property="og:type" content="blog">
+    <meta property="og:title" content="Mentiras, mentiras cabeludas e &#34;big data&#34;">
+    <meta property="og:url" content="/2019/12/meng2018/">
+    <meta property="og:site_name" content="Something Random">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Something Random">
+    <meta name="twitter:description" content="Eu queria fechar esse ano com um problema que andei lendo a respeito no passado recente: inferência descritiva com amostras não-probabilísticas. Alguns dos textos mais interessantes são Smith (1983), Meng (2014), Elliott e Valliant (2017) e Meng (2018). Vamos focar neste último. Ele tenta responder uma pergunta muito simples:1
+ O que é melhor: uma amostra probabilística de 5% da população ou uma amostra não-probabilística de 80% da população?
+ Esta pergunta é crucial e a resposta é importante para pensar sobre os cuidados no uso de registros administrativos e questionar o uso inadequado de big data.">
+    
+    
+
+    
+    
+
+    
+      <meta property="og:image" content="https://guilhermejacob.github.io/files/20900788_1261769030617642_6094584381440292567_o.jpg">
+    
+
+    
+    
+    
+
+    
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.css" integrity="sha256-vuXZ9LGmmwtjqFX1F+EKin1ThZMub58gKULUyf0qECk=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU=" crossorigin="anonymous" />
+    
+    
+    <link rel="stylesheet" href="https://guilhermejacob.github.io/css/style-jsjn0006wyhpyzivf6yceb31gvpjatbcs3qzjvlumobfnugccvobqwxnnaj8.min.css" />
+    
+    
+
+    
+      
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="4">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://guilhermejacob.github.io/">Something Random</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://guilhermejacob.github.io/#about">
+    
+    
+    
+      
+        <img class="header-picture" src="https://guilhermejacob.github.io/files/20900788_1261769030617642_6094584381440292567_o.jpg" alt="Foto do autor" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="4">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://guilhermejacob.github.io/#about">
+          <img class="sidebar-profile-picture" src="https://guilhermejacob.github.io/files/20900788_1261769030617642_6094584381440292567_o.jpg" alt="Foto do autor" />
+        </a>
+        <h4 class="sidebar-profile-name">Guilherme Jacob</h4>
+        
+          <h5 class="sidebar-profile-bio">Manauara.<br>Mestrando em Demografia, Bacharel em Direito e Bacharel em Economia.</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://guilhermejacob.github.io/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">Início</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://guilhermejacob.github.io/#about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+      
+      <span class="sidebar-button-desc">Sobre</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://guilhermejacob.github.io/tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">Tags</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://guilhermejacob.github.io/categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+      
+      <span class="sidebar-button-desc">Categorias</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://guilhermejacob.github.io/archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">Arquivo</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://guilhermejacob.github.io/files/cv_english.pdf">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-briefcase"></i>
+      
+      <span class="sidebar-button-desc">CV</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://guilhermejacob.github.io/research">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-code"></i>
+      
+      <span class="sidebar-button-desc">Pesquisa</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="mailto:guilhermejacob91@gmail.com" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-envelope-o"></i>
+      
+      <span class="sidebar-button-desc">Contato</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/guilhermejacob" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="http://stackoverflow.com/users/6419956/guilherme-jacob" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-stack-overflow"></i>
+      
+      <span class="sidebar-button-desc">Stack Overflow</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://www.instagram.com/guilhermejacob9" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-instagram"></i>
+      
+      <span class="sidebar-button-desc">Instagram</span>
+    </a>
+  </li>
+
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="4"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title" itemprop="headline">
+      Mentiras, mentiras cabeludas e &#34;big data&#34;
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2019-12-22T00:00:00Z">
+        
+  
+  
+  
+  
+    22/12/2019
+  
+
+      </time>
+    
+    
+  
+  
+    <span>em</span>
+    
+      <a class="category-link" href="https://guilhermejacob.github.io/categories/teoria">Teoria</a>, 
+    
+      <a class="category-link" href="https://guilhermejacob.github.io/categories/registros-administrativos">Registros Administrativos</a>, 
+    
+      <a class="category-link" href="https://guilhermejacob.github.io/categories/amostragem">Amostragem</a>
+    
+  
+
+  </div>
+
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              <p>Eu queria fechar esse ano com um problema que andei lendo a respeito no passado recente: inferência <sub>descritiva</sub> com amostras não-probabilísticas. Alguns dos textos mais interessantes são <span class="citation">Smith (1983)</span>, <span class="citation">Meng (2014)</span>, <span class="citation">Elliott e Valliant (2017)</span> e <span class="citation">Meng (2018)</span>. Vamos focar neste último. Ele tenta responder uma pergunta muito simples:<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a></p>
+<blockquote>
+<p>O que é melhor: uma amostra probabilística de 5% da população ou uma amostra não-probabilística de 80% da população?</p>
+</blockquote>
+<p>Esta pergunta é crucial e a resposta é importante para pensar sobre os cuidados no uso de registros administrativos e questionar o <strong>uso inadequado</strong> de <em>big data</em>.</p>
+<div id="a-identidade-fundamental-de-meng2018" class="section level1">
+<h1>A identidade fundamental de <span class="citation">Meng (2018)</span></h1>
+<p>Vamos partir do problema colocado em <span class="citation">Meng (2018, p. 689)</span>.</p>
+<p>Considere uma população com <span class="math inline">\(N\)</span> indivíduos rotulados <span class="math inline">\(j \in J, J = \{ 1, \dots , N \}\)</span>. Os <span class="math inline">\(p\)</span> atributos destes indivíduos são registrados numa matriz <span class="math inline">\(\mathbf{X}\)</span> de dimensão <span class="math inline">\(N \times p\)</span>. Suponha que você queira estudar a média do atributo <span class="math inline">\(G \in \mathbf{X}\)</span> na população, dada por <span class="math inline">\(\overline{G}_N\)</span>. Dispomos, no entanto, da amostra <span class="math inline">\(I_n \subset \{ 1, \dots , N \}\)</span> de tamanho <span class="math inline">\(n\)</span> dos indivíduos da população. Vamos estimar a média populacional a partir do estimador da média amostral, definido abaixo:</p>
+<p><span class="math display">\[
+\overline{G}_n = \cfrac{ \sum_{j \in I_n} G_j }{ n } = \cfrac{ \sum_{j \in J} R_j G_j }{ \sum_{j \in J} R_j } .
+\]</span>
+onde <span class="math inline">\(R_j\)</span> é uma variável indicadora que representa a presença do indivíduo <span class="math inline">\(j\)</span> na amostra <span class="math inline">\(I_n\)</span>. Como diz <span class="citation">Meng (2018, p. 689)</span>, a variável <span class="math inline">\(R_j\)</span> representa o mecanismo de registro através do qual obtemos a amostra <span class="math inline">\(I_n\)</span>. O viés deste estimador é dado por:</p>
+<p><span class="math display">\[
+\begin{aligned}
+\overline{G}_n - \overline{G}_N &amp;= \cfrac{ \sum_{j \in U} R_j G_j }{ \sum_{j \in U} R_j } - \cfrac{ \sum_{j \in U} G_j }{ N } 
+                                 = \cfrac{ \sum_{j \in U} R_j G_j }{ N } \bigg( \cfrac{ \sum_{j \in U} R_j }{ N } \bigg)^{-1} - \cfrac{ \sum_{j \in U} G_j }{ N } \\
+                                &amp;= \cfrac{ E_J \big( R_J G_J \big) }{ E_J \big( R_J \big) } - E_J \big( G_J \big) \\
+                                &amp;= \cfrac{ E_J \big( R_J G_J \big) - E_J \big( R_J \big) E_J \big( G_J \big) }{ E_J \big( R_J \big) } \\
+                                &amp;= \cfrac{ Cov \big( R_J , G_J \big) }{ E_J \big( R_J \big) } 
+\end{aligned}
+\]</span>
+e o fato de que <span class="math inline">\(E_J ( R_J ) = n / N = f\)</span>, onde <span class="math inline">\(f\)</span> é a fração amostral de <span class="math inline">\(I_n\)</span>, cuja variância é <span class="math inline">\(\sigma^2_R = f ( 1 - f)\)</span>. Usando estas informações e a fórmula da correlação, temos:
+<span class="math display">\[
+\begin{aligned}
+\overline{G}_n - \overline{G}_N &amp;= \cfrac{ Cov \big( R_J , G_J \big) }{ E_J \big( R_J \big) } = \rho_{R,G} \times \cfrac{ \sigma_R }{ f } \times \sigma_G \\
+                                &amp;= \rho_{R,G} \times \sqrt{ \cfrac{ 1 - f }{ f } } \times \sigma_G. \\
+\end{aligned}
+\]</span></p>
+<p>Esta última identidade é <em>importantíssima</em>. Ela mostra que o viés é um produto de três componentes: (1) a correlação entre o mecanismo de resposta e a variável estudada, indicando a <em>qualidade dos dados</em>; (2) uma relação sobre a fração amostral, indicando o <em>tamanho dos dados</em>; e (3) o desvio-padrão de <span class="math inline">\(G\)</span>, que indica a <em>dificuldade do problema de estimação</em>.</p>
+<p>Sob a hipótese de ausência de viés de não-resposta, o Erro Quadrático Médio de <span class="math inline">\(\overline{G}_n\)</span> é dado por:
+<span class="math display">\[
+\begin{aligned}
+EQM \big( \overline{G}_n \big) &amp;= \rho^2_{R,G} \times { \cfrac{ 1 - f }{ f } } \times \sigma^2_G = D_I \times D_O \times D_U,
+\end{aligned}
+\]</span>
+onde <span class="math inline">\(D_I\)</span> é o que Meng chama de <em>Data Defect Index</em>. <span class="citation">Meng (2018)</span> explora vários detalhes e insights desta fórmula, mas vamos manter o foco na nossa pergunta principal: escolher uma amostra probabilística de 5% da população ou uma amostra não-probabilística de 80% da população?</p>
+</div>
+<div id="comparando-amostras-aleatórias-simples-aas-e-amostras-não-probabilísticas-anp" class="section level1">
+<h1>Comparando Amostras Aleatórias Simples (AAS) e Amostras Não-Probabilísticas (ANP)</h1>
+<p>No caso de uma AAS, o estimador <span class="math inline">\(EQM_{AAS} \big( \overline{G}_n \big)\)</span> é igual a variância do respectivo estimador da média. Assim,
+<span class="math display">\[
+\begin{aligned}
+&amp;\frac{1-f}{n} \cfrac{N}{N-1} \sigma^2_G = D_I \times { \cfrac{ 1 - f }{ f } } \times \sigma^2_G \\
+&amp; \therefore D_I^{AAS} = \cfrac{1}{N-1}.
+\end{aligned}
+\]</span>
+Ou seja: sob AAS, o <span class="math inline">\(D_I\)</span> desaparece <em>muito rápido</em>. Por exemplo, se a população tem tamanho 11, teríamos <span class="math inline">\(D_I^{AAS} = 1/10\)</span>. Para uma população de tamanho 1001, , teríamos <span class="math inline">\(D_I^{AAS} = 0,001\)</span>.</p>
+<p>Para ajudar a entender o impacto comparativo disso, <span class="citation">Meng (2018)</span> propõe uma medida do “Efeito do Plano Amostral” (EPA) para . Coloco entre aspas porque, embora ela se pareça o EPA da teoria de amostragem, tem uma diferença importante: no contexto de amostragem, estamos comparando variâncias de planos amostrais alternativos em relação ao plano AAS; neste caso, estamos comparando o EQM de estimativas baseadas em um plano não probabilístico com a variância do plano AAS. Então, considerando <span class="math inline">\(D_O\)</span> e <span class="math inline">\(D_U\)</span> fixos, temos:</p>
+<p><span class="math display">\[
+\begin{aligned}
+EPA = \cfrac{ E_R \big[ \overline{G}_n - \overline{G}_N ]^2 }{ Var_{AAS} ( G_n ) } = (N - 1) D_I.
+\end{aligned}
+\]</span>
+A interpretação dela é a seguinte: considerando os mesmos estimadores, <span class="math inline">\(D_O\)</span> e <span class="math inline">\(D_U\)</span>, o EQM de uma ANP é (EPA) vezes a variância do mesmo estimador se essa amostra fosse AAS. Perceba que ele cresce com o tamanho da população e com <span class="math inline">\(D_I\)</span>.</p>
+</div>
+<div id="big-data-versus-amostras-probabilísticas" class="section level1">
+<h1><em>Big data</em> versus Amostras Probabilísticas</h1>
+<p>A vantagem de registros administrativos e <em>big data</em> é o tamanho da sua cobertura. Precisamos fazer uma comparação mais realista. Passamos, então, a considerar os casos quando os <span class="math inline">\(f\)</span> são diferentes.</p>
+<p><span class="citation">Meng (2018, p. 698)</span> aplica o seguinte procedimento: iguala-se o EQM com a respectiva variância sob AAS. Vou usar umm resultado diferente, mas que serve para mostrar a mesma ideia<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a>:</p>
+<p><span class="math display">\[
+D_O^{AAS} = (N - 1) D_I \times D_O^{ANP} \\
+f_{AAS} = \cfrac{1}{ (N - 1) ( 1/f_{ANP} - 1) D_I + 1 }.
+\]</span></p>
+<p>Esta fórmula mostra o quanto seria a fração amostral sob AAS para uma dada fração amostral ANP. Veja que <span class="math inline">\(f_{AAS}\)</span> também depende de <span class="math inline">\(D_I\)</span> e de <span class="math inline">\(N\)</span>, o tamanho da população. Usando este resultado, vamos explorar alguns casos.</p>
+<div id="caso-1-d_i-0.001" class="section level5">
+<h5>Caso 1: <span class="math inline">\(D_I = 0.001\)</span></h5>
+<p>A Figura 1 mostra o impacto dramático que <span class="math inline">\(D_I = 0.001\)</span>, um valor que parece bem pequeno, tem sobre as ANPs. Por exemplo, tomemos uma ANP que cobre 80% da população. Em uma população de 100 000 indivíduos, uma AAS de 5% já é melhor do essa ANP. <em>Em uma população de 1 000 000 indivíduos, uma AAS de 0.4% da população já é melhor que esta ANP!</em></p>
+<div class="figure"><span id="fig:unnamed-chunk-1"></span>
+<img src="https://guilhermejacob.github.io/post/2019-12-22-meng2018_files/figure-html/unnamed-chunk-1-1.png" alt="\label{fig:fig1}Equivalência entre AAS e ANP para populações de diferentes tamanhos." width="576" />
+<p class="caption">
+Figura 1: Equivalência entre AAS e ANP para populações de diferentes tamanhos.
+</p>
+</div>
+</div>
+<div id="caso-2-n-200-000-000" class="section level5">
+<h5>Caso 2: <span class="math inline">\(N =\)</span> 200 000 000</h5>
+<p>Vamos considerar uma população com aproximadamente o mesmo tamanho da população brasileira. A Figura 2 mostra a equivalência entre as frações amostrais neste caso, variando apenas <span class="math inline">\(D_I\)</span>.</p>
+<p><em>Não, o gráfico não está errado:</em> para esses <span class="math inline">\(D_I\)</span>, o gráfico só é legível quando limitamos as frações AAS equivalentes menores que 1%! Para <span class="math inline">\(D_I = 10^{-6} = 0.000001\)</span>, um valor ínfimo, uma AAS de 0.75% da população é equivalente a uma ANP de 60%. Com <span class="math inline">\(D_I = 10^{-5} = 0.00001\)</span>, uma AAS de 0.45% da população é melhor que uma ANP de 90%. Com <span class="math inline">\(D_I = 10^{-4} = 0.0001\)</span>, uma ANP que cobre 99% da população tão boa quanto uma AAS de aproximadamente 0.5% da população!</p>
+<div class="figure"><span id="fig:unnamed-chunk-2"></span>
+<img src="https://guilhermejacob.github.io/post/2019-12-22-meng2018_files/figure-html/unnamed-chunk-2-1.png" alt="\label{fig:fig2}Equivalência entre AAS e ANP para uma população de 200 milhões de indivíduos." width="576" />
+<p class="caption">
+Figura 2: Equivalência entre AAS e ANP para uma população de 200 milhões de indivíduos.
+</p>
+</div>
+</div>
+</div>
+<div id="comentários-finais" class="section level1">
+<h1>Comentários finais</h1>
+<p>Skinner e Wakefield alertam:</p>
+<blockquote>
+<p>[…] Há também um enorme interesse atual na avalanche de novas técnicas de análise de dados, que frequentemente têm suas origins em machine learning. No entanto, embora muitos desses métodos pareçam inebriantes, eles devem ser avaliados cuidadosamente em face das múltiplas fontes de não-cobertura e seleção. <em>Se tais aspectos forem ignorados, existe uma possibilidade genuína que análises de big data produzirão grandes desastres inferenciais.</em> <span class="citation">(Skinner e Wakefield, 2017, p. 174, grifo nosso)</span></p>
+</blockquote>
+<p><span class="citation">Meng (2018)</span> mostra que este alerta se estende para técnicas “menos moderninhas”, como é o caso de uma média simples. Com sob a hipótese de ausência de não-resposta, o viés na análise é explicado pelo <span class="math inline">\(D_I\)</span>, um componente associado à auto-seleção/qualidade da cobertura da ANP. Entretanto, na prática, não temos como calcular o <span class="math inline">\(D_I\)</span>. <span class="citation">Kim e Wang (2019)</span> propõe duas técnicas para reduzir o viés de seleção: <em>amostragem inversa</em> e <em>survey data integration</em>. Mas isso é tema para outro post.</p>
+<p>Para estatística oficial, o ponto central deste artigo é que, se os seus sistemas de registro adminsitrativo não forem <strong>excelentes</strong>, uma amostra probabílistica é <strong>muito melhor</strong>.</p>
+</div>
+<div id="referências" class="section level1 unnumbered">
+<h1>Referências</h1>
+<div id="refs" class="references">
+<div id="ref-elliott2017">
+<p>ELLIOTT, M. R.; VALLIANT, R. Inference for Nonprobability Samples. <strong>Statist. Sci.</strong>, v. 32, n. 2, p. 249–264, 2017. </p>
+</div>
+<div id="ref-kim2019">
+<p>KIM, J. K.; WANG, Z. Sampling Techniques for Big Data Analysis. <strong>International Statistical Review</strong>, v. 87, n. S1, p. S177–S191, 2019. </p>
+</div>
+<div id="ref-meng2014">
+<p>MENG, X.-L. A trio of inference problems that could winyou a Nobel Prize in statistics (if you helpfund it). <em>In</em>: <strong>Past, Present, and Future of Statistical Science</strong>. [s.l.] Chapman; Hall/CRC, 2014.. </p>
+</div>
+<div id="ref-meng2018">
+<p>___. Statistical paradises and paradoxes in big data (I): Law of large populations, big data paradox, and the 2016 US presidential election. <strong>The Annals of Applied Statistics</strong>, v. 12, n. 2, p. 685–726, 2018. </p>
+</div>
+<div id="ref-skinner2017">
+<p>SKINNER, C.; WAKEFIELD, J. Introduction to the Design and Analysis of Complex Survey Data. <strong>Statist. Sci.</strong>, v. 32, n. 2, p. 165–175, 2017. </p>
+</div>
+<div id="ref-smith1983">
+<p>SMITH, T. M. F. On the Validity of Inferences from Non-random Sample. <strong>Journal of the Royal Statistical Society. Series A (General)</strong>, v. 146, n. 4, p. 394–403, 1983. </p>
+</div>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>Você pode ver a uma palestra dele sobre esse tema <a href="https://www.youtube.com/watch?v=8YLdIDOMEZs">aqui</a>.<a href="#fnref1" class="footnote-back">↩</a></p></li>
+<li id="fn2"><p>Como o tamanho da população é o mesmo, a diferença entre as frações amostrais é dada pelo número de observações em cada amostra.<a href="#fnref2" class="footnote-back">↩</a></p></li>
+</ol>
+</div>
+
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">ETIQUETADO em</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://guilhermejacob.github.io/tags/big-data/">Big data</a>
+
+                  </div>
+                
+              
+            
+            
+  <div class="post-actions-wrap">
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">PRÓXIMO</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://guilhermejacob.github.io/2019/12/superpopulacao/" data-tooltip="Sopas, universos paralelos e modelos de superpopulação">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">ANTERIOR</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://guilhermejacob.github.io/2019/12/meng2018/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://guilhermejacob.github.io/2019/12/meng2018/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://guilhermejacob.github.io/2019/12/meng2018/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+
+            
+              
+            
+          </div>
+        </article>
+        <script src="//yihui.name/js/math-code.js"></script>
+<script async
+    src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+<footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2019 Guilherme Jacob. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+        
+  <div class="post-actions-wrap">
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">PRÓXIMO</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://guilhermejacob.github.io/2019/12/superpopulacao/" data-tooltip="Sopas, universos paralelos e modelos de superpopulação">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">ANTERIOR</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://guilhermejacob.github.io/2019/12/meng2018/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://guilhermejacob.github.io/2019/12/meng2018/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://guilhermejacob.github.io/2019/12/meng2018/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="4">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fguilhermejacob.github.io%2F2019%2F12%2Fmeng2018%2F">
+          <i class="fa fa-facebook-official"></i><span>Compartilhar no Facebook</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Fguilhermejacob.github.io%2F2019%2F12%2Fmeng2018%2F">
+          <i class="fa fa-twitter"></i><span>Compartilhar no Twitter</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https%3A%2F%2Fguilhermejacob.github.io%2F2019%2F12%2Fmeng2018%2F">
+          <i class="fa fa-google-plus"></i><span>Compartilhar no Google&#43;</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://guilhermejacob.github.io/files/20900788_1261769030617642_6094584381440292567_o.jpg" alt="Foto do autor" />
+    
+    <h4 id="about-card-name">Guilherme Jacob</h4>
+    
+      <div id="about-card-bio">Manauara.<br>Mestrando em Demografia, Bacharel em Direito e Bacharel em Economia.</div>
+    
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        Rio de Janeiro, Brasil
+      </div>
+    
+  </div>
+</div>
+
+    <div id="algolia-search-modal" class="modal-container">
+  <div class="modal">
+    <div class="modal-header">
+      <span class="close-button"><i class="fa fa-close"></i></span>
+      <a href="https://algolia.com" target="_blank" rel="noopener" class="searchby-algolia text-color-light link-unstyled">
+        <span class="searchby-algolia-text text-color-light text-small">by</span>
+        <img class="searchby-algolia-logo" src="https://www.algolia.com/static_assets/images/press/downloads/algolia-light.svg">
+      </a>
+      <i class="search-icon fa fa-search"></i>
+      <form id="algolia-search-form">
+        <input type="text" id="algolia-search-input" name="search"
+          class="form-control input--large search-input" placeholder="Pesquisar" />
+      </form>
+    </div>
+    <div class="modal-body">
+      <div class="no-result text-color-light text-center"></div>
+      <div class="results">
+        
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://guilhermejacob.github.io/2019/12/meng2018/">
+                <h3 class="media-heading">Mentiras, mentiras cabeludas e &#34;big data&#34;</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Dec 12, 2019
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Eu queria fechar esse ano com um problema que andei lendo a respeito no passado recente: inferência descritiva com amostras não-probabilísticas. Alguns dos textos mais interessantes são Smith (1983), Meng (2014), Elliott e Valliant (2017) e Meng (2018). Vamos focar neste último. Ele tenta responder uma pergunta muito simples:1
+ O que é melhor: uma amostra probabilística de 5% da população ou uma amostra não-probabilística de 80% da população?
+ Esta pergunta é crucial e a resposta é importante para pensar sobre os cuidados no uso de registros administrativos e questionar o uso inadequado de big data.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://guilhermejacob.github.io/2019/12/superpopulacao/">
+                <h3 class="media-heading">Sopas, universos paralelos e modelos de superpopulação</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Dec 12, 2019
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Tive a oportunidade de estudar amostragem e análise de dados amostrais na ENCE com excelentes professores1 esse ano. E foi incrível! Tentei aproveitar da melhor maneira possível. Entre algumas ideias exploradas, existem os modelos de superpopulação, que desempenham um papel fundamental na análise de dados amostrais. É uma ideia tão interessante que resolvi escrever um post sobre isso, mas com uma restrição: ser didático e, se possível, interessante para um público mais amplo.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://guilhermejacob.github.io/2019/12/varianca-adac/">
+                <h3 class="media-heading">Por que é tão difícil calcular variância com amostras complexas?</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Dec 12, 2019
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Já faz algum tempo que passei por essa situação mas acho que vale a pena pensar a respeito.
+Em um fórum de R, uma pessoa pergunta onde está a função pra calcular um determinado número com a PNAD. Eu vou dou uma olhada e vejo que, de fato, a função não existe. Explico para a pessoa que a função não existe porque ninguém escreveu ainda. E me responde: alguém pode fazer isso aí rapidinho?</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://guilhermejacob.github.io/2019/08/desigualdade-pobreza-log/">
+                <h3 class="media-heading">Desigualdade ou pobreza?</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Aug 8, 2019
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Pesquisando no repositório das piores ideias da humanidade1, não é raro encontrar a seguinte frase:
+ “A pobreza importa. A desigualdade, não.”
+ Aparentemente, tem gente que acredita nisso. Vou mostrar o quanto isso é estúpido.
+Considere a sociedade A, cuja renda média é $500.10 e o índice de Gini é 0.400. Vejamos a distribuição cumulativa.
+Agora considere a Sociedade B, produzida a partir de \(n\) transferências regressivas para o indivíduo mais rico de modo que os demais indivíduos não-pobres estejam quase na linha de pobreza.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://guilhermejacob.github.io/2018/05/temer-desemprego-2018/">
+                <h3 class="media-heading">Temer, desemprego e procura de empregos: entendendo conceitos da PNAD Contínua</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  May 5, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Uma controvérsia relativamente recente foi protagonizada pelo Temer, durante uma palestra na ESPM. Ele teria afirmado que não houve aumento da taxa de desemprego, mas, sim, aumento das pessoas procurando emprego. Antes da divulgação dos dados da PNADC do 1º trimestre de 2018, tive uma conversa com um professor a respeito de até onde aquilo faz ou não faz sentido.
+Escolhi esperar1 até os microdados saírem…
+Pois bem: saíram ontem, dia 17.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://guilhermejacob.github.io/2018/05/partos-brasil-2016/">
+                <h3 class="media-heading">Qual a relação entre a hora de nascimento e o tipo de parto?</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  May 5, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">O último post foi corrido, eu sei. Esse vai ser um pouco menos corrido, acho.
+Se você quiser pular direto para a análise, clique aqui.
+Muita coisa acontecendo por aqui.
+Semana passada, fui pro Rio. Serei propositalmente misterioso neste ponto, mas acho que vem coisa por aí.
+Na volta para Manaus, fiz uma mini-maratona para visitar amigos em Brasília nas 7 horas de escala. Para quem eu fiquei devendo visita: vou para a Campus Party Brasília no fim de maio!</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://guilhermejacob.github.io/2018/04/desigualdade-pobreza-infancia-2017/">
+                <h3 class="media-heading">PNAD Contínua 2017: extrema pobreza na infância e desigualdade</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Apr 4, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Atualização (21/12/2019): refiz todas as análises usando a nova definição de renda domiciliar per capita e seu respectivo deflator.
+ Interrompendo o meu hiato de alguns meses, resolvi voltar com uma comparação os dados de renda das PNADCs anuais 2016-2017. No entanto, vamos falar um pouco da desigualdade em geral e, então, partir para uma questão mais específica: pobreza na infância1.
+Mas, antes de tudo, um aviso:
+Todos as estimativas a seguir foram feitas por mim.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://guilhermejacob.github.io/2017/12/analise-censo-superior-genero-2016/">
+                <h3 class="media-heading">Censo da Educação Superior: gênero e cursos em 2016</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Dec 12, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Encerrando1 as análises usando bases de dados públicas, vamos focar no ensino superior.
+Inicialmente, vamos explicar o que é o Censo da Educação Superior. Depois, vamos mostrar como montar as bases de dados. E, concluindo, vamos fazer um pequeno exercício de visualização de dados.
+Ah, e eu vou ser muito breve neste post, por motivos de: tenho que escrever um projeto de pesquisa (:
+Censo da Educação Superior O Censo da Educação Superior é conduzido anualmente pelo Inep.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://guilhermejacob.github.io/2017/12/desigualdade-pobreza-estados-2016/">
+                <h3 class="media-heading">O que a PNAD Contínua 2016 diz sobre desigualdade e pobreza nos estados?</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Dec 12, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Atualização (21/12/2019): refiz todas as análises usando a nova definição de renda domiciliar per capita e seu respectivo deflator.
+ Na última quarta (29/11), o IBGE finalmente apresentou as estimativas relativas aos rendimentos de todas as fontes, além de disponibilizar os microdados para os cálculos.
+Ok, mas o que isso quer dizer? Aguardei ansiosamente1 para saber como as coisas irão funcionar com o fim da PNAD anual e introdução da PNAD Contínua.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://guilhermejacob.github.io/2017/11/microdados-obmigra/">
+                <h3 class="media-heading">CGIg/CNIg e SINCRE: analisando os microdados do OBMigra</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Nov 11, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">O assunto de hoje são os microdados do OBMigra. Mas, antes disso, vamos apresentar um pouco do contexto institucional.
+OBMigra O Observatório das migrações internacionais (OBMigra) é fruto de um convênio estabelecido entre o Ministério do Trabalho (MTb), Conselho Nacional de Imigração (CNIg) e Universidade de Brasília (UnB). Sua finalidade é ampliar o conhecimento a respeito dos fluxos migratórios internacionais no Brasil, através de estudos e análises empíricas, e fornecer subsídios para a formulação de estratégias de política pública.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+      </div>
+    </div>
+    <div class="modal-footer">
+      <p class="results-count text-medium"
+         data-message-zero=""
+         data-message-one=""
+         data-message-other="">
+         15 posts found
+      </p>
+    </div>
+  </div>
+</div>
+    
+  
+    
+    <div id="cover" style="background-image:url('https://lh3.googleusercontent.com/EMXvd11C1LUgHF62uBqt-VCw8BPI9XsdOPl0o8CHBu6xwoHGZ5NoH03Phepmv75YW6_0aTp2w_X8I-j1r7xwnDqDO3A7Srh305oXGL_k-YQ_aTlaNUNf6Zbmm9yvVYhtxj5to0WffqTpj5mpvwbf6bm5cRaXI4SvsfGc7jdeJqyyvog35SuXO-VhCTH1sCrs57it-lmJ0C-UeUuHouhkyQ9JpGvba_MJCIY0svtfOPEujv2NEZhGZXzv-uJhpXBrUNuZJx3opiUCoFrrJarStPo24PMrK4WEn8DGpHpDJOZjfGGGOtPjfjD0VqdPEhOw2goJ68luwdLqrSzqtzNSHBgav1SPnZKlLD_S6G8FxlD0-PxvWwrsB7EOK4EjrGtawQn3O6erbODkJFOyBFAQYUU71-MpVcpb40jxt8ntcrM6MFiynXKzx0JeT-jWyUj5U1-OPhoZQrG8HIlTKFArsRpZxhO3NbXeBQPqfOrmsLd3VCKWOVUzkB1s2shVStoz5ihqmD5UEHbr5AYEW1Rl4wCjGJU0gL1b_A9Wm-cjSWz1zQhEf2H5tquDpbNolIXysKv47XY_X2HpCioPAaWjSCIRtc1smn4dux0noag1Gg=w2176-h1652-no');"></div>
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js" integrity="sha256-GEAnjcTqVP+vBp3SSc8bEDQqvWAZMiHyUSIorrWwH50=" crossorigin="anonymous"></script>
+
+
+<script src="https://guilhermejacob.github.io/js/script-qi9wbxp2ya2j6p7wx1i6tgavftewndznf4v0hy2gvivk1rxgc3lm7njqb6bz.min.js"></script>
+
+
+
+
+  
+    
+  
+
+
+
+    
+  </body>
+</html>
+

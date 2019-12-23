@@ -293,7 +293,7 @@ Caso contrário, assista esse vídeo do MDS. Se, ainda assim, você não estiver
 <p>Não? Até uns dias atrás, eu também não.<br />
 Se você tem interesse nessa base de dados, vamos lá!<br />
 Caso contrário, assista esse <a href="https://www.youtube.com/watch?v=fRISNWsZh_4">vídeo do MDS</a>. Se, ainda assim, você não estiver interessado, bom… tem um presente no fim do post. Não tem <del>nada</del> muito a ver, mas <em>vale a pena</em>!</p>
-<div id="o-que-e" class="section level2">
+<div id="o-que-é" class="section level2">
 <h2>O que é?</h2>
 <p>Segundo o <a href="http://mds.gov.br/assuntos/cadastro-unico/o-que-e-e-para-que-serve">MDS</a><a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>, O <em>Cadastro Único para Programas Sociais do Governo Federal</em> (doravante, <em>CadÚnico</em>) identifica e coleta informações sobre as famílias de baixa renda, fornecendo informações detalhadas a respeito dos seus domicílios, escolaridade, renda, etc. Embora o CadÚnico exista desde 2001, foi com o advento do <a href="http://mds.gov.br/assuntos/bolsa-familia/o-que-e">Programa Bolsa Família</a>, em 2003, que ele ficou conhecido.</p>
 <p>O Bolsa Família <del>ainda</del> é<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a> considerado o maior programa de transferência de renda do mundo. E todos os beneficiários do Bolsa Família fazem parte do CadÚnico. Em poucas palavras, <em>beneficiários do Bolsa Família</em> <span class="math inline">\(\subset\)</span> <em>CadÚnico</em>.<br />
@@ -307,7 +307,7 @@ Bom, sim. Mas ter acesso à informações que podem identificar pessoas é uma v
 <p>Há pouco tempo, a SAGI<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a> disponibilizou amostras desidentificadas do CadÚnico, referentes ao mês de dezembro do período de 2012 a 2016. Para assegurar a validade da amostra, foram utilizados procedimentos de amostragem complexa<a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a>, o que garante a segurança das informações pessoais.</p>
 <p>Entretanto, essa técnica exige cuidados na hora de analisar os dados. Muitos procedimentos que usam a suposição de <em>amostra aleatória simples</em> precisam ser adaptados para fornecer estimativas não-viesadas e precisas. Felizmente, a library <code>survey</code> traz todas as ferramentas necessárias para essa tarefa.</p>
 </div>
-<div id="na-pratica" class="section level2">
+<div id="na-prática" class="section level2">
 <h2>Na prática</h2>
 <p>Em alguns sites de discussão sobre análise de dados, comentava-se que o R não consegue lidar com bases de dados grandes. Bom, isso foi contornado de diversas maneiras.</p>
 <div id="montando-a-base" class="section level3">
@@ -381,7 +381,7 @@ close( pes.design , shutdown = TRUE )</code></pre>
 <p>15 milhões de linhas parece um número bem razoável para uma planilha, não? E considerando que essas linhas representam mais de 70 milhões de pessoas, ainda melhor.<br />
 Vale dizer: o <code>survey</code> permite que você use praticamente tudo que você usaria em uma base guardada na memória. Por exemplo, modelos lineares generalizados com <code>svyglm</code>, curvas de sobrevivência de Kaplan-Meier com <code>svykm</code>, etc.</p>
 <p>Ah, e se você quiser saber mais sobre como usar o R com o SQLite, vale dar uma lida <a href="https://swcarpentry.github.io/sql-novice-survey/11-prog-R/">aqui</a>.</p>
-<div id="bonus" class="section level4">
+<div id="bônus" class="section level4">
 <h4>Bônus!</h4>
 <p>Meu presente para você que chegou até o fim desse post. Não precisa agradecer ;)</p>
 
@@ -637,6 +637,25 @@ Vale dizer: o <code>survey</code> permite que você use praticamente tudo que vo
           <div class="media">
             
             <div class="media-body">
+              <a class="link-unstyled" href="https://guilhermejacob.github.io/2019/12/meng2018/">
+                <h3 class="media-heading">Mentiras, mentiras cabeludas e &#34;big data&#34;</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Dec 12, 2019
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Eu queria fechar esse ano com um problema que andei lendo a respeito no passado recente: inferência descritiva com amostras não-probabilísticas. Alguns dos textos mais interessantes são Smith (1983), Meng (2014), Elliott e Valliant (2017) e Meng (2018). Vamos focar neste último. Ele tenta responder uma pergunta muito simples:1
+ O que é melhor: uma amostra probabilística de 5% da população ou uma amostra não-probabilística de 80% da população?
+ Esta pergunta é crucial e a resposta é importante para pensar sobre os cuidados no uso de registros administrativos e questionar o uso inadequado de big data.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
               <a class="link-unstyled" href="https://guilhermejacob.github.io/2019/12/superpopulacao/">
                 <h3 class="media-heading">Sopas, universos paralelos e modelos de superpopulação</h3>
               </a>
@@ -802,25 +821,6 @@ Ok, mas o que isso quer dizer? Aguardei ansiosamente1 para saber como as coisas 
               </span>
               <div class="media-content hide-xs font-merryweather">O assunto de hoje são os microdados do OBMigra. Mas, antes disso, vamos apresentar um pouco do contexto institucional.
 OBMigra O Observatório das migrações internacionais (OBMigra) é fruto de um convênio estabelecido entre o Ministério do Trabalho (MTb), Conselho Nacional de Imigração (CNIg) e Universidade de Brasília (UnB). Sua finalidade é ampliar o conhecimento a respeito dos fluxos migratórios internacionais no Brasil, através de estudos e análises empíricas, e fornecer subsídios para a formulação de estratégias de política pública.</div>
-            </div>
-            <div style="clear:both;"></div>
-            <hr>
-          </div>
-        
-          <div class="media">
-            
-            <div class="media-body">
-              <a class="link-unstyled" href="https://guilhermejacob.github.io/2017/11/rais-caged-r/">
-                <h3 class="media-heading">Analisando RAIS e CAGED com R</h3>
-              </a>
-              <span class="media-meta">
-                <span class="media-date text-small">
-                  Nov 11, 2017
-                </span>
-              </span>
-              <div class="media-content hide-xs font-merryweather">Dando sequência ao post anterior, vamos analisar outra base de dados. Ou outras bases de dados?
-Dessa vez, falaremos dos microdados do RAIS e CAGED. Vamos?
-Bases do Ministério do Trabalho O Ministério do Trabalho (MTb) permite que o usuário acesse os microdados de duas bases muito interessantes: RAIS e CAGED. Bom, além de serem mais dois elementos na “sopa de letrinhas” de microdados brasileiros, o que são exatamente esses dados?</div>
             </div>
             <div style="clear:both;"></div>
             <hr>

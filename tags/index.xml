@@ -6,10 +6,19 @@
     <description>Recent content in Tags on Something Random</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>pt-br</language>
-    <lastBuildDate>Thu, 23 Nov 2017 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 22 Dec 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://guilhermejacob.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Big Data</title>
+      <link>https://guilhermejacob.github.io/tags/big-data/</link>
+      <pubDate>Sun, 22 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://guilhermejacob.github.io/tags/big-data/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Bolsa Família</title>
@@ -17,6 +26,15 @@
       <pubDate>Thu, 23 Nov 2017 00:00:00 +0000</pubDate>
       
       <guid>https://guilhermejacob.github.io/tags/bolsa-fam%C3%ADlia/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Brasil</title>
+      <link>https://guilhermejacob.github.io/tags/brasil/</link>
+      <pubDate>Tue, 21 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://guilhermejacob.github.io/tags/brasil/</guid>
       <description></description>
     </item>
     
@@ -48,11 +66,11 @@
     </item>
     
     <item>
-      <title>Cities</title>
-      <link>https://guilhermejacob.github.io/tags/cities/</link>
+      <title>Cidades</title>
+      <link>https://guilhermejacob.github.io/tags/cidades/</link>
       <pubDate>Tue, 21 Nov 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://guilhermejacob.github.io/tags/cities/</guid>
+      <guid>https://guilhermejacob.github.io/tags/cidades/</guid>
       <description></description>
     </item>
     
@@ -102,29 +120,11 @@
     </item>
     
     <item>
-      <title>Human Rights</title>
-      <link>https://guilhermejacob.github.io/tags/human-rights/</link>
+      <title>Mapas</title>
+      <link>https://guilhermejacob.github.io/tags/mapas/</link>
       <pubDate>Tue, 21 Nov 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://guilhermejacob.github.io/tags/human-rights/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Inequality</title>
-      <link>https://guilhermejacob.github.io/tags/inequality/</link>
-      <pubDate>Mon, 13 Nov 2017 00:00:00 +0000</pubDate>
-      
-      <guid>https://guilhermejacob.github.io/tags/inequality/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Mapping</title>
-      <link>https://guilhermejacob.github.io/tags/mapping/</link>
-      <pubDate>Tue, 21 Nov 2017 00:00:00 +0000</pubDate>
-      
-      <guid>https://guilhermejacob.github.io/tags/mapping/</guid>
+      <guid>https://guilhermejacob.github.io/tags/mapas/</guid>
       <description></description>
     </item>
     
@@ -161,15 +161,6 @@
       <pubDate>Mon, 19 Aug 2019 00:00:00 +0000</pubDate>
       
       <guid>https://guilhermejacob.github.io/tags/pobreza/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Poverty Mapping</title>
-      <link>https://guilhermejacob.github.io/tags/poverty-mapping/</link>
-      <pubDate>Mon, 13 Nov 2017 00:00:00 +0000</pubDate>
-      
-      <guid>https://guilhermejacob.github.io/tags/poverty-mapping/</guid>
       <description></description>
     </item>
     

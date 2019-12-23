@@ -300,21 +300,21 @@ Bom, isso acaba de ser respondido.</p>
   <p>Todos as estimativas a seguir foram feitas por mim.<br>Assim, nem IBGE, nem qualquer outra instituição tem nada a ver com os meus comentários ou conclusões. <strong>Ou seja: nada aqui é definitivo</strong>.</p>
 </div>
 
-<div id="indice-de-gini" class="section level5">
+<div id="índice-de-gini" class="section level5">
 <h5>Índice de Gini</h5>
 <p>Vamos começar com a medida de desigualdade mais utilizada, o <a href="https://pt.wikipedia.org/wiki/Coeficiente_de_Gini">índice de Gini</a>. O Distrito Federal é o estado mais desigual do país. Ainda assim, os intervalos de confiança não permitem dizer que existam diferenças estatisticamente significativas entre muitos estados.
 <img src="https://guilhermejacob.github.io/post/2017-12-01-desigualdade-pobreza-brasil-2016_files/figure-html/gini_plot-1.png" width="672" /></p>
 <p>A outra coisa clara neste gráfico é que Santa Catarina é o estado menos desigual, embora a diferença em relação ao segundo menos desigual, Mato Grosso, não seja estatisticamente significativa.</p>
 <p>No entanto, é importante lembrar que o índice de Gini tem seus problemas<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a>. Por conta disso, vamos explorar algumas alternativas, como a razão de Palma e o índice de Zenga.</p>
 </div>
-<div id="razao-de-palma" class="section level5">
+<div id="razão-de-palma" class="section level5">
 <h5>Razão de Palma</h5>
 <p>A <a href="http://www.un.org/esa/desa/papers/2015/wp143_2015.pdf">razão de Palma</a> é bastante intuitiva. Basicamente, este índice é a razão entre as rendas dos 10% mais ricos sobre a dos 40% mais pobres. Dessa forma, ele consegue ser mais sensível aos extremos da distribuição de renda do que o índice de Gini, por exemplo. Vejamos os resultados para o Brasil.
 <img src="https://guilhermejacob.github.io/post/2017-12-01-desigualdade-pobreza-brasil-2016_files/figure-html/palma_plot-1.png" width="672" /></p>
 <p>Bom, o ordenamento muda um pouco. Embora o DF continue sendo o mais desigual, Pernambuco cai uma posição. Isso se deve ao fato deste índice ser um pouco mais sensível aos extremos da distribuição.
 Entretanto, este índice também sofre algumas críticas. De fato, ele não atende muitos axiomas esperados dos índices de desigualdade. Com isso em mente, incluiremos mais um índice.</p>
 </div>
-<div id="indice-de-zenga" class="section level5">
+<div id="índice-de-zenga" class="section level5">
 <h5>Índice de Zenga</h5>
 <p>O <a href="https://link.springer.com/article/10.1007/s10687-013-0177-2">índice de Zenga</a> é uma medida relativamente recente. Ele satisfaz os mesmos axiomas que o índice de Gini, mas “pesa” todas as observações igualmente, mantendo a mesma sensibilidade ao longo de toda a distribuição de renda.
 <img src="https://guilhermejacob.github.io/post/2017-12-01-desigualdade-pobreza-brasil-2016_files/figure-html/zenga_plot-1.png" width="672" /></p>
@@ -340,7 +340,7 @@ A classe <em>Foster-Greer-Thorbecke (FGT)</em> de índices de pobreza apresenta 
 <p>Aqui, o ordenamento muda um pouco. Embora Maranhão continue liderando, o Amazonas cai algumas posições. Comparando Amazonas e Acre, isto indica que, embora a <em>extensão</em> da pobreza entre as duas populações seja praticamente idêntica, a pobreza no Acre é <em>mais intensa</em>. Em outras palavras: a renda domiciliar per capita entre as pessoas em situação de pobreza neste estado é inferior à do Amazonas.<br />
 Isso tem impactos importantes quanto às políticas públicas. Por exemplo, um programa de transferência de renda exigiria, <em>proporcionalmente</em>, mais recursos no Acre do que no Amazonas.</p>
 </div>
-<div id="hiato-quadratico-de-pobreza" class="section level5">
+<div id="hiato-quadrático-de-pobreza" class="section level5">
 <h5>Hiato Quadrático de Pobreza</h5>
 <p>Outro índice da classe FGT, o Hiato Quadrático de Pobreza incorpora a desigualdade de renda entre a população em situação de pobreza. Ao contrário do Hiato de Pobreza, a distância entre a renda de determinada observação e a linha de pobreza é elevada ao quadrado. Ou seja: os mais pobres recebem pesos ainda maiores no processo de ponderação.</p>
 <p>Isto implica que transferências regressivas de renda entre os pobres são penalizadas. Por exemplo, se a renda do indivíduo A, mais pobre, é transferida para o indivíduo B (menos pobre), o Hiato de Pobreza é o mesmo, mas o Hiato Quadrático é diferente.</p>
@@ -1131,6 +1131,25 @@ Nesse vídeo, Bruna Caram e Marina de la Riva interpretam <em>Bloco do Prazer</e
           <div class="media">
             
             <div class="media-body">
+              <a class="link-unstyled" href="https://guilhermejacob.github.io/2019/12/meng2018/">
+                <h3 class="media-heading">Mentiras, mentiras cabeludas e &#34;big data&#34;</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Dec 12, 2019
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Eu queria fechar esse ano com um problema que andei lendo a respeito no passado recente: inferência descritiva com amostras não-probabilísticas. Alguns dos textos mais interessantes são Smith (1983), Meng (2014), Elliott e Valliant (2017) e Meng (2018). Vamos focar neste último. Ele tenta responder uma pergunta muito simples:1
+ O que é melhor: uma amostra probabilística de 5% da população ou uma amostra não-probabilística de 80% da população?
+ Esta pergunta é crucial e a resposta é importante para pensar sobre os cuidados no uso de registros administrativos e questionar o uso inadequado de big data.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
               <a class="link-unstyled" href="https://guilhermejacob.github.io/2019/12/superpopulacao/">
                 <h3 class="media-heading">Sopas, universos paralelos e modelos de superpopulação</h3>
               </a>
@@ -1296,25 +1315,6 @@ Ok, mas o que isso quer dizer? Aguardei ansiosamente1 para saber como as coisas 
               </span>
               <div class="media-content hide-xs font-merryweather">O assunto de hoje são os microdados do OBMigra. Mas, antes disso, vamos apresentar um pouco do contexto institucional.
 OBMigra O Observatório das migrações internacionais (OBMigra) é fruto de um convênio estabelecido entre o Ministério do Trabalho (MTb), Conselho Nacional de Imigração (CNIg) e Universidade de Brasília (UnB). Sua finalidade é ampliar o conhecimento a respeito dos fluxos migratórios internacionais no Brasil, através de estudos e análises empíricas, e fornecer subsídios para a formulação de estratégias de política pública.</div>
-            </div>
-            <div style="clear:both;"></div>
-            <hr>
-          </div>
-        
-          <div class="media">
-            
-            <div class="media-body">
-              <a class="link-unstyled" href="https://guilhermejacob.github.io/2017/11/rais-caged-r/">
-                <h3 class="media-heading">Analisando RAIS e CAGED com R</h3>
-              </a>
-              <span class="media-meta">
-                <span class="media-date text-small">
-                  Nov 11, 2017
-                </span>
-              </span>
-              <div class="media-content hide-xs font-merryweather">Dando sequência ao post anterior, vamos analisar outra base de dados. Ou outras bases de dados?
-Dessa vez, falaremos dos microdados do RAIS e CAGED. Vamos?
-Bases do Ministério do Trabalho O Ministério do Trabalho (MTb) permite que o usuário acesse os microdados de duas bases muito interessantes: RAIS e CAGED. Bom, além de serem mais dois elementos na “sopa de letrinhas” de microdados brasileiros, o que são exatamente esses dados?</div>
             </div>
             <div style="clear:both;"></div>
             <hr>

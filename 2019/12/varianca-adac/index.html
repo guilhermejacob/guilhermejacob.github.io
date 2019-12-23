@@ -288,7 +288,7 @@ E me responde: alguém pode fazer isso aí rapidinho? Eu digo que é bastante di
 <p>Eu parei de interagir nesse momento. Acho que não consigo explicar em um parágrafo os problemas de estimação com amostras complexas, como é a PNAD.
 No entanto, como estou ~mais ou menos~ de férias, vou tentar mostrar alguns detalhes.</p>
 <p>Vejamos.</p>
-<div id="estimacao-de-um-total-com-amostra-aleatoria-simples-com-reposicao-aasc" class="section level2">
+<div id="estimação-de-um-total-com-amostra-aleatória-simples-com-reposição-aasc" class="section level2">
 <h2>Estimação de um total com amostra aleatória simples com reposição (AASc)</h2>
 <p>Vamos para a quantidade mais simples do plano amostral mais simplificado: o total de uma variável com AASc. Para estimar um total populacional <span class="math inline">\(Y\)</span>, usaremos este estimador:</p>
 <p><span class="math display">\[
@@ -301,7 +301,7 @@ A ideia é bastante simples: como eu sei o tamanho da população, se eu multipl
 \]</span></p>
 <p>sendo <span class="math inline">\(\cfrac{s^2}{n}\)</span> a estimativa da variância da média, a fórmula padrão que você encontra em qualquer livro de estatística.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a></p>
 </div>
-<div id="estimacao-de-um-total-com-amostra-estratificada-aes" class="section level2">
+<div id="estimação-de-um-total-com-amostra-estratificada-aes" class="section level2">
 <h2>Estimação de um total com amostra estratificada (AES)</h2>
 <p>Vamos complicar um pouco mais as coisas. Divida a população em <span class="math inline">\(H\)</span> partições. Fazemos, então, uma AASc em cada partição <span class="math inline">\(h\)</span> da população. Essas partições da amostra são chamados <em>estratos</em> e dizemos que nossa amostra é <em>estratificada</em>. Neste caso, o estimador do total da população é dado por:</p>
 <p><span class="math display">\[
@@ -315,7 +315,7 @@ i.e., a soma das variâncias AASc de cada estrato.</p>
 <p>Já é um pouco mais complicado. No entanto, quando os estratos são definidos com critérios adequados, as estimativas das variâncias se tornam mais precisas.</p>
 <p>Vamos ver outra possibilidade.</p>
 </div>
-<div id="estimacao-de-um-total-com-amostra-por-conglomerados-ac" class="section level2">
+<div id="estimação-de-um-total-com-amostra-por-conglomerados-ac" class="section level2">
 <h2>Estimação de um total com amostra por conglomerados (AC)</h2>
 <p>Imagine que você precisa fazer uma pesquisa na sua cidade. Imagine que o seu orçamento é limitado e você não pode gastar muito com a logística da pesquisa. Se você fizer uma AAS, pode ser que você tenha que entrevistar domicílios em todos os bairros; imagina o quanto vai custar levar os entrevistadores por todos os bairros… Uma solução para isso é fazer uma amostra da seguinte maneira: sorteamos bairros e entrevistamos os domicílios destes bairros. Isso é o que se chama de amostra por conglomerado com um estágio de conglomeração. Vamos supor que essas amostras são aleatórias simples com reposição.</p>
 <p>Suponha que, ainda assim, temos um número muito grande de domicílios para entrevistar e resolvemos sortear domicílios dentro dos bairros selecionados. Temos uma amostra por conglomerados em dois estágios: bairros e domicílios.</p>
@@ -330,7 +330,7 @@ com <span class="math inline">\(\bar{y}_i\)</span> sendo a média de <span class
 \]</span>
 onde <span class="math inline">\(S^2_t = \frac{1}{N-1} \sum_{i \in N} ( Y_i - Y / N )\)</span> é a variância populacional dos totais dos bairros, com <span class="math inline">\(\widehat{Y}\)</span> sendo o total de <span class="math inline">\(y\)</span> no <span class="math inline">\(i\)</span>-ésimo bairro e <span class="math inline">\(Y\)</span> o total na população.</p>
 </div>
-<div id="amostras-por-conglomerados-com-probabilidades-desiguais-de-selecao" class="section level2">
+<div id="amostras-por-conglomerados-com-probabilidades-desiguais-de-seleção" class="section level2">
 <h2>Amostras por conglomerados com probabilidades desiguais de seleção</h2>
 <p>Ainda usando o nosso exemplo anterior, temos o seguinte problema: um bairro com 10 domicílios teria a mesma probabilidade de ser escolhido que outro bairro com 1.000 domicílios. Isso não parece bom. Queremos que um bairro com maior número de domicílios sejam selecionados com maior probabilidade. Vamos supor que façamos uma amostra com probabilidades proporcionais ao tamanho. Temos, então, probabilidades desiguais de seleção.</p>
 <p>A probabilidade do domicílio <span class="math inline">\(j\)</span> no bairro <span class="math inline">\(i\)</span> ser selecionado é dada por <span class="math inline">\(\pi_{ij} = \pi_{j | i}\pi_{i}\)</span>. Ou seja: é o produto das probabilidades de seleção. Depois de sortearmos bairros com probabilidade proporcional ao tamanho e domicílios por amostra aleatória simples, precisamos recorrer ao estimador Horvitz-Thompson do total <span class="citation">(Horvitz e Thompson, 1952)</span>:</p>
@@ -346,12 +346,12 @@ onde <span class="math inline">\(S\)</span> é a amostra de bairros.</p>
 \]</span></p>
 <p>Eu não sei você, mas eu não acho essa fórmula nada trivial.</p>
 </div>
-<div id="conclusao" class="section level1">
+<div id="conclusão" class="section level1">
 <h1>Conclusão</h1>
 <p>No caso da PNAD, como explicam <span class="citation">Silva, Pessoa e Lila (2002)</span>, o plano amostral possui estratificação e 1 a 3 estágios de conglomeração, dependendo do estrato, além de probabilidades proporcionais ao tamanho. Ou seja: é uma combinação das fórmulas que vimos acima. E isso é o caso do total. Não estamos falando de índice de Gini, quantis, etc., que são medidas mais complexas. Sobre amostragem, as sugestões são: o clássico <span class="citation">Cochran (1977)</span>, o livro que mais me fez chorar desde “O Menino do Pijama Listrado”; <span class="citation">Lohr (2010)</span>, que é mais fácil de achar e possui exemplos interessantes; e, principalmente, <span class="citation">Pessoa e Silva (2018)</span>, porque: (a) é escrito por quem entende muito do assunto, (b) é escrito em português, (c) possui exemplos usando o R, e (d) está disponível na internet!</p>
 <p>Finalmente, eu queria comentar duas coisas. A primeira é que algumas coisas podem não ser tão fáceis quanto parecem; se você acha isso fácil, você (provavelmente) não estudou o suficiente ou está fazendo algo errado. E a outra coisa é que, nesse mundo de terraplanismo e pós-verdade, o trabalho do IBGE é <em>essencial</em> e eles <em>não estão de brincadeira</em>: existe um volume enorme de conhecimento teórico e prático sobre o Brasil que vem sofrendo ataques diários por parte de campanhas de desinformação.</p>
 </div>
-<div id="referencias" class="section level1 unnumbered">
+<div id="referências" class="section level1 unnumbered">
 <h1>Referências</h1>
 <div id="refs" class="references">
 <div id="ref-cochran1977">
@@ -611,6 +611,25 @@ onde <span class="math inline">\(S\)</span> é a amostra de bairros.</p>
           <div class="media">
             
             <div class="media-body">
+              <a class="link-unstyled" href="https://guilhermejacob.github.io/2019/12/meng2018/">
+                <h3 class="media-heading">Mentiras, mentiras cabeludas e &#34;big data&#34;</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Dec 12, 2019
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Eu queria fechar esse ano com um problema que andei lendo a respeito no passado recente: inferência descritiva com amostras não-probabilísticas. Alguns dos textos mais interessantes são Smith (1983), Meng (2014), Elliott e Valliant (2017) e Meng (2018). Vamos focar neste último. Ele tenta responder uma pergunta muito simples:1
+ O que é melhor: uma amostra probabilística de 5% da população ou uma amostra não-probabilística de 80% da população?
+ Esta pergunta é crucial e a resposta é importante para pensar sobre os cuidados no uso de registros administrativos e questionar o uso inadequado de big data.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
               <a class="link-unstyled" href="https://guilhermejacob.github.io/2019/12/superpopulacao/">
                 <h3 class="media-heading">Sopas, universos paralelos e modelos de superpopulação</h3>
               </a>
@@ -776,25 +795,6 @@ Ok, mas o que isso quer dizer? Aguardei ansiosamente1 para saber como as coisas 
               </span>
               <div class="media-content hide-xs font-merryweather">O assunto de hoje são os microdados do OBMigra. Mas, antes disso, vamos apresentar um pouco do contexto institucional.
 OBMigra O Observatório das migrações internacionais (OBMigra) é fruto de um convênio estabelecido entre o Ministério do Trabalho (MTb), Conselho Nacional de Imigração (CNIg) e Universidade de Brasília (UnB). Sua finalidade é ampliar o conhecimento a respeito dos fluxos migratórios internacionais no Brasil, através de estudos e análises empíricas, e fornecer subsídios para a formulação de estratégias de política pública.</div>
-            </div>
-            <div style="clear:both;"></div>
-            <hr>
-          </div>
-        
-          <div class="media">
-            
-            <div class="media-body">
-              <a class="link-unstyled" href="https://guilhermejacob.github.io/2017/11/rais-caged-r/">
-                <h3 class="media-heading">Analisando RAIS e CAGED com R</h3>
-              </a>
-              <span class="media-meta">
-                <span class="media-date text-small">
-                  Nov 11, 2017
-                </span>
-              </span>
-              <div class="media-content hide-xs font-merryweather">Dando sequência ao post anterior, vamos analisar outra base de dados. Ou outras bases de dados?
-Dessa vez, falaremos dos microdados do RAIS e CAGED. Vamos?
-Bases do Ministério do Trabalho O Ministério do Trabalho (MTb) permite que o usuário acesse os microdados de duas bases muito interessantes: RAIS e CAGED. Bom, além de serem mais dois elementos na “sopa de letrinhas” de microdados brasileiros, o que são exatamente esses dados?</div>
             </div>
             <div style="clear:both;"></div>
             <hr>

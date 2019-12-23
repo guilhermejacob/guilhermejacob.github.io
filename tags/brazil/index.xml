@@ -25,29 +25,6 @@ Caso contrário, assista esse vídeo do MDS. Se, ainda assim, você não estiver
     </item>
     
     <item>
-      <title>Mapeando crianças sem registro civil</title>
-      <link>https://guilhermejacob.github.io/2017/11/birth-registration-map/</link>
-      <pubDate>Tue, 21 Nov 2017 00:00:00 +0000</pubDate>
-      
-      <guid>https://guilhermejacob.github.io/2017/11/birth-registration-map/</guid>
-      <description>Esse post é um pequeno follow-up da discussão sobre mapas de densidade de pontos, mas com um pouco mais de diretos da infância e adolescência. Vamos analisar como se distribuem espacialmente as crianças com e sem registro de nascimento, usando dados dos agregados de setores censitários do Censo 2010.
-Dessa vez, vamos focar em 4 capitais: Belém, Manaus , Fortaleza e São Luís.
-Sem mais conversa, prossigamos.
-Belém  Manaus  Fortaleza  São Luís  </description>
-    </item>
-    
-    <item>
-      <title>Ethnic composition of major Brazilian cities using Dot Density Maps</title>
-      <link>https://guilhermejacob.github.io/2017/11/ethnic-composition-brazilian-cities/</link>
-      <pubDate>Fri, 17 Nov 2017 00:00:00 +0000</pubDate>
-      
-      <guid>https://guilhermejacob.github.io/2017/11/ethnic-composition-brazilian-cities/</guid>
-      <description>You can find the R code for this post here.
- Some time ago, I came across this nice post showing how ethnicity is distributed in London. This is very interesting, as it reveals patterns about how communities are organized and how inequality express itself upon housing locations.
-Our task today is to apply the same procedure to large Brazilian cities. Here’s our list of municipalities: São Paulo, Rio de Janeiro, Brasília, Recife, Salvador, and home Manaus.</description>
-    </item>
-    
-    <item>
       <title>ENEM e desigualdade na educação: uma análise dos dados de 2015</title>
       <link>https://guilhermejacob.github.io/2017/11/enem-desigualdade-educa%C3%A7%C3%A3o/</link>
       <pubDate>Wed, 15 Nov 2017 00:00:00 +0000</pubDate>
@@ -55,16 +32,6 @@ Our task today is to apply the same procedure to large Brazilian cities. Here’
       <guid>https://guilhermejacob.github.io/2017/11/enem-desigualdade-educa%C3%A7%C3%A3o/</guid>
       <description>Há alguns dias atrás, rolou o ENEM desse ano. E daí veio a ideia para este post: analisar a desigualdade na educação entre os jovens do Ensino Médio a partir das pontuações dos candidatos. Usando R, como sempre.
 Vou tentar manter as complicações matemáticas fora da questão e focar na aplicação da técnica para entender o contexto da desigualdade educacional. Assim, pretendo trazer gente de outras áreas, como pedagogos e sociólogos, que podem se beneficiar de mais uma ferramenta para analisar o problema, além de contribuir com novas perspectivas para “aqueles que só pensam com números”1.</description>
-    </item>
-    
-    <item>
-      <title>Inequality, Poverty Mapping, Small Area Estimation, and Random Forests: Brazilian municipalities in 2010</title>
-      <link>https://guilhermejacob.github.io/2017/11/inequality-poverty-mapping-sae-random-forests-brazil-2010/</link>
-      <pubDate>Mon, 13 Nov 2017 00:00:00 +0000</pubDate>
-      
-      <guid>https://guilhermejacob.github.io/2017/11/inequality-poverty-mapping-sae-random-forests-brazil-2010/</guid>
-      <description>After a (somewhat long) break, I came back for a new post. Yey! This time, we’re not discussing educational stuff, but another big theme: inequality in Brazil. What happens when we combine 2010 Brazilian Census microdata, Small Area Estimation and Random Forests? Interesting, right?
-2010 Brazilian Census Well, it’s not really the 2010 Census, but the sample. Maybe this needs further explanation. Every ten years, IBGE1 conducts this enormous survey, collecting information about all Brazilian households.</description>
     </item>
     
   </channel>

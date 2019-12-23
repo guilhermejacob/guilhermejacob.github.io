@@ -277,17 +277,20 @@
             <div class="main-content-wrap">
               <p>Tive a oportunidade de estudar amostragem e análise de dados amostrais na ENCE com excelentes professores<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> esse ano. <em>E foi incrível!</em> Tentei aproveitar da melhor maneira possível. Entre algumas ideias exploradas, existem os modelos de superpopulação, que desempenham um papel fundamental na análise de dados amostrais. É uma ideia tão interessante que resolvi escrever um post sobre isso, mas com uma restrição: ser didático e, se possível, interessante para um público mais amplo.</p>
 <p>As próximas seções explicam os conceitos de população finita, amostra, população infinita e como isso se relaciona com os modelos paramétricos com amostras complexas. Não vai ter muito rigor matemático, mas vou indicar as referências onde o tratamento mais rigoroso pode ser encontrado.</p>
-<div id="populacao-finita-e-amostragem" class="section level3">
+<div id="população-finita-e-amostragem" class="section level3">
 <h3>População finita e amostragem</h3>
 <p>Suponha que você queira estudar uma população de <span class="math inline">\(N\)</span> pessoas. Ou seja, uma <em>população finita</em>. Porém, por motivos de orçamento e praticidade, só podemos coletar informações sobre uma parte dessa população. De acordo com alguma estratégia, extraímos uma amostra aleatória da população. E, com esta amostra, estudamos os parâmetros populacionais. Em outras palavras: usamos quantidades calculadas a partir da amostra para estudar quantidades da população.</p>
 <p><em>“Sei lá, não acredito muito nessa coisa de amostra…”</em> Quando você faz exame de sangue, você tira TODO o seu sangue pra fazer exame? Quando você prova uma sopa, você toma TODA a sopa pra saber se ela está boa? Quando o cervejeiro prova uma cerveja, ele toma TODAS as cervejas que produziu? Não, né?! Pois é: você acredita em amostras, o seu médico acredita em amostras, o cozinheiro acredita em amostras, etc.<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a></p>
 <p>Amostragem pode parecer trivial para quem já estudou estatística, mas não é tão direto pra quem nunca estudou a respeito. A intuição também vem da cozinha: para você provar adequadamente se uma sopa está boa, você <em>mistura</em> e depois prova um pouquinho. A mistura é importante: ela faz com que nossa amostra seja uma boa aproximação do todo. Note também que o tamanho da colher passa a não importar muito. Uma colher de café pode ser um pouco pequena demais; uma colher de chá é um pouco melhor; uma colher de sopa é suficiente; uma concha pode ser um exagero. Os amostristas tem estratégias para como misturar a sopa (i.e., plano amostral) e fórmulas para escolher qual “colher” usar para prová-la (i.e., tamanho da amostra).</p>
 <p>Com uma população finita, existem várias amostras possíveis. De fato, nada garante que a nossa amostra vai resultar exatamente no valor amostral. No entanto, com algumas condições, é possível calcular o quão errados nos poderíamos estar sobre as grandezas calculadas a partir da nossa amostra. Essa ideia de “margem de erro”<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a> é expressa pelos intervalos de confiança.</p>
 </div>
-<div id="universos-paralelos-e-modelos-de-superpopulacao" class="section level1">
-<h1>Universos paralelos e modelos de superpopulação</h1>
+<div id="inferência-descritiva-inferência-analítica-e-modelos-de-superpopulação" class="section level1">
+<h1>Inferência descritiva, inferência analítica e modelos de superpopulação</h1>
 <p>Estas ideias são interessantes para fazer <em>inferências descritivas</em>, mas o que acontece quando queremos estudar algo mais complicado, como o processo que gera aquela população específica? Neste caso, estamos falando de <em>inferência analítica</em>. É importante distinguir as duas abordagens: a primeira tenta <em>descrever</em> uma quantidade da população a partir de uma amostra; a outra tenta descrever os mecanismos por trás daquela população. Como explica <span class="citation">Deming (1953, p. 245)</span>, a inferência descritiva tenta responder à pergunta “quanto?”; já a inferência analítica tentaria responder à pergunta “por quê?”. Em outras palavras, a inferência descritiva é uma “fotografia” da população, desconsiderando os processos que a geraram, enquanto A inferência analítica tenta entender este mecanismo <span class="citation">(Conti e Di Iorio, 2018)</span>. Assim, a inferência analítica quer entender como as características da população se relacionam. Então, a pergunta da inferência analítica é “como?”</p>
 <p>A ideia central da inferência analítica pode ser interpretada da seguinte maneira. A minha população finita é uma realização de um processo aleatório mais geral. Este processo aleatório geral é o que chamamos <em>modelo de superpopulação</em>. Este modelo produz infinitas populações finitas. A nossa amostra é extraída de uma delas.</p>
+</div>
+<div id="sopas-universos-paralelos-e-modelos-de-superpopulação" class="section level1">
+<h1>Sopas, universos paralelos e modelos de superpopulação</h1>
 <p>Estes últimos parágrafos foram um pouco cansativos. Vou tentar deixar as coisas um pouco mais divertidas.</p>
 <p>Imagine que exista um Demiurgo bastante atarefado: ele é responsável por infinitos universos, cada um habitado por uma população com características próprias. Para facilitar a sua vida, ele usa uma máquina mágica para definir a distribuição de renda associada às características de cada um destes infinitos universos.</p>
 <p>Em um destes universos, um grupo de alquimistas ~sem orçamento~ tem uma amostra da população. Com estimativas baseadas nestes dados, eles informam os cidadãos do seu mundo sobre a renda média, o tamanho da população, e outras inúmeras características do seu povo. Porém, eles têm um objetivo mais ousado: eles querem ~estimar os parâmetros do modelo de superpopulação~ descobrir o mecanismo da máquina do Demiurgo!</p>
@@ -304,7 +307,7 @@
 </blockquote>
 <p>Essa é uma distinção importante entre inferência analítica e inferência causal, mas isso é tema para outro texto…</p>
 </div>
-<div id="comentarios-finais" class="section level1">
+<div id="comentários-finais" class="section level1">
 <h1>Comentários finais</h1>
 <p>Nesse texto, a minha intenção era dar uma explicação um pouco mais didática sobre os modelos de superpopulação e como eles relacionam amostra, população finita e população infinita. Ele também mostra uma parte do problema que enfrentamos quando ajustamos modelos em amostras complexas, embora exija um pouco mais de discussão.</p>
 <p>Por fim, não forneço nenhuma solução ou método para ajustar estes modelos. Para entender isso, vale ler a bibliografia citada no texto. Também indico:</p>
@@ -314,7 +317,7 @@
 <li>Para economistas, <span class="citation">Ullah e Breunig (1998)</span>, <span class="citation">Cameron e Trivedi (2005 Cap. 24)</span> e <span class="citation">Wooldridge (2010 Cap. 20)</span> podem ser interessantes.</li>
 </ul>
 </div>
-<div id="referencias" class="section level1 unnumbered">
+<div id="referências" class="section level1 unnumbered">
 <h1>Referências</h1>
 <div id="refs" class="references">
 <div id="ref-belem2009">
@@ -395,7 +398,7 @@
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--disabled">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://guilhermejacob.github.io/2019/12/meng2018/" data-tooltip="Mentiras, mentiras cabeludas e &#34;big data&#34;">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">PRÓXIMO</span>
@@ -475,7 +478,7 @@
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--disabled">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://guilhermejacob.github.io/2019/12/meng2018/" data-tooltip="Mentiras, mentiras cabeludas e &#34;big data&#34;">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">PRÓXIMO</span>
@@ -600,6 +603,25 @@
       <div class="no-result text-color-light text-center"></div>
       <div class="results">
         
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://guilhermejacob.github.io/2019/12/meng2018/">
+                <h3 class="media-heading">Mentiras, mentiras cabeludas e &#34;big data&#34;</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Dec 12, 2019
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Eu queria fechar esse ano com um problema que andei lendo a respeito no passado recente: inferência descritiva com amostras não-probabilísticas. Alguns dos textos mais interessantes são Smith (1983), Meng (2014), Elliott e Valliant (2017) e Meng (2018). Vamos focar neste último. Ele tenta responder uma pergunta muito simples:1
+ O que é melhor: uma amostra probabilística de 5% da população ou uma amostra não-probabilística de 80% da população?
+ Esta pergunta é crucial e a resposta é importante para pensar sobre os cuidados no uso de registros administrativos e questionar o uso inadequado de big data.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
         
           <div class="media">
             
@@ -769,25 +791,6 @@ Ok, mas o que isso quer dizer? Aguardei ansiosamente1 para saber como as coisas 
               </span>
               <div class="media-content hide-xs font-merryweather">O assunto de hoje são os microdados do OBMigra. Mas, antes disso, vamos apresentar um pouco do contexto institucional.
 OBMigra O Observatório das migrações internacionais (OBMigra) é fruto de um convênio estabelecido entre o Ministério do Trabalho (MTb), Conselho Nacional de Imigração (CNIg) e Universidade de Brasília (UnB). Sua finalidade é ampliar o conhecimento a respeito dos fluxos migratórios internacionais no Brasil, através de estudos e análises empíricas, e fornecer subsídios para a formulação de estratégias de política pública.</div>
-            </div>
-            <div style="clear:both;"></div>
-            <hr>
-          </div>
-        
-          <div class="media">
-            
-            <div class="media-body">
-              <a class="link-unstyled" href="https://guilhermejacob.github.io/2017/11/rais-caged-r/">
-                <h3 class="media-heading">Analisando RAIS e CAGED com R</h3>
-              </a>
-              <span class="media-meta">
-                <span class="media-date text-small">
-                  Nov 11, 2017
-                </span>
-              </span>
-              <div class="media-content hide-xs font-merryweather">Dando sequência ao post anterior, vamos analisar outra base de dados. Ou outras bases de dados?
-Dessa vez, falaremos dos microdados do RAIS e CAGED. Vamos?
-Bases do Ministério do Trabalho O Ministério do Trabalho (MTb) permite que o usuário acesse os microdados de duas bases muito interessantes: RAIS e CAGED. Bom, além de serem mais dois elementos na “sopa de letrinhas” de microdados brasileiros, o que são exatamente esses dados?</div>
             </div>
             <div style="clear:both;"></div>
             <hr>

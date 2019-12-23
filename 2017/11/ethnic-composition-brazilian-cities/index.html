@@ -20,7 +20,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="Hugo 0.47 with theme Tranquilpeak 0.4.3-BETA">
-    <title>Ethnic composition of major Brazilian cities using Dot Density Maps</title>
+    <title>Composição de cor/raça de algumas cidades brasileiras usando mapas de densidades de pontos</title>
     <meta name="author" content="Guilherme Jacob">
     <meta name="keywords" content="">
 
@@ -28,21 +28,21 @@
     
 
     
-    <meta name="description" content="You can find the R code for this post here.
- Some time ago, I came across this nice post showing how ethnicity is distributed in London. This is very interesting, as it reveals patterns about how communities are organized and how inequality express itself upon housing locations.
-Our task today is to apply the same procedure to large Brazilian cities. Here’s our list of municipalities: São Paulo, Rio de Janeiro, Brasília, Recife, Salvador, and home Manaus.">
-    <meta property="og:description" content="You can find the R code for this post here.
- Some time ago, I came across this nice post showing how ethnicity is distributed in London. This is very interesting, as it reveals patterns about how communities are organized and how inequality express itself upon housing locations.
-Our task today is to apply the same procedure to large Brazilian cities. Here’s our list of municipalities: São Paulo, Rio de Janeiro, Brasília, Recife, Salvador, and home Manaus.">
+    <meta name="description" content="Você pode encontrar o código para as imagens deste post aqui.
+ Há algum tempo, eu encontrei este post, mostrando como as etnias se distribuem em Londres. Achei muito interessante, já que ele revela padrões sobre como as comunidades se organizam e como a deseigualdade se expressa através da localização dos domicílios.
+Nossa tarefa de hoje é aplicar a mesma técnica no Brasil. Aqui está a nossa lista de cidades: São Paulo, Rio de Janeiro, Brasília, Recife, Salvador, e minha terra natal Manaus.">
+    <meta property="og:description" content="Você pode encontrar o código para as imagens deste post aqui.
+ Há algum tempo, eu encontrei este post, mostrando como as etnias se distribuem em Londres. Achei muito interessante, já que ele revela padrões sobre como as comunidades se organizam e como a deseigualdade se expressa através da localização dos domicílios.
+Nossa tarefa de hoje é aplicar a mesma técnica no Brasil. Aqui está a nossa lista de cidades: São Paulo, Rio de Janeiro, Brasília, Recife, Salvador, e minha terra natal Manaus.">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="Ethnic composition of major Brazilian cities using Dot Density Maps">
+    <meta property="og:title" content="Composição de cor/raça de algumas cidades brasileiras usando mapas de densidades de pontos">
     <meta property="og:url" content="/2017/11/ethnic-composition-brazilian-cities/">
     <meta property="og:site_name" content="Something Random">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Something Random">
-    <meta name="twitter:description" content="You can find the R code for this post here.
- Some time ago, I came across this nice post showing how ethnicity is distributed in London. This is very interesting, as it reveals patterns about how communities are organized and how inequality express itself upon housing locations.
-Our task today is to apply the same procedure to large Brazilian cities. Here’s our list of municipalities: São Paulo, Rio de Janeiro, Brasília, Recife, Salvador, and home Manaus.">
+    <meta name="twitter:description" content="Você pode encontrar o código para as imagens deste post aqui.
+ Há algum tempo, eu encontrei este post, mostrando como as etnias se distribuem em Londres. Achei muito interessante, já que ele revela padrões sobre como as comunidades se organizam e como a deseigualdade se expressa através da localização dos domicílios.
+Nossa tarefa de hoje é aplicar a mesma técnica no Brasil. Aqui está a nossa lista de cidades: São Paulo, Rio de Janeiro, Brasília, Recife, Salvador, e minha terra natal Manaus.">
     
     
 
@@ -247,7 +247,7 @@ Our task today is to apply the same procedure to large Brazilian cities. Here’
       <div class="post-header main-content-wrap text-left">
   
     <h1 class="post-title" itemprop="headline">
-      Ethnic composition of major Brazilian cities using Dot Density Maps
+      Composição de cor/raça de algumas cidades brasileiras usando mapas de densidades de pontos
     </h1>
   
   
@@ -269,9 +269,7 @@ Our task today is to apply the same procedure to large Brazilian cities. Here’
   
     <span>em</span>
     
-      <a class="category-link" href="https://guilhermejacob.github.io/categories/r">R</a>, 
-    
-      <a class="category-link" href="https://guilhermejacob.github.io/categories/official-statistics">Official Statistics</a>
+      <a class="category-link" href="https://guilhermejacob.github.io/categories/censo">Censo</a>
     
   
 
@@ -292,10 +290,11 @@ Our task today is to apply the same procedure to large Brazilian cities. Here’
           <div class="post-content markdown" itemprop="articleBody">
             <div class="main-content-wrap">
               <div class="alert info ">
-  <p>You can find the R code for this post <a href="https://github.com/guilhermejacob/guilhermejacob.github.io/blob/master/scripts/2017-11-14-ethnic-composition-of-major-brazilian-cities.R">here</a>.</p>
+  <p>Você pode encontrar o código para as imagens deste post <a href="https://github.com/guilhermejacob/guilhermejacob.github.io/blob/master/scripts/2017-11-14-ethnic-composition-of-major-brazilian-cities.R">aqui</a>.</p>
 </div>
-<p>Some time ago, I came across this <a href="https://www.blog.cultureofinsight.com/2017/06/building-dot-density-maps-with-uk-census-data-in-r/">nice post</a> showing how ethnicity is distributed in London. This is very interesting, as it reveals patterns about how communities are organized and how inequality express itself upon housing locations.</p>
-<p>Our task today is to apply the same procedure to large Brazilian cities. Here’s our list of municipalities: <a href="#SP">São Paulo</a>, <a href="#RJ">Rio de Janeiro</a>, <a href="#BSB">Brasília</a>, <a href="#REC">Recife</a>, <a href="#SAL">Salvador</a>, and <del>home</del> <a href="#MAO">Manaus</a>.</p>
+
+<p>Há algum tempo, eu encontrei este <a href="https://www.blog.cultureofinsight.com/2017/06/building-dot-density-maps-with-uk-census-data-in-r/">post</a>, mostrando como as etnias se distribuem em Londres. Achei muito interessante, já que ele revela padrões sobre como as comunidades se organizam e como a deseigualdade se expressa através da localização dos domicílios.</p>
+<p>Nossa tarefa de hoje é aplicar a mesma técnica no Brasil. Aqui está a nossa lista de cidades: <a href="#SP">São Paulo</a>, <a href="#RJ">Rio de Janeiro</a>, <a href="#BSB">Brasília</a>, <a href="#REC">Recife</a>, <a href="#SAL">Salvador</a>, e <del>minha terra natal</del> <a href="#MAO">Manaus</a>.</p>
 <div id="SP" class="section level2">
 <h2>São Paulo</h2>
 <p><img src="../../../img/ethnic_spplot_lowres.png" /></p>
@@ -310,7 +309,7 @@ Our task today is to apply the same procedure to large Brazilian cities. Here’
 </div>
 <div id="REC" class="section level2">
 <h2>Recife</h2>
-<p>In order to produce a nicer map, I added to the map other two municipalities of Recife’s metropolitan area: Jaboatão dos Guararapes and Olinda.
+<p>Para produzir um mapa mais interessante, adicionei outros dois municípiios da região metropolitana de Recife: Jaboatão dos Guararapes e Olinda.
 <img src="../../../img/ethnic_recplot_lowres.png" /></p>
 </div>
 <div id="SAL" class="section level2">
@@ -319,7 +318,7 @@ Our task today is to apply the same procedure to large Brazilian cities. Here’
 </div>
 <div id="MAO" class="section level2">
 <h2>Manaus</h2>
-<p>Since Manaus’ population is largely concentrated in the urban area, I decided to plot only those census tracts.
+<p>Como a população de Manaus se concentra na área urbana, resolvi exibir apenas os gráficos destes setores censitários.
 <img src="../../../img/ethnic_maoplot_lowres.png" /></p>
 </div>
 
@@ -334,11 +333,13 @@ Our task today is to apply the same procedure to large Brazilian cities. Here’
                   <div class="post-footer-tags">
                     <span class="text-color-light text-small">ETIQUETADO em</span><br/>
                     
-  <a class="tag tag--primary tag--small" href="https://guilhermejacob.github.io/tags/mapping/">Mapping</a>
+  <a class="tag tag--primary tag--small" href="https://guilhermejacob.github.io/tags/mapas/">Mapas</a>
 
-  <a class="tag tag--primary tag--small" href="https://guilhermejacob.github.io/tags/brazil/">Brazil</a>
+  <a class="tag tag--primary tag--small" href="https://guilhermejacob.github.io/tags/brasil/">Brasil</a>
 
-  <a class="tag tag--primary tag--small" href="https://guilhermejacob.github.io/tags/cities/">Cities</a>
+  <a class="tag tag--primary tag--small" href="https://guilhermejacob.github.io/tags/cidades/">Cidades</a>
+
+  <a class="tag tag--primary tag--small" href="https://guilhermejacob.github.io/tags/desigualdade/">Desigualdade</a>
 
                   </div>
                 
@@ -560,6 +561,25 @@ Our task today is to apply the same procedure to large Brazilian cities. Here’
           <div class="media">
             
             <div class="media-body">
+              <a class="link-unstyled" href="https://guilhermejacob.github.io/2019/12/meng2018/">
+                <h3 class="media-heading">Mentiras, mentiras cabeludas e &#34;big data&#34;</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Dec 12, 2019
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Eu queria fechar esse ano com um problema que andei lendo a respeito no passado recente: inferência descritiva com amostras não-probabilísticas. Alguns dos textos mais interessantes são Smith (1983), Meng (2014), Elliott e Valliant (2017) e Meng (2018). Vamos focar neste último. Ele tenta responder uma pergunta muito simples:1
+ O que é melhor: uma amostra probabilística de 5% da população ou uma amostra não-probabilística de 80% da população?
+ Esta pergunta é crucial e a resposta é importante para pensar sobre os cuidados no uso de registros administrativos e questionar o uso inadequado de big data.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
               <a class="link-unstyled" href="https://guilhermejacob.github.io/2019/12/superpopulacao/">
                 <h3 class="media-heading">Sopas, universos paralelos e modelos de superpopulação</h3>
               </a>
@@ -725,25 +745,6 @@ Ok, mas o que isso quer dizer? Aguardei ansiosamente1 para saber como as coisas 
               </span>
               <div class="media-content hide-xs font-merryweather">O assunto de hoje são os microdados do OBMigra. Mas, antes disso, vamos apresentar um pouco do contexto institucional.
 OBMigra O Observatório das migrações internacionais (OBMigra) é fruto de um convênio estabelecido entre o Ministério do Trabalho (MTb), Conselho Nacional de Imigração (CNIg) e Universidade de Brasília (UnB). Sua finalidade é ampliar o conhecimento a respeito dos fluxos migratórios internacionais no Brasil, através de estudos e análises empíricas, e fornecer subsídios para a formulação de estratégias de política pública.</div>
-            </div>
-            <div style="clear:both;"></div>
-            <hr>
-          </div>
-        
-          <div class="media">
-            
-            <div class="media-body">
-              <a class="link-unstyled" href="https://guilhermejacob.github.io/2017/11/rais-caged-r/">
-                <h3 class="media-heading">Analisando RAIS e CAGED com R</h3>
-              </a>
-              <span class="media-meta">
-                <span class="media-date text-small">
-                  Nov 11, 2017
-                </span>
-              </span>
-              <div class="media-content hide-xs font-merryweather">Dando sequência ao post anterior, vamos analisar outra base de dados. Ou outras bases de dados?
-Dessa vez, falaremos dos microdados do RAIS e CAGED. Vamos?
-Bases do Ministério do Trabalho O Ministério do Trabalho (MTb) permite que o usuário acesse os microdados de duas bases muito interessantes: RAIS e CAGED. Bom, além de serem mais dois elementos na “sopa de letrinhas” de microdados brasileiros, o que são exatamente esses dados?</div>
             </div>
             <div style="clear:both;"></div>
             <hr>

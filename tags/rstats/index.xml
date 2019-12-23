@@ -56,15 +56,5 @@ Ok, mas o que isso quer dizer? Aguardei ansiosamente1 para saber como as coisas 
 Vou tentar manter as complicações matemáticas fora da questão e focar na aplicação da técnica para entender o contexto da desigualdade educacional. Assim, pretendo trazer gente de outras áreas, como pedagogos e sociólogos, que podem se beneficiar de mais uma ferramenta para analisar o problema, além de contribuir com novas perspectivas para “aqueles que só pensam com números”1.</description>
     </item>
     
-    <item>
-      <title>Inequality, Poverty Mapping, Small Area Estimation, and Random Forests: Brazilian municipalities in 2010</title>
-      <link>https://guilhermejacob.github.io/2017/11/inequality-poverty-mapping-sae-random-forests-brazil-2010/</link>
-      <pubDate>Mon, 13 Nov 2017 00:00:00 +0000</pubDate>
-      
-      <guid>https://guilhermejacob.github.io/2017/11/inequality-poverty-mapping-sae-random-forests-brazil-2010/</guid>
-      <description>After a (somewhat long) break, I came back for a new post. Yey! This time, we’re not discussing educational stuff, but another big theme: inequality in Brazil. What happens when we combine 2010 Brazilian Census microdata, Small Area Estimation and Random Forests? Interesting, right?
-2010 Brazilian Census Well, it’s not really the 2010 Census, but the sample. Maybe this needs further explanation. Every ten years, IBGE1 conducts this enormous survey, collecting information about all Brazilian households.</description>
-    </item>
-    
   </channel>
 </rss>

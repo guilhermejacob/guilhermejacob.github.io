@@ -291,7 +291,7 @@ Censo da Educação Superior O Censo da Educação Superior é conduzido anualme
 <p>Encerrando<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> as análises usando bases de dados públicas, vamos focar no ensino superior.<br />
 Inicialmente, vamos explicar o que é o Censo da Educação Superior. Depois, vamos mostrar como montar as bases de dados. E, concluindo, vamos fazer um pequeno exercício de visualização de dados.</p>
 <p>Ah, e eu vou ser muito breve neste post, por motivos de: tenho que escrever um projeto de pesquisa (:</p>
-<div id="censo-da-educacao-superior" class="section level2">
+<div id="censo-da-educação-superior" class="section level2">
 <h2>Censo da Educação Superior</h2>
 <p>O <a href="http://portal.inep.gov.br/censo-da-educacao-superior">Censo da Educação Superior</a> é conduzido anualmente pelo <a href="http://portal.inep.gov.br/web/guest/sobre-o-inep">Inep</a>. Ele consiste, basicamente, em uma compilação de registros administrativos de todas as instituições de ensino superior (IES), informando sobre seus alunos, docentes, cursos ofertados, etc.
 Desde 2009, eles seguem <del>mais ou menos</del> a mesma estrutura, embora existam dados desde 1995.</p>
@@ -344,7 +344,7 @@ dbListTables( db )
 dbDisconnect( db , shutdown = TRUE )</code></pre>
 <p>E é isso! Só aguardar o processo encerrar e você terá uma base de dados em <a href="https://github.com/hannesmuehleisen/MonetDBLite-R">MonetDB</a>.</p>
 </div>
-<div id="uma-analise-com-treemaps" class="section level3">
+<div id="uma-análise-com-treemaps" class="section level3">
 <h3>Uma análise com treemaps</h3>
 <p>Bom, essa análise é bem superficial, mas vamos lá. A ideia aqui é tentar visualizar como se distribuem os sexos entre os cursos superiores, usando as classificações da OCDE. A cor vermelha implica mais mulheres e a cor azul, mais homens. Além disso, você pode ir clicando no gráfico, afinal ele é interativo (;</p>
 <p><img src="https://guilhermejacob.github.io/post/2017-12-11-analise-censo-superior_files/figure-html/interactive_treemap-1.png" width="480" /><div id="htmlwidget-1" style="width:1080px;height:1000px;" class="d3tree html-widget"></div>
@@ -621,6 +621,25 @@ Enfim, <em>bastante</em> coisa.</p>
           <div class="media">
             
             <div class="media-body">
+              <a class="link-unstyled" href="https://guilhermejacob.github.io/2019/12/meng2018/">
+                <h3 class="media-heading">Mentiras, mentiras cabeludas e &#34;big data&#34;</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Dec 12, 2019
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Eu queria fechar esse ano com um problema que andei lendo a respeito no passado recente: inferência descritiva com amostras não-probabilísticas. Alguns dos textos mais interessantes são Smith (1983), Meng (2014), Elliott e Valliant (2017) e Meng (2018). Vamos focar neste último. Ele tenta responder uma pergunta muito simples:1
+ O que é melhor: uma amostra probabilística de 5% da população ou uma amostra não-probabilística de 80% da população?
+ Esta pergunta é crucial e a resposta é importante para pensar sobre os cuidados no uso de registros administrativos e questionar o uso inadequado de big data.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
               <a class="link-unstyled" href="https://guilhermejacob.github.io/2019/12/superpopulacao/">
                 <h3 class="media-heading">Sopas, universos paralelos e modelos de superpopulação</h3>
               </a>
@@ -786,25 +805,6 @@ Ok, mas o que isso quer dizer? Aguardei ansiosamente1 para saber como as coisas 
               </span>
               <div class="media-content hide-xs font-merryweather">O assunto de hoje são os microdados do OBMigra. Mas, antes disso, vamos apresentar um pouco do contexto institucional.
 OBMigra O Observatório das migrações internacionais (OBMigra) é fruto de um convênio estabelecido entre o Ministério do Trabalho (MTb), Conselho Nacional de Imigração (CNIg) e Universidade de Brasília (UnB). Sua finalidade é ampliar o conhecimento a respeito dos fluxos migratórios internacionais no Brasil, através de estudos e análises empíricas, e fornecer subsídios para a formulação de estratégias de política pública.</div>
-            </div>
-            <div style="clear:both;"></div>
-            <hr>
-          </div>
-        
-          <div class="media">
-            
-            <div class="media-body">
-              <a class="link-unstyled" href="https://guilhermejacob.github.io/2017/11/rais-caged-r/">
-                <h3 class="media-heading">Analisando RAIS e CAGED com R</h3>
-              </a>
-              <span class="media-meta">
-                <span class="media-date text-small">
-                  Nov 11, 2017
-                </span>
-              </span>
-              <div class="media-content hide-xs font-merryweather">Dando sequência ao post anterior, vamos analisar outra base de dados. Ou outras bases de dados?
-Dessa vez, falaremos dos microdados do RAIS e CAGED. Vamos?
-Bases do Ministério do Trabalho O Ministério do Trabalho (MTb) permite que o usuário acesse os microdados de duas bases muito interessantes: RAIS e CAGED. Bom, além de serem mais dois elementos na “sopa de letrinhas” de microdados brasileiros, o que são exatamente esses dados?</div>
             </div>
             <div style="clear:both;"></div>
             <hr>

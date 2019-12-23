@@ -285,7 +285,7 @@ Vou tentar manter as complicações matemáticas fora da questão e focar na apl
 <p>O <em>Exame Nacional do Ensino Médio (ENEM)</em> é uma prova realizada anualmente pelo <em>Instituto Nacional de Estudos e Pesquisas Educacionais Anísio Teixeira (INEP)</em>, um órgão associado ao Ministério da Educação. A finalidade do ENEM é avaliar a qualidade do ensino médio e, <strong>desde 2009</strong>, tornou-se a principal forma de ingresso nas universidades públicas do Brasil. De fato, esse é o segundo maior vestibular do mundo, ficando atrás apenas do exame de admissão chinês.</p>
 <p>Embora a prova exista desde 1998, foi com o estabelecimento do SiSU que o número de examinados cresceu. Assim, o exame, antes composto majoritariamente por estudantes de escolas públicas, passou a ser amplamente utilizada pelos de escolas particulares. Essa mudança proporciona um experimento interessante sobre o desempenho dos estudantes do Brasil.</p>
 </div>
-<div id="desigualdade-e-educacao" class="section level2">
+<div id="desigualdade-e-educação" class="section level2">
 <h2>Desigualdade e educação</h2>
 
 <div class="alert info ">
@@ -299,7 +299,7 @@ Vou tentar manter as complicações matemáticas fora da questão e focar na apl
 <p>A própria percepção do diferencial de desempenho entre escolas públicas e particulares pode ser causar um viés na amostra. O aluno que pensa não ter chance no vestibular não tem muito incentivo para fazer a prova. Existe uma miríade de aspectos socioeconômicos que fazem com que esse comportamento ocorra.</p>
 <p>Com essas ressalvas em mente, prossigamos.</p>
 </div>
-<div id="algumas-estatisticas-sobre-o-enem-2015" class="section level2">
+<div id="algumas-estatísticas-sobre-o-enem-2015" class="section level2">
 <h2>Algumas estatísticas sobre o ENEM 2015</h2>
 <p>Para entender um pouco de como se distribuem resultados, vamos analisar quem são os 1000 melhores e os 1000 piores de acordo com o desempenho nas provas. No exercício a seguir, analisaremos apenas os dados dos alunos que:</p>
 <ul>
@@ -310,14 +310,14 @@ Vou tentar manter as complicações matemáticas fora da questão e focar na apl
 </ul>
 <p>Em outras palavras: estamos trabalhando com a <em>interseção</em> destes quatro conjuntos de examinados, <em>não a união</em>.</p>
 <pre><code>##           used (Mb) gc trigger (Mb) max used (Mb)
-## Ncells  673598 36.0    1281647 68.5  1281647 68.5
-## Vcells 1498582 11.5    8388608 64.0  2516818 19.3</code></pre>
+## Ncells  674577 36.1    1283922 68.6  1283922 68.6
+## Vcells 1500203 11.5    8388608 64.0  2518736 19.3</code></pre>
 <p>O gráfico  abaixo mostra como as notas dos extremos se distribuem. Enquanto os melhores desempenhos tendem a se concentrar mais entre domicílios mais ricos, os piores desempenhos se concentram ainda mais entre os domicílios mais pobres. Ou seja, é bem mais provável que uma “nota baixa” venha de um domicílio de baixa renda. O “monte” em vermelho entre os domicílios de catagoria “B” e “C” mostra isso. E a queda se comparado a categoria “A” se deve principalmente a raridade destes indivíduos, seja porque realmente existem poucos domicílios com nenhuma renda, seja porque as pessoas destes domicílios tendem a não fazer a prova.</p>
 <p><img src="https://guilhermejacob.github.io/post/2017-11-12-enem-e-desigualdade-na-educa%C3%A7%C3%A3o_files/figure-html/dist_extreme-1.png" width="672" /></p>
 <p>Ok, mas e as médias? A média da pontuação dos extremos é bem diferente, como de se esperar. De fato, a pontuação dos melhores é aproximadamente 2.7 vezes melhor que a dos piores. O gráfico  abaixo mostra esta discrepâncias.
 <img src="https://guilhermejacob.github.io/post/2017-11-12-enem-e-desigualdade-na-educa%C3%A7%C3%A3o_files/figure-html/avg_extreme-1.png" width="672" /></p>
 </div>
-<div id="como-medir-um-exercicio-de-decomposicao-por-subgrupos." class="section level2">
+<div id="como-medir-um-exercício-de-decomposição-por-subgrupos." class="section level2">
 <h2>Como medir: um exercício de decomposição por subgrupos.</h2>
 <p>Se você já leu alguma coisa sobre desigualdade, você deve ter visto estimativas do índice de Gini. Essa é, de longe, a medida de desigualdade mais conhecida. Mas também existem outras medidas bem interessantes. Uma medida recente é a J-divergência, proposta por <span class="citation">Rohde (2016)</span>. Ela tem uma vantagem sobre o índice de Gini: decomposição por subgrupos. I.e., a estimativa pode mostrar o quanto se deve a desigualdade entre grupos e intra-grupos.</p>
 <p>As duas medidas estão disponíveis no pacote <code>convey</code> <span class="citation">(Pessoa, Damico e Jacob, 2017a)</span>, incluindo a decomposição da J-divergência. Facilmente encontradas em <span class="citation">Pessoa, Damico e Jacob (2017b)</span>, as fórmulas dos indicadores são essas:</p>
@@ -330,7 +330,7 @@ J &amp;= \int_{0}^{\infty} \bigg( \frac{ y_i - \mu }{ \mu } \bigg) \log \bigg( \
 onde <span class="math inline">\(L(\cdot)\)</span> é a curva de Lorenz.</p>
 <p><del>Nota: talvez eu devesse parar com o marketing pessoal.</del></p>
 </div>
-<div id="na-pratica" class="section level2">
+<div id="na-prática" class="section level2">
 <h2>Na prática</h2>
 <p>Vamos usar os dados do ENEM 2015, disponíveis na <a href="http://portal.inep.gov.br/web/guest/microdados">página de microdados do INEP</a>. Depois de colocar os dados numa base MonetDB, vou criar um “pseudo-desenho amostral”. Por que “pseudo”? Porque a base não é uma amostra propriamente dita. Então, por que fazer isso? As funções do <code>convey</code> só funcionam sobre objetos de desenho amostral. Além disso, o <code>convey</code> funciona bem com bases de dados externas, usando apenas as informações necessárias para o cálculo.</p>
 <table>
@@ -377,7 +377,7 @@ onde <span class="math inline">\(L(\cdot)\)</span> é a curva de Lorenz.</p>
 <p>As primeiras coisas que percebemos ao olhar a tabela  são: (1) existe menos desigualdade nesta distribuição do que em distribuições de renda, e (2) o índice de Gini é maior que a J-divergência. A primeira observação decorre de um aspecto um tanto óbvio: as pontuações tem um limite superior, ao contrário das distribuições de renda. Em outras palavras, uma pessoa não pode ter mais do que 1 000 pontos, embora sua renda pode extrapolar esse limite. O segundo aspecto também é interessante: o índice de Gini é mais sensível às desigualdades próximas da média, enquanto a J-divergência tende a ser mais sensível às desigualdades nas caudas. Consequentemente, podemos supor que a maior parte da desigualdade está no meio da distribuição.</p>
 <p>É normal que a diferença entre categorias apresente um valor menor que a desigualdade dentro das categorias, mesmo para renda. Dito isso, a decomposição da J-divergência, na tabela  abaixo, mostra alguns padrões interessantes. <del>Apesar de todo retrocesso recente,</del> A desigualdade no desempenho entre os gêneros<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a> praticamente não se deve a este aspecto. A decomposição captou impactos das diferenças entre cor/raça, embora esses sejam menores que os impactos decorrentes do tipo de escola<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a> ou da renda. No caso da renda, 30% da desigualdade pode ser atribuída à desigualdade entre as classes.</p>
 <table>
-<caption><span id="tab:tabela2">Table 1: </span>Decomposição da J-divergência - Brasil, 2015</caption>
+<caption><span id="tab:tabela2">Tabela 1: </span>Decomposição da J-divergência - Brasil, 2015</caption>
 <thead>
 <tr class="header">
 <th></th>
@@ -420,7 +420,7 @@ onde <span class="math inline">\(L(\cdot)\)</span> é a curva de Lorenz.</p>
 <p><em>Peut être.</em></p>
 </div>
 </div>
-<div id="referencias" class="section level2 unnumbered">
+<div id="referências" class="section level2 unnumbered">
 <h2>Referências</h2>
 <div id="refs" class="references">
 <div id="ref-cowell2017">
@@ -478,7 +478,7 @@ onde <span class="math inline">\(L(\cdot)\)</span> é a curva de Lorenz.</p>
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://guilhermejacob.github.io/2017/11/ethnic-composition-brazilian-cities/" data-tooltip="Ethnic composition of major Brazilian cities using Dot Density Maps">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://guilhermejacob.github.io/2017/11/ethnic-composition-brazilian-cities/" data-tooltip="Composição de cor/raça de algumas cidades brasileiras usando mapas de densidades de pontos">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">PRÓXIMO</span>
@@ -486,7 +486,7 @@ onde <span class="math inline">\(L(\cdot)\)</span> é a curva de Lorenz.</p>
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://guilhermejacob.github.io/2017/11/inequality-poverty-mapping-sae-random-forests-brazil-2010/" data-tooltip="Inequality, Poverty Mapping, Small Area Estimation, and Random Forests: Brazilian municipalities in 2010">
+                <a class="post-action-btn btn btn--disabled">
               
                   <span class="hide-xs hide-sm text-small icon-mr">ANTERIOR</span>
                   <i class="fa fa-angle-right"></i>
@@ -558,7 +558,7 @@ onde <span class="math inline">\(L(\cdot)\)</span> é a curva de Lorenz.</p>
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://guilhermejacob.github.io/2017/11/ethnic-composition-brazilian-cities/" data-tooltip="Ethnic composition of major Brazilian cities using Dot Density Maps">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://guilhermejacob.github.io/2017/11/ethnic-composition-brazilian-cities/" data-tooltip="Composição de cor/raça de algumas cidades brasileiras usando mapas de densidades de pontos">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">PRÓXIMO</span>
@@ -566,7 +566,7 @@ onde <span class="math inline">\(L(\cdot)\)</span> é a curva de Lorenz.</p>
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://guilhermejacob.github.io/2017/11/inequality-poverty-mapping-sae-random-forests-brazil-2010/" data-tooltip="Inequality, Poverty Mapping, Small Area Estimation, and Random Forests: Brazilian municipalities in 2010">
+                <a class="post-action-btn btn btn--disabled">
               
                   <span class="hide-xs hide-sm text-small icon-mr">ANTERIOR</span>
                   <i class="fa fa-angle-right"></i>
@@ -683,6 +683,25 @@ onde <span class="math inline">\(L(\cdot)\)</span> é a curva de Lorenz.</p>
       <div class="no-result text-color-light text-center"></div>
       <div class="results">
         
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://guilhermejacob.github.io/2019/12/meng2018/">
+                <h3 class="media-heading">Mentiras, mentiras cabeludas e &#34;big data&#34;</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Dec 12, 2019
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Eu queria fechar esse ano com um problema que andei lendo a respeito no passado recente: inferência descritiva com amostras não-probabilísticas. Alguns dos textos mais interessantes são Smith (1983), Meng (2014), Elliott e Valliant (2017) e Meng (2018). Vamos focar neste último. Ele tenta responder uma pergunta muito simples:1
+ O que é melhor: uma amostra probabilística de 5% da população ou uma amostra não-probabilística de 80% da população?
+ Esta pergunta é crucial e a resposta é importante para pensar sobre os cuidados no uso de registros administrativos e questionar o uso inadequado de big data.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
         
           <div class="media">
             
@@ -852,25 +871,6 @@ Ok, mas o que isso quer dizer? Aguardei ansiosamente1 para saber como as coisas 
               </span>
               <div class="media-content hide-xs font-merryweather">O assunto de hoje são os microdados do OBMigra. Mas, antes disso, vamos apresentar um pouco do contexto institucional.
 OBMigra O Observatório das migrações internacionais (OBMigra) é fruto de um convênio estabelecido entre o Ministério do Trabalho (MTb), Conselho Nacional de Imigração (CNIg) e Universidade de Brasília (UnB). Sua finalidade é ampliar o conhecimento a respeito dos fluxos migratórios internacionais no Brasil, através de estudos e análises empíricas, e fornecer subsídios para a formulação de estratégias de política pública.</div>
-            </div>
-            <div style="clear:both;"></div>
-            <hr>
-          </div>
-        
-          <div class="media">
-            
-            <div class="media-body">
-              <a class="link-unstyled" href="https://guilhermejacob.github.io/2017/11/rais-caged-r/">
-                <h3 class="media-heading">Analisando RAIS e CAGED com R</h3>
-              </a>
-              <span class="media-meta">
-                <span class="media-date text-small">
-                  Nov 11, 2017
-                </span>
-              </span>
-              <div class="media-content hide-xs font-merryweather">Dando sequência ao post anterior, vamos analisar outra base de dados. Ou outras bases de dados?
-Dessa vez, falaremos dos microdados do RAIS e CAGED. Vamos?
-Bases do Ministério do Trabalho O Ministério do Trabalho (MTb) permite que o usuário acesse os microdados de duas bases muito interessantes: RAIS e CAGED. Bom, além de serem mais dois elementos na “sopa de letrinhas” de microdados brasileiros, o que são exatamente esses dados?</div>
             </div>
             <div style="clear:both;"></div>
             <hr>
