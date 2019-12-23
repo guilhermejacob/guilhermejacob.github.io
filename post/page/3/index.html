@@ -1,9 +1,5 @@
 
 
-  
-    
-  
-
 
   
 
@@ -20,26 +16,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="Hugo 0.47 with theme Tranquilpeak 0.4.3-BETA">
-    <title>Por que é tão difícil calcular variância com amostras complexas?</title>
+    <title>Posts</title>
     <meta name="author" content="Guilherme Jacob">
     <meta name="keywords" content="">
 
     <link rel="icon" href="https://guilhermejacob.github.io/favicon.png">
     
+      <link rel="alternate" type="application/rss+xml" title="RSS" href="https://guilhermejacob.github.io/post/index.xml">
+    
 
     
-    <meta name="description" content="Já faz algum tempo que passei por essa situação mas acho que vale a pena pensar a respeito.
-Em um fórum de R, uma pessoa pergunta onde está a função pra calcular um determinado número com a PNAD. Eu vou dou uma olhada e vejo que, de fato, a função não existe. Explico para a pessoa que a função não existe porque ninguém escreveu ainda. E me responde: alguém pode fazer isso aí rapidinho?">
-    <meta property="og:description" content="Já faz algum tempo que passei por essa situação mas acho que vale a pena pensar a respeito.
-Em um fórum de R, uma pessoa pergunta onde está a função pra calcular um determinado número com a PNAD. Eu vou dou uma olhada e vejo que, de fato, a função não existe. Explico para a pessoa que a função não existe porque ninguém escreveu ainda. E me responde: alguém pode fazer isso aí rapidinho?">
+    <meta name="description" content="Contains trace amounts of mathematics, rants, and terrible jokes.">
+    <meta property="og:description" content="Contains trace amounts of mathematics, rants, and terrible jokes.">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="Por que é tão difícil calcular variância com amostras complexas?">
-    <meta property="og:url" content="/2019/12/varianca-adac/">
+    <meta property="og:title" content="Posts">
+    <meta property="og:url" content="/post/">
     <meta property="og:site_name" content="Something Random">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Something Random">
-    <meta name="twitter:description" content="Já faz algum tempo que passei por essa situação mas acho que vale a pena pensar a respeito.
-Em um fórum de R, uma pessoa pergunta onde está a função pra calcular um determinado número com a PNAD. Eu vou dou uma olhada e vejo que, de fato, a função não existe. Explico para a pessoa que a função não existe porque ninguém escreveu ainda. E me responde: alguém pode fazer isso aí rapidinho?">
+    <meta name="twitter:description" content="Contains trace amounts of mathematics, rants, and terrible jokes.">
     
     
 
@@ -74,7 +69,7 @@ Em um fórum de R, uma pessoa pergunta onde está a função pra calcular um det
 
   <body>
     <div id="blog">
-      <header id="header" data-behavior="4">
+      <header id="header" data-behavior="1">
   <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
   <div class="header-title">
     <a class="header-title-link" href="https://guilhermejacob.github.io/">Something Random</a>
@@ -94,7 +89,7 @@ Em um fórum de R, uma pessoa pergunta onde está a função pra calcular um det
   
 </header>
 
-      <nav id="sidebar" data-behavior="4">
+      <nav id="sidebar" data-behavior="1">
   <div class="sidebar-container">
     
       <div class="sidebar-profile">
@@ -234,29 +229,44 @@ Em um fórum de R, uma pessoa pergunta onde está a função pra calcular um det
 
       
 
-      <div id="main" data-behavior="4"
+      <div id="main" data-behavior="1"
         class="
                hasCoverMetaIn
                ">
-        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+        <section class="postShorten-group main-content-wrap">
           
           
-            <div class="post-header main-content-wrap text-left">
+            
   
-    <h1 class="post-title" itemprop="headline">
-      Por que é tão difícil calcular variância com amostras complexas?
-    </h1>
+    
+      
+        
+      
+    
   
+
+
   
+
+<article class="postShorten postShorten--thumbnailimg-bottom" itemscope itemType="http://schema.org/BlogPosting">
+  <div class="postShorten-wrap">
+    
+    <div class="postShorten-header">
+      <h1 class="postShorten-title" itemprop="headline">
+        <a class="link-unstyled" href="https://guilhermejacob.github.io/2017/11/enem-desigualdade-educa%C3%A7%C3%A3o/">
+          ENEM e desigualdade na educação: uma análise dos dados de 2015
+        </a>
+      </h1>
+      
   <div class="postShorten-meta post-meta">
     
-      <time itemprop="datePublished" datetime="2019-12-20T00:00:00Z">
+      <time itemprop="datePublished" datetime="2017-11-15T00:00:00Z">
         
   
   
   
   
-    20/12/2019
+    15/11/2017
   
 
       </time>
@@ -266,203 +276,46 @@ Em um fórum de R, uma pessoa pergunta onde está a função pra calcular um det
   
     <span>em</span>
     
-      <a class="category-link" href="https://guilhermejacob.github.io/categories/teoria">Teoria</a>, 
-    
-      <a class="category-link" href="https://guilhermejacob.github.io/categories/amostragem">Amostragem</a>
+      <a class="category-link" href="https://guilhermejacob.github.io/categories/registros-administrativos">Registros administrativos</a>
     
   
 
   </div>
 
-</div>
-          
-          <div class="post-content markdown" itemprop="articleBody">
-            <div class="main-content-wrap">
-              <p>Já faz algum tempo que passei por essa situação mas acho que vale a pena pensar a respeito.</p>
-<p>Em um fórum de R, uma pessoa pergunta onde está a função pra calcular um determinado número com a PNAD.
-Eu vou dou uma olhada e vejo que, de fato, a função não existe. Explico para a pessoa que a função não existe porque ninguém escreveu ainda.
-E me responde: alguém pode fazer isso aí rapidinho? Eu digo que é bastante difícil e que eu não consigo fazer agora ~por incrível que pareça, eu tenho mais o que fazer da minha vida~. Nisso, a pessoa responde:</p>
-<blockquote>
-<p>Ah, não é possível que não dê pra calcular isso com amostra complexa!</p>
-</blockquote>
-<p>Eu parei de interagir nesse momento. Acho que não consigo explicar em um parágrafo os problemas de estimação com amostras complexas, como é a PNAD.
-No entanto, como estou ~mais ou menos~ de férias, vou tentar mostrar alguns detalhes.</p>
-<p>Vejamos.</p>
-<div id="estimação-de-um-total-com-amostra-aleatória-simples-com-reposição-aasc" class="section level2">
-<h2>Estimação de um total com amostra aleatória simples com reposição (AASc)</h2>
-<p>Vamos para a quantidade mais simples do plano amostral mais simplificado: o total de uma variável com AASc. Para estimar um total populacional <span class="math inline">\(Y\)</span>, usaremos este estimador:</p>
-<p><span class="math display">\[
-\hat{Y} = N \bar{y}.
-\]</span>
-A ideia é bastante simples: como eu sei o tamanho da população, se eu multiplicar esse total pela estimativa não-viesada da média, eu vou ter um estimador não-viesado do total. Nenhuma complicação até aqui, certo?</p>
-<p>A variância deste total, por sua vez, pode ser escrita como</p>
-<p><span class="math display">\[
-\widehat{Var} \big( \hat{Y} \big) = N^2 \cfrac{s^2}{n},
-\]</span></p>
-<p>sendo <span class="math inline">\(\cfrac{s^2}{n}\)</span> a estimativa da variância da média, a fórmula padrão que você encontra em qualquer livro de estatística.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a></p>
-</div>
-<div id="estimação-de-um-total-com-amostra-estratificada-aes" class="section level2">
-<h2>Estimação de um total com amostra estratificada (AES)</h2>
-<p>Vamos complicar um pouco mais as coisas. Divida a população em <span class="math inline">\(H\)</span> partições. Fazemos, então, uma AASc em cada partição <span class="math inline">\(h\)</span> da população. Essas partições da amostra são chamados <em>estratos</em> e dizemos que nossa amostra é <em>estratificada</em>. Neste caso, o estimador do total da população é dado por:</p>
-<p><span class="math display">\[
-\hat{Y} = \sum_{ h \in H} N_h \bar{y}_h.
-\]</span>
-Ou seja: o total da população é a soma do total de cada estrato <span class="math inline">\(h\)</span>. O respectivo estimador da variância é dado por</p>
-<p><span class="math display">\[
-\widehat{Var} \big( \hat{Y} \big) = \sum_H N_h^2 \cfrac{s_h^2}{n_h},
-\]</span>
-i.e., a soma das variâncias AASc de cada estrato.</p>
-<p>Já é um pouco mais complicado. No entanto, quando os estratos são definidos com critérios adequados, as estimativas das variâncias se tornam mais precisas.</p>
-<p>Vamos ver outra possibilidade.</p>
-</div>
-<div id="estimação-de-um-total-com-amostra-por-conglomerados-ac" class="section level2">
-<h2>Estimação de um total com amostra por conglomerados (AC)</h2>
-<p>Imagine que você precisa fazer uma pesquisa na sua cidade. Imagine que o seu orçamento é limitado e você não pode gastar muito com a logística da pesquisa. Se você fizer uma AAS, pode ser que você tenha que entrevistar domicílios em todos os bairros; imagina o quanto vai custar levar os entrevistadores por todos os bairros… Uma solução para isso é fazer uma amostra da seguinte maneira: sorteamos bairros e entrevistamos os domicílios destes bairros. Isso é o que se chama de amostra por conglomerado com um estágio de conglomeração. Vamos supor que essas amostras são aleatórias simples com reposição.</p>
-<p>Suponha que, ainda assim, temos um número muito grande de domicílios para entrevistar e resolvemos sortear domicílios dentro dos bairros selecionados. Temos uma amostra por conglomerados em dois estágios: bairros e domicílios.</p>
-<p>Então, sorteamos <span class="math inline">\(n\)</span> dos <span class="math inline">\(N\)</span> bairros. Dentro do <span class="math inline">\(i\)</span>-ésimo bairro, sorteamos <span class="math inline">\(m_i\)</span> dos <span class="math inline">\(M_i\)</span> domicílios; denotamos o conjunto de domicílios na amostra do <span class="math inline">\(i\)</span>-ésimo bairro por <span class="math inline">\(S_i\)</span>. Temos, então, o seguinte estimador do total:</p>
-<p><span class="math display">\[
-\hat{Y} = \cfrac{N}{n} \sum_{j \in S_i} M_i \bar{y}_{i} ,
-\]</span>
-com <span class="math inline">\(\bar{y}_i\)</span> sendo a média de <span class="math inline">\(y\)</span> dos domicílios do <span class="math inline">\(i\)</span>-ésimo bairro.</p>
-<p>A variância, por sua vez, é dada por:</p>
-<p><span class="math display">\[
-\widehat{Var} \big( \hat{Y} \big) = N^2 \bigg( 1 - \cfrac{n}{N} \bigg) \cfrac{S^2_t}{n} ,
-\]</span>
-onde <span class="math inline">\(S^2_t = \frac{1}{N-1} \sum_{i \in N} ( Y_i - Y / N )\)</span> é a variância populacional dos totais dos bairros, com <span class="math inline">\(\widehat{Y}\)</span> sendo o total de <span class="math inline">\(y\)</span> no <span class="math inline">\(i\)</span>-ésimo bairro e <span class="math inline">\(Y\)</span> o total na população.</p>
-</div>
-<div id="amostras-por-conglomerados-com-probabilidades-desiguais-de-seleção" class="section level2">
-<h2>Amostras por conglomerados com probabilidades desiguais de seleção</h2>
-<p>Ainda usando o nosso exemplo anterior, temos o seguinte problema: um bairro com 10 domicílios teria a mesma probabilidade de ser escolhido que outro bairro com 1.000 domicílios. Isso não parece bom. Queremos que um bairro com maior número de domicílios sejam selecionados com maior probabilidade. Vamos supor que façamos uma amostra com probabilidades proporcionais ao tamanho. Temos, então, probabilidades desiguais de seleção.</p>
-<p>A probabilidade do domicílio <span class="math inline">\(j\)</span> no bairro <span class="math inline">\(i\)</span> ser selecionado é dada por <span class="math inline">\(\pi_{ij} = \pi_{j | i}\pi_{i}\)</span>. Ou seja: é o produto das probabilidades de seleção. Depois de sortearmos bairros com probabilidade proporcional ao tamanho e domicílios por amostra aleatória simples, precisamos recorrer ao estimador Horvitz-Thompson do total <span class="citation">(Horvitz e Thompson, 1952)</span>:</p>
-<p><span class="math display">\[
-\hat{Y}_{HT} = \sum_{j \in S} \sum_{ i \in S_i } \cfrac{ y_{ij} }{ \pi_{ij}},
-\]</span>
-onde <span class="math inline">\(S\)</span> é a amostra de bairros.</p>
-<p>Neste caso, o estimador da variância do estimador de Horvitz-Thompson do total é dado por:</p>
-<p><span class="math display">\[
-\widehat{Var}_{HT} \big( \hat{Y}_{HT} \big) = \sum_{ i \in S } ( 1 - \pi_i ) \cfrac{\widehat{Y}^2 }{\pi_i^2} +
-                    \sum_{ i \in S } \sum_{ k \in S ; k \neq i } \cfrac{ \pi_{ik} - \pi_i \pi_k }{ \pi_{ik} } \cfrac{ \widehat{Y}_i }{ \pi_i } \cfrac{ \widehat{Y}_k }{ \pi_k } +
-                    \sum_{ i \in S } \cfrac{ \widehat{Var} \big( \widehat{Y}_i \big) }{ \pi_i }.
-\]</span></p>
-<p>Eu não sei você, mas eu não acho essa fórmula nada trivial.</p>
-</div>
-<div id="conclusão" class="section level1">
-<h1>Conclusão</h1>
-<p>No caso da PNAD, como explicam <span class="citation">Silva, Pessoa e Lila (2002)</span>, o plano amostral possui estratificação e 1 a 3 estágios de conglomeração, dependendo do estrato, além de probabilidades proporcionais ao tamanho. Ou seja: é uma combinação das fórmulas que vimos acima. E isso é o caso do total. Não estamos falando de índice de Gini, quantis, etc., que são medidas mais complexas. Sobre amostragem, as sugestões são: o clássico <span class="citation">Cochran (1977)</span>, o livro que mais me fez chorar desde “O Menino do Pijama Listrado”; <span class="citation">Lohr (2010)</span>, que é mais fácil de achar e possui exemplos interessantes; e, principalmente, <span class="citation">Pessoa e Silva (2018)</span>, porque: (a) é escrito por quem entende muito do assunto, (b) é escrito em português, (c) possui exemplos usando o R, e (d) está disponível na internet!</p>
-<p>Finalmente, eu queria comentar duas coisas. A primeira é que algumas coisas podem não ser tão fáceis quanto parecem; se você acha isso fácil, você (provavelmente) não estudou o suficiente ou está fazendo algo errado. E a outra coisa é que, nesse mundo de terraplanismo e pós-verdade, o trabalho do IBGE é <em>essencial</em> e eles <em>não estão de brincadeira</em>: existe um volume enorme de conhecimento teórico e prático sobre o Brasil que vem sofrendo ataques diários por parte de campanhas de desinformação.</p>
-</div>
-<div id="referências" class="section level1 unnumbered">
-<h1>Referências</h1>
-<div id="refs" class="references">
-<div id="ref-cochran1977">
-<p>COCHRAN, W. G. <strong>Sampling Techniques</strong>. 3rd. ed. New York: John Wiley &amp; Sons, 1977. p. 428</p>
-</div>
-<div id="ref-ht1952">
-<p>HORVITZ, D. G.; THOMPSON, D. J. A Generalization of Sampling Without Replacement From a Finite Universe. <strong>Journal of the American Statistical Association</strong>, v. 47, n. 260, p. 663–685, 1952. </p>
-</div>
-<div id="ref-lohr2010">
-<p>LOHR, S. <strong>Sampling Design and Analysis</strong>. 2nd. ed. Boston: Brooks/Cole, 2010. p. 596</p>
-</div>
-<div id="ref-silva2018">
-<p>PESSOA, D. G. C.; SILVA, P. L. N. <strong>Análise de Dados Amostrais Complexos</strong>, maio 2018. Disponível em: &lt;<a href="https://djalmapessoa.github.io/adac/bookdown-adac.pdf">https://djalmapessoa.github.io/adac/bookdown-adac.pdf</a>&gt;</p>
-</div>
-<div id="ref-silva2002">
-<p>SILVA, P. L. N.; PESSOA, D. G. C.; LILA, M. F. Análise estatística de dados da PNAD: incorporando a estrutura do plano amostral. <strong>Ciência &amp; Saúde Coletiva</strong>, v. 7, p. 659–670, 2002. </p>
-</div>
-</div>
-</div>
-<div class="footnotes">
-<hr />
-<ol>
-<li id="fn1"><p>A fórmula para a amostra aleatória simples sem reposição (AASs) é um pouco mais complicada e, quando a amostra é suficientemente grande, ela converge para a AASc.<a href="#fnref1" class="footnote-back">↩</a></p></li>
-</ol>
-</div>
+    </div>
+    <div class="postShorten-excerpt" itemprop="articleBody">
+      Há alguns dias atrás, rolou o ENEM desse ano. E daí veio a ideia para este post: analisar a desigualdade na educação entre os jovens do Ensino Médio a partir das pontuações dos candidatos. Usando R, como sempre.
+Vou tentar manter as complicações matemáticas fora da questão e focar na aplicação da técnica para entender o contexto da desigualdade educacional. Assim, pretendo trazer gente de outras áreas, como pedagogos e sociólogos, que podem se beneficiar de mais uma ferramenta para analisar o problema, além de contribuir com novas perspectivas para “aqueles que só pensam com números”1.
+      <p>
+        <a href="https://guilhermejacob.github.io/2017/11/enem-desigualdade-educa%C3%A7%C3%A3o/" class="postShorten-excerpt_link link">Continuar leitura</a>
+        
+      </p>
+    </div>
+  </div>
+  
+</article>
 
-              
-            </div>
-          </div>
-          <div id="post-footer" class="post-footer main-content-wrap">
-            
-              
-                
-                
-                  <div class="post-footer-tags">
-                    <span class="text-color-light text-small">ETIQUETADO em</span><br/>
-                    
-  <a class="tag tag--primary tag--small" href="https://guilhermejacob.github.io/tags/vari%C3%A2ncia/">Variância</a>
-
-                  </div>
-                
-              
-            
-            
-  <div class="post-actions-wrap">
-      <nav >
-        <ul class="post-actions post-action-nav">
           
-            <li class="post-action">
-              
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://guilhermejacob.github.io/2019/12/superpopulacao/" data-tooltip="Sopas, universos paralelos e modelos de superpopulação">
-              
-                  <i class="fa fa-angle-left"></i>
-                  <span class="hide-xs hide-sm text-small icon-ml">PRÓXIMO</span>
-                </a>
-            </li>
-            <li class="post-action">
-              
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://guilhermejacob.github.io/2019/08/desigualdade-pobreza-log/" data-tooltip="Desigualdade ou pobreza?">
-              
-                  <span class="hide-xs hide-sm text-small icon-mr">ANTERIOR</span>
-                  <i class="fa fa-angle-right"></i>
-                </a>
-            </li>
           
-        </ul>
-      </nav>
-    <ul class="post-actions post-action-share" >
+  <div class="pagination-bar">
+    <ul class="pagination">
       
-        <li class="post-action hide-lg hide-md hide-sm">
-          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
-            <i class="fa fa-share-alt"></i>
-          </a>
-        </li>
         
-          <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://guilhermejacob.github.io/2019/12/varianca-adac/">
-              <i class="fa fa-facebook-official"></i>
+          <li class="pagination-prev">
+            <a class="btn btn--default btn--small" href="https://guilhermejacob.github.io/post/page/2/">
+              <i class="fa fa-angle-left text-base icon-mr"></i>
+              <span>POSTS MAIS NOVOS</span>
             </a>
           </li>
         
-          <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://guilhermejacob.github.io/2019/12/varianca-adac/">
-              <i class="fa fa-twitter"></i>
-            </a>
-          </li>
-        
-          <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://guilhermejacob.github.io/2019/12/varianca-adac/">
-              <i class="fa fa-google-plus"></i>
-            </a>
-          </li>
         
       
-      
-      <li class="post-action">
-        
-          <a class="post-action-btn btn btn--default" href="#">
-        
-          <i class="fa fa-list"></i>
-        </a>
-      </li>
+      <li class="pagination-number">página 3 de 3</li>
     </ul>
   </div>
 
 
-            
-              
-            
-          </div>
-        </article>
+        </section>
         <script src="//yihui.name/js/math-code.js"></script>
 <script async
     src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
@@ -474,96 +327,6 @@ onde <span class="math inline">\(S\)</span> é a amostra de bairros.</p>
 </footer>
 
       </div>
-      <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
-        
-  <div class="post-actions-wrap">
-      <nav >
-        <ul class="post-actions post-action-nav">
-          
-            <li class="post-action">
-              
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://guilhermejacob.github.io/2019/12/superpopulacao/" data-tooltip="Sopas, universos paralelos e modelos de superpopulação">
-              
-                  <i class="fa fa-angle-left"></i>
-                  <span class="hide-xs hide-sm text-small icon-ml">PRÓXIMO</span>
-                </a>
-            </li>
-            <li class="post-action">
-              
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://guilhermejacob.github.io/2019/08/desigualdade-pobreza-log/" data-tooltip="Desigualdade ou pobreza?">
-              
-                  <span class="hide-xs hide-sm text-small icon-mr">ANTERIOR</span>
-                  <i class="fa fa-angle-right"></i>
-                </a>
-            </li>
-          
-        </ul>
-      </nav>
-    <ul class="post-actions post-action-share" >
-      
-        <li class="post-action hide-lg hide-md hide-sm">
-          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
-            <i class="fa fa-share-alt"></i>
-          </a>
-        </li>
-        
-          <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://guilhermejacob.github.io/2019/12/varianca-adac/">
-              <i class="fa fa-facebook-official"></i>
-            </a>
-          </li>
-        
-          <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://guilhermejacob.github.io/2019/12/varianca-adac/">
-              <i class="fa fa-twitter"></i>
-            </a>
-          </li>
-        
-          <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://guilhermejacob.github.io/2019/12/varianca-adac/">
-              <i class="fa fa-google-plus"></i>
-            </a>
-          </li>
-        
-      
-      
-      <li class="post-action">
-        
-          <a class="post-action-btn btn btn--default" href="#">
-        
-          <i class="fa fa-list"></i>
-        </a>
-      </li>
-    </ul>
-  </div>
-
-
-      </div>
-      <div id="share-options-bar" class="share-options-bar" data-behavior="4">
-  <i id="btn-close-shareoptions" class="fa fa-close"></i>
-  <ul class="share-options">
-    
-      <li class="share-option">
-        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fguilhermejacob.github.io%2F2019%2F12%2Fvarianca-adac%2F">
-          <i class="fa fa-facebook-official"></i><span>Compartilhar no Facebook</span>
-        </a>
-      </li>
-    
-      <li class="share-option">
-        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Fguilhermejacob.github.io%2F2019%2F12%2Fvarianca-adac%2F">
-          <i class="fa fa-twitter"></i><span>Compartilhar no Twitter</span>
-        </a>
-      </li>
-    
-      <li class="share-option">
-        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https%3A%2F%2Fguilhermejacob.github.io%2F2019%2F12%2Fvarianca-adac%2F">
-          <i class="fa fa-google-plus"></i><span>Compartilhar no Google&#43;</span>
-        </a>
-      </li>
-    
-  </ul>
-</div>
-<div id="share-options-mask" class="share-options-mask"></div>
     </div>
     
     <div id="about">
@@ -829,10 +592,6 @@ OBMigra O Observatório das migrações internacionais (OBMigra) é fruto de um 
 
 
 
-
-  
-    
-  
 
 
 
