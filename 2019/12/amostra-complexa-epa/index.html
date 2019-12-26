@@ -1,5 +1,9 @@
 
 
+  
+    
+  
+
 
   
 
@@ -16,25 +20,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="Hugo 0.47 with theme Tranquilpeak 0.4.3-BETA">
-    <title>Direitos Reprodutivos</title>
+    <title>Por que calcular variâncias de estimativas?</title>
     <meta name="author" content="Guilherme Jacob">
-    <meta name="keywords" content="">
+    <meta name="keywords" content="amostragem">
 
     <link rel="icon" href="https://guilhermejacob.github.io/favicon.png">
     
-      <link rel="alternate" type="application/rss+xml" title="RSS" href="https://guilhermejacob.github.io/tags/direitos-reprodutivos/index.xml">
-    
 
     
-    <meta name="description" content="Contains trace amounts of mathematics, rants, and terrible jokes.">
-    <meta property="og:description" content="Contains trace amounts of mathematics, rants, and terrible jokes.">
+    <meta name="description" content="Eu ai encerrar com o último texto, mas lembrei de outra coisa. Durante o mestrado, quando alguns colegas trabalhavam com a PNADC, eu sempre comentava que era importante levar o plano amostral em consideração. Diante disso, eles levaram o peso amostral em consideração. No entanto, o plano amostral é mais do que os pesos amostrais!
+Usar os pesos amostrais faz com que suas estimativas não sejam viesadas. Mas, se o plano amostral não for ignorável, as variâncias estarão incorretas.">
+    <meta property="og:description" content="Eu ai encerrar com o último texto, mas lembrei de outra coisa. Durante o mestrado, quando alguns colegas trabalhavam com a PNADC, eu sempre comentava que era importante levar o plano amostral em consideração. Diante disso, eles levaram o peso amostral em consideração. No entanto, o plano amostral é mais do que os pesos amostrais!
+Usar os pesos amostrais faz com que suas estimativas não sejam viesadas. Mas, se o plano amostral não for ignorável, as variâncias estarão incorretas.">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="Direitos Reprodutivos">
-    <meta property="og:url" content="/tags/direitos-reprodutivos/">
+    <meta property="og:title" content="Por que calcular variâncias de estimativas?">
+    <meta property="og:url" content="/2019/12/amostra-complexa-epa/">
     <meta property="og:site_name" content="Something Random">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Something Random">
-    <meta name="twitter:description" content="Contains trace amounts of mathematics, rants, and terrible jokes.">
+    <meta name="twitter:description" content="Eu ai encerrar com o último texto, mas lembrei de outra coisa. Durante o mestrado, quando alguns colegas trabalhavam com a PNADC, eu sempre comentava que era importante levar o plano amostral em consideração. Diante disso, eles levaram o peso amostral em consideração. No entanto, o plano amostral é mais do que os pesos amostrais!
+Usar os pesos amostrais faz com que suas estimativas não sejam viesadas. Mas, se o plano amostral não for ignorável, as variâncias estarão incorretas.">
     
     
 
@@ -69,7 +74,7 @@
 
   <body>
     <div id="blog">
-      <header id="header" data-behavior="1">
+      <header id="header" data-behavior="4">
   <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
   <div class="header-title">
     <a class="header-title-link" href="https://guilhermejacob.github.io/">Something Random</a>
@@ -89,7 +94,7 @@
   
 </header>
 
-      <nav id="sidebar" data-behavior="1">
+      <nav id="sidebar" data-behavior="4">
   <div class="sidebar-container">
     
       <div class="sidebar-profile">
@@ -228,48 +233,30 @@
 </nav>
 
       
-        
 
-      
-      <div id="main" data-behavior="1"
+      <div id="main" data-behavior="4"
         class="
                hasCoverMetaIn
                ">
-        
-          <section class="postShorten-group main-content-wrap">
-            
-            
-              
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+            <div class="post-header main-content-wrap text-left">
   
-    
-      
-        
-      
-    
+    <h1 class="post-title" itemprop="headline">
+      Por que calcular variâncias de estimativas?
+    </h1>
   
-
-
   
-
-<article class="postShorten postShorten--thumbnailimg-bottom" itemscope itemType="http://schema.org/BlogPosting">
-  <div class="postShorten-wrap">
-    
-    <div class="postShorten-header">
-      <h1 class="postShorten-title" itemprop="headline">
-        <a class="link-unstyled" href="https://guilhermejacob.github.io/2018/05/partos-brasil-2016/">
-          Qual a relação entre a hora de nascimento e o tipo de parto?
-        </a>
-      </h1>
-      
   <div class="postShorten-meta post-meta">
     
-      <time itemprop="datePublished" datetime="2018-05-02T00:00:00Z">
+      <time itemprop="datePublished" datetime="2019-12-25T00:00:00Z">
         
   
   
   
   
-    02/05/2018
+    25/12/2019
   
 
       </time>
@@ -279,33 +266,172 @@
   
     <span>em</span>
     
-      <a class="category-link" href="https://guilhermejacob.github.io/categories/registros-administrativos">Registros Administrativos</a>
+      <a class="category-link" href="https://guilhermejacob.github.io/categories/teoria">Teoria</a>, 
+    
+      <a class="category-link" href="https://guilhermejacob.github.io/categories/amostragem">Amostragem</a>
     
   
 
   </div>
 
-    </div>
-    <div class="postShorten-excerpt" itemprop="articleBody">
-      O último post foi corrido, eu sei. Esse vai ser um pouco menos corrido, acho.
-Se você quiser pular direto para a análise, clique aqui.
-Muita coisa acontecendo por aqui.
-Semana passada, fui pro Rio. Serei propositalmente misterioso neste ponto, mas acho que vem coisa por aí.
-Na volta para Manaus, fiz uma mini-maratona para visitar amigos em Brasília nas 7 horas de escala. Para quem eu fiquei devendo visita: vou para a Campus Party Brasília no fim de maio!
-      <p>
-        <a href="https://guilhermejacob.github.io/2018/05/partos-brasil-2016/" class="postShorten-excerpt_link link">Continuar leitura</a>
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              <p>Eu ai encerrar com o último texto, mas lembrei de outra coisa. Durante o mestrado, quando alguns colegas trabalhavam com a PNADC, eu sempre comentava que era importante levar o plano amostral em consideração. Diante disso, eles levaram o peso amostral em consideração. No entanto, <strong>o plano amostral é mais do que os pesos amostrais!</strong></p>
+<p>Usar os pesos amostrais faz com que suas estimativas não sejam viesadas. Mas, se o plano amostral não for ignorável, <em>as variâncias estarão incorretas</em>.</p>
+<blockquote>
+<p>“Mas por que a variância da estimativa importa?”
+“Se importa, no que o desenho amostral influencia a sua estimativa?”</p>
+</blockquote>
+<p>Vejamos.</p>
+<div id="amostras-e-erros-aleatórios" class="section level2">
+<h2>Amostras e erros-aleatórios</h2>
+<p>Vou tentar explicar isso no contexto de inferência descritiva, mas o problema é o mesmo quando se trata de inferência analítica.</p>
+<p>A ideia de inferência descritiva é, basicamente, estimar quantidade sobre uma população de tamanho <span class="math inline">\(N\)</span> a partir de uma amostra de tamanho <span class="math inline">\(n &lt; N\)</span>. Mas existem muitas amostras possíveis. Vamos supor uma amostra aleatória simples sem reposição (AAS). Para uma dada população de <span class="math inline">\(N\)</span> indivíduos, existem <span class="math inline">\({N \choose n} = N! \sfrac{ n! }{ (N - n)! }\)</span>. Ou seja, existem muitas amostras possíveis e dispomos de uma delas.</p>
+<p>Não há garantia de que o valor da média de nossa amostra vai ser igual ao da média da população. Mas, se nosso estimador é não-viesado, nosso valor é, em média, igual ao da população. Em outras palavras: a média de todas as amostras possíveis coincide com a média populacional. Como sabemos a distribuição dos valores da média amostral em torno do valor da população, podemos estimar um intervalo de confiança, onde o valor populacional provavelmente está.</p>
+<p>Este intervalo depende da variância da estimativa. Ou seja: quando não calculamos a variância da estimativa, estamos supondo que dispomos da “amostra perfeita”, que magicamente coincide com o valor populacional. De fato, esta amostra mágica pode nem existir. Então, quando calculamos a variância da estimativa, temos uma ideia do erro resultante do processo de amostragem sobre aquela estimativa.</p>
+</div>
+<div id="variâncias-e-o-plano-amostral" class="section level2">
+<h2>Variâncias e o plano amostral</h2>
+<p>Em geral, quando começamos a estudar estatística, aprendemos a teoria segundo amostras aleatórias simples (AAS). No entanto, na prática, quase nenhuma pesquisa é feita usando AAS. A PNADC, por exemplo, inclui estratificação e estágios de conglomeração. Como explicam <span class="citation">Heeringa, West e Berglund (2010, p. 23–24)</span>, a variância da estimativa: tende a <em>diminuir com a estratificação</em>; <em>aumenta com a conglomeração</em>; e <em>aumenta com probabilidades desiguais de seleção</em>.</p>
+<p>Para avaliar o quão errados estamos ao ignorar o plano amostral, podemos usar o Efeito do Plano Amostral (EPA). Basicamente, o EPA é uma razão entre a variância considerando o plano amostral e a variância supondo AAS. Assim, com um dado EPA, têm estas interpretações:</p>
+<blockquote>
+<p>Se eu ignorar o plano amostral, a variância calculada subestimaria a variância correta em (EPA) vezes;
+A variância <del>correta</del> com o plano amostral é (EPA) vezes maior do que a variância sob AAS.</p>
+</blockquote>
+<p>Já que estamos falando da PNADC, vamos fazer um teste usando duas medidas: a média da renda domiciliar per capita e o respectivo índice de Gini. No entanto, vamos considerar as probabilidades desiguais de seleção. Então, para demonstrar o efeito de não usar completamente o plano amostral, vamos calcular as estimativas sob duas condições:</p>
+<ul>
+<li>Amostra com probabilidades desiguais de seleção;</li>
+<li>Desenho amostral completo, com estratificação, conglomeração e probabilidades desiguais de seleção.</li>
+</ul>
+<p>Deste modo, as duas estimativas pontuais são idênticas e as diferenças na variâncias decorrem da estratificação e conglomeração no desenho.</p>
+<p>A Tabela 1 abaixo mostra os erros-padrões das estimativas. Para a média, o erro-padrão correto é 3 vezes maior que o sem desenho amostral. Para o índice de Gini, o erro-padrão é 2 vezes maior.</p>
+<table>
+<caption><span id="tab:tabela1">Tabela 1: </span>Estimativa pontuais e desvios-padrões</caption>
+<thead>
+<tr class="header">
+<th></th>
+<th align="right">Média</th>
+<th align="right">Gini</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Estimativa Pontual</td>
+<td align="right">1 337.5</td>
+<td align="right">0.545</td>
+</tr>
+<tr class="even">
+<td>Desvio-Padrão Incorreto</td>
+<td align="right">6.1</td>
+<td align="right">0.002</td>
+</tr>
+<tr class="odd">
+<td>Desvio-Padrão Correto</td>
+<td align="right">18.1</td>
+<td align="right">0.004</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="um-pouco-de-contexto" class="section level2">
+<h2>Um pouco de contexto</h2>
+<p>Há alguns anos atrás, uma pessoa me disse: ``<em>a discussão sobre o índice de Gini do Brasil está na diferença da 3ª casa decimal</em>’’.</p>
+<p>Vamos pensar um pouco.</p>
+<p>O erro-padrão real é <span class="math inline">\(0.004\)</span>. Ou seja, qualquer intervalo de confiança contém a diferença <span class="math inline">\(0.001\)</span>. No caso, a discussão envolve a segunda casa decimal. A minha lição disso é a seguinte: se você for discutir o valor de uma estimativa amostral, calcule o erro-padrão. Ele pode te ajudar a não perder tempo em discussões inócuas.</p>
+<div id="refs" class="references">
+<div id="ref-west2010">
+<p>HEERINGA, S. G.; WEST, B. T.; BERGLUND, P. A. <strong>Applied Survey Data Analysis</strong>. Boca Raton, Florida: Chapman &amp; Hall/CRC, 2010. </p>
+</div>
+</div>
+</div>
+
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">ETIQUETADO em</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://guilhermejacob.github.io/tags/vari%C3%A2ncia/">Variância</a>
+
+                  </div>
+                
+              
+            
+            
+  <div class="post-actions-wrap">
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">PRÓXIMO</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://guilhermejacob.github.io/2019/12/meng2018/" data-tooltip="Mentiras, mentiras cabeludas e &#34;big data&#34;">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">ANTERIOR</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
         
-      </p>
-    </div>
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://guilhermejacob.github.io/2019/12/amostra-complexa-epa/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://guilhermejacob.github.io/2019/12/amostra-complexa-epa/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://guilhermejacob.github.io/2019/12/amostra-complexa-epa/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
   </div>
-  
-</article>
+
 
             
+              
             
-
-          </section>
-        
+          </div>
+        </article>
         <script src="//yihui.name/js/math-code.js"></script>
 <script async
     src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
@@ -317,6 +443,96 @@ Na volta para Manaus, fiz uma mini-maratona para visitar amigos em Brasília nas
 </footer>
 
       </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+        
+  <div class="post-actions-wrap">
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">PRÓXIMO</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://guilhermejacob.github.io/2019/12/meng2018/" data-tooltip="Mentiras, mentiras cabeludas e &#34;big data&#34;">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">ANTERIOR</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://guilhermejacob.github.io/2019/12/amostra-complexa-epa/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://guilhermejacob.github.io/2019/12/amostra-complexa-epa/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://guilhermejacob.github.io/2019/12/amostra-complexa-epa/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="4">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fguilhermejacob.github.io%2F2019%2F12%2Famostra-complexa-epa%2F">
+          <i class="fa fa-facebook-official"></i><span>Compartilhar no Facebook</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Fguilhermejacob.github.io%2F2019%2F12%2Famostra-complexa-epa%2F">
+          <i class="fa fa-twitter"></i><span>Compartilhar no Twitter</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https%3A%2F%2Fguilhermejacob.github.io%2F2019%2F12%2Famostra-complexa-epa%2F">
+          <i class="fa fa-google-plus"></i><span>Compartilhar no Google&#43;</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
     </div>
     
     <div id="about">
@@ -582,6 +798,10 @@ Ok, mas o que isso quer dizer? Aguardei ansiosamente1 para saber como as coisas 
 
 
 
+
+  
+    
+  
 
 
 

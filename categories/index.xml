@@ -6,7 +6,7 @@
     <description>Recent content in Categories on Something Random</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>pt-br</language>
-    <lastBuildDate>Sun, 22 Dec 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 25 Dec 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://guilhermejacob.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,7 +14,7 @@
     <item>
       <title>Amostragem</title>
       <link>https://guilhermejacob.github.io/categories/amostragem/</link>
-      <pubDate>Sun, 22 Dec 2019 00:00:00 +0000</pubDate>
+      <pubDate>Wed, 25 Dec 2019 00:00:00 +0000</pubDate>
       
       <guid>https://guilhermejacob.github.io/categories/amostragem/</guid>
       <description></description>
@@ -41,18 +41,9 @@
     <item>
       <title>Teoria</title>
       <link>https://guilhermejacob.github.io/categories/teoria/</link>
-      <pubDate>Sun, 22 Dec 2019 00:00:00 +0000</pubDate>
+      <pubDate>Wed, 25 Dec 2019 00:00:00 +0000</pubDate>
       
       <guid>https://guilhermejacob.github.io/categories/teoria/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Teoria Econômica</title>
-      <link>https://guilhermejacob.github.io/categories/teoria-econ%C3%B4mica/</link>
-      <pubDate>Mon, 19 Aug 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://guilhermejacob.github.io/categories/teoria-econ%C3%B4mica/</guid>
       <description></description>
     </item>
     
