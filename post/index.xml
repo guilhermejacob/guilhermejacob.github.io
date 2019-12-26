@@ -6,7 +6,7 @@
     <description>Recent content in Posts on Something Random</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>pt-br</language>
-    <lastBuildDate>Wed, 25 Dec 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 26 Dec 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://guilhermejacob.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,7 +14,7 @@
     <item>
       <title>Por que calcular variâncias de estimativas?</title>
       <link>https://guilhermejacob.github.io/2019/12/amostra-complexa-epa/</link>
-      <pubDate>Wed, 25 Dec 2019 00:00:00 +0000</pubDate>
+      <pubDate>Thu, 26 Dec 2019 00:00:00 +0000</pubDate>
       
       <guid>https://guilhermejacob.github.io/2019/12/amostra-complexa-epa/</guid>
       <description>Eu ai encerrar com o último texto, mas lembrei de outra coisa. Durante o mestrado, quando alguns colegas trabalhavam com a PNADC, eu sempre comentava que era importante levar o plano amostral em consideração. Diante disso, eles levaram o peso amostral em consideração. No entanto, o plano amostral é mais do que os pesos amostrais!
