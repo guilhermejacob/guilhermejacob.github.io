@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://guilhermejacob.github.io/2019/12/u5-mun-paises/</loc>
+    <lastmod>2019-12-31T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://guilhermejacob.github.io/2019/12/amostra-complexa-epa/</loc>
     <lastmod>2019-12-26T00:00:00+00:00</lastmod>
   </url>
@@ -98,6 +103,12 @@
   </url>
   
   <url>
+    <loc>https://guilhermejacob.github.io/categories/an%C3%A1lise/</loc>
+    <lastmod>2019-12-31T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://guilhermejacob.github.io/archives/</loc>
     <priority>0</priority>
   </url>
@@ -187,6 +198,12 @@
   </url>
   
   <url>
+    <loc>https://guilhermejacob.github.io/tags/inf%C3%A2ncia/</loc>
+    <lastmod>2019-12-31T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://guilhermejacob.github.io/tags/mapas/</loc>
     <lastmod>2017-11-21T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -218,7 +235,7 @@
   
   <url>
     <loc>https://guilhermejacob.github.io/post/</loc>
-    <lastmod>2019-12-26T00:00:00+00:00</lastmod>
+    <lastmod>2019-12-31T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -242,13 +259,13 @@
   
   <url>
     <loc>https://guilhermejacob.github.io/tags/sa%C3%BAde/</loc>
-    <lastmod>2018-05-02T00:00:00+00:00</lastmod>
+    <lastmod>2019-12-31T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://guilhermejacob.github.io/</loc>
-    <lastmod>2019-12-26T00:00:00+00:00</lastmod>
+    <lastmod>2019-12-31T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

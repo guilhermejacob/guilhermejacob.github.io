@@ -6,10 +6,22 @@
     <description>Recent content in Saúde on Something Random</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>pt-br</language>
-    <lastBuildDate>Wed, 02 May 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 31 Dec 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://guilhermejacob.github.io/tags/sa%C3%BAde/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Mortalidade na infância: comparando municípios e países</title>
+      <link>https://guilhermejacob.github.io/2019/12/u5-mun-paises/</link>
+      <pubDate>Tue, 31 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://guilhermejacob.github.io/2019/12/u5-mun-paises/</guid>
+      <description>Às vezes, quando estamos estudando algo, acabamos aprendendo mais do que esperávamos.
+Há alguns dias, andei estudando ligação probabilística de bases de dados. Acabei notando que uma coisa interessante: essa técnica pode ser usada para comparar coisas bem diferentes. Anotei no meu caderno e resolvi explorar mais a fundo hoje.
+Vejamos.
+Entendendo a desigualdade regional no Brasil a partir do mundo Na época que eu trabalhava mais diretamente com comunicação a partir de estatísticas, o problema principal era: como ajudar o leitor não-especializado a entender um número?</description>
+    </item>
     
     <item>
       <title>Qual a relação entre a hora de nascimento e o tipo de parto?</title>
