@@ -6,7 +6,7 @@ library(rgdal)
 library(ggthemes)
 library(data.table)
 library(fst)
-library(parallel)
+library(future.apply)
 
 # plot parameters
 ethnicities <- c( "White" , "Black" , "Yellow" , "Brown" , "Indigenous" )
@@ -16,12 +16,13 @@ pal <- c("#ac39ac", "#00e600", "#fcec52", "#0099ff", "#ff5733" )
 stopifnot( length(ethnicities) == length( pal ) ) 
 
 # set parallelization configs
-no_cores <- detectCores() - 1
-cl <- makeCluster(no_cores)
+plan( multiprocess )
 
 # set folders
 mapsdir <- "/Volumes/Trabalho/Mapas/Setores Censitários/2010"
+mapsdir <- "/home/guilherme/Bases/Mapas/Setores Censitários/2010"
 datadir <- "/Volumes/Trabalho/ASC/Censo 2010/"
+datadir <- "/home/guilherme/Bases/ASCenso/2010"
 
 # set.seed
 set.seed(123)
@@ -30,7 +31,8 @@ set.seed(123)
 datafile <- list.files( datadir , full.names = TRUE , pattern = "fst" )
 datafile <- datafile[ grepl( "^pessoa03" , basename( datafile ) , ignore.case = TRUE ) ]
 select_cols <- c( "cod_setor" , paste0( "v00" , 2:6 ) )
-dt <- read.fst( datafile , columns = select_cols , as.data.table = TRUE )
+dt <- lapply( datafile , read.fst , columns = select_cols , as.data.table = TRUE )
+dt <- rbindlist( dt , use.names = TRUE)
 
 # recodes
 num_cols <- grep( "^v" , colnames( dt ) , value = TRUE )
@@ -70,7 +72,7 @@ rgmap <- spTransform( rgmap , CRS("+proj=longlat +datum=WGS84") )
 
 # subset data
 # keep only census tracts in map
-rgdata <- dt[ cod_setor %in% rgmap$cd_geocodi ,]
+rgdata <- dt[ cod_setor %in% unique( rgmap$cd_geocodi ) , ]
 
 # drop "parda"
 # rgdata$parda <- 0
@@ -86,14 +88,11 @@ blocmap <- unionSpatialPolygons( rgmap , IDs = rgmap$cd_geocodd )
 # parallelized code to assign dots to polygons
 rep.weight <- 125 # use this to calibrate representativeness in plot
 
-sp.dfs <- 
-  mclapply( 
-    names( mapdata@data[ , ethnicities ] ) , 
-    function( x ) { 
-      mapdata@data[ is.na( mapdata@data[, x ] ) , x ] <- 0 
-      if ( sum( as.integer( mapdata@data[ , x ] / rep.weight ) ) == 0 ) { return(NULL) }
-      dotsInPolys( mapdata , as.integer( mapdata@data[ , x ] / rep.weight ), f="random" ) } ,
-    mc.set.seed = TRUE, mc.silent = FALSE , mc.cleanup = TRUE )
+sp.dfs <- future_lapply( names( mapdata@data[ , ethnicities ] ) , function( x ) { 
+  mapdata@data[ is.na( mapdata@data[, x ] ) , x ] <- 0 
+  if ( sum( as.integer( mapdata@data[ , x ] / rep.weight ) ) == 0 ) return(NULL)
+  dotsInPolys( mapdata , as.integer( mapdata@data[ , x ] / rep.weight ), f="random" ) 
+} )
 
 # for each sp.df, scrape out the coordinates of each dot and store as a regular dataframe
 dfs <- lapply(sp.dfs, function(x) {
@@ -112,7 +111,7 @@ for (i in 1:length(ethnicities)) {
 # the factor level will dictate the order in which dots are plotted
 # we want the category with most dots to be plotted first and vice versa, 
 # so that categories with the most dots don't mask categories with fewer dots
-dots.final <- dplyr::bind_rows(dfs)
+dots.final <- do.call( rbind , dfs)
 dots.final$Ethnicity <- factor(dots.final$Ethnicity, levels = ethnicities )
 
 # reorder factors
