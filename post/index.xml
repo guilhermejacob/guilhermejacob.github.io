@@ -6,10 +6,20 @@
     <description>Recent content in Posts on Something Random</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>pt-br</language>
-    <lastBuildDate>Wed, 08 Apr 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 22 Apr 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://guilhermejacob.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Sobre as vidas perdidas em Manaus</title>
+      <link>https://guilhermejacob.github.io/2020/04/stat-pes/</link>
+      <pubDate>Wed, 22 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://guilhermejacob.github.io/2020/04/stat-pes/</guid>
+      <description>No dia que eu escrevo esse post, o Brasil enfrenta uma epidemia severa que custou a vida de milhares de pessoas. O número oficial de mortos já passa de 2.700. E é evidente a subnotificação, já que só os casos graves hospitalizados foram testados.
+Hoje, eu não quero fazer gráficos ou tabelas. Eu não quero falar de curvas que se achatam, de picos ou vales. Eu não quero falar de números.</description>
+    </item>
     
     <item>
       <title>Juros, taxas de crescimento e aproximações</title>
@@ -19,6 +29,17 @@
       <guid>https://guilhermejacob.github.io/2020/04/taylor-maclaurin-taxa/</guid>
       <description>Esse post vai fugir um pouco do usual. Não vamos fazer análise de dados, nem escrever código. Vamos ter algumas equações e gráficos, mas nada muito complicado. Vamos tentar responder duas perguntas:
  Tenho uma série de crescimento do PIB nos trimestres de um ano. O crescimento acumulado no período é igual à soma das taxas de crescimento? Tenho valores de inflação e taxa de juros nominal. A taxa de juros real é igual à taxa de juros nominal menos a inflação?</description>
+    </item>
+    
+    <item>
+      <title>Juros, taxas de crescimento e aproximações</title>
+      <link>https://guilhermejacob.github.io/2020/04/taylor-maclaurin-taxa/</link>
+      <pubDate>Wed, 08 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://guilhermejacob.github.io/2020/04/taylor-maclaurin-taxa/</guid>
+      <description>Esse post vai fugir um pouco do usual. Não vamos fazer análise de dados, nem escrever código. Vamos ter algumas equações e gráficos, mas nada muito complicado. Vamos tentar responder duas perguntas:
+ Tenho uma série de crescimento do PIB nos trimestres de um ano. O crescimento acumulado no período é igual à soma das taxas de crescimento?
+  Tenho valores de inflação e taxa de juros nominal. A taxa de juros real é igual à taxa de juros nominal menos a inflação?</description>
     </item>
     
     <item>
