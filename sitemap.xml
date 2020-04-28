@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://guilhermejacob.github.io/2020/04/sir-markov/</loc>
+    <lastmod>2020-04-24T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://guilhermejacob.github.io/2020/04/stat-pes/</loc>
     <lastmod>2020-04-22T00:00:00+00:00</lastmod>
   </url>
@@ -108,7 +113,7 @@
   
   <url>
     <loc>https://guilhermejacob.github.io/categories/amostragem/</loc>
-    <lastmod>2019-12-26T00:00:00+00:00</lastmod>
+    <lastmod>2020-04-24T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -155,7 +160,7 @@
   
   <url>
     <loc>https://guilhermejacob.github.io/categories/</loc>
-    <lastmod>2019-12-26T00:00:00+00:00</lastmod>
+    <lastmod>2020-04-24T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -232,6 +237,12 @@
   </url>
   
   <url>
+    <loc>https://guilhermejacob.github.io/categories/n%C3%A3o-resposta/</loc>
+    <lastmod>2020-04-24T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://guilhermejacob.github.io/tags/pobreza/</loc>
     <lastmod>2019-08-19T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -239,7 +250,7 @@
   
   <url>
     <loc>https://guilhermejacob.github.io/post/</loc>
-    <lastmod>2020-04-22T00:00:00+00:00</lastmod>
+    <lastmod>2020-04-24T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -257,19 +268,19 @@
   
   <url>
     <loc>https://guilhermejacob.github.io/tags/rstats/</loc>
-    <lastmod>2018-04-24T00:00:00+00:00</lastmod>
+    <lastmod>2020-04-24T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://guilhermejacob.github.io/tags/sa%C3%BAde/</loc>
-    <lastmod>2019-12-31T00:00:00+00:00</lastmod>
+    <lastmod>2020-04-24T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://guilhermejacob.github.io/</loc>
-    <lastmod>2020-04-22T00:00:00+00:00</lastmod>
+    <lastmod>2020-04-24T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

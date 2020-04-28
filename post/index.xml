@@ -6,10 +6,19 @@
     <description>Recent content in Posts on Something Random</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>pt-br</language>
-    <lastBuildDate>Wed, 22 Apr 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 24 Apr 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://guilhermejacob.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Modelos epidemiológicos, Testagem e Cadeias de Markov</title>
+      <link>https://guilhermejacob.github.io/2020/04/sir-markov/</link>
+      <pubDate>Fri, 24 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://guilhermejacob.github.io/2020/04/sir-markov/</guid>
+      <description>É notório que há uma grande subnotificação de casos da COVID-19. Como se pode imaginar, testar as pessoas na porta do hospital enviesaria as amostras. Então, como fazer testagem em massa? Uma estratégia possível seria usar uma amostra aleatória. Usando uma ideia antiga desenvolvida pelo economista estatístico Robert Dorfman (Dorfman, 1943), é possível reduzir os custos da testagem. Por exemplo, em vez de testar imediatamente todas as pessoas de um domicílio, testamos o conjunto de pessoas.</description>
+    </item>
     
     <item>
       <title>Sobre as vidas perdidas em Manaus</title>

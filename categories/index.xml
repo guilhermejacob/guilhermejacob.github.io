@@ -6,7 +6,7 @@
     <description>Recent content in Categories on Something Random</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>pt-br</language>
-    <lastBuildDate>Thu, 26 Dec 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 24 Apr 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://guilhermejacob.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,7 +14,7 @@
     <item>
       <title>Amostragem</title>
       <link>https://guilhermejacob.github.io/categories/amostragem/</link>
-      <pubDate>Thu, 26 Dec 2019 00:00:00 +0000</pubDate>
+      <pubDate>Fri, 24 Apr 2020 00:00:00 +0000</pubDate>
       
       <guid>https://guilhermejacob.github.io/categories/amostragem/</guid>
       <description></description>
@@ -26,6 +26,15 @@
       <pubDate>Wed, 08 Apr 2020 00:00:00 +0000</pubDate>
       
       <guid>https://guilhermejacob.github.io/categories/censo/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Não Resposta</title>
+      <link>https://guilhermejacob.github.io/categories/n%C3%A3o-resposta/</link>
+      <pubDate>Fri, 24 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://guilhermejacob.github.io/categories/n%C3%A3o-resposta/</guid>
       <description></description>
     </item>
     

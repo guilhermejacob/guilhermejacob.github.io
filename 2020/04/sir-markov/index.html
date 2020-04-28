@@ -1,0 +1,839 @@
+
+
+  
+    
+  
+
+
+  
+
+
+
+
+
+  
+
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Hugo 0.47 with theme Tranquilpeak 0.4.3-BETA">
+    <title>Modelos epidemiológicos, Testagem e Cadeias de Markov</title>
+    <meta name="author" content="Guilherme Jacob">
+    <meta name="keywords" content="">
+
+    <link rel="icon" href="https://guilhermejacob.github.io/favicon.png">
+    
+
+    
+    <meta name="description" content="É notório que há uma grande subnotificação de casos da COVID-19. Como se pode imaginar, testar as pessoas na porta do hospital enviesaria as amostras. Então, como fazer testagem em massa? Uma estratégia possível seria usar uma amostra aleatória. Usando uma ideia antiga desenvolvida pelo economista estatístico Robert Dorfman (Dorfman, 1943), é possível reduzir os custos da testagem. Por exemplo, em vez de testar imediatamente todas as pessoas de um domicílio, testamos o conjunto de pessoas.">
+    <meta property="og:description" content="É notório que há uma grande subnotificação de casos da COVID-19. Como se pode imaginar, testar as pessoas na porta do hospital enviesaria as amostras. Então, como fazer testagem em massa? Uma estratégia possível seria usar uma amostra aleatória. Usando uma ideia antiga desenvolvida pelo economista estatístico Robert Dorfman (Dorfman, 1943), é possível reduzir os custos da testagem. Por exemplo, em vez de testar imediatamente todas as pessoas de um domicílio, testamos o conjunto de pessoas.">
+    <meta property="og:type" content="blog">
+    <meta property="og:title" content="Modelos epidemiológicos, Testagem e Cadeias de Markov">
+    <meta property="og:url" content="/2020/04/sir-markov/">
+    <meta property="og:site_name" content="Something Random">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Something Random">
+    <meta name="twitter:description" content="É notório que há uma grande subnotificação de casos da COVID-19. Como se pode imaginar, testar as pessoas na porta do hospital enviesaria as amostras. Então, como fazer testagem em massa? Uma estratégia possível seria usar uma amostra aleatória. Usando uma ideia antiga desenvolvida pelo economista estatístico Robert Dorfman (Dorfman, 1943), é possível reduzir os custos da testagem. Por exemplo, em vez de testar imediatamente todas as pessoas de um domicílio, testamos o conjunto de pessoas.">
+    
+    
+
+    
+    
+
+    
+      <meta property="og:image" content="https://guilhermejacob.github.io/files/20900788_1261769030617642_6094584381440292567_o.jpg">
+    
+
+    
+    
+    
+
+    
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.css" integrity="sha256-vuXZ9LGmmwtjqFX1F+EKin1ThZMub58gKULUyf0qECk=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU=" crossorigin="anonymous" />
+    
+    
+    <link rel="stylesheet" href="https://guilhermejacob.github.io/css/style-jsjn0006wyhpyzivf6yceb31gvpjatbcs3qzjvlumobfnugccvobqwxnnaj8.min.css" />
+    
+    
+
+    
+      
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="4">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://guilhermejacob.github.io/">Something Random</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://guilhermejacob.github.io/#about">
+    
+    
+    
+      
+        <img class="header-picture" src="https://guilhermejacob.github.io/files/20900788_1261769030617642_6094584381440292567_o.jpg" alt="Foto do autor" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="4">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://guilhermejacob.github.io/#about">
+          <img class="sidebar-profile-picture" src="https://guilhermejacob.github.io/files/20900788_1261769030617642_6094584381440292567_o.jpg" alt="Foto do autor" />
+        </a>
+        <h4 class="sidebar-profile-name">Guilherme Jacob</h4>
+        
+          <h5 class="sidebar-profile-bio">Manauara.<br>Mestrando em População, Território e Estatísticas Públicas.<br>Bacharel em Direito e Economia.</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://guilhermejacob.github.io/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">Início</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://guilhermejacob.github.io/#about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+      
+      <span class="sidebar-button-desc">Sobre</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://guilhermejacob.github.io/tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">Tags</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://guilhermejacob.github.io/categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+      
+      <span class="sidebar-button-desc">Categorias</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://guilhermejacob.github.io/archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">Arquivo</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://guilhermejacob.github.io/files/cv_english.pdf">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-briefcase"></i>
+      
+      <span class="sidebar-button-desc">CV</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://guilhermejacob.github.io/research">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-code"></i>
+      
+      <span class="sidebar-button-desc">Pesquisa</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="mailto:guilhermejacob91@gmail.com" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-envelope-o"></i>
+      
+      <span class="sidebar-button-desc">Contato</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/guilhermejacob" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="http://stackoverflow.com/users/6419956/guilherme-jacob" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-stack-overflow"></i>
+      
+      <span class="sidebar-button-desc">Stack Overflow</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://www.instagram.com/guilhermejacob9" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-instagram"></i>
+      
+      <span class="sidebar-button-desc">Instagram</span>
+    </a>
+  </li>
+
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="4"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title" itemprop="headline">
+      Modelos epidemiológicos, Testagem e Cadeias de Markov
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2020-04-24T00:00:00Z">
+        
+  
+  
+  
+  
+    24/04/2020
+  
+
+      </time>
+    
+    
+  
+  
+    <span>em</span>
+    
+      <a class="category-link" href="https://guilhermejacob.github.io/categories/amostragem">Amostragem</a>, 
+    
+      <a class="category-link" href="https://guilhermejacob.github.io/categories/n%c3%a3o-resposta">Não-resposta</a>
+    
+  
+
+  </div>
+
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              <p>É notório que há uma grande subnotificação de casos da COVID-19. Como se pode imaginar, testar as pessoas na porta do hospital enviesaria as amostras. Então, como fazer testagem em massa? Uma estratégia possível seria usar uma amostra aleatória. Usando uma ideia antiga desenvolvida pelo <sub>economista</sub> estatístico Robert Dorfman <span class="citation">(Dorfman, 1943)</span>, é possível reduzir os custos da testagem. Por exemplo, em vez de testar imediatamente todas as pessoas de um domicílio, testamos o conjunto de pessoas. Se o resultado dessa amostra for positivos, testamos cada indivíduo. Se for negativo, ninguém possui a doença.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> Recentemente, <span class="citation">Hyun, Gastwirth e Graubard (2018)</span> mostraram como combinar esta estratégia com planos amostrais complexos.</p>
+<p>Mas isso é assunto para outra conversa. Prometi ao meu orientador que não ia desviar do tema da minha dissertação, que trata de estimação de fluxos ocupacionais brutos. No entanto, a metodologia que uso para isso também é aplicável em uma perspectiva epidemiológica.</p>
+<div id="fluxos-líquidos-e-brutos" class="section level1">
+<h1>Fluxos líquidos e brutos</h1>
+<p>Suponha que acompanhamos uma população de 1 000 indivíduos em dois anos. No ano 1, haviam 200 indivíduos em situação de pobreza. No ano 2, foram encontradas 300 pessoas em situação de pobreza. Podemos dizer que 100 pessoas entraram em situação de pobreza?</p>
+<p><em>A resposta é não!</em> De fato, a diferença líquida no total de pessoas pobres é 100. Entretanto, pode ser que as 300 pessoas do ano 2 não estejam entre as 200 do período 1. Então, 100 é um <em>fluxo líquido</em>: a diferença entre as pessoas que entraram e as pessoas que saíram da pobreza entre os períodos. Por sua vez, as entradas e saídas são <em>fluxos brutos</em>.</p>
+<p>Isso pode parecer intuitivo, mas é um erro comum. Por exemplo, <a href="https://www.correiobraziliense.com.br/app/noticia/economia/2019/02/03/internas_economia,735069/23-3-milhoes-de-brasileiros-entraram-em-situacao-de-vulnerabilidade-so.shtml">esta notícia</a> diz que “23,3 milhões de brasileiros entraram em situação de vulnerabilidade social”. Este não é o número de pessoas que entraram em situação de pobreza, mas o saldo das pessoas em situação de pobreza.</p>
+<p>Em geral, esta diferenciação é um preciosismo de economistas ou estatísticos. Mas os fluxos brutos podem mostrar que a pobreza é uma situação instável, com muitas pessoas saindo e entrando na pobreza entre dois períodos.</p>
+</div>
+<div id="estimando-fluxos-brutos-com-não-resposta" class="section level1">
+<h1>Estimando fluxos brutos com não-resposta</h1>
+<p>Se temos uma amostra que acompanha os mesmos indivíduos em dois períodos, podemos estimar os fluxos. A princípio, com resposta completa, isso não é um grande problema: seria o mesmo que fazer uma tabela de contingência com a mesma variável medida em momentos distintos.</p>
+<p>Porém, na prática, as coisas são um pouco mais complicadas. Quando coletamos os dados, é possível que pessoas se recusem a participar da entrevista. E, em muitos casos, essa recusa em responder pode enviesar os resultados.</p>
+<p><span class="citation">Stasny (1987)</span> desenvolve um método para obter estimativas de fluxos brutos com não-resposta diferencial. Alguns anos mais tarde, <span class="citation">Rojas, Trujillo e Silva (2014)</span> mostram como aplicar esta metodologia usando planos amostrais complexos. nos dois casos, a aplicação envolve estimação de fluxos ocupacionais — i.e., quem perdeu emprego, quem saiu do desemprego, etc.</p>
+<p>Mas o que isso tem a ver com epidemia?</p>
+</div>
+<div id="fluxos-brutos-em-modelos-epidemiológicos" class="section level1">
+<h1>Fluxos brutos em modelos epidemiológicos</h1>
+<p>Em epidemiologia, um dos assuntos que considero mais interessantes são os modelos compartimentais. No nosso exemplo, vamos manter a estrutura mais simples, o Modelo SIR. Nele, existem três estados de saúde:</p>
+<ul>
+<li><em>Susceptible:</em> pessoas suscetíveis à doença. Ou seja: pessoas que não estão doentes, mortas ou imunes;</li>
+<li><em>Infective:</em> pessoas portadoras da doença, com potencial de transmissão;</li>
+<li><em>Recovered:</em> pessoas que se recuperaram da doença e estão imunes.</li>
+</ul>
+<p>Podemos vê-lo como uma cadeia de Markov: dada uma distribuição inicial, é possível prever a distribuição no período seguinte. As probabilidades de transição entre estas categorias são, basicamente, probabilidades condicionais em relação à categoria inicial. Com esta matriz de probabilidades de transição, é possível ter informações muito importantes, como a velocidade da epidemia. O vídeo abaixo tem uma explicação mais detalhada destes conceitos:</p>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Qrp40ck3WpI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<p>Certo, mas como isso funcionaria na prática?</p>
+</div>
+<div id="simulação" class="section level1">
+<h1>Simulação</h1>
+<pre><code>##           used (Mb) gc trigger  (Mb) max used  (Mb)
+## Ncells 1658205 88.6    2868815 153.3  2868815 153.3
+## Vcells 3026098 23.1    8388608  64.0  8364838  63.9</code></pre>
+<p>Considere uma população de tamanho <span class="math inline">\(N = 10^5\)</span> indivíduos, seguindo um modelo multinomial com as seguintes probabilidades iniciais dos estados SIR:</p>
+<p><span class="math display">\[
+\eta = \begin{pmatrix} .85 &amp; .10 &amp; .05 \end{pmatrix}
+\]</span></p>
+<p>Entre o período 1 e 2, a população está sujeita às seguintes probabilidades de transição:</p>
+<p><span class="math display">\[
+P = \begin{pmatrix} p_{ij} \end{pmatrix} =
+\begin{pmatrix}
+.80 &amp; .10 &amp; .10 \\
+.05 &amp; .80 &amp;.15 \\
+.00 &amp; .00 &amp; 1.0
+\end{pmatrix}
+\]</span></p>
+<p>Assim, temos os seguintes fluxos brutos esperados:</p>
+<p><span class="math display">\[
+M = \begin{pmatrix} \mu_{ij} \end{pmatrix} =
+\begin{pmatrix}
+68000 &amp; 8500 &amp; 8500 \\
+500 &amp; 8000 &amp; 1500 \\
+0 &amp;     0 &amp; 5000
+\end{pmatrix}
+\]</span></p>
+<p>Esta população, no entanto, é não-observável: por causa da não-resposta, algumas observações perdem as suas categorias. As probabilidades de responder no período inicial são <span class="math inline">\(\phi ( i ) = ( .95 , .40 , .80 )\)</span> para os indivíduos classificados como “S”, “I”, e “R”, respectivamente. A probabilidade de responder no período final dado que respondeu no período inicial é <span class="math inline">\(\rho_{RR} = .9\)</span>. Já os indivíduos que não responderam no período inicial tem probabilidade de não-resposta igual à <span class="math inline">\(\rho_{MM} = .7\)</span>. Esta é população com não-resposta é chamada de população observável.</p>
+<p>Desta população observável, selecionamos uma amostra aleatória simples de tamanho <span class="math inline">\(n =5000\)</span>.</p>
+<p>O analista ingênuo pode supor que a não-resposta é aleatória e, portanto, estima as probabilidades descartando as observações com não-resposta. ele teria a seguinte matriz de fluxos.</p>
+<p><span class="math display">\[
+\widehat{M}_{MCAR} = \begin{pmatrix}
+71389 &amp; 10058 &amp; 9352 \\
+227 &amp;  3327 &amp;  706 \\
+0 &amp;     0 &amp; 4941
+\end{pmatrix}
+\]</span></p>
+<p>Comparando as duas matrizes, é possível suspeitar que existe viés. Por exemplo, a estimativa do fluxo Infectados-Infectados subestima o fluxo bruto esperado em 58%.</p>
+<p>No entanto, um pesquisador mais experiente reconhece que existe um padrão de não-resposta diferencial. Usando o modelo que considera o mecanismo de não-resposta, ele obtém a seguinte matriz</p>
+<p><span class="math display">\[
+\widehat{M}_{Modelo} = \begin{pmatrix}
+66659 &amp; 9392 &amp; 8733 \\
+538 &amp; 7888 &amp; 1673 \\
+0 &amp;    0 &amp; 5117 \\
+\end{pmatrix}
+\]</span></p>
+<p>Magicamente, <em>o viés desta estimativa cai para aproximadamente 1%!</em></p>
+<p>As probabilidades de transição também podem ser representadas usando diagramas de fluxo, como na figura abaixo. À primeira vista, este diagrama pode ser um pouco complicado, mas, na verdade, é bastante simples. Pegue o círculo com a letra “I”. Ele representa o fluxo de pessoas infectadas. As setas saindo do círculo I são os probabilidades de saída, enquanto às setas apontando para ele são probabilidades de permanência. Assim, 17% das pessoas infectadas se recuperaram, 5% voltaram a ser suscetíveis à doença, e 78% continuaram infectados.</p>
+<p><img src="https://guilhermejacob.github.io/post/2020-04-28-sir-markov_files/figure-html/diagrama1-1.png" width="672" /></p>
+</div>
+<div id="referências" class="section level1 unnumbered">
+<h1>Referências</h1>
+<div id="refs" class="references">
+<div id="ref-dorfman1943">
+<p>DORFMAN, R. The Detection of Defective Members of Large Populations. <strong>Ann. Math. Statist.</strong>, v. 14, n. 4, p. 436–440, dez. 1943. </p>
+</div>
+<div id="ref-graubard2018">
+<p>HYUN, N.; GASTWIRTH, J. L.; GRAUBARD, B. I. Grouping methods for estimating the prevalences of rare traits from complex survey data that preserve confidentiality of respondents. <strong>Statistics in Medicine</strong>, v. 37, n. 13, p. 2174–2186, 2018. </p>
+</div>
+<div id="ref-rojas2014a">
+<p>ROJAS, H. A. G.; TRUJILLO, L.; SILVA, P. L. N. The estimation of gross flows in complex surveys with random nonresponse. <strong>Survey Methodology</strong>, v. 40, n. 2, p. 285–321, dez. 2014. </p>
+</div>
+<div id="ref-stasny1987">
+<p>STASNY, E. A. Some Markov-Chain Models for Nonresponse in Estimating Gross Labor Force Flows. <strong>Journal of Official Statistics</strong>, v. 3, n. 4, p. 359–373, 1987. </p>
+</div>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>Existe a possibilidade de falsos positivos e falsos negativos, mas tem como levar isso em consideração na estimação.<a href="#fnref1" class="footnote-back">↩</a></p></li>
+</ol>
+</div>
+
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">ETIQUETADO em</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://guilhermejacob.github.io/tags/sa%C3%BAde/">Saúde</a>
+
+  <a class="tag tag--primary tag--small" href="https://guilhermejacob.github.io/tags/rstats/">rstats</a>
+
+                  </div>
+                
+              
+            
+            
+  <div class="post-actions-wrap">
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">PRÓXIMO</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://guilhermejacob.github.io/2020/04/stat-pes/" data-tooltip="Sobre as vidas perdidas em Manaus">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">ANTERIOR</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://guilhermejacob.github.io/2020/04/sir-markov/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://guilhermejacob.github.io/2020/04/sir-markov/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://guilhermejacob.github.io/2020/04/sir-markov/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+
+            
+              
+            
+          </div>
+        </article>
+        <script src="//yihui.name/js/math-code.js"></script>
+<script async
+    src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+<footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2020 Guilherme Jacob. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+        
+  <div class="post-actions-wrap">
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">PRÓXIMO</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://guilhermejacob.github.io/2020/04/stat-pes/" data-tooltip="Sobre as vidas perdidas em Manaus">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">ANTERIOR</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://guilhermejacob.github.io/2020/04/sir-markov/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://guilhermejacob.github.io/2020/04/sir-markov/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://guilhermejacob.github.io/2020/04/sir-markov/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="4">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fguilhermejacob.github.io%2F2020%2F04%2Fsir-markov%2F">
+          <i class="fa fa-facebook-official"></i><span>Compartilhar no Facebook</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Fguilhermejacob.github.io%2F2020%2F04%2Fsir-markov%2F">
+          <i class="fa fa-twitter"></i><span>Compartilhar no Twitter</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https%3A%2F%2Fguilhermejacob.github.io%2F2020%2F04%2Fsir-markov%2F">
+          <i class="fa fa-google-plus"></i><span>Compartilhar no Google&#43;</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://guilhermejacob.github.io/files/20900788_1261769030617642_6094584381440292567_o.jpg" alt="Foto do autor" />
+    
+    <h4 id="about-card-name">Guilherme Jacob</h4>
+    
+      <div id="about-card-bio">Manauara.<br>Mestrando em População, Território e Estatísticas Públicas.<br>Bacharel em Direito e Economia.</div>
+    
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        Rio de Janeiro, Brasil
+      </div>
+    
+  </div>
+</div>
+
+    <div id="algolia-search-modal" class="modal-container">
+  <div class="modal">
+    <div class="modal-header">
+      <span class="close-button"><i class="fa fa-close"></i></span>
+      <a href="https://algolia.com" target="_blank" rel="noopener" class="searchby-algolia text-color-light link-unstyled">
+        <span class="searchby-algolia-text text-color-light text-small">by</span>
+        <img class="searchby-algolia-logo" src="https://www.algolia.com/static_assets/images/press/downloads/algolia-light.svg">
+      </a>
+      <i class="search-icon fa fa-search"></i>
+      <form id="algolia-search-form">
+        <input type="text" id="algolia-search-input" name="search"
+          class="form-control input--large search-input" placeholder="Pesquisar" />
+      </form>
+    </div>
+    <div class="modal-body">
+      <div class="no-result text-color-light text-center"></div>
+      <div class="results">
+        
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://guilhermejacob.github.io/2020/04/sir-markov/">
+                <h3 class="media-heading">Modelos epidemiológicos, Testagem e Cadeias de Markov</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Apr 4, 2020
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">É notório que há uma grande subnotificação de casos da COVID-19. Como se pode imaginar, testar as pessoas na porta do hospital enviesaria as amostras. Então, como fazer testagem em massa? Uma estratégia possível seria usar uma amostra aleatória. Usando uma ideia antiga desenvolvida pelo economista estatístico Robert Dorfman (Dorfman, 1943), é possível reduzir os custos da testagem. Por exemplo, em vez de testar imediatamente todas as pessoas de um domicílio, testamos o conjunto de pessoas.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://guilhermejacob.github.io/2020/04/stat-pes/">
+                <h3 class="media-heading">Sobre as vidas perdidas em Manaus</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Apr 4, 2020
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">No dia que eu escrevo esse post, o Brasil enfrenta uma epidemia severa que custou a vida de milhares de pessoas. O número oficial de mortos já passa de 2.700. E é evidente a subnotificação, já que só os casos graves hospitalizados foram testados.
+Hoje, eu não quero fazer gráficos ou tabelas. Eu não quero falar de curvas que se achatam, de picos ou vales. Eu não quero falar de números.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://guilhermejacob.github.io/2020/04/taylor-maclaurin-taxa/">
+                <h3 class="media-heading">Juros, taxas de crescimento e aproximações</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Apr 4, 2020
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Esse post vai fugir um pouco do usual. Não vamos fazer análise de dados, nem escrever código. Vamos ter algumas equações e gráficos, mas nada muito complicado. Vamos tentar responder duas perguntas:
+ Tenho uma série de crescimento do PIB nos trimestres de um ano. O crescimento acumulado no período é igual à soma das taxas de crescimento?
+  Tenho valores de inflação e taxa de juros nominal. A taxa de juros real é igual à taxa de juros nominal menos a inflação?</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://guilhermejacob.github.io/2019/12/u5-mun-paises/">
+                <h3 class="media-heading">Mortalidade na infância: comparando municípios e países</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Dec 12, 2019
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Às vezes, quando estamos estudando algo, acabamos aprendendo mais do que esperávamos.
+Há alguns dias, andei estudando ligação probabilística de bases de dados. Acabei notando que uma coisa interessante: essa técnica pode ser usada para comparar coisas bem diferentes. Anotei no meu caderno e resolvi explorar mais a fundo hoje.
+Vejamos.
+Entendendo a desigualdade regional no Brasil a partir do mundo Na época que eu trabalhava mais diretamente com comunicação a partir de estatísticas, o problema principal era: como ajudar o leitor não-especializado a entender um número?</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://guilhermejacob.github.io/2019/12/amostra-complexa-epa/">
+                <h3 class="media-heading">Por que calcular variâncias de estimativas?</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Dec 12, 2019
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Eu ia encerrar com o último texto, mas lembrei de outra coisa. Durante o mestrado, quando alguns colegas trabalhavam com a PNADC, eu sempre comentava que era importante levar o plano amostral em consideração. Diante disso, eles levaram o peso amostral em consideração. No entanto, o plano amostral é mais do que os pesos amostrais!
+Usar os pesos amostrais faz com que suas estimativas não sejam viesadas. Mas, se o plano amostral não for ignorável, as variâncias estarão incorretas.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://guilhermejacob.github.io/2019/12/meng2018/">
+                <h3 class="media-heading">Mentiras, mentiras cabeludas e &#34;big data&#34;</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Dec 12, 2019
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Eu queria fechar esse ano com um problema que andei lendo a respeito no passado recente: inferência descritiva com amostras não-probabilísticas. Alguns dos textos mais interessantes são Smith (1983), Meng (2014), Elliott e Valliant (2017) e Meng (2018). Vamos focar neste último. Ele tenta responder uma pergunta muito simples:1
+ O que é melhor: uma amostra probabilística de 5% da população ou uma amostra não-probabilística de 80% da população?
+ Esta pergunta é crucial e a resposta é importante para pensar sobre os cuidados no uso de registros administrativos e questionar o uso inadequado de big data.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://guilhermejacob.github.io/2019/12/superpopulacao/">
+                <h3 class="media-heading">Sopas, universos paralelos e modelos de superpopulação</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Dec 12, 2019
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Tive a oportunidade de estudar amostragem e análise de dados amostrais na ENCE com excelentes professores1 esse ano. E foi incrível! Tentei aproveitar da melhor maneira possível. Entre algumas ideias exploradas, existem os modelos de superpopulação, que desempenham um papel fundamental na análise de dados amostrais. É uma ideia tão interessante que resolvi escrever um post sobre isso, mas com uma restrição: ser didático e, se possível, interessante para um público mais amplo.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://guilhermejacob.github.io/2019/12/varianca-adac/">
+                <h3 class="media-heading">Por que é tão difícil calcular variância com amostras complexas?</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Dec 12, 2019
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Já faz algum tempo que passei por essa situação mas acho que vale a pena pensar a respeito.
+Em um fórum de R, uma pessoa pergunta onde está a função pra calcular um determinado número com a PNAD. Eu vou dou uma olhada e vejo que, de fato, a função não existe. Explico para a pessoa que a função não existe porque ninguém escreveu ainda. E me responde: alguém pode fazer isso aí rapidinho?</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://guilhermejacob.github.io/2019/08/desigualdade-pobreza-log/">
+                <h3 class="media-heading">Desigualdade ou pobreza?</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Aug 8, 2019
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Pesquisando no repositório das piores ideias da humanidade1, não é raro encontrar a seguinte frase:
+ “A pobreza importa. A desigualdade, não.”
+ Aparentemente, tem gente que acredita nisso. Vou mostrar o quanto isso é estúpido.
+Considere a sociedade A, cuja renda média é $500.10 e o índice de Gini é 0.400. Vejamos a distribuição cumulativa.
+Agora considere a Sociedade B, produzida a partir de \(n\) transferências regressivas para o indivíduo mais rico de modo que os demais indivíduos não-pobres estejam quase na linha de pobreza.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://guilhermejacob.github.io/2018/05/temer-desemprego-2018/">
+                <h3 class="media-heading">Temer, desemprego e procura de empregos: entendendo conceitos da PNAD Contínua</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  May 5, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Uma controvérsia relativamente recente foi protagonizada pelo Temer, durante uma palestra na ESPM. Ele teria afirmado que não houve aumento da taxa de desemprego, mas, sim, aumento das pessoas procurando emprego. Antes da divulgação dos dados da PNADC do 1º trimestre de 2018, tive uma conversa com um professor a respeito de até onde aquilo faz ou não faz sentido.
+Escolhi esperar1 até os microdados saírem…
+Pois bem: saíram ontem, dia 17.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+      </div>
+    </div>
+    <div class="modal-footer">
+      <p class="results-count text-medium"
+         data-message-zero=""
+         data-message-one=""
+         data-message-other="">
+         20 posts found
+      </p>
+    </div>
+  </div>
+</div>
+    
+  
+    
+    <div id="cover" style="background-image:url('https://guilhermejacob.github.io/images/manaus.jpg');"></div>
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js" integrity="sha256-GEAnjcTqVP+vBp3SSc8bEDQqvWAZMiHyUSIorrWwH50=" crossorigin="anonymous"></script>
+
+
+<script src="https://guilhermejacob.github.io/js/script-qi9wbxp2ya2j6p7wx1i6tgavftewndznf4v0hy2gvivk1rxgc3lm7njqb6bz.min.js"></script>
+
+
+
+
+  
+    
+  
+
+
+
+    
+  </body>
+</html>
+
