@@ -295,8 +295,8 @@
 <h1>Fluxos brutos em modelos epidemiológicos</h1>
 <p>Em epidemiologia, um dos assuntos que considero mais interessantes são os modelos compartimentais. No nosso exemplo, vamos manter a estrutura mais simples, o Modelo SIR. Nele, existem três estados de saúde:</p>
 <ul>
-<li><em>Susceptible:</em> pessoas suscetíveis à doença. Ou seja: pessoas que não estão doentes, mortas ou imunes;</li>
-<li><em>Infective:</em> pessoas portadoras da doença, com potencial de transmissão;</li>
+<li><em>Susceptible:</em> pessoas suscetíveis à doença;</li>
+<li><em>Infectious:</em> pessoas doentes, com potencial de transmissão;</li>
 <li><em>Recovered:</em> pessoas que se recuperaram da doença e estão imunes.</li>
 </ul>
 <p>Podemos vê-lo como uma cadeia de Markov: dada uma distribuição inicial, é possível prever a distribuição no período seguinte. As probabilidades de transição entre estas categorias são, basicamente, probabilidades condicionais em relação à categoria inicial. Com esta matriz de probabilidades de transição, é possível ter informações muito importantes, como a velocidade da epidemia. O vídeo abaixo tem uma explicação mais detalhada destes conceitos:</p>
@@ -331,7 +331,7 @@ M = \begin{pmatrix} \mu_{ij} \end{pmatrix} =
 \]</span></p>
 <p>Esta população, no entanto, é não-observável: por causa da não-resposta, algumas observações perdem as suas categorias. As probabilidades de responder no período inicial são <span class="math inline">\(\phi ( i ) = ( .95 , .40 , .80 )\)</span> para os indivíduos classificados como “S”, “I”, e “R”, respectivamente. A probabilidade de responder no período final dado que respondeu no período inicial é <span class="math inline">\(\rho_{RR} = .9\)</span>. Já os indivíduos que não responderam no período inicial tem probabilidade de não-resposta igual à <span class="math inline">\(\rho_{MM} = .7\)</span>. Esta é população com não-resposta é chamada de população observável.</p>
 <p>Desta população observável, selecionamos uma amostra aleatória simples de tamanho <span class="math inline">\(n =5000\)</span>.</p>
-<p>O analista ingênuo pode supor que a não-resposta é aleatória e, portanto, estima as probabilidades descartando as observações com não-resposta. ele teria a seguinte matriz de fluxos.</p>
+<p>O analista ingênuo pode supor que a não-resposta é aleatória e, portanto, estima as probabilidades descartando as observações com não-resposta. Ele obtêm a seguinte matriz de fluxos:</p>
 <p><span class="math display">\[
 \widehat{M}_{MCAR} = \begin{pmatrix}
 71389 &amp; 10058 &amp; 9352 \\
@@ -349,7 +349,8 @@ M = \begin{pmatrix} \mu_{ij} \end{pmatrix} =
 \end{pmatrix}
 \]</span></p>
 <p>Magicamente, <em>o viés desta estimativa cai para aproximadamente 1%!</em></p>
-<p>As probabilidades de transição também podem ser representadas usando diagramas de fluxo, como na figura abaixo. À primeira vista, este diagrama pode ser um pouco complicado, mas, na verdade, é bastante simples. Pegue o círculo com a letra “I”. Ele representa o fluxo de pessoas infectadas. As setas saindo do círculo I são os probabilidades de saída, enquanto às setas apontando para ele são probabilidades de permanência. Assim, 17% das pessoas infectadas se recuperaram, 5% voltaram a ser suscetíveis à doença, e 78% continuaram infectados.</p>
+<p>Outra consequência importante dessa correção é que as estimativas dos fluxos líquidos também mudam. Supondo que a não resposta é ignorável, teríamos <span class="math inline">\(\widehat{\eta}_{MCAR} = \begin{pmatrix} .91 &amp; .04 &amp; .05 \end{pmatrix}\)</span>, enquanto <span class="math inline">\(\widehat{\eta}_{Modelo} = \begin{pmatrix} .85 &amp; .10 &amp; .05 \end{pmatrix}\)</span>. Consequentemente, a distribuição final também muda. Os valores dos parâmetros associados às probabilidades finais são <span class="math inline">\(\kappa = \begin{pmatrix} .685 &amp; .165 &amp; .150 \end{pmatrix}\)</span>. Enquanto a estimativa ingênua resulta em <span class="math inline">\(\widehat{\kappa}_{MCAR} = \begin{pmatrix} .716 &amp; .134 &amp; .150 \end{pmatrix}\)</span>, enquanto <span class="math inline">\(\widehat{\kappa}_{Modelo} = \begin{pmatrix} .672 &amp; .173 &amp; .155 \end{pmatrix}\)</span>. Ou seja: as estimativas das margens também são corrigidas, ficando mais próximas dos valores esperados.</p>
+<p>As probabilidades de transição podem ser representadas usando diagramas de fluxo, como na figura abaixo. À primeira vista, este diagrama pode ser um pouco complicado, mas, na verdade, é bastante simples. Observe o o círculo com a letra “I”. Ele representa o fluxo de pessoas infectadas. As setas saindo do círculo I são os probabilidades de saída, enquanto às setas apontando para ele são probabilidades de permanência. Assim, 17% das pessoas infectadas se recuperaram, 5% voltaram a ser suscetíveis à doença, e 78% continuaram infectados.</p>
 <p><img src="https://guilhermejacob.github.io/post/2020-04-28-sir-markov_files/figure-html/diagrama1-1.png" width="672" /></p>
 </div>
 <div id="referências" class="section level1 unnumbered">
