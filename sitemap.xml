@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://guilhermejacob.github.io/2020/06/variance-sampling/</loc>
+    <lastmod>2020-06-13T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://guilhermejacob.github.io/2020/04/sir-markov/</loc>
     <lastmod>2020-04-24T00:00:00+00:00</lastmod>
   </url>
@@ -250,7 +255,7 @@
   
   <url>
     <loc>https://guilhermejacob.github.io/post/</loc>
-    <lastmod>2020-04-24T00:00:00+00:00</lastmod>
+    <lastmod>2020-06-13T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -280,7 +285,7 @@
   
   <url>
     <loc>https://guilhermejacob.github.io/</loc>
-    <lastmod>2020-04-24T00:00:00+00:00</lastmod>
+    <lastmod>2020-06-13T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
