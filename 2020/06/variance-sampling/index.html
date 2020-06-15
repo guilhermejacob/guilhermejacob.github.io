@@ -29,9 +29,9 @@
 
     
     <meta name="description" content="Population variance, sample variance and sampling variance In finite population sampling context, the term variance can be confusing. One of the most common mistakes is confusing population variance, sample variance and sampling variance. Some definitions may be helpful:
- Population variance \(S^2\): describes the variability of a characteristic in the population; Sample variance \(s^2\): describes the variability of a characteristic in the sample and can be used to estimate the population variance; Sampling variance \(s^2\): describes the variability of an estimate.">
+ Population variance \(S^2\): describes the variability of a characteristic in the population; Sample variance \(s^2\): describes the variability of a characteristic in the sample and can be used to estimate the population variance; Sampling variance \(Var( \overline{y} )\): describes the variability of an estimate; in this case, the mean.">
     <meta property="og:description" content="Population variance, sample variance and sampling variance In finite population sampling context, the term variance can be confusing. One of the most common mistakes is confusing population variance, sample variance and sampling variance. Some definitions may be helpful:
- Population variance \(S^2\): describes the variability of a characteristic in the population; Sample variance \(s^2\): describes the variability of a characteristic in the sample and can be used to estimate the population variance; Sampling variance \(s^2\): describes the variability of an estimate.">
+ Population variance \(S^2\): describes the variability of a characteristic in the population; Sample variance \(s^2\): describes the variability of a characteristic in the sample and can be used to estimate the population variance; Sampling variance \(Var( \overline{y} )\): describes the variability of an estimate; in this case, the mean.">
     <meta property="og:type" content="blog">
     <meta property="og:title" content="Variance: Population, Sample and Sampling">
     <meta property="og:url" content="/2020/06/variance-sampling/">
@@ -39,7 +39,7 @@
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Something Random">
     <meta name="twitter:description" content="Population variance, sample variance and sampling variance In finite population sampling context, the term variance can be confusing. One of the most common mistakes is confusing population variance, sample variance and sampling variance. Some definitions may be helpful:
- Population variance \(S^2\): describes the variability of a characteristic in the population; Sample variance \(s^2\): describes the variability of a characteristic in the sample and can be used to estimate the population variance; Sampling variance \(s^2\): describes the variability of an estimate.">
+ Population variance \(S^2\): describes the variability of a characteristic in the population; Sample variance \(s^2\): describes the variability of a characteristic in the sample and can be used to estimate the population variance; Sampling variance \(Var( \overline{y} )\): describes the variability of an estimate; in this case, the mean.">
     
     
 
@@ -274,7 +274,7 @@
 <ul>
 <li>Population variance <span class="math inline">\(S^2\)</span>: describes the variability of a characteristic in the population;</li>
 <li>Sample variance <span class="math inline">\(s^2\)</span>: describes the variability of a characteristic in the sample and can be used to estimate the population variance;</li>
-<li>Sampling variance <span class="math inline">\(s^2\)</span>: describes the variability of an <em>estimate</em>.</li>
+<li>Sampling variance <span class="math inline">\(Var( \overline{y} )\)</span>: describes the variability of an <em>estimate</em>; in this case, the mean.</li>
 </ul>
 <p>So, population variance is something that does not depend on the sampling method: if you use a SRS or cluster sample, that will not change the population variance of a characteristic. For example, consider the height: the variability of height in the population of adults is something that exists, no matter what sample you take.</p>
 <p>Sample variance describes the variance of a characteristic in the sample. That can, indeed, be affectedd by the sample design. But, using the appropriate estimator, you can estimate the population variance of that characteristic using the variability that characteristic in the sample.</p>
@@ -282,7 +282,7 @@
 <p>Let’s look at an example. Randomnopolis is a city with <span class="math inline">\(N = 100000\)</span> habitants. This city is also a very careful place: every person alive has a record in the civil registration, such that it is possible to create a list of every person’s name, birth date, and address. The mayor asks the city’s statistician to estimate the mean of height, income and the proportion of short-sighted among the adults. However, he says he can only pay for <span class="math inline">\(n=1000\)</span> interviews.</p>
 <p>How many SRS<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> samples of <span class="math inline">\(n=1000\)</span> individuals can be taken from a population of <span class="math inline">\(N=100000\)</span> individuals? Well, it is a <em>very large number</em>: 1.7 vezes 10 elevado a . Yes, we’re multiplying by an integer number that starts with 1 and is followed by  zeroes. In fact, my computer cannot print this number: it simply says infinity.</p>
 <blockquote>
-<p><span class="math inline">\(1.6 \times 10^2430\)</span> possible samples of <span class="math inline">\(10^3\)</span> subjects… What were you saying about big data?</p>
+<p><span class="math inline">\(1.6 \times 10^{2430}\)</span> possible samples of <span class="math inline">\(10^3\)</span> subjects… What were you saying about big data?</p>
 </blockquote>
 <p>It would be nice to look at how the estimates <span class="math inline">\(\overline{y}\)</span> are distributed across all possible samples. My computer can’t do that in my lifetime. <em>But a statistician can!</em> We know that those estimates have a normal distribution around the population mean, because the estimator of the sample mean is an unbiased estimator of the population mean. Besides, by knowing the distribution, the statistician can estimate an interval where we expect to see find the population total in 99% of all possible samples.</p>
 <p>Let’s take this example a bit further. Suppose we are a magical being that knows the characteristics for each individual in the population. Here are the population characteristics:</p>
@@ -547,7 +547,7 @@
                 </span>
               </span>
               <div class="media-content hide-xs font-merryweather">Population variance, sample variance and sampling variance In finite population sampling context, the term variance can be confusing. One of the most common mistakes is confusing population variance, sample variance and sampling variance. Some definitions may be helpful:
- Population variance \(S^2\): describes the variability of a characteristic in the population; Sample variance \(s^2\): describes the variability of a characteristic in the sample and can be used to estimate the population variance; Sampling variance \(s^2\): describes the variability of an estimate.</div>
+ Population variance \(S^2\): describes the variability of a characteristic in the population; Sample variance \(s^2\): describes the variability of a characteristic in the sample and can be used to estimate the population variance; Sampling variance \(Var( \overline{y} )\): describes the variability of an estimate; in this case, the mean.</div>
             </div>
             <div style="clear:both;"></div>
             <hr>
