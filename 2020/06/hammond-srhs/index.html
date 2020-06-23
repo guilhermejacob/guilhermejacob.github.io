@@ -20,7 +20,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="Hugo 0.47 with theme Tranquilpeak 0.4.3-BETA">
-    <title>Juros, taxas de crescimento e aproximações</title>
+    <title>Pigou-Dalton, Hammond e desigualdade em estados de saúde</title>
     <meta name="author" content="Guilherme Jacob">
     <meta name="keywords" content="">
 
@@ -28,21 +28,18 @@
     
 
     
-    <meta name="description" content="Esse post vai fugir um pouco do usual. Não vamos fazer análise de dados, nem escrever código. Vamos ter algumas equações e gráficos, mas nada muito complicado. Vamos tentar responder duas perguntas:
- Tenho uma série de crescimento do PIB nos trimestres de um ano. O crescimento acumulado no período é igual à soma das taxas de crescimento?
-  Tenho valores de inflação e taxa de juros nominal. A taxa de juros real é igual à taxa de juros nominal menos a inflação?">
-    <meta property="og:description" content="Esse post vai fugir um pouco do usual. Não vamos fazer análise de dados, nem escrever código. Vamos ter algumas equações e gráficos, mas nada muito complicado. Vamos tentar responder duas perguntas:
- Tenho uma série de crescimento do PIB nos trimestres de um ano. O crescimento acumulado no período é igual à soma das taxas de crescimento?
-  Tenho valores de inflação e taxa de juros nominal. A taxa de juros real é igual à taxa de juros nominal menos a inflação?">
+    <meta name="description" content="O princípio de Pigou-Dalton é uma das ideias mais fundamentais na mensuração de desigualdade em variáveis cardinais. Basicamente, quando determinada quantidade de renda é transferida de alguém pobre para alguém rico (i.e., uma transferência regressiva), a desigualdade aumenta.
+Algumas medidas de desigualdade atendem o princípio de Pigou-Dalton apenas em alguns conjuntos da distribuição de renda: por exemplo, a razão entre as rendas dos 10% mais ricos sobre os 50% mais pobres – i.">
+    <meta property="og:description" content="O princípio de Pigou-Dalton é uma das ideias mais fundamentais na mensuração de desigualdade em variáveis cardinais. Basicamente, quando determinada quantidade de renda é transferida de alguém pobre para alguém rico (i.e., uma transferência regressiva), a desigualdade aumenta.
+Algumas medidas de desigualdade atendem o princípio de Pigou-Dalton apenas em alguns conjuntos da distribuição de renda: por exemplo, a razão entre as rendas dos 10% mais ricos sobre os 50% mais pobres – i.">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="Juros, taxas de crescimento e aproximações">
-    <meta property="og:url" content="/2020/04/taylor-maclaurin-taxa/">
+    <meta property="og:title" content="Pigou-Dalton, Hammond e desigualdade em estados de saúde">
+    <meta property="og:url" content="/2020/06/hammond-srhs/">
     <meta property="og:site_name" content="Something Random">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Something Random">
-    <meta name="twitter:description" content="Esse post vai fugir um pouco do usual. Não vamos fazer análise de dados, nem escrever código. Vamos ter algumas equações e gráficos, mas nada muito complicado. Vamos tentar responder duas perguntas:
- Tenho uma série de crescimento do PIB nos trimestres de um ano. O crescimento acumulado no período é igual à soma das taxas de crescimento?
-  Tenho valores de inflação e taxa de juros nominal. A taxa de juros real é igual à taxa de juros nominal menos a inflação?">
+    <meta name="twitter:description" content="O princípio de Pigou-Dalton é uma das ideias mais fundamentais na mensuração de desigualdade em variáveis cardinais. Basicamente, quando determinada quantidade de renda é transferida de alguém pobre para alguém rico (i.e., uma transferência regressiva), a desigualdade aumenta.
+Algumas medidas de desigualdade atendem o princípio de Pigou-Dalton apenas em alguns conjuntos da distribuição de renda: por exemplo, a razão entre as rendas dos 10% mais ricos sobre os 50% mais pobres – i.">
     
     
 
@@ -247,19 +244,19 @@
             <div class="post-header main-content-wrap text-left">
   
     <h1 class="post-title" itemprop="headline">
-      Juros, taxas de crescimento e aproximações
+      Pigou-Dalton, Hammond e desigualdade em estados de saúde
     </h1>
   
   
   <div class="postShorten-meta post-meta">
     
-      <time itemprop="datePublished" datetime="2020-04-08T00:00:00Z">
+      <time itemprop="datePublished" datetime="2020-06-23T00:00:00Z">
         
   
   
   
   
-    08/04/2020
+    23/06/2020
   
 
       </time>
@@ -269,7 +266,7 @@
   
     <span>em</span>
     
-      <a class="category-link" href="https://guilhermejacob.github.io/categories/censo">Censo</a>
+      <a class="category-link" href="https://guilhermejacob.github.io/categories/desigualdade">Desigualdade</a>
     
   
 
@@ -279,407 +276,32 @@
           
           <div class="post-content markdown" itemprop="articleBody">
             <div class="main-content-wrap">
-              <script src="https://guilhermejacob.github.io/rmarkdown-libs/kePrint/kePrint.js"></script>
-
-
-<p>Esse post vai fugir um pouco do usual. Não vamos fazer análise de dados, nem escrever código. Vamos ter algumas equações e gráficos, mas nada muito complicado. Vamos tentar responder duas perguntas:</p>
+              <p>O princípio de Pigou-Dalton é uma das ideias mais fundamentais na mensuração de desigualdade em variáveis cardinais. Basicamente, quando determinada quantidade de renda é transferida de alguém pobre para alguém rico (i.e., uma transferência regressiva), a desigualdade aumenta.</p>
+<p>Algumas medidas de desigualdade atendem o princípio de Pigou-Dalton apenas em alguns conjuntos da distribuição de renda: por exemplo, a razão entre as rendas dos 10% mais ricos sobre os 50% mais pobres – i.e., o índice de Palma – é sensível às transferências nestes grupos, mas independe das transferências entre 50%-90% mais pobres. Essa escolha metodológica pode ser interessante por se restringir aos extremos da distribuição, isolando as desigualdades de uma “classe média”.</p>
+<p>Em geral, quando explico essa ideia costumo usar um pensamento social muito relevante da década de 1990: quando <em>“o de cima sobe e o de baixo desce”</em>, a desigualdade aumenta. No entato, eu estou errado. Para ser exato na formulação, o princípio de Pigou-Dalton diz: quando <em>“o de cima sobe <span class="math inline">\(\delta\)</span> e o de baixo desce <span class="math inline">\(\delta\)</span>”</em>, sendo <span class="math inline">\(\delta\)</span> uma quantidade fixa, a desigualdade aumenta. A quantidade recebida por um deve ser a quantidade retirada do outro.</p>
 <blockquote>
-<p>Tenho uma série de crescimento do PIB nos trimestres de um ano. O crescimento acumulado no período é igual à soma das taxas de crescimento?</p>
+<p>Ok, mas quando essa diferenciação é importante?</p>
 </blockquote>
-<blockquote>
-<p>Tenho valores de inflação e taxa de juros nominal. A taxa de juros real é igual à taxa de juros nominal menos a inflação?</p>
-</blockquote>
-<p>Resposta: <em>não</em>. Mas, sob certas condições, o erro é bem pequeno. Por quê?</p>
-<div id="taxas-de-crescimento" class="section level1">
-<h1>Taxas de crescimento</h1>
-<p>Quando dizemos que <span class="math inline">\(x_{(0)}\)</span> cresceu <span class="math inline">\(r\)</span>%, isso significa que <span class="math inline">\(x_{(1)} = x_{(0)} ( 1 + r )\)</span>. Como temos 4 trimestres, podemos escrever o crescimento do PIB como</p>
-<p><span class="math display">\[
-\begin{align}
-\frac{x_{(1)}}{x_{(0)}} 
-          &amp;= ( 1 + r_1 ) ( 1 + r_2 ) ( 1 + r_3 ) ( 1 + r_4 ) \\
-          &amp;= \prod_{i=1}^4 (1+r_i) \\ 
-          &amp;= 1 + \sum_{i=1} r_i 
-               + \sum_{ i \neq j } \sum_{ j \neq i } r_i r_j 
-               + \sum_{ \substack{ i \neq j \\ i \neq k } } \sum_{ \substack{ j \neq i \\ j \neq k } } \sum_{ \substack{ k \neq i \\ k \neq j } } r_i r_j r_k + \prod_{i=1}^4 r_i
-\end{align}
-\]</span></p>
-<p>Claramente, <span class="math inline">\(\prod_{i=1}^4 ( 1 + r_i ) \neq \sum_{i=1}^4 r_i\)</span>. Mas quão ruim seria essa aproximação? No caso do PIB, as taxas de crescimento são, geralmente, próximas de zero. Logo, fazendo <span class="math inline">\(\mathbf{r} = (r_1,r_2,r_3,r_4)\)</span> , <span class="math inline">\(\mathbf{0} = (0,0,0,0)\)</span>, <span class="math inline">\(f( \mathbf{r} ) = \prod_{i=1}^4 (1 + r_i )\)</span>, temos a matriz de derivadas parciais</p>
-<p><span class="math display">\[
-D_f ( \mathbf{x} ) =
-\begin{bmatrix}
-(1+x_2) (1+x_3) (1+x_4) \\
-(1+x_1) (1+x_3) (1+x_4) \\
-(1+x_1) (1+x_2) (1+x_4) \\
-(1+x_1) (1+x_2) (1+x_3) \\
-\end{bmatrix} \\
-\]</span></p>
-<p>Assim,</p>
-<p><span class="math display">\[
-D_f ( \mathbf{0} ) =
-\begin{bmatrix}
-(1+0) (1+0) (1+0) \\
-(1+0) (1+0) (1+0) \\
-(1+0) (1+0) (1+0) \\
-(1+0) (1+0) (1+0) \\
-\end{bmatrix}  = 
-\begin{bmatrix} 1 \\ 1 \\ 1 \\ 1 \end{bmatrix}
-\]</span></p>
-<p>Logo, usando a série de Taylor multivariada de 1ª ordem em torno de <span class="math inline">\(\mathbf{0}\)</span>,<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> temos</p>
-<p><span class="math display">\[
-\begin{align}
-f( \mathbf{r} ) &amp;\approx f( \mathbf{0} ) + D_f ( \mathbf{0} )^\prime ( \mathbf{r} - \mathbf{0} ) \\
-                &amp;\approx 1 + \sum_{i=1}^4 r_i
-\end{align}
-\]</span></p>
-<p>Isso significa que, para taxas de crescimento próximas de zero, a aproximação pela soma funciona! Vamos ver isso numericamente.</p>
-<table class="table" style="font-size: 14px; width: auto !important; margin-left: auto; margin-right: auto;">
-<caption style="font-size: initial !important;">
-<span id="tab:pib2">Tabela 1: </span>Aproximação das taxas de crescimento acumuladas de 4 países hipotéticos
-</caption>
-<thead>
-<tr>
-<th style="border-bottom:hidden" colspan="1">
-</th>
-<th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="4">
-<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
-Trimestres
+<p>Suponha que existam 3 categorias ordinais de saúde: ruim (<span class="math inline">\(R\)</span>), bom (<span class="math inline">\(B\)</span>) e excelente (<span class="math inline">\(E\)</span>). Em um uso mais liberal da notação, <span class="math inline">\(R &lt; B &lt; E\)</span>. Desejamos calcular a desigualdade nos estados de saúde em determinada população.</p>
+<p>Uma ideia inicial seria atribuir valores numéricos às categorias de uma variável ordinal e, sobre estes valores, calcular uma medida de desigualdade tradicional, como o índice de Gini. O primeiro problema seria a escolha da escala <span class="math inline">\(f\)</span>: quaisquer 3 números que atendam <span class="math inline">\(f(R) &lt; f(B) &lt; f(E)\)</span> são bons candidatos. <span class="math inline">\((1,2,3),(1,10,100),(10,15,16), \dots\)</span>. Embora o ordenamento das medidas não seja afetado pela escola das escalas, nada garante que o valor da medida de desigualdade será o mesmo.</p>
+<p>Variáveis ordinais são exatamente isto: categorias com uma relação de ordem, mas sem uma <em>distância</em> clara. Sem suposições adicionais, não é possível afirmar que a distância entre <span class="math inline">\(R\)</span> e <span class="math inline">\(B\)</span> é a mesma entre <span class="math inline">\(B\)</span> e <span class="math inline">\(E\)</span>. Portanto, não faz sentido transferir “unidades do estado de saúde” entre duas pessoas. Logo, <em>o princípio de Pigou-Dalton não se aplica neste tipo de comparação</em>.</p>
+<p>Existe, no entanto, uma intuição evidente: uma distribuição em que todo mundo esteja na mesma categoria é menos desigual do que outra distribuição que se divide nos extremos. De fato, existe um princípio capaz de guiar este tipo de comparação.</p>
+<p><span class="citation">Hammond (1976)</span> mostrou que, sob um princípio mínimo de equidade, ainda seria possível estabelecer comparações sobre desigualdade de distribuições de atributos ordinais. Como explicam <span class="citation">Gravel, Magdalou e Moyes (2020, p. 3)</span>, “subir” um indivíduo de uma categoria mais baixa e “descer” um indivíduo de uma categoria mais alta reduziriam a desigualdade. Não existe restrição sobre o valor da transferência, apenas que as mudanças de posição não revertam as posições dos indivíduos. Na outra direção, uma transferência regressiva de Hammond pode ser descrita como: <em>“o de cima sobe e o de baixo desce”</em>. E, sob este princípio, uma transferência regressiva de Hammond aumenta a desigualdade na sociedade.</p>
+<p>Usando esta ideia, <span class="citation">Gravel, Magdalou e Moyes (2020)</span> desenvolvem várias ideias importantes, mas uma é particularmente interessante: uma versão ordinal do Teorema de Hardy-Littlewood-Pólya. Usando a dominância estocástica de segunda ordem, analisam a desigualdade de regiões da Suíca e comparam com os ordenamentos produzidos com o critério de <span class="citation">Abul Naga e Yalcin (2008)</span>.</p>
+<p>Na verdade, a ideia original da minha dissertação era calcular medidas de desigualdade em autoavaliação de saúde no Brasil considerando o desenho amostral complexo da PNS. No entanto, por motivos diversos, acabei mudando de tema e pretendo retomar essa ideia em breve <em>with a little help from my friends</em>. A ideia de dominância estocástica de segunda ordem também pode ser explorada, mas ainda não sei como. Vamos ver o que acontece <strong>depois da dissertação</strong>.</p>
+<div id="referências" class="section level1 unnumbered">
+<h1>Referências</h1>
+<div id="refs" class="references">
+<div id="ref-yalcin2008">
+<p>ABUL NAGA, R. H.; YALCIN, T. Inequality measurement for ordered response health data. <strong>Journal of Health Economics</strong>, v. 27, n. 6, p. 1614–1625, 2008. </p>
 </div>
-</th>
-<th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="3">
-<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
-Ano
+<div id="ref-gravel2017rank">
+<p>GRAVEL, N.; MAGDALOU, B.; MOYES, P. Ranking distributions of an ordinal variable. <strong>Economic Theory</strong>, jan. 2020. </p>
 </div>
-</th>
-</tr>
-<tr>
-<th style="text-align:left;">
-País
-</th>
-<th style="text-align:left;">
-1º
-</th>
-<th style="text-align:left;">
-2º
-</th>
-<th style="text-align:left;">
-3º
-</th>
-<th style="text-align:left;">
-4º
-</th>
-<th style="text-align:left;">
-Taxa acumulada
-</th>
-<th style="text-align:left;">
-Taxa aproximada
-</th>
-<th style="text-align:left;">
-Erro
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;width: 8em; ">
-A
-</td>
-<td style="text-align:left;width: 8em; ">
--0.0010
-</td>
-<td style="text-align:left;width: 8em; ">
-0.0050
-</td>
-<td style="text-align:left;width: 8em; ">
-0.0410
-</td>
-<td style="text-align:left;width: 8em; ">
-0.0110
-</td>
-<td style="text-align:left;width: 8em; ">
-0.0570
-</td>
-<td style="text-align:left;width: 8em; ">
-0.0560
-</td>
-<td style="text-align:left;width: 8em; ">
-0.0010
-</td>
-</tr>
-<tr>
-<td style="text-align:left;width: 8em; ">
-B
-</td>
-<td style="text-align:left;width: 8em; ">
-0.0530
-</td>
-<td style="text-align:left;width: 8em; ">
-0.0840
-</td>
-<td style="text-align:left;width: 8em; ">
-0.0590
-</td>
-<td style="text-align:left;width: 8em; ">
-0.0250
-</td>
-<td style="text-align:left;width: 8em; ">
-0.2390
-</td>
-<td style="text-align:left;width: 8em; ">
-0.2210
-</td>
-<td style="text-align:left;width: 8em; ">
-0.0180
-</td>
-</tr>
-<tr>
-<td style="text-align:left;width: 8em; ">
-C
-</td>
-<td style="text-align:left;width: 8em; ">
-0.0860
-</td>
-<td style="text-align:left;width: 8em; ">
-0.0910
-</td>
-<td style="text-align:left;width: 8em; ">
-0.1240
-</td>
-<td style="text-align:left;width: 8em; ">
-0.1070
-</td>
-<td style="text-align:left;width: 8em; ">
-0.4740
-</td>
-<td style="text-align:left;width: 8em; ">
-0.4080
-</td>
-<td style="text-align:left;width: 8em; ">
-0.0660
-</td>
-</tr>
-<tr>
-<td style="text-align:left;width: 8em; ">
-D
-</td>
-<td style="text-align:left;width: 8em; ">
-0.1580
-</td>
-<td style="text-align:left;width: 8em; ">
-0.1520
-</td>
-<td style="text-align:left;width: 8em; ">
-0.1390
-</td>
-<td style="text-align:left;width: 8em; ">
-0.1860
-</td>
-<td style="text-align:left;width: 8em; ">
-0.8020
-</td>
-<td style="text-align:left;width: 8em; ">
-0.6350
-</td>
-<td style="text-align:left;width: 8em; ">
-0.1670
-</td>
-</tr>
-</tbody>
-</table>
-<p>A tabela acima mostra o procedimento usando as taxas de crescimento trimestrais de quatro países países hipotéticos. Note que, à medida que as taxas trimestrais se distanciam de zero, o erro da aproximação aumenta. Portanto,</p>
-<ul>
-<li>Se você tem tempo para fazer a conta exata – por exemplo, preparando um artigo, faça a conta exata. Qualquer programa de planilha resolve;</li>
-<li>Se você não tem tempo para fazer a conta exata, veja se as taxas são suficientemente próximas de zero.</li>
-</ul>
+<div id="ref-hammond1976">
+<p>HAMMOND, P. J. Equity, Arrow’s Conditions, and Rawls’ Difference Principle. <strong>Econometrica</strong>, v. 44, n. 4, p. 793–804, 1976. </p>
 </div>
-<div id="inflação-juros-nominal-e-juros-nominal" class="section level1">
-<h1>Inflação, juros nominal e juros nominal</h1>
-<p>A taxa de juros real representa o crescimento real de um investimento – i.e., precisamos descontar a inflação do crescimento nominal. Logo, representado a taxa de juros real por <span class="math inline">\(\gamma\)</span>, a taxa de juros nominal por <span class="math inline">\(r\)</span> e a inflação por <span class="math inline">\(\lambda\)</span>, temos</p>
-<p><span class="math display">\[
-\begin{align}
-1 + \gamma &amp;= \frac{ 1 + r }{ 1 + \lambda} \\
-\gamma &amp;= \frac{ 1 + r }{ 1 + \lambda} -1 .
-\end{align}
-\]</span></p>
-<p>Fazendo $ = f(r,)$, temos a matriz de derivadas parciais</p>
-<p><span class="math display">\[
-\begin{align}
-D_f ( r , \lambda ) &amp;=
-\begin{bmatrix}
-\frac{1}{ 1 + \lambda} \\
-- \frac{ 1 + r }{ ( 1 + \lambda )^2 } \\
-\end{bmatrix} \\
-\therefore D_f ( 0,0 ) &amp;=
-\begin{bmatrix} 1 \\- 1 \\
-\end{bmatrix} 
-\end{align}
-\]</span></p>
-<p>Logo, aproximando ao redor do ponto <span class="math inline">\((0,0)\)</span>,</p>
-<p><span class="math display">\[
-\begin{align}
-f( r , \lambda ) &amp;\approx f( 0,0 ) + D_f ( 0,0 ) \big( (r , \lambda) - (0,0) \big) \\
-                 &amp;\approx 0 + \begin{bmatrix} 1 \\ -1 \end{bmatrix}^\prime \begin{bmatrix} r \\ \lambda \end{bmatrix} \\
-                &amp;\approx r - \lambda .
-\end{align}
-\]</span></p>
-<p>Assim, para taxa de juros nominal e inflação próximas de zero, a taxa de juros real pode ser aproximada subtraindo a taxa de inflação da taxa de juros nominal. Macroeconomistas podem notar que esta aproximação é muito parecida com a equação de Fisher.</p>
-<p>Outro modo de ver esta aproximação é diretamente com a expressão principal:</p>
-<p><span class="math display">\[
-\begin{align}
-1 + \gamma &amp;= \frac{ 1 + r }{ 1 + \lambda} \\
-(1 + \gamma ) ( 1 + \lambda ) &amp;= 1 + r \\
-\gamma ( 1 + \lambda ) &amp;= 1 + r - 1 - \lambda \\
-\gamma &amp;= \frac{ r - \lambda }{ 1 + \lambda } \\
-\therefore R &amp;= \bigg| \frac{ r - \lambda }{ 1 + \lambda } - ( r - \lambda ) \bigg| \\
-             &amp;= \bigg|  ( r-\lambda ) \bigg( \frac{1}{ 1 + \lambda } - 1 \bigg) \bigg| \\
-\end{align}
-\]</span></p>
-<p>Analisando a última equação, observa-se que o erro absoluto cresce quando <span class="math inline">\(r\)</span>, <span class="math inline">\(\lambda\)</span> e <span class="math inline">\(r - \lambda\)</span> se distanciam de zero.</p>
-<p>A tabela abaixo como as taxas de juros nominal e de inflação cinco países hipotéticos. Note que, à medida que as taxas de juros nominal e de inflação se distanciam de zero, o erro da aproximação pela diferença aumenta.</p>
-<table class="table" style="font-size: 14px; width: auto !important; margin-left: auto; margin-right: auto;">
-<caption style="font-size: initial !important;">
-<span id="tab:juros1">Tabela 2: </span>Aproximação do juros real de países hipotéticos
-</caption>
-<thead>
-<tr>
-<th style="border-bottom:hidden" colspan="3">
-</th>
-<th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="3">
-<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
-Juros Real
 </div>
-</th>
-</tr>
-<tr>
-<th style="text-align:left;">
-País
-</th>
-<th style="text-align:left;">
-Juros Nominal
-</th>
-<th style="text-align:left;">
-Inflação
-</th>
-<th style="text-align:left;">
-Exato
-</th>
-<th style="text-align:left;">
-Aproximado
-</th>
-<th style="text-align:left;">
-Erro
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;width: 8em; ">
-A
-</td>
-<td style="text-align:left;width: 8em; ">
-0.070
-</td>
-<td style="text-align:left;width: 8em; ">
-0.020
-</td>
-<td style="text-align:left;width: 8em; ">
-0.049
-</td>
-<td style="text-align:left;width: 8em; ">
-0.050
-</td>
-<td style="text-align:left;width: 8em; ">
--0.001
-</td>
-</tr>
-<tr>
-<td style="text-align:left;width: 8em; ">
-B
-</td>
-<td style="text-align:left;width: 8em; ">
-0.150
-</td>
-<td style="text-align:left;width: 8em; ">
-0.100
-</td>
-<td style="text-align:left;width: 8em; ">
-0.045
-</td>
-<td style="text-align:left;width: 8em; ">
-0.050
-</td>
-<td style="text-align:left;width: 8em; ">
--0.005
-</td>
-</tr>
-<tr>
-<td style="text-align:left;width: 8em; ">
-C
-</td>
-<td style="text-align:left;width: 8em; ">
-0.200
-</td>
-<td style="text-align:left;width: 8em; ">
-0.100
-</td>
-<td style="text-align:left;width: 8em; ">
-0.091
-</td>
-<td style="text-align:left;width: 8em; ">
-0.100
-</td>
-<td style="text-align:left;width: 8em; ">
--0.009
-</td>
-</tr>
-<tr>
-<td style="text-align:left;width: 8em; ">
-D
-</td>
-<td style="text-align:left;width: 8em; ">
-0.300
-</td>
-<td style="text-align:left;width: 8em; ">
-0.200
-</td>
-<td style="text-align:left;width: 8em; ">
-0.083
-</td>
-<td style="text-align:left;width: 8em; ">
-0.100
-</td>
-<td style="text-align:left;width: 8em; ">
--0.017
-</td>
-</tr>
-<tr>
-<td style="text-align:left;width: 8em; ">
-E
-</td>
-<td style="text-align:left;width: 8em; ">
-0.400
-</td>
-<td style="text-align:left;width: 8em; ">
-0.500
-</td>
-<td style="text-align:left;width: 8em; ">
--0.067
-</td>
-<td style="text-align:left;width: 8em; ">
--0.100
-</td>
-<td style="text-align:left;width: 8em; ">
-0.033
-</td>
-</tr>
-</tbody>
-</table>
-<p>Portanto, <a href="https://super.abril.com.br/mundo-estranho/como-era-a-vida-no-brasil-da-hiperinflacao/">se você viveu no Brasil durante a década de 1980, essa aproximação era bem ruim.</a></p>
-</div>
-<div class="footnotes">
-<hr />
-<ol>
-<li id="fn1"><p>Na verdade, uma série de Maclaurin, um caso específico da série de Taylor.<a href="#fnref1" class="footnote-back">↩</a></p></li>
-</ol>
 </div>
 
               
@@ -693,13 +315,9 @@ E
                   <div class="post-footer-tags">
                     <span class="text-color-light text-small">ETIQUETADO em</span><br/>
                     
-  <a class="tag tag--primary tag--small" href="https://guilhermejacob.github.io/tags/mapas/">Mapas</a>
+  <a class="tag tag--primary tag--small" href="https://guilhermejacob.github.io/tags/sa%C3%BAde/">Saúde</a>
 
-  <a class="tag tag--primary tag--small" href="https://guilhermejacob.github.io/tags/brasil/">Brasil</a>
-
-  <a class="tag tag--primary tag--small" href="https://guilhermejacob.github.io/tags/cidades/">Cidades</a>
-
-  <a class="tag tag--primary tag--small" href="https://guilhermejacob.github.io/tags/desigualdade/">Desigualdade</a>
+  <a class="tag tag--primary tag--small" href="https://guilhermejacob.github.io/tags/rstats/">rstats</a>
 
                   </div>
                 
@@ -712,7 +330,7 @@ E
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://guilhermejacob.github.io/2020/04/stat-pes/" data-tooltip="Sobre as vidas perdidas em Manaus">
+                <a class="post-action-btn btn btn--disabled">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">PRÓXIMO</span>
@@ -720,7 +338,7 @@ E
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://guilhermejacob.github.io/2019/12/u5-mun-paises/" data-tooltip="Mortalidade na infância: comparando municípios e países">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://guilhermejacob.github.io/2020/06/variance-sampling/" data-tooltip="Variance: Population, Sample and Sampling">
               
                   <span class="hide-xs hide-sm text-small icon-mr">ANTERIOR</span>
                   <i class="fa fa-angle-right"></i>
@@ -738,19 +356,19 @@ E
         </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://guilhermejacob.github.io/2020/04/taylor-maclaurin-taxa/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://guilhermejacob.github.io/2020/06/hammond-srhs/">
               <i class="fa fa-facebook-official"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://guilhermejacob.github.io/2020/04/taylor-maclaurin-taxa/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://guilhermejacob.github.io/2020/06/hammond-srhs/">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://guilhermejacob.github.io/2020/04/taylor-maclaurin-taxa/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://guilhermejacob.github.io/2020/06/hammond-srhs/">
               <i class="fa fa-google-plus"></i>
             </a>
           </li>
@@ -792,7 +410,7 @@ E
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://guilhermejacob.github.io/2020/04/stat-pes/" data-tooltip="Sobre as vidas perdidas em Manaus">
+                <a class="post-action-btn btn btn--disabled">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">PRÓXIMO</span>
@@ -800,7 +418,7 @@ E
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://guilhermejacob.github.io/2019/12/u5-mun-paises/" data-tooltip="Mortalidade na infância: comparando municípios e países">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://guilhermejacob.github.io/2020/06/variance-sampling/" data-tooltip="Variance: Population, Sample and Sampling">
               
                   <span class="hide-xs hide-sm text-small icon-mr">ANTERIOR</span>
                   <i class="fa fa-angle-right"></i>
@@ -818,19 +436,19 @@ E
         </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://guilhermejacob.github.io/2020/04/taylor-maclaurin-taxa/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://guilhermejacob.github.io/2020/06/hammond-srhs/">
               <i class="fa fa-facebook-official"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://guilhermejacob.github.io/2020/04/taylor-maclaurin-taxa/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://guilhermejacob.github.io/2020/06/hammond-srhs/">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://guilhermejacob.github.io/2020/04/taylor-maclaurin-taxa/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://guilhermejacob.github.io/2020/06/hammond-srhs/">
               <i class="fa fa-google-plus"></i>
             </a>
           </li>
@@ -854,19 +472,19 @@ E
   <ul class="share-options">
     
       <li class="share-option">
-        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fguilhermejacob.github.io%2F2020%2F04%2Ftaylor-maclaurin-taxa%2F">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fguilhermejacob.github.io%2F2020%2F06%2Fhammond-srhs%2F">
           <i class="fa fa-facebook-official"></i><span>Compartilhar no Facebook</span>
         </a>
       </li>
     
       <li class="share-option">
-        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Fguilhermejacob.github.io%2F2020%2F04%2Ftaylor-maclaurin-taxa%2F">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Fguilhermejacob.github.io%2F2020%2F06%2Fhammond-srhs%2F">
           <i class="fa fa-twitter"></i><span>Compartilhar no Twitter</span>
         </a>
       </li>
     
       <li class="share-option">
-        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https%3A%2F%2Fguilhermejacob.github.io%2F2020%2F04%2Ftaylor-maclaurin-taxa%2F">
+        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https%3A%2F%2Fguilhermejacob.github.io%2F2020%2F06%2Fhammond-srhs%2F">
           <i class="fa fa-google-plus"></i><span>Compartilhar no Google&#43;</span>
         </a>
       </li>

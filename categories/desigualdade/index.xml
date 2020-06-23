@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Desigualdade on Something Random</title>
+    <link>https://guilhermejacob.github.io/categories/desigualdade/</link>
+    <description>Recent content in Desigualdade on Something Random</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>pt-br</language>
+    <lastBuildDate>Tue, 23 Jun 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://guilhermejacob.github.io/categories/desigualdade/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Pigou-Dalton, Hammond e desigualdade em estados de saúde</title>
+      <link>https://guilhermejacob.github.io/2020/06/hammond-srhs/</link>
+      <pubDate>Tue, 23 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://guilhermejacob.github.io/2020/06/hammond-srhs/</guid>
+      <description>O princípio de Pigou-Dalton é uma das ideias mais fundamentais na mensuração de desigualdade em variáveis cardinais. Basicamente, quando determinada quantidade de renda é transferida de alguém pobre para alguém rico (i.e., uma transferência regressiva), a desigualdade aumenta.
+Algumas medidas de desigualdade atendem o princípio de Pigou-Dalton apenas em alguns conjuntos da distribuição de renda: por exemplo, a razão entre as rendas dos 10% mais ricos sobre os 50% mais pobres – i.</description>
+    </item>
+    
+  </channel>
+</rss>
