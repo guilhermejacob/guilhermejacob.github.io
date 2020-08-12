@@ -6,10 +6,22 @@
     <description>Recent content in Desigualdade on Something Random</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>pt-br</language>
-    <lastBuildDate>Wed, 08 Apr 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 12 Aug 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://guilhermejacob.github.io/tags/desigualdade/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Estimando índice de Gini com a distirbuição GB2</title>
+      <link>https://guilhermejacob.github.io/2020/08/gini-gb2/</link>
+      <pubDate>Wed, 12 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://guilhermejacob.github.io/2020/08/gini-gb2/</guid>
+      <description>Aviso: Esse post é experimental e eu posso estar completamente errado. Leia com cautela. Ou não leia.
+Ainda vou incluir as referências.
+ Aproveitando que eu estou com algum tempo e evitando pensar no seminário de dissertação amanhã, resolvi escrever um pouco sobre a única coisa que as pessoas acham que eu faço estimar índices de Gini.
+Li um pouco sobre estimação de índices de Gini com a distribuição Beta Generalizada do Tipo 2 e achei bem interessante.</description>
+    </item>
     
     <item>
       <title>Juros, taxas de crescimento e aproximações</title>
