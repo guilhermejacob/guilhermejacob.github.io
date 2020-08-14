@@ -20,32 +20,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="Hugo 0.47 with theme Tranquilpeak 0.4.3-BETA">
-    <title>Estimando índice de Gini com a distribuição GB2</title>
+    <title>Modelos com amostras complexas: ponderar ou não ponderar?</title>
     <meta name="author" content="Guilherme Jacob">
     <meta name="keywords" content="">
 
-    <link rel="icon" href="https://guilhermejacob.github.io/favicon.png">
+    <link rel="icon" href="/favicon.png">
     
 
     
-    <meta name="description" content="Aviso: Esse post é experimental e eu posso estar completamente errado. Leia com cautela. Ou não leia.
-Ainda vou incluir as referências.
- Aproveitando que eu estou com algum tempo e evitando pensar no seminário de dissertação amanhã, resolvi escrever um pouco sobre a única coisa que as pessoas acham que eu faço estimar índices de Gini.
-Li um pouco sobre estimação de índices de Gini com a distribuição Beta Generalizada do Tipo 2 e achei bem interessante.">
-    <meta property="og:description" content="Aviso: Esse post é experimental e eu posso estar completamente errado. Leia com cautela. Ou não leia.
-Ainda vou incluir as referências.
- Aproveitando que eu estou com algum tempo e evitando pensar no seminário de dissertação amanhã, resolvi escrever um pouco sobre a única coisa que as pessoas acham que eu faço estimar índices de Gini.
-Li um pouco sobre estimação de índices de Gini com a distribuição Beta Generalizada do Tipo 2 e achei bem interessante.">
+    <meta name="description" content=" ">
+    <meta property="og:description" content=" ">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="Estimando índice de Gini com a distribuição GB2">
-    <meta property="og:url" content="/2020/08/gini-gb2/">
+    <meta property="og:title" content="Modelos com amostras complexas: ponderar ou não ponderar?">
+    <meta property="og:url" content="/2020/02/superpopulacao-amostragem/">
     <meta property="og:site_name" content="Something Random">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Something Random">
-    <meta name="twitter:description" content="Aviso: Esse post é experimental e eu posso estar completamente errado. Leia com cautela. Ou não leia.
-Ainda vou incluir as referências.
- Aproveitando que eu estou com algum tempo e evitando pensar no seminário de dissertação amanhã, resolvi escrever um pouco sobre a única coisa que as pessoas acham que eu faço estimar índices de Gini.
-Li um pouco sobre estimação de índices de Gini com a distribuição Beta Generalizada do Tipo 2 e achei bem interessante.">
+    <meta name="twitter:description" content=" ">
     
     
 
@@ -53,7 +44,7 @@ Li um pouco sobre estimação de índices de Gini com a distribuição Beta Gene
     
 
     
-      <meta property="og:image" content="https://guilhermejacob.github.io/files/img_2502_recorte.jpg">
+      <meta property="og:image" content="/files/img_2502_recorte.jpg">
     
 
     
@@ -68,7 +59,7 @@ Li um pouco sobre estimação de índices de Gini com a distribuição Beta Gene
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU=" crossorigin="anonymous" />
     
     
-    <link rel="stylesheet" href="https://guilhermejacob.github.io/css/style-jsjn0006wyhpyzivf6yceb31gvpjatbcs3qzjvlumobfnugccvobqwxnnaj8.min.css" />
+    <link rel="stylesheet" href="/css/style-jsjn0006wyhpyzivf6yceb31gvpjatbcs3qzjvlumobfnugccvobqwxnnaj8.min.css" />
     
     
 
@@ -83,17 +74,17 @@ Li um pouco sobre estimação de índices de Gini com a distribuição Beta Gene
       <header id="header" data-behavior="4">
   <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
   <div class="header-title">
-    <a class="header-title-link" href="https://guilhermejacob.github.io/">Something Random</a>
+    <a class="header-title-link" href="/">Something Random</a>
   </div>
   
     
       <a class="header-right-picture "
-         href="https://guilhermejacob.github.io/#about">
+         href="/#about">
     
     
     
       
-        <img class="header-picture" src="https://guilhermejacob.github.io/files/img_2502_recorte.jpg" alt="Foto do autor" />
+        <img class="header-picture" src="/files/img_2502_recorte.jpg" alt="Foto do autor" />
       
     
     </a>
@@ -104,8 +95,8 @@ Li um pouco sobre estimação de índices de Gini com a distribuição Beta Gene
   <div class="sidebar-container">
     
       <div class="sidebar-profile">
-        <a href="https://guilhermejacob.github.io/#about">
-          <img class="sidebar-profile-picture" src="https://guilhermejacob.github.io/files/img_2502_recorte.jpg" alt="Foto do autor" />
+        <a href="/#about">
+          <img class="sidebar-profile-picture" src="/files/img_2502_recorte.jpg" alt="Foto do autor" />
         </a>
         <h4 class="sidebar-profile-name">Guilherme Jacob</h4>
         
@@ -127,7 +118,7 @@ Li um pouco sobre estimação de índices de Gini com a distribuição Beta Gene
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="https://guilhermejacob.github.io/#about">
+      <a class="sidebar-button-link " href="/#about">
     
       <i class="sidebar-button-icon fa fa-lg fa-question"></i>
       
@@ -137,7 +128,7 @@ Li um pouco sobre estimação de índices de Gini com a distribuição Beta Gene
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="https://guilhermejacob.github.io/tags">
+      <a class="sidebar-button-link " href="/tags">
     
       <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
       
@@ -147,7 +138,7 @@ Li um pouco sobre estimação de índices de Gini com a distribuição Beta Gene
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="https://guilhermejacob.github.io/categories">
+      <a class="sidebar-button-link " href="/categories">
     
       <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
       
@@ -157,7 +148,7 @@ Li um pouco sobre estimação de índices de Gini com a distribuição Beta Gene
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="https://guilhermejacob.github.io/archives">
+      <a class="sidebar-button-link " href="/archives">
     
       <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
       
@@ -171,7 +162,7 @@ Li um pouco sobre estimação de índices de Gini com a distribuição Beta Gene
       
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="https://guilhermejacob.github.io/files/cv_english.pdf">
+      <a class="sidebar-button-link " href="/files/cv_english.pdf">
     
       <i class="sidebar-button-icon fa fa-lg fa-briefcase"></i>
       
@@ -181,7 +172,7 @@ Li um pouco sobre estimação de índices de Gini com a distribuição Beta Gene
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="https://guilhermejacob.github.io/research">
+      <a class="sidebar-button-link " href="/research">
     
       <i class="sidebar-button-icon fa fa-lg fa-code"></i>
       
@@ -205,7 +196,7 @@ Li um pouco sobre estimação de índices de Gini com a distribuição Beta Gene
       
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="https://github.com/guilhermejacob" target="_blank" rel="noopener">
+      <a class="sidebar-button-link " href="https://github.com/guilhermejacob">
     
       <i class="sidebar-button-icon fa fa-lg fa-github"></i>
       
@@ -215,7 +206,7 @@ Li um pouco sobre estimação de índices de Gini com a distribuição Beta Gene
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="http://stackoverflow.com/users/6419956/guilherme-jacob" target="_blank" rel="noopener">
+      <a class="sidebar-button-link " href="http://stackoverflow.com/users/6419956/guilherme-jacob">
     
       <i class="sidebar-button-icon fa fa-lg fa-stack-overflow"></i>
       
@@ -225,7 +216,7 @@ Li um pouco sobre estimação de índices de Gini com a distribuição Beta Gene
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="https://www.instagram.com/guilhermejacob9" target="_blank" rel="noopener">
+      <a class="sidebar-button-link " href="https://www.instagram.com/guilhermejacob9">
     
       <i class="sidebar-button-icon fa fa-lg fa-instagram"></i>
       
@@ -250,77 +241,37 @@ Li um pouco sobre estimação de índices de Gini com a distribuição Beta Gene
             <div class="post-header main-content-wrap text-left">
   
     <h1 class="post-title" itemprop="headline">
-      Estimando índice de Gini com a distribuição GB2
+      Modelos com amostras complexas: ponderar ou não ponderar?
     </h1>
   
   
   <div class="postShorten-meta post-meta">
     
-      <time itemprop="datePublished" datetime="2020-08-12T00:00:00Z">
+      <time itemprop="datePublished" datetime="2020-02-11T00:00:00Z">
         
   
   
   
   
-    12/08/2020
+    11/02/2020
   
 
       </time>
     
     
-  
-  
-    <span>em</span>
-    
-      <a class="category-link" href="https://guilhermejacob.github.io/categories/amostragem">Amostragem</a>
-    
-  
-
   </div>
 
 </div>
           
           <div class="post-content markdown" itemprop="articleBody">
             <div class="main-content-wrap">
-              <div class="alert warning ">
-  <p><b>Aviso:</b> Esse post é experimental e eu posso estar completamente errado. Leia com cautela. Ou não leia.<br>
-Ainda vou incluir as referências.</p>
-</div>
-
-<p>Aproveitando que eu estou com algum tempo <del>e evitando pensar no seminário de dissertação amanhã</del>, resolvi escrever um pouco sobre <del>a única coisa que as pessoas acham que eu faço</del> estimar índices de Gini.</p>
-<p>Li um pouco sobre estimação de índices de Gini com a distribuição Beta Generalizada do Tipo 2 e achei bem interessante.</p>
-<p>Por que usar um modelo para estimar o índice do Gini? Essa pergunta é uma pergunta importante. É comum usar dados coletados através de pesquisas amostrais para estimar parâmetros da população. Porém, pesquisadores que estudam desigualdade apontam que as pessoas tendem a subreportar a renda, especialmente as pessoas mais ricas. Esse é o tipo de erro que não se resolve aumentando o tamanho da amostra e é um problema na vida dos amostristas.</p>
-<p>Existem diversas metodologias sendo discutidas para lidar com esse problema. Uma das delas parte da seguinte lógica: se você consegue descrever o modelo aleatório que gera as rendas observadas, você conseguiria estimar o índice de Gini daquela população. Se você tem mais confiança nas respostas da renda de uma parte da distribuição, com algumas hipóteses simplificadoras, você pode usar estes dados para estimar os parâmetros da distribuição minimizando o impacto do erro de mensuração.</p>
-<p>Há uma condição importante: o modelo tem que se ajustar bem aos dados. A estimação baseada apenas no desenho não faz essa exigência.</p>
-<p>Diante disso, resolvi tentar a ajustar uma GB2 à distribuição de renda do trabalho do Amazonas na PNADC/2018. E o resultado foi esse:</p>
-<p><img src="https://guilhermejacob.github.io/post/2020-08-12-gb2_files/figure-html/unnamed-chunk-2-1.png" width="768" /></p>
-<p>As distribuições Log-Normal e GB2 parecem ser boas candidatas, com a segunda sendo um pouco melhor. Acho que isso é até esperado, já que a primeira é um caso da segunda.</p>
-<p>O gráfico abaixo mostra que há um desvio em relação aos quantis empíricos e a distribuição GB2 nas rendas altas: os quantis empíricos crescem mais lentamente que os quantis teóricos. Se o nosso modelo descreve a distribuição verdadeira, essa diferença pode vir do erro de medida nas rendas.</p>
-<p><img src="https://guilhermejacob.github.io/post/2020-08-12-gb2_files/figure-html/unnamed-chunk-3-1.png" width="576" /></p>
-<p>Mas e o índice de Gini? Usando o desenho, a estimativa é de 0.495, com IC(95%) (0.457;0.533). Já a estimativa usando o modelo é 0.489. Ou seja: não é uma diferença estatisticamente significativa. Interpretar essa diferença pode ser o mesmo que interpretar o lançamento de uma moeda, folhas na xícara de chá, horóscopo, etc.</p>
-<p>Bom, ainda não calculei o intervalo de confiança dos valores usando o modelo. A princípio, se o desenho amostral não for informativo, eu poderia usar o modelo <em>sem os pesos</em> e ter estimativas mais precisas. Porém, eu tenho uma forte suspeita de que o desenho seja informativo, já que a renda faz parte da estratificação estatística do plano amostral.</p>
-<p>Pretendo voltar a isso no futuro.
-Ou não.</p>
+              <!--more-->
 
               
             </div>
           </div>
           <div id="post-footer" class="post-footer main-content-wrap">
             
-              
-                
-                
-                  <div class="post-footer-tags">
-                    <span class="text-color-light text-small">ETIQUETADO em</span><br/>
-                    
-  <a class="tag tag--primary tag--small" href="https://guilhermejacob.github.io/tags/experimental/">Experimental</a>
-
-  <a class="tag tag--primary tag--small" href="https://guilhermejacob.github.io/tags/desigualdade/">Desigualdade</a>
-
-  <a class="tag tag--primary tag--small" href="https://guilhermejacob.github.io/tags/rstats/">rstats</a>
-
-                  </div>
-                
               
             
             
@@ -330,7 +281,7 @@ Ou não.</p>
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--disabled">
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2020/04/taylor-maclaurin-taxa/" data-tooltip="Juros, taxas de crescimento e aproximações">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">PRÓXIMO</span>
@@ -338,7 +289,7 @@ Ou não.</p>
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://guilhermejacob.github.io/2020/06/hammond-srhs/" data-tooltip="Pigou-Dalton, Hammond e desigualdade em estados de saúde">
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2019/12/u5-mun-paises/" data-tooltip="Mortalidade na infância: comparando municípios e países">
               
                   <span class="hide-xs hide-sm text-small icon-mr">ANTERIOR</span>
                   <i class="fa fa-angle-right"></i>
@@ -356,19 +307,19 @@ Ou não.</p>
         </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://guilhermejacob.github.io/2020/08/gini-gb2/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=/2020/02/superpopulacao-amostragem/">
               <i class="fa fa-facebook-official"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://guilhermejacob.github.io/2020/08/gini-gb2/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/2020/02/superpopulacao-amostragem/">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://guilhermejacob.github.io/2020/08/gini-gb2/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=/2020/02/superpopulacao-amostragem/">
               <i class="fa fa-google-plus"></i>
             </a>
           </li>
@@ -410,7 +361,7 @@ Ou não.</p>
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--disabled">
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2020/04/taylor-maclaurin-taxa/" data-tooltip="Juros, taxas de crescimento e aproximações">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">PRÓXIMO</span>
@@ -418,7 +369,7 @@ Ou não.</p>
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://guilhermejacob.github.io/2020/06/hammond-srhs/" data-tooltip="Pigou-Dalton, Hammond e desigualdade em estados de saúde">
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2019/12/u5-mun-paises/" data-tooltip="Mortalidade na infância: comparando municípios e países">
               
                   <span class="hide-xs hide-sm text-small icon-mr">ANTERIOR</span>
                   <i class="fa fa-angle-right"></i>
@@ -436,19 +387,19 @@ Ou não.</p>
         </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://guilhermejacob.github.io/2020/08/gini-gb2/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=/2020/02/superpopulacao-amostragem/">
               <i class="fa fa-facebook-official"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://guilhermejacob.github.io/2020/08/gini-gb2/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/2020/02/superpopulacao-amostragem/">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://guilhermejacob.github.io/2020/08/gini-gb2/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=/2020/02/superpopulacao-amostragem/">
               <i class="fa fa-google-plus"></i>
             </a>
           </li>
@@ -472,19 +423,19 @@ Ou não.</p>
   <ul class="share-options">
     
       <li class="share-option">
-        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fguilhermejacob.github.io%2F2020%2F08%2Fgini-gb2%2F">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=%2F2020%2F02%2Fsuperpopulacao-amostragem%2F">
           <i class="fa fa-facebook-official"></i><span>Compartilhar no Facebook</span>
         </a>
       </li>
     
       <li class="share-option">
-        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Fguilhermejacob.github.io%2F2020%2F08%2Fgini-gb2%2F">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=%2F2020%2F02%2Fsuperpopulacao-amostragem%2F">
           <i class="fa fa-twitter"></i><span>Compartilhar no Twitter</span>
         </a>
       </li>
     
       <li class="share-option">
-        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https%3A%2F%2Fguilhermejacob.github.io%2F2020%2F08%2Fgini-gb2%2F">
+        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=%2F2020%2F02%2Fsuperpopulacao-amostragem%2F">
           <i class="fa fa-google-plus"></i><span>Compartilhar no Google&#43;</span>
         </a>
       </li>
@@ -500,7 +451,7 @@ Ou não.</p>
       <i class="fa fa-remove"></i>
     </div>
     
-      <img id="about-card-picture" src="https://guilhermejacob.github.io/files/img_2502_recorte.jpg" alt="Foto do autor" />
+      <img id="about-card-picture" src="/files/img_2502_recorte.jpg" alt="Foto do autor" />
     
     <h4 id="about-card-name">Guilherme Jacob</h4>
     
@@ -539,7 +490,7 @@ Ou não.</p>
           <div class="media">
             
             <div class="media-body">
-              <a class="link-unstyled" href="https://guilhermejacob.github.io/2020/08/gini-gb2/">
+              <a class="link-unstyled" href="/2020/08/gini-gb2/">
                 <h3 class="media-heading">Estimando índice de Gini com a distribuição GB2</h3>
               </a>
               <span class="media-meta">
@@ -559,7 +510,7 @@ Li um pouco sobre estimação de índices de Gini com a distribuição Beta Gene
           <div class="media">
             
             <div class="media-body">
-              <a class="link-unstyled" href="https://guilhermejacob.github.io/2020/06/hammond-srhs/">
+              <a class="link-unstyled" href="/2020/06/hammond-srhs/">
                 <h3 class="media-heading">Pigou-Dalton, Hammond e desigualdade em estados de saúde</h3>
               </a>
               <span class="media-meta">
@@ -577,7 +528,7 @@ Algumas medidas de desigualdade atendem o princípio de Pigou-Dalton apenas em a
           <div class="media">
             
             <div class="media-body">
-              <a class="link-unstyled" href="https://guilhermejacob.github.io/2020/06/variance-sampling/">
+              <a class="link-unstyled" href="/2020/06/variance-sampling/">
                 <h3 class="media-heading">Variance: Population, Sample and Sampling</h3>
               </a>
               <span class="media-meta">
@@ -595,7 +546,7 @@ Algumas medidas de desigualdade atendem o princípio de Pigou-Dalton apenas em a
           <div class="media">
             
             <div class="media-body">
-              <a class="link-unstyled" href="https://guilhermejacob.github.io/2020/04/sir-markov/">
+              <a class="link-unstyled" href="/2020/04/sir-markov/">
                 <h3 class="media-heading">Modelos epidemiológicos, amostragem e cadeias de Markov</h3>
               </a>
               <span class="media-meta">
@@ -612,7 +563,7 @@ Algumas medidas de desigualdade atendem o princípio de Pigou-Dalton apenas em a
           <div class="media">
             
             <div class="media-body">
-              <a class="link-unstyled" href="https://guilhermejacob.github.io/2020/04/stat-pes/">
+              <a class="link-unstyled" href="/2020/04/stat-pes/">
                 <h3 class="media-heading">Sobre as vidas perdidas em Manaus</h3>
               </a>
               <span class="media-meta">
@@ -630,7 +581,7 @@ Hoje, eu não quero fazer gráficos ou tabelas. Eu não quero falar de curvas qu
           <div class="media">
             
             <div class="media-body">
-              <a class="link-unstyled" href="https://guilhermejacob.github.io/2020/04/taylor-maclaurin-taxa/">
+              <a class="link-unstyled" href="/2020/04/taylor-maclaurin-taxa/">
                 <h3 class="media-heading">Juros, taxas de crescimento e aproximações</h3>
               </a>
               <span class="media-meta">
@@ -649,7 +600,24 @@ Hoje, eu não quero fazer gráficos ou tabelas. Eu não quero falar de curvas qu
           <div class="media">
             
             <div class="media-body">
-              <a class="link-unstyled" href="https://guilhermejacob.github.io/2019/12/u5-mun-paises/">
+              <a class="link-unstyled" href="/2020/02/superpopulacao-amostragem/">
+                <h3 class="media-heading">Modelos com amostras complexas: ponderar ou não ponderar?</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Feb 2, 2020
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"> </div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="/2019/12/u5-mun-paises/">
                 <h3 class="media-heading">Mortalidade na infância: comparando municípios e países</h3>
               </a>
               <span class="media-meta">
@@ -669,7 +637,7 @@ Entendendo a desigualdade regional no Brasil a partir do mundo Na época que eu 
           <div class="media">
             
             <div class="media-body">
-              <a class="link-unstyled" href="https://guilhermejacob.github.io/2019/12/amostra-complexa-epa/">
+              <a class="link-unstyled" href="/2019/12/amostra-complexa-epa/">
                 <h3 class="media-heading">Por que calcular variâncias de estimativas?</h3>
               </a>
               <span class="media-meta">
@@ -687,7 +655,7 @@ Usar os pesos amostrais faz com que suas estimativas não sejam viesadas. Mas, s
           <div class="media">
             
             <div class="media-body">
-              <a class="link-unstyled" href="https://guilhermejacob.github.io/2019/12/meng2018/">
+              <a class="link-unstyled" href="/2019/12/meng2018/">
                 <h3 class="media-heading">Mentiras, mentiras cabeludas e &#34;big data&#34;</h3>
               </a>
               <span class="media-meta">
@@ -702,23 +670,6 @@ Usar os pesos amostrais faz com que suas estimativas não sejam viesadas. Mas, s
             <hr>
           </div>
         
-          <div class="media">
-            
-            <div class="media-body">
-              <a class="link-unstyled" href="https://guilhermejacob.github.io/2019/12/superpopulacao/">
-                <h3 class="media-heading">Sopas, universos paralelos e modelos de superpopulação</h3>
-              </a>
-              <span class="media-meta">
-                <span class="media-date text-small">
-                  Dec 12, 2019
-                </span>
-              </span>
-              <div class="media-content hide-xs font-merryweather">Tive a oportunidade de estudar amostragem e análise de dados amostrais na ENCE com excelentes professores1 esse ano. E foi incrível! Tentei aproveitar da melhor maneira possível. Entre algumas ideias exploradas, existem os modelos de superpopulação, que desempenham um papel fundamental na análise de dados amostrais. É uma ideia tão interessante que resolvi escrever um post sobre isso, mas com uma restrição: ser didático e, se possível, interessante para um público mais amplo.</div>
-            </div>
-            <div style="clear:both;"></div>
-            <hr>
-          </div>
-        
       </div>
     </div>
     <div class="modal-footer">
@@ -726,7 +677,7 @@ Usar os pesos amostrais faz com que suas estimativas não sejam viesadas. Mas, s
          data-message-zero=""
          data-message-one=""
          data-message-other="">
-         23 posts found
+         24 posts found
       </p>
     </div>
   </div>
@@ -734,7 +685,7 @@ Usar os pesos amostrais faz com que suas estimativas não sejam viesadas. Mas, s
     
   
     
-    <div id="cover" style="background-image:url('https://guilhermejacob.github.io/images/manaus.jpg');"></div>
+    <div id="cover" style="background-image:url('/images/manaus.jpg');"></div>
   
 
 
@@ -744,7 +695,7 @@ Usar os pesos amostrais faz com que suas estimativas não sejam viesadas. Mas, s
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js" integrity="sha256-GEAnjcTqVP+vBp3SSc8bEDQqvWAZMiHyUSIorrWwH50=" crossorigin="anonymous"></script>
 
 
-<script src="https://guilhermejacob.github.io/js/script-qi9wbxp2ya2j6p7wx1i6tgavftewndznf4v0hy2gvivk1rxgc3lm7njqb6bz.min.js"></script>
+<script src="/js/script-qi9wbxp2ya2j6p7wx1i6tgavftewndznf4v0hy2gvivk1rxgc3lm7njqb6bz.min.js"></script>
 
 
 
