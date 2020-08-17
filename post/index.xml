@@ -6,10 +6,20 @@
     <description>Recent content in Posts on Something Random</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>pt-br</language>
-    <lastBuildDate>Wed, 12 Aug 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 16 Aug 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://guilhermejacob.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Desigualdade e polarização</title>
+      <link>https://guilhermejacob.github.io/2020/08/polarizacao-desigualdade/</link>
+      <pubDate>Sun, 16 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://guilhermejacob.github.io/2020/08/polarizacao-desigualdade/</guid>
+      <description>Há algum tempo atrás, vi uma discussão bem interessante sobre desigualdade e uma professora1 levantou o tema da polarização de renda. Eu já tinha lido um pouco a respeito e tinha até começado a escrever uma apresentação sobre o tema, mas não tinha calculado nada de fato. Deixei anotado para o futuro.
+O momento chegou. Neste post, vou tentar explicar um pouco do que é polarização e como essa abordagem se diferencia da desigualdade.</description>
+    </item>
     
     <item>
       <title>Estimando índice de Gini com a distribuição GB2</title>

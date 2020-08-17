@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://guilhermejacob.github.io/2020/08/polarizacao-desigualdade/</loc>
+    <lastmod>2020-08-16T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://guilhermejacob.github.io/2020/08/gini-gb2/</loc>
     <lastmod>2020-08-12T00:00:00+00:00</lastmod>
   </url>
@@ -205,13 +210,13 @@
   
   <url>
     <loc>https://guilhermejacob.github.io/tags/desigualdade/</loc>
-    <lastmod>2020-08-12T00:00:00+00:00</lastmod>
+    <lastmod>2020-08-16T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://guilhermejacob.github.io/categories/desigualdade/</loc>
-    <lastmod>2020-06-23T00:00:00+00:00</lastmod>
+    <lastmod>2020-08-16T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -271,13 +276,13 @@
   
   <url>
     <loc>https://guilhermejacob.github.io/tags/pobreza/</loc>
-    <lastmod>2019-08-19T00:00:00+00:00</lastmod>
+    <lastmod>2020-08-16T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://guilhermejacob.github.io/post/</loc>
-    <lastmod>2020-08-12T00:00:00+00:00</lastmod>
+    <lastmod>2020-08-16T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -295,7 +300,7 @@
   
   <url>
     <loc>https://guilhermejacob.github.io/tags/rstats/</loc>
-    <lastmod>2020-08-12T00:00:00+00:00</lastmod>
+    <lastmod>2020-08-16T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -307,7 +312,7 @@
   
   <url>
     <loc>https://guilhermejacob.github.io/</loc>
-    <lastmod>2020-08-12T00:00:00+00:00</lastmod>
+    <lastmod>2020-08-16T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
