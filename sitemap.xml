@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://guilhermejacob.github.io/2020/08/educacao-padronizacao/</loc>
+    <lastmod>2020-08-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://guilhermejacob.github.io/2020/08/polarizacao-desigualdade/</loc>
     <lastmod>2020-08-16T00:00:00+00:00</lastmod>
   </url>
@@ -203,6 +208,18 @@
   </url>
   
   <url>
+    <loc>https://guilhermejacob.github.io/tags/demografia/</loc>
+    <lastmod>2020-08-20T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://guilhermejacob.github.io/categories/demografia/</loc>
+    <lastmod>2020-08-20T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://guilhermejacob.github.io/tags/desemprego/</loc>
     <lastmod>2018-05-18T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -228,7 +245,7 @@
   
   <url>
     <loc>https://guilhermejacob.github.io/tags/educa%C3%A7%C3%A3o/</loc>
-    <lastmod>2017-12-11T00:00:00+00:00</lastmod>
+    <lastmod>2020-08-20T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -282,7 +299,7 @@
   
   <url>
     <loc>https://guilhermejacob.github.io/post/</loc>
-    <lastmod>2020-08-16T00:00:00+00:00</lastmod>
+    <lastmod>2020-08-20T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -312,7 +329,7 @@
   
   <url>
     <loc>https://guilhermejacob.github.io/</loc>
-    <lastmod>2020-08-16T00:00:00+00:00</lastmod>
+    <lastmod>2020-08-20T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

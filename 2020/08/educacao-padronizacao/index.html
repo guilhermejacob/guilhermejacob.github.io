@@ -1,0 +1,1237 @@
+
+
+  
+    
+  
+
+
+  
+
+
+
+
+
+  
+
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Hugo 0.47 with theme Tranquilpeak 0.4.3-BETA">
+    <title>Estrutura etária e anos de estudo</title>
+    <meta name="author" content="Guilherme Jacob">
+    <meta name="keywords" content="">
+
+    <link rel="icon" href="https://guilhermejacob.github.io/favicon.png">
+    
+
+    
+    <meta name="description" content="Ao estudar algumas características de populações distintas, outras características podem influenciar indiretamente na análise. Por exemplo, ao ver a taxa de mortalidade bruta (TBM) da Itália e comparar com a mesma taxa do Nordeste pode ser que a primeira seja maior que a segunda. Isso singifica que as condições de vida na Itália são piores que no Nordeste? Não. Acontece que, por causa da estrutura etária, essa comparação não é justa: uma população mais velha tende a apresentar TMB mais alta que outra mais jovem.">
+    <meta property="og:description" content="Ao estudar algumas características de populações distintas, outras características podem influenciar indiretamente na análise. Por exemplo, ao ver a taxa de mortalidade bruta (TBM) da Itália e comparar com a mesma taxa do Nordeste pode ser que a primeira seja maior que a segunda. Isso singifica que as condições de vida na Itália são piores que no Nordeste? Não. Acontece que, por causa da estrutura etária, essa comparação não é justa: uma população mais velha tende a apresentar TMB mais alta que outra mais jovem.">
+    <meta property="og:type" content="blog">
+    <meta property="og:title" content="Estrutura etária e anos de estudo">
+    <meta property="og:url" content="/2020/08/educacao-padronizacao/">
+    <meta property="og:site_name" content="Something Random">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Something Random">
+    <meta name="twitter:description" content="Ao estudar algumas características de populações distintas, outras características podem influenciar indiretamente na análise. Por exemplo, ao ver a taxa de mortalidade bruta (TBM) da Itália e comparar com a mesma taxa do Nordeste pode ser que a primeira seja maior que a segunda. Isso singifica que as condições de vida na Itália são piores que no Nordeste? Não. Acontece que, por causa da estrutura etária, essa comparação não é justa: uma população mais velha tende a apresentar TMB mais alta que outra mais jovem.">
+    
+    
+
+    
+    
+
+    
+      <meta property="og:image" content="https://guilhermejacob.github.io/files/img_2502_recorte.jpg">
+    
+
+    
+    
+    
+
+    
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.css" integrity="sha256-vuXZ9LGmmwtjqFX1F+EKin1ThZMub58gKULUyf0qECk=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU=" crossorigin="anonymous" />
+    
+    
+    <link rel="stylesheet" href="https://guilhermejacob.github.io/css/style-jsjn0006wyhpyzivf6yceb31gvpjatbcs3qzjvlumobfnugccvobqwxnnaj8.min.css" />
+    
+    
+
+    
+      
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="4">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://guilhermejacob.github.io/">Something Random</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://guilhermejacob.github.io/#about">
+    
+    
+    
+      
+        <img class="header-picture" src="https://guilhermejacob.github.io/files/img_2502_recorte.jpg" alt="Foto do autor" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="4">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://guilhermejacob.github.io/#about">
+          <img class="sidebar-profile-picture" src="https://guilhermejacob.github.io/files/img_2502_recorte.jpg" alt="Foto do autor" />
+        </a>
+        <h4 class="sidebar-profile-name">Guilherme Jacob</h4>
+        
+          <h5 class="sidebar-profile-bio">Manauara.<br>Mestrando em População, Território e Estatísticas Públicas.<br>Bacharel em Direito e Economia.</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://guilhermejacob.github.io/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">Início</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://guilhermejacob.github.io/#about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+      
+      <span class="sidebar-button-desc">Sobre</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://guilhermejacob.github.io/tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">Tags</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://guilhermejacob.github.io/categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+      
+      <span class="sidebar-button-desc">Categorias</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://guilhermejacob.github.io/archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">Arquivo</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://guilhermejacob.github.io/files/cv_english.pdf">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-briefcase"></i>
+      
+      <span class="sidebar-button-desc">CV</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://guilhermejacob.github.io/research">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-code"></i>
+      
+      <span class="sidebar-button-desc">Pesquisa</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="mailto:guilhermejacob91@gmail.com" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-envelope-o"></i>
+      
+      <span class="sidebar-button-desc">Contato</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/guilhermejacob" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="http://stackoverflow.com/users/6419956/guilherme-jacob" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-stack-overflow"></i>
+      
+      <span class="sidebar-button-desc">Stack Overflow</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://www.instagram.com/guilhermejacob9" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-instagram"></i>
+      
+      <span class="sidebar-button-desc">Instagram</span>
+    </a>
+  </li>
+
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="4"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title" itemprop="headline">
+      Estrutura etária e anos de estudo
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2020-08-20T00:00:00Z">
+        
+  
+  
+  
+  
+    20/08/2020
+  
+
+      </time>
+    
+    
+  
+  
+    <span>em</span>
+    
+      <a class="category-link" href="https://guilhermejacob.github.io/categories/demografia">Demografia</a>
+    
+  
+
+  </div>
+
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              <script src="https://guilhermejacob.github.io/rmarkdown-libs/kePrint/kePrint.js"></script>
+
+
+<p>Ao estudar algumas características de populações distintas, outras características podem influenciar indiretamente na análise. Por exemplo, ao ver a taxa de mortalidade bruta (TBM) da Itália e comparar com a mesma taxa do Nordeste pode ser que a primeira seja maior que a segunda. Isso singifica que as condições de vida na Itália são piores que no Nordeste? Não. Acontece que, por causa da estrutura etária, essa comparação não é justa: uma população mais velha tende a apresentar TMB mais alta que outra mais jovem.</p>
+<p>Isso não se limita à mortalidade, mas também pode afetar outros fenômenos. Vamos ver o que acontece com a interação entre faixa etária e anos de estudo.</p>
+<div id="anos-de-estudo" class="section level1">
+<h1>Anos de estudo</h1>
+<p>A Tabela <a href="#tab:tab1">1</a> apresenta as médias de anos de estudo para as quatro populações. O Amazonas tem média superior à de Minas Gerais, idêntica à do Rio Grande do Sul. Minas Gerais, por sua vez, tem um resultado inferior ao do Rio Grande do Sul.</p>
+<table>
+<caption>
+<span id="tab:tab1">Tabela 1: </span>Média de anos de estudo da população de 15 anos ou mais - Amazonas, Rio Grande do Sul e Minas Gerais, 2018.
+</caption>
+<thead>
+<tr>
+<th style="border-bottom:hidden" colspan="1">
+</th>
+<th style="border-bottom:hidden" colspan="1">
+</th>
+<th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+IC(90%)
+</div>
+</th>
+</tr>
+<tr>
+<th style="text-align:left;">
+UF
+</th>
+<th style="text-align:center;">
+Estimativa
+</th>
+<th style="text-align:center;">
+5%
+</th>
+<th style="text-align:center;">
+10%
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;width: 5em; ">
+Amazonas
+</td>
+<td style="text-align:center;width: 2.5em; ">
+9.7
+</td>
+<td style="text-align:center;width: 2.5em; ">
+9.5
+</td>
+<td style="text-align:center;width: 2.5em; ">
+9.8
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 5em; ">
+Minas Gerais
+</td>
+<td style="text-align:center;width: 2.5em; ">
+9.3
+</td>
+<td style="text-align:center;width: 2.5em; ">
+9.2
+</td>
+<td style="text-align:center;width: 2.5em; ">
+9.4
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 5em; ">
+Rio Grande do Sul
+</td>
+<td style="text-align:center;width: 2.5em; ">
+9.7
+</td>
+<td style="text-align:center;width: 2.5em; ">
+9.6
+</td>
+<td style="text-align:center;width: 2.5em; ">
+9.8
+</td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td style="padding: 0; border: 0;" colspan="100%">
+<span style="font-weight: bold;">Fonte:</span>
+</td>
+</tr>
+<tr>
+<td style="padding: 0; border: 0;" colspan="100%">
+<sup></sup> PNADC Educação 2018. Elaboração própria.
+</td>
+</tr>
+</tfoot>
+</table>
+<p>Olhando os resultados do <a href="https://biblioteca.ibge.gov.br/visualizacao/livros/liv101679_informativo.pdf">PIB per capita de 2017</a>, esse resultado é <em>paradoxal</em>. O Amazonas tinha PIB per capita equivalente a 84% e 60% dos de Minas Gerais e Rio Grande do Sul, respectivamente. <em>Como isso é possível?</em></p>
+</div>
+<div id="estrutura-etária" class="section level1">
+<h1>Estrutura etária</h1>
+<p>Vamos comparar as estruturas etárias de quatro populações: Brasil, Amazonas, Rio Grande do Sul e Minas Gerais. A Figura <a href="#fig:fig1">1</a> mostra que o AM tem uma estrutura etária mais jovem, enquanto MG e RS têm estruturas mais envelhecidas. Esse gráfico é pouco usual, mas fica mais fácil quando pensamos que essas curvas são combinações das “laterais” das pirâmides etárias de cada população.</p>
+<div class="figure"><span id="fig:fig1"></span>
+<img src="https://guilhermejacob.github.io/post/2020-08-19-educacao-padronizacao_files/figure-html/fig1-1.png" alt="Distribuição etária - Brasil, Amazonas, Rio Grande do Sul, e Minas Gerais, 2018." width="768" />
+<p class="caption">
+Figura 1: Distribuição etária - Brasil, Amazonas, Rio Grande do Sul, e Minas Gerais, 2018.
+</p>
+</div>
+<p>Mas isso só conta uma parte da história. Precisamos ver como a média de anos de estudo varia ao longo da vida. A Figura <a href="#fig:fig2">2</a> mostra que MG e RS possuem médias similares até os 35 anos, quando as duas curvas começam a divergir. Já o AM apresenta uma curva com um comportamento mais errático, iniciando abaixo de MG, mas superando em entre os 40 e 50 anos. As trajetórias, no entanto, são similares.</p>
+<div class="figure"><span id="fig:fig2"></span>
+<img src="https://guilhermejacob.github.io/post/2020-08-19-educacao-padronizacao_files/figure-html/fig2-1.png" alt="Média de anos de estudo ao longo das idades - Brasil, Amazonas, Rio Grande do Sul, e Minas Gerais, 2018." width="768" />
+<p class="caption">
+Figura 2: Média de anos de estudo ao longo das idades - Brasil, Amazonas, Rio Grande do Sul, e Minas Gerais, 2018.
+</p>
+</div>
+<p>É preciso ter cuidado ao interpretar estas curvas: (1) ainda que a suavização reduza o impacto dos erros amostrais, eles ainda são importantes, principalmente nas idades mais avançadas, onde a amostra é menor; e (2) elas se referem à distribuição de anos de estudo da população em um dado momento, e não à evolução de uma coorte de indivíduos.</p>
+</div>
+<div id="removendo-o-efeito-da-distribuição-etária" class="section level1">
+<h1>Removendo o efeito da distribuição etária</h1>
+<p>Uma técnica relativamente comum na demografia<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> é a <em>padronização direta</em>. Em poucas palavras, você define uma distribuição de referência e ajusta as proporções de outras populações para que ela imite essa população de referência.</p>
+<p>Considere a distribuição da população brasileira por faixa etária. Como visto na Figura <a href="#fig:fig1">1</a>, o AM tem população mais jovem, enquanto MG e RS tem população mais envelhecida<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a>. Já os anos de estudo tem trajetórias similares nas quatro populações. Para fazer uma comparação mais justa, é preciso expurgar o efeito da distribuição etária. Isso é feito ajustando as proporções da distribuição etária de cada estado para que fiquem idênticos às proporções do Brasil.</p>
+<p>A Tabela <a href="#tab:tab3">2</a> apresenta as médias de anos de estudo e a distribuição da população faixa etária do Brasil e Amazonas. Multiplicando as proporções da população do Amazonas pela média de anos de estudo, temos 9.7, valor referente ao Amazonas. Quando multiplicamos as médias do Amazonas pelas proporções da distribuição etária do Brasil, temos 9.4. Este valor se refere à média de anos de estudo do Amazonas, <em>se esse estado tivesse a mesma distribuição etária do Brasil</em>.</p>
+<table>
+<caption>
+<span id="tab:tab3">Tabela 2: </span>Distribuição etária e médias de anos de estudo das pessoas de 15 anos ou mais - Brasil e Amazonas, 2018.
+</caption>
+<thead>
+<tr>
+<th style="border-bottom:hidden" colspan="1">
+</th>
+<th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Proporções
+</div>
+</th>
+<th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="1">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Anos de Estudo
+</div>
+</th>
+</tr>
+<tr>
+<th style="text-align:left;">
+Faixa etária
+</th>
+<th style="text-align:center;">
+Brasil
+</th>
+<th style="text-align:center;">
+Amazonas
+</th>
+<th style="text-align:center;">
+Amazonas
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;width: 5em; ">
+15-19
+</td>
+<td style="text-align:center;width: 2.5em; ">
+0.099
+</td>
+<td style="text-align:center;width: 2.5em; ">
+0.131
+</td>
+<td style="text-align:center;width: 2.5em; ">
+9.5
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 5em; ">
+20-24
+</td>
+<td style="text-align:center;width: 2.5em; ">
+0.096
+</td>
+<td style="text-align:center;width: 2.5em; ">
+0.122
+</td>
+<td style="text-align:center;width: 2.5em; ">
+11.1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 5em; ">
+25-29
+</td>
+<td style="text-align:center;width: 2.5em; ">
+0.090
+</td>
+<td style="text-align:center;width: 2.5em; ">
+0.098
+</td>
+<td style="text-align:center;width: 2.5em; ">
+11.1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 5em; ">
+30-34
+</td>
+<td style="text-align:center;width: 2.5em; ">
+0.095
+</td>
+<td style="text-align:center;width: 2.5em; ">
+0.111
+</td>
+<td style="text-align:center;width: 2.5em; ">
+10.7
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 5em; ">
+35-39
+</td>
+<td style="text-align:center;width: 2.5em; ">
+0.101
+</td>
+<td style="text-align:center;width: 2.5em; ">
+0.100
+</td>
+<td style="text-align:center;width: 2.5em; ">
+10.7
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 5em; ">
+40-44
+</td>
+<td style="text-align:center;width: 2.5em; ">
+0.092
+</td>
+<td style="text-align:center;width: 2.5em; ">
+0.101
+</td>
+<td style="text-align:center;width: 2.5em; ">
+10.1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 5em; ">
+45-49
+</td>
+<td style="text-align:center;width: 2.5em; ">
+0.082
+</td>
+<td style="text-align:center;width: 2.5em; ">
+0.077
+</td>
+<td style="text-align:center;width: 2.5em; ">
+9.7
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 5em; ">
+50-54
+</td>
+<td style="text-align:center;width: 2.5em; ">
+0.081
+</td>
+<td style="text-align:center;width: 2.5em; ">
+0.065
+</td>
+<td style="text-align:center;width: 2.5em; ">
+9.1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 5em; ">
+55-59
+</td>
+<td style="text-align:center;width: 2.5em; ">
+0.071
+</td>
+<td style="text-align:center;width: 2.5em; ">
+0.059
+</td>
+<td style="text-align:center;width: 2.5em; ">
+8.1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 5em; ">
+60-64
+</td>
+<td style="text-align:center;width: 2.5em; ">
+0.060
+</td>
+<td style="text-align:center;width: 2.5em; ">
+0.044
+</td>
+<td style="text-align:center;width: 2.5em; ">
+7.6
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 5em; ">
+65-69
+</td>
+<td style="text-align:center;width: 2.5em; ">
+0.048
+</td>
+<td style="text-align:center;width: 2.5em; ">
+0.035
+</td>
+<td style="text-align:center;width: 2.5em; ">
+7.0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 5em; ">
+70-74
+</td>
+<td style="text-align:center;width: 2.5em; ">
+0.034
+</td>
+<td style="text-align:center;width: 2.5em; ">
+0.023
+</td>
+<td style="text-align:center;width: 2.5em; ">
+6.4
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 5em; ">
+75+
+</td>
+<td style="text-align:center;width: 2.5em; ">
+0.051
+</td>
+<td style="text-align:center;width: 2.5em; ">
+0.034
+</td>
+<td style="text-align:center;width: 2.5em; ">
+4.2
+</td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td style="padding: 0; border: 0;" colspan="100%">
+<span style="font-weight: bold;">Fonte:</span>
+</td>
+</tr>
+<tr>
+<td style="padding: 0; border: 0;" colspan="100%">
+<sup></sup> PNADC Educação 2018. Elaboração própria.
+</td>
+</tr>
+</tfoot>
+</table>
+<p>Repetindo este procedimento para Minas Gerais e Rio Grande do Sul, temos as estimativas apresentadas na Tabela <a href="#tab:tab2">3</a>. Os números parecem fazer mais sentido: RS têm média de anos de estudo mais alta, enquanto Amazonas e Minas Gerais têm taxas similares. Isso mostra como a distribuição etária “distorce” as comparações quando usamos média de anos de estudo sem padronização.</p>
+<table>
+<caption>
+<span id="tab:tab2">Tabela 3: </span>Médias bruta e padronizada de anos de estudo da população de 15 anos ou mais - Amazonas, Rio Grande do Sul e Minas Gerais, 2018.
+</caption>
+<thead>
+<tr>
+<th style="border-bottom:hidden" colspan="1">
+</th>
+<th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="3">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Bruta
+</div>
+</th>
+<th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="3">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Padronizada
+</div>
+</th>
+</tr>
+<tr>
+<th style="border-bottom:hidden" colspan="1">
+</th>
+<th style="border-bottom:hidden" colspan="1">
+</th>
+<th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+IC(90%)
+</div>
+</th>
+<th style="border-bottom:hidden" colspan="1">
+</th>
+<th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+IC(90%)
+</div>
+</th>
+</tr>
+<tr>
+<th style="text-align:left;">
+UF
+</th>
+<th style="text-align:center;">
+Estimativa
+</th>
+<th style="text-align:center;">
+5%
+</th>
+<th style="text-align:center;">
+10%
+</th>
+<th style="text-align:center;">
+Estimativa
+</th>
+<th style="text-align:center;">
+5%
+</th>
+<th style="text-align:center;">
+10%
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;width: 10em; ">
+Amazonas
+</td>
+<td style="text-align:center;width: 2.5em; ">
+9.7
+</td>
+<td style="text-align:center;width: 2.5em; ">
+9.5
+</td>
+<td style="text-align:center;width: 2.5em; ">
+9.8
+</td>
+<td style="text-align:center;width: 2.5em; ">
+9.4
+</td>
+<td style="text-align:center;width: 2.5em; ">
+9.2
+</td>
+<td style="text-align:center;width: 2.5em; ">
+9.6
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 10em; ">
+Minas Gerais
+</td>
+<td style="text-align:center;width: 2.5em; ">
+9.3
+</td>
+<td style="text-align:center;width: 2.5em; ">
+9.2
+</td>
+<td style="text-align:center;width: 2.5em; ">
+9.4
+</td>
+<td style="text-align:center;width: 2.5em; ">
+9.4
+</td>
+<td style="text-align:center;width: 2.5em; ">
+9.2
+</td>
+<td style="text-align:center;width: 2.5em; ">
+9.5
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 10em; ">
+Rio Grande do Sul
+</td>
+<td style="text-align:center;width: 2.5em; ">
+9.7
+</td>
+<td style="text-align:center;width: 2.5em; ">
+9.6
+</td>
+<td style="text-align:center;width: 2.5em; ">
+9.8
+</td>
+<td style="text-align:center;width: 2.5em; ">
+10.0
+</td>
+<td style="text-align:center;width: 2.5em; ">
+9.8
+</td>
+<td style="text-align:center;width: 2.5em; ">
+10.1
+</td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td style="padding: 0; border: 0;" colspan="100%">
+<span style="font-weight: bold;">Fonte:</span>
+</td>
+</tr>
+<tr>
+<td style="padding: 0; border: 0;" colspan="100%">
+<sup></sup> PNADC Educação 2018. Elaboração própria.
+</td>
+</tr>
+</tfoot>
+</table>
+</div>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>Mas pouco usada na economia, até onde eu sei.<a href="#fnref1" class="footnote-back">↩︎</a></p></li>
+<li id="fn2"><p>Esses termos soam estranho, mas são os termos usados na demografia.<a href="#fnref2" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">ETIQUETADO em</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://guilhermejacob.github.io/tags/educa%C3%A7%C3%A3o/">Educação</a>
+
+  <a class="tag tag--primary tag--small" href="https://guilhermejacob.github.io/tags/demografia/">Demografia</a>
+
+                  </div>
+                
+              
+            
+            
+  <div class="post-actions-wrap">
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">PRÓXIMO</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://guilhermejacob.github.io/2020/08/polarizacao-desigualdade/" data-tooltip="Desigualdade e polarização">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">ANTERIOR</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://guilhermejacob.github.io/2020/08/educacao-padronizacao/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://guilhermejacob.github.io/2020/08/educacao-padronizacao/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://guilhermejacob.github.io/2020/08/educacao-padronizacao/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+
+            
+              
+            
+          </div>
+        </article>
+        <script src="//yihui.name/js/math-code.js"></script>
+<script async
+    src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+<footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2020 Guilherme Jacob. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+        
+  <div class="post-actions-wrap">
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">PRÓXIMO</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://guilhermejacob.github.io/2020/08/polarizacao-desigualdade/" data-tooltip="Desigualdade e polarização">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">ANTERIOR</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://guilhermejacob.github.io/2020/08/educacao-padronizacao/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://guilhermejacob.github.io/2020/08/educacao-padronizacao/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://guilhermejacob.github.io/2020/08/educacao-padronizacao/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="4">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fguilhermejacob.github.io%2F2020%2F08%2Feducacao-padronizacao%2F">
+          <i class="fa fa-facebook-official"></i><span>Compartilhar no Facebook</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Fguilhermejacob.github.io%2F2020%2F08%2Feducacao-padronizacao%2F">
+          <i class="fa fa-twitter"></i><span>Compartilhar no Twitter</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https%3A%2F%2Fguilhermejacob.github.io%2F2020%2F08%2Feducacao-padronizacao%2F">
+          <i class="fa fa-google-plus"></i><span>Compartilhar no Google&#43;</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://guilhermejacob.github.io/files/img_2502_recorte.jpg" alt="Foto do autor" />
+    
+    <h4 id="about-card-name">Guilherme Jacob</h4>
+    
+      <div id="about-card-bio">Manauara.<br>Mestrando em População, Território e Estatísticas Públicas.<br>Bacharel em Direito e Economia.</div>
+    
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        Rio de Janeiro, Brasil
+      </div>
+    
+  </div>
+</div>
+
+    <div id="algolia-search-modal" class="modal-container">
+  <div class="modal">
+    <div class="modal-header">
+      <span class="close-button"><i class="fa fa-close"></i></span>
+      <a href="https://algolia.com" target="_blank" rel="noopener" class="searchby-algolia text-color-light link-unstyled">
+        <span class="searchby-algolia-text text-color-light text-small">by</span>
+        <img class="searchby-algolia-logo" src="https://www.algolia.com/static_assets/images/press/downloads/algolia-light.svg">
+      </a>
+      <i class="search-icon fa fa-search"></i>
+      <form id="algolia-search-form">
+        <input type="text" id="algolia-search-input" name="search"
+          class="form-control input--large search-input" placeholder="Pesquisar" />
+      </form>
+    </div>
+    <div class="modal-body">
+      <div class="no-result text-color-light text-center"></div>
+      <div class="results">
+        
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://guilhermejacob.github.io/2020/08/educacao-padronizacao/">
+                <h3 class="media-heading">Estrutura etária e anos de estudo</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Aug 8, 2020
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Ao estudar algumas características de populações distintas, outras características podem influenciar indiretamente na análise. Por exemplo, ao ver a taxa de mortalidade bruta (TBM) da Itália e comparar com a mesma taxa do Nordeste pode ser que a primeira seja maior que a segunda. Isso singifica que as condições de vida na Itália são piores que no Nordeste? Não. Acontece que, por causa da estrutura etária, essa comparação não é justa: uma população mais velha tende a apresentar TMB mais alta que outra mais jovem.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://guilhermejacob.github.io/2020/08/polarizacao-desigualdade/">
+                <h3 class="media-heading">Desigualdade e polarização</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Aug 8, 2020
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Há algum tempo atrás, vi uma discussão bem interessante sobre desigualdade e a Grazielle David do podcast É da sua conta! levantou o tema da polarização de renda. Eu já tinha lido um pouco a respeito e tinha até começado a escrever uma apresentação sobre o tema, mas não tinha calculado nada de fato. Deixei anotado para o futuro.
+O momento chegou. Neste post, vou tentar explicar um pouco do que é polarização e como essa abordagem se diferencia da desigualdade.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://guilhermejacob.github.io/2020/08/gini-gb2/">
+                <h3 class="media-heading">Estimando índice de Gini com a distribuição GB2</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Aug 8, 2020
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Aviso: Esse post é experimental e eu posso estar completamente errado. Leia com cautela. Ou não leia.
+Ainda vou incluir as referências.
+ Aproveitando que eu estou com algum tempo e evitando pensar no seminário de dissertação amanhã, resolvi escrever um pouco sobre a única coisa que as pessoas acham que eu faço estimar índices de Gini.
+Li um pouco sobre estimação de índices de Gini com a distribuição Beta Generalizada do Tipo 2 e achei bem interessante.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://guilhermejacob.github.io/2020/06/hammond-srhs/">
+                <h3 class="media-heading">Pigou-Dalton, Hammond e desigualdade em estados de saúde</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Jun 6, 2020
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">O princípio de Pigou-Dalton é uma das ideias mais fundamentais na mensuração de desigualdade em variáveis cardinais. Basicamente, quando determinada quantidade de renda é transferida de alguém pobre para alguém rico (i.e., uma transferência regressiva), a desigualdade aumenta.
+Algumas medidas de desigualdade atendem o princípio de Pigou-Dalton apenas em alguns conjuntos da distribuição de renda: por exemplo, a razão entre as rendas dos 10% mais ricos sobre os 50% mais pobres – i.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://guilhermejacob.github.io/2020/06/variance-sampling/">
+                <h3 class="media-heading">Variance: Population, Sample and Sampling</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Jun 6, 2020
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Population variance, sample variance and sampling variance In finite population sampling context, the term variance can be confusing. One of the most common mistakes is mixing up population variance, sample variance and sampling variance. Some definitions may be helpful:
+ Population variance \(S^2\): describes the variability of a characteristic in the population; Sample variance \(s^2\): describes the variability of a characteristic in the sample and can be used to estimate the population variance; Sampling variance \(Var( \overline{y} )\): describes the variability of estimates; in this case, the sample mean.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://guilhermejacob.github.io/2020/04/sir-markov/">
+                <h3 class="media-heading">Modelos epidemiológicos, amostragem e cadeias de Markov</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Apr 4, 2020
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">É notório que há uma grande subnotificação de casos da COVID-19. Como se pode imaginar, testar as pessoas na porta do hospital enviesaria as amostras. Então, como fazer testagem em massa? Uma estratégia possível seria usar uma amostra aleatória. Usando uma ideia antiga desenvolvida pelo economista estatístico Robert Dorfman (Dorfman, 1943), é possível reduzir os custos da testagem. Por exemplo, em vez de testar imediatamente todas as pessoas de um domicílio, testamos o conjunto de pessoas.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://guilhermejacob.github.io/2020/04/stat-pes/">
+                <h3 class="media-heading">Sobre as vidas perdidas em Manaus</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Apr 4, 2020
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">No dia que eu escrevo esse post, o Brasil enfrenta uma epidemia severa que custou a vida de milhares de pessoas. O número oficial de mortos já passa de 2.700. E é evidente a subnotificação, já que só os casos graves hospitalizados foram testados.
+Hoje, eu não quero fazer gráficos ou tabelas. Eu não quero falar de curvas que se achatam, de picos ou vales. Eu não quero falar de números.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://guilhermejacob.github.io/2020/04/taylor-maclaurin-taxa/">
+                <h3 class="media-heading">Juros, taxas de crescimento e aproximações</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Apr 4, 2020
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Esse post vai fugir um pouco do usual. Não vamos fazer análise de dados, nem escrever código. Vamos ter algumas equações e gráficos, mas nada muito complicado. Vamos tentar responder duas perguntas:
+ Tenho uma série de crescimento do PIB nos trimestres de um ano. O crescimento acumulado no período é igual à soma das taxas de crescimento?
+  Tenho valores de inflação e taxa de juros nominal. A taxa de juros real é igual à taxa de juros nominal menos a inflação?</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://guilhermejacob.github.io/2019/12/u5-mun-paises/">
+                <h3 class="media-heading">Mortalidade na infância: comparando municípios e países</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Dec 12, 2019
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Às vezes, quando estamos estudando algo, acabamos aprendendo mais do que esperávamos.
+Há alguns dias, andei estudando ligação probabilística de bases de dados. Acabei notando que uma coisa interessante: essa técnica pode ser usada para comparar coisas bem diferentes. Anotei no meu caderno e resolvi explorar mais a fundo hoje.
+Vejamos.
+Entendendo a desigualdade regional no Brasil a partir do mundo Na época que eu trabalhava mais diretamente com comunicação a partir de estatísticas, o problema principal era: como ajudar o leitor não-especializado a entender um número?</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://guilhermejacob.github.io/2019/12/amostra-complexa-epa/">
+                <h3 class="media-heading">Por que calcular variâncias de estimativas?</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Dec 12, 2019
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Eu ia encerrar com o último texto, mas lembrei de outra coisa. Durante o mestrado, quando alguns colegas trabalhavam com a PNADC, eu sempre comentava que era importante levar o plano amostral em consideração. Diante disso, eles levaram o peso amostral em consideração. No entanto, o plano amostral é mais do que os pesos amostrais!
+Usar os pesos amostrais faz com que suas estimativas não sejam viesadas. Mas, se o plano amostral não for ignorável, as variâncias estarão incorretas.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+      </div>
+    </div>
+    <div class="modal-footer">
+      <p class="results-count text-medium"
+         data-message-zero=""
+         data-message-one=""
+         data-message-other="">
+         25 posts found
+      </p>
+    </div>
+  </div>
+</div>
+    
+  
+    
+    <div id="cover" style="background-image:url('https://guilhermejacob.github.io/images/manaus.jpg');"></div>
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js" integrity="sha256-GEAnjcTqVP+vBp3SSc8bEDQqvWAZMiHyUSIorrWwH50=" crossorigin="anonymous"></script>
+
+
+<script src="https://guilhermejacob.github.io/js/script-qi9wbxp2ya2j6p7wx1i6tgavftewndznf4v0hy2gvivk1rxgc3lm7njqb6bz.min.js"></script>
+
+
+
+
+  
+    
+  
+
+
+
+    
+  </body>
+</html>
+
