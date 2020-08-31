@@ -1,9 +1,5 @@
 
 
-  
-    
-  
-
 
   
 
@@ -20,32 +16,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="Hugo 0.47 with theme Tranquilpeak 0.4.3-BETA">
-    <title>Estimando índice de Gini com a distribuição GB2</title>
+    <title>Rstats</title>
     <meta name="author" content="Guilherme Jacob">
     <meta name="keywords" content="">
 
     <link rel="icon" href="https://guilhermejacob.github.io/favicon.png">
     
+      <link rel="alternate" type="application/rss+xml" title="RSS" href="https://guilhermejacob.github.io/tags/rstats/index.xml">
+    
 
     
-    <meta name="description" content="Aviso: Esse post é experimental e eu posso estar completamente errado. Leia com cautela. Ou não leia.
-Ainda vou incluir as referências.
- Aproveitando que eu estou com algum tempo e evitando pensar no seminário de dissertação amanhã, resolvi escrever um pouco sobre a única coisa que as pessoas acham que eu faço estimar índices de Gini.
-Li um pouco sobre estimação de índices de Gini com a distribuição Beta Generalizada do Tipo 2 e achei bem interessante.">
-    <meta property="og:description" content="Aviso: Esse post é experimental e eu posso estar completamente errado. Leia com cautela. Ou não leia.
-Ainda vou incluir as referências.
- Aproveitando que eu estou com algum tempo e evitando pensar no seminário de dissertação amanhã, resolvi escrever um pouco sobre a única coisa que as pessoas acham que eu faço estimar índices de Gini.
-Li um pouco sobre estimação de índices de Gini com a distribuição Beta Generalizada do Tipo 2 e achei bem interessante.">
+    <meta name="description" content="Contains trace amounts of mathematics, rants, and terrible jokes.">
+    <meta property="og:description" content="Contains trace amounts of mathematics, rants, and terrible jokes.">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="Estimando índice de Gini com a distribuição GB2">
-    <meta property="og:url" content="/2020/08/gini-gb2/">
+    <meta property="og:title" content="Rstats">
+    <meta property="og:url" content="/tags/rstats/">
     <meta property="og:site_name" content="Something Random">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Something Random">
-    <meta name="twitter:description" content="Aviso: Esse post é experimental e eu posso estar completamente errado. Leia com cautela. Ou não leia.
-Ainda vou incluir as referências.
- Aproveitando que eu estou com algum tempo e evitando pensar no seminário de dissertação amanhã, resolvi escrever um pouco sobre a única coisa que as pessoas acham que eu faço estimar índices de Gini.
-Li um pouco sobre estimação de índices de Gini com a distribuição Beta Generalizada do Tipo 2 e achei bem interessante.">
+    <meta name="twitter:description" content="Contains trace amounts of mathematics, rants, and terrible jokes.">
     
     
 
@@ -80,7 +69,7 @@ Li um pouco sobre estimação de índices de Gini com a distribuição Beta Gene
 
   <body>
     <div id="blog">
-      <header id="header" data-behavior="4">
+      <header id="header" data-behavior="1">
   <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
   <div class="header-title">
     <a class="header-title-link" href="https://guilhermejacob.github.io/">Something Random</a>
@@ -100,7 +89,7 @@ Li um pouco sobre estimação de índices de Gini com a distribuição Beta Gene
   
 </header>
 
-      <nav id="sidebar" data-behavior="4">
+      <nav id="sidebar" data-behavior="1">
   <div class="sidebar-container">
     
       <div class="sidebar-profile">
@@ -239,30 +228,48 @@ Li um pouco sobre estimação de índices de Gini com a distribuição Beta Gene
 </nav>
 
       
+        
 
-      <div id="main" data-behavior="4"
+      
+      <div id="main" data-behavior="1"
         class="
                hasCoverMetaIn
                ">
-        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
-          
-          
-            <div class="post-header main-content-wrap text-left">
+        
+          <section class="postShorten-group main-content-wrap">
+            
+            
+              
   
-    <h1 class="post-title" itemprop="headline">
-      Estimando índice de Gini com a distribuição GB2
-    </h1>
+    
+      
+        
+      
+    
   
+
+
   
+
+<article class="postShorten postShorten--thumbnailimg-bottom" itemscope itemType="http://schema.org/BlogPosting">
+  <div class="postShorten-wrap">
+    
+    <div class="postShorten-header">
+      <h1 class="postShorten-title" itemprop="headline">
+        <a class="link-unstyled" href="https://guilhermejacob.github.io/2017/11/enem-desigualdade-educa%C3%A7%C3%A3o/">
+          ENEM e desigualdade na educação: uma análise dos dados de 2015
+        </a>
+      </h1>
+      
   <div class="postShorten-meta post-meta">
     
-      <time itemprop="datePublished" datetime="2020-08-12T00:00:00Z">
+      <time itemprop="datePublished" datetime="2017-11-15T00:00:00Z">
         
   
   
   
   
-    12/08/2020
+    15/11/2017
   
 
       </time>
@@ -272,125 +279,47 @@ Li um pouco sobre estimação de índices de Gini com a distribuição Beta Gene
   
     <span>em</span>
     
-      <a class="category-link" href="https://guilhermejacob.github.io/categories/amostragem">Amostragem</a>
+      <a class="category-link" href="https://guilhermejacob.github.io/categories/registros-administrativos">Registros administrativos</a>
     
   
 
   </div>
 
-</div>
-          
-          <div class="post-content markdown" itemprop="articleBody">
-            <div class="main-content-wrap">
-              <div class="alert warning ">
-  <p><b>Aviso:</b> Esse post é experimental e eu posso estar completamente errado. Leia com cautela. Ou não leia.<br>
-Ainda vou incluir as referências.</p>
-</div>
-
-<p>Aproveitando que eu estou com algum tempo <del>e evitando pensar no seminário de dissertação amanhã</del>, resolvi escrever um pouco sobre <del>a única coisa que as pessoas acham que eu faço</del> estimar índices de Gini.</p>
-<p>Li um pouco sobre estimação de índices de Gini com a distribuição Beta Generalizada do Tipo 2 e achei bem interessante.</p>
-<p>Por que usar um modelo para estimar o índice do Gini? Essa pergunta é uma pergunta importante. É comum usar dados coletados através de pesquisas amostrais para estimar parâmetros da população. Porém, pesquisadores que estudam desigualdade apontam que as pessoas tendem a subreportar a renda, especialmente as pessoas mais ricas. Esse é o tipo de erro que não se resolve aumentando o tamanho da amostra e é um problema na vida dos amostristas.</p>
-<p>Existem diversas metodologias sendo discutidas para lidar com esse problema. Uma das delas parte da seguinte lógica: se você consegue descrever o modelo aleatório que gera as rendas observadas, você conseguiria estimar o índice de Gini daquela população. Se você tem mais confiança nas respostas da renda de uma parte da distribuição, com algumas hipóteses simplificadoras, você pode usar estes dados para estimar os parâmetros da distribuição minimizando o impacto do erro de mensuração.</p>
-<p>Há uma condição importante: o modelo tem que se ajustar bem aos dados. A estimação baseada apenas no desenho não faz essa exigência.</p>
-<p>Diante disso, resolvi tentar a ajustar uma GB2 à distribuição de renda do trabalho do Amazonas na PNADC/2018. E o resultado foi esse:</p>
-<p><img src="https://guilhermejacob.github.io/post/2020-08-12-gb2_files/figure-html/unnamed-chunk-2-1.png" width="768" /></p>
-<p>As distribuições Log-Normal e GB2 parecem ser boas candidatas, com a segunda sendo um pouco melhor. Acho que isso é até esperado, já que a primeira é um caso da segunda.</p>
-<p>O gráfico abaixo mostra que há um desvio em relação aos quantis empíricos e a distribuição GB2 nas rendas altas: os quantis empíricos crescem mais lentamente que os quantis teóricos. Se o nosso modelo descreve a distribuição verdadeira, essa diferença pode vir do erro de medida nas rendas.</p>
-<p><img src="https://guilhermejacob.github.io/post/2020-08-12-gb2_files/figure-html/unnamed-chunk-3-1.png" width="576" /></p>
-<p>Mas e o índice de Gini? Usando o desenho, a estimativa é de 0.495, com IC(95%) (0.457;0.533). Já a estimativa usando o modelo é 0.489. Ou seja: não é uma diferença estatisticamente significativa. Interpretar essa diferença pode ser o mesmo que interpretar o lançamento de uma moeda, folhas na xícara de chá, horóscopo, etc.</p>
-<p>Bom, ainda não calculei o intervalo de confiança dos valores usando o modelo. A princípio, se o desenho amostral não for informativo, eu poderia usar o modelo <em>sem os pesos</em> e ter estimativas mais precisas. Porém, eu tenho uma forte suspeita de que o desenho seja informativo, já que a renda faz parte da estratificação estatística do plano amostral.</p>
-<p>Pretendo voltar a isso no futuro.
-Ou não.</p>
-
-              
-            </div>
-          </div>
-          <div id="post-footer" class="post-footer main-content-wrap">
-            
-              
-                
-                
-                  <div class="post-footer-tags">
-                    <span class="text-color-light text-small">ETIQUETADO em</span><br/>
-                    
-  <a class="tag tag--primary tag--small" href="https://guilhermejacob.github.io/tags/experimental/">Experimental</a>
-
-  <a class="tag tag--primary tag--small" href="https://guilhermejacob.github.io/tags/desigualdade/">Desigualdade</a>
-
-  <a class="tag tag--primary tag--small" href="https://guilhermejacob.github.io/tags/rstats/">rstats</a>
-
-                  </div>
-                
-              
-            
-            
-  <div class="post-actions-wrap">
-      <nav >
-        <ul class="post-actions post-action-nav">
-          
-            <li class="post-action">
-              
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://guilhermejacob.github.io/2020/08/polarizacao-desigualdade/" data-tooltip="Desigualdade e polarização">
-              
-                  <i class="fa fa-angle-left"></i>
-                  <span class="hide-xs hide-sm text-small icon-ml">PRÓXIMO</span>
-                </a>
-            </li>
-            <li class="post-action">
-              
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://guilhermejacob.github.io/2020/06/hammond-srhs/" data-tooltip="Pigou-Dalton, Hammond e desigualdade em estados de saúde">
-              
-                  <span class="hide-xs hide-sm text-small icon-mr">ANTERIOR</span>
-                  <i class="fa fa-angle-right"></i>
-                </a>
-            </li>
-          
-        </ul>
-      </nav>
-    <ul class="post-actions post-action-share" >
-      
-        <li class="post-action hide-lg hide-md hide-sm">
-          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
-            <i class="fa fa-share-alt"></i>
-          </a>
-        </li>
+    </div>
+    <div class="postShorten-excerpt" itemprop="articleBody">
+      Há alguns dias atrás, rolou o ENEM desse ano. E daí veio a ideia para este post: analisar a desigualdade na educação entre os jovens do Ensino Médio a partir das pontuações dos candidatos. Usando R, como sempre.
+Vou tentar manter as complicações matemáticas fora da questão e focar na aplicação da técnica para entender o contexto da desigualdade educacional. Assim, pretendo trazer gente de outras áreas, como pedagogos e sociólogos, que podem se beneficiar de mais uma ferramenta para analisar o problema, além de contribuir com novas perspectivas para “aqueles que só pensam com números”1.
+      <p>
+        <a href="https://guilhermejacob.github.io/2017/11/enem-desigualdade-educa%C3%A7%C3%A3o/" class="postShorten-excerpt_link link">Continuar leitura</a>
         
-          <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://guilhermejacob.github.io/2020/08/gini-gb2/">
-              <i class="fa fa-facebook-official"></i>
+      </p>
+    </div>
+  </div>
+  
+</article>
+
+            
+            
+  <div class="pagination-bar">
+    <ul class="pagination">
+      
+        
+          <li class="pagination-prev">
+            <a class="btn btn--default btn--small" href="https://guilhermejacob.github.io/tags/rstats/page/2/">
+              <i class="fa fa-angle-left text-base icon-mr"></i>
+              <span>POSTS MAIS NOVOS</span>
             </a>
           </li>
         
-          <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://guilhermejacob.github.io/2020/08/gini-gb2/">
-              <i class="fa fa-twitter"></i>
-            </a>
-          </li>
-        
-          <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://guilhermejacob.github.io/2020/08/gini-gb2/">
-              <i class="fa fa-google-plus"></i>
-            </a>
-          </li>
         
       
-      
-      <li class="post-action">
-        
-          <a class="post-action-btn btn btn--default" href="#">
-        
-          <i class="fa fa-list"></i>
-        </a>
-      </li>
+      <li class="pagination-number">página 3 de 3</li>
     </ul>
   </div>
 
 
-            
-              
-            
-          </div>
-        </article>
+          </section>
+        
         <script src="//yihui.name/js/math-code.js"></script>
 <script async
     src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
@@ -402,96 +331,6 @@ Ou não.</p>
 </footer>
 
       </div>
-      <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
-        
-  <div class="post-actions-wrap">
-      <nav >
-        <ul class="post-actions post-action-nav">
-          
-            <li class="post-action">
-              
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://guilhermejacob.github.io/2020/08/polarizacao-desigualdade/" data-tooltip="Desigualdade e polarização">
-              
-                  <i class="fa fa-angle-left"></i>
-                  <span class="hide-xs hide-sm text-small icon-ml">PRÓXIMO</span>
-                </a>
-            </li>
-            <li class="post-action">
-              
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://guilhermejacob.github.io/2020/06/hammond-srhs/" data-tooltip="Pigou-Dalton, Hammond e desigualdade em estados de saúde">
-              
-                  <span class="hide-xs hide-sm text-small icon-mr">ANTERIOR</span>
-                  <i class="fa fa-angle-right"></i>
-                </a>
-            </li>
-          
-        </ul>
-      </nav>
-    <ul class="post-actions post-action-share" >
-      
-        <li class="post-action hide-lg hide-md hide-sm">
-          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
-            <i class="fa fa-share-alt"></i>
-          </a>
-        </li>
-        
-          <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://guilhermejacob.github.io/2020/08/gini-gb2/">
-              <i class="fa fa-facebook-official"></i>
-            </a>
-          </li>
-        
-          <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://guilhermejacob.github.io/2020/08/gini-gb2/">
-              <i class="fa fa-twitter"></i>
-            </a>
-          </li>
-        
-          <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://guilhermejacob.github.io/2020/08/gini-gb2/">
-              <i class="fa fa-google-plus"></i>
-            </a>
-          </li>
-        
-      
-      
-      <li class="post-action">
-        
-          <a class="post-action-btn btn btn--default" href="#">
-        
-          <i class="fa fa-list"></i>
-        </a>
-      </li>
-    </ul>
-  </div>
-
-
-      </div>
-      <div id="share-options-bar" class="share-options-bar" data-behavior="4">
-  <i id="btn-close-shareoptions" class="fa fa-close"></i>
-  <ul class="share-options">
-    
-      <li class="share-option">
-        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fguilhermejacob.github.io%2F2020%2F08%2Fgini-gb2%2F">
-          <i class="fa fa-facebook-official"></i><span>Compartilhar no Facebook</span>
-        </a>
-      </li>
-    
-      <li class="share-option">
-        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Fguilhermejacob.github.io%2F2020%2F08%2Fgini-gb2%2F">
-          <i class="fa fa-twitter"></i><span>Compartilhar no Twitter</span>
-        </a>
-      </li>
-    
-      <li class="share-option">
-        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https%3A%2F%2Fguilhermejacob.github.io%2F2020%2F08%2Fgini-gb2%2F">
-          <i class="fa fa-google-plus"></i><span>Compartilhar no Google&#43;</span>
-        </a>
-      </li>
-    
-  </ul>
-</div>
-<div id="share-options-mask" class="share-options-mask"></div>
     </div>
     
     <div id="about">
@@ -748,10 +587,6 @@ Entendendo a desigualdade regional no Brasil a partir do mundo Na época que eu 
 
 
 
-
-  
-    
-  
 
 
 

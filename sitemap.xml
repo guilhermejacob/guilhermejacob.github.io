@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://guilhermejacob.github.io/2020/08/diferenca-gini/</loc>
+    <lastmod>2020-08-31T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://guilhermejacob.github.io/2020/08/educacao-padronizacao/</loc>
     <lastmod>2020-08-20T00:00:00+00:00</lastmod>
   </url>
@@ -208,13 +213,13 @@
   </url>
   
   <url>
-    <loc>https://guilhermejacob.github.io/tags/demografia/</loc>
+    <loc>https://guilhermejacob.github.io/categories/demografia/</loc>
     <lastmod>2020-08-20T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://guilhermejacob.github.io/categories/demografia/</loc>
+    <loc>https://guilhermejacob.github.io/tags/demografia/</loc>
     <lastmod>2020-08-20T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
@@ -226,14 +231,14 @@
   </url>
   
   <url>
-    <loc>https://guilhermejacob.github.io/tags/desigualdade/</loc>
-    <lastmod>2020-08-16T00:00:00+00:00</lastmod>
+    <loc>https://guilhermejacob.github.io/categories/desigualdade/</loc>
+    <lastmod>2020-08-31T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://guilhermejacob.github.io/categories/desigualdade/</loc>
-    <lastmod>2020-08-16T00:00:00+00:00</lastmod>
+    <loc>https://guilhermejacob.github.io/tags/desigualdade/</loc>
+    <lastmod>2020-08-31T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -293,13 +298,13 @@
   
   <url>
     <loc>https://guilhermejacob.github.io/tags/pobreza/</loc>
-    <lastmod>2020-08-16T00:00:00+00:00</lastmod>
+    <lastmod>2020-08-31T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://guilhermejacob.github.io/post/</loc>
-    <lastmod>2020-08-20T00:00:00+00:00</lastmod>
+    <lastmod>2020-08-31T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -317,7 +322,7 @@
   
   <url>
     <loc>https://guilhermejacob.github.io/tags/rstats/</loc>
-    <lastmod>2020-08-16T00:00:00+00:00</lastmod>
+    <lastmod>2020-08-31T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -329,7 +334,7 @@
   
   <url>
     <loc>https://guilhermejacob.github.io/</loc>
-    <lastmod>2020-08-20T00:00:00+00:00</lastmod>
+    <lastmod>2020-08-31T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
