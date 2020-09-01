@@ -539,11 +539,124 @@ Covariância
 </tr>
 </tfoot>
 </table>
-<p>Como comentei, existem métodos mais elaborados para avaliar o impacto destas rendas sobre o índice, permitindo análises mais refinadas, avaliando o impacto de pequenas variações na média destas rendas. Apesar disso, este procedimento já quantifica um resultado óbvio: as transferências sociais reduzem a desigualdade de renda.</p>
+<p>Como comentei, existem métodos mais elaborados para avaliar o impacto destas rendas sobre o índice, permitindo análises mais refinadas, avaliando o impacto de pequenas variações na média destas rendas<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a>. Apesar disso, este procedimento já quantifica um resultado óbvio: as transferências sociais reduzem a desigualdade de renda.</p>
+<div id="pós-escrito-decomposição-de-shorrocks1982" class="section level1">
+<h1>Pós-escrito: decomposição de <span class="citation">Shorrocks (1982)</span></h1>
+<p>O Rogério Barbosa me avisou (e me explicou!) sobre outro método, descrito em <span class="citation">Shorrocks (1982)</span>. Li rapidamente artigo e acho que consigo implementar. <span class="citation">Shorrocks (1982)</span> distribui o índice de Gini ponderando por uma função das covariâncias entre a renda total e a parcela de cada fonte. A Tabela <a href="#tab:tab4">4</a> mostra que os resultados são consistentes com o resultado anterior.</p>
+<table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:tab4">Tabela 4: </span>Decomposição do Índice de Gini por fonte – Brasil, 2017-2018
+</caption>
+<thead>
+<tr>
+<th style="border-bottom:hidden" colspan="1">
+</th>
+<th style="border-bottom:hidden" colspan="1">
+</th>
+<th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+IC(95%)
+</div>
+</th>
+</tr>
+<tr>
+<th style="text-align:left;">
+Renda
+</th>
+<th style="text-align:right;">
+Estimativa
+</th>
+<th style="text-align:right;">
+Lim. Inferior
+</th>
+<th style="text-align:right;">
+Lim. Superior
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Renda Total
+</td>
+<td style="text-align:right;">
+0,5895
+</td>
+<td style="text-align:right;">
+0,5774
+</td>
+<td style="text-align:right;">
+0,6016
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Renda do Trabalho
+</td>
+<td style="text-align:right;">
+0,2371
+</td>
+<td style="text-align:right;">
+0,1892
+</td>
+<td style="text-align:right;">
+0,2850
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Transferências Sociais Federais
+</td>
+<td style="text-align:right;">
+-0,0006
+</td>
+<td style="text-align:right;">
+-0,0010
+</td>
+<td style="text-align:right;">
+-0,0002
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Outras fontes
+</td>
+<td style="text-align:right;">
+0,3531
+</td>
+<td style="text-align:right;">
+0,3037
+</td>
+<td style="text-align:right;">
+0,4024
+</td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td style="padding: 0; border: 0;" colspan="100%">
+<span style="font-weight: bold;">Fonte:</span> <sup></sup> POF 2017-2018. Elaboração própria.
+</td>
+</tr>
+</tfoot>
+</table>
+</div>
+<div id="referências" class="section level1 unnumbered">
+<h1>Referências</h1>
+<div id="refs" class="references">
+<div id="ref-firpo2018">
+<p>FIRPO, S. P.; FORTIN, N. M.; LEMIEUX, T. Decomposing Wage Distributions Using Recentered Influence Function Regressions. <strong>Econometrics</strong>, v. 6, n. 2, 2018. </p>
+</div>
+<div id="ref-shorrocks1982">
+<p>SHORROCKS, A. F. Inequality Decomposition by Factor Components. <strong>Econometrica</strong>, v. 50, n. 1, p. 193–211, 1982. </p>
+</div>
+</div>
+</div>
 <div class="footnotes">
 <hr />
 <ol>
 <li id="fn1"><p>Se a correlação for positiva.<a href="#fnref1" class="footnote-back">↩︎</a></p></li>
+<li id="fn2"><p>Por exemplo, <span class="citation">Firpo, Fortin e Lemieux (2018)</span>.<a href="#fnref2" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
 
