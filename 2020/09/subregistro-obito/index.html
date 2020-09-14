@@ -20,7 +20,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="Hugo 0.47 with theme Tranquilpeak 0.4.3-BETA">
-    <title>Sopas, universos paralelos e modelos de superpopulação</title>
+    <title>Registro Civil, Ministério da Saúde e Subregistro de óbitos</title>
     <meta name="author" content="Guilherme Jacob">
     <meta name="keywords" content="">
 
@@ -28,15 +28,21 @@
     
 
     
-    <meta name="description" content="Tive a oportunidade de estudar amostragem e análise de dados amostrais na ENCE com excelentes professores1 esse ano. E foi incrível! Tentei aproveitar da melhor maneira possível. Entre algumas ideias exploradas, existem os modelos de superpopulação, que desempenham um papel fundamental na análise de dados amostrais. É uma ideia tão interessante que resolvi escrever um post sobre isso, mas com uma restrição: ser didático e, se possível, interessante para um público mais amplo.">
-    <meta property="og:description" content="Tive a oportunidade de estudar amostragem e análise de dados amostrais na ENCE com excelentes professores1 esse ano. E foi incrível! Tentei aproveitar da melhor maneira possível. Entre algumas ideias exploradas, existem os modelos de superpopulação, que desempenham um papel fundamental na análise de dados amostrais. É uma ideia tão interessante que resolvi escrever um post sobre isso, mas com uma restrição: ser didático e, se possível, interessante para um público mais amplo.">
+    <meta name="description" content="TL;DR: subregistro existe, é um problema e as taxas de mortalidade ingênuas estão provavelmente erradas. Mas não são inúteis.
+ Estive fazendo alguns exercícios de demografia e pensando sobre subregistro e o quanto isso é um problema. Resolvi pegar algumas leituras que fiz recentemente e tentar mostrar onde isso aparece.
+Um pouco de história Em alguns países, os registros de nascimentos e mortes é tão bom que você pode calcular as estimativas mortalidade infantil diretamente.">
+    <meta property="og:description" content="TL;DR: subregistro existe, é um problema e as taxas de mortalidade ingênuas estão provavelmente erradas. Mas não são inúteis.
+ Estive fazendo alguns exercícios de demografia e pensando sobre subregistro e o quanto isso é um problema. Resolvi pegar algumas leituras que fiz recentemente e tentar mostrar onde isso aparece.
+Um pouco de história Em alguns países, os registros de nascimentos e mortes é tão bom que você pode calcular as estimativas mortalidade infantil diretamente.">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="Sopas, universos paralelos e modelos de superpopulação">
-    <meta property="og:url" content="/2019/12/superpopulacao/">
+    <meta property="og:title" content="Registro Civil, Ministério da Saúde e Subregistro de óbitos">
+    <meta property="og:url" content="/2020/09/subregistro-obito/">
     <meta property="og:site_name" content="Something Random">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Something Random">
-    <meta name="twitter:description" content="Tive a oportunidade de estudar amostragem e análise de dados amostrais na ENCE com excelentes professores1 esse ano. E foi incrível! Tentei aproveitar da melhor maneira possível. Entre algumas ideias exploradas, existem os modelos de superpopulação, que desempenham um papel fundamental na análise de dados amostrais. É uma ideia tão interessante que resolvi escrever um post sobre isso, mas com uma restrição: ser didático e, se possível, interessante para um público mais amplo.">
+    <meta name="twitter:description" content="TL;DR: subregistro existe, é um problema e as taxas de mortalidade ingênuas estão provavelmente erradas. Mas não são inúteis.
+ Estive fazendo alguns exercícios de demografia e pensando sobre subregistro e o quanto isso é um problema. Resolvi pegar algumas leituras que fiz recentemente e tentar mostrar onde isso aparece.
+Um pouco de história Em alguns países, os registros de nascimentos e mortes é tão bom que você pode calcular as estimativas mortalidade infantil diretamente.">
     
     
 
@@ -241,19 +247,19 @@
             <div class="post-header main-content-wrap text-left">
   
     <h1 class="post-title" itemprop="headline">
-      Sopas, universos paralelos e modelos de superpopulação
+      Registro Civil, Ministério da Saúde e Subregistro de óbitos
     </h1>
   
   
   <div class="postShorten-meta post-meta">
     
-      <time itemprop="datePublished" datetime="2019-12-22T00:00:00Z">
+      <time itemprop="datePublished" datetime="2020-09-12T00:00:00Z">
         
   
   
   
   
-    22/12/2019
+    12/09/2020
   
 
       </time>
@@ -263,9 +269,7 @@
   
     <span>em</span>
     
-      <a class="category-link" href="https://guilhermejacob.github.io/categories/teoria">Teoria</a>, 
-    
-      <a class="category-link" href="https://guilhermejacob.github.io/categories/amostragem">Amostragem</a>
+      <a class="category-link" href="https://guilhermejacob.github.io/categories/demografia">Demografia</a>
     
   
 
@@ -275,105 +279,484 @@
           
           <div class="post-content markdown" itemprop="articleBody">
             <div class="main-content-wrap">
-              <p>Tive a oportunidade de estudar amostragem e análise de dados amostrais na ENCE com excelentes professores<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> esse ano. <em>E foi incrível!</em> Tentei aproveitar da melhor maneira possível. Entre algumas ideias exploradas, existem os modelos de superpopulação, que desempenham um papel fundamental na análise de dados amostrais. É uma ideia tão interessante que resolvi escrever um post sobre isso, mas com uma restrição: ser didático e, se possível, interessante para um público mais amplo.</p>
-<p>As próximas seções explicam os conceitos de população finita, amostra, população infinita e como isso se relaciona com os modelos paramétricos com amostras complexas. Não vai ter muito rigor matemático, mas vou indicar as referências onde o tratamento mais rigoroso pode ser encontrado.</p>
-<div id="população-finita-e-amostragem" class="section level3">
-<h3>População finita e amostragem</h3>
-<p>Suponha que você queira estudar uma população de <span class="math inline">\(N\)</span> pessoas. Ou seja, uma <em>população finita</em>. Porém, por motivos de orçamento e praticidade, só podemos coletar informações sobre uma parte dessa população. De acordo com alguma estratégia, extraímos uma amostra aleatória da população. E, com esta amostra, estudamos os parâmetros populacionais. Em outras palavras: usamos quantidades calculadas a partir da amostra para estudar quantidades da população.</p>
-<p><em>“Sei lá, não acredito muito nessa coisa de amostra…”</em> Quando você faz exame de sangue, você tira TODO o seu sangue pra fazer exame? Quando você prova uma sopa, você toma TODA a sopa pra saber se ela está boa? Quando o cervejeiro prova uma cerveja, ele toma TODAS as cervejas que produziu? Não, né?! Pois é: você acredita em amostras, o seu médico acredita em amostras, o cozinheiro acredita em amostras, etc.<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a></p>
-<p>Amostragem pode parecer trivial para quem já estudou estatística, mas não é tão direto pra quem nunca estudou a respeito. A intuição também vem da cozinha: para você provar adequadamente se uma sopa está boa, você <em>mistura</em> e depois prova um pouquinho. A mistura é importante: ela faz com que nossa amostra seja uma boa aproximação do todo. Note também que o tamanho da colher passa a não importar muito. Uma colher de café pode ser um pouco pequena demais; uma colher de chá é um pouco melhor; uma colher de sopa é suficiente; uma concha pode ser um exagero. Os amostristas tem estratégias para misturar a sopa (i.e., plano amostral) e fórmulas para escolher qual “colher” usar para prová-la (i.e., tamanho da amostra).</p>
-<p>Com uma população finita, existem várias amostras possíveis. De fato, nada garante que a nossa amostra vai resultar exatamente no valor populacional. No entanto, com algumas condições, é possível calcular o quão errados nos poderíamos estar sobre as grandezas calculadas a partir da nossa amostra. Essa ideia de “margem de erro”<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a> é expressa pelos intervalos de confiança.</p>
-</div>
-<div id="inferência-descritiva-inferência-analítica-e-modelos-de-superpopulação" class="section level1">
-<h1>Inferência descritiva, inferência analítica e modelos de superpopulação</h1>
-<p>Estas ideias são interessantes para fazer <em>inferências descritivas</em>, mas o que acontece quando queremos estudar algo mais complicado, como o processo que gera aquela população específica? Neste caso, estamos falando de <em>inferência analítica</em>. É importante distinguir as duas abordagens: a primeira tenta <em>descrever</em> uma quantidade da população a partir de uma amostra; a outra tenta descrever os mecanismos por trás daquela população. Como explica <span class="citation">Deming (1953, p. 245)</span>, a inferência descritiva tenta responder à pergunta “quanto?”; já a inferência analítica tentaria responder à pergunta “por quê?”. Em outras palavras, a inferência descritiva é uma “fotografia” da população, desconsiderando os processos que a geraram, enquanto a inferência analítica tenta entender este mecanismo <span class="citation">(Conti e Di Iorio, 2018)</span>. Assim, a inferência analítica quer entender como as características da população se relacionam. Então, a pergunta da inferência analítica é “como?”</p>
-<p>A ideia central da inferência analítica pode ser interpretada da seguinte maneira. A minha população finita é uma realização de um processo aleatório mais geral, definida por um <em>modelo paramétrico</em>. Este modelo produz infinitas populações finitas. A nossa amostra é extraída de uma delas.</p>
-</div>
-<div id="sopas-universos-paralelos-e-modelos-de-superpopulação" class="section level1">
-<h1>Sopas, universos paralelos e modelos de superpopulação</h1>
-<p>Estes últimos parágrafos foram um pouco cansativos. Vou tentar deixar as coisas um pouco mais divertidas.</p>
-<p>Imagine que exista um Demiurgo bastante atarefado: ele é responsável por infinitos universos, cada um habitado por uma população com características próprias. Para facilitar a sua vida, ele usa uma máquina mágica para definir a distribuição de renda associada às características de cada um destes infinitos universos.</p>
-<p>Em um destes universos, um grupo de alquimistas <del>sem orçamento</del> tem uma amostra da população. Com estimativas baseadas nestes dados, eles informam os cidadãos do seu mundo sobre a renda média, o tamanho da população, e outras inúmeras características do seu povo. Porém, eles têm um objetivo mais ousado: eles querem <del>estimar os parâmetros do modelo parametrico</del> descobrir o mecanismo da máquina do Demiurgo!</p>
-<p>A modelagem de superpopulação é uma coisa um tanto mágica. Fazendo um paralelo com <em>Rick &amp; Morty</em>, ela te deixa olhar como seria um universo paralelo, onde você escolhe as característica da população. Por exemplo, com o modelo paramétrico adequado, eu poderia:</p>
-<ul>
-<li>Descobrir o número de crianças que morreriam por sarampo se não houvesse vacinação;</li>
-<li>Descobrir o número de pessoas analfabetas se não houvesse educação pública;</li>
-<li>Descobrir como seria a minha renda se eu não tivesse saído do direito.<a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a></li>
-</ul>
-<p>Voltando ao nosso exemplo gastronômico, só precisamos de uma colher (amostra) da sopa (população finita) para ter uma ideia do quão salgada ela está (parâmetro populacional). Neste contexto, o modelo paramétrico permite saber, em média, o quão salgada a sopa estaria se para uma dada quantidade de sal. Isso acontece porque calculamos, <em>a partir de uma colher</em>, o <em>impacto</em> da quantidade de sal (parâmetro do modelo) sobre o gosto de <em>todas as sopas possíveis</em> (população infinita).</p>
-<p>Na prática, a modelagem de superpopulação tem algumas limitações. Por exemplo,</p>
+              <script src="https://guilhermejacob.github.io/rmarkdown-libs/kePrint/kePrint.js"></script>
+
+
 <blockquote>
-<p>Deve-se reconhecer que para muitos estudos, especialmente nas ciências sociais, o modelo é apenas uma aproximação conveniente para o mundo real, e os parâmetros de um modelo são frequentemente utilizados para entender as interdependências aproximadas, em vez de ter uma interpretação científica. <span class="citation">(Binder, 1983, p. 279, tradução nossa)</span></p>
+<p>TL;DR: subregistro existe, é um problema e as taxas de mortalidade <em>ingênuas</em> estão provavelmente erradas. Mas não são inúteis.</p>
 </blockquote>
-<p>Essa é uma distinção importante entre inferência analítica e inferência causal, mas isso é tema para outro texto…</p>
+<p>Estive fazendo alguns exercícios de demografia e pensando sobre subregistro e o quanto isso é um problema. Resolvi pegar algumas leituras que fiz recentemente e tentar mostrar onde isso aparece.</p>
+<div id="um-pouco-de-história" class="section level1">
+<h1>Um pouco de história</h1>
+<p>Em alguns países, os registros de nascimentos e mortes é tão bom que você pode calcular as estimativas mortalidade infantil diretamente. Esse é o caso da Suécia, por exemplo. E não é por acaso. As paróquias luteranas da Suécia registravam casamentos, batismos, e enterros desde 1608, passando a ser responsabilidade do Estado em 1686, e produzindo estatísticas vitais desde 1748 <span class="citation">(Hakkert, 1996, p. 32)</span>.</p>
+<p>No Brasil, as coisas são um pouco mais complicadas. Embora houvesse um registro administrado pela Igreja, o Registro Civil só foi criado em 1888. Os próprios párocos até estimulavam o registro eclesiástico em detrimento do registro civil: o número de nascimentos no registro das igrejas <em>superava</em> o do próprio registro civil “até poucos anos atrás”, segundo <span class="citation">Hakkert (1996, p. 34)</span>. Só com o <a href="http://www.planalto.gov.br/ccivil_03/decreto/1930-1949/D4857.htm">Decreto 4.857 de 1939</a> que o atestado de óbito se tornou obrigatório para a realização de enterros. Esse decreto foi revogado pela <a href="http://www.planalto.gov.br/ccivil_03/LEIS/L6015consolidado.htm">Lei 6.015 de 1973</a>, A Lei dos Registros Públicos. Além disso, os registros de nascimentos e de óbitos só passaram a ser gratuitos a partir da <a href="http://www.planalto.gov.br/ccivil_03/LEIS/L9534.htm#art1">Lei 9.534 de 1997</a>, sem necessidade de comprovação do “estado de pobreza” <span class="citation">(Silveira e Soboll, 1973)</span>. <span class="citation">Jannuzzi (2012, p. 61)</span> explica que o Registro Civil é responsabilidade do Poder Judiciário, que delega para os cartórios essa atividade, com alguns autores sustentando que esta é uma das causas da nossa falha de cobertura.</p>
+<p>Além do registro civil, existe outra fonte importante de informações sobre mortalidade: o Sistema de Informação de Mortalidade do Ministério da Saúde (SIM/MS), criado em 1975 <span class="citation">(Mello Jorge, Laurenti e Gotlieb, 2009)</span>. Existe uma diferença fundamental deste em relação ao Registro Civil: esse é o único que registra a causa do óbito.</p>
+<p>O registro civil compila as <a href="https://atos.cnj.jus.br/files//provimento/provimento_63_14112017_19032018150944.pdf">certidões de óbito</a>, enquanto o SIM compila as <a href="http://bvsms.saude.gov.br/bvs/publicacoes/declaracao_obito_3ed.pdf">declarações de óbito</a>. Esses documentos são bastante diferentes: a primeira é um ato notarial, enquanto o segundo é um ato médico. Em poucas palavras, a primeira está mais próxima de um procedimento jurídico, enquanto a segunda é mais próxima de um instrumento de investigação epidemiológica.</p>
+<p>O SIM/MS tem um atraso de dois anos na divulgação, enquanto o Registro Civil costuma ser atualizado continuamente. No entanto, o SIM tem microdados disponíveis e isso possibilita que diversos pesquisadores estudem a qualidade dos dados e sua cobertura. De fato, houve pesquisas de busca ativa de óbitos para avaliar a completude do SIM <span class="citation">(Almeida <em>et al.</em>, 2017)</span>.</p>
+<p>Além dessas fontes mais tradicionais, o Censo Demográfico de 2010 perguntou sobre a ocorrência de mortes nos domicílios e a antiga Pesquisa Nacional por Amostra de Domicílio (PNAD) tinha perguntas que poderiam ser usadas para estimar algumas estatísticas de mortalidade por métodos indiretos.</p>
 </div>
-<div id="comentários-finais" class="section level1">
-<h1>Comentários finais</h1>
-<p>Nesse texto, a minha intenção era dar uma explicação um pouco mais didática sobre os modelos de superpopulação e como eles relacionam amostra, população finita e população infinita. Ele também mostra uma parte do problema que enfrentamos quando ajustamos modelos em amostras complexas, embora exija um pouco mais de discussão.</p>
-<p>Por fim, não forneço nenhuma solução ou método para ajustar estes modelos. Para entender isso, vale ler a bibliografia citada no texto. Também indico:</p>
-<ul>
-<li>Leituras obrigatórias: <span class="citation">Pessoa e Silva (2018 Cap. 2 e 5)</span>, <span class="citation">Lohr (2010 Cap. 11)</span>, <span class="citation">Heeringa, West e Berglund (2010 Cap. 7)</span> e <span class="citation">Binder e Skinner (2003)</span>;</li>
-<li><span class="citation">Graubard e Korn (2002)</span>, <span class="citation">Dorfman e Valliant (2005)</span> e <span class="citation">Lumley e Scott (2017)</span> trazem uma discussão interessante sobre alguns aspectos práticos do ajuste destes modelos com amostras complexas;</li>
-<li>Para economistas, <span class="citation">Deaton (1995)</span>, <span class="citation">Ullah e Breunig (1998)</span>, <span class="citation">Cameron e Trivedi (2005 Cap. 24)</span> e <span class="citation">Wooldridge (2010 Cap. 20)</span> podem ser interessantes.</li>
-</ul>
+<div id="subregistro" class="section level1">
+<h1>Subregistro</h1>
+<p>Bom, falei demais e não trouxe nenhum número. Vamos mudar isso.</p>
+<p>Recentemente, o IBGE fez uma análise cuidadosa da cobertura de óbitos do Registro Civil e do SIM/MS. A Tabela <a href="#tab:tab1">1</a> abaixo traz as estimativas de subregistro<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>. Bom, os dois registros parecem caminhar na mesma direção, com Maranhão e Amapá tendo os valores mais altos nos dois sistemas. No entanto, o Registro Civil deixa de registrar quase 1/3 dos óbitos do Maranhão e 1/4 do Amapá, enquanto essa falha é menor no SIM/MS. Essa informação indica que devemos ter cuidado com os dados do Registro Civil, principalmente nos estados do Norte e Nordeste.</p>
+<table>
+<caption>
+<span id="tab:tab1">Tabela 1: </span>Total Estimado e Sub-registro de Óbitos por Grandes Regiões e UF de residência do falecido - 2017
+</caption>
+<thead>
+<tr>
+<th style="border-bottom:hidden" colspan="2">
+</th>
+<th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Subregistro em %
+</div>
+</th>
+</tr>
+<tr>
+<th style="text-align:left;">
+UF
+</th>
+<th style="text-align:right;">
+Óbitos Estimados
+</th>
+<th style="text-align:right;">
+Reg. Civil
+</th>
+<th style="text-align:right;">
+SIM/MS
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Maranhão
+</td>
+<td style="text-align:right;">
+37 309
+</td>
+<td style="text-align:right;">
+27,87
+</td>
+<td style="text-align:right;">
+4,60
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Amapá
+</td>
+<td style="text-align:right;">
+3 355
+</td>
+<td style="text-align:right;">
+23,75
+</td>
+<td style="text-align:right;">
+5,24
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Pará
+</td>
+<td style="text-align:right;">
+40 948
+</td>
+<td style="text-align:right;">
+18,17
+</td>
+<td style="text-align:right;">
+3,75
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Roraima
+</td>
+<td style="text-align:right;">
+2 545
+</td>
+<td style="text-align:right;">
+12,99
+</td>
+<td style="text-align:right;">
+3,09
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Piauí
+</td>
+<td style="text-align:right;">
+20 216
+</td>
+<td style="text-align:right;">
+12,60
+</td>
+<td style="text-align:right;">
+2,12
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Rio Grande do Norte
+</td>
+<td style="text-align:right;">
+22 209
+</td>
+<td style="text-align:right;">
+10,10
+</td>
+<td style="text-align:right;">
+3,52
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Amazonas
+</td>
+<td style="text-align:right;">
+17 661
+</td>
+<td style="text-align:right;">
+9,82
+</td>
+<td style="text-align:right;">
+1,84
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Tocantins
+</td>
+<td style="text-align:right;">
+8 332
+</td>
+<td style="text-align:right;">
+8,87
+</td>
+<td style="text-align:right;">
+2,83
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Alagoas
+</td>
+<td style="text-align:right;">
+21 340
+</td>
+<td style="text-align:right;">
+8,44
+</td>
+<td style="text-align:right;">
+2,95
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Ceará
+</td>
+<td style="text-align:right;">
+61 253
+</td>
+<td style="text-align:right;">
+7,82
+</td>
+<td style="text-align:right;">
+2,99
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Sergipe
+</td>
+<td style="text-align:right;">
+13 500
+</td>
+<td style="text-align:right;">
+7,58
+</td>
+<td style="text-align:right;">
+1,35
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Bahia
+</td>
+<td style="text-align:right;">
+93 974
+</td>
+<td style="text-align:right;">
+6,90
+</td>
+<td style="text-align:right;">
+2,90
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Paraíba
+</td>
+<td style="text-align:right;">
+27 831
+</td>
+<td style="text-align:right;">
+4,18
+</td>
+<td style="text-align:right;">
+3,22
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Mato Grosso
+</td>
+<td style="text-align:right;">
+18 013
+</td>
+<td style="text-align:right;">
+4,15
+</td>
+<td style="text-align:right;">
+1,53
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Goiás
+</td>
+<td style="text-align:right;">
+40 384
+</td>
+<td style="text-align:right;">
+4,09
+</td>
+<td style="text-align:right;">
+0,84
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Acre
+</td>
+<td style="text-align:right;">
+3 998
+</td>
+<td style="text-align:right;">
+3,73
+</td>
+<td style="text-align:right;">
+4,38
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Pernambuco
+</td>
+<td style="text-align:right;">
+65 232
+</td>
+<td style="text-align:right;">
+3,72
+</td>
+<td style="text-align:right;">
+1,25
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Mato Grosso do Sul
+</td>
+<td style="text-align:right;">
+16 138
+</td>
+<td style="text-align:right;">
+2,49
+</td>
+<td style="text-align:right;">
+1,10
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Santa Catarina
+</td>
+<td style="text-align:right;">
+40 464
+</td>
+<td style="text-align:right;">
+2,28
+</td>
+<td style="text-align:right;">
+1,34
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Minas Gerais
+</td>
+<td style="text-align:right;">
+139 616
+</td>
+<td style="text-align:right;">
+1,65
+</td>
+<td style="text-align:right;">
+1,39
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Rondônia
+</td>
+<td style="text-align:right;">
+8 349
+</td>
+<td style="text-align:right;">
+1,32
+</td>
+<td style="text-align:right;">
+1,76
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Paraná
+</td>
+<td style="text-align:right;">
+72 004
+</td>
+<td style="text-align:right;">
+1,27
+</td>
+<td style="text-align:right;">
+0,48
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Espírito Santo
+</td>
+<td style="text-align:right;">
+24 273
+</td>
+<td style="text-align:right;">
+0,78
+</td>
+<td style="text-align:right;">
+0,64
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Rio Grande do Sul
+</td>
+<td style="text-align:right;">
+86 633
+</td>
+<td style="text-align:right;">
+0,72
+</td>
+<td style="text-align:right;">
+0,45
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Rio de Janeiro
+</td>
+<td style="text-align:right;">
+137 191
+</td>
+<td style="text-align:right;">
+0,62
+</td>
+<td style="text-align:right;">
+0,40
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+São Paulo
+</td>
+<td style="text-align:right;">
+295 776
+</td>
+<td style="text-align:right;">
+0,55
+</td>
+<td style="text-align:right;">
+0,32
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Distrito Federal
+</td>
+<td style="text-align:right;">
+12 502
+</td>
+<td style="text-align:right;">
+0,46
+</td>
+<td style="text-align:right;">
+0,35
+</td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td style="padding: 0; border: 0;" colspan="100%">
+<span style="font-style: italic;">Fonte:</span> <sup></sup> IBGE, Estatísticas do Registro Civil 2017.
+</td>
+</tr>
+</tfoot>
+</table>
+<p>No entanto, é razoável supor que as circunstâncias do óbito podem estar correlacionadas com a probabilidade não ser registrado, o que introduziria viés em estimativas “ingênuas”<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a>. Outra publicação do IBGE usa os dados do Censo 2010 para calcular tábuas completas de mortalidade para as UFs. A Tabela 15 daquela publicação tem um resultado muito importante: o subregistro de óbito varia de acordo com o sexo e com a idade do falecido.</p>
+<p>Não é muito difícil pensar que existam outros atributos afetam a probabilidade de uma morte ser registrada. Por exemplo, como a certidão de óbito tem um papel importante nos processos de inventário, é provável que óbitos de pessoas mais ricas tenham mais probabilidade de ser registrados do que de pessoas menos favorecidas. As distâncias e dificuldades de acesso em algumas regiões também podem afetar essa probabilidade de registro.</p>
+</div>
+<div id="mas-por-que-isso-é-um-problema" class="section level1">
+<h1>Mas por que isso é um problema?</h1>
+<p>A medida de mortalidade mais simples é a taxa de mortalidade bruta (TBM). Basicamente, a TBM é a razão entre o número de óbitos ocorridos em um ano dividido e a população no meio do ano. Consequentemente, quando há subregistro, as contagens de óbitos vão ser menores do que o real, subestimando a mortalidade.</p>
+<p>Se as “probabilidades de registro” não variam de acordo com as características dos indivíduos, esse é um problema relativamente simples de resolver. Aplicando um fator de correção sobre o total de mortes registradas, temos uma estimativa das mortes efetivamente ocorridas.</p>
+<p>No entanto, se as “probabilidades de registro” variam com as características dos indivíduos, o problema é mais complicado. Por exemplo, se as mulheres têm uma probabilidade menor de ser registradas, a TBM das mulheres será subestimada<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a>. Agora imagine que diversas características afetam essa probabilidade de registro. Teríamos que calcular a probabilidade de registro de cada pessoa no registro para poder estimar, de fato, as mortes ocorridas.</p>
+<p>Mas e as estimativas dos modelos? Bom, se o modelo não inclui as probabilidades de registro, não estamos prevendo as mortes ocorridas, mas apenas as mortes registradas, supondo que o subregistro é o mesmo dos anos anteriores. E isso é um problema: a cobertura pode ter melhorado ou piorado por causa da pandemia.</p>
+<blockquote>
+<p>Isso significa que os números são inúteis? <strong>Não, eles são importantíssimos!</strong></p>
+</blockquote>
+<p>A gente só precisa ter cuidado com o que eles dizem e, mais ainda, com o que eles <em>não dizem</em>. No momento, esses números são a única referência que temos para a formulação de políticas públicas<a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a>. Podemos estar errados, mas sabemos algo sobre a direção que erramos. E, se a cobertura não muda bruscamente durante a pandemia, o que não é uma hipótese muito ruim, as trajetórias são úteis, embora os valores sejam menos úteis.</p>
 </div>
 <div id="referências" class="section level1 unnumbered">
 <h1>Referências</h1>
 <div id="refs" class="references">
-<div id="ref-belem2009">
-<p>BETHLEHEM, J. <strong>The rise of survey sampling</strong>. Haia, Holanda: Statistics Netherlands, 2009. Disponível em: &lt;<a href="https://www.cbs.nl/-/media/imported/documents/2009/07/2009-15-x10-pub.pdf">https://www.cbs.nl/-/media/imported/documents/2009/07/2009-15-x10-pub.pdf</a>&gt;.</p>
+<div id="ref-almeida">
+<p>ALMEIDA, W. DA S. DE <em>et al.</em> Captação de óbitos não informados ao Ministério da Saúde: pesquisa de busca ativa de óbitos em municípios brasileiros. <strong>Revista Brasileira de Epidemiologia</strong>, v. 20, p. 200–211, jun. 2017. </p>
 </div>
-<div id="ref-binder1983">
-<p>BINDER, D. A. On the Variances of Asymptotically Normal Estimators from Complex Surveys. <strong>International Statistical Review / Revue Internationale de Statistique</strong>, v. 51, n. 3, p. 279–292, 1983. </p>
+<div id="ref-hakkert">
+<p>HAKKERT, R. <strong>Fontes de Dados Demográficos</strong>. Belo Horizonte, Brasil: ABEP, 1996. </p>
 </div>
-<div id="ref-binder2003">
-<p>BINDER, D. A.; SKINNER, C. J. Design-based and Model-based Methods for Estimating Model Parameters. <em>In</em>: <strong>Analysis of Survey Data</strong>. [s.l.] John Wiley &amp; Sons, 2003. p. 29–48. </p>
+<div id="ref-jannuzzi">
+<p>JANNUZZI, P. DE M. <strong>Indicadores Sociais no Brasil: conceitos, fontes de dados e aplicações</strong>. 5. ed. Campinas, São Paulo: Alínea, 2012. </p>
 </div>
-<div id="ref-cameron2005">
-<p>CAMERON, A. C.; TRIVEDI, P. K. <strong>Microeconometrics: Methods and Applications</strong>. Cambridge: Cambridge University Press, 2005. </p>
+<div id="ref-sim2009">
+<p>MELLO JORGE, M. H. P. DE; LAURENTI, R.; GOTLIEB, S. L. D. O sistema de Informações sobre Mortalidade – SIM: Concepção, Implantação e Avaliação. <em>In</em>: FUNDAÇÃO OSWALDO CRUZ, M. A. O. A. (Ed.).. <strong>A experiência brasileira em sistemas de informação em saúde</strong>. Brasília: [s.n.]. p. 71–108. </p>
 </div>
-<div id="ref-conti2018">
-<p>CONTI, P. L.; DI IORIO, A. <strong>Analytic inference in finite population framework via resampling</strong>, 2018. Disponível em: &lt;<a href="http://arxiv.org/abs/1809.08035">http://arxiv.org/abs/1809.08035</a>&gt;</p>
-</div>
-<div id="ref-deaton1995">
-<p>DEATON, A. Data and econometric tools for development analysis. <em>In</em>: BEHRMAN, J.; SRINIVASAN, T. N. (Eds.).. Handbook of Development Economics, Part 3A. Amsterdã: North-Holland, 1995. p. 1785–1882. </p>
-</div>
-<div id="ref-deming1953">
-<p>DEMING, W. E. On the Distinction between Enumerative and Analytic Surveys. <strong>Journal of the American Statistical Association</strong>, v. 48, n. 262, p. 244–255, jun. 1953. </p>
-</div>
-<div id="ref-dorfman2005">
-<p>DORFMAN, A. H.; VALLIANT, R. Superpopulation Models in Survey Sampling. <em>In</em>: <strong>Encyclopedia of Biostatistics</strong>. [s.l.] American Cancer Society, 2005.. </p>
-</div>
-<div id="ref-korn2002">
-<p>GRAUBARD, B. I.; KORN, E. L. Inference for Superpopulation Parameters Using Sample Surveys. <strong>Statistical Science</strong>, v. 17, n. 1, p. 73–96, maio 2002. </p>
-</div>
-<div id="ref-heeringa">
-<p>HEERINGA, S. G.; WEST, B. T.; BERGLUND, P. A. <strong>Applied Survey Data Analysis</strong>. Boca Raton, Florida: Chapman &amp; Hall/CRC, 2010. </p>
-</div>
-<div id="ref-lohr2010">
-<p>LOHR, S. <strong>Sampling Design and Analysis</strong>. 2nd. ed. Boston: Brooks/Cole, 2010. p. 596</p>
-</div>
-<div id="ref-lumley2017">
-<p>LUMLEY, T.; SCOTT, A. Fitting Regression Models to Survey Data. <strong>Statist. Sci.</strong>, v. 32, n. 2, p. 265–278, maio 2017. </p>
-</div>
-<div id="ref-silva2018">
-<p>PESSOA, D. G. C.; SILVA, P. L. N. <strong>Análise de Dados Amostrais Complexos</strong>, maio 2018. Disponível em: &lt;<a href="https://djalmapessoa.github.io/adac/bookdown-adac.pdf">https://djalmapessoa.github.io/adac/bookdown-adac.pdf</a>&gt;</p>
-</div>
-<div id="ref-ullah1998">
-<p>ULLAH, A.; BREUNIG, R. V. Econometric Analysis in Complex Surveys. <em>In</em>: <strong>Handbook of Applied Economic Statistics</strong>. Boca Raton, Florida: CRC Press, 1998. p. 325–363. </p>
-</div>
-<div id="ref-jeff2010">
-<p>WOOLDRIDGE, J. M. <strong>Econometric Analysis of Cross Section and Panel Data</strong>. 2. ed. Cambridge, Massachusetts: The MIT Press, 2010. </p>
+<div id="ref-silveira">
+<p>SILVEIRA, M. H.; SOBOLL, M. L. Sub-registro de nascimento: aspectos educativos visando à sua diminuição. <strong>Revista de Saúde Pública</strong>, v. 7, p. 151–160, jun. 1973. </p>
 </div>
 </div>
 </div>
 <div class="footnotes">
 <hr />
 <ol>
-<li id="fn1"><p>Se tiver algo errado nesse texto, peço que me corrijam!<a href="#fnref1" class="footnote-back">↩︎</a></p></li>
-<li id="fn2"><p>Para quem quiser ler mais a respeito de como amostragem passou a ser reconhecida como um método científico, a sugestão de leitura é <span class="citation">Bethlehem (2009)</span>.<a href="#fnref2" class="footnote-back">↩︎</a></p></li>
-<li id="fn3"><p>Não confundir as “margens de erros” de pesquisas não-probabilísticas com “intervalos de confiança”. <em>Até onde eu sei</em>, só os intervalos de confiança de amostra probabilística têm fundamento teórico.<a href="#fnref3" class="footnote-back">↩︎</a></p></li>
-<li id="fn4"><p>Provavelmente maior do que a de mestrando.<a href="#fnref4" class="footnote-back">↩︎</a></p></li>
+<li id="fn1"><p>No caso do SIM/MS, o termo correto seria subnotificação, mas não quero complicar ainda mais.<a href="#fnref1" class="footnote-back">↩︎</a></p></li>
+<li id="fn2"><p>Falei um pouco sobre isso <a href="https://guilhermejacob.github.io/2019/12/meng2018/">neste post</a><a href="#fnref2" class="footnote-back">↩︎</a></p></li>
+<li id="fn3"><p>Não é difícil pensar em motivos para isso. Antigamente, as mulheres enfrentavam barreiras legais para registrar imóveis em seu nome. Logo, e provável que houvesse menos interesse em registrar a morte destas mulheres em comparação com homens na mesma condição.<a href="#fnref3" class="footnote-back">↩︎</a></p></li>
+<li id="fn4"><p>Até não fazer nada é um tipo de política pública.<a href="#fnref4" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
 
@@ -388,7 +771,9 @@
                   <div class="post-footer-tags">
                     <span class="text-color-light text-small">ETIQUETADO em</span><br/>
                     
-  <a class="tag tag--primary tag--small" href="https://guilhermejacob.github.io/tags/modelos/">Modelos</a>
+  <a class="tag tag--primary tag--small" href="https://guilhermejacob.github.io/tags/sa%C3%BAde/">Saúde</a>
+
+  <a class="tag tag--primary tag--small" href="https://guilhermejacob.github.io/tags/demografia/">Demografia</a>
 
                   </div>
                 
@@ -401,7 +786,7 @@
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://guilhermejacob.github.io/2019/12/meng2018/" data-tooltip="Mentiras, mentiras cabeludas e &#34;big data&#34;">
+                <a class="post-action-btn btn btn--disabled">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">PRÓXIMO</span>
@@ -409,7 +794,7 @@
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://guilhermejacob.github.io/2019/12/varianca-adac/" data-tooltip="Por que é tão difícil calcular variância com amostras complexas?">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://guilhermejacob.github.io/2020/08/diferenca-gini/" data-tooltip="Índice de Gini e transferências sociais federais">
               
                   <span class="hide-xs hide-sm text-small icon-mr">ANTERIOR</span>
                   <i class="fa fa-angle-right"></i>
@@ -427,19 +812,19 @@
         </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://guilhermejacob.github.io/2019/12/superpopulacao/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://guilhermejacob.github.io/2020/09/subregistro-obito/">
               <i class="fa fa-facebook-official"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://guilhermejacob.github.io/2019/12/superpopulacao/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://guilhermejacob.github.io/2020/09/subregistro-obito/">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://guilhermejacob.github.io/2019/12/superpopulacao/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://guilhermejacob.github.io/2020/09/subregistro-obito/">
               <i class="fa fa-google-plus"></i>
             </a>
           </li>
@@ -481,7 +866,7 @@
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://guilhermejacob.github.io/2019/12/meng2018/" data-tooltip="Mentiras, mentiras cabeludas e &#34;big data&#34;">
+                <a class="post-action-btn btn btn--disabled">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">PRÓXIMO</span>
@@ -489,7 +874,7 @@
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://guilhermejacob.github.io/2019/12/varianca-adac/" data-tooltip="Por que é tão difícil calcular variância com amostras complexas?">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://guilhermejacob.github.io/2020/08/diferenca-gini/" data-tooltip="Índice de Gini e transferências sociais federais">
               
                   <span class="hide-xs hide-sm text-small icon-mr">ANTERIOR</span>
                   <i class="fa fa-angle-right"></i>
@@ -507,19 +892,19 @@
         </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://guilhermejacob.github.io/2019/12/superpopulacao/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://guilhermejacob.github.io/2020/09/subregistro-obito/">
               <i class="fa fa-facebook-official"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://guilhermejacob.github.io/2019/12/superpopulacao/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://guilhermejacob.github.io/2020/09/subregistro-obito/">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://guilhermejacob.github.io/2019/12/superpopulacao/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://guilhermejacob.github.io/2020/09/subregistro-obito/">
               <i class="fa fa-google-plus"></i>
             </a>
           </li>
@@ -543,19 +928,19 @@
   <ul class="share-options">
     
       <li class="share-option">
-        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fguilhermejacob.github.io%2F2019%2F12%2Fsuperpopulacao%2F">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fguilhermejacob.github.io%2F2020%2F09%2Fsubregistro-obito%2F">
           <i class="fa fa-facebook-official"></i><span>Compartilhar no Facebook</span>
         </a>
       </li>
     
       <li class="share-option">
-        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Fguilhermejacob.github.io%2F2019%2F12%2Fsuperpopulacao%2F">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Fguilhermejacob.github.io%2F2020%2F09%2Fsubregistro-obito%2F">
           <i class="fa fa-twitter"></i><span>Compartilhar no Twitter</span>
         </a>
       </li>
     
       <li class="share-option">
-        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https%3A%2F%2Fguilhermejacob.github.io%2F2019%2F12%2Fsuperpopulacao%2F">
+        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https%3A%2F%2Fguilhermejacob.github.io%2F2020%2F09%2Fsubregistro-obito%2F">
           <i class="fa fa-google-plus"></i><span>Compartilhar no Google&#43;</span>
         </a>
       </li>
