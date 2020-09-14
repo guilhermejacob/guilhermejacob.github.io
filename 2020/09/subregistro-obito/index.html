@@ -726,9 +726,25 @@ Distrito Federal
 <p>No entanto, se as “probabilidades de registro” variam com as características dos indivíduos, o problema é mais complicado. Por exemplo, se as mulheres têm uma probabilidade menor de ser registradas, a TBM das mulheres será subestimada<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a>. Agora imagine que diversas características afetam essa probabilidade de registro. Teríamos que calcular a probabilidade de registro de cada pessoa no registro para poder estimar, de fato, as mortes ocorridas.</p>
 <p>Mas e as estimativas dos modelos? Bom, se o modelo não inclui as probabilidades de registro, não estamos prevendo as mortes ocorridas, mas apenas as mortes registradas, supondo que o subregistro é o mesmo dos anos anteriores. E isso é um problema: a cobertura pode ter melhorado ou piorado por causa da pandemia.</p>
 <blockquote>
-<p>Isso significa que os números são inúteis? <strong>Não, eles são importantíssimos!</strong></p>
+<p>Isso significa que os números são inúteis? <strong>Não, eles são importantíssimos! Só não servem para este propósito.</strong></p>
 </blockquote>
-<p>A gente só precisa ter cuidado com o que eles dizem e, mais ainda, com o que eles <em>não dizem</em>. No momento, esses números são a única referência que temos para a formulação de políticas públicas<a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a>. Podemos estar errados, mas sabemos algo sobre a direção que erramos. E, se a cobertura não muda bruscamente durante a pandemia, o que não é uma hipótese muito ruim, as trajetórias são úteis, embora os valores sejam menos úteis.</p>
+<p>Precisamos ter cuidado com o que eles dizem e, mais ainda, com o que eles <em>não dizem</em>. No momento, esses números são a única referência que temos para a formulação de políticas públicas<a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a>. Podemos estar errados, mas sabemos algo sobre a direção que erramos. E, se a cobertura não muda bruscamente durante a pandemia, o que não é uma hipótese muito ruim, as trajetórias são úteis, embora os valores sejam menos úteis.</p>
+</div>
+<div id="estatísticas-de-qualidade" class="section level1">
+<h1>Estatísticas de Qualidade</h1>
+<p>Um ponto que é frequentemente ignorado por cientistas de dados é o “Total Survey Error Framework”. A figura abaixo é extraída de <span class="citation">Saris (2014)</span>. Ela é voltada para entender os erros nas estatísticas coletadas por pesquisas amostras, mas também ajuda a entender o erro de dados não-amostrais.</p>
+<div class="figure">
+<img src="https://guilhermejacob.github.io/img/TSEFig.png" alt="" />
+<p class="caption">Diagrama do Total Survey Error</p>
+</div>
+<p>O que normalmente se vê é uma ênfase na última etapa, na produção dos números, com pouca reflexão sobre todos os outros erros: erros de medida, de cobertura, de não-resposta, etc. O desenvolvimento de métodos para lidar com esses problemas é parte do dia-a-dia dos amostristas.</p>
+</div>
+<div id="sugestão" class="section level1">
+<h1>Sugestão</h1>
+<p>Não deve ser novidade, mas eu sou bastante viesado nessa sugestão. Em maio de 2020, o professor Pedro Silva (ENCE/IBGE) comentou <em>detalhadamente</em> o estado das estatisticas oficiais na pandemia. Aos 20:00 do vídeo, ele comenta sobre os “fortes indícios de subnotificação” dos dados cartorários.</p>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/RnjUU0ZVpz4?start=600" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 </div>
 <div id="referências" class="section level1 unnumbered">
 <h1>Referências</h1>
@@ -744,6 +760,9 @@ Distrito Federal
 </div>
 <div id="ref-sim2009">
 <p>MELLO JORGE, M. H. P. DE; LAURENTI, R.; GOTLIEB, S. L. D. O sistema de Informações sobre Mortalidade – SIM: Concepção, Implantação e Avaliação. <em>In</em>: FUNDAÇÃO OSWALDO CRUZ, M. A. O. A. (Ed.).. <strong>A experiência brasileira em sistemas de informação em saúde</strong>. Brasília: [s.n.]. p. 71–108. </p>
+</div>
+<div id="ref-saris2014">
+<p>SARIS, W. E. Total Survey Error. <em>In</em>: MICHALOS, A. C. (Ed.).. <strong>Encyclopedia of Quality of Life and Well-Being Research</strong>. Dordrecht: Springer Netherlands, 2014. p. 6703–6704. </p>
 </div>
 <div id="ref-silveira">
 <p>SILVEIRA, M. H.; SOBOLL, M. L. Sub-registro de nascimento: aspectos educativos visando à sua diminuição. <strong>Revista de Saúde Pública</strong>, v. 7, p. 151–160, jun. 1973. </p>
