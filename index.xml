@@ -6,10 +6,19 @@
     <description>Recent content on Something Random</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>pt-br</language>
-    <lastBuildDate>Sat, 12 Sep 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 27 Jan 2021 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://guilhermejacob.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>(Algumas) Estatísticas sobre fome no Brasil (2017-2018)</title>
+      <link>https://guilhermejacob.github.io/2021/01/fome-pof-2017-2018/</link>
+      <pubDate>Wed, 27 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://guilhermejacob.github.io/2021/01/fome-pof-2017-2018/</guid>
+      <description>A última Pesquisa de Orçamentos Familliares (POF), realizada em 2017-2018, traz informaçõs muito interessantes sobre consumo e condição de vida das pessoas. Um dos temas mais interessantes que foram investigados são as condições de vida dos domicílios. Neste questionário, podem ser encontradas diversas perguntas, incluindo: percepções sobre o fornecimento de energia de elétrica; violência ou vandalismo na área de residência; presença de insetos, ratos, etc.; se há problemas em estar localizado perto de rio, baía, lago, açude ou represa poluídos; entre outras.</description>
+    </item>
     
     <item>
       <title>Registro Civil, Ministério da Saúde e Subregistro de óbitos</title>
@@ -232,9 +241,10 @@ Articles and other publications &amp;nbsp;&amp;nbsp;Panorama da distorção idad
       <pubDate>Mon, 11 Dec 2017 00:00:00 +0000</pubDate>
       
       <guid>https://guilhermejacob.github.io/2017/12/analise-censo-superior-genero-2016/</guid>
-      <description>knitr::opts_chunk$set(cache=FALSE) # defaults to cacheing Encerrando1 as análises usando bases de dados públicas, vamos focar no ensino superior.
+      <description>Encerrando1 as análises usando bases de dados públicas, vamos focar no ensino superior.
 Inicialmente, vamos explicar o que é o Censo da Educação Superior. Depois, vamos mostrar como montar as bases de dados. E, concluindo, vamos fazer um pequeno exercício de visualização de dados.
-Ah, e eu vou ser muito breve neste post, por motivos de: tenho que escrever um projeto de pesquisa (:</description>
+Ah, e eu vou ser muito breve neste post, por motivos de: tenho que escrever um projeto de pesquisa (:
+Censo da Educação Superior O Censo da Educação Superior é conduzido anualmente pelo Inep.</description>
     </item>
     
     <item>

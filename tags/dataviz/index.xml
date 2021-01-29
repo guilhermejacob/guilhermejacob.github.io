@@ -17,9 +17,10 @@
       <pubDate>Mon, 11 Dec 2017 00:00:00 +0000</pubDate>
       
       <guid>https://guilhermejacob.github.io/2017/12/analise-censo-superior-genero-2016/</guid>
-      <description>knitr::opts_chunk$set(cache=FALSE) # defaults to cacheing Encerrando1 as análises usando bases de dados públicas, vamos focar no ensino superior.
+      <description>Encerrando1 as análises usando bases de dados públicas, vamos focar no ensino superior.
 Inicialmente, vamos explicar o que é o Censo da Educação Superior. Depois, vamos mostrar como montar as bases de dados. E, concluindo, vamos fazer um pequeno exercício de visualização de dados.
-Ah, e eu vou ser muito breve neste post, por motivos de: tenho que escrever um projeto de pesquisa (:</description>
+Ah, e eu vou ser muito breve neste post, por motivos de: tenho que escrever um projeto de pesquisa (:
+Censo da Educação Superior O Censo da Educação Superior é conduzido anualmente pelo Inep.</description>
     </item>
     
     <item>

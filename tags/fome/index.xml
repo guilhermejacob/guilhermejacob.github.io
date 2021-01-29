@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Fome on Something Random</title>
+    <link>https://guilhermejacob.github.io/tags/fome/</link>
+    <description>Recent content in Fome on Something Random</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>pt-br</language>
+    <lastBuildDate>Wed, 27 Jan 2021 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://guilhermejacob.github.io/tags/fome/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>(Algumas) Estatísticas sobre fome no Brasil (2017-2018)</title>
+      <link>https://guilhermejacob.github.io/2021/01/fome-pof-2017-2018/</link>
+      <pubDate>Wed, 27 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://guilhermejacob.github.io/2021/01/fome-pof-2017-2018/</guid>
+      <description>A última Pesquisa de Orçamentos Familliares (POF), realizada em 2017-2018, traz informaçõs muito interessantes sobre consumo e condição de vida das pessoas. Um dos temas mais interessantes que foram investigados são as condições de vida dos domicílios. Neste questionário, podem ser encontradas diversas perguntas, incluindo: percepções sobre o fornecimento de energia de elétrica; violência ou vandalismo na área de residência; presença de insetos, ratos, etc.; se há problemas em estar localizado perto de rio, baía, lago, açude ou represa poluídos; entre outras.</description>
+    </item>
+    
+  </channel>
+</rss>

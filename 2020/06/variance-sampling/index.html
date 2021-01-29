@@ -294,7 +294,7 @@
 <pre><code>## mean_height mean_income mean_myopic 
 ##    170.0122    721.3354      0.0505</code></pre>
 <p>On average, our statistician is doing a great job: the difference between the population mean and the mean of the estimates is quite small. Will any of them hit precisely the population mean? That is possible, but very unlikely. Does that mean that they are always wrong? Well, I’d rather say that – <em>on average</em> – they are <em>correct</em>.</p>
-<p>Using the estimates of the <em>sample mean</em> and the <em>sampling variance</em>, they can estimate an interval where they are 99% confident to find the population mean. This is a tricky statement and is one of the most misunderstood sentences in statistics. We know that 99% of all possible samples would produce interval estimates containing the true parameter. To say we are 99% confident means that we are 99% sure that the particular sample we are working with is one of those.</p>
+<p>Using the estimates of the <em>sample mean</em> and the <em>sampling variance</em>, they can estimate an interval where they are 99% confident to find the population mean. This is a tricky statement and is one of the most misunderstood sentences in statistics. We know that 99% of all possible samples would produce interval estimates containing the true parameter. To say we are 99% confident means that we are 99% sure that the particular sample we are working with is one of those. In Neyman’s words, if we repeated the sampling procedure many times, the confidence interval would contain the true value 99% of the time.</p>
 <p>Let’s check if this is true with our sample of samples. The numbers below show how many of the 5000 confidence intervals contained the true population value of the mean for height, income and short-sightedness.</p>
 <pre><code>## [1] 0.991</code></pre>
 <pre><code>## [1] 0.986</code></pre>
@@ -396,7 +396,7 @@
     </script>
 <footer id="footer" class="main-content-wrap">
   <span class="copyrights">
-    &copy; 2020 Guilherme Jacob. All Rights Reserved
+    &copy; 2021 Guilherme Jacob. All Rights Reserved
   </span>
 </footer>
 
@@ -534,6 +534,23 @@
       <div class="no-result text-color-light text-center"></div>
       <div class="results">
         
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://guilhermejacob.github.io/2021/01/fome-pof-2017-2018/">
+                <h3 class="media-heading">(Algumas) Estatísticas sobre fome no Brasil (2017-2018)</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Jan 1, 2021
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">A última Pesquisa de Orçamentos Familliares (POF), realizada em 2017-2018, traz informaçõs muito interessantes sobre consumo e condição de vida das pessoas. Um dos temas mais interessantes que foram investigados são as condições de vida dos domicílios. Neste questionário, podem ser encontradas diversas perguntas, incluindo: percepções sobre o fornecimento de energia de elétrica; violência ou vandalismo na área de residência; presença de insetos, ratos, etc.; se há problemas em estar localizado perto de rio, baía, lago, açude ou represa poluídos; entre outras.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
         
           <div class="media">
             
@@ -698,25 +715,6 @@ Hoje, eu não quero fazer gráficos ou tabelas. Eu não quero falar de curvas qu
             <hr>
           </div>
         
-          <div class="media">
-            
-            <div class="media-body">
-              <a class="link-unstyled" href="https://guilhermejacob.github.io/2020/04/taylor-maclaurin-taxa/">
-                <h3 class="media-heading">Juros, taxas de crescimento e aproximações</h3>
-              </a>
-              <span class="media-meta">
-                <span class="media-date text-small">
-                  Apr 4, 2020
-                </span>
-              </span>
-              <div class="media-content hide-xs font-merryweather">Esse post vai fugir um pouco do usual. Não vamos fazer análise de dados, nem escrever código. Vamos ter algumas equações e gráficos, mas nada muito complicado. Vamos tentar responder duas perguntas:
- Tenho uma série de crescimento do PIB nos trimestres de um ano. O crescimento acumulado no período é igual à soma das taxas de crescimento?
-  Tenho valores de inflação e taxa de juros nominal. A taxa de juros real é igual à taxa de juros nominal menos a inflação?</div>
-            </div>
-            <div style="clear:both;"></div>
-            <hr>
-          </div>
-        
       </div>
     </div>
     <div class="modal-footer">
@@ -724,7 +722,7 @@ Hoje, eu não quero fazer gráficos ou tabelas. Eu não quero falar de curvas qu
          data-message-zero=""
          data-message-one=""
          data-message-other="">
-         27 posts found
+         28 posts found
       </p>
     </div>
   </div>
