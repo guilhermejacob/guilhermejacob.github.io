@@ -28,27 +28,24 @@
     
 
     
-    <meta name="description" content="Atualização (18/08/2018): atualizei o procedimento e os resultados para coincidir com as novas bases disponibilizadas no site.
+    <meta name="description" content="Atualização (04/02/2021): modifiquei o código para 2018 pois os pesos não possuíam o separador decimal e porque o pacote MonetDBLite foi removido do CRAN. Sugiro tomar cuidado com análises sobre 2018.
  Você sabe o que é o Cadastro Único? Sabe que uma amostra dos microdados está disponível? Sabe que dá pra analisar no R?
 Não? Até uns dias atrás, eu também não.
-Se você tem interesse nessa base de dados, vamos lá!
-Caso contrário, assista esse vídeo do MDS. Se, ainda assim, você não estiver interessado, bom… tem um presente no fim do post.">
-    <meta property="og:description" content="Atualização (18/08/2018): atualizei o procedimento e os resultados para coincidir com as novas bases disponibilizadas no site.
+Se você tem interesse nessa base de dados, vamos lá!">
+    <meta property="og:description" content="Atualização (04/02/2021): modifiquei o código para 2018 pois os pesos não possuíam o separador decimal e porque o pacote MonetDBLite foi removido do CRAN. Sugiro tomar cuidado com análises sobre 2018.
  Você sabe o que é o Cadastro Único? Sabe que uma amostra dos microdados está disponível? Sabe que dá pra analisar no R?
 Não? Até uns dias atrás, eu também não.
-Se você tem interesse nessa base de dados, vamos lá!
-Caso contrário, assista esse vídeo do MDS. Se, ainda assim, você não estiver interessado, bom… tem um presente no fim do post.">
+Se você tem interesse nessa base de dados, vamos lá!">
     <meta property="og:type" content="blog">
     <meta property="og:title" content="Analisando a amostra do Cadastro Único com R">
     <meta property="og:url" content="/2017/11/amostra-cadunico-r/">
     <meta property="og:site_name" content="Something Random">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Something Random">
-    <meta name="twitter:description" content="Atualização (18/08/2018): atualizei o procedimento e os resultados para coincidir com as novas bases disponibilizadas no site.
+    <meta name="twitter:description" content="Atualização (04/02/2021): modifiquei o código para 2018 pois os pesos não possuíam o separador decimal e porque o pacote MonetDBLite foi removido do CRAN. Sugiro tomar cuidado com análises sobre 2018.
  Você sabe o que é o Cadastro Único? Sabe que uma amostra dos microdados está disponível? Sabe que dá pra analisar no R?
 Não? Até uns dias atrás, eu também não.
-Se você tem interesse nessa base de dados, vamos lá!
-Caso contrário, assista esse vídeo do MDS. Se, ainda assim, você não estiver interessado, bom… tem um presente no fim do post.">
+Se você tem interesse nessa base de dados, vamos lá!">
     
     
 
@@ -286,7 +283,7 @@ Caso contrário, assista esse vídeo do MDS. Se, ainda assim, você não estiver
           <div class="post-content markdown" itemprop="articleBody">
             <div class="main-content-wrap">
               <div class="alert warning ">
-  <p><b>Atualização (18/08/2018):</b> atualizei o procedimento e os resultados para coincidir com as novas bases disponibilizadas no site.</p>
+  <p><b>Atualização (04/02/2021):</b> modifiquei o código para 2018 pois os pesos não possuíam o separador decimal e porque o pacote MonetDBLite foi removido do CRAN. Sugiro tomar cuidado com análises sobre 2018.</p>
 </div>
 
 <p>Você sabe o que é o Cadastro Único? Sabe que uma amostra dos microdados está disponível? Sabe que dá pra analisar no R?</p>
@@ -319,13 +316,13 @@ Bom, sim. Mas ter acesso à informações que podem identificar pessoas é uma v
 </div>
 
 <pre class="r"><code># instala os pacotes:
-libs &lt;- c(&quot;DBI&quot;, &quot;MonetDBLite&quot; , &quot;fst&quot; , &quot;survey&quot;)
+libs &lt;- c(&quot;DBI&quot;, &quot;RSQLite&quot; , &quot;fst&quot; , &quot;survey&quot;)
 libs.novas &lt;- libs[ !( libs %in% installed.packages()[ , &quot;Package&quot; ] ) ]
 if( length( libs.novas ) ) install.packages( libs.novas )
 
 # carrega os pacotes necessários
 library(DBI)
-library(MonetDBLite)
+library(RSQLite)
 library(survey)
 
 # carrega funções do script
@@ -335,10 +332,10 @@ downloader::source_url(&quot;https://raw.githubusercontent.com/guilhermejacob/gu
 output_dir &lt;- file.path( tempdir() , &quot;CadUnico&quot; )
 
 # coleta o &quot;catálogo de dados&quot; no site do MDS:
-catalog &lt;- get_catalog_cadunico( output_dir )
+catalog &lt;- catalog_cadunico( output_dir )
 
 # O próximo passo é opcional:
-# Aqui, escolho apenas os dados do último ano
+# Aqui, escolho apenas os dados de 2016
 catalog &lt;- catalog[ catalog$year == 2016 , ]
 
 # Vamos usar esse &quot;catálogo&quot; como o argumento da função build_cadunico
@@ -351,14 +348,14 @@ build_cadunico( catalog )</code></pre>
 <p>O código abaixo mostra como analisar os dados utilizando o desenho amostral <del>e sem sobrecarregar a memória RAM</del>, graças à integração do pacote <code>survey</code> e drivers de bases de dados:</p>
 <pre class="r"><code># carrega os pacotes necessários
 library(DBI)
-library(MonetDBLite)
+library(RSQLite)
 library(survey)
 
 # lê o objeto com o desenho amostral
 pes.design &lt;- readRDS( file.path( output_dir , &quot;cadunico 2016 design.rds&quot; ) )
 
-# abre a conexão do objeto com a base em MonetDBLite
-pes.design &lt;- open( pes.design , driver = MonetDBLite() )
+# abre a conexão do objeto com a base em SQLite
+pes.design &lt;- open( pes.design , driver = SQLite() )
 
 # conta o número de observações na base
 dim( pes.design )
@@ -367,17 +364,18 @@ dim( pes.design )
 # calcula o número de crianças e adolescentes (menores de 18 anos) no CadÚnico
 total.cea &lt;- svytotal( ~I(idade &lt; 18) , pes.design , na.rm = TRUE )
 #                       total    SE
-# I(idade &lt; 18)FALSE 45785152 10432
-# I(idade &lt; 18)TRUE  31087134 14075
+# I(idade &lt; 18)FALSE 45823981 10613
+# I(idade &lt; 18)TRUE  31048301 14305
+
 
 # calcula intervalo de confiança
 confint( total.cea ) 
 #                       2.5 %   97.5 %
-# I(idade &lt; 18)FALSE 45764705 45805599
-# I(idade &lt; 18)TRUE  31059547 31114722
+# I(idade &lt; 18)FALSE 45803180 45844782
+# I(idade &lt; 18)TRUE  31020265 31076338
 
 # fecha a conexão com a base de dados
-close( pes.design , shutdown = TRUE )</code></pre>
+close( pes.design )</code></pre>
 <p>15 milhões de linhas parece um número bem razoável para uma planilha, não? E considerando que essas linhas representam mais de 70 milhões de pessoas, ainda melhor.<br />
 Vale dizer: o <code>survey</code> permite que você use praticamente tudo que você usaria em uma base guardada na memória. Por exemplo, modelos lineares generalizados com <code>svyglm</code>, curvas de sobrevivência de Kaplan-Meier com <code>svykm</code>, etc.</p>
 <p>Ah, e se você quiser saber mais sobre como usar o R com o SQLite, vale dar uma lida <a href="https://swcarpentry.github.io/sql-novice-survey/11-prog-R/">aqui</a>.</p>

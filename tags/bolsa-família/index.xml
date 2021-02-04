@@ -17,11 +17,10 @@
       <pubDate>Thu, 23 Nov 2017 00:00:00 +0000</pubDate>
       
       <guid>https://guilhermejacob.github.io/2017/11/amostra-cadunico-r/</guid>
-      <description>Atualização (18/08/2018): atualizei o procedimento e os resultados para coincidir com as novas bases disponibilizadas no site.
+      <description>Atualização (04/02/2021): modifiquei o código para 2018 pois os pesos não possuíam o separador decimal e porque o pacote MonetDBLite foi removido do CRAN. Sugiro tomar cuidado com análises sobre 2018.
  Você sabe o que é o Cadastro Único? Sabe que uma amostra dos microdados está disponível? Sabe que dá pra analisar no R?
 Não? Até uns dias atrás, eu também não.
-Se você tem interesse nessa base de dados, vamos lá!
-Caso contrário, assista esse vídeo do MDS. Se, ainda assim, você não estiver interessado, bom… tem um presente no fim do post.</description>
+Se você tem interesse nessa base de dados, vamos lá!</description>
     </item>
     
   </channel>
