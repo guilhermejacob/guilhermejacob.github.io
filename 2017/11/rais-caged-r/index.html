@@ -311,24 +311,27 @@ Eis algumas variáveis nessa tabela: tipo de movimentação (e.g., demissão com
 </div>
 <div id="na-prática" class="section level3">
 <h3>Na prática</h3>
+
 <div class="alert info ">
   <p>Esse procedimento pode ser muito lento, dependendo da sua conexão com a internet e seu computador.</p>
 </div>
+
 <p>Para facilitar o processo de baixar e montar a base de dados, escrevi <a href="https://github.com/guilhermejacob/guilhermejacob.github.io/blob/master/scripts/mtps.R">esse script</a> com três funções para facilitar esse procedimento:</p>
 <ol style="list-style-type: decimal">
 <li><code>catalog_mtps</code>: lista os dados do site em um catálogo;</li>
 <li><code>datavault_mtps</code>: baixa os arquivos de dados brutos para um diretório local específico;</li>
 <li><code>build_mtps</code>: constrói a base de dados</li>
+<li><code>sqlite_mtps</code>: constrói a base de dados em SQLite</li>
 </ol>
 <p>A função <code>datavault_mtps</code> é <strong>opcional</strong>, mas ajuda bastante se você não queira repetir os downloads toda vez que precisar montar a base de novo. O bloco de código abaixo mostra como fazer essa tarefa:</p>
 <pre class="r"><code># instala libraries
-libs &lt;- c(&quot;DBI&quot;, &quot;MonetDBLite&quot; , &quot;downloader&quot; , &quot;archive&quot; , &quot;dplyr&quot; , &quot;dbplyr&quot; )
+libs &lt;- c(&quot;DBI&quot;, &quot;RSQLite&quot; , &quot;downloader&quot; , &quot;archive&quot; , &quot;dplyr&quot; , &quot;dbplyr&quot; )
 libs.novas &lt;- libs[ !( libs %in% installed.packages()[ , &quot;Package&quot; ] ) ]
 if( length( libs.novas ) ) install.packages( libs.novas )
 
 # carrega libraries
 library(DBI)
-library(MonetDBLite)
+library(RSQLite)
 
 # define diretórios
 output_dir &lt;- file.path( tempdir() , &quot;MTPS&quot; ) 
@@ -348,17 +351,20 @@ catalog &lt;- datavault_mtps( catalog = catalog, datavault_dir = datavault_dir )
 catalog &lt;- subset( catalog , year == 2016 )
 
 # constrói base de dados
-build_mtps( catalog = catalog )</code></pre>
+build_mtps( catalog = catalog )
+
+# base de dados em sqlite
+sqlite_mtps( catalog = catalog )</code></pre>
 <p>Caso você já conheça linguagem <a href="https://pt.wikipedia.org/wiki/SQL">SQL</a>, pode conectar direto à base de dados e enviar as <em>queries</em>.<br />
 Caso contrário, não se desespere! Se você conhece um pouco do <a href="https://cran.r-project.org/web/packages/dplyr/vignettes/dplyr.html"><code>dplyr</code></a>, já é o suficiente para analisar utilizando o seu “pacote irmão” <a href="https://cran.r-project.org/web/packages/dbplyr/vignettes/dbplyr.html"><code>dbplyr</code></a>. Vejamos:</p>
 <pre class="r"><code># carrega os pacotes necessários
 library( DBI )
-library( MonetDBLite )
+library( RSQLite )
 library( dplyr )
 library( dbplyr )
 
 # conecta com a base de dados
-con &lt;- dbConnect( MonetDBLite() , file.path( output_dir , &quot;MonetDB&quot; ) )
+con &lt;- dbConnect( SQLite() , file.path( output_dir , &quot;mtps.sqlite&quot; ) )
 
 # lista tabelas na base
 dbListTables( con )
@@ -394,7 +400,7 @@ caged %&gt;%
 # 2                    2 15543405
 
 # Disconecta da base de dados
-dbDisconnect( con , shutdown = TRUE )</code></pre>
+dbDisconnect( con )</code></pre>
 <p>Mas será que esses números fazem sentido? Vamos comparar com os <a href="http://bi.mte.gov.br/bgcaged/caged_perfil_municipio/index.php">dados do site</a>:</p>
 <div class="figure">
 <img src="../../../img/CAGED_img.png" alt="" />
