@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Análise on Something Random</title>
+    <link>https://guilhermejacob.github.io/categories/an%C3%A1lise/</link>
+    <description>Recent content in Análise on Something Random</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>pt-br</language>
+    <lastBuildDate>Sun, 23 May 2021 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://guilhermejacob.github.io/categories/an%C3%A1lise/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>A pobreza aumentou ou diminuiu entre 2015 e 2019?</title>
+      <link>https://guilhermejacob.github.io/2021/05/dominancia-pobreza-2015-2019/</link>
+      <pubDate>Sun, 23 May 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://guilhermejacob.github.io/2021/05/dominancia-pobreza-2015-2019/</guid>
+      <description>Pergunta rápida: entre 2015 e 2019, a pobreza aumentou ou diminuiu? Se você pergunta de um logicista, a resposta é sim. Se você pergunta de economista, a resposta é depende.
+A medida de pobreza (monetária) mais conhecida é a taxa de pobreza, cuja interpretação é bastante simples: é o percentual de pessoas que cuja renda é inferior ou igual a uma linha de pobreza. Neste caso, precisamos resolver dois pontos: a definição de renda e da linha de pobreza.</description>
+    </item>
+    
+  </channel>
+</rss>

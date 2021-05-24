@@ -6,10 +6,20 @@
     <description>Recent content in Pobreza on Something Random</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>pt-br</language>
-    <lastBuildDate>Wed, 27 Jan 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 23 May 2021 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://guilhermejacob.github.io/tags/pobreza/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>A pobreza aumentou ou diminuiu entre 2015 e 2019?</title>
+      <link>https://guilhermejacob.github.io/2021/05/dominancia-pobreza-2015-2019/</link>
+      <pubDate>Sun, 23 May 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://guilhermejacob.github.io/2021/05/dominancia-pobreza-2015-2019/</guid>
+      <description>Pergunta rápida: entre 2015 e 2019, a pobreza aumentou ou diminuiu? Se você pergunta de um logicista, a resposta é sim. Se você pergunta de economista, a resposta é depende.
+A medida de pobreza (monetária) mais conhecida é a taxa de pobreza, cuja interpretação é bastante simples: é o percentual de pessoas que cuja renda é inferior ou igual a uma linha de pobreza. Neste caso, precisamos resolver dois pontos: a definição de renda e da linha de pobreza.</description>
+    </item>
     
     <item>
       <title>(Algumas) Estatísticas sobre fome no Brasil (2017-2018)</title>
@@ -17,7 +27,7 @@
       <pubDate>Wed, 27 Jan 2021 00:00:00 +0000</pubDate>
       
       <guid>https://guilhermejacob.github.io/2021/01/fome-pof-2017-2018/</guid>
-      <description>A última Pesquisa de Orçamentos Familliares (POF), realizada em 2017-2018, traz informaçõs muito interessantes sobre consumo e condição de vida das pessoas. Um dos temas mais interessantes que foram investigados são as condições de vida dos domicílios. Neste questionário, podem ser encontradas diversas perguntas, incluindo: percepções sobre o fornecimento de energia de elétrica; violência ou vandalismo na área de residência; presença de insetos, ratos, etc.; se há problemas em estar localizado perto de rio, baía, lago, açude ou represa poluídos; entre outras.</description>
+      <description>A última Pesquisa de Orçamentos Familliares (POF), realizada em 2017-2018, traz informações muito interessantes sobre consumo e condição de vida das pessoas. Um dos temas mais interessantes que foram investigados são as condições de vida dos domicílios. Neste questionário, podem ser encontradas diversas perguntas, incluindo: percepções sobre o fornecimento de energia de elétrica; violência ou vandalismo na área de residência; presença de insetos, ratos, etc.; se há problemas em estar localizado perto de rio, baía, lago, açude ou represa poluídos; entre outras.</description>
     </item>
     
     <item>
@@ -27,7 +37,7 @@
       
       <guid>https://guilhermejacob.github.io/2020/08/diferenca-gini/</guid>
       <description>Em julho, pensei em estudar uma técnica de decomposição de medidas de desigualdade/pobreza. Procurando as bases de dados, encontrei a a Pesquisa de Orçamentos Familiares (POF) 2017-2018, que tem muita informação interessante. Mas, com 30 dias para escrever um artigo, não achei que teria tempo para entender bem a pesquisa e produzir estimativas adequadas.
-Tirei alguns dias para ler a documentação e comecei a fazer algumas tentativas de análise. Uma pergunta bem interessante que a POF permite analisar é: quanto seria a desigualdade de renda se retirássemos as rendas transferidas pelos programas sociais federais?</description>
+Tirei alguns dias para ler a documentação e comecei a fazer algumas tentativas de análise.</description>
     </item>
     
     <item>

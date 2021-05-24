@@ -20,7 +20,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="Hugo 0.47 with theme Tranquilpeak 0.4.3-BETA">
-    <title>Por que é tão difícil calcular variância com amostras complexas?</title>
+    <title>A pobreza aumentou ou diminuiu entre 2015 e 2019?</title>
     <meta name="author" content="Guilherme Jacob">
     <meta name="keywords" content="">
 
@@ -28,18 +28,18 @@
     
 
     
-    <meta name="description" content="Já faz algum tempo que passei por essa situação mas acho que vale a pena pensar a respeito.
-Em um fórum de R, uma pessoa pergunta onde está a função pra calcular um determinado número com a PNAD. Eu vou dou uma olhada e vejo que, de fato, a função não existe. Explico para a pessoa que a função não existe porque ninguém escreveu ainda. E me responde: alguém pode fazer isso aí rapidinho?">
-    <meta property="og:description" content="Já faz algum tempo que passei por essa situação mas acho que vale a pena pensar a respeito.
-Em um fórum de R, uma pessoa pergunta onde está a função pra calcular um determinado número com a PNAD. Eu vou dou uma olhada e vejo que, de fato, a função não existe. Explico para a pessoa que a função não existe porque ninguém escreveu ainda. E me responde: alguém pode fazer isso aí rapidinho?">
+    <meta name="description" content="Pergunta rápida: entre 2015 e 2019, a pobreza aumentou ou diminuiu? Se você pergunta de um logicista, a resposta é sim. Se você pergunta de economista, a resposta é depende.
+A medida de pobreza (monetária) mais conhecida é a taxa de pobreza, cuja interpretação é bastante simples: é o percentual de pessoas que cuja renda é inferior ou igual a uma linha de pobreza. Neste caso, precisamos resolver dois pontos: a definição de renda e da linha de pobreza.">
+    <meta property="og:description" content="Pergunta rápida: entre 2015 e 2019, a pobreza aumentou ou diminuiu? Se você pergunta de um logicista, a resposta é sim. Se você pergunta de economista, a resposta é depende.
+A medida de pobreza (monetária) mais conhecida é a taxa de pobreza, cuja interpretação é bastante simples: é o percentual de pessoas que cuja renda é inferior ou igual a uma linha de pobreza. Neste caso, precisamos resolver dois pontos: a definição de renda e da linha de pobreza.">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="Por que é tão difícil calcular variância com amostras complexas?">
-    <meta property="og:url" content="/2019/12/varianca-adac/">
+    <meta property="og:title" content="A pobreza aumentou ou diminuiu entre 2015 e 2019?">
+    <meta property="og:url" content="/2021/05/dominancia-pobreza-2015-2019/">
     <meta property="og:site_name" content="Something Random">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Something Random">
-    <meta name="twitter:description" content="Já faz algum tempo que passei por essa situação mas acho que vale a pena pensar a respeito.
-Em um fórum de R, uma pessoa pergunta onde está a função pra calcular um determinado número com a PNAD. Eu vou dou uma olhada e vejo que, de fato, a função não existe. Explico para a pessoa que a função não existe porque ninguém escreveu ainda. E me responde: alguém pode fazer isso aí rapidinho?">
+    <meta name="twitter:description" content="Pergunta rápida: entre 2015 e 2019, a pobreza aumentou ou diminuiu? Se você pergunta de um logicista, a resposta é sim. Se você pergunta de economista, a resposta é depende.
+A medida de pobreza (monetária) mais conhecida é a taxa de pobreza, cuja interpretação é bastante simples: é o percentual de pessoas que cuja renda é inferior ou igual a uma linha de pobreza. Neste caso, precisamos resolver dois pontos: a definição de renda e da linha de pobreza.">
     
     
 
@@ -244,19 +244,19 @@ Em um fórum de R, uma pessoa pergunta onde está a função pra calcular um det
             <div class="post-header main-content-wrap text-left">
   
     <h1 class="post-title" itemprop="headline">
-      Por que é tão difícil calcular variância com amostras complexas?
+      A pobreza aumentou ou diminuiu entre 2015 e 2019?
     </h1>
   
   
   <div class="postShorten-meta post-meta">
     
-      <time itemprop="datePublished" datetime="2019-12-20T00:00:00Z">
+      <time itemprop="datePublished" datetime="2021-05-23T00:00:00Z">
         
   
   
   
   
-    20/12/2019
+    23/05/2021
   
 
       </time>
@@ -266,9 +266,7 @@ Em um fórum de R, uma pessoa pergunta onde está a função pra calcular um det
   
     <span>em</span>
     
-      <a class="category-link" href="https://guilhermejacob.github.io/categories/teoria">Teoria</a>, 
-    
-      <a class="category-link" href="https://guilhermejacob.github.io/categories/amostragem">Amostragem</a>
+      <a class="category-link" href="https://guilhermejacob.github.io/categories/an%c3%a1lise">Análise</a>
     
   
 
@@ -278,103 +276,237 @@ Em um fórum de R, uma pessoa pergunta onde está a função pra calcular um det
           
           <div class="post-content markdown" itemprop="articleBody">
             <div class="main-content-wrap">
-              <p>Já faz algum tempo que passei por essa situação mas acho que vale a pena pensar a respeito.</p>
-<p>Em um fórum de R, uma pessoa pergunta onde está a função pra calcular um determinado número com a PNAD.
-Eu vou dou uma olhada e vejo que, de fato, a função não existe. Explico para a pessoa que a função não existe porque ninguém escreveu ainda.
-E me responde: alguém pode fazer isso aí rapidinho? Eu digo que é bastante difícil e que eu não consigo fazer agora <del>por incrível que pareça, eu tenho mais o que fazer da minha vida</del>. Nisso, a pessoa responde:</p>
+              <script src="https://guilhermejacob.github.io/rmarkdown-libs/header-attrs/header-attrs.js"></script>
+<script src="https://guilhermejacob.github.io/rmarkdown-libs/kePrint/kePrint.js"></script>
+
+
+<p>Pergunta rápida: entre 2015 e 2019, a pobreza aumentou ou diminuiu? <del>Se você pergunta de um logicista, a resposta é sim.</del> Se você pergunta de economista, a resposta é depende.</p>
+<p>A medida de pobreza (monetária) mais conhecida é a taxa de pobreza, cuja interpretação é bastante simples: é o percentual de pessoas que cuja renda é inferior ou igual a uma linha de pobreza. Neste caso, precisamos resolver dois pontos: a definição de renda e da linha de pobreza.</p>
+<p>Renda deveria ser uma coisa meio óbvia, não? Á princípio, sim, mas nunca é assim. Por exemplo, a PNADC investiga tanto o rendimento habitual e o rendimento efetivo do trabalho, <a href="https://ftp.ibge.gov.br/Trabalho_e_Rendimento/Pesquisa_Nacional_por_Amostra_de_Domicilios_continua/Anual/Notas_Tecnicas/Nota_Tecnica_Alteracao_na_forma_de_captacao_do_rendimento_efetivo_de_trabalho_na_PNAD_Continua.pdf">diferindo em relação a data de referência e parcelas consideradas</a>. Além disso, existem outras fontes de renda, que são investigadas na 1ª e na 5ª entrevista da PNADC. E, ainda assim, existem dificuldades decorrentes da não-resposta (de item e de unidade) e erros de medida. Outro ponto é que esta renda costuma ser ajustada pelo número de moradores<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> do domicílio, obtendo a renda domiciliar per capita. As taxas de pobreza calculadas pelo IBGE se baseiam no rendimento domiciliar per capita, definido como a soma do rendimento habitualmente recebido de todos os trabalhos e o rendimento efetivo de outras fontes; vamos seguir este caminho.</p>
+<p>Vamos à outra questão central: a definição da linha de pobreza. A linha de pobreza é a nossa referência para considerar um domicílio pobre ou não. Ela pode ser uma referência externa (metade do salário mínimo, US$ 1,90/dia, etc.), uma referência interna (60% da média ou da mediana<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a> da renda). No Brasil, a gente tem o hábito de considerar metade do salário mínimo como um valor de referência para a pobreza. Existem vantagens e desvantagens nessa abordagem. Em termos nominais, o salário mínimo é um valor de referência usado no Brasil inteiro para contratos de trabalho (formais). Por outro lado, ele muda à cada ano, o que dificulta a comparação da taxa de pobreza de anos diferentes.</p>
+<p>Mas por que as pessoas continuam usam o salário mínimo como valor de referência? Eu não sei exatamente, mas acho que isso tem um fundamento (quase) legal. O art. 7º, IV da CF/88 estabelece o seguinte:</p>
 <blockquote>
-<p>Ah, não é possível que não dê pra calcular isso com amostra complexa!</p>
+<p>Art. 7º São direitos dos trabalhadores urbanos e rurais, além de outros que visem à melhoria de sua condição social:</p>
+<p>…</p>
+<p>IV - salário mínimo, fixado em lei, nacionalmente unificado, capaz de atender a suas necessidades vitais básicas e às de sua família com moradia, alimentação, educação, saúde, lazer, vestuário, higiene, transporte e previdência social, com reajustes periódicos que lhe preservem o poder aquisitivo, sendo vedada sua vinculação para qualquer fim.</p>
 </blockquote>
-<p>Eu parei de interagir nesse momento. Acho que não consigo explicar em um parágrafo os problemas de estimação com amostras complexas, como é a PNAD.
-No entanto, como estou <del>mais ou menos</del> de férias, vou tentar mostrar alguns detalhes.</p>
-<p>Vejamos.</p>
-<div id="estimação-de-um-total-com-amostra-aleatória-simples-com-reposição-aasc" class="section level2">
-<h2>Estimação de um total com amostra aleatória simples com reposição (AASc)</h2>
-<p>Vamos para a quantidade mais simples do plano amostral mais simplificado: o total de uma variável com AASc. Para estimar um total populacional <span class="math inline">\(Y\)</span>, usaremos este estimador:</p>
-<p><span class="math display">\[
-\hat{Y} = N \bar{y}.
-\]</span>
-A ideia é bastante simples: como eu sei o tamanho da população, se eu multiplicar esse total pela estimativa não-viesada da média, eu vou ter um estimador não-viesado do total. Nenhuma complicação até aqui, certo?</p>
-<p>A variância deste total, por sua vez, pode ser escrita como</p>
-<p><span class="math display">\[
-\widehat{Var} \big( \hat{Y} \big) = N^2 \cfrac{s^2}{n},
-\]</span></p>
-<p>sendo <span class="math inline">\(\cfrac{s^2}{n}\)</span> a estimativa da variância da média, a fórmula padrão que você encontra em qualquer livro de estatística.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a></p>
+<p>Ou seja: legalmente, o salário mínimo deveria ser um valor capaz de suprir as necessidades básicas vitais do indivíduo e sua família, em várias dimensões. O salário mínimo de 2019<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a> era R$ 998,00 e <del>supostamente</del> deveria satisfazer essas necessidades. <a href="https://www.dieese.org.br/analisecestabasica/salarioMinimo.html">Ainda sobre 2019, o DIEESE calculou que, para satisfazer estas condições, o salário mínimo deveria ser por volta de R$ 4.000,00.</a></p>
+<div id="definições-deste-post" class="section level3">
+<h3>Definições deste post</h3>
+<p>Nas análises a seguir, deflacionamos usaremos as seguintes definições:</p>
+<ul>
+<li>Medida de pobreza: taxa de pobreza;</li>
+<li>Renda: rendimento habitual de todos os trabalhos e efetivos de outras fontes, em valores médios de 2019;</li>
+<li>Renda domiciliar per capita: soma da renda dos moradores do domicílio dividido pelo número de moradores;</li>
+<li>Linha de pobreza: R$ 500,00 (aproximadamente meio salário mínimo de 2019).</li>
+</ul>
+<p>Todos de acordo? Nunca. A definição de pobreza é sempre algo controverso. E tem que ser: a tecnocracia econômica de uma taxa de pobreza (monetária) esconde inúmeras discussões. E isso é particularmente importante para populações que são excluídas dos processos decisórios. Por exemplo: qual o sentido da pobreza monetária em populações que se baseiam em trocas? Quanto do autoconsumo é realmente captado? E as outras dimensões não-monetárias da existência? Além disso, os recortes sobre o que é uma privação é algo que varia de acordo com a comunidade.</p>
+<p>Mas essa é uma discussão enorme e que não cabe nem em um livro, muito menos em um post.</p>
+<p>Como sempre, cabe o aviso:</p>
+
+<div class="alert warning ">
+  <p>Todos as estimativas a seguir foram feitas por mim.<br>Assim, nem IBGE, nem qualquer outra instituição tem nada a ver com os meus comentários ou conclusões.</p>
 </div>
-<div id="estimação-de-um-total-com-amostra-estratificada-aes" class="section level2">
-<h2>Estimação de um total com amostra estratificada (AES)</h2>
-<p>Vamos complicar um pouco mais as coisas. Divida a população em <span class="math inline">\(H\)</span> partições. Fazemos, então, uma AASc em cada partição <span class="math inline">\(h\)</span> da população. Essas partições da amostra são chamados <em>estratos</em> e dizemos que nossa amostra é <em>estratificada</em>. Neste caso, o estimador do total da população é dado por:</p>
-<p><span class="math display">\[
-\hat{Y} = \sum_{ h \in H} N_h \bar{y}_h.
-\]</span>
-Ou seja: o total da população é a soma do total de cada estrato <span class="math inline">\(h\)</span>. O respectivo estimador da variância é dado por</p>
-<p><span class="math display">\[
-\widehat{Var} \big( \hat{Y} \big) = \sum_H N_h^2 \cfrac{s_h^2}{n_h},
-\]</span>
-i.e., a soma das variâncias AASc de cada estrato.</p>
-<p>Já é um pouco mais complicado. No entanto, quando os estratos são definidos com critérios adequados, as estimativas das variâncias se tornam mais precisas.</p>
-<p>Vamos ver outra possibilidade.</p>
+
 </div>
-<div id="estimação-de-um-total-com-amostra-por-conglomerados-ac" class="section level2">
-<h2>Estimação de um total com amostra por conglomerados (AC)</h2>
-<p>Imagine que você precisa fazer uma pesquisa na sua cidade. Imagine que o seu orçamento é limitado e você não pode gastar muito com a logística da pesquisa. Se você fizer uma AAS, pode ser que você tenha que entrevistar domicílios em todos os bairros; imagina o quanto vai custar levar os entrevistadores por todos os bairros… Uma solução para isso é fazer uma amostra da seguinte maneira: sorteamos bairros e entrevistamos os domicílios destes bairros. Isso é o que se chama de amostra por conglomerado com um estágio de conglomeração. Vamos supor que essas amostras são aleatórias simples com reposição.</p>
-<p>Suponha que, ainda assim, temos um número muito grande de domicílios para entrevistar e resolvemos sortear domicílios dentro dos bairros selecionados. Temos uma amostra por conglomerados em dois estágios: bairros e domicílios.</p>
-<p>Então, sorteamos <span class="math inline">\(n\)</span> dos <span class="math inline">\(N\)</span> bairros. Dentro do <span class="math inline">\(i\)</span>-ésimo bairro, sorteamos <span class="math inline">\(m_i\)</span> dos <span class="math inline">\(M_i\)</span> domicílios; denotamos o conjunto de domicílios na amostra do <span class="math inline">\(i\)</span>-ésimo bairro por <span class="math inline">\(S_i\)</span>. Temos, então, o seguinte estimador do total:</p>
-<p><span class="math display">\[
-\hat{Y} = \cfrac{N}{n} \sum_{j \in S_i} M_i \bar{y}_{i} ,
-\]</span>
-com <span class="math inline">\(\bar{y}_i\)</span> sendo a média de <span class="math inline">\(y\)</span> dos domicílios do <span class="math inline">\(i\)</span>-ésimo bairro.</p>
-<p>A variância, por sua vez, é dada por:</p>
-<p><span class="math display">\[
-\widehat{Var} \big( \hat{Y} \big) = N^2 \bigg( 1 - \cfrac{n}{N} \bigg) \cfrac{S^2_t}{n} ,
-\]</span>
-onde <span class="math inline">\(S^2_t = \frac{1}{N-1} \sum_{i \in N} ( Y_i - Y / N )\)</span> é a variância populacional dos totais dos bairros, com <span class="math inline">\(\widehat{Y}\)</span> sendo o total de <span class="math inline">\(y\)</span> no <span class="math inline">\(i\)</span>-ésimo bairro e <span class="math inline">\(Y\)</span> o total na população.</p>
+<div id="entre-2015-e-2019-a-pobreza-aumentou-ou-diminui" class="section level1">
+<h1>Entre 2015 e 2019, a pobreza aumentou ou diminui?</h1>
+<p>A resposta dessa pergunta é complicada. A Tabela <a href="#tab:tab1">1</a> apresenta as estimativas da taxa de pobreza de 2015 e 2019 e sua diferença. Como a linha de pobreza é de R$ 500, estas estimativas da taxas de pobreza podem ser vistas como a proporção de pessoas vivendo em domicílios cuja renda domiciliar per capita é menor ou igual a R$ 500 em cada ano. A estimativa de aumento da taxa de pobreza entre 2015 e 2019 é de 0,19%, mas não é estatisticamente significativa ao nível de 95%. Então, não podemos dizer que a pobreza aumentou ou diminuiu no período: há uma boa chance que o aumento estimado pode ser apenas erro amostral.</p>
+<table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:tab1">Tabela 1: </span>Taxa de Pobreza (%, Linha de Pobreza R$ 500) - Brasil, 2015 e 2019.
+</caption>
+<thead>
+<tr>
+<th style="border-bottom:hidden" colspan="1">
+</th>
+<th style="border-bottom:hidden" colspan="1">
+</th>
+<th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+IC (95%)
 </div>
-<div id="amostras-por-conglomerados-com-probabilidades-desiguais-de-seleção" class="section level2">
-<h2>Amostras por conglomerados com probabilidades desiguais de seleção</h2>
-<p>Ainda usando o nosso exemplo anterior, temos o seguinte problema: um bairro com 10 domicílios teria a mesma probabilidade de ser escolhido que outro bairro com 1.000 domicílios. Isso não parece bom. Queremos que um bairro com maior número de domicílios sejam selecionados com maior probabilidade. Vamos supor que façamos uma amostra com probabilidades proporcionais ao tamanho. Temos, então, probabilidades desiguais de seleção.</p>
-<p>A probabilidade do domicílio <span class="math inline">\(j\)</span> no bairro <span class="math inline">\(i\)</span> ser selecionado é dada por <span class="math inline">\(\pi_{ij} = \pi_{j | i}\pi_{i}\)</span>. Ou seja: é o produto das probabilidades de seleção. Depois de sortearmos bairros com probabilidade proporcional ao tamanho e domicílios por amostra aleatória simples, precisamos recorrer ao estimador Horvitz-Thompson do total <span class="citation">(Horvitz e Thompson, 1952)</span>:</p>
-<p><span class="math display">\[
-\hat{Y}_{HT} = \sum_{j \in S} \sum_{ i \in S_i } \cfrac{ y_{ij} }{ \pi_{ij}},
-\]</span>
-onde <span class="math inline">\(S\)</span> é a amostra de bairros.</p>
-<p>Neste caso, o estimador da variância do estimador de Horvitz-Thompson do total é dado por:</p>
-<p><span class="math display">\[
-\widehat{Var}_{HT} \big( \hat{Y}_{HT} \big) = \sum_{ i \in S } ( 1 - \pi_i ) \cfrac{\widehat{Y}^2 }{\pi_i^2} +
-                    \sum_{ i \in S } \sum_{ k \in S ; k \neq i } \cfrac{ \pi_{ik} - \pi_i \pi_k }{ \pi_{ik} } \cfrac{ \widehat{Y}_i }{ \pi_i } \cfrac{ \widehat{Y}_k }{ \pi_k } +
-                    \sum_{ i \in S } \cfrac{ \widehat{Var} \big( \widehat{Y}_i \big) }{ \pi_i }.
-\]</span></p>
-<p>Eu não sei você, mas eu não acho essa fórmula nada trivial.</p>
+</th>
+</tr>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:right;">
+Estimativa
+</th>
+<th style="text-align:right;">
+L. Inferior
+</th>
+<th style="text-align:right;">
+L. Superior
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+2015
+</td>
+<td style="text-align:right;">
+28,64
+</td>
+<td style="text-align:right;">
+28,13
+</td>
+<td style="text-align:right;">
+29,15
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2019
+</td>
+<td style="text-align:right;">
+28,83
+</td>
+<td style="text-align:right;">
+28,31
+</td>
+<td style="text-align:right;">
+29,35
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-style: italic;">
+Diferença
+</td>
+<td style="text-align:right;font-style: italic;">
+0,20
+</td>
+<td style="text-align:right;font-style: italic;">
+-0,51
+</td>
+<td style="text-align:right;font-style: italic;">
+0,90
+</td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td style="padding: 0; border: 0;" colspan="100%">
+<span style="font-weight: bold;">Fonte:</span> <sup></sup> PNAD Contínua 2015 e 2019, Microdados.
+</td>
+</tr>
+<tr>
+<td style="padding: 0; border: 0;" colspan="100%">
+<span style="font-weight: bold;">Nota:</span> <sup>1</sup> Rendimento domiciliar per capita em valores médios de 2019.
+</td>
+</tr>
+</tfoot>
+</table>
+<p>E quanto à pobreza extrema? A Tabela <a href="#tab:tab2">2</a> apresenta as estimativas da taxa de pobreza de 2015 e 2019 e sua diferença, considerando uma linha de pobreza de R$ 100. Nesse caso, a estimativa da taxa de pobreza extrema foi de 2,15% em 2015 para 3,43% em 2019. O aumento estimado neste intervalo é de 1,28%, sendo estatisticamente diferente de zero.<a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a></p>
+<table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:tab2">Tabela 2: </span>Taxa de Pobreza (%, Linha de Pobreza R$ 100) - Brasil, 2015 e 2019.
+</caption>
+<thead>
+<tr>
+<th style="border-bottom:hidden" colspan="1">
+</th>
+<th style="border-bottom:hidden" colspan="1">
+</th>
+<th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+IC (95%)
 </div>
-<div id="conclusão" class="section level1">
-<h1>Conclusão</h1>
-<p>No caso da PNAD, como explicam <span class="citation">Silva, Pessoa e Lila (2002)</span>, o plano amostral possui estratificação e 1 a 3 estágios de conglomeração, dependendo do estrato, além de probabilidades proporcionais ao tamanho. Ou seja: é uma combinação das fórmulas que vimos acima. E isso é o caso do total. Não estamos falando de índice de Gini, quantis, etc., que são medidas mais complexas. Sobre amostragem, as sugestões são: o clássico <span class="citation">Cochran (1977)</span>, o livro que mais me fez chorar desde “O Menino do Pijama Listrado”; <span class="citation">Lohr (2010)</span>, que é mais fácil de achar e possui exemplos interessantes; e, principalmente, <span class="citation">Pessoa e Silva (2018)</span>, porque: (a) é escrito por quem entende muito do assunto, (b) é escrito em português, (c) possui exemplos usando o R, e (d) está disponível na internet!</p>
-<p>Finalmente, eu queria comentar duas coisas. A primeira é que algumas coisas podem não ser tão fáceis quanto parecem; se você acha isso fácil, você (provavelmente) não estudou o suficiente ou está fazendo algo errado. E a outra coisa é que, nesse mundo de terraplanismo e pós-verdade, o trabalho do IBGE é <em>essencial</em> e eles <em>não estão de brincadeira</em>: existe um volume enorme de conhecimento teórico e prático sobre o Brasil que vem sofrendo ataques diários por parte de campanhas de desinformação.</p>
+</th>
+</tr>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:right;">
+Estimativa
+</th>
+<th style="text-align:right;">
+L. Inferior
+</th>
+<th style="text-align:right;">
+L. Superior
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+2015
+</td>
+<td style="text-align:right;">
+2,15
+</td>
+<td style="text-align:right;">
+2,04
+</td>
+<td style="text-align:right;">
+2,26
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2019
+</td>
+<td style="text-align:right;">
+3,43
+</td>
+<td style="text-align:right;">
+3,28
+</td>
+<td style="text-align:right;">
+3,58
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-style: italic;">
+Diferença
+</td>
+<td style="text-align:right;font-style: italic;">
+1,28
+</td>
+<td style="text-align:right;font-style: italic;">
+1,09
+</td>
+<td style="text-align:right;font-style: italic;">
+1,46
+</td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td style="padding: 0; border: 0;" colspan="100%">
+<span style="font-weight: bold;">Fonte:</span> <sup></sup> PNAD Contínua 2015 e 2019, Microdados.
+</td>
+</tr>
+<tr>
+<td style="padding: 0; border: 0;" colspan="100%">
+<span style="font-weight: bold;">Nota:</span> <sup>1</sup> Rendimento domiciliar per capita em valores médios de 2019.
+</td>
+</tr>
+</tfoot>
+</table>
+<blockquote>
+<p>Ou seja: dependendo da linha de pobreza adotada, a taxa de pobreza pode ter aumentado ou diminuído!</p>
+</blockquote>
+<p>Para avaliar o quão robusto é o ordenamento, costuma-se avaliar a função de distribuição acumulada (FDA) da renda domiciliar per capita. O Gráfico <a href="#fig:fig1">1</a> mostra as estimativas das FDAs da renda domiciliar per capita em 2015 e 2019. A FDA tem uma interpretação muito interessante neste caso: cada linha de pobreza dada no eixo <span class="math inline">\(x\)</span> é associada à uma taxa de pobreza no eixo <span class="math inline">\(y\)</span>, permitindo avaliar várias opções de linha de pobreza em um único gráfico.</p>
+<div class="figure"><span id="fig:fig1"></span>
+<img src="https://guilhermejacob.github.io/post/2021-05-23-dominancia-pobreza_files/figure-html/fig1-1.png" alt="Funções de Distribuição Acumulada da renda domiciliar per capita - Brasil, 2014 e 2019." width="768" />
+<p class="caption">
+Figura 1: Funções de Distribuição Acumulada da renda domiciliar per capita - Brasil, 2014 e 2019.
+</p>
 </div>
-<div id="referências" class="section level1 unnumbered">
-<h1>Referências</h1>
-<div id="refs" class="references">
-<div id="ref-cochran1977">
-<p>COCHRAN, W. G. <strong>Sampling Techniques</strong>. 3rd. ed. New York: John Wiley &amp; Sons, 1977. p. 428</p>
-</div>
-<div id="ref-ht1952">
-<p>HORVITZ, D. G.; THOMPSON, D. J. A Generalization of Sampling Without Replacement From a Finite Universe. <strong>Journal of the American Statistical Association</strong>, v. 47, n. 260, p. 663–685, 1952. </p>
-</div>
-<div id="ref-lohr2010">
-<p>LOHR, S. <strong>Sampling Design and Analysis</strong>. 2nd. ed. Boston: Brooks/Cole, 2010. p. 596</p>
-</div>
-<div id="ref-silva2018">
-<p>PESSOA, D. G. C.; SILVA, P. L. N. <strong>Análise de Dados Amostrais Complexos</strong>, maio 2018. Disponível em: &lt;<a href="https://djalmapessoa.github.io/adac/bookdown-adac.pdf">https://djalmapessoa.github.io/adac/bookdown-adac.pdf</a>&gt;</p>
-</div>
-<div id="ref-silva2002">
-<p>SILVA, P. L. N.; PESSOA, D. G. C.; LILA, M. F. Análise estatística de dados da PNAD: incorporando a estrutura do plano amostral. <strong>Ciência &amp; Saúde Coletiva</strong>, v. 7, p. 659–670, 2002. </p>
-</div>
-</div>
+<p>A comparação de duas FDAs é a ferramenta central da análise de dominância de pobreza. Quando uma FDA é maior ou igual à outra para toda linha de pobreza em um dado intervalo, dizemos que há dominância de pobreza. Isso significa que uma população é pelo menos tão pobre quanto a outra para todas as linhas de pobreza inferiores a um dado valor. No caso do Gráfico <a href="#fig:fig1">1</a>, isso significa que, <em>em relação à todas as linhas de pobreza menores que (aproximadamente) R$ 450, havia mais pobreza em 2019 do que em 2015</em>. Se considerarmos que a inversão próxima aos R$ 500 pode ser decorrente do erro amostral, pode ser que a dominância se estenda para linhas de pobreza maiores.</p>
+<p>Assim, embora existam algumas dúvidas sobre a significância estatística deste ordenamento na curva como um todo, é razoável afirmar que há indícios fortes do aumento da pobreza para boa parte do conjunto de linhas de pobreza.</p>
 </div>
 <div class="footnotes">
 <hr />
 <ol>
-<li id="fn1"><p>A fórmula para a amostra aleatória simples sem reposição (AASs) é um pouco mais complicada e, quando a amostra é suficientemente grande, ela converge para a AASc.<a href="#fnref1" class="footnote-back">↩︎</a></p></li>
+<li id="fn1"><p>Morador de um domicílio também é um conceito com sutilezas.<a href="#fnref1" class="footnote-back">↩︎</a></p></li>
+<li id="fn2"><p>ou outro quantil<a href="#fnref2" class="footnote-back">↩︎</a></p></li>
+<li id="fn3"><p>Compilado mais recente da primeira visita da PNADC disponível na data deste post.<a href="#fnref3" class="footnote-back">↩︎</a></p></li>
+<li id="fn4"><p>O ideal seria testar se a diferença é maior que zero, mas ainda não escrevi o código para isso.<a href="#fnref4" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
 
@@ -389,7 +521,9 @@ onde <span class="math inline">\(S\)</span> é a amostra de bairros.</p>
                   <div class="post-footer-tags">
                     <span class="text-color-light text-small">ETIQUETADO em</span><br/>
                     
-  <a class="tag tag--primary tag--small" href="https://guilhermejacob.github.io/tags/vari%C3%A2ncia/">Variância</a>
+  <a class="tag tag--primary tag--small" href="https://guilhermejacob.github.io/tags/amostragem/">Amostragem</a>
+
+  <a class="tag tag--primary tag--small" href="https://guilhermejacob.github.io/tags/pobreza/">Pobreza</a>
 
                   </div>
                 
@@ -402,7 +536,7 @@ onde <span class="math inline">\(S\)</span> é a amostra de bairros.</p>
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://guilhermejacob.github.io/2019/12/superpopulacao/" data-tooltip="Sopas, universos paralelos e modelos de superpopulação">
+                <a class="post-action-btn btn btn--disabled">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">PRÓXIMO</span>
@@ -410,7 +544,7 @@ onde <span class="math inline">\(S\)</span> é a amostra de bairros.</p>
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://guilhermejacob.github.io/2019/08/desigualdade-pobreza-log/" data-tooltip="Desigualdade ou pobreza?">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://guilhermejacob.github.io/2021/01/fome-pof-2017-2018/" data-tooltip="(Algumas) Estatísticas sobre fome no Brasil (2017-2018)">
               
                   <span class="hide-xs hide-sm text-small icon-mr">ANTERIOR</span>
                   <i class="fa fa-angle-right"></i>
@@ -428,19 +562,19 @@ onde <span class="math inline">\(S\)</span> é a amostra de bairros.</p>
         </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://guilhermejacob.github.io/2019/12/varianca-adac/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://guilhermejacob.github.io/2021/05/dominancia-pobreza-2015-2019/">
               <i class="fa fa-facebook-official"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://guilhermejacob.github.io/2019/12/varianca-adac/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://guilhermejacob.github.io/2021/05/dominancia-pobreza-2015-2019/">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://guilhermejacob.github.io/2019/12/varianca-adac/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://guilhermejacob.github.io/2021/05/dominancia-pobreza-2015-2019/">
               <i class="fa fa-google-plus"></i>
             </a>
           </li>
@@ -482,7 +616,7 @@ onde <span class="math inline">\(S\)</span> é a amostra de bairros.</p>
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://guilhermejacob.github.io/2019/12/superpopulacao/" data-tooltip="Sopas, universos paralelos e modelos de superpopulação">
+                <a class="post-action-btn btn btn--disabled">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">PRÓXIMO</span>
@@ -490,7 +624,7 @@ onde <span class="math inline">\(S\)</span> é a amostra de bairros.</p>
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://guilhermejacob.github.io/2019/08/desigualdade-pobreza-log/" data-tooltip="Desigualdade ou pobreza?">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://guilhermejacob.github.io/2021/01/fome-pof-2017-2018/" data-tooltip="(Algumas) Estatísticas sobre fome no Brasil (2017-2018)">
               
                   <span class="hide-xs hide-sm text-small icon-mr">ANTERIOR</span>
                   <i class="fa fa-angle-right"></i>
@@ -508,19 +642,19 @@ onde <span class="math inline">\(S\)</span> é a amostra de bairros.</p>
         </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://guilhermejacob.github.io/2019/12/varianca-adac/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://guilhermejacob.github.io/2021/05/dominancia-pobreza-2015-2019/">
               <i class="fa fa-facebook-official"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://guilhermejacob.github.io/2019/12/varianca-adac/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://guilhermejacob.github.io/2021/05/dominancia-pobreza-2015-2019/">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://guilhermejacob.github.io/2019/12/varianca-adac/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://guilhermejacob.github.io/2021/05/dominancia-pobreza-2015-2019/">
               <i class="fa fa-google-plus"></i>
             </a>
           </li>
@@ -544,19 +678,19 @@ onde <span class="math inline">\(S\)</span> é a amostra de bairros.</p>
   <ul class="share-options">
     
       <li class="share-option">
-        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fguilhermejacob.github.io%2F2019%2F12%2Fvarianca-adac%2F">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fguilhermejacob.github.io%2F2021%2F05%2Fdominancia-pobreza-2015-2019%2F">
           <i class="fa fa-facebook-official"></i><span>Compartilhar no Facebook</span>
         </a>
       </li>
     
       <li class="share-option">
-        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Fguilhermejacob.github.io%2F2019%2F12%2Fvarianca-adac%2F">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Fguilhermejacob.github.io%2F2021%2F05%2Fdominancia-pobreza-2015-2019%2F">
           <i class="fa fa-twitter"></i><span>Compartilhar no Twitter</span>
         </a>
       </li>
     
       <li class="share-option">
-        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https%3A%2F%2Fguilhermejacob.github.io%2F2019%2F12%2Fvarianca-adac%2F">
+        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https%3A%2F%2Fguilhermejacob.github.io%2F2021%2F05%2Fdominancia-pobreza-2015-2019%2F">
           <i class="fa fa-google-plus"></i><span>Compartilhar no Google&#43;</span>
         </a>
       </li>
@@ -611,6 +745,24 @@ onde <span class="math inline">\(S\)</span> é a amostra de bairros.</p>
           <div class="media">
             
             <div class="media-body">
+              <a class="link-unstyled" href="https://guilhermejacob.github.io/2021/05/dominancia-pobreza-2015-2019/">
+                <h3 class="media-heading">A pobreza aumentou ou diminuiu entre 2015 e 2019?</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  May 5, 2021
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Pergunta rápida: entre 2015 e 2019, a pobreza aumentou ou diminuiu? Se você pergunta de um logicista, a resposta é sim. Se você pergunta de economista, a resposta é depende.
+A medida de pobreza (monetária) mais conhecida é a taxa de pobreza, cuja interpretação é bastante simples: é o percentual de pessoas que cuja renda é inferior ou igual a uma linha de pobreza. Neste caso, precisamos resolver dois pontos: a definição de renda e da linha de pobreza.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
               <a class="link-unstyled" href="https://guilhermejacob.github.io/2021/01/fome-pof-2017-2018/">
                 <h3 class="media-heading">(Algumas) Estatísticas sobre fome no Brasil (2017-2018)</h3>
               </a>
@@ -619,7 +771,7 @@ onde <span class="math inline">\(S\)</span> é a amostra de bairros.</p>
                   Jan 1, 2021
                 </span>
               </span>
-              <div class="media-content hide-xs font-merryweather">A última Pesquisa de Orçamentos Familliares (POF), realizada em 2017-2018, traz informaçõs muito interessantes sobre consumo e condição de vida das pessoas. Um dos temas mais interessantes que foram investigados são as condições de vida dos domicílios. Neste questionário, podem ser encontradas diversas perguntas, incluindo: percepções sobre o fornecimento de energia de elétrica; violência ou vandalismo na área de residência; presença de insetos, ratos, etc.; se há problemas em estar localizado perto de rio, baía, lago, açude ou represa poluídos; entre outras.</div>
+              <div class="media-content hide-xs font-merryweather">A última Pesquisa de Orçamentos Familliares (POF), realizada em 2017-2018, traz informações muito interessantes sobre consumo e condição de vida das pessoas. Um dos temas mais interessantes que foram investigados são as condições de vida dos domicílios. Neste questionário, podem ser encontradas diversas perguntas, incluindo: percepções sobre o fornecimento de energia de elétrica; violência ou vandalismo na área de residência; presença de insetos, ratos, etc.; se há problemas em estar localizado perto de rio, baía, lago, açude ou represa poluídos; entre outras.</div>
             </div>
             <div style="clear:both;"></div>
             <hr>
@@ -656,7 +808,7 @@ Um pouco de história Em alguns países, os registros de nascimentos e mortes é
                 </span>
               </span>
               <div class="media-content hide-xs font-merryweather">Em julho, pensei em estudar uma técnica de decomposição de medidas de desigualdade/pobreza. Procurando as bases de dados, encontrei a a Pesquisa de Orçamentos Familiares (POF) 2017-2018, que tem muita informação interessante. Mas, com 30 dias para escrever um artigo, não achei que teria tempo para entender bem a pesquisa e produzir estimativas adequadas.
-Tirei alguns dias para ler a documentação e comecei a fazer algumas tentativas de análise. Uma pergunta bem interessante que a POF permite analisar é: quanto seria a desigualdade de renda se retirássemos as rendas transferidas pelos programas sociais federais?</div>
+Tirei alguns dias para ler a documentação e comecei a fazer algumas tentativas de análise.</div>
             </div>
             <div style="clear:both;"></div>
             <hr>
@@ -768,25 +920,6 @@ Hoje, eu não quero fazer gráficos ou tabelas. Eu não quero falar de curvas qu
             <hr>
           </div>
         
-          <div class="media">
-            
-            <div class="media-body">
-              <a class="link-unstyled" href="https://guilhermejacob.github.io/2020/04/taylor-maclaurin-taxa/">
-                <h3 class="media-heading">Juros, taxas de crescimento e aproximações</h3>
-              </a>
-              <span class="media-meta">
-                <span class="media-date text-small">
-                  Apr 4, 2020
-                </span>
-              </span>
-              <div class="media-content hide-xs font-merryweather">Esse post vai fugir um pouco do usual. Não vamos fazer análise de dados, nem escrever código. Vamos ter algumas equações e gráficos, mas nada muito complicado. Vamos tentar responder duas perguntas:
- Tenho uma série de crescimento do PIB nos trimestres de um ano. O crescimento acumulado no período é igual à soma das taxas de crescimento?
-  Tenho valores de inflação e taxa de juros nominal. A taxa de juros real é igual à taxa de juros nominal menos a inflação?</div>
-            </div>
-            <div style="clear:both;"></div>
-            <hr>
-          </div>
-        
       </div>
     </div>
     <div class="modal-footer">
@@ -794,7 +927,7 @@ Hoje, eu não quero fazer gráficos ou tabelas. Eu não quero falar de curvas qu
          data-message-zero=""
          data-message-one=""
          data-message-other="">
-         27 posts found
+         26 posts found
       </p>
     </div>
   </div>
