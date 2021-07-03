@@ -1,5 +1,9 @@
 
 
+  
+    
+  
+
 
   
 
@@ -16,25 +20,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="Hugo 0.47 with theme Tranquilpeak 0.4.3-BETA">
-    <title>Desigualdade</title>
+    <title>Erros em dados administrativos</title>
     <meta name="author" content="Guilherme Jacob">
     <meta name="keywords" content="">
 
     <link rel="icon" href="https://guilhermejacob.github.io/favicon.png">
     
-      <link rel="alternate" type="application/rss+xml" title="RSS" href="https://guilhermejacob.github.io/tags/desigualdade/index.xml">
-    
 
     
-    <meta name="description" content="Contains trace amounts of mathematics, rants, and terrible jokes.">
-    <meta property="og:description" content="Contains trace amounts of mathematics, rants, and terrible jokes.">
+    <meta name="description" content="Uma reportagem da Folha apontou que 26 mil brasileiros tomaram vacina vencida.
+Como eles descobriram isso? Verificando as datas de validade e de aplicação das doses nos registros do Ministério da Saúde. As prefeituras responderam com diversos argumentos. Um deles é o seguinte: há incorreções na data de aplicação em alguns registros. Uma análise relativamente simples indica que esse dado realmente tem problemas.
+Essa reportagem me lembrou de dois textos que li recentemente.">
+    <meta property="og:description" content="Uma reportagem da Folha apontou que 26 mil brasileiros tomaram vacina vencida.
+Como eles descobriram isso? Verificando as datas de validade e de aplicação das doses nos registros do Ministério da Saúde. As prefeituras responderam com diversos argumentos. Um deles é o seguinte: há incorreções na data de aplicação em alguns registros. Uma análise relativamente simples indica que esse dado realmente tem problemas.
+Essa reportagem me lembrou de dois textos que li recentemente.">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="Desigualdade">
-    <meta property="og:url" content="/tags/desigualdade/">
+    <meta property="og:title" content="Erros em dados administrativos">
+    <meta property="og:url" content="/2021/07/admdata-hand/">
     <meta property="og:site_name" content="Something Random">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Something Random">
-    <meta name="twitter:description" content="Contains trace amounts of mathematics, rants, and terrible jokes.">
+    <meta name="twitter:description" content="Uma reportagem da Folha apontou que 26 mil brasileiros tomaram vacina vencida.
+Como eles descobriram isso? Verificando as datas de validade e de aplicação das doses nos registros do Ministério da Saúde. As prefeituras responderam com diversos argumentos. Um deles é o seguinte: há incorreções na data de aplicação em alguns registros. Uma análise relativamente simples indica que esse dado realmente tem problemas.
+Essa reportagem me lembrou de dois textos que li recentemente.">
     
     
 
@@ -69,7 +77,7 @@
 
   <body>
     <div id="blog">
-      <header id="header" data-behavior="1">
+      <header id="header" data-behavior="4">
   <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
   <div class="header-title">
     <a class="header-title-link" href="https://guilhermejacob.github.io/">Something Random</a>
@@ -89,7 +97,7 @@
   
 </header>
 
-      <nav id="sidebar" data-behavior="1">
+      <nav id="sidebar" data-behavior="4">
   <div class="sidebar-container">
     
       <div class="sidebar-profile">
@@ -228,282 +236,183 @@
 </nav>
 
       
-        
 
-      
-      <div id="main" data-behavior="1"
+      <div id="main" data-behavior="4"
         class="
                hasCoverMetaIn
                ">
-        
-          <section class="postShorten-group main-content-wrap">
-            
-            
-              
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+            <div class="post-header main-content-wrap text-left">
   
-    
-      
-        
-      
-    
+    <h1 class="post-title" itemprop="headline">
+      Erros em dados administrativos
+    </h1>
   
-
-
   
-
-<article class="postShorten postShorten--thumbnailimg-bottom" itemscope itemType="http://schema.org/BlogPosting">
-  <div class="postShorten-wrap">
-    
-    <div class="postShorten-header">
-      <h1 class="postShorten-title" itemprop="headline">
-        <a class="link-unstyled" href="https://guilhermejacob.github.io/2020/08/diferenca-gini/">
-          Índice de Gini e transferências sociais federais
-        </a>
-      </h1>
-      
   <div class="postShorten-meta post-meta">
     
-      <time itemprop="datePublished" datetime="2020-08-31T00:00:00Z">
+      <time itemprop="datePublished" datetime="2021-07-03T00:00:00Z">
         
   
   
   
   
-    31/08/2020
+    03/07/2021
   
 
       </time>
     
     
-  
-  
-    <span>em</span>
-    
-      <a class="category-link" href="https://guilhermejacob.github.io/categories/desigualdade">Desigualdade</a>
-    
-  
-
   </div>
 
-    </div>
-    <div class="postShorten-excerpt" itemprop="articleBody">
-      Em julho, pensei em estudar uma técnica de decomposição de medidas de desigualdade/pobreza. Procurando as bases de dados, encontrei a a Pesquisa de Orçamentos Familiares (POF) 2017-2018, que tem muita informação interessante. Mas, com 30 dias para escrever um artigo, não achei que teria tempo para entender bem a pesquisa e produzir estimativas adequadas.
-Tirei alguns dias para ler a documentação e comecei a fazer algumas tentativas de análise.
-      <p>
-        <a href="https://guilhermejacob.github.io/2020/08/diferenca-gini/" class="postShorten-excerpt_link link">Continuar leitura</a>
-        
-      </p>
-    </div>
-  </div>
-  
-</article>
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              <script src="https://guilhermejacob.github.io/rmarkdown-libs/header-attrs/header-attrs.js"></script>
 
+
+<p>Uma reportagem da <a href="https://www1.folha.uol.com.br/equilibrioesaude/2021/07/milhares-no-brasil-tomaram-vacina-vencida-contra-covid-veja-se-voce-e-um-deles.shtml">Folha</a> apontou que 26 mil brasileiros tomaram vacina vencida.</p>
+<p>Como eles descobriram isso? Verificando as datas de validade e de aplicação das doses nos registros do Ministério da Saúde. As prefeituras responderam com diversos argumentos. Um deles é o seguinte: há incorreções na data de aplicação em alguns registros. <a href="https://twitter.com/fernandoemm/status/1411049460856131585?s=20">Uma análise relativamente simples indica que esse dado realmente tem problemas.</a></p>
+<p>Essa reportagem me lembrou de dois textos que li recentemente. Num deles, <span class="citation">Hand (2018)</span> aponta 15 desafios para a análise de dados administrativos. No outro, <span class="citation">Zhang (2012)</span> discute uma teoria para erros em dados administrativos.</p>
+<div id="desafios-para-a-análise-de-dados-adminsitrativos" class="section level1">
+<h1>Desafios para a análise de dados adminsitrativos</h1>
+<p>De acordo com <span class="citation">Hand (2018)</span>, dados administrativos são dados gerados no curso de alguma operação (administrativa) e armazenados em uma base de dados. Muitas vezes, estes dados são utilizados para análise secundária - ou seja, os dados estão sendo utilizados para finalidades além daquela para a qual foram planejados.</p>
+<p><span class="citation">Nordbotten (2010)</span> distingue dados administrativos de dados estatísticos em razão da sua finalidade: o segundo tipo é coletado com fins estatísticos, enquanto o primeiro é coletado para realizar alguma tarefa administrativa. Por exemplo, no caso do CAGED, os dados são utilizados para organizar o sistema do Programa de Seguro-Desemprego e conferir informações referentes aos vínculos trabalhistas, embora estes dados também podem ser utilizados para pesquisas sobre mercado de trabalho formal. No caso das vacinas, o registro acompanhar o número de doses e qual vacina foi aplicada<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>.</p>
+<p>Então, <span class="citation">Hand (2018)</span> aponta o primeiro desafio:</p>
+<blockquote>
+<p>Desafio 1. O ensino de estatística deve cobrir questões relacionadas à qualidade de dados.</p>
+</blockquote>
+<p>O ensino de estatística trabalha (corretamente) com os aspectos teóricos das ferramentas, mas é limitado ao ensinar a avaliar a qualidade de dados. Embora crítica de dados de pesquisas amostrais seja um campo bastante desenvolvido e faça parte do dia-a-dia neste tipo de pesquisa, estas ferramentas não são aplicadas a dados administrativos com a mesma frequência.</p>
+<p>Existem razões para essa divergência. Enquanto dados de pesquisas amostrais têm regras bem estabelecidas de crítica para cada etapa da pesquisa, isso não é evidente para dados administrativos, onde as etapas não são tão bem definidas. Outro ponto é o volume de dados em bases administrativas, que torna impraticável uma análise mais detalhada: quando há um grande fluxo de dados, é mais difícil de perceber e corrigir erros em tempo hábil. Além disso, como a finalidade do dado administrativo tende a focar em <em>aspectos operacionais</em>, é razoável imaginar que <em>haja mais atenção para algumas variáveis do que outras</em>.</p>
+<p>O estudo mais aprofundado da qualidade dos dados administrativos mostra que este desafio se desdobra em outros:</p>
+<blockquote>
+<p>Desafio 2. Desenvolver detectores para determinados problemas de qualidade.
+Desafio 3. Construir métricas de qualidade e instrumentos de gestão (scorecards) de qualidade para bases de dados.
+Desafio 4. Auditar a qualidade de fontes de dados.</p>
+</blockquote>
+</div>
+<div id="erros-em-registros-administrativos" class="section level1">
+<h1>Erros em registros administrativos</h1>
+<p><span class="citation">Zhang (2012)</span> apresenta uma estrutura teórica para analisar os erros para estatísticas baseadas em registros administrativos. A Figura 1 abaixo mostra a origem dos erros em uma base de dados administrativos.</p>
+<div class="figure">
+<img src="https://guilhermejacob.github.io/post/2021-07-03-dados-administrativos_files/Zhang2012_Error.png" alt="" />
+<p class="caption">Estrutura dos erros em registros administrativos.</p>
+</div>
+<p>Existem dois “eixos” de erros: erros de <em>mensuração</em> e erros de <em>representação</em>. Vamos focar no primeiro eixo. A diferença entre o conceito-alvo e a medida-alvo é chamada erro de validade. Já a diferença entre a medida-alvo e a medida obtida é chamada de erro de medida. A diferenças entre a resposta obtida e a medida editada (ou processada) é chamada de erro de processamento. Cada medida na base de dados está sujeita a estes erros.</p>
+<p>Ao contrário de pesquisas amostrais, que tendem a ser muito bem documentadas em todo o processo, essa não é a regra para dados administrativos. As definições podem ser alteradas para atendem melhor a finalidade operacional da base, prejudicando o uso estatístico da informação. Isso é ainda pior quando se pensa que essas medidas podem ser tomadas de modo descontínuo no tempo e no espaço.</p>
+</div>
+<div id="crítica-e-imputação-de-dados" class="section level1">
+<h1>Crítica e Imputação de Dados</h1>
+<p>No caso de pesquisas amostrais, existem etapas de crítica e imputação dos dados.
+Quando você programa um questionário, algumas checagens são feitas no momento em que se coleta o dado: formatos de data inválido (31/fevereiro, por exemplo), combinações de respostas implausíveis ou inaceitáveis (meninas com 30 filhos aos 15 anos), etc. Esse é um tipo de micro-crítica que pode ser feito na programação do questionário ou depois do dado ser coletado. Quanto mais cedo este erro for detectado, mais fácil é a correção.</p>
+<p>Outro tipo de crítica é a <em>macro-crítica</em>. À medida em que o dado é coletado, é possível fazer algumas análises sobre a distribuição dos dados. No caso das vacinas, seria possível avaliar se há um pico anormal nas datas de vacinação, por exemplo.</p>
+<p>Encontrar o erro é a primeira parte do problema. A solução ideal é contactar o informante e sanar as inconsistências. Do ponto de vista estatístico, se o número de ocorrências anormais não afetar muito a estatística, pode-se até manter informações “suspeitas”. Outra possibilidade seria imputar essas informações, mas isso exige um trabalho muito cuidadoso de modelagem.</p>
+</div>
+<div id="conclusão" class="section level1">
+<h1>Conclusão</h1>
+<p>Em regra, dados administrativos não são coletados com a finalidade de análise. Eles costumam ser coletados para alguma atividade operacional, como pagar benefícios sociais, acompanhar campanhas de vacinação, etc. O uso estatístico destas informações é (quase sempre) secundário.</p>
+<p>Por ser uma finalidade secundária, o analista deve ter cuidado redobrado com a informação. É muito importante reconhecer que, apesar do grande volume de dados, existem diversos problemas no uso delas.</p>
+<p>Os dados são importantes, mas não são perfeitos. De fato, são representações imperfeitas da realidade.</p>
+</div>
+<div id="referências" class="section level1 unnumbered">
+<h1>Referências</h1>
+<div id="refs" class="references csl-bib-body">
+<div id="ref-hand2018" class="csl-entry">
+HAND, D. J. Statistical challenges of administrative and transaction data. <strong>Journal of the Royal Statistical Society: Series A (Statistics in Society)</strong>, v. 181, n. 3, p. 555–605, 2018.
+</div>
+<div id="ref-nordbotten2010" class="csl-entry">
+NORDBOTTEN, S. The use of administrative data in official statistics—past, present and future: with special reference to the Nordic countries. <em>In</em>: CARLSON, M.; NYQUIST, H.; VILLANI, M. (Eds.). <strong>Official Statistics: Methodology and Applications in Honour of Daniel Thorburn</strong>. Estocolmo, Suécia: Statistics Sweden, 2010. p. 205–223.
+</div>
+<div id="ref-zhang2012" class="csl-entry">
+ZHANG, L.-C. Topics of statistical theory for register-based statistics and data integration. <strong>Statistica Neerlandica</strong>, v. 66, n. 1, p. 41–63, 2012.
+</div>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>Apesar do que algumas figuras dizem, essa informação parece ser bastante fidedigna.<a href="#fnref1" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
             
               
-  
-    
-      
-        
-      
-    
-  
-
-
-  
-
-<article class="postShorten postShorten--thumbnailimg-bottom" itemscope itemType="http://schema.org/BlogPosting">
-  <div class="postShorten-wrap">
-    
-    <div class="postShorten-header">
-      <h1 class="postShorten-title" itemprop="headline">
-        <a class="link-unstyled" href="https://guilhermejacob.github.io/2020/08/polarizacao-desigualdade/">
-          Desigualdade e polarização
-        </a>
-      </h1>
-      
-  <div class="postShorten-meta post-meta">
-    
-      <time itemprop="datePublished" datetime="2020-08-16T00:00:00Z">
-        
-  
-  
-  
-  
-    16/08/2020
-  
-
-      </time>
-    
-    
-  
-  
-    <span>em</span>
-    
-      <a class="category-link" href="https://guilhermejacob.github.io/categories/desigualdade">Desigualdade</a>
-    
-  
-
-  </div>
-
-    </div>
-    <div class="postShorten-excerpt" itemprop="articleBody">
-      Há algum tempo atrás, vi uma discussão bem interessante sobre desigualdade e a Grazielle David do podcast É da sua conta! levantou o tema da polarização de renda. Eu já tinha lido um pouco a respeito e tinha até começado a escrever uma apresentação sobre o tema, mas não tinha calculado nada de fato. Deixei anotado para o futuro.
-O momento chegou. Neste post, vou tentar explicar um pouco do que é polarização e como essa abordagem se diferencia da desigualdade.
-      <p>
-        <a href="https://guilhermejacob.github.io/2020/08/polarizacao-desigualdade/" class="postShorten-excerpt_link link">Continuar leitura</a>
-        
-      </p>
-    </div>
-  </div>
-  
-</article>
-
             
+            
+  <div class="post-actions-wrap">
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
               
-  
-    
-      
-        
-      
-    
-  
-
-
-  
-
-<article class="postShorten postShorten--thumbnailimg-bottom" itemscope itemType="http://schema.org/BlogPosting">
-  <div class="postShorten-wrap">
-    
-    <div class="postShorten-header">
-      <h1 class="postShorten-title" itemprop="headline">
-        <a class="link-unstyled" href="https://guilhermejacob.github.io/2020/04/taylor-maclaurin-taxa/">
-          Juros, taxas de crescimento e aproximações
-        </a>
-      </h1>
-      
-  <div class="postShorten-meta post-meta">
-    
-      <time itemprop="datePublished" datetime="2020-04-08T00:00:00Z">
-        
-  
-  
-  
-  
-    08/04/2020
-  
-
-      </time>
-    
-    
-  
-  
-    <span>em</span>
-    
-      <a class="category-link" href="https://guilhermejacob.github.io/categories/censo">Censo</a>
-    
-  
-
-  </div>
-
-    </div>
-    <div class="postShorten-excerpt" itemprop="articleBody">
-      Esse post vai fugir um pouco do usual. Não vamos fazer análise de dados, nem escrever código. Vamos ter algumas equações e gráficos, mas nada muito complicado. Vamos tentar responder duas perguntas:
- Tenho uma série de crescimento do PIB nos trimestres de um ano. O crescimento acumulado no período é igual à soma das taxas de crescimento?
-  Tenho valores de inflação e taxa de juros nominal.
-      <p>
-        <a href="https://guilhermejacob.github.io/2020/04/taylor-maclaurin-taxa/" class="postShorten-excerpt_link link">Continuar leitura</a>
-        
-      </p>
-    </div>
-  </div>
-  
-</article>
-
-            
+                <a class="post-action-btn btn btn--disabled">
               
-  
-    
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">PRÓXIMO</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://guilhermejacob.github.io/2021/05/dominancia-pobreza-2015-2019/" data-tooltip="A pobreza aumentou ou diminuiu entre 2015 e 2019?">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">ANTERIOR</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
       
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
         
-      
-    
-  
-
-
-  
-
-<article class="postShorten postShorten--thumbnailimg-bottom" itemscope itemType="http://schema.org/BlogPosting">
-  <div class="postShorten-wrap">
-    
-    <div class="postShorten-header">
-      <h1 class="postShorten-title" itemprop="headline">
-        <a class="link-unstyled" href="https://guilhermejacob.github.io/2019/08/desigualdade-pobreza-log/">
-          Desigualdade ou pobreza?
-        </a>
-      </h1>
-      
-  <div class="postShorten-meta post-meta">
-    
-      <time itemprop="datePublished" datetime="2019-08-19T00:00:00Z">
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://guilhermejacob.github.io/2021/07/admdata-hand/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
         
-  
-  
-  
-  
-    19/08/2019
-  
-
-      </time>
-    
-    
-  
-  
-    <span>em</span>
-    
-      <a class="category-link" href="https://guilhermejacob.github.io/categories/teoria">Teoria</a>
-    
-  
-
-  </div>
-
-    </div>
-    <div class="postShorten-excerpt" itemprop="articleBody">
-      Pesquisando no repositório das piores ideias da humanidade1, não é raro encontrar a seguinte frase:
- “A pobreza importa. A desigualdade, não.”
- Aparentemente, tem gente que acredita nisso. Vou mostrar o quanto isso é estúpido.
-Considere a sociedade A, cuja renda média é $500.10 e o índice de Gini é 0.400. Vejamos a distribuição cumulativa.
-Agora considere a Sociedade B, produzida a partir de \(n\) transferências regressivas para o indivíduo mais rico de modo que os demais indivíduos não-pobres estejam quase na linha de pobreza.
-      <p>
-        <a href="https://guilhermejacob.github.io/2019/08/desigualdade-pobreza-log/" class="postShorten-excerpt_link link">Continuar leitura</a>
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://guilhermejacob.github.io/2021/07/admdata-hand/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
         
-      </p>
-    </div>
-  </div>
-  
-</article>
-
-            
-            
-  <div class="pagination-bar">
-    <ul class="pagination">
-      
-        
-        
-          <li class="pagination-next">
-            <a class="btn btn--default btn--small" href="https://guilhermejacob.github.io/tags/desigualdade/page/2/">
-              <span>POSTS MAIS ANTIGOS</span>
-              <i class="fa fa-angle-right text-base icon-ml"></i>
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://guilhermejacob.github.io/2021/07/admdata-hand/">
+              <i class="fa fa-google-plus"></i>
             </a>
           </li>
         
       
-      <li class="pagination-number">página 1 de 3</li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
     </ul>
   </div>
 
 
-          </section>
-        
+            
+              
+            
+          </div>
+        </article>
         <script src="//yihui.name/js/math-code.js"></script>
 <script async
     src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
@@ -515,6 +424,96 @@ Agora considere a Sociedade B, produzida a partir de \(n\) transferências regre
 </footer>
 
       </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+        
+  <div class="post-actions-wrap">
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">PRÓXIMO</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://guilhermejacob.github.io/2021/05/dominancia-pobreza-2015-2019/" data-tooltip="A pobreza aumentou ou diminuiu entre 2015 e 2019?">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">ANTERIOR</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://guilhermejacob.github.io/2021/07/admdata-hand/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://guilhermejacob.github.io/2021/07/admdata-hand/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://guilhermejacob.github.io/2021/07/admdata-hand/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="4">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fguilhermejacob.github.io%2F2021%2F07%2Fadmdata-hand%2F">
+          <i class="fa fa-facebook-official"></i><span>Compartilhar no Facebook</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Fguilhermejacob.github.io%2F2021%2F07%2Fadmdata-hand%2F">
+          <i class="fa fa-twitter"></i><span>Compartilhar no Twitter</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https%3A%2F%2Fguilhermejacob.github.io%2F2021%2F07%2Fadmdata-hand%2F">
+          <i class="fa fa-google-plus"></i><span>Compartilhar no Google&#43;</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
     </div>
     
     <div id="about">
@@ -767,6 +766,10 @@ Algumas medidas de desigualdade atendem o princípio de Pigou-Dalton apenas em a
 
 
 
+
+  
+    
+  
 
 
 
