@@ -270,6 +270,7 @@ Existem algumas indicações de que há maior não-resposta entre os domicílios
             <div class="main-content-wrap">
               <script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
 <script src="/rmarkdown-libs/kePrint/kePrint.js"></script>
+<link href="/rmarkdown-libs/lightable/lightable.css" rel="stylesheet" />
 
 
 <p>Nos últimos dias, ocorre uma discussão interessante sobre quem são os “ricos”: o 1% mais rico da população brasileira. Uma das perguntas mais interessantes é a partir de qual renda é considerado rico. Esse número mágico é difícil de estimar usando pesquisas amostrais por três razões principais: não-resposta, erros de medida e erro amostral.</p>
@@ -287,20 +288,20 @@ Também há uma distinção entre renda pessoal e renda domiciliar: uma pessoa q
 </blockquote>
 <p>Na Estatística, essa quantidade é o quantil <span class="math inline">\(Q( .99 )\)</span>. O primeiro detalhe importante é que, embora a renda seja uma variável contínua<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a>, as observações na amostra vêm de uma distribuição discreta de realizações amostrais. A consequência disso é que a CDF empírica é discreta, com um gráfico que parece uma “escada”, logo a CDF não possui inversa. E, como o quantil é a inversa da CDF, sua estimação depende de algum tipo de suavização da CDF. Em geral, como a amostra é grande o suficiente, isso não é um problema. Mas, se nos concentrarmos em rendas extremas, isso pode se tornar um problema.</p>
 <p>Como estes quantis são estimados usando a amostra, as estimativas estão sujeitas a erros amostrais. Portanto, as estimativas na Tabela  abaixo apresentam o quantil .99 do rendimento de todos os trabalhos e da renda domiciliar per capita em valores de 2019.</p>
-<table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;">
+<table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;border-bottom: 0;">
 <caption>
 <span id="tab:tab1">Tabela 1: </span>Estimativas do Quantil Empírico .99
 </caption>
 <thead>
 <tr>
-<th style="border-bottom:hidden" colspan="1">
+<th style="empty-cells: hide;border-bottom:hidden;" colspan="1">
 </th>
-<th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="3">
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="3">
 <div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
 Trabalho
 </div>
 </th>
-<th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="3">
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="3">
 <div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
 RDPC
 </div>
@@ -403,32 +404,32 @@ Lim. Superior
 </tbody>
 <tfoot>
 <tr>
-<td style="padding: 0; border: 0;" colspan="100%">
+<td style="padding: 0; " colspan="100%">
 <span style="font-weight: bold;">Fonte:</span>
 </td>
 </tr>
 <tr>
-<td style="padding: 0; border: 0;" colspan="100%">
+<td style="padding: 0; " colspan="100%">
 <sup></sup> PNAD Contínua, Microdados.
 </td>
 </tr>
 </tfoot>
 </table>
 <p>Há uma indicação de que a distribuição Beta Generalizada do Tipo II (GB2) produza estatísticas melhores da cauda superior da distribuição de rendas <span class="citation">(McDonald e Ransom, 2008)</span>. A Tabela  apresenta as estimativas de <span class="math inline">\(Q(.99)\)</span> usando a distribuição GB2 ajustada aos dados da população<a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a>.</p>
-<table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;">
+<table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;border-bottom: 0;">
 <caption>
 <span id="tab:tab2">Tabela 2: </span>Estimativas do Quantil Teórico .99 da Distribuição Beta Generalizada do Tipo II
 </caption>
 <thead>
 <tr>
-<th style="border-bottom:hidden" colspan="1">
+<th style="empty-cells: hide;border-bottom:hidden;" colspan="1">
 </th>
-<th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="3">
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="3">
 <div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
 Trabalho
 </div>
 </th>
-<th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="3">
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="3">
 <div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
 RDPC
 </div>
@@ -531,12 +532,12 @@ Lim. Superior
 </tbody>
 <tfoot>
 <tr>
-<td style="padding: 0; border: 0;" colspan="100%">
+<td style="padding: 0; " colspan="100%">
 <span style="font-weight: bold;">Fonte:</span>
 </td>
 </tr>
 <tr>
-<td style="padding: 0; border: 0;" colspan="100%">
+<td style="padding: 0; " colspan="100%">
 <sup></sup> PNAD Contínua, Microdados.
 </td>
 </tr>

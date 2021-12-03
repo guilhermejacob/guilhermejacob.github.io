@@ -279,7 +279,7 @@ Mudança de pós-estratificação para raking; Mudança no método de estimaçã
 <p>Mas o que isso significa? E como considerar isso na estimação usando o <code>R</code>? Bom, esse é o tema desse post. Primeiro, vou explicar <del>muito superficialmente</del> o que é <em>raking</em> e porque a mudança no método de calcular variância</p>
 <div id="calibração-e-raking" class="section level1">
 <h1>Calibração e <em>raking</em></h1>
-<p>Calibração é o nome de uma classe de métodos <span class="citation">(Deville e Sarndal, 1992; Deville, Sarndal e Sautory, 1993)</span> que, por conseguinte, definem uma classe de estimadores. Estes estimadores incorporam informações adicionais sobre a população. Basicamente, esta classe de métodos procura estabelecer um sistema de ponderação tal que, para uma amostra <span class="math inline">\(S\)</span> extraída de uma população finita <span class="math inline">\(U\)</span> usando um plano amostral <span class="math inline">\(p(S)\)</span>, tenhamos</p>
+<p>Calibração <span class="citation">(Deville e Särndal, 1992; Deville, Särndal e Sautory, 1993)</span> é o nome de uma classe de métodos que, por conseguinte, definem uma classe de estimadores. Estes estimadores incorporam informações adicionais sobre a população. Basicamente, esta classe de métodos procura estabelecer um sistema de ponderação tal que, para uma amostra <span class="math inline">\(S\)</span> extraída de uma população finita <span class="math inline">\(U\)</span> usando um plano amostral <span class="math inline">\(p(S)\)</span>, tenhamos</p>
 <p><span class="math display">\[
 \sum_{k \in S } w_k \mathbf{x}_k = \sum_{ k \in U } \mathbf{x}_k
 \]</span>
@@ -293,7 +293,7 @@ Desta forma, o viés dos totais das variáveis <span class="math inline">\(\math
 <p>Até aqui, vimos que o processo de calibração gera novos pesos. Estes pesos reajustadas são estimadores de calibração, cuja fórmula para estimação de variância é diferente daquela utilizada para o estimador de Horvitz-Thompson. <span class="citation">Nascimento Silva (2004)</span> apresenta maiores detalhes sobre o procedimento e a estimação de variância por linearização. Alternativamente, é possível utilizar estimadores de variância baseados em replicação, como <em>bootstrap</em>.</p>
 </div>
 <div id="bootstrap-raking" class="section level1">
-<h1>Bootstrap + <em>Raking</em></h1>
+<h1><em>Bootstrap</em> + <em>Raking</em></h1>
 <p>A estimação de variância por <em>bootstrap</em> consiste em extrair várias réplicas da amostra obtida utilizando amostragem com reposição. No entanto, a “reamostragem” deve considerar o plano amostral, respeitando a estratificação, conglomeração e probabilidades de inclusão, por exemplo. Além disso, é importante que a fração amostral seja pequena, de modo que se possa aproximar um plano amostral sem reposição por um plano com reposição. Existem variações do <em>bootstrap</em> em amostras complexas, mas o artigo principal é <span class="citation">Rao e Wu (1988)</span>, que explica o método utilizado pelo IBGE.</p>
 <p>Suponha que tenhamos extraído <span class="math inline">\(R\)</span> réplicas da amostra original. Repetimos o procedimento de estimação em cada uma das <span class="math inline">\(R\)</span> réplicas. Por exemplo, no caso de uma média, estimamos a estimativa pontual com o peso final da amostra completa. Repetimos este procedimento <span class="math inline">\(R\)</span> vezes, utilizando as <span class="math inline">\(R\)</span> réplicas. Utilizando a distribuição das réplicas, estimamos a variância. Note que mesmo no caso de um estimador de médias por razão de totais, não há nenhum procedimento de linearização: o <em>bootstrap</em> contorna a necessidade de linearização, evitando o uso de fórmulas mais complicadas.</p>
 <p>Para incorporar o efeito do <em>raking</em>, o procedimento de raking deve ser repetido em cada réplica. Novamente, o uso de fórmulas complicadas é contornado.</p>
@@ -301,8 +301,8 @@ Desta forma, o viés dos totais das variáveis <span class="math inline">\(\math
 <div id="como-fazer-no-r" class="section level1">
 <h1>Como fazer no <code>R</code></h1>
 <p>As divulgações mais recentes do IBGE trazem os pesos finais e os pesos de replicação, todos ajustados segundo pelo <em>raking</em>. As informações do plano amostral também estão presentes na divulgação, permitindo o uso do Método do Conglomerado Primário. Vamos mostrar os dois casos.</p>
-<div id="boostrap" class="section level2">
-<h2>Boostrap</h2>
+<div id="bootstrap" class="section level2">
+<h2><em>Bootstrap</em></h2>
 <pre class="r"><code># carrega libraries
 library( survey )
 
@@ -352,7 +352,7 @@ txunemp.ucm.uf &lt;- svymean( ~factor( vd4002 ) , subset( pnadc.ucm , uf == 13 )
 </div>
 <div id="comparando-resultados" class="section level2">
 <h2>Comparando resultados</h2>
-<p>É importante lembrar o que muda em relação aos resultados: o métodos de estimação das variâncias. Ou seja: as estimativas das proporções devem ser idênticas, mas as estimativas de variâncias podem diferir<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a>.</p>
+<p>É importante lembrar o que muda em relação aos resultados: o métodos de estimação das variâncias. Ou seja: <strong>as estimativas das proporções devem ser idênticas</strong>, mas as <em>estimativas de variâncias podem diferir</em><a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a>.</p>
 <p>Os resultados para o Brasil são praticamente idênticos:</p>
 <pre class="r"><code>txunemp.boot.br</code></pre>
 <pre><code>##                    mean     SE
@@ -377,10 +377,10 @@ txunemp.ucm.uf &lt;- svymean( ~factor( vd4002 ) , subset( pnadc.ucm , uf == 13 )
 <h1>Referências</h1>
 <div id="refs" class="references csl-bib-body">
 <div id="ref-deville1992" class="csl-entry">
-DEVILLE, J.-C.; SARNDAL, C.-E. Calibration Estimators in Survey Sampling. <strong>Journal of the American Statistical Association</strong>, v. 87, n. 418, p. 376–382, 1992.
+DEVILLE, J.-C.; SÄRNDAL, C.-E. Calibration Estimators in Survey Sampling. <strong>Journal of the American Statistical Association</strong>, v. 87, n. 418, p. 376–382, 1992.
 </div>
 <div id="ref-deville1993" class="csl-entry">
-DEVILLE, J.-C.; SARNDAL, C.-E.; SAUTORY, O. Generalized Raking Procedures in Survey Sampling. <strong>Journal of the American Statistical Association</strong>, v. 88, n. 423, p. 1013–1020, 1993.
+DEVILLE, J.-C.; SÄRNDAL, C.-E.; SAUTORY, O. Generalized Raking Procedures in Survey Sampling. <strong>Journal of the American Statistical Association</strong>, v. 88, n. 423, p. 1013–1020, 1993.
 </div>
 <div id="ref-silva2004" class="csl-entry">
 NASCIMENTO SILVA, P. L. <strong>Calibration Estimation: When and Why,How Much and How</strong>: Textos para discussão. Rio de Janeiro: IBGE, Diretoria de Pesquisas, 2004. Disponível em: &lt;<a href="https://biblioteca.ibge.gov.br/visualizacao/livros/liv66414.pdf">https://biblioteca.ibge.gov.br/visualizacao/livros/liv66414.pdf</a>&gt;.
