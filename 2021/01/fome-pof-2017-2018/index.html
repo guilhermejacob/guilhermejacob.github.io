@@ -275,6 +275,7 @@
             <div class="main-content-wrap">
               <script src="https://guilhermejacob.github.io/rmarkdown-libs/header-attrs/header-attrs.js"></script>
 <script src="https://guilhermejacob.github.io/rmarkdown-libs/kePrint/kePrint.js"></script>
+<link href="https://guilhermejacob.github.io/rmarkdown-libs/lightable/lightable.css" rel="stylesheet" />
 
 
 <p>A última Pesquisa de Orçamentos Familliares (POF), realizada em 2017-2018, traz informações muito interessantes sobre consumo e condição de vida das pessoas. Um dos temas mais interessantes que foram investigados são as condições de vida dos domicílios. Neste questionário, podem ser encontradas diversas perguntas, incluindo: percepções sobre o fornecimento de energia de elétrica; violência ou vandalismo na área de residência; presença de insetos, ratos, etc.; se há problemas em estar localizado perto de rio, baía, lago, açude ou represa poluídos; entre outras. Sobre aquisição de alimentos e fome, existem cerca de 40 perguntas nesse questionários. Vamos focar em duas variáveis:</p>
@@ -292,17 +293,17 @@
 <p>Um dos “fatos estilizados” sobre a fome no Brasil é que ela era mais prevalente no Nordeste. Também não é raro encontrar pessoas em Manaus que dizem não existir fome no interior, já que existiria peixe, caça e fruta em abundância e, quando não, o Bolsa Família resolveria.</p>
 <p>Mas o que dizem os números?</p>
 <p>A Tabela <a href="#tab:tab1">1</a> apresenta as proporções de pessoas que moravam em domicílios onde, alguma vez, alguém já sentiu fome e não comeu por falta de dinheiro nos três meses anteriores à data de referência da pesquisa para Brasil e Grandes Regiões. A região com o maior prevalência de moradores em domicílios nesta situação é o Norte, seguido pelo Nordeste. Note que a diferença entre Norte e Nordeste é estatisticamente significativa ao nivel de 95%.</p>
-<table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;">
+<table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;border-bottom: 0;">
 <caption>
 <span id="tab:tab1">Tabela 1: </span>Proporção de moradores em domicílios onde, alguma vez, alguém já sentiu fome e não comeu por falta de dinheiro nos três meses anteriores à data de referência da pesquisa (%) – Brasil e Grandes Regiões, 2017-2018
 </caption>
 <thead>
 <tr>
-<th style="border-bottom:hidden" colspan="1">
+<th style="empty-cells: hide;border-bottom:hidden;" colspan="1">
 </th>
-<th style="border-bottom:hidden" colspan="1">
+<th style="empty-cells: hide;border-bottom:hidden;" colspan="1">
 </th>
-<th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2">
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2">
 <div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
 IC(95%)
 </div>
@@ -411,24 +412,24 @@ Centro-Oeste
 </tbody>
 <tfoot>
 <tr>
-<td style="padding: 0; border: 0;" colspan="100%">
+<td style="padding: 0; " colspan="100%">
 <span style="font-weight: bold;">Fonte:</span> <sup></sup> POF 2017-2018. Elaboração própria.
 </td>
 </tr>
 </tfoot>
 </table>
 <p>A Tabela <a href="#tab:tab2">2</a> decompõe estes números por situação do domicílio. Para a área urbana, a diferença entre Norte e Nordeste não é estatisticamente significativa. Para a área rural, no entanto, a diferença é estatisticamente significativa, sendo possível afirmar (com alguma segurança) que a proporção é maior no Norte rural. Em geral, as áreas rurais aresentam proporções maiores que as urbanas. Um resultado um pouco paradoxal é o Sul, onde a proporção de moradores em domicílios em situação de fome é maior na área urbana do que na área rural. Esta diferença, porém, não é estatisticamente significativa e pode ser atribuída à variabilidade amostral.</p>
-<table class="table table-hover" style="margin-left: auto; margin-right: auto;">
+<table class="table table-hover" style="margin-left: auto; margin-right: auto;border-bottom: 0;">
 <caption>
 <span id="tab:tab2">Tabela 2: </span>Proporção de moradores em domicílios onde, alguma vez, alguém já sentiu fome e não comeu por falta de dinheiro nos três meses anteriores à data de referência da pesquisa (%) – Brasil, Grandes Regiões e situação do domicílio, 2017-2018
 </caption>
 <thead>
 <tr>
-<th style="border-bottom:hidden" colspan="2">
+<th style="empty-cells: hide;border-bottom:hidden;" colspan="2">
 </th>
-<th style="border-bottom:hidden" colspan="1">
+<th style="empty-cells: hide;border-bottom:hidden;" colspan="1">
 </th>
-<th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2">
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2">
 <div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
 IC(95%)
 </div>
@@ -454,7 +455,7 @@ Lim. Superior
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;vertical-align: top !important;" rowspan="6">
+<td style="text-align:left;">
 Urbano
 </td>
 <td style="text-align:left;">
@@ -472,6 +473,9 @@ Brasil
 </tr>
 <tr>
 <td style="text-align:left;">
+Urbano
+</td>
+<td style="text-align:left;">
 Norte
 </td>
 <td style="text-align:right;">
@@ -485,6 +489,9 @@ Norte
 </td>
 </tr>
 <tr>
+<td style="text-align:left;">
+Urbano
+</td>
 <td style="text-align:left;">
 Nordeste
 </td>
@@ -500,6 +507,9 @@ Nordeste
 </tr>
 <tr>
 <td style="text-align:left;">
+Urbano
+</td>
+<td style="text-align:left;">
 Sudeste
 </td>
 <td style="text-align:right;">
@@ -513,6 +523,9 @@ Sudeste
 </td>
 </tr>
 <tr>
+<td style="text-align:left;">
+Urbano
+</td>
 <td style="text-align:left;">
 Sul
 </td>
@@ -528,6 +541,9 @@ Sul
 </tr>
 <tr>
 <td style="text-align:left;">
+Urbano
+</td>
+<td style="text-align:left;">
 Centro-Oeste
 </td>
 <td style="text-align:right;">
@@ -541,7 +557,7 @@ Centro-Oeste
 </td>
 </tr>
 <tr>
-<td style="text-align:left;vertical-align: top !important;" rowspan="6">
+<td style="text-align:left;">
 Rural
 </td>
 <td style="text-align:left;">
@@ -559,6 +575,9 @@ Brasil
 </tr>
 <tr>
 <td style="text-align:left;">
+Rural
+</td>
+<td style="text-align:left;">
 Norte
 </td>
 <td style="text-align:right;">
@@ -572,6 +591,9 @@ Norte
 </td>
 </tr>
 <tr>
+<td style="text-align:left;">
+Rural
+</td>
 <td style="text-align:left;">
 Nordeste
 </td>
@@ -587,6 +609,9 @@ Nordeste
 </tr>
 <tr>
 <td style="text-align:left;">
+Rural
+</td>
+<td style="text-align:left;">
 Sudeste
 </td>
 <td style="text-align:right;">
@@ -601,6 +626,9 @@ Sudeste
 </tr>
 <tr>
 <td style="text-align:left;">
+Rural
+</td>
+<td style="text-align:left;">
 Sul
 </td>
 <td style="text-align:right;">
@@ -614,6 +642,9 @@ Sul
 </td>
 </tr>
 <tr>
+<td style="text-align:left;">
+Rural
+</td>
 <td style="text-align:left;">
 Centro-Oeste
 </td>
@@ -630,24 +661,24 @@ Centro-Oeste
 </tbody>
 <tfoot>
 <tr>
-<td style="padding: 0; border: 0;" colspan="100%">
+<td style="padding: 0; " colspan="100%">
 <span style="font-weight: bold;">Fonte:</span> <sup></sup> POF 2017-2018. Elaboração própria.
 </td>
 </tr>
 </tfoot>
 </table>
 <p>A Tabela <a href="#tab:tab3">3</a> traz as estimativas das proporções por UF, em ordem decrescente de proporção. Embora a variabilidade amostral seja muito grande, é possível notar que o Amazonas lidera o ranking. No entanto, é mais realista olhar Amazonas, Roraima, Amapá e Acre como empatados. Possivelmente empatados com o Pará e Mato Grosso do Sul também.</p>
-<table class="table table-hover" style="margin-left: auto; margin-right: auto;">
+<table class="table table-hover" style="margin-left: auto; margin-right: auto;border-bottom: 0;">
 <caption>
 <span id="tab:tab3">Tabela 3: </span>Proporção de moradores em domicílios onde, alguma vez, alguém já sentiu fome e não comeu por falta de dinheiro nos três meses anteriores à data de referência da pesquisa (%) – UF, 2017-2018
 </caption>
 <thead>
 <tr>
-<th style="border-bottom:hidden" colspan="1">
+<th style="empty-cells: hide;border-bottom:hidden;" colspan="1">
 </th>
-<th style="border-bottom:hidden" colspan="1">
+<th style="empty-cells: hide;border-bottom:hidden;" colspan="1">
 </th>
-<th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2">
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2">
 <div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
 IC(95%)
 </div>
@@ -1050,7 +1081,7 @@ Rondônia
 </tbody>
 <tfoot>
 <tr>
-<td style="padding: 0; border: 0;" colspan="100%">
+<td style="padding: 0; " colspan="100%">
 <span style="font-weight: bold;">Fonte:</span> <sup></sup> POF 2017-2018. Elaboração própria.
 </td>
 </tr>
@@ -1301,6 +1332,24 @@ Rondônia
           <div class="media">
             
             <div class="media-body">
+              <a class="link-unstyled" href="https://guilhermejacob.github.io/2021/12/pnadc-raking-bootstrap/">
+                <h3 class="media-heading">Mudanças na PNAD Contínua: Raking e Bootstrap</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Dec 12, 2021
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Recentemente, a PNAD Contínua passou por duas mudanças:
+Mudança de pós-estratificação para raking; Mudança no método de estimação da variância dos estimadores, do Método do Conglomerado Primário para bootstrap.  Mas o que isso significa? E como considerar isso na estimação usando o R? Bom, esse é o tema desse post. Primeiro, vou explicar muito superficialmente o que é raking e porque a mudança no método de calcular variância</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
               <a class="link-unstyled" href="https://guilhermejacob.github.io/2021/07/admdata-hand/">
                 <h3 class="media-heading">Erros em dados administrativos</h3>
               </a>
@@ -1460,23 +1509,6 @@ Algumas medidas de desigualdade atendem o princípio de Pigou-Dalton apenas em a
             <hr>
           </div>
         
-          <div class="media">
-            
-            <div class="media-body">
-              <a class="link-unstyled" href="https://guilhermejacob.github.io/2020/04/sir-markov/">
-                <h3 class="media-heading">Modelos epidemiológicos, amostragem e cadeias de Markov</h3>
-              </a>
-              <span class="media-meta">
-                <span class="media-date text-small">
-                  Apr 4, 2020
-                </span>
-              </span>
-              <div class="media-content hide-xs font-merryweather">É notório que há uma grande subnotificação de casos da COVID-19. Como se pode imaginar, testar as pessoas na porta do hospital enviesaria as amostras. Então, como fazer testagem em massa? Uma estratégia possível seria usar uma amostra aleatória. Usando uma ideia antiga desenvolvida pelo economista estatístico Robert Dorfman (Dorfman, 1943), é possível reduzir os custos da testagem. Por exemplo, em vez de testar imediatamente todas as pessoas de um domicílio, testamos o conjunto de pessoas.</div>
-            </div>
-            <div style="clear:both;"></div>
-            <hr>
-          </div>
-        
       </div>
     </div>
     <div class="modal-footer">
@@ -1484,7 +1516,7 @@ Algumas medidas de desigualdade atendem o princípio de Pigou-Dalton apenas em a
          data-message-zero=""
          data-message-one=""
          data-message-other="">
-         27 posts found
+         28 posts found
       </p>
     </div>
   </div>

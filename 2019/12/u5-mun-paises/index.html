@@ -276,6 +276,7 @@ Entendendo a desigualdade regional no Brasil a partir do mundo Na época que eu 
             <div class="main-content-wrap">
               <script src="https://guilhermejacob.github.io/rmarkdown-libs/header-attrs/header-attrs.js"></script>
 <script src="https://guilhermejacob.github.io/rmarkdown-libs/kePrint/kePrint.js"></script>
+<link href="https://guilhermejacob.github.io/rmarkdown-libs/lightable/lightable.css" rel="stylesheet" />
 
 
 <p>Às vezes, quando estamos estudando algo, acabamos aprendendo mais do que esperávamos.</p>
@@ -288,18 +289,18 @@ Entendendo a desigualdade regional no Brasil a partir do mundo Na época que eu 
 <p>Existe uma interpretação bastante direta para este número: uma taxa de <span class="math inline">\(x\)</span> implica que <span class="math inline">\(x\)</span> crianças em cada mil morrerão antes de completar 5 anos. Certo, mas o quanto é <em>muito</em>? O quanto é <em>pouco</em>? O ideal seria que nenhuma criança morresse antes de completar 5 anos, mas pense: 20 em cada mil é muito? Ou 10 em cada mil é muito? Ou 5 em cada mil é muito?</p>
 <p>As dimensões podem ser melhor entendidas se você tiver com o que comparar. Eu percebi que as pessoas tem um entendimento maior da desigualdade entre os países do que da desigualdade entre os municípios brasileiros. Assim, vamos fazer o seguinte: vamos procurar os países do mundo que mais se aproximam dos municípios brasileiros em termos da taxa de mortalidade na infância.</p>
 <p>A Tabela  mostra os extremos das taxas de mortalidade na infância para os municípios brasileiros com mais de 100 mil habitantes. Alguns municípios brasileiros tinham taxas argentinas, como é o caso de Blumenau e Brusque, enquanto outros tinham taxas similares às de São Tomé e Príncipe!</p>
-<table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;">
+<table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;border-bottom: 0;">
 <caption>
 <span id="tab:tab1">Tabela 1: </span>5 maiores e 5 menores taxas de mortalidade na infância (até 5 anos) dos municípios (2010) vs. Países (2018)
 </caption>
 <thead>
 <tr>
-<th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="4">
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="4">
 <div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
 Brasil
 </div>
 </th>
-<th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2">
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2">
 <div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
 Mundo
 </div>
@@ -327,7 +328,7 @@ Taxa
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;vertical-align: middle !important;" rowspan="5">
+<td style="text-align:left;">
 Maiores
 </td>
 <td style="text-align:left;">
@@ -348,6 +349,9 @@ São Tomé e Príncipe
 </tr>
 <tr>
 <td style="text-align:left;">
+Maiores
+</td>
+<td style="text-align:left;">
 Maranhão
 </td>
 <td style="text-align:left;">
@@ -364,6 +368,9 @@ São Tomé e Príncipe
 </td>
 </tr>
 <tr>
+<td style="text-align:left;">
+Maiores
+</td>
 <td style="text-align:left;">
 Maranhão
 </td>
@@ -382,6 +389,9 @@ Filipinas
 </tr>
 <tr>
 <td style="text-align:left;">
+Maiores
+</td>
+<td style="text-align:left;">
 Pará
 </td>
 <td style="text-align:left;">
@@ -399,6 +409,9 @@ Filipinas
 </tr>
 <tr>
 <td style="text-align:left;">
+Maiores
+</td>
+<td style="text-align:left;">
 Pará
 </td>
 <td style="text-align:left;">
@@ -415,7 +428,7 @@ Camboja
 </td>
 </tr>
 <tr>
-<td style="text-align:left;vertical-align: middle !important;" rowspan="5">
+<td style="text-align:left;">
 Menores
 </td>
 <td style="text-align:left;">
@@ -436,6 +449,9 @@ Turquia
 </tr>
 <tr>
 <td style="text-align:left;">
+Menores
+</td>
+<td style="text-align:left;">
 Santa Catarina
 </td>
 <td style="text-align:left;">
@@ -452,6 +468,9 @@ Bahamas
 </td>
 </tr>
 <tr>
+<td style="text-align:left;">
+Menores
+</td>
 <td style="text-align:left;">
 São Paulo
 </td>
@@ -470,6 +489,9 @@ Bahamas
 </tr>
 <tr>
 <td style="text-align:left;">
+Menores
+</td>
+<td style="text-align:left;">
 Santa Catarina
 </td>
 <td style="text-align:left;">
@@ -486,6 +508,9 @@ Argentina
 </td>
 </tr>
 <tr>
+<td style="text-align:left;">
+Menores
+</td>
 <td style="text-align:left;">
 Santa Catarina
 </td>
@@ -505,50 +530,50 @@ Argentina
 </tbody>
 <tfoot>
 <tr>
-<td style="padding: 0; border: 0;" colspan="100%">
+<td style="padding: 0; " colspan="100%">
 <span style="font-weight: bold;">Fonte:</span>
 </td>
 </tr>
 <tr>
-<td style="padding: 0; border: 0;" colspan="100%">
+<td style="padding: 0; " colspan="100%">
 <sup></sup> Municípios: PNUD/ONU.
 </td>
 </tr>
 <tr>
-<td style="padding: 0; border: 0;" colspan="100%">
+<td style="padding: 0; " colspan="100%">
 <sup></sup> Países: Grupo Interagencial das Nações Unidas para Estimação de Mortalidade na Infância/ONU.
 </td>
 </tr>
 <tr>
-<td style="padding: 0; border: 0;" colspan="100%">
+<td style="padding: 0; " colspan="100%">
 <span style="font-weight: bold;">Nota:</span>
 </td>
 </tr>
 <tr>
-<td style="padding: 0; border: 0;" colspan="100%">
+<td style="padding: 0; " colspan="100%">
 <sup>1</sup> Probabilidade de morrer antes de completar 5 anos multiplicada por 1 000.
 </td>
 </tr>
 <tr>
-<td style="padding: 0; border: 0;" colspan="100%">
+<td style="padding: 0; " colspan="100%">
 <sup>2</sup> Municípios com população maior ou igual 100 000 hab.
 </td>
 </tr>
 </tfoot>
 </table>
 <p>A Tabela  mostra os municípios do Amazonas e seus similares entre os países. Manaus, a capital do estado, tem taxa similar à de Granada, um país caribenho com cerca de 100 mil habitantes. Por outro lado, temos Tapauá, que tem taxa próxima à da Namíbia, um país africano relativamente rico, mas cuja taxa de pobreza é muito alta. O município de Juruá tem taxa próxima à da Índia, um país enorme que enfrenta inúmeras dificuldades com saneamento, vacinação, etc.</p>
-<table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;">
+<table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;border-bottom: 0;">
 <caption>
 <span id="tab:tab2">Tabela 2: </span>Taxas de mortalidade na infância (até 5 anos) dos municípios do Amazonas (2010) vs. Países (2018)
 </caption>
 <thead>
 <tr>
-<th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2">
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2">
 <div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
 Amazonas
 </div>
 </th>
-<th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2">
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2">
 <div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
 Mundo
 </div>
@@ -1441,45 +1466,45 @@ Namíbia
 </tbody>
 <tfoot>
 <tr>
-<td style="padding: 0; border: 0;" colspan="100%">
+<td style="padding: 0; " colspan="100%">
 <span style="font-weight: bold;">Fonte:</span>
 </td>
 </tr>
 <tr>
-<td style="padding: 0; border: 0;" colspan="100%">
+<td style="padding: 0; " colspan="100%">
 <sup></sup> Municípios: PNUD/ONU.
 </td>
 </tr>
 <tr>
-<td style="padding: 0; border: 0;" colspan="100%">
+<td style="padding: 0; " colspan="100%">
 <sup></sup> Países: Grupo Interagencial das Nações Unidas para Estimação de Mortalidade na Infância/ONU.
 </td>
 </tr>
 <tr>
-<td style="padding: 0; border: 0;" colspan="100%">
+<td style="padding: 0; " colspan="100%">
 <span style="font-weight: bold;">Nota:</span>
 </td>
 </tr>
 <tr>
-<td style="padding: 0; border: 0;" colspan="100%">
+<td style="padding: 0; " colspan="100%">
 <sup>1</sup> Probabilidade de morrer antes de completar 5 anos multiplicada por 1 000.
 </td>
 </tr>
 </tfoot>
 </table>
 <p>No entanto, Paraíba é o estado com maiores desigualdades nas taxas de mortalidade na infância. João Pessoa tem taxa próxima à de Belize, um país caribenho de alto IDH que você talvez queira passar férias. Já Mataraca tem taxas próxima à de Uganda, um país africano de IDH baixo, considerado um dos mais pobres do mundo. Cacimbas tem taxa ainda maior, próxima à do Laos, país asiático com longo histórico de guerras e <a href="https://reliefweb.int/report/lao-peoples-democratic-republic/disaster-management-reference-handbook-lao-pdr">vulnerável a secas, enchentes, ciclones, terremotos e epidemias</a><a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>.</p>
-<table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;">
+<table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;border-bottom: 0;">
 <caption>
 <span id="tab:tab3">Tabela 3: </span>Taxas de mortalidade na infância (até 5 anos) dos municípios da Paraíba (2010) vs. Países (2018)
 </caption>
 <thead>
 <tr>
-<th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2">
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2">
 <div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
 Paraíba
 </div>
 </th>
-<th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2">
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2">
 <div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
 Mundo
 </div>
@@ -4626,27 +4651,27 @@ Laos
 </tbody>
 <tfoot>
 <tr>
-<td style="padding: 0; border: 0;" colspan="100%">
+<td style="padding: 0; " colspan="100%">
 <span style="font-weight: bold;">Fonte:</span>
 </td>
 </tr>
 <tr>
-<td style="padding: 0; border: 0;" colspan="100%">
+<td style="padding: 0; " colspan="100%">
 <sup></sup> Municípios: PNUD/ONU.
 </td>
 </tr>
 <tr>
-<td style="padding: 0; border: 0;" colspan="100%">
+<td style="padding: 0; " colspan="100%">
 <sup></sup> Países: Grupo Interagencial das Nações Unidas para Estimação de Mortalidade na Infância/ONU.
 </td>
 </tr>
 <tr>
-<td style="padding: 0; border: 0;" colspan="100%">
+<td style="padding: 0; " colspan="100%">
 <span style="font-weight: bold;">Nota:</span>
 </td>
 </tr>
 <tr>
-<td style="padding: 0; border: 0;" colspan="100%">
+<td style="padding: 0; " colspan="100%">
 <sup>1</sup> Probabilidade de morrer antes de completar 5 anos multiplicada por 1 000.
 </td>
 </tr>
@@ -4901,6 +4926,24 @@ Laos
           <div class="media">
             
             <div class="media-body">
+              <a class="link-unstyled" href="https://guilhermejacob.github.io/2021/12/pnadc-raking-bootstrap/">
+                <h3 class="media-heading">Mudanças na PNAD Contínua: Raking e Bootstrap</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Dec 12, 2021
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Recentemente, a PNAD Contínua passou por duas mudanças:
+Mudança de pós-estratificação para raking; Mudança no método de estimação da variância dos estimadores, do Método do Conglomerado Primário para bootstrap.  Mas o que isso significa? E como considerar isso na estimação usando o R? Bom, esse é o tema desse post. Primeiro, vou explicar muito superficialmente o que é raking e porque a mudança no método de calcular variância</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
               <a class="link-unstyled" href="https://guilhermejacob.github.io/2021/07/admdata-hand/">
                 <h3 class="media-heading">Erros em dados administrativos</h3>
               </a>
@@ -5060,23 +5103,6 @@ Algumas medidas de desigualdade atendem o princípio de Pigou-Dalton apenas em a
             <hr>
           </div>
         
-          <div class="media">
-            
-            <div class="media-body">
-              <a class="link-unstyled" href="https://guilhermejacob.github.io/2020/04/sir-markov/">
-                <h3 class="media-heading">Modelos epidemiológicos, amostragem e cadeias de Markov</h3>
-              </a>
-              <span class="media-meta">
-                <span class="media-date text-small">
-                  Apr 4, 2020
-                </span>
-              </span>
-              <div class="media-content hide-xs font-merryweather">É notório que há uma grande subnotificação de casos da COVID-19. Como se pode imaginar, testar as pessoas na porta do hospital enviesaria as amostras. Então, como fazer testagem em massa? Uma estratégia possível seria usar uma amostra aleatória. Usando uma ideia antiga desenvolvida pelo economista estatístico Robert Dorfman (Dorfman, 1943), é possível reduzir os custos da testagem. Por exemplo, em vez de testar imediatamente todas as pessoas de um domicílio, testamos o conjunto de pessoas.</div>
-            </div>
-            <div style="clear:both;"></div>
-            <hr>
-          </div>
-        
       </div>
     </div>
     <div class="modal-footer">
@@ -5084,7 +5110,7 @@ Algumas medidas de desigualdade atendem o princípio de Pigou-Dalton apenas em a
          data-message-zero=""
          data-message-one=""
          data-message-other="">
-         27 posts found
+         28 posts found
       </p>
     </div>
   </div>

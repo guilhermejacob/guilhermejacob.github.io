@@ -278,6 +278,7 @@ Tirei alguns dias para ler a documentação e comecei a fazer algumas tentativas
             <div class="main-content-wrap">
               <script src="https://guilhermejacob.github.io/rmarkdown-libs/header-attrs/header-attrs.js"></script>
 <script src="https://guilhermejacob.github.io/rmarkdown-libs/kePrint/kePrint.js"></script>
+<link href="https://guilhermejacob.github.io/rmarkdown-libs/lightable/lightable.css" rel="stylesheet" />
 
 
 <p>Em julho, pensei em estudar uma técnica de decomposição de medidas de desigualdade/pobreza. Procurando as bases de dados, encontrei a a Pesquisa de Orçamentos Familiares (POF) 2017-2018, que tem muita informação interessante. Mas, com 30 dias para escrever um artigo, não achei que teria tempo para entender bem a pesquisa e produzir estimativas adequadas.</p>
@@ -285,17 +286,17 @@ Tirei alguns dias para ler a documentação e comecei a fazer algumas tentativas
 <p>A ideia do exercício a seguir é bem simples: calcula o Gini da renda familiar per capita e o Gini da renda familiar per capita sem as transferências. É uma análise um tanto ingênua, mas ajuda a entender o impacto das transferências sociais federais sobre o índice de Gini.</p>
 <p>Isso não parece tão difícil. O problema é o seguinte: teremos duas estimativas, cada uma com um erro-padrão diferente. Para analisar a diferença, poderíamos fazer: <span class="math inline">\(G_1 - G_2 = \Delta G\)</span>, com <span class="math inline">\(var( \Delta G ) = var(G_1) + var(G_2)\)</span>, supondo que as amostras são independentes. O problema é que essas estimativas vêm da mesma amostra, então <span class="math inline">\(var(\Delta G) = var(G_1) + var(G_2) - 2 \cdot cov ( G_1 , G_2)\)</span>. Ou seja: podemos usar a covariância entre as duas estimativas para “diminuir”<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> a estimativa do erro-padrão da diferença.</p>
 <p>Vamos ao que interessa. As estimativas a seguir usam apenas as rendas monetárias, das quais eu separei as rendas de programas sociais federais. Vamos olhar a média da renda familiar per capita. A Tabela <a href="#tab:tab1">1</a> mostra que a renda familiar per capita era R$ 1 683,31. A média das rendas do trabalho divida pelo número de moradores no domicílio era R$ 1 045,06. Por sua vez, as transferências sociais federais eram R$ 19,02 por morador. Por fim, R$ 619,23 eram auferidos de outras fontes (aposentadores, outras transferências, etc.) Esses números são um pouco estranhos porque são “médias de médias”, mas fazem sentido: somando as componentes, temos a renda média total.</p>
-<table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;">
+<table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;border-bottom: 0;">
 <caption>
 <span id="tab:tab1">Tabela 1: </span>Média das rendas familiares per capita por fonte – Brasil, 2017-2018
 </caption>
 <thead>
 <tr>
-<th style="border-bottom:hidden" colspan="1">
+<th style="empty-cells: hide;border-bottom:hidden;" colspan="1">
 </th>
-<th style="border-bottom:hidden" colspan="1">
+<th style="empty-cells: hide;border-bottom:hidden;" colspan="1">
 </th>
-<th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2">
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2">
 <div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
 IC(95%)
 </div>
@@ -376,24 +377,24 @@ Outras fontes
 </tbody>
 <tfoot>
 <tr>
-<td style="padding: 0; border: 0;" colspan="100%">
+<td style="padding: 0; " colspan="100%">
 <span style="font-weight: bold;">Fonte:</span> <sup></sup> POF 2017-2018. Elaboração própria.
 </td>
 </tr>
 </tfoot>
 </table>
 <p>E o índice de Gini? A Tabela <a href="#tab:tab2">2</a> apresenta as estimativas do índice de Gini da renda total e da renda sem transferências sociais federais. Observe que o intervalo de confiança das duas estimativas se sobrepõem parcialmente. Com a suposição de independência, isso seria evidência de que as transferências sociais governamentais não têm impacto significativo sobre o índice de Gini.</p>
-<table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;">
+<table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;border-bottom: 0;">
 <caption>
 <span id="tab:tab2">Tabela 2: </span>Índice de Gini das rendas familiares per capita por fonte – Brasil, 2017-2018
 </caption>
 <thead>
 <tr>
-<th style="border-bottom:hidden" colspan="1">
+<th style="empty-cells: hide;border-bottom:hidden;" colspan="1">
 </th>
-<th style="border-bottom:hidden" colspan="1">
+<th style="empty-cells: hide;border-bottom:hidden;" colspan="1">
 </th>
-<th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2">
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2">
 <div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
 IC(95%)
 </div>
@@ -446,33 +447,33 @@ Renda Total - Transferências Sociais Federais
 </tbody>
 <tfoot>
 <tr>
-<td style="padding: 0; border: 0;" colspan="100%">
+<td style="padding: 0; " colspan="100%">
 <span style="font-weight: bold;">Fonte:</span> <sup></sup> POF 2017-2018. Elaboração própria.
 </td>
 </tr>
 </tfoot>
 </table>
 <p>Como sabemos, estas estimativas são produzidas sobre a mesma amostra, indicando que a suposição de independência das estimativas é muito improvável. Estimando a matriz de variância-covariância, podemos ter uma estimativa mais adequada da diferença, conforme mostra a Tabela <a href="#tab:tab3">3</a>. Subtraindo a covariância, o erro-padrão da diferença é bem menor, resultando em intervalo de confiança mais estreito. Como este intervalo não “cobre” o valor 0, a diferença é estatisticamente significativa!</p>
-<table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;">
+<table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;border-bottom: 0;">
 <caption>
 <span id="tab:tab3">Tabela 3: </span>Diferença dos Índices de Gini – Brasil, 2017-2018
 </caption>
 <thead>
 <tr>
-<th style="border-bottom:hidden" colspan="1">
+<th style="empty-cells: hide;border-bottom:hidden;" colspan="1">
 </th>
-<th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="4">
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="4">
 <div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
 Diferença
 </div>
 </th>
 </tr>
 <tr>
-<th style="border-bottom:hidden" colspan="1">
+<th style="empty-cells: hide;border-bottom:hidden;" colspan="1">
 </th>
-<th style="border-bottom:hidden" colspan="2">
+<th style="empty-cells: hide;border-bottom:hidden;" colspan="2">
 </th>
-<th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2">
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2">
 <div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
 IC(95%)
 </div>
@@ -534,7 +535,7 @@ Covariância
 </tbody>
 <tfoot>
 <tr>
-<td style="padding: 0; border: 0;" colspan="100%">
+<td style="padding: 0; " colspan="100%">
 <span style="font-weight: bold;">Fonte:</span> <sup></sup> POF 2017-2018. Elaboração própria.
 </td>
 </tr>
@@ -544,17 +545,17 @@ Covariância
 <div id="pós-escrito-decomposição-de-shorrocks1982" class="section level1">
 <h1>Pós-escrito: decomposição de <span class="citation">Shorrocks (1982)</span></h1>
 <p>O Rogério Barbosa me avisou (e me explicou!) sobre outro método, descrito em <span class="citation">Shorrocks (1982)</span>. Li rapidamente artigo e acho que consigo implementar. <span class="citation">Shorrocks (1982)</span> distribui o índice de Gini ponderando por uma função das covariâncias entre a renda total e a parcela de cada fonte. A Tabela <a href="#tab:tab4">4</a> mostra que os resultados são consistentes com o resultado anterior.</p>
-<table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;">
+<table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;border-bottom: 0;">
 <caption>
 <span id="tab:tab4">Tabela 4: </span>Decomposição do Índice de Gini por fonte – Brasil, 2017-2018
 </caption>
 <thead>
 <tr>
-<th style="border-bottom:hidden" colspan="1">
+<th style="empty-cells: hide;border-bottom:hidden;" colspan="1">
 </th>
-<th style="border-bottom:hidden" colspan="1">
+<th style="empty-cells: hide;border-bottom:hidden;" colspan="1">
 </th>
-<th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2">
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2">
 <div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
 IC(95%)
 </div>
@@ -635,7 +636,7 @@ Outras fontes
 </tbody>
 <tfoot>
 <tr>
-<td style="padding: 0; border: 0;" colspan="100%">
+<td style="padding: 0; " colspan="100%">
 <span style="font-weight: bold;">Fonte:</span> <sup></sup> POF 2017-2018. Elaboração própria.
 </td>
 </tr>
@@ -898,6 +899,24 @@ SHORROCKS, A. F. Inequality Decomposition by Factor Components. <strong>Economet
           <div class="media">
             
             <div class="media-body">
+              <a class="link-unstyled" href="https://guilhermejacob.github.io/2021/12/pnadc-raking-bootstrap/">
+                <h3 class="media-heading">Mudanças na PNAD Contínua: Raking e Bootstrap</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Dec 12, 2021
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Recentemente, a PNAD Contínua passou por duas mudanças:
+Mudança de pós-estratificação para raking; Mudança no método de estimação da variância dos estimadores, do Método do Conglomerado Primário para bootstrap.  Mas o que isso significa? E como considerar isso na estimação usando o R? Bom, esse é o tema desse post. Primeiro, vou explicar muito superficialmente o que é raking e porque a mudança no método de calcular variância</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
               <a class="link-unstyled" href="https://guilhermejacob.github.io/2021/07/admdata-hand/">
                 <h3 class="media-heading">Erros em dados administrativos</h3>
               </a>
@@ -1057,23 +1076,6 @@ Algumas medidas de desigualdade atendem o princípio de Pigou-Dalton apenas em a
             <hr>
           </div>
         
-          <div class="media">
-            
-            <div class="media-body">
-              <a class="link-unstyled" href="https://guilhermejacob.github.io/2020/04/sir-markov/">
-                <h3 class="media-heading">Modelos epidemiológicos, amostragem e cadeias de Markov</h3>
-              </a>
-              <span class="media-meta">
-                <span class="media-date text-small">
-                  Apr 4, 2020
-                </span>
-              </span>
-              <div class="media-content hide-xs font-merryweather">É notório que há uma grande subnotificação de casos da COVID-19. Como se pode imaginar, testar as pessoas na porta do hospital enviesaria as amostras. Então, como fazer testagem em massa? Uma estratégia possível seria usar uma amostra aleatória. Usando uma ideia antiga desenvolvida pelo economista estatístico Robert Dorfman (Dorfman, 1943), é possível reduzir os custos da testagem. Por exemplo, em vez de testar imediatamente todas as pessoas de um domicílio, testamos o conjunto de pessoas.</div>
-            </div>
-            <div style="clear:both;"></div>
-            <hr>
-          </div>
-        
       </div>
     </div>
     <div class="modal-footer">
@@ -1081,7 +1083,7 @@ Algumas medidas de desigualdade atendem o princípio de Pigou-Dalton apenas em a
          data-message-zero=""
          data-message-one=""
          data-message-other="">
-         27 posts found
+         28 posts found
       </p>
     </div>
   </div>

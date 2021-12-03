@@ -1,0 +1,718 @@
+
+
+
+  
+
+
+
+
+
+  
+
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Hugo 0.47 with theme Tranquilpeak 0.4.3-BETA">
+    <title>Amostragem</title>
+    <meta name="author" content="Guilherme Jacob">
+    <meta name="keywords" content="">
+
+    <link rel="icon" href="/favicon.png">
+    
+      <link rel="alternate" type="application/rss+xml" title="RSS" href="/categories/amostragem/index.xml">
+    
+
+    
+    <meta name="description" content="Contains trace amounts of mathematics, rants, and terrible jokes.">
+    <meta property="og:description" content="Contains trace amounts of mathematics, rants, and terrible jokes.">
+    <meta property="og:type" content="blog">
+    <meta property="og:title" content="Amostragem">
+    <meta property="og:url" content="/categories/amostragem/">
+    <meta property="og:site_name" content="Something Random">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Something Random">
+    <meta name="twitter:description" content="Contains trace amounts of mathematics, rants, and terrible jokes.">
+    
+    
+
+    
+    
+
+    
+      <meta property="og:image" content="/files/img_2502_recorte.jpg">
+    
+
+    
+    
+    
+
+    
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.css" integrity="sha256-vuXZ9LGmmwtjqFX1F+EKin1ThZMub58gKULUyf0qECk=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU=" crossorigin="anonymous" />
+    
+    
+    <link rel="stylesheet" href="/css/style-jsjn0006wyhpyzivf6yceb31gvpjatbcs3qzjvlumobfnugccvobqwxnnaj8.min.css" />
+    
+    
+
+    
+      
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="1">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="/">Something Random</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="/#about">
+    
+    
+    
+      
+        <img class="header-picture" src="/files/img_2502_recorte.jpg" alt="Foto do autor" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="1">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="/#about">
+          <img class="sidebar-profile-picture" src="/files/img_2502_recorte.jpg" alt="Foto do autor" />
+        </a>
+        <h4 class="sidebar-profile-name">Guilherme Jacob</h4>
+        
+          <h5 class="sidebar-profile-bio">Manauara.<br>Doutorando em População, Território e Estatísticas Públicas (ENCE/IBGE).<br>Bacharel em Direito e Economia.</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://guilhermejacob.github.io/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">Início</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/#about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+      
+      <span class="sidebar-button-desc">Sobre</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">Tags</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+      
+      <span class="sidebar-button-desc">Categorias</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">Arquivo</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/files/cv_english.pdf">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-briefcase"></i>
+      
+      <span class="sidebar-button-desc">CV</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/research">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-code"></i>
+      
+      <span class="sidebar-button-desc">Pesquisa</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="mailto:guilhermejacob91@gmail.com" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-envelope-o"></i>
+      
+      <span class="sidebar-button-desc">Contato</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/guilhermejacob">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="http://stackoverflow.com/users/6419956/guilherme-jacob">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-stack-overflow"></i>
+      
+      <span class="sidebar-button-desc">Stack Overflow</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://www.instagram.com/guilhermejacob9">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-instagram"></i>
+      
+      <span class="sidebar-button-desc">Instagram</span>
+    </a>
+  </li>
+
+
+    </ul>
+  </div>
+</nav>
+
+      
+        
+
+      
+      <div id="main" data-behavior="1"
+        class="
+               hasCoverMetaIn
+               ">
+        
+          <section class="postShorten-group main-content-wrap">
+            
+            
+              
+  
+    
+      
+        
+      
+    
+  
+
+
+  
+
+<article class="postShorten postShorten--thumbnailimg-bottom" itemscope itemType="http://schema.org/BlogPosting">
+  <div class="postShorten-wrap">
+    
+    <div class="postShorten-header">
+      <h1 class="postShorten-title" itemprop="headline">
+        <a class="link-unstyled" href="/2018/04/desigualdade-pobreza-infancia-2017/">
+          PNAD Contínua 2017: extrema pobreza na infância e desigualdade
+        </a>
+      </h1>
+      
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2018-04-24T00:00:00Z">
+        
+  
+  
+  
+  
+    24/04/2018
+  
+
+      </time>
+    
+    
+  
+  
+    <span>em</span>
+    
+      <a class="category-link" href="/categories/amostragem">Amostragem</a>
+    
+  
+
+  </div>
+
+    </div>
+    <div class="postShorten-excerpt" itemprop="articleBody">
+      Atualização (21/12/2019): refiz todas as análises usando a nova definição de renda domiciliar per capita e seu respectivo deflator.
+ Interrompendo o meu hiato de alguns meses, resolvi voltar com uma comparação os dados de renda das PNADCs anuais 2016-2017. No entanto, vamos falar um pouco da desigualdade em geral e, então, partir para uma questão mais específica: pobreza na infância1.
+Mas, antes de tudo, um aviso:
+Todos as estimativas a seguir foram feitas por mim.
+      <p>
+        <a href="/2018/04/desigualdade-pobreza-infancia-2017/" class="postShorten-excerpt_link link">Continuar leitura</a>
+        
+      </p>
+    </div>
+  </div>
+  
+</article>
+
+            
+              
+  
+    
+      
+        
+      
+    
+  
+
+
+  
+
+<article class="postShorten postShorten--thumbnailimg-bottom" itemscope itemType="http://schema.org/BlogPosting">
+  <div class="postShorten-wrap">
+    
+    <div class="postShorten-header">
+      <h1 class="postShorten-title" itemprop="headline">
+        <a class="link-unstyled" href="/2017/12/desigualdade-pobreza-estados-2016/">
+          O que a PNAD Contínua 2016 diz sobre desigualdade e pobreza nos estados?
+        </a>
+      </h1>
+      
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2017-12-03T00:00:00Z">
+        
+  
+  
+  
+  
+    03/12/2017
+  
+
+      </time>
+    
+    
+  
+  
+    <span>em</span>
+    
+      <a class="category-link" href="/categories/amostragem">Amostragem</a>
+    
+  
+
+  </div>
+
+    </div>
+    <div class="postShorten-excerpt" itemprop="articleBody">
+      Atualização (21/12/2019): refiz todas as análises usando a nova definição de renda domiciliar per capita e seu respectivo deflator.
+ Na última quarta (29/11), o IBGE finalmente apresentou as estimativas relativas aos rendimentos de todas as fontes, além de disponibilizar os microdados para os cálculos.
+Ok, mas o que isso quer dizer? Aguardei ansiosamente1 para saber como as coisas irão funcionar com o fim da PNAD anual e introdução da PNAD Contínua.
+      <p>
+        <a href="/2017/12/desigualdade-pobreza-estados-2016/" class="postShorten-excerpt_link link">Continuar leitura</a>
+        
+      </p>
+    </div>
+  </div>
+  
+</article>
+
+            
+              
+  
+    
+      
+        
+      
+    
+  
+
+
+  
+
+<article class="postShorten postShorten--thumbnailimg-bottom" itemscope itemType="http://schema.org/BlogPosting">
+  <div class="postShorten-wrap">
+    
+    <div class="postShorten-header">
+      <h1 class="postShorten-title" itemprop="headline">
+        <a class="link-unstyled" href="/2017/11/amostra-cadunico-r/">
+          Analisando a amostra do Cadastro Único com R
+        </a>
+      </h1>
+      
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2017-11-23T00:00:00Z">
+        
+  
+  
+  
+  
+    23/11/2017
+  
+
+      </time>
+    
+    
+  
+  
+    <span>em</span>
+    
+      <a class="category-link" href="/categories/amostragem">Amostragem</a>
+    
+  
+
+  </div>
+
+    </div>
+    <div class="postShorten-excerpt" itemprop="articleBody">
+      Atualização (04/02/2021): modifiquei o código para 2018 pois os pesos não possuíam o separador decimal e porque o pacote MonetDBLite foi removido do CRAN. Sugiro tomar cuidado com análises sobre 2018.
+ Você sabe o que é o Cadastro Único? Sabe que uma amostra dos microdados está disponível? Sabe que dá pra analisar no R?
+Não? Até uns dias atrás, eu também não.
+Se você tem interesse nessa base de dados, vamos lá!
+      <p>
+        <a href="/2017/11/amostra-cadunico-r/" class="postShorten-excerpt_link link">Continuar leitura</a>
+        
+      </p>
+    </div>
+  </div>
+  
+</article>
+
+            
+            
+  <div class="pagination-bar">
+    <ul class="pagination">
+      
+        
+          <li class="pagination-prev">
+            <a class="btn btn--default btn--small" href="/categories/amostragem/page/2/">
+              <i class="fa fa-angle-left text-base icon-mr"></i>
+              <span>POSTS MAIS NOVOS</span>
+            </a>
+          </li>
+        
+        
+      
+      <li class="pagination-number">página 3 de 3</li>
+    </ul>
+  </div>
+
+
+          </section>
+        
+        <script src="//yihui.name/js/math-code.js"></script>
+<script async
+    src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+<footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2021 Guilherme Jacob. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="/files/img_2502_recorte.jpg" alt="Foto do autor" />
+    
+    <h4 id="about-card-name">Guilherme Jacob</h4>
+    
+      <div id="about-card-bio">Manauara.<br>Doutorando em População, Território e Estatísticas Públicas (ENCE/IBGE).<br>Bacharel em Direito e Economia.</div>
+    
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        Rio de Janeiro, Brasil
+      </div>
+    
+  </div>
+</div>
+
+    <div id="algolia-search-modal" class="modal-container">
+  <div class="modal">
+    <div class="modal-header">
+      <span class="close-button"><i class="fa fa-close"></i></span>
+      <a href="https://algolia.com" target="_blank" rel="noopener" class="searchby-algolia text-color-light link-unstyled">
+        <span class="searchby-algolia-text text-color-light text-small">by</span>
+        <img class="searchby-algolia-logo" src="https://www.algolia.com/static_assets/images/press/downloads/algolia-light.svg">
+      </a>
+      <i class="search-icon fa fa-search"></i>
+      <form id="algolia-search-form">
+        <input type="text" id="algolia-search-input" name="search"
+          class="form-control input--large search-input" placeholder="Pesquisar" />
+      </form>
+    </div>
+    <div class="modal-body">
+      <div class="no-result text-color-light text-center"></div>
+      <div class="results">
+        
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="/2021/12/pnadc-raking-bootstrap/">
+                <h3 class="media-heading">Mudanças na PNAD Contínua: Raking e Bootstrap</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Dec 12, 2021
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Recentemente, a PNAD Contínua passou por duas mudanças:
+Mudança de pós-estratificação para raking; Mudança no método de estimação da variância dos estimadores, do Método do Conglomerado Primário para bootstrap.  Mas o que isso significa? E como considerar isso na estimação usando o R? Bom, esse é o tema desse post. Primeiro, vou explicar muito superficialmente o que é raking e porque a mudança no método de calcular variância</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="/2021/07/ic-anormal/">
+                <h3 class="media-heading">Sobre intervalos de confiança (aparentemente) não-normais</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Jul 7, 2021
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Em geral, quando pensamos na distribuição de um estimador, pensamos em algo parecido com a Figura ?? abaixo, onde a área sombreada corresponde à probabilidade 95%.
+(#fig:norm-plot )Distribuição Normal Padronizada, uma figura familiar.  A variância é um parâmetro relacionado à variabilidade dos valores da distribuição. Qual ela aumenta, a distribuição se torna mais achatada e precisamos de um intervalo maior de \(Z\) para atingir os 95%, conforme mostra a Figura ?</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="/2021/07/admdata-hand/">
+                <h3 class="media-heading">Erros em dados administrativos</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Jul 7, 2021
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Uma reportagem da Folha apontou que 26 mil brasileiros tomaram vacina vencida.
+Como eles descobriram isso? Verificando as datas de validade e de aplicação das doses nos registros do Ministério da Saúde. As prefeituras responderam com diversos argumentos. Um deles é o seguinte: há incorreções na data de aplicação em alguns registros. Uma análise relativamente simples indica que esse dado realmente tem problemas.
+Essa reportagem me lembrou de dois textos que li recentemente.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="/2021/05/dominancia-pobreza-2015-2019/">
+                <h3 class="media-heading">A pobreza aumentou ou diminuiu entre 2015 e 2019?</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  May 5, 2021
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Pergunta rápida: entre 2015 e 2019, a pobreza aumentou ou diminuiu? Se você pergunta de um logicista, a resposta é sim. Se você pergunta de economista, a resposta é depende.
+A medida de pobreza (monetária) mais conhecida é a taxa de pobreza, cuja interpretação é bastante simples: é o percentual de pessoas que cuja renda é inferior ou igual a uma linha de pobreza. Neste caso, precisamos resolver dois pontos: a definição de renda e da linha de pobreza.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="/2021/03/alimentacao-pof/">
+                <h3 class="media-heading">Qual a proporção da alimentação nas despesas dos famílias?</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Mar 3, 2021
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Um dos fatos estilizados sobre orçamentos familiares é que a proporção dos gastos em alimentação diminui conforme a renda. Nos termos da teoria microeconômica, alimentação é um bem inferior. A Tabela 1 apresenta as estimativas da despesa mensal média por tipo de despesa.1
+ Tabela 1: Média das despesas familiares por tipo de despesa – Brasil, 2017-2018     Média   Proporção da Média Geral (x100)       IC(95%)    IC(95%)      Estimativa  Inferior  Superior  Estimativa  Inferior  Superior      Despesa Total  4 649,03  4 504,49  4 793,56  100,0  100,0  100,0    Alimentação  658,23  644,70  671,76  14,2  13,9  14,5    Habitação  1 377,14  1 334,54  1 419,73  29,6  29,2  30,0    Vestuário  160,25  156,05  164,46  3,4  3,4  3,5    Transporte  679,76  652,89  706,62  14,6  14,3  14,9    Higiene e cuidados pessoais  136,82  134,39  139,26  2,9  2,9  3,0    Assistência à saúde  302,06  289,94  314,18  6,5  6,3  6,7    Educação  175,60  163,78  187,42  3,8  3,6  4,0    Recreação e cultura  96,16  91,52  100,81  2,1  2,0  2,1    Fumo  17,40  16,41  18,38  0,4  0,4  0,4    Serviços pessoais  48,55  46,83  50,28  1,0  1,0  1,1    Despesas diversas  112,53  105,46  119,61  2,4  2,3  2,5    Impostos  217,05  200,79  233,30  4,7  4,4  4,9    Contribuições trabalhistas  161,84  154,94  168,73  3,5  3,4  3,6    Serviços bancários  46,23  34,32  58,14  1,0  0,7  1,2    Pensões, mesadas e doações  40,05  37,28  42,81  0,9  0,8  0,9    Previdência privada  11,40  9,60  13,20  0,2  0,2  0,3    Outras  68,80  63,07  74,53  1,5  1,4  1,6    Variação Patrimonial  339,14  305,34  372,95  7,3  6,7  7,9      Fonte:  POF 2017-2018.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="/2021/02/renda-topo/">
+                <h3 class="media-heading">Estimando a linha de riqueza dos 1% mais ricos usando pesquisas amostrais</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Feb 2, 2021
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Nos últimos dias, ocorre uma discussão interessante sobre quem são os “ricos”: o 1% mais rico da população brasileira. Uma das perguntas mais interessantes é a partir de qual renda é considerado rico. Esse número mágico é difícil de estimar usando pesquisas amostrais por três razões principais: não-resposta, erros de medida e erro amostral.
+Existem algumas indicações de que há maior não-resposta entre os domicílios mais ricos. Isso ocorre tanto como não-resposta de unidade, quanto não resposta de item, gerando problemas para a análise destes dados (Yan, Curtin e Jans, 2010).</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="/2021/02/pobreza-loglinear/">
+                <h3 class="media-heading">pobreza-loglinear</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Feb 2, 2021
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"> </div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="/2021/01/fome-pof-2017-2018/">
+                <h3 class="media-heading">(Algumas) Estatísticas sobre fome no Brasil (2017-2018)</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Jan 1, 2021
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">A última Pesquisa de Orçamentos Familliares (POF), realizada em 2017-2018, traz informações muito interessantes sobre consumo e condição de vida das pessoas. Um dos temas mais interessantes que foram investigados são as condições de vida dos domicílios. Neste questionário, podem ser encontradas diversas perguntas, incluindo: percepções sobre o fornecimento de energia de elétrica; violência ou vandalismo na área de residência; presença de insetos, ratos, etc.; se há problemas em estar localizado perto de rio, baía, lago, açude ou represa poluídos; entre outras.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="/2020/09/subregistro-obito/">
+                <h3 class="media-heading">Registro Civil, Ministério da Saúde e Subregistro de óbitos</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Sep 9, 2020
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">TL;DR: subregistro existe, é um problema e as taxas de mortalidade ingênuas estão provavelmente erradas. Mas não são inúteis.
+ Estive fazendo alguns exercícios de demografia e pensando sobre subregistro e o quanto isso é um problema. Resolvi pegar algumas leituras que fiz recentemente e tentar mostrar onde isso aparece.
+Um pouco de história Em alguns países, os registros de nascimentos e mortes é tão bom que você pode calcular as estimativas mortalidade infantil diretamente.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="/2020/08/diferenca-gini/">
+                <h3 class="media-heading">Índice de Gini e transferências sociais federais</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Aug 8, 2020
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Em julho, pensei em estudar uma técnica de decomposição de medidas de desigualdade/pobreza. Procurando as bases de dados, encontrei a a Pesquisa de Orçamentos Familiares (POF) 2017-2018, que tem muita informação interessante. Mas, com 30 dias para escrever um artigo, não achei que teria tempo para entender bem a pesquisa e produzir estimativas adequadas.
+Tirei alguns dias para ler a documentação e comecei a fazer algumas tentativas de análise.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+      </div>
+    </div>
+    <div class="modal-footer">
+      <p class="results-count text-medium"
+         data-message-zero=""
+         data-message-one=""
+         data-message-other="">
+         36 posts found
+      </p>
+    </div>
+  </div>
+</div>
+    
+  
+    
+    <div id="cover" style="background-image:url('/images/manaus.jpg');"></div>
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js" integrity="sha256-GEAnjcTqVP+vBp3SSc8bEDQqvWAZMiHyUSIorrWwH50=" crossorigin="anonymous"></script>
+
+
+<script src="/js/script-qi9wbxp2ya2j6p7wx1i6tgavftewndznf4v0hy2gvivk1rxgc3lm7njqb6bz.min.js"></script>
+
+
+
+
+
+
+    
+  </body>
+</html>
+

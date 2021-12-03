@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Variância on Something Random</title>
+    <link>/tags/vari%C3%A2ncia/</link>
+    <description>Recent content in Variância on Something Random</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>pt-br</language>
+    <lastBuildDate>Thu, 26 Dec 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/vari%C3%A2ncia/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Por que calcular variâncias de estimadores?</title>
+      <link>/2019/12/amostra-complexa-epa/</link>
+      <pubDate>Thu, 26 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/2019/12/amostra-complexa-epa/</guid>
+      <description>Eu ia encerrar com o último texto, mas lembrei de outra coisa. Durante o mestrado, quando alguns colegas trabalhavam com a PNADC, eu sempre comentava que era importante levar o plano amostral em consideração. Diante disso, eles levaram o peso amostral em consideração. No entanto, o plano amostral é mais do que os pesos amostrais!
+Usar os pesos amostrais faz com que suas estimativas não sejam viesadas. Mas, se o plano amostral não for ignorável, as variâncias estarão incorretas.</description>
+    </item>
+    
+    <item>
+      <title>Por que é tão difícil calcular variância de estimadores sob amostragem complexa?</title>
+      <link>/2019/12/varianca-adac/</link>
+      <pubDate>Fri, 20 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/2019/12/varianca-adac/</guid>
+      <description>Já faz algum tempo que passei por essa situação mas acho que vale a pena pensar a respeito.
+Em um fórum de R, uma pessoa pergunta onde está a função pra calcular um determinado número com a PNAD. Eu vou dou uma olhada e vejo que, de fato, a função não existe. Explico para a pessoa que a função não existe porque ninguém escreveu ainda. E me responde: alguém pode fazer isso aí rapidinho?</description>
+    </item>
+    
+  </channel>
+</rss>

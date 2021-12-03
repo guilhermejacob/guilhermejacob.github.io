@@ -278,6 +278,7 @@ A medida de pobreza (monetária) mais conhecida é a taxa de pobreza, cuja inter
             <div class="main-content-wrap">
               <script src="https://guilhermejacob.github.io/rmarkdown-libs/header-attrs/header-attrs.js"></script>
 <script src="https://guilhermejacob.github.io/rmarkdown-libs/kePrint/kePrint.js"></script>
+<link href="https://guilhermejacob.github.io/rmarkdown-libs/lightable/lightable.css" rel="stylesheet" />
 
 
 <p>Pergunta rápida: entre 2015 e 2019, a pobreza aumentou ou diminuiu? <del>Se você pergunta de um logicista, a resposta é sim.</del> Se você pergunta de economista, a resposta é depende.</p>
@@ -312,17 +313,17 @@ A medida de pobreza (monetária) mais conhecida é a taxa de pobreza, cuja inter
 <div id="entre-2015-e-2019-a-pobreza-aumentou-ou-diminui" class="section level1">
 <h1>Entre 2015 e 2019, a pobreza aumentou ou diminui?</h1>
 <p>A resposta dessa pergunta é complicada. A Tabela <a href="#tab:tab1">1</a> apresenta as estimativas da taxa de pobreza de 2015 e 2019 e sua diferença. Como a linha de pobreza é de R$ 500, estas estimativas da taxas de pobreza podem ser vistas como a proporção de pessoas vivendo em domicílios cuja renda domiciliar per capita é menor ou igual a R$ 500 em cada ano. A estimativa de aumento da taxa de pobreza entre 2015 e 2019 é de 0,19%, mas não é estatisticamente significativa ao nível de 95%. Então, não podemos dizer que a pobreza aumentou ou diminuiu no período: há uma boa chance que o aumento estimado pode ser apenas erro amostral.</p>
-<table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;">
+<table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;border-bottom: 0;">
 <caption>
 <span id="tab:tab1">Tabela 1: </span>Taxa de Pobreza (%, Linha de Pobreza R$ 500) - Brasil, 2015 e 2019.
 </caption>
 <thead>
 <tr>
-<th style="border-bottom:hidden" colspan="1">
+<th style="empty-cells: hide;border-bottom:hidden;" colspan="1">
 </th>
-<th style="border-bottom:hidden" colspan="1">
+<th style="empty-cells: hide;border-bottom:hidden;" colspan="1">
 </th>
-<th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2">
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2">
 <div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
 IC (95%)
 </div>
@@ -348,13 +349,13 @@ L. Superior
 2015
 </td>
 <td style="text-align:right;">
-28,64
+29,69
 </td>
 <td style="text-align:right;">
-28,13
+29,16
 </td>
 <td style="text-align:right;">
-29,15
+30,22
 </td>
 </tr>
 <tr>
@@ -362,13 +363,13 @@ L. Superior
 2019
 </td>
 <td style="text-align:right;">
-28,83
+30,08
 </td>
 <td style="text-align:right;">
-28,31
+29,54
 </td>
 <td style="text-align:right;">
-29,35
+30,62
 </td>
 </tr>
 <tr>
@@ -376,41 +377,41 @@ L. Superior
 Diferença
 </td>
 <td style="text-align:right;font-style: italic;">
-0,20
+0,39
 </td>
 <td style="text-align:right;font-style: italic;">
--0,51
+-0,35
 </td>
 <td style="text-align:right;font-style: italic;">
-0,90
+1,12
 </td>
 </tr>
 </tbody>
 <tfoot>
 <tr>
-<td style="padding: 0; border: 0;" colspan="100%">
+<td style="padding: 0; " colspan="100%">
 <span style="font-weight: bold;">Fonte:</span> <sup></sup> PNAD Contínua 2015 e 2019, Microdados.
 </td>
 </tr>
 <tr>
-<td style="padding: 0; border: 0;" colspan="100%">
+<td style="padding: 0; " colspan="100%">
 <span style="font-weight: bold;">Nota:</span> <sup>1</sup> Rendimento domiciliar per capita em valores médios de 2019.
 </td>
 </tr>
 </tfoot>
 </table>
 <p>E quanto à pobreza extrema? A Tabela <a href="#tab:tab2">2</a> apresenta as estimativas da taxa de pobreza de 2015 e 2019 e sua diferença, considerando uma linha de pobreza de R$ 100. Nesse caso, a estimativa da taxa de pobreza extrema foi de 2,15% em 2015 para 3,43% em 2019. O aumento estimado neste intervalo é de 1,28%, sendo estatisticamente diferente de zero.<a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a></p>
-<table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;">
+<table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;border-bottom: 0;">
 <caption>
 <span id="tab:tab2">Tabela 2: </span>Taxa de Pobreza (%, Linha de Pobreza R$ 100) - Brasil, 2015 e 2019.
 </caption>
 <thead>
 <tr>
-<th style="border-bottom:hidden" colspan="1">
+<th style="empty-cells: hide;border-bottom:hidden;" colspan="1">
 </th>
-<th style="border-bottom:hidden" colspan="1">
+<th style="empty-cells: hide;border-bottom:hidden;" colspan="1">
 </th>
-<th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2">
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2">
 <div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
 IC (95%)
 </div>
@@ -436,13 +437,13 @@ L. Superior
 2015
 </td>
 <td style="text-align:right;">
-2,15
+2,24
 </td>
 <td style="text-align:right;">
-2,04
+2,12
 </td>
 <td style="text-align:right;">
-2,26
+2,36
 </td>
 </tr>
 <tr>
@@ -450,13 +451,13 @@ L. Superior
 2019
 </td>
 <td style="text-align:right;">
+3,59
+</td>
+<td style="text-align:right;">
 3,43
 </td>
 <td style="text-align:right;">
-3,28
-</td>
-<td style="text-align:right;">
-3,58
+3,75
 </td>
 </tr>
 <tr>
@@ -464,24 +465,24 @@ L. Superior
 Diferença
 </td>
 <td style="text-align:right;font-style: italic;">
-1,28
+1,35
 </td>
 <td style="text-align:right;font-style: italic;">
-1,09
+1,15
 </td>
 <td style="text-align:right;font-style: italic;">
-1,46
+1,55
 </td>
 </tr>
 </tbody>
 <tfoot>
 <tr>
-<td style="padding: 0; border: 0;" colspan="100%">
+<td style="padding: 0; " colspan="100%">
 <span style="font-weight: bold;">Fonte:</span> <sup></sup> PNAD Contínua 2015 e 2019, Microdados.
 </td>
 </tr>
 <tr>
-<td style="padding: 0; border: 0;" colspan="100%">
+<td style="padding: 0; " colspan="100%">
 <span style="font-weight: bold;">Nota:</span> <sup>1</sup> Rendimento domiciliar per capita em valores médios de 2019.
 </td>
 </tr>
@@ -745,6 +746,24 @@ Figura 1: Funções de Distribuição Acumulada da renda domiciliar per capita -
           <div class="media">
             
             <div class="media-body">
+              <a class="link-unstyled" href="https://guilhermejacob.github.io/2021/12/pnadc-raking-bootstrap/">
+                <h3 class="media-heading">Mudanças na PNAD Contínua: Raking e Bootstrap</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Dec 12, 2021
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Recentemente, a PNAD Contínua passou por duas mudanças:
+Mudança de pós-estratificação para raking; Mudança no método de estimação da variância dos estimadores, do Método do Conglomerado Primário para bootstrap.  Mas o que isso significa? E como considerar isso na estimação usando o R? Bom, esse é o tema desse post. Primeiro, vou explicar muito superficialmente o que é raking e porque a mudança no método de calcular variância</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
               <a class="link-unstyled" href="https://guilhermejacob.github.io/2021/07/admdata-hand/">
                 <h3 class="media-heading">Erros em dados administrativos</h3>
               </a>
@@ -904,23 +923,6 @@ Algumas medidas de desigualdade atendem o princípio de Pigou-Dalton apenas em a
             <hr>
           </div>
         
-          <div class="media">
-            
-            <div class="media-body">
-              <a class="link-unstyled" href="https://guilhermejacob.github.io/2020/04/sir-markov/">
-                <h3 class="media-heading">Modelos epidemiológicos, amostragem e cadeias de Markov</h3>
-              </a>
-              <span class="media-meta">
-                <span class="media-date text-small">
-                  Apr 4, 2020
-                </span>
-              </span>
-              <div class="media-content hide-xs font-merryweather">É notório que há uma grande subnotificação de casos da COVID-19. Como se pode imaginar, testar as pessoas na porta do hospital enviesaria as amostras. Então, como fazer testagem em massa? Uma estratégia possível seria usar uma amostra aleatória. Usando uma ideia antiga desenvolvida pelo economista estatístico Robert Dorfman (Dorfman, 1943), é possível reduzir os custos da testagem. Por exemplo, em vez de testar imediatamente todas as pessoas de um domicílio, testamos o conjunto de pessoas.</div>
-            </div>
-            <div style="clear:both;"></div>
-            <hr>
-          </div>
-        
       </div>
     </div>
     <div class="modal-footer">
@@ -928,7 +930,7 @@ Algumas medidas de desigualdade atendem o princípio de Pigou-Dalton apenas em a
          data-message-zero=""
          data-message-one=""
          data-message-other="">
-         27 posts found
+         28 posts found
       </p>
     </div>
   </div>

@@ -281,6 +281,7 @@ Ok, mas o que isso quer dizer? Aguardei ansiosamente1 para saber como as coisas 
             <div class="main-content-wrap">
               <script src="https://guilhermejacob.github.io/rmarkdown-libs/header-attrs/header-attrs.js"></script>
 <script src="https://guilhermejacob.github.io/rmarkdown-libs/kePrint/kePrint.js"></script>
+<link href="https://guilhermejacob.github.io/rmarkdown-libs/lightable/lightable.css" rel="stylesheet" />
 
 
 
@@ -353,7 +354,7 @@ FGT_{2}= \frac{FGT_1^2}{FGT_0} \cdot \bigg( 1 + 2 \cdot GEI_{2}^{*} \bigg) \text
 <p>Vejamos os resultados dos estados brasileiros.
 <img src="https://guilhermejacob.github.io/post/2017-12-01-desigualdade-pobreza-brasil-2016_files/figure-html/fgt2_plot-1.png" width="672" /></p>
 <p>De novo, Maranhão é o primeiro do ranking. Porém, o Amazonas se distancia bastante agora. O que isso quer dizer? Talvez a decomposição do índice pode nos ajudar a entender as diferenças nas estimativas do FGT(2) entre as populações.</p>
-<table>
+<table style="NAborder-bottom: 0;">
 <caption>
 (#tab:tab_fgt)Decomposição do Hiato Quadrático de Pobreza, 2016.
 </caption>
@@ -856,12 +857,12 @@ Mato Grosso do Sul
 </tbody>
 <tfoot>
 <tr>
-<td style="padding: 0; border: 0;" colspan="100%">
+<td style="padding: 0; " colspan="100%">
 <span style="font-style: italic;">Fonte:</span>
 </td>
 </tr>
 <tr>
-<td style="padding: 0; border: 0;" colspan="100%">
+<td style="padding: 0; " colspan="100%">
 <sup></sup> PNAD Contínua 2016, 1ª entrevista. Microdados.
 </td>
 </tr>
@@ -1132,6 +1133,24 @@ Nesse vídeo, Bruna Caram e Marina de la Riva interpretam <em>Bloco do Prazer</e
           <div class="media">
             
             <div class="media-body">
+              <a class="link-unstyled" href="https://guilhermejacob.github.io/2021/12/pnadc-raking-bootstrap/">
+                <h3 class="media-heading">Mudanças na PNAD Contínua: Raking e Bootstrap</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Dec 12, 2021
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Recentemente, a PNAD Contínua passou por duas mudanças:
+Mudança de pós-estratificação para raking; Mudança no método de estimação da variância dos estimadores, do Método do Conglomerado Primário para bootstrap.  Mas o que isso significa? E como considerar isso na estimação usando o R? Bom, esse é o tema desse post. Primeiro, vou explicar muito superficialmente o que é raking e porque a mudança no método de calcular variância</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
               <a class="link-unstyled" href="https://guilhermejacob.github.io/2021/07/admdata-hand/">
                 <h3 class="media-heading">Erros em dados administrativos</h3>
               </a>
@@ -1291,23 +1310,6 @@ Algumas medidas de desigualdade atendem o princípio de Pigou-Dalton apenas em a
             <hr>
           </div>
         
-          <div class="media">
-            
-            <div class="media-body">
-              <a class="link-unstyled" href="https://guilhermejacob.github.io/2020/04/sir-markov/">
-                <h3 class="media-heading">Modelos epidemiológicos, amostragem e cadeias de Markov</h3>
-              </a>
-              <span class="media-meta">
-                <span class="media-date text-small">
-                  Apr 4, 2020
-                </span>
-              </span>
-              <div class="media-content hide-xs font-merryweather">É notório que há uma grande subnotificação de casos da COVID-19. Como se pode imaginar, testar as pessoas na porta do hospital enviesaria as amostras. Então, como fazer testagem em massa? Uma estratégia possível seria usar uma amostra aleatória. Usando uma ideia antiga desenvolvida pelo economista estatístico Robert Dorfman (Dorfman, 1943), é possível reduzir os custos da testagem. Por exemplo, em vez de testar imediatamente todas as pessoas de um domicílio, testamos o conjunto de pessoas.</div>
-            </div>
-            <div style="clear:both;"></div>
-            <hr>
-          </div>
-        
       </div>
     </div>
     <div class="modal-footer">
@@ -1315,7 +1317,7 @@ Algumas medidas de desigualdade atendem o princípio de Pigou-Dalton apenas em a
          data-message-zero=""
          data-message-one=""
          data-message-other="">
-         27 posts found
+         28 posts found
       </p>
     </div>
   </div>

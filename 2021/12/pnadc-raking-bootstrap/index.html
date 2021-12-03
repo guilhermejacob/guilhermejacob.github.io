@@ -1,0 +1,840 @@
+
+
+  
+    
+  
+
+
+  
+
+
+
+
+
+  
+
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Hugo 0.47 with theme Tranquilpeak 0.4.3-BETA">
+    <title>Mudanças na PNAD Contínua: Raking e Bootstrap</title>
+    <meta name="author" content="Guilherme Jacob">
+    <meta name="keywords" content="">
+
+    <link rel="icon" href="https://guilhermejacob.github.io/favicon.png">
+    
+
+    
+    <meta name="description" content="Recentemente, a PNAD Contínua passou por duas mudanças:
+Mudança de pós-estratificação para raking; Mudança no método de estimação da variância dos estimadores, do Método do Conglomerado Primário para bootstrap.  Mas o que isso significa? E como considerar isso na estimação usando o R? Bom, esse é o tema desse post. Primeiro, vou explicar muito superficialmente o que é raking e porque a mudança no método de calcular variância">
+    <meta property="og:description" content="Recentemente, a PNAD Contínua passou por duas mudanças:
+Mudança de pós-estratificação para raking; Mudança no método de estimação da variância dos estimadores, do Método do Conglomerado Primário para bootstrap.  Mas o que isso significa? E como considerar isso na estimação usando o R? Bom, esse é o tema desse post. Primeiro, vou explicar muito superficialmente o que é raking e porque a mudança no método de calcular variância">
+    <meta property="og:type" content="blog">
+    <meta property="og:title" content="Mudanças na PNAD Contínua: Raking e Bootstrap">
+    <meta property="og:url" content="/2021/12/pnadc-raking-bootstrap/">
+    <meta property="og:site_name" content="Something Random">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Something Random">
+    <meta name="twitter:description" content="Recentemente, a PNAD Contínua passou por duas mudanças:
+Mudança de pós-estratificação para raking; Mudança no método de estimação da variância dos estimadores, do Método do Conglomerado Primário para bootstrap.  Mas o que isso significa? E como considerar isso na estimação usando o R? Bom, esse é o tema desse post. Primeiro, vou explicar muito superficialmente o que é raking e porque a mudança no método de calcular variância">
+    
+    
+
+    
+    
+
+    
+      <meta property="og:image" content="https://guilhermejacob.github.io/files/img_2502_recorte.jpg">
+    
+
+    
+    
+    
+
+    
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.css" integrity="sha256-vuXZ9LGmmwtjqFX1F+EKin1ThZMub58gKULUyf0qECk=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU=" crossorigin="anonymous" />
+    
+    
+    <link rel="stylesheet" href="https://guilhermejacob.github.io/css/style-jsjn0006wyhpyzivf6yceb31gvpjatbcs3qzjvlumobfnugccvobqwxnnaj8.min.css" />
+    
+    
+
+    
+      
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="4">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://guilhermejacob.github.io/">Something Random</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://guilhermejacob.github.io/#about">
+    
+    
+    
+      
+        <img class="header-picture" src="https://guilhermejacob.github.io/files/img_2502_recorte.jpg" alt="Foto do autor" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="4">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://guilhermejacob.github.io/#about">
+          <img class="sidebar-profile-picture" src="https://guilhermejacob.github.io/files/img_2502_recorte.jpg" alt="Foto do autor" />
+        </a>
+        <h4 class="sidebar-profile-name">Guilherme Jacob</h4>
+        
+          <h5 class="sidebar-profile-bio">Manauara.<br>Doutorando em População, Território e Estatísticas Públicas (ENCE/IBGE).<br>Bacharel em Direito e Economia.</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://guilhermejacob.github.io/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">Início</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://guilhermejacob.github.io/#about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+      
+      <span class="sidebar-button-desc">Sobre</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://guilhermejacob.github.io/tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">Tags</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://guilhermejacob.github.io/categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+      
+      <span class="sidebar-button-desc">Categorias</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://guilhermejacob.github.io/archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">Arquivo</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://guilhermejacob.github.io/files/cv_english.pdf">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-briefcase"></i>
+      
+      <span class="sidebar-button-desc">CV</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://guilhermejacob.github.io/research">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-code"></i>
+      
+      <span class="sidebar-button-desc">Pesquisa</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="mailto:guilhermejacob91@gmail.com" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-envelope-o"></i>
+      
+      <span class="sidebar-button-desc">Contato</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/guilhermejacob" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="http://stackoverflow.com/users/6419956/guilherme-jacob" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-stack-overflow"></i>
+      
+      <span class="sidebar-button-desc">Stack Overflow</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://www.instagram.com/guilhermejacob9" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-instagram"></i>
+      
+      <span class="sidebar-button-desc">Instagram</span>
+    </a>
+  </li>
+
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="4"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title" itemprop="headline">
+      Mudanças na PNAD Contínua: Raking e Bootstrap
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2021-12-01T00:00:00Z">
+        
+  
+  
+  
+  
+    01/12/2021
+  
+
+      </time>
+    
+    
+  </div>
+
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              <script src="https://guilhermejacob.github.io/rmarkdown-libs/header-attrs/header-attrs.js"></script>
+
+
+<p>Recentemente, a PNAD Contínua passou por <a href="https://biblioteca.ibge.gov.br/visualizacao/livros/liv101882.pdf">duas mudanças</a>:</p>
+<ol style="list-style-type: decimal">
+<li>Mudança de pós-estratificação para <em>raking</em>;</li>
+<li>Mudança no método de estimação da variância dos estimadores, do Método do Conglomerado Primário para <em>bootstrap</em>.</li>
+</ol>
+<p>Mas o que isso significa? E como considerar isso na estimação usando o <code>R</code>? Bom, esse é o tema desse post. Primeiro, vou explicar <del>muito superficialmente</del> o que é <em>raking</em> e porque a mudança no método de calcular variância</p>
+<div id="calibração-e-raking" class="section level1">
+<h1>Calibração e <em>raking</em></h1>
+<p>Calibração é o nome de uma classe de métodos <span class="citation">(Deville e Sarndal, 1992; Deville, Sarndal e Sautory, 1993)</span> que, por conseguinte, definem uma classe de estimadores. Estes estimadores incorporam informações adicionais sobre a população. Basicamente, esta classe de métodos procura estabelecer um sistema de ponderação tal que, para uma amostra <span class="math inline">\(S\)</span> extraída de uma população finita <span class="math inline">\(U\)</span> usando um plano amostral <span class="math inline">\(p(S)\)</span>, tenhamos</p>
+<p><span class="math display">\[
+\sum_{k \in S } w_k \mathbf{x}_k = \sum_{ k \in U } \mathbf{x}_k
+\]</span>
+Desta forma, o viés dos totais das variáveis <span class="math inline">\(\mathbf{x}\)</span> são não-viesados (ou com viés pequeno, no caso de raking) e a variância seria 0.</p>
+<p>Existe uma infinidade de maneiras de estabelecer pesos <span class="math inline">\(w_k\)</span> para satisfazer a equação acima. No entanto, é importante lembrar que a nossa amostra <span class="math inline">\(S\)</span> já tem pesos básicos dados pelo inverso da probabilidade de inclusão – i.e., <span class="math inline">\(d_k = 1/ \pi_k\)</span>. Assim, para garantir a ausência de viés, devemos procurar pesos ajustados <span class="math inline">\(w_k\)</span> que estejam o mais próximo possível dos pesos originais <span class="math inline">\(d_k\)</span>.</p>
+<p>A proximidade entre os vetores <span class="math inline">\(w_k\)</span> e <span class="math inline">\(d_k\)</span> é dada por uma pseudo-distância<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> <span class="math inline">\(G_k ( w_k , d_k )\)</span>. O problema em questão é um problema de otimização restrita: encontre os pesos <span class="math inline">\(w_k\)</span>, <span class="math inline">\((k \in S)\)</span> que minimizem <span class="math inline">\(\sum_{k \in S} G_k( w_k , d_k ) / q_k\)</span> sujeito à restrição <span class="math inline">\(\sum_{k \in S } w_k \mathbf{x}_k = \sum_{ k \in U } \mathbf{x}_k\)</span>.</p>
+<p>Quando resolvemos este problema, temos uma amostra que: (1) possui informações coerentes com as informações externas nas variáveis calibradas, (2) reduz a variãncia do estimador de expansão, e (3) reduz o erro de não-resposta e de cobertura.</p>
+<p>Em geral, conhecemos poucos totais populacionais. Vamos pensar em uma tabela com o seguinte formato: nas linhas, temos faixas etárias, enquanto nas colunas temos o sexo. Quando conhecemos os valores dos totais na população para cada célula da tabela, podemos “corrigir” os pesos da amostra usando uma razão entre os totais na população e os totais estimados na amostra. Esta técnica é chamada de <em>pós-estratificação</em>: de certa forma, estamos criando (ou reajustando) estratos após a seleção da amostra.</p>
+<p>Porém, em alguns casos, só conhecemos os totais nas margens desta tabela. O <em>raking</em> funciona neste caso: ajustamos iterativamente as marginais estimadas pela amostra às marginais da população. O problema é que este processo pode levar a pesos extremos, até negativos. É possível estabelecer restrições aos fatores de ajuste para evitar variações extremas. Além disso, em pesquisas domiciliares, costumamos trabalhar com pesos que não variam entre moradores do mesmo domicílio, restrição que também pode ser adicionada ao método.</p>
+<p>Mesmo quando conhecemos muitas variáveis na população, devemos escolher variáveis associadas às variáveis de interesse. Quando as variáveis de calibração estão pouco relacionadas às variáveis de interesse, o método apenas aumenta a variabilidade dos pesos, aumentando a variância dos estimadores. As estimativas, no entanto, permanecem (aproximadamente) não-viesadas.</p>
+<p>Até aqui, vimos que o processo de calibração gera novos pesos. Estes pesos reajustadas são estimadores de calibração, cuja fórmula para estimação de variância é diferente daquela utilizada para o estimador de Horvitz-Thompson. <span class="citation">Nascimento Silva (2004)</span> apresenta maiores detalhes sobre o procedimento e a estimação de variância por linearização. Alternativamente, é possível utilizar estimadores de variância baseados em replicação, como <em>bootstrap</em>.</p>
+</div>
+<div id="bootstrap-raking" class="section level1">
+<h1>Bootstrap + <em>Raking</em></h1>
+<p>A estimação de variância por <em>bootstrap</em> consiste em extrair várias réplicas da amostra obtida utilizando amostragem com reposição. No entanto, a “reamostragem” deve considerar o plano amostral, respeitando a estratificação, conglomeração e probabilidades de inclusão, por exemplo. Além disso, é importante que a fração amostral seja pequena, de modo que se possa aproximar um plano amostral sem reposição por um plano com reposição. Existem variações do <em>bootstrap</em> em amostras complexas, mas o artigo principal é <span class="citation">Rao e Wu (1988)</span>, que explica o método utilizado pelo IBGE.</p>
+<p>Suponha que tenhamos extraído <span class="math inline">\(R\)</span> réplicas da amostra original. Repetimos o procedimento de estimação em cada uma das <span class="math inline">\(R\)</span> réplicas. Por exemplo, no caso de uma média, estimamos a estimativa pontual com o peso final da amostra completa. Repetimos este procedimento <span class="math inline">\(R\)</span> vezes, utilizando as <span class="math inline">\(R\)</span> réplicas. Utilizando a distribuição das réplicas, estimamos a variância. Note que mesmo no caso de um estimador de médias por razão de totais, não há nenhum procedimento de linearização: o <em>bootstrap</em> contorna a necessidade de linearização, evitando o uso de fórmulas mais complicadas.</p>
+<p>Para incorporar o efeito do <em>raking</em>, o procedimento de raking deve ser repetido em cada réplica. Novamente, o uso de fórmulas complicadas é contornado.</p>
+</div>
+<div id="como-fazer-no-r" class="section level1">
+<h1>Como fazer no <code>R</code></h1>
+<p>As divulgações mais recentes do IBGE trazem os pesos finais e os pesos de replicação, todos ajustados segundo pelo <em>raking</em>. As informações do plano amostral também estão presentes na divulgação, permitindo o uso do Método do Conglomerado Primário. Vamos mostrar os dois casos.</p>
+<div id="boostrap" class="section level2">
+<h2>Boostrap</h2>
+<pre class="r"><code># carrega libraries
+library( survey )
+
+### usando os pesos de replicação
+
+# coleta matriz de pesos
+bootweights.cols &lt;- grep( &quot;v1028[0-9]{3}&quot; , colnames( pnadc.df ) , value = TRUE )
+bootweights.mat &lt;- pnadc.df[ , bootweights.cols ]
+bootweights.mat &lt;- as.matrix( bootweights.mat )
+pnadc.df[ , bootweights.cols ] &lt;- NULL
+
+# declarando o plano amostral
+pnadc.boot &lt;- svrepdesign( data = pnadc.df , type = &quot;bootstrap&quot; , weights = ~v1028 , repweights = bootweights.mat )
+
+# estima proporções de ocupados e desocupados no Brasil
+txunemp.boot.br &lt;- svymean( ~factor( vd4002 ) , pnadc.boot , na.rm = TRUE )
+
+# estima proporções de ocupados e desocupados no Amazonas
+txunemp.boot.uf &lt;- svymean( ~factor( vd4002 ) , subset( pnadc.boot , uf == 13 ) , na.rm = TRUE )</code></pre>
+</div>
+<div id="método-dos-conglomerados-primários" class="section level2">
+<h2>Método dos Conglomerados Primários</h2>
+<pre class="r"><code># ajusta formatos
+pnadc.df[ , c( &quot;posest&quot; , &quot;posest_sxi&quot; ) ] &lt;- lapply( pnadc.df[ , c( &quot;posest&quot; , &quot;posest_sxi&quot; ) ] , factor )
+
+# declarando o plano amostral
+pnadc.ucm &lt;- svydesign( ids = ~upa+v1008 , strata = ~estrato , data = pnadc.df , weights = ~v1028 )
+
+# coleta tabela com os totais das marginais na população
+pop.posest &lt;- pnadc.df[ !duplicated( pnadc.df$posest ) , c( &quot;posest&quot; , &quot;v1029&quot; ) ]
+pop.posest_sxi &lt;- pnadc.df[ !duplicated( pnadc.df$posest_sxi ) , c( &quot;posest_sxi&quot; , &quot;v1033&quot; ) ]
+colnames( pop.posest )[2] &lt;-&quot;Freq&quot;
+colnames( pop.posest_sxi )[2] &lt;-&quot;Freq&quot;
+
+# aplica calibração via raking com limites e pesos fixos no domicílio
+pnadc.ucm &lt;- calibrate( pnadc.ucm ,
+                        formula  = list( ~posest , ~posest_sxi ), population = list( pop.posest, pop.posest_sxi ) ,
+                        bounds = c(.2,5) , bounds.const = FALSE ,
+                        calfun = &quot;raking&quot; , aggregate.stage = 2 ,
+                        sparse = TRUE )
+
+# estima proporções de ocupados e desocupados no Brasil
+txunemp.ucm.br &lt;- svymean( ~factor( vd4002 ) , pnadc.ucm , na.rm = TRUE )
+
+# estima proporções de ocupados e desocupados no Amazonas
+txunemp.ucm.uf &lt;- svymean( ~factor( vd4002 ) , subset( pnadc.ucm , uf == 13 ) , na.rm = TRUE )</code></pre>
+</div>
+<div id="comparando-resultados" class="section level2">
+<h2>Comparando resultados</h2>
+<p>É importante lembrar o que muda em relação aos resultados: o métodos de estimação das variâncias. Ou seja: as estimativas das proporções devem ser idênticas, mas as estimativas de variâncias podem diferir<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a>.</p>
+<p>Os resultados para o Brasil são praticamente idênticos:</p>
+<pre class="r"><code>txunemp.boot.br</code></pre>
+<pre><code>##                    mean     SE
+## factor(vd4002)1 0.87359 0.0014
+## factor(vd4002)2 0.12641 0.0014</code></pre>
+<pre class="r"><code>txunemp.ucm.br</code></pre>
+<pre><code>##                    mean     SE
+## factor(vd4002)1 0.87359 0.0014
+## factor(vd4002)2 0.12641 0.0014</code></pre>
+<p>Já os resultados para o Amazonas diferem um pouco nas estimativas dos erros-padrões:</p>
+<pre class="r"><code>txunemp.boot.uf</code></pre>
+<pre><code>##                    mean     SE
+## factor(vd4002)1 0.86553 0.0067
+## factor(vd4002)2 0.13447 0.0067</code></pre>
+<pre class="r"><code>txunemp.ucm.uf</code></pre>
+<pre><code>##                    mean     SE
+## factor(vd4002)1 0.86553 0.0072
+## factor(vd4002)2 0.13447 0.0072</code></pre>
+</div>
+</div>
+<div id="referências" class="section level1 unnumbered">
+<h1>Referências</h1>
+<div id="refs" class="references csl-bib-body">
+<div id="ref-deville1992" class="csl-entry">
+DEVILLE, J.-C.; SARNDAL, C.-E. Calibration Estimators in Survey Sampling. <strong>Journal of the American Statistical Association</strong>, v. 87, n. 418, p. 376–382, 1992.
+</div>
+<div id="ref-deville1993" class="csl-entry">
+DEVILLE, J.-C.; SARNDAL, C.-E.; SAUTORY, O. Generalized Raking Procedures in Survey Sampling. <strong>Journal of the American Statistical Association</strong>, v. 88, n. 423, p. 1013–1020, 1993.
+</div>
+<div id="ref-silva2004" class="csl-entry">
+NASCIMENTO SILVA, P. L. <strong>Calibration Estimation: When and Why,How Much and How</strong>: Textos para discussão. Rio de Janeiro: IBGE, Diretoria de Pesquisas, 2004. Disponível em: &lt;<a href="https://biblioteca.ibge.gov.br/visualizacao/livros/liv66414.pdf">https://biblioteca.ibge.gov.br/visualizacao/livros/liv66414.pdf</a>&gt;.
+</div>
+<div id="ref-rao1988" class="csl-entry">
+RAO, J. N. K.; WU, C. F. J. Resampling Inference With Complex Survey Data. <strong>Journal of the American Statistical Association</strong>, v. 83, n. 401, p. 231–241, 1988.
+</div>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>As propriedades de simetria e desigualdade triangular, que definem distâncias, podem ser desnecessárias neste caso.<a href="#fnref1" class="footnote-back">↩︎</a></p></li>
+<li id="fn2"><p>Mas não muito, afinal os métodos tentam estimar a mesma quantidade<a href="#fnref2" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+            
+            
+  <div class="post-actions-wrap">
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">PRÓXIMO</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://guilhermejacob.github.io/2021/07/admdata-hand/" data-tooltip="Erros em dados administrativos">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">ANTERIOR</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://guilhermejacob.github.io/2021/12/pnadc-raking-bootstrap/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://guilhermejacob.github.io/2021/12/pnadc-raking-bootstrap/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://guilhermejacob.github.io/2021/12/pnadc-raking-bootstrap/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+
+            
+              
+            
+          </div>
+        </article>
+        <script src="//yihui.name/js/math-code.js"></script>
+<script async
+    src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+<footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2021 Guilherme Jacob. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+        
+  <div class="post-actions-wrap">
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">PRÓXIMO</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://guilhermejacob.github.io/2021/07/admdata-hand/" data-tooltip="Erros em dados administrativos">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">ANTERIOR</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://guilhermejacob.github.io/2021/12/pnadc-raking-bootstrap/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://guilhermejacob.github.io/2021/12/pnadc-raking-bootstrap/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://guilhermejacob.github.io/2021/12/pnadc-raking-bootstrap/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="4">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fguilhermejacob.github.io%2F2021%2F12%2Fpnadc-raking-bootstrap%2F">
+          <i class="fa fa-facebook-official"></i><span>Compartilhar no Facebook</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Fguilhermejacob.github.io%2F2021%2F12%2Fpnadc-raking-bootstrap%2F">
+          <i class="fa fa-twitter"></i><span>Compartilhar no Twitter</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https%3A%2F%2Fguilhermejacob.github.io%2F2021%2F12%2Fpnadc-raking-bootstrap%2F">
+          <i class="fa fa-google-plus"></i><span>Compartilhar no Google&#43;</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://guilhermejacob.github.io/files/img_2502_recorte.jpg" alt="Foto do autor" />
+    
+    <h4 id="about-card-name">Guilherme Jacob</h4>
+    
+      <div id="about-card-bio">Manauara.<br>Doutorando em População, Território e Estatísticas Públicas (ENCE/IBGE).<br>Bacharel em Direito e Economia.</div>
+    
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        Rio de Janeiro, Brasil
+      </div>
+    
+  </div>
+</div>
+
+    <div id="algolia-search-modal" class="modal-container">
+  <div class="modal">
+    <div class="modal-header">
+      <span class="close-button"><i class="fa fa-close"></i></span>
+      <a href="https://algolia.com" target="_blank" rel="noopener" class="searchby-algolia text-color-light link-unstyled">
+        <span class="searchby-algolia-text text-color-light text-small">by</span>
+        <img class="searchby-algolia-logo" src="https://www.algolia.com/static_assets/images/press/downloads/algolia-light.svg">
+      </a>
+      <i class="search-icon fa fa-search"></i>
+      <form id="algolia-search-form">
+        <input type="text" id="algolia-search-input" name="search"
+          class="form-control input--large search-input" placeholder="Pesquisar" />
+      </form>
+    </div>
+    <div class="modal-body">
+      <div class="no-result text-color-light text-center"></div>
+      <div class="results">
+        
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://guilhermejacob.github.io/2021/12/pnadc-raking-bootstrap/">
+                <h3 class="media-heading">Mudanças na PNAD Contínua: Raking e Bootstrap</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Dec 12, 2021
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Recentemente, a PNAD Contínua passou por duas mudanças:
+Mudança de pós-estratificação para raking; Mudança no método de estimação da variância dos estimadores, do Método do Conglomerado Primário para bootstrap.  Mas o que isso significa? E como considerar isso na estimação usando o R? Bom, esse é o tema desse post. Primeiro, vou explicar muito superficialmente o que é raking e porque a mudança no método de calcular variância</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://guilhermejacob.github.io/2021/07/admdata-hand/">
+                <h3 class="media-heading">Erros em dados administrativos</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Jul 7, 2021
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Uma reportagem da Folha apontou que 26 mil brasileiros tomaram vacina vencida.
+Como eles descobriram isso? Verificando as datas de validade e de aplicação das doses nos registros do Ministério da Saúde. As prefeituras responderam com diversos argumentos. Um deles é o seguinte: há incorreções na data de aplicação em alguns registros. Uma análise relativamente simples indica que esse dado realmente tem problemas.
+Essa reportagem me lembrou de dois textos que li recentemente.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://guilhermejacob.github.io/2021/05/dominancia-pobreza-2015-2019/">
+                <h3 class="media-heading">A pobreza aumentou ou diminuiu entre 2015 e 2019?</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  May 5, 2021
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Pergunta rápida: entre 2015 e 2019, a pobreza aumentou ou diminuiu? Se você pergunta de um logicista, a resposta é sim. Se você pergunta de economista, a resposta é depende.
+A medida de pobreza (monetária) mais conhecida é a taxa de pobreza, cuja interpretação é bastante simples: é o percentual de pessoas que cuja renda é inferior ou igual a uma linha de pobreza. Neste caso, precisamos resolver dois pontos: a definição de renda e da linha de pobreza.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://guilhermejacob.github.io/2021/01/fome-pof-2017-2018/">
+                <h3 class="media-heading">(Algumas) Estatísticas sobre fome no Brasil (2017-2018)</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Jan 1, 2021
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">A última Pesquisa de Orçamentos Familliares (POF), realizada em 2017-2018, traz informações muito interessantes sobre consumo e condição de vida das pessoas. Um dos temas mais interessantes que foram investigados são as condições de vida dos domicílios. Neste questionário, podem ser encontradas diversas perguntas, incluindo: percepções sobre o fornecimento de energia de elétrica; violência ou vandalismo na área de residência; presença de insetos, ratos, etc.; se há problemas em estar localizado perto de rio, baía, lago, açude ou represa poluídos; entre outras.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://guilhermejacob.github.io/2020/09/subregistro-obito/">
+                <h3 class="media-heading">Registro Civil, Ministério da Saúde e Subregistro de óbitos</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Sep 9, 2020
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">TL;DR: subregistro existe, é um problema e as taxas de mortalidade ingênuas estão provavelmente erradas. Mas não são inúteis.
+ Estive fazendo alguns exercícios de demografia e pensando sobre subregistro e o quanto isso é um problema. Resolvi pegar algumas leituras que fiz recentemente e tentar mostrar onde isso aparece.
+Um pouco de história Em alguns países, os registros de nascimentos e mortes é tão bom que você pode calcular as estimativas mortalidade infantil diretamente.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://guilhermejacob.github.io/2020/08/diferenca-gini/">
+                <h3 class="media-heading">Índice de Gini e transferências sociais federais</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Aug 8, 2020
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Em julho, pensei em estudar uma técnica de decomposição de medidas de desigualdade/pobreza. Procurando as bases de dados, encontrei a a Pesquisa de Orçamentos Familiares (POF) 2017-2018, que tem muita informação interessante. Mas, com 30 dias para escrever um artigo, não achei que teria tempo para entender bem a pesquisa e produzir estimativas adequadas.
+Tirei alguns dias para ler a documentação e comecei a fazer algumas tentativas de análise.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://guilhermejacob.github.io/2020/08/educacao-padronizacao/">
+                <h3 class="media-heading">Estrutura etária e anos de estudo</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Aug 8, 2020
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Ao estudar algumas características de populações distintas, outras características podem influenciar indiretamente na análise. Por exemplo, ao ver a taxa de mortalidade bruta (TBM) da Itália e comparar com a mesma taxa do Nordeste pode ser que a primeira seja maior que a segunda. Isso singifica que as condições de vida na Itália são piores que no Nordeste? Não. Acontece que, por causa da estrutura etária, essa comparação não é justa: uma população mais velha tende a apresentar TBM mais alta que outra mais jovem.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://guilhermejacob.github.io/2020/08/polarizacao-desigualdade/">
+                <h3 class="media-heading">Desigualdade e polarização</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Aug 8, 2020
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Há algum tempo atrás, vi uma discussão bem interessante sobre desigualdade e a Grazielle David do podcast É da sua conta! levantou o tema da polarização de renda. Eu já tinha lido um pouco a respeito e tinha até começado a escrever uma apresentação sobre o tema, mas não tinha calculado nada de fato. Deixei anotado para o futuro.
+O momento chegou. Neste post, vou tentar explicar um pouco do que é polarização e como essa abordagem se diferencia da desigualdade.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://guilhermejacob.github.io/2020/06/hammond-srhs/">
+                <h3 class="media-heading">Pigou-Dalton, Hammond e desigualdade em estados de saúde</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Jun 6, 2020
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">O princípio de Pigou-Dalton é uma das ideias mais fundamentais na mensuração de desigualdade em variáveis cardinais. Basicamente, quando determinada quantidade de renda é transferida de alguém pobre para alguém rico (i.e., uma transferência regressiva), a desigualdade aumenta.
+Algumas medidas de desigualdade atendem o princípio de Pigou-Dalton apenas em alguns conjuntos da distribuição de renda: por exemplo, a razão entre as rendas dos 10% mais ricos sobre os 50% mais pobres – i.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://guilhermejacob.github.io/2020/06/variance-sampling/">
+                <h3 class="media-heading">Variance: Population, Sample and Sampling</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Jun 6, 2020
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Population variance, sample variance and sampling variance In finite population sampling context, the term variance can be confusing. One of the most common mistakes is mixing up population variance, sample variance and sampling variance. Some definitions may be helpful:
+ Population variance \(S^2\): describes the variability of a characteristic in the population; Sample variance \(s^2\): describes the variability of a characteristic in the sample and can be used to estimate the population variance; Sampling variance \(Var( \overline{y} )\): describes the variability of estimates; in this case, the sample mean.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+      </div>
+    </div>
+    <div class="modal-footer">
+      <p class="results-count text-medium"
+         data-message-zero=""
+         data-message-one=""
+         data-message-other="">
+         28 posts found
+      </p>
+    </div>
+  </div>
+</div>
+    
+  
+    
+    <div id="cover" style="background-image:url('https://guilhermejacob.github.io/images/manaus.jpg');"></div>
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js" integrity="sha256-GEAnjcTqVP+vBp3SSc8bEDQqvWAZMiHyUSIorrWwH50=" crossorigin="anonymous"></script>
+
+
+<script src="https://guilhermejacob.github.io/js/script-qi9wbxp2ya2j6p7wx1i6tgavftewndznf4v0hy2gvivk1rxgc3lm7njqb6bz.min.js"></script>
+
+
+
+
+  
+    
+  
+
+
+
+    
+  </body>
+</html>
+

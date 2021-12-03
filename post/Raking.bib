@@ -1,0 +1,53 @@
+@TechReport{silva2004,
+  url = {https://biblioteca.ibge.gov.br/visualizacao/livros/liv66414.pdf},
+  year = {2004},
+  organization = {IBGE, Diretoria de Pesquisas},
+  series = {Textos para discussão},
+  number = {15},
+  author = {Pedro Luis {Nascimento Silva}},
+  address = {Rio de Janeiro} ,
+  title = {Calibration Estimation: When and Why,How Much and How}
+}
+
+@article{rao1988,
+ ISSN = {01621459},
+ URL = {http://www.jstor.org/stable/2288945},
+ abstract = {Methods for standard errors and confidence intervals for nonlinear statistics θ̂--such as ratios, regression, and correlation coefficients--have been extensively studied for stratified multistage designs in which the clusters are sampled with replacement, in particular, the important special case of two sampled clusters per stratum. These methods include the customary linearization (or Taylor) method and resampling methods based on the jackknife and balanced repeated replication (BRR). Unlike the jackknife or the BRR, the linearization method is applicable to general sampling designs, but it involves a separate variance formula for each nonlinear statistic, thereby requiring additional programming efforts. Both the jackknife and the BRR use a single variance formula for all nonlinear statistics, but they are more computing-intensive. The resampling methods developed here retain these features of the jackknife and the BRR, yet permit extension to more complex designs involving sampling without replacement. The sampling designs studied include (a) stratified cluster sampling in which the clusters are sampled with replacement, (b) stratified simple random sampling without replacement, (c) unequal probability sampling without replacement, and (d) two-stage cluster sampling with equal probabilities and without replacement. Our proposed resampling methods may be viewed as extensions to complex survey samples of the bootstrap, and in the case of design (c), of the BRR as well. We obtain and study the properties of variance estimators of θ̂ and confidence intervals for the parameter of interest θ, based on the bootstrap histogram of the t statistic. The variance estimators reduce to the standard ones in the special case of linear statistics. These confidence intervals take account of the skewness in the distribution of θ̂, unlike the intervals based on the normal approximation. For case (a), the sampled clusters are resampled in each stratum independently by simple random sampling with replacement, and this procedure is replicated many times. The estimate for each resampled cluster is properly scaled such that the resulting variance estimator of θ̂ reduces to the standard unbiased variance estimator in the linear case. For case (b), the sampled units are resampled in each stratum as in case (a), but a different scaling is used. Different resampling procedures and scalings are employed for case (c). A two-stage resampling procedure is developed for case (d). Results of a simulation study under a stratified simple random design show that the bootstrap intervals track the nomial error rate in each tail better than the intervals based on the normal approximation, but the bootstrap variance estimators are less stable than those based on the linearization or the jackknife.},
+ author = {J. N. K. Rao and C. F. J. Wu},
+ journal = {Journal of the American Statistical Association},
+ number = {401},
+ pages = {231--241},
+ publisher = {[American Statistical Association, Taylor & Francis, Ltd.]},
+ title = {Resampling Inference With Complex Survey Data},
+ volume = {83},
+ year = {1988}
+}
+
+@article{deville1992,
+ ISSN = {01621459},
+ URL = {http://www.jstor.org/stable/2290268},
+ abstract = {This article investigates estimation of finite population totals in the presence of univariate or multivariate auxiliary information. Estimation is equivalent to attaching weights to the survey data. We focus attention on the several weighting systems that can be associated with a given amount of auxiliary information and derive a weighting system with the aid of a distance measure and a set of calibration equations. We briefly mention an application to the case in which the information consists of known marginal counts in a two- or multi-way table, known as generalized raking. The general regression estimator (GREG) was conceived with multivariate auxiliary information in mind. Ordinarily, this estimator is justified by a regression relationship between the study variable y and the auxiliary vector x. But we note that the GREG can be derived by a different route by focusing instead on the weights. The ordinary sampling weights of the kth observation is 1/πk, where πk is the inclusion probability of k. We show that the weights implied by the GREG are as close as possible, according to a given distance measure, to the 1/πk while respecting side conditions called calibration equations. These state that the sample sum of the weighted auxiliary variable values must equal the known population total for that auxiliary variable. That is, the calibrated weights must give perfect estimates when applied to each auxiliary variables and the study variable means that the weights that perform well for the auxiliary variable also should perform well for the study variable. The GREG uses the auxiliary information efficiently, so the estimates are precise; however, the individual weights are not always without reproach. For example, negative weights can occur, and in some applications this does not make sense. It is natural to seek the root of the dissatisfaction in the underlying distance measure. Consequently, we allow alternative distance measures that satisfy only a set of minimal requirements. Each distance measure leads, via the calibration equations, to a specific weighting system and thereby to a new estimator. These estimators form a family of calibration estimators. We show that the GREG is a first approximation to all other members of the family; all are asymptotically equivalent to the GREG, and the variance estimator already known for the GREG is recommended for use in any other member of the family. Numerical features of the weights and ease of computation become more than anything else the bases for choosing between the estimators. The reasoning is applied to calibration on known marginals of a two-way frequency table. Our family of distance measures leads in this case to a family of generalized raking procedures, of which classical raking ratio is one.},
+ author = {Jean-Claude Deville and Carl-Erik Sarndal},
+ journal = {Journal of the American Statistical Association},
+ number = {418},
+ pages = {376--382},
+ publisher = {[American Statistical Association, Taylor & Francis, Ltd.]},
+ title = {Calibration Estimators in Survey Sampling},
+ volume = {87},
+ year = {1992}
+}
+
+@article{deville1993,
+ ISSN = {01621459},
+ URL = {http://www.jstor.org/stable/2290793},
+ abstract = {We propose the name generalized raking for the class of procedures developed in this article, because the classical raking ratio of W. E. Deming is a special case. Generalized raking can be used for estimation in surveys with auxiliary information in the form of known marginal counts in a frequency table in two or more dimensions. An important property of the generalized raking weights is that they reproduce the known marginal counts when applied to the categorical variables that define the frequency table. Our starting point is a class of distance measures and a set of original weights in the form of the standard sampling weights 1/πk, where πk is the inclusion probability of element k. New weights are derived by minimizing the total distance between original weights and new weights. The article makes contributions in three areas: (1) statistical inference conditionally on estimated cell counts, (2) simple calculation of variance estimates for the generalized raking estimators, and (3) presentation of the new computer software CALMAR. Our conditional approach highlights the role played by interaction between the factors that define the frequency table. Absence of interaction implies that generalized raking is as efficient as complete post-stratification. The variance estimates we propose are calculated with the aid of the residuals from the fit of an additive analysis of variance (ANOVA) model. The CALMAR software, recently developed at I.N.S.E.E., is now used in various national surveys for calculating generalized raking weights. We illustrate its use with the aid of data from the 1990 survey of living conditions in France. In this application a table in seven dimensions with known marginal counts is used for generalized raking.},
+ author = {Jean-Claude Deville and Carl-Erik Sarndal and Olivier Sautory},
+ journal = {Journal of the American Statistical Association},
+ number = {423},
+ pages = {1013--1020},
+ publisher = {[American Statistical Association, Taylor & Francis, Ltd.]},
+ title = {Generalized Raking Procedures in Survey Sampling},
+ volume = {88},
+ year = {1993}
+}
+

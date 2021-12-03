@@ -278,6 +278,7 @@
             <div class="main-content-wrap">
               <script src="https://guilhermejacob.github.io/rmarkdown-libs/header-attrs/header-attrs.js"></script>
 <script src="https://guilhermejacob.github.io/rmarkdown-libs/kePrint/kePrint.js"></script>
+<link href="https://guilhermejacob.github.io/rmarkdown-libs/lightable/lightable.css" rel="stylesheet" />
 
 
 
@@ -341,15 +342,15 @@ A análise abaixo utiliza as duas informações como sinônimas. Cuidado com as 
 
 <p><img src="https://guilhermejacob.github.io/post/2018-05-05-temer-desemprego-2018_files/figure-html/series-1.png" width="672" /></p>
 <p>Vamos analisar as séries de desemprego, desalento e subocupação, apresentada na Figura . O desemprego aumentou em relação ao trimestre anterior, subindo de 11.8% para 13.1%. Isso, no entanto, reflete um comportamento sazonal, visível também nos anos anteriores. O desemprego no primeiro trimestre sempre costuma ser maior do que o trimestre imediatamente anterior. De fato, uma comparação mais justa seria com o mesmo trimestre do ano anterior. Neste caso, houve queda: era 13.7% no início de 2017, como vemos na Tabela .</p>
-<table class="table" style="font-size: 10px; width: auto !important; margin-left: auto; margin-right: auto;">
+<table class="table" style="font-size: 10px; width: auto !important; margin-left: auto; margin-right: auto;border-bottom: 0;">
 <caption style="font-size: initial !important;">
 (#tab:season_tab1)Taxa de desemprego, por trimestre - Brasil, 2012/1-2018/1
 </caption>
 <thead>
 <tr>
-<th style="border-bottom:hidden" colspan="1">
+<th style="empty-cells: hide;border-bottom:hidden;" colspan="1">
 </th>
-<th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="4">
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="4">
 <div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
 %
 </div>
@@ -496,7 +497,7 @@ Ano
 </tbody>
 <tfoot>
 <tr>
-<td style="padding: 0; border: 0;" colspan="100%">
+<td style="padding: 0; " colspan="100%">
 <span style="font-style: italic;">Fonte:</span> <sup></sup> PNAD Contínua 2012-2018. Microdados.
 </td>
 </tr>
@@ -506,15 +507,15 @@ Ano
 </ul></li>
 </ul>
 <p>Por outro lado, como mostra a Tabela , o desalento aumentou, chegando ao nível mais alto da série histórica. De 2013/3 a 2017/1, o desalento foi de 1.9% para 3.7%. A princípio, esse aumento não parece ser estatisticamente significativo<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a>, podendo ser atribuído à variabilidade da amostra. Mas, descontando a correlação pela sobreposição de amostras ou usando outros métodos menos conservadores para estimação dos intervalos de confiança, pode ser que essa diferença seja, de fato, estatisticamente significante.</p>
-<table class="table" style="font-size: 10px; width: auto !important; margin-left: auto; margin-right: auto;">
+<table class="table" style="font-size: 10px; width: auto !important; margin-left: auto; margin-right: auto;border-bottom: 0;">
 <caption style="font-size: initial !important;">
 (#tab:season_tab2)Taxa de desalento, por trimestre - Brasil, 2012/1-2018/1
 </caption>
 <thead>
 <tr>
-<th style="border-bottom:hidden" colspan="1">
+<th style="empty-cells: hide;border-bottom:hidden;" colspan="1">
 </th>
-<th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="4">
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="4">
 <div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
 %
 </div>
@@ -661,7 +662,7 @@ Ano
 </tbody>
 <tfoot>
 <tr>
-<td style="padding: 0; border: 0;" colspan="100%">
+<td style="padding: 0; " colspan="100%">
 <span style="font-style: italic;">Fonte:</span> <sup></sup> PNAD Contínua 2012-2018. Microdados.
 </td>
 </tr>
@@ -671,15 +672,15 @@ Ano
 </ul></li>
 </ul>
 <p>Outro recorde é a taxa de subutilização (24.6%). Em relação ao mesmo período do ano anterior, este indicador cresceu 0.6 p.p., conforme Tabela . Assim, aproximadamente 1 em cada 4 pessoas na força de trabalho ampliada se encontra em situação de subutilização, o que lança dúvidas a respeito da “qualidade” da queda do desemprego neste período.</p>
-<table class="table" style="font-size: 10px; width: auto !important; margin-left: auto; margin-right: auto;">
+<table class="table" style="font-size: 10px; width: auto !important; margin-left: auto; margin-right: auto;border-bottom: 0;">
 <caption style="font-size: initial !important;">
 (#tab:season_tab3)Taxa de subutilização da força de trabalho, por trimestre - Brasil, 2012/1-2018/1
 </caption>
 <thead>
 <tr>
-<th style="border-bottom:hidden" colspan="1">
+<th style="empty-cells: hide;border-bottom:hidden;" colspan="1">
 </th>
-<th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="4">
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="4">
 <div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
 %
 </div>
@@ -826,7 +827,7 @@ Ano
 </tbody>
 <tfoot>
 <tr>
-<td style="padding: 0; border: 0;" colspan="100%">
+<td style="padding: 0; " colspan="100%">
 <span style="font-style: italic;">Fonte:</span> <sup></sup> PNAD Contínua 2012-2018. Microdados.
 </td>
 </tr>
@@ -1098,6 +1099,24 @@ Ano
           <div class="media">
             
             <div class="media-body">
+              <a class="link-unstyled" href="https://guilhermejacob.github.io/2021/12/pnadc-raking-bootstrap/">
+                <h3 class="media-heading">Mudanças na PNAD Contínua: Raking e Bootstrap</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Dec 12, 2021
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Recentemente, a PNAD Contínua passou por duas mudanças:
+Mudança de pós-estratificação para raking; Mudança no método de estimação da variância dos estimadores, do Método do Conglomerado Primário para bootstrap.  Mas o que isso significa? E como considerar isso na estimação usando o R? Bom, esse é o tema desse post. Primeiro, vou explicar muito superficialmente o que é raking e porque a mudança no método de calcular variância</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
               <a class="link-unstyled" href="https://guilhermejacob.github.io/2021/07/admdata-hand/">
                 <h3 class="media-heading">Erros em dados administrativos</h3>
               </a>
@@ -1257,23 +1276,6 @@ Algumas medidas de desigualdade atendem o princípio de Pigou-Dalton apenas em a
             <hr>
           </div>
         
-          <div class="media">
-            
-            <div class="media-body">
-              <a class="link-unstyled" href="https://guilhermejacob.github.io/2020/04/sir-markov/">
-                <h3 class="media-heading">Modelos epidemiológicos, amostragem e cadeias de Markov</h3>
-              </a>
-              <span class="media-meta">
-                <span class="media-date text-small">
-                  Apr 4, 2020
-                </span>
-              </span>
-              <div class="media-content hide-xs font-merryweather">É notório que há uma grande subnotificação de casos da COVID-19. Como se pode imaginar, testar as pessoas na porta do hospital enviesaria as amostras. Então, como fazer testagem em massa? Uma estratégia possível seria usar uma amostra aleatória. Usando uma ideia antiga desenvolvida pelo economista estatístico Robert Dorfman (Dorfman, 1943), é possível reduzir os custos da testagem. Por exemplo, em vez de testar imediatamente todas as pessoas de um domicílio, testamos o conjunto de pessoas.</div>
-            </div>
-            <div style="clear:both;"></div>
-            <hr>
-          </div>
-        
       </div>
     </div>
     <div class="modal-footer">
@@ -1281,7 +1283,7 @@ Algumas medidas de desigualdade atendem o princípio de Pigou-Dalton apenas em a
          data-message-zero=""
          data-message-one=""
          data-message-other="">
-         27 posts found
+         28 posts found
       </p>
     </div>
   </div>
