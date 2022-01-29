@@ -334,6 +334,8 @@ pnadc.ucm &lt;- svydesign( ids = ~upa+v1008 , strata = ~estrato , data = pnadc.d
 # coleta tabela com os totais das marginais na população
 pop.posest &lt;- pnadc.df[ !duplicated( pnadc.df$posest ) , c( &quot;posest&quot; , &quot;v1029&quot; ) ]
 pop.posest_sxi &lt;- pnadc.df[ !duplicated( pnadc.df$posest_sxi ) , c( &quot;posest_sxi&quot; , &quot;v1033&quot; ) ]
+pop.posest &lt;- pop.posest[ order( pop.posest$posest ) , ]
+pop.posest_sxi &lt;- pop.posest_sxi[ order( pop.posest_sxi$posest_sxi ) , ]
 colnames( pop.posest )[2] &lt;-&quot;Freq&quot;
 colnames( pop.posest_sxi )[2] &lt;-&quot;Freq&quot;
 
@@ -479,7 +481,7 @@ RAO, J. N. K.; WU, C. F. J. Resampling Inference With Complex Survey Data. <stro
     </script>
 <footer id="footer" class="main-content-wrap">
   <span class="copyrights">
-    &copy; 2021 Guilherme Jacob. All Rights Reserved
+    &copy; 2022 Guilherme Jacob. All Rights Reserved
   </span>
 </footer>
 
