@@ -138,7 +138,7 @@ Hoje, eu não quero fazer gráficos ou tabelas. Eu não quero falar de curvas qu
       <guid>https://guilhermejacob.github.io/2020/04/taylor-maclaurin-taxa/</guid>
       <description>Esse post vai fugir um pouco do usual. Não vamos fazer análise de dados, nem escrever código. Vamos ter algumas equações e gráficos, mas nada muito complicado. Vamos tentar responder duas perguntas:
  Tenho uma série de crescimento do PIB nos trimestres de um ano. O crescimento acumulado no período é igual à soma das taxas de crescimento?
-  Tenho valores de inflação e taxa de juros nominal.</description>
+  Tenho valores de inflação e taxa de juros nominal. A taxa de juros real é igual à taxa de juros nominal menos a inflação?</description>
     </item>
     
     <item>
@@ -295,7 +295,7 @@ Se você tem interesse nessa base de dados, vamos lá!</description>
       <pubDate>Tue, 21 Nov 2017 00:00:00 +0000</pubDate>
       
       <guid>https://guilhermejacob.github.io/2017/11/birth-registration-map/</guid>
-      <description> Esse post é um pequeno follow-up da discussão sobre mapas de densidade de pontos, mas com um pouco mais de diretos da infância e adolescência. Vamos analisar como se distribuem espacialmente as crianças com e sem registro de nascimento, usando dados dos agregados de setores censitários do Censo 2010.
+      <description>Esse post é um pequeno follow-up da discussão sobre mapas de densidade de pontos, mas com um pouco mais de diretos da infância e adolescência. Vamos analisar como se distribuem espacialmente as crianças com e sem registro de nascimento, usando dados dos agregados de setores censitários do Censo 2010.
 Dessa vez, vamos focar em 4 capitais: Belém, Manaus , Fortaleza e São Luís.
 Sem mais conversa, prossigamos.
 Belém  Manaus  Fortaleza  São Luís  </description>
