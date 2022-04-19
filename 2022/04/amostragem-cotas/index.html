@@ -20,29 +20,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="Hugo 0.47 with theme Tranquilpeak 0.4.3-BETA">
-    <title>O que a PNAD Contínua 2016 diz sobre desigualdade e pobreza nos estados?</title>
+    <title>Amostragem por Cotas</title>
     <meta name="author" content="Guilherme Jacob">
-    <meta name="keywords" content="">
+    <meta name="keywords" content="amostragem">
 
     <link rel="icon" href="https://guilhermejacob.github.io/favicon.png">
     
 
     
-    <meta name="description" content="Atualização (21/12/2019): refiz todas as análises usando a nova definição de renda domiciliar per capita e seu respectivo deflator.
- Na última quarta (29/11), o IBGE finalmente apresentou as estimativas relativas aos rendimentos de todas as fontes, além de disponibilizar os microdados para os cálculos.
-Ok, mas o que isso quer dizer? Aguardei ansiosamente1 para saber como as coisas irão funcionar com o fim da PNAD anual e introdução da PNAD Contínua.">
-    <meta property="og:description" content="Atualização (21/12/2019): refiz todas as análises usando a nova definição de renda domiciliar per capita e seu respectivo deflator.
- Na última quarta (29/11), o IBGE finalmente apresentou as estimativas relativas aos rendimentos de todas as fontes, além de disponibilizar os microdados para os cálculos.
-Ok, mas o que isso quer dizer? Aguardei ansiosamente1 para saber como as coisas irão funcionar com o fim da PNAD anual e introdução da PNAD Contínua.">
+    <meta name="description" content="Ontem, eu estava vendo stories no Instagram e me deparei com uma aula com as palavras “Amostragem por cotas e pós-estratificação”. Isso me lembrou de um comentário que fiz na aula de amostragem da semana passada: se você não tem uma amostragem probabilística, sua inferência necessariamente se baseia em um modelo, seja ele sobre o modo como a amostra foi selecionada ou sobre o comportamento da variável na população.
+Deville (1991) discutiu esse tema com muito cuidado, sugerindo onde o método pode ser útil e porque ele não deveria ser usado em estatísticas oficiais.">
+    <meta property="og:description" content="Ontem, eu estava vendo stories no Instagram e me deparei com uma aula com as palavras “Amostragem por cotas e pós-estratificação”. Isso me lembrou de um comentário que fiz na aula de amostragem da semana passada: se você não tem uma amostragem probabilística, sua inferência necessariamente se baseia em um modelo, seja ele sobre o modo como a amostra foi selecionada ou sobre o comportamento da variável na população.
+Deville (1991) discutiu esse tema com muito cuidado, sugerindo onde o método pode ser útil e porque ele não deveria ser usado em estatísticas oficiais.">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="O que a PNAD Contínua 2016 diz sobre desigualdade e pobreza nos estados?">
-    <meta property="og:url" content="/2017/12/desigualdade-pobreza-estados-2016/">
+    <meta property="og:title" content="Amostragem por Cotas">
+    <meta property="og:url" content="/2022/04/amostragem-cotas/">
     <meta property="og:site_name" content="Something Random">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Something Random">
-    <meta name="twitter:description" content="Atualização (21/12/2019): refiz todas as análises usando a nova definição de renda domiciliar per capita e seu respectivo deflator.
- Na última quarta (29/11), o IBGE finalmente apresentou as estimativas relativas aos rendimentos de todas as fontes, além de disponibilizar os microdados para os cálculos.
-Ok, mas o que isso quer dizer? Aguardei ansiosamente1 para saber como as coisas irão funcionar com o fim da PNAD anual e introdução da PNAD Contínua.">
+    <meta name="twitter:description" content="Ontem, eu estava vendo stories no Instagram e me deparei com uma aula com as palavras “Amostragem por cotas e pós-estratificação”. Isso me lembrou de um comentário que fiz na aula de amostragem da semana passada: se você não tem uma amostragem probabilística, sua inferência necessariamente se baseia em um modelo, seja ele sobre o modo como a amostra foi selecionada ou sobre o comportamento da variável na população.
+Deville (1991) discutiu esse tema com muito cuidado, sugerindo onde o método pode ser útil e porque ele não deveria ser usado em estatísticas oficiais.">
     
     
 
@@ -247,19 +244,19 @@ Ok, mas o que isso quer dizer? Aguardei ansiosamente1 para saber como as coisas 
             <div class="post-header main-content-wrap text-left">
   
     <h1 class="post-title" itemprop="headline">
-      O que a PNAD Contínua 2016 diz sobre desigualdade e pobreza nos estados?
+      Amostragem por Cotas
     </h1>
   
   
   <div class="postShorten-meta post-meta">
     
-      <time itemprop="datePublished" datetime="2017-12-03T00:00:00Z">
+      <time itemprop="datePublished" datetime="2022-04-19T00:00:00Z">
         
   
   
   
   
-    03/12/2017
+    19/04/2022
   
 
       </time>
@@ -268,6 +265,8 @@ Ok, mas o que isso quer dizer? Aguardei ansiosamente1 para saber como as coisas 
   
   
     <span>em</span>
+    
+      <a class="category-link" href="https://guilhermejacob.github.io/categories/teoria">Teoria</a>, 
     
       <a class="category-link" href="https://guilhermejacob.github.io/categories/amostragem">Amostragem</a>
     
@@ -279,619 +278,110 @@ Ok, mas o que isso quer dizer? Aguardei ansiosamente1 para saber como as coisas 
           
           <div class="post-content markdown" itemprop="articleBody">
             <div class="main-content-wrap">
-              <script src="https://guilhermejacob.github.io/rmarkdown-libs/kePrint/kePrint.js"></script>
-<link href="https://guilhermejacob.github.io/rmarkdown-libs/lightable/lightable.css" rel="stylesheet" />
-
-
-
-<div class="alert warning ">
-  <p><b>Atualização (21/12/2019):</b> refiz todas as análises usando a nova definição de renda domiciliar per capita e seu respectivo deflator.<br></p>
-</div>
-
-<p>Na última quarta (29/11), o IBGE <del>finalmente</del> apresentou as estimativas relativas aos rendimentos de todas as fontes, além de disponibilizar os microdados para os cálculos.</p>
-<p><em>Ok, mas o que isso quer dizer?</em> Aguardei ansiosamente<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> para saber como as coisas irão funcionar com o fim da <em>PNAD</em> <del>anual</del> e introdução da <em>PNAD Contínua</em>.<br />
-Antes, a PNAD trazia informações referentes ao ano. Agora, a PNAD Contínua traz informações sobre os trimestres. E quanto às informações anuais?<br />
-Bom, isso acaba de ser respondido.</p>
-<p>Dito isso, vamos às estimativas<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a>.</p>
-<div id="desigualdade" class="section level3">
-<h3>Desigualdade</h3>
-<p>Eu tinha certa curiosidade a respeito do quanto as novas variáveis de renda diferenciam das antigas quando se trata de desigualdade. Essa dúvida não foi completamente respondida, já que os dados concomitantes de rendimento da PNAD Contínua e PNAD anual ainda não são estão disponíveis. Mas já podemos ter alguns números.</p>
-
-<div class="alert warning ">
-  <p>Todos as estimativas a seguir foram feitas por mim.<br>Assim, nem IBGE, nem qualquer outra instituição tem nada a ver com os meus comentários ou conclusões. <strong>Ou seja: nada aqui é definitivo</strong>.</p>
-</div>
-
-<div id="índice-de-gini" class="section level5">
-<h5>Índice de Gini</h5>
-<p>Vamos começar com a medida de desigualdade mais utilizada, o <a href="https://pt.wikipedia.org/wiki/Coeficiente_de_Gini">índice de Gini</a>. O Distrito Federal é o estado mais desigual do país. Ainda assim, os intervalos de confiança não permitem dizer que existam diferenças estatisticamente significativas entre muitos estados.
-<img src="https://guilhermejacob.github.io/post/2017-12-01-desigualdade-pobreza-brasil-2016_files/figure-html/gini_plot-1.png" width="672" /></p>
-<p>A outra coisa clara neste gráfico é que Santa Catarina é o estado menos desigual, embora a diferença em relação ao segundo menos desigual, Mato Grosso, não seja estatisticamente significativa.</p>
-<p>No entanto, é importante lembrar que o índice de Gini tem seus problemas<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a>. Por conta disso, vamos explorar algumas alternativas, como a razão de Palma e o índice de Zenga.</p>
-</div>
-<div id="razão-de-palma" class="section level5">
-<h5>Razão de Palma</h5>
-<p>A <a href="http://www.un.org/esa/desa/papers/2015/wp143_2015.pdf">razão de Palma</a> é bastante intuitiva. Basicamente, este índice é a razão entre as rendas dos 10% mais ricos sobre a dos 40% mais pobres. Dessa forma, ele consegue ser mais sensível aos extremos da distribuição de renda do que o índice de Gini, por exemplo. Vejamos os resultados para o Brasil.
-<img src="https://guilhermejacob.github.io/post/2017-12-01-desigualdade-pobreza-brasil-2016_files/figure-html/palma_plot-1.png" width="672" /></p>
-<p>Bom, o ordenamento muda um pouco. Embora o DF continue sendo o mais desigual, Pernambuco cai uma posição. Isso se deve ao fato deste índice ser um pouco mais sensível aos extremos da distribuição.
-Entretanto, este índice também sofre algumas críticas. De fato, ele não atende muitos axiomas esperados dos índices de desigualdade. Com isso em mente, incluiremos mais um índice.</p>
-</div>
-<div id="índice-de-zenga" class="section level5">
-<h5>Índice de Zenga</h5>
-<p>O <a href="https://link.springer.com/article/10.1007/s10687-013-0177-2">índice de Zenga</a> é uma medida relativamente recente. Ele satisfaz os mesmos axiomas que o índice de Gini, mas “pesa” todas as observações igualmente, mantendo a mesma sensibilidade ao longo de toda a distribuição de renda.
-<img src="https://guilhermejacob.github.io/post/2017-12-01-desigualdade-pobreza-brasil-2016_files/figure-html/zenga_plot-1.png" width="672" /></p>
-<p>O gráfico revela uma distribuição similar ao da razão de Palma.
-Em todos os casos, o Distrito Federal apresenta a maior desigualdade.</p>
-</div>
-<div id="pobreza" class="section level4">
-<h4>Pobreza</h4>
-<p>Olha a desigualdade não é suficiente para analisar a condição de vida na sociedade. Afinal, uma sociedade A pode ser mais desigual que a sociedade B, tendo um nível de pobreza inferior.<br />
-Neste exercício, consideramos a linha de pobreza equivalente a 1/4 do salário mínimo em julho de 2016. Ou seja, R$ 220,00. De fato, esse valor pode ser considerado como uma linha de extrema pobreza.</p>
-<p>Vejamos, então, as estatísticas de pobreza no Brasil.</p>
-<div id="taxa-de-pobreza" class="section level5">
-<h5>Taxa de Pobreza</h5>
-<p>O indicador mais utilizado quando se discute pobreza é a taxa de pobreza. Basicamente, essa medida é a proporção de pessoas consideradas pobres em determinada população.
-<img src="https://guilhermejacob.github.io/post/2017-12-01-desigualdade-pobreza-brasil-2016_files/figure-html/fgt0_plot-1.png" width="672" />
-As estimativas revelam que, na prática, existe um <em>empate</em> entre a proporção de pessoas pobres no Acre e Amazonas. Olhando o resto da lista, pode-se ver que os estados do Norte e Nordeste tendem a “liderar” neste ranking.</p>
-</div>
-<div id="hiato-de-pobreza" class="section level5">
-<h5>Hiato de Pobreza</h5>
-<p>Em que pese a sua simplicidade, a taxa de pobreza tem um problema: a pessoa que tem R$ 1 a menos da linha de pobreza recebe o mesmo peso da pessoa que tem R$ 200. Desta forma, perde muito da informação a respeito da intensidade da pobreza.<br />
-A classe <em>Foster-Greer-Thorbecke (FGT)</em> de índices de pobreza apresenta como solução o <em>Hiato de Pobreza</em>. Este índice pondera cada obervação pela distância em relação à linha de pobreza.</p>
-<p><img src="https://guilhermejacob.github.io/post/2017-12-01-desigualdade-pobreza-brasil-2016_files/figure-html/fgt1_plot-1.png" width="672" /></p>
-<p>Aqui, o ordenamento muda um pouco. Embora Maranhão continue liderando, o Amazonas cai algumas posições. Comparando Amazonas e Acre, isto indica que, embora a <em>extensão</em> da pobreza entre as duas populações seja praticamente idêntica, a pobreza no Acre é <em>mais intensa</em>. Em outras palavras: a renda domiciliar per capita entre as pessoas em situação de pobreza neste estado é inferior à do Amazonas.<br />
-Isso tem impactos importantes quanto às políticas públicas. Por exemplo, um programa de transferência de renda exigiria, <em>proporcionalmente</em>, mais recursos no Acre do que no Amazonas.</p>
-</div>
-<div id="hiato-quadrático-de-pobreza" class="section level5">
-<h5>Hiato Quadrático de Pobreza</h5>
-<p>Outro índice da classe FGT, o Hiato Quadrático de Pobreza incorpora a desigualdade de renda entre a população em situação de pobreza. Ao contrário do Hiato de Pobreza, a distância entre a renda de determinada observação e a linha de pobreza é elevada ao quadrado. Ou seja: os mais pobres recebem pesos ainda maiores no processo de ponderação.</p>
-<p>Isto implica que transferências regressivas de renda entre os pobres são penalizadas. Por exemplo, se a renda do indivíduo A, mais pobre, é transferida para o indivíduo B (menos pobre), o Hiato de Pobreza é o mesmo, mas o Hiato Quadrático é diferente.</p>
-<p>Isso também pode ser visto de outra maneira. Considerando a classe de <em>índices de Entropia Generalizada (GEI)</em>, uma classe de medidas de desigualdade, podemos reescrever o índice FGT(2) como uma função da Taxa de Pobreza, Hiato de Pobreza e do índice GEI(2) das insuficiências de renda. Assim, evidenciamos o efeito da desigualdade entre as rendas dos pobres sobre a estimativa do FGT(2). Matematicamente,</p>
+              <p>Ontem, eu estava vendo stories no Instagram e me deparei com uma aula com as palavras
+“Amostragem por cotas e pós-estratificação”.
+Isso me lembrou de um comentário que fiz na aula de amostragem da semana passada:
+se você não tem uma amostragem probabilística, sua inferência necessariamente se baseia em um modelo,
+seja ele sobre o modo como a amostra foi selecionada ou sobre o comportamento da variável na população.</p>
+<p><span class="citation"><a href="#ref-deville1991" role="doc-biblioref">Deville</a> (<a href="#ref-deville1991" role="doc-biblioref">1991</a>)</span> discutiu esse tema com muito cuidado,
+sugerindo onde o método pode ser útil e porque ele não deveria ser usado em estatísticas oficiais.
+De fato, amostragem por cotas é algo raro na tradição de estatísticas oficiais, mas relativamente
+comum em pesquisas de opinião, marketing, etc.</p>
+<p>A discussão a seguir segue a apresentação de <span class="citation"><a href="#ref-ardilly2006" role="doc-biblioref">Ardilly</a> (<a href="#ref-ardilly2006" role="doc-biblioref">2006, p. 201–219</a>)</span>, onde existe uma discussão bastante acessível sobre viés e variância neste tipo de amostragem não-probabilística (que ele chama de amostragem empírica).<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a></p>
+<div id="qual-o-problema-da-amostragem-por-cotas" class="section level1">
+<h1>Qual o problema da amostragem por cotas?</h1>
+<p>A relação entre a média populacional da variável <span class="math inline">\(Y\)</span> e as médias populacionais dos grupos <span class="math inline">\(q \in Q\)</span> pode ser expressa como:</p>
 <p><span class="math display">\[
-FGT_{2}= \frac{FGT_1^2}{FGT_0} \cdot \bigg( 1 + 2 \cdot GEI_{2}^{*} \bigg) \text{ ,} 
+\overline{Y}= \sum_{ q \in Q } \frac{N_q}{N} \overline{Y}_q 
 \]</span></p>
-<p>onde <span class="math inline">\(GEI_{2}^{*}\)</span> é o índice GEI(<span class="math inline">\(\epsilon\)</span>=2) das insuficiências de renda.</p>
-<p>Vejamos os resultados dos estados brasileiros.
-<img src="https://guilhermejacob.github.io/post/2017-12-01-desigualdade-pobreza-brasil-2016_files/figure-html/fgt2_plot-1.png" width="672" /></p>
-<p>De novo, Maranhão é o primeiro do ranking. Porém, o Amazonas se distancia bastante agora. O que isso quer dizer? Talvez a decomposição do índice pode nos ajudar a entender as diferenças nas estimativas do FGT(2) entre as populações.</p>
-<table style="NAborder-bottom: 0;">
-<caption>
-(#tab:tab_fgt)Decomposição do Hiato Quadrático de Pobreza, 2016.
-</caption>
-<thead>
-<tr>
-<th style="text-align:left;">
-Área
-</th>
-<th style="text-align:left;">
-FGT(2)
-</th>
-<th style="text-align:right;">
-FGT(0)
-</th>
-<th style="text-align:right;">
-FGT(1)
-</th>
-<th style="text-align:right;">
-GEI(2)
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;">
-Brasil
-</td>
-<td style="text-align:left;">
-0.031
-</td>
-<td style="text-align:right;">
-0.106
-</td>
-<td style="text-align:right;">
-0.048
-</td>
-<td style="text-align:right;">
-0.223
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Maranhão
-</td>
-<td style="text-align:left;">
-0.077
-</td>
-<td style="text-align:right;">
-0.274
-</td>
-<td style="text-align:right;">
-0.126
-</td>
-<td style="text-align:right;">
-0.165
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Alagoas
-</td>
-<td style="text-align:left;">
-0.068
-</td>
-<td style="text-align:right;">
-0.223
-</td>
-<td style="text-align:right;">
-0.105
-</td>
-<td style="text-align:right;">
-0.189
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Ceará
-</td>
-<td style="text-align:left;">
-0.059
-</td>
-<td style="text-align:right;">
-0.209
-</td>
-<td style="text-align:right;">
-0.096
-</td>
-<td style="text-align:right;">
-0.178
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Acre
-</td>
-<td style="text-align:left;">
-0.059
-</td>
-<td style="text-align:right;">
-0.245
-</td>
-<td style="text-align:right;">
-0.103
-</td>
-<td style="text-align:right;">
-0.183
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Pernambuco
-</td>
-<td style="text-align:left;">
-0.057
-</td>
-<td style="text-align:right;">
-0.190
-</td>
-<td style="text-align:right;">
-0.088
-</td>
-<td style="text-align:right;">
-0.197
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Sergipe
-</td>
-<td style="text-align:left;">
-0.056
-</td>
-<td style="text-align:right;">
-0.192
-</td>
-<td style="text-align:right;">
-0.087
-</td>
-<td style="text-align:right;">
-0.213
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Bahia
-</td>
-<td style="text-align:left;">
-0.055
-</td>
-<td style="text-align:right;">
-0.201
-</td>
-<td style="text-align:right;">
-0.088
-</td>
-<td style="text-align:right;">
-0.205
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Amazonas
-</td>
-<td style="text-align:left;">
-0.053
-</td>
-<td style="text-align:right;">
-0.248
-</td>
-<td style="text-align:right;">
-0.095
-</td>
-<td style="text-align:right;">
-0.214
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Amapá
-</td>
-<td style="text-align:left;">
-0.052
-</td>
-<td style="text-align:right;">
-0.197
-</td>
-<td style="text-align:right;">
-0.084
-</td>
-<td style="text-align:right;">
-0.232
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Piauí
-</td>
-<td style="text-align:left;">
-0.050
-</td>
-<td style="text-align:right;">
-0.217
-</td>
-<td style="text-align:right;">
-0.089
-</td>
-<td style="text-align:right;">
-0.182
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Pará
-</td>
-<td style="text-align:left;">
-0.046
-</td>
-<td style="text-align:right;">
-0.214
-</td>
-<td style="text-align:right;">
-0.082
-</td>
-<td style="text-align:right;">
-0.232
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Rio Grande do Norte
-</td>
-<td style="text-align:left;">
-0.043
-</td>
-<td style="text-align:right;">
-0.156
-</td>
-<td style="text-align:right;">
-0.069
-</td>
-<td style="text-align:right;">
-0.211
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Paraíba
-</td>
-<td style="text-align:left;">
-0.037
-</td>
-<td style="text-align:right;">
-0.175
-</td>
-<td style="text-align:right;">
-0.069
-</td>
-<td style="text-align:right;">
-0.189
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Tocantins
-</td>
-<td style="text-align:left;">
-0.033
-</td>
-<td style="text-align:right;">
-0.129
-</td>
-<td style="text-align:right;">
-0.053
-</td>
-<td style="text-align:right;">
-0.259
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Rondônia
-</td>
-<td style="text-align:left;">
-0.031
-</td>
-<td style="text-align:right;">
-0.098
-</td>
-<td style="text-align:right;">
-0.044
-</td>
-<td style="text-align:right;">
-0.271
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Roraima
-</td>
-<td style="text-align:left;">
-0.030
-</td>
-<td style="text-align:right;">
-0.116
-</td>
-<td style="text-align:right;">
-0.046
-</td>
-<td style="text-align:right;">
-0.331
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Espírito Santo
-</td>
-<td style="text-align:left;">
-0.029
-</td>
-<td style="text-align:right;">
-0.079
-</td>
-<td style="text-align:right;">
-0.040
-</td>
-<td style="text-align:right;">
-0.230
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Rio de Janeiro
-</td>
-<td style="text-align:left;">
-0.025
-</td>
-<td style="text-align:right;">
-0.060
-</td>
-<td style="text-align:right;">
-0.032
-</td>
-<td style="text-align:right;">
-0.244
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Minas Gerais
-</td>
-<td style="text-align:left;">
-0.023
-</td>
-<td style="text-align:right;">
-0.073
-</td>
-<td style="text-align:right;">
-0.034
-</td>
-<td style="text-align:right;">
-0.235
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Goiás
-</td>
-<td style="text-align:left;">
-0.023
-</td>
-<td style="text-align:right;">
-0.056
-</td>
-<td style="text-align:right;">
-0.030
-</td>
-<td style="text-align:right;">
-0.218
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Mato Grosso
-</td>
-<td style="text-align:left;">
-0.019
-</td>
-<td style="text-align:right;">
-0.052
-</td>
-<td style="text-align:right;">
-0.024
-</td>
-<td style="text-align:right;">
-0.334
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-São Paulo
-</td>
-<td style="text-align:left;">
-0.017
-</td>
-<td style="text-align:right;">
-0.040
-</td>
-<td style="text-align:right;">
-0.022
-</td>
-<td style="text-align:right;">
-0.234
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Paraná
-</td>
-<td style="text-align:left;">
-0.014
-</td>
-<td style="text-align:right;">
-0.046
-</td>
-<td style="text-align:right;">
-0.020
-</td>
-<td style="text-align:right;">
-0.344
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Distrito Federal
-</td>
-<td style="text-align:left;">
-0.013
-</td>
-<td style="text-align:right;">
-0.042
-</td>
-<td style="text-align:right;">
-0.018
-</td>
-<td style="text-align:right;">
-0.349
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Rio Grande do Sul
-</td>
-<td style="text-align:left;">
-0.012
-</td>
-<td style="text-align:right;">
-0.037
-</td>
-<td style="text-align:right;">
-0.017
-</td>
-<td style="text-align:right;">
-0.277
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Santa Catarina
-</td>
-<td style="text-align:left;">
-0.012
-</td>
-<td style="text-align:right;">
-0.028
-</td>
-<td style="text-align:right;">
-0.015
-</td>
-<td style="text-align:right;">
-0.243
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Mato Grosso do Sul
-</td>
-<td style="text-align:left;">
-0.010
-</td>
-<td style="text-align:right;">
-0.041
-</td>
-<td style="text-align:right;">
-0.016
-</td>
-<td style="text-align:right;">
-0.309
-</td>
-</tr>
-</tbody>
-<tfoot>
-<tr>
-<td style="padding: 0; " colspan="100%">
-<span style="font-style: italic;">Fonte:</span>
-</td>
-</tr>
-<tr>
-<td style="padding: 0; " colspan="100%">
-<sup></sup> PNAD Contínua 2016, 1ª entrevista. Microdados.
-</td>
-</tr>
-</tfoot>
-</table>
-<p>No caso, ainda que o Amazonas apresente maior desigualdade no renda-linha de pobreza dos domicílios pobres, as diferenças na extensão e intensidade são os determinantes deste ordenamento. Isso implica que embora a desigualdade seja mais intensa no Amazonas, a população em situação de pobreza ainda está, em média, numa situação melhor que a do Maranhão.</p>
+<p>Em outras palavras, a média populacional é uma média ponderada das médias (populacionais) dos grupos <span class="math inline">\(q \in Q\)</span>. Suponha que <span class="math inline">\(N_q\)</span> sejam quantidades conhecidas na população.
+Consequentemente, um estimador do tipo <span class="math inline">\(\widehat{\overline{Y}} = \sum_{ q \in Q } \frac{N_q}{N} \widehat{\overline{Y}_q}\)</span> é não-viesado se <span class="math inline">\(E \big[ \widehat{\overline{Y}_q} \big] =\overline{Y}_q\)</span>. Este resultado justifica o uso de amostragem estratificada, onde uma amostra <em>probabilística</em> é selecionada em cada grupo <span class="math inline">\(q\)</span>, garantindo a ausência de viés. No entanto, esse resultado não é suficiente para justificar o uso de amostragem por cotas.</p>
+<p>No caso de amostragem por cotas, uma amostragem não-probabilística é realizada com a restrição de que a distribuição amostral das categorias <span class="math inline">\(Q\)</span> seja idêntica à distribuição populacional. Ou seja, uma amostra de <span class="math inline">\(n\)</span> unidades é selecionada de tal forma que <span class="math inline">\(\frac{n_q}{n} = \frac{N_q}{N} , \forall q \in Q\)</span>. Em geral, o procedimento de estimação se baseia no estimador</p>
+<p><span class="math display">\[
+\widehat{\overline{Y}} = \sum_{ q \in Q } \frac{N_q}{N} \bar{y}_q , \quad \bar{y}_q = \frac{1}{n_q} \sum_{i \in s_q} y_{qi}
+\]</span></p>
+<p>onde <span class="math inline">\(y_{qi}\)</span> é o valor da característica <span class="math inline">\(y\)</span> para o indivíduo <span class="math inline">\(i\)</span> no grupo <span class="math inline">\(q\)</span> e <span class="math inline">\(\bar{y}_q\)</span> é a média amostral da característica <span class="math inline">\(Y\)</span> no grupo <span class="math inline">\(q\)</span>. Porém, denotando <span class="math inline">\(\epsilon_{qi} = y_{qi} - \overline{Y}_q\)</span>, temos que <span class="math inline">\(\bar{\epsilon}_q = \frac{1}{n_q} \sum_{i \in s_q} \epsilon_{qi}\)</span>. Então,</p>
+<p><span class="math display">\[
+\begin{aligned}
+\widehat{\overline{Y}} &amp;= \sum_{q \in Q} \frac{N_q}{N} \big( \overline{Y}_q + \bar{\epsilon}_q \big) = \sum_{q \in Q} \frac{N_q}{N} \overline{Y}_q + \sum_{q \in Q} \frac{N_q}{N} \bar{\epsilon}_q \\
+\therefore \widehat{\overline{Y}} &amp;= \overline{Y}+ \sum_{q \in Q} \frac{N_q}{N} \bar{\epsilon}_q \\ 
+\therefore E \bigg[ \widehat{\overline{Y}} - \overline{Y}\bigg] &amp;= E \bigg[ \overline{Y}+ \sum_{q \in Q} \frac{N_q}{N} \bar{\epsilon}_q \bigg] - \overline{Y}= E \bigg[ \sum_{q \in Q} \frac{N_q}{N} \bar{\epsilon}_q \bigg] \\
+\therefore E \bigg[ \widehat{\overline{Y}} - \overline{Y}\bigg] &amp;= \sum_{q \in Q} \frac{N_q}{N} E \big[ \bar{\epsilon}_q \big] 
+\end{aligned}
+\]</span></p>
+<p>Porém,</p>
+<p><span class="math display">\[
+\begin{aligned}
+E \big[ \bar{\epsilon}_q \big] &amp;= E \bigg[ \frac{1}{n_q} \sum_{i \in \mathcal{U}_q} \mathbb{1}( i \in s_q ) \epsilon_{qi} \bigg] \\ 
+      &amp;= \frac{1}{n_q} \sum_{i \in \mathcal{U}_q} \epsilon_{qi} E \big[ \mathbb{1}( i \in s_q ) \big] \\ 
+      &amp;= \frac{1}{n_q} \sum_{i \in \mathcal{U}_q} \epsilon_{qi} \pi_{qi} , \quad \pi_{qi} = E \big[ \mathbb{1}( i \in s_q ) \big] . \\ 
+\end{aligned}
+\]</span></p>
+<p>onde <span class="math inline">\(\pi_{qi}\)</span> é a probabilidade de inclusão da unidade <span class="math inline">\(i\)</span> do grupo <span class="math inline">\(q\)</span> na amostra.</p>
+<p>No caso de amostras probabilísticas, a probabilidade de inclusão <span class="math inline">\(\pi_{qi}\)</span> é conhecida e controlada pelo amostrista. Em amostras não-probabilísticos, como a amostragem por cotas, <span class="math inline">\(\pi_{qi}\)</span> é desconhecida: mesmo quando há treinamento para que o entrevistados selecione pessoas da forma “mais aleatória” possível, é difícil conseguir essa pseudo-aleatorização. Ele pode substituir pessoas que estão correndo por pessoas que andam mais devagar, ou uma pessoa zangada por outra mais contente. Quando impomos a média amostral, estamos supondo que a probabilidade de seleção dentro do grupo <span class="math inline">\(q\)</span> é a mesma; i.e., <span class="math inline">\(\pi_{qi} = \pi_{qj} , i,j \in s_q\)</span>.</p>
+<p>Mesmo assim, na falta de escolha melhor, podemos utilizar a média amostral <span class="math inline">\(\bar{y}_q\)</span>. Ao fazer isso, temos</p>
+<p><span class="math display">\[
+\begin{aligned}
+E \bigg[ \widehat{\overline{Y}} - \overline{Y}\bigg] &amp;= \sum_{q \in Q} \frac{N_q}{N} E \big[ \bar{\epsilon}_q \big] \\ 
+    &amp;= \sum_{q \in Q} \frac{N_q}{N} \bigg[ \frac{1}{n_q} \sum_{i \in \mathcal{U}_q} \epsilon_{qi} \pi_{qi} \bigg] \\
+    &amp;= \sum_{q \in Q} \frac{N_q}{N} \bigg[ \frac{1}{n_q} \sum_{i \in \mathcal{U}_q} ( y_{qi} - \overline{Y}_q) \pi_{qi} \bigg] \\
+    &amp;= \frac{N}{n} \sum_{q \in Q} \frac{N_q}{N} \bigg[ \frac{1}{N_q} \sum_{i \in \mathcal{U}_q} ( y_{qi} - \overline{Y}_q) \pi_{qi} \bigg] , \quad \frac{n_q}{n} = \frac{N_q}{N} \\ 
+\therefore 
+E \bigg[ \widehat{\overline{Y}} - \overline{Y}\bigg] 
+  &amp;= \frac{N}{n} \sum_{q \in Q} \frac{N_q}{N} \text{Cov}\big[ Y_q , \Pi_q \big]  .
+\end{aligned}
+\]</span></p>
+<p>Ou seja: o viés é uma função da média ponderada das covariâncias entre a variável <span class="math inline">\(y_{qi}\)</span> e as probabilidades de inclusão <span class="math inline">\(\pi_{qi}\)</span> nos grupos. A hipótese <span class="math inline">\(\text{Cov}\big[ Y_q , \Pi_q \big] = 0\)</span> é “amostragem não-informativa”. Em parte, isso justificaria usar testes de doadores de sangue para estimar prevalência de infecções assintomáticas por coronavírus.</p>
+<p>A princípio, é possível pensar em duas maneiras de diminuir esta covariância. A primeira seria fazendo <span class="math inline">\(\pi_{qi}\)</span> constante, mas isso é improvável em amostragens não-probabilísticas. A segunda seria reduzir a variância de <span class="math inline">\(\overline{Y}_q\)</span>: i.e., definir um conjunto de grupos <span class="math inline">\(Q\)</span> tal que a variância da característica de estudo seja a menor possível. Uma combinação das duas ideias também é possível, criando categorias que expliquem a variabilidade de <span class="math inline">\(Y\)</span> e fazendo o possível para que a variabilidade de <span class="math inline">\(\pi_{qi}\)</span> dentro de cada grupo seja a menor possível.</p>
+<p>Adicionalmente, como <span class="math inline">\(\Pi\)</span> é de ordem <span class="math inline">\(n/N\)</span>, temos <span class="math inline">\(\text{Cov}\big[ Y_q , \frac{N}{n} \Pi_q \big]\)</span>, de modo que o tamanho do viés se torna independente do tamanho da amostra. Ou seja: ao contrário da amostragem probabilística, aumentar o tamanho da amostra de uma amostra por cotas não reduz o viés!</p>
+<div id="abordagem-baseada-em-modelos" class="section level2">
+<h2>Abordagem baseada em modelos</h2>
+<p>Embora não seja a única abordagem possível para o problema, é interessante pensar em como a modelagem de superpopulação pode ajudar a resolver o problema. Reescrevendo a média populacional, temos:</p>
+<p><span class="math display">\[
+\begin{aligned}
+\overline{Y}&amp;= \frac{1}{N} \bigg( \sum_{i \in s} y_i + \sum_{i \in \mathcal{U}\setminus s } y_i \bigg) \\ 
+              &amp;= \frac{1}{N} \bigg[ \sum_{i \in s} ( \hat{y}_i + e_i ) + \sum_{i \in \mathcal{U}\setminus s } ( \hat{y}_i + e_i ) ] \bigg] \\
+\therefore \overline{Y}&amp;= \frac{1}{N} \bigg( \sum_{i \in \mathcal{U}} \hat{y}_i + \sum_{i \in \mathcal{U}} e_i \bigg) \\
+\end{aligned} 
+\]</span>
+Sob o modelo de superpopulação, a população é vista como uma amostra aleatória da distribuição</p>
+<p><span class="math display">\[
+y_{qi} = m_q + e_{i} ,  \quad e_i \sim \mathcal{N} ( 0 , \sigma_q^2 ) 
+\]</span></p>
+<p>Os estimadores de Gauss-Markov de <span class="math inline">\(m_q\)</span> são as médias amostrais <span class="math inline">\(\bar{y}_q\)</span>. Assim, o estimador preditivo toma a forma</p>
+<p><span class="math display">\[
+\begin{aligned}
+\widehat{\overline{Y}}_{Pred} &amp;= \frac{1}{N} \bigg( \sum_{i \in s } \bar{y}_q + \sum_{i \in \mathcal{U}\setminus s } \bar{y}_q \bigg) \\
+&amp;= \frac{1}{N} \bigg[ \sum_{q \in Q} ( N_q - n_q ) \hat{y}_q + \sum_{q \in Q} n_q \hat{y}_q \bigg] \\
+\therefore
+\widehat{\overline{Y}}_{Pred} &amp;= \sum_{q \in Q} \frac{ N_q }{N} \hat{y}_q \\
+\end{aligned} 
+\]</span></p>
+<p>A ausência de viés, <span class="math inline">\(E[ \widehat{\overline{Y}}_{Pred} - \overline{Y}] = 0\)</span>, resulta de <span class="math inline">\(E[ e_i ] = 0\)</span>. Além disso, <span class="math inline">\(\text{Var}\big[ \widehat{\overline{Y}}_{Pred} - \overline{Y}\big] = \sum_{q \in Q} \frac{ N_q^2 }{N^2} \bigg( 1 - \frac{n_q}{N_q} \bigg) \frac{\sigma^2_q}{n_q}\)</span>.</p>
+<p>Este estimador pode ser visto como uma forma <em>model-based</em> do estimador de pós-estratificação: se o modelo explica bem a distribuição de <span class="math inline">\(Y\)</span>, o erro da média amostral decorre das diferenças na distribuição dos grupos <span class="math inline">\(Q\)</span>. Ao utilizar o estimador de predição, usamos os totais conhecidos <span class="math inline">\(N_q\)</span> para reconstruir o valor esperado da distribuição populacional.</p>
+</div>
+<div id="conclusão" class="section level2">
+<h2>Conclusão</h2>
+<p>Há outras abordagens possíveis para esse problema. Acho muito interessante mas não encontrei muitas
+pesquisas não-probabilísticas para trabalhar. Hoje, fiquei sabendo de uma pesquisa de opinião
+relativamente recente. Pode ser que volte a escrever sobre isso no futuro. (Ou não.)</p>
 </div>
 </div>
+<div id="referências" class="section level1 unnumbered">
+<h1>Referências</h1>
+<div id="refs" class="references csl-bib-body">
+<div id="ref-ardilly2006" class="csl-entry">
+ARDILLY, P. <strong>Les techniques de sondages</strong>. Paris: Technip, 2006.
 </div>
-<div id="concluindo" class="section level3">
-<h3>Concluindo</h3>
-<p>Embora ainda não tenhamos uma série suficientemente longa para compreender o impacto da crise sobre a pobreza e desigualdade no Brasil, já conseguimos observar a situação dos estados. Como a ideia aqui era só uma análise superficial, muita coisa ainda precisa ser explorada. Por exemplo:</p>
-<ul>
-<li>Como os preços afetam a distribuição de renda?</li>
-<li>Como os rendimentos de programas sociais afetam a desigualdade e pobreza?</li>
-</ul>
-<p>Acredito que ainda veremos mais sobre esses dados nos próximos meses.</p>
-<p>E, como não poderia faltar, o vídeo de final de post!<br />
-Já começaram a contagem regressiva para o carnaval?<br />
-Nesse vídeo, Bruna Caram e Marina de la Riva interpretam <em>Bloco do Prazer</em>, de Moraes Moreira.</p>
-
-<div style="position:relative;height:0;padding-bottom:56.21%"><iframe src="https://www.youtube.com/embed/aem2JxlRfGo?ecver=2" style="position:absolute;width:100%;height:100%;left:0" width="641" height="360" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe></div>
-
+<div id="ref-deville1991" class="csl-entry">
+DEVILLE, J.-C. A Theory of Quota Surveys. <strong>Survey Methodology</strong>, v. 17, n. 2, p. 163–181, 1991.
+</div>
+</div>
 </div>
 <div class="footnotes">
 <hr />
 <ol>
-<li id="fn1"><p>Eu + ansiedade é, praticamente, <a href="https://pt.wikipedia.org/wiki/Pleonasmo">pleonasmo</a>.<a href="#fnref1" class="footnote-back">↩︎</a></p></li>
-<li id="fn2"><p>Todas as estimativas foram realizadas utilizando a <em>library</em> <a href="https://cran.r-project.org/web/packages/convey/index.html"><code>convey</code></a>.<a href="#fnref2" class="footnote-back">↩︎</a></p></li>
-<li id="fn3"><p>Sobre os potenciais problemas do índice de Gini, sugiro <a href="https://oxfamblogs.org/fp2p/on-inequality-lets-do-the-palma-because-the-gini-is-so-last-century/">esse artigo</a>.<a href="#fnref3" class="footnote-back">↩︎</a></p></li>
+<li id="fn1"><p>Tropecei nesse livro quando marquei um date na Gibert Joseph em 2017. Não me arrependo.<a href="#fnref1" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
 
@@ -901,20 +391,6 @@ Nesse vídeo, Bruna Caram e Marina de la Riva interpretam <em>Bloco do Prazer</e
           <div id="post-footer" class="post-footer main-content-wrap">
             
               
-                
-                
-                  <div class="post-footer-tags">
-                    <span class="text-color-light text-small">ETIQUETADO em</span><br/>
-                    
-  <a class="tag tag--primary tag--small" href="https://guilhermejacob.github.io/tags/pobreza/">Pobreza</a>
-
-  <a class="tag tag--primary tag--small" href="https://guilhermejacob.github.io/tags/desigualdade/">Desigualdade</a>
-
-  <a class="tag tag--primary tag--small" href="https://guilhermejacob.github.io/tags/rstats/">rstats</a>
-
-                  </div>
-                
-              
             
             
   <div class="post-actions-wrap">
@@ -923,7 +399,7 @@ Nesse vídeo, Bruna Caram e Marina de la Riva interpretam <em>Bloco do Prazer</e
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://guilhermejacob.github.io/2017/12/analise-censo-superior-genero-2016/" data-tooltip="Censo da Educação Superior: gênero e cursos em 2016">
+                <a class="post-action-btn btn btn--disabled">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">PRÓXIMO</span>
@@ -931,7 +407,7 @@ Nesse vídeo, Bruna Caram e Marina de la Riva interpretam <em>Bloco do Prazer</e
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://guilhermejacob.github.io/2017/11/microdados-obmigra/" data-tooltip="CGIg/CNIg e SINCRE: analisando os microdados do OBMigra">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://guilhermejacob.github.io/2021/12/pnadc-raking-bootstrap/" data-tooltip="Mudanças na PNAD Contínua: Raking e Bootstrap">
               
                   <span class="hide-xs hide-sm text-small icon-mr">ANTERIOR</span>
                   <i class="fa fa-angle-right"></i>
@@ -949,19 +425,19 @@ Nesse vídeo, Bruna Caram e Marina de la Riva interpretam <em>Bloco do Prazer</e
         </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://guilhermejacob.github.io/2017/12/desigualdade-pobreza-estados-2016/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://guilhermejacob.github.io/2022/04/amostragem-cotas/">
               <i class="fa fa-facebook-official"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://guilhermejacob.github.io/2017/12/desigualdade-pobreza-estados-2016/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://guilhermejacob.github.io/2022/04/amostragem-cotas/">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://guilhermejacob.github.io/2017/12/desigualdade-pobreza-estados-2016/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://guilhermejacob.github.io/2022/04/amostragem-cotas/">
               <i class="fa fa-google-plus"></i>
             </a>
           </li>
@@ -1003,7 +479,7 @@ Nesse vídeo, Bruna Caram e Marina de la Riva interpretam <em>Bloco do Prazer</e
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://guilhermejacob.github.io/2017/12/analise-censo-superior-genero-2016/" data-tooltip="Censo da Educação Superior: gênero e cursos em 2016">
+                <a class="post-action-btn btn btn--disabled">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">PRÓXIMO</span>
@@ -1011,7 +487,7 @@ Nesse vídeo, Bruna Caram e Marina de la Riva interpretam <em>Bloco do Prazer</e
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://guilhermejacob.github.io/2017/11/microdados-obmigra/" data-tooltip="CGIg/CNIg e SINCRE: analisando os microdados do OBMigra">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://guilhermejacob.github.io/2021/12/pnadc-raking-bootstrap/" data-tooltip="Mudanças na PNAD Contínua: Raking e Bootstrap">
               
                   <span class="hide-xs hide-sm text-small icon-mr">ANTERIOR</span>
                   <i class="fa fa-angle-right"></i>
@@ -1029,19 +505,19 @@ Nesse vídeo, Bruna Caram e Marina de la Riva interpretam <em>Bloco do Prazer</e
         </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://guilhermejacob.github.io/2017/12/desigualdade-pobreza-estados-2016/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://guilhermejacob.github.io/2022/04/amostragem-cotas/">
               <i class="fa fa-facebook-official"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://guilhermejacob.github.io/2017/12/desigualdade-pobreza-estados-2016/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://guilhermejacob.github.io/2022/04/amostragem-cotas/">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://guilhermejacob.github.io/2017/12/desigualdade-pobreza-estados-2016/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://guilhermejacob.github.io/2022/04/amostragem-cotas/">
               <i class="fa fa-google-plus"></i>
             </a>
           </li>
@@ -1065,19 +541,19 @@ Nesse vídeo, Bruna Caram e Marina de la Riva interpretam <em>Bloco do Prazer</e
   <ul class="share-options">
     
       <li class="share-option">
-        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fguilhermejacob.github.io%2F2017%2F12%2Fdesigualdade-pobreza-estados-2016%2F">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fguilhermejacob.github.io%2F2022%2F04%2Famostragem-cotas%2F">
           <i class="fa fa-facebook-official"></i><span>Compartilhar no Facebook</span>
         </a>
       </li>
     
       <li class="share-option">
-        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Fguilhermejacob.github.io%2F2017%2F12%2Fdesigualdade-pobreza-estados-2016%2F">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Fguilhermejacob.github.io%2F2022%2F04%2Famostragem-cotas%2F">
           <i class="fa fa-twitter"></i><span>Compartilhar no Twitter</span>
         </a>
       </li>
     
       <li class="share-option">
-        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https%3A%2F%2Fguilhermejacob.github.io%2F2017%2F12%2Fdesigualdade-pobreza-estados-2016%2F">
+        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https%3A%2F%2Fguilhermejacob.github.io%2F2022%2F04%2Famostragem-cotas%2F">
           <i class="fa fa-google-plus"></i><span>Compartilhar no Google&#43;</span>
         </a>
       </li>
