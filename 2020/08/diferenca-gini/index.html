@@ -29,9 +29,9 @@
 
     
     <meta name="description" content="Em julho, pensei em estudar uma técnica de decomposição de medidas de desigualdade/pobreza. Procurando as bases de dados, encontrei a a Pesquisa de Orçamentos Familiares (POF) 2017-2018, que tem muita informação interessante. Mas, com 30 dias para escrever um artigo, não achei que teria tempo para entender bem a pesquisa e produzir estimativas adequadas.
-Tirei alguns dias para ler a documentação e comecei a fazer algumas tentativas de análise.">
+Tirei alguns dias para ler a documentação e comecei a fazer algumas tentativas de análise. Uma pergunta bem interessante que a POF permite analisar é: quanto seria a desigualdade de renda se retirássemos as rendas transferidas pelos programas sociais federais?">
     <meta property="og:description" content="Em julho, pensei em estudar uma técnica de decomposição de medidas de desigualdade/pobreza. Procurando as bases de dados, encontrei a a Pesquisa de Orçamentos Familiares (POF) 2017-2018, que tem muita informação interessante. Mas, com 30 dias para escrever um artigo, não achei que teria tempo para entender bem a pesquisa e produzir estimativas adequadas.
-Tirei alguns dias para ler a documentação e comecei a fazer algumas tentativas de análise.">
+Tirei alguns dias para ler a documentação e comecei a fazer algumas tentativas de análise. Uma pergunta bem interessante que a POF permite analisar é: quanto seria a desigualdade de renda se retirássemos as rendas transferidas pelos programas sociais federais?">
     <meta property="og:type" content="blog">
     <meta property="og:title" content="Índice de Gini e transferências sociais federais">
     <meta property="og:url" content="/2020/08/diferenca-gini/">
@@ -39,7 +39,7 @@ Tirei alguns dias para ler a documentação e comecei a fazer algumas tentativas
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Something Random">
     <meta name="twitter:description" content="Em julho, pensei em estudar uma técnica de decomposição de medidas de desigualdade/pobreza. Procurando as bases de dados, encontrei a a Pesquisa de Orçamentos Familiares (POF) 2017-2018, que tem muita informação interessante. Mas, com 30 dias para escrever um artigo, não achei que teria tempo para entender bem a pesquisa e produzir estimativas adequadas.
-Tirei alguns dias para ler a documentação e comecei a fazer algumas tentativas de análise.">
+Tirei alguns dias para ler a documentação e comecei a fazer algumas tentativas de análise. Uma pergunta bem interessante que a POF permite analisar é: quanto seria a desigualdade de renda se retirássemos as rendas transferidas pelos programas sociais federais?">
     
     
 
@@ -276,9 +276,8 @@ Tirei alguns dias para ler a documentação e comecei a fazer algumas tentativas
           
           <div class="post-content markdown" itemprop="articleBody">
             <div class="main-content-wrap">
-              <script src="https://guilhermejacob.github.io/rmarkdown-libs/header-attrs/header-attrs.js"></script>
-<script src="https://guilhermejacob.github.io/rmarkdown-libs/kePrint/kePrint.js"></script>
-<link href="https://guilhermejacob.github.io/rmarkdown-libs/lightable/lightable.css" rel="stylesheet" />
+              <script src="https://guilhermejacob.github.io/2020/08/diferenca-gini/index_files/kePrint/kePrint.js"></script>
+<link href="https://guilhermejacob.github.io/2020/08/diferenca-gini/index_files/lightable/lightable.css" rel="stylesheet" />
 
 
 <p>Em julho, pensei em estudar uma técnica de decomposição de medidas de desigualdade/pobreza. Procurando as bases de dados, encontrei a a Pesquisa de Orçamentos Familiares (POF) 2017-2018, que tem muita informação interessante. Mas, com 30 dias para escrever um artigo, não achei que teria tempo para entender bem a pesquisa e produzir estimativas adequadas.</p>
@@ -288,7 +287,7 @@ Tirei alguns dias para ler a documentação e comecei a fazer algumas tentativas
 <p>Vamos ao que interessa. As estimativas a seguir usam apenas as rendas monetárias, das quais eu separei as rendas de programas sociais federais. Vamos olhar a média da renda familiar per capita. A Tabela <a href="#tab:tab1">1</a> mostra que a renda familiar per capita era R$ 1 683,31. A média das rendas do trabalho divida pelo número de moradores no domicílio era R$ 1 045,06. Por sua vez, as transferências sociais federais eram R$ 19,02 por morador. Por fim, R$ 619,23 eram auferidos de outras fontes (aposentadores, outras transferências, etc.) Esses números são um pouco estranhos porque são “médias de médias”, mas fazem sentido: somando as componentes, temos a renda média total.</p>
 <table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;border-bottom: 0;">
 <caption>
-<span id="tab:tab1">Tabela 1: </span>Média das rendas familiares per capita por fonte – Brasil, 2017-2018
+<span id="tab:tab1">Table 1: </span>Média das rendas familiares per capita por fonte – Brasil, 2017-2018
 </caption>
 <thead>
 <tr>
@@ -386,7 +385,7 @@ Outras fontes
 <p>E o índice de Gini? A Tabela <a href="#tab:tab2">2</a> apresenta as estimativas do índice de Gini da renda total e da renda sem transferências sociais federais. Observe que o intervalo de confiança das duas estimativas se sobrepõem parcialmente. Com a suposição de independência, isso seria evidência de que as transferências sociais governamentais não têm impacto significativo sobre o índice de Gini.</p>
 <table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;border-bottom: 0;">
 <caption>
-<span id="tab:tab2">Tabela 2: </span>Índice de Gini das rendas familiares per capita por fonte – Brasil, 2017-2018
+<span id="tab:tab2">Table 2: </span>Índice de Gini das rendas familiares per capita por fonte – Brasil, 2017-2018
 </caption>
 <thead>
 <tr>
@@ -456,7 +455,7 @@ Renda Total - Transferências Sociais Federais
 <p>Como sabemos, estas estimativas são produzidas sobre a mesma amostra, indicando que a suposição de independência das estimativas é muito improvável. Estimando a matriz de variância-covariância, podemos ter uma estimativa mais adequada da diferença, conforme mostra a Tabela <a href="#tab:tab3">3</a>. Subtraindo a covariância, o erro-padrão da diferença é bem menor, resultando em intervalo de confiança mais estreito. Como este intervalo não “cobre” o valor 0, a diferença é estatisticamente significativa!</p>
 <table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;border-bottom: 0;">
 <caption>
-<span id="tab:tab3">Tabela 3: </span>Diferença dos Índices de Gini – Brasil, 2017-2018
+<span id="tab:tab3">Table 3: </span>Diferença dos Índices de Gini – Brasil, 2017-2018
 </caption>
 <thead>
 <tr>
@@ -543,11 +542,11 @@ Covariância
 </table>
 <p>Como comentei, existem métodos mais elaborados para avaliar o impacto destas rendas sobre o índice, permitindo análises mais refinadas, avaliando o impacto de pequenas variações na média destas rendas<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a>. Apesar disso, este procedimento já quantifica um resultado óbvio: as transferências sociais reduzem a desigualdade de renda.</p>
 <div id="pós-escrito-decomposição-de-shorrocks1982" class="section level1">
-<h1>Pós-escrito: decomposição de <span class="citation">Shorrocks (1982)</span></h1>
-<p>O Rogério Barbosa me avisou (e me explicou!) sobre outro método, descrito em <span class="citation">Shorrocks (1982)</span>. Li rapidamente artigo e acho que consigo implementar. <span class="citation">Shorrocks (1982)</span> distribui o índice de Gini ponderando por uma função das covariâncias entre a renda total e a parcela de cada fonte. A Tabela <a href="#tab:tab4">4</a> mostra que os resultados são consistentes com o resultado anterior.</p>
+<h1>Pós-escrito: decomposição de <span class="citation"><a href="#ref-shorrocks1982" role="doc-biblioref">Shorrocks</a> (<a href="#ref-shorrocks1982" role="doc-biblioref">1982</a>)</span></h1>
+<p>O Rogério Barbosa me avisou (e me explicou!) sobre outro método, descrito em <span class="citation"><a href="#ref-shorrocks1982" role="doc-biblioref">Shorrocks</a> (<a href="#ref-shorrocks1982" role="doc-biblioref">1982</a>)</span>. Li rapidamente artigo e acho que consigo implementar. <span class="citation"><a href="#ref-shorrocks1982" role="doc-biblioref">Shorrocks</a> (<a href="#ref-shorrocks1982" role="doc-biblioref">1982</a>)</span> distribui o índice de Gini ponderando por uma função das covariâncias entre a renda total e a parcela de cada fonte. A Tabela <a href="#tab:tab4">4</a> mostra que os resultados são consistentes com o resultado anterior.</p>
 <table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;border-bottom: 0;">
 <caption>
-<span id="tab:tab4">Tabela 4: </span>Decomposição do Índice de Gini por fonte – Brasil, 2017-2018
+<span id="tab:tab4">Table 4: </span>Decomposição do Índice de Gini por fonte – Brasil, 2017-2018
 </caption>
 <thead>
 <tr>
@@ -658,7 +657,7 @@ SHORROCKS, A. F. Inequality Decomposition by Factor Components. <strong>Economet
 <hr />
 <ol>
 <li id="fn1"><p>Se a correlação for positiva.<a href="#fnref1" class="footnote-back">↩︎</a></p></li>
-<li id="fn2"><p>Por exemplo, <span class="citation">Firpo, Fortin e Lemieux (2018)</span>.<a href="#fnref2" class="footnote-back">↩︎</a></p></li>
+<li id="fn2"><p>Por exemplo, <span class="citation"><a href="#ref-firpo2018" role="doc-biblioref">Firpo, Fortin e Lemieux</a> (<a href="#ref-firpo2018" role="doc-biblioref">2018</a>)</span>.<a href="#fnref2" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
 
@@ -899,16 +898,16 @@ SHORROCKS, A. F. Inequality Decomposition by Factor Components. <strong>Economet
           <div class="media">
             
             <div class="media-body">
-              <a class="link-unstyled" href="https://guilhermejacob.github.io/2022/05/pobreza-previsao-2021/">
-                <h3 class="media-heading">Prevendo a taxa de pobreza em 2021</h3>
+              <a class="link-unstyled" href="https://guilhermejacob.github.io/2022/06/pnadc-pobreza-2021/">
+                <h3 class="media-heading">Taxa de Pobreza por Estratos Geográficos em 2021</h3>
               </a>
               <span class="media-meta">
                 <span class="media-date text-small">
-                  May 5, 2022
+                  Jun 6, 2022
                 </span>
               </span>
-              <div class="media-content hide-xs font-merryweather">Data da previsão: 24/05/2022.
- No próximo dia 10 de junho, o IBGE vai divulgar as informações sobre renda de todas as fontes, permitindo estimar taxas de pobreza. Depois de ler um pouco sobre nowcasting e modelos SPREE, resolvi tentar uma coisa. A Tabela 1 minhas previsões para a taxa de pobreza em 2021, considerando uma linha de pobreza de US$ PPC 3.20 por dia para a renda domiciliar per capita.</div>
+              <div class="media-content hide-xs font-merryweather">No dia 10/6, o IBGE divulgou os rendimentos de outras fontes, coletado pela PNADC durante a 5ª visita de cada trimestre de 2021; clique aqui para acessar o release completo. Isso me mostrou duas coisas:
+Meu modelo de previsão errou bem mais do que eu gostaria. Por que? A relação entre rendimento do trabalho e rendimento de outras fontes mudou muito com a retirada do auxílio emergencial; É possível estimar a taxa de pobreza por estratos geográficos (outra novidade).</div>
             </div>
             <div style="clear:both;"></div>
             <hr>
@@ -944,7 +943,8 @@ Deville (1991) discutiu esse tema com muito cuidado, sugerindo onde o método po
                 </span>
               </span>
               <div class="media-content hide-xs font-merryweather">Recentemente, a PNAD Contínua passou por duas mudanças:
-Mudança de pós-estratificação para raking; Mudança no método de estimação da variância dos estimadores, do Método do Conglomerado Primário para bootstrap.  Mas o que isso significa? E como considerar isso na estimação usando o R? Bom, esse é o tema desse post. Primeiro, vou explicar muito superficialmente o que é raking e porque a mudança no método de calcular variância</div>
+Mudança de pós-estratificação para raking; Mudança no método de estimação da variância dos estimadores, do Método do Conglomerado Primário para bootstrap.  Mas o que isso significa? E como considerar isso na estimação usando o R? Bom, esse é o tema desse post. Primeiro, vou explicar muito superficialmente o que é raking e porque a mudança no método de calcular variância
+Calibração e raking Calibração (Deville e Särndal, 1992; Deville, Särndal e Sautory, 1993) é o nome de uma classe de métodos que, por conseguinte, definem uma classe de estimadores.</div>
             </div>
             <div style="clear:both;"></div>
             <hr>
@@ -1035,7 +1035,7 @@ Um pouco de história Em alguns países, os registros de nascimentos e mortes é
                 </span>
               </span>
               <div class="media-content hide-xs font-merryweather">Em julho, pensei em estudar uma técnica de decomposição de medidas de desigualdade/pobreza. Procurando as bases de dados, encontrei a a Pesquisa de Orçamentos Familiares (POF) 2017-2018, que tem muita informação interessante. Mas, com 30 dias para escrever um artigo, não achei que teria tempo para entender bem a pesquisa e produzir estimativas adequadas.
-Tirei alguns dias para ler a documentação e comecei a fazer algumas tentativas de análise.</div>
+Tirei alguns dias para ler a documentação e comecei a fazer algumas tentativas de análise. Uma pergunta bem interessante que a POF permite analisar é: quanto seria a desigualdade de renda se retirássemos as rendas transferidas pelos programas sociais federais?</div>
             </div>
             <div style="clear:both;"></div>
             <hr>
@@ -1083,7 +1083,7 @@ O momento chegou. Neste post, vou tentar explicar um pouco do que é polarizaç�
          data-message-zero=""
          data-message-one=""
          data-message-other="">
-         30 posts found
+         29 posts found
       </p>
     </div>
   </div>

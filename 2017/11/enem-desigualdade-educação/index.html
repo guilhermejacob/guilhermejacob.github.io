@@ -293,7 +293,7 @@ Vou tentar manter as complicações matemáticas fora da questão e focar na apl
 </div>
 
 <p>O estudo da desigualdade é uma mistura de economia, filosofia, matemática e estatística. Embora os estudos neste campo se voltem majoritariamente às distribuições de renda e riqueza, existem vários trabalhos discutindo outras formas de desigualdade.</p>
-<p>No entanto, o tipo de variável costuma ser o principal desafio: renda é uma variável contínua, enquanto o estado de saúde, por exemplo, costuma ser uma variável ordinal. Esse tipo de problema é comum na análise de aspectos qualitativos do bem-estar. Em outras palavras, quando perguntadas a respeito de sua saúde, as pessoas não respondem “estou com 75 de saúde” <del>a não ser que você esteja jogando LOL ou algo do tipo</del>, mas algo como “ruim” , “bem”, “excelente”. Quando temos esse tipo de resposta, não dá pra simplesmente calcular um índice de Gini. Caso você se interesse por esses problemas, <span class="citation">Cowell e Flachaire (2017)</span> é uma leitura obrigatória, mostrando como as medidas tradicionais falham e propondo uma classe de medidas que atende os axiomas propostos.</p>
+<p>No entanto, o tipo de variável costuma ser o principal desafio: renda é uma variável contínua, enquanto o estado de saúde, por exemplo, costuma ser uma variável ordinal. Esse tipo de problema é comum na análise de aspectos qualitativos do bem-estar. Em outras palavras, quando perguntadas a respeito de sua saúde, as pessoas não respondem “estou com 75 de saúde” <del>a não ser que você esteja jogando LOL ou algo do tipo</del>, mas algo como “ruim” , “bem”, “excelente”. Quando temos esse tipo de resposta, não dá pra simplesmente calcular um índice de Gini. Caso você se interesse por esses problemas, <span class="citation"><a href="#ref-cowell2017" role="doc-biblioref">Cowell e Flachaire</a> (<a href="#ref-cowell2017" role="doc-biblioref">2017</a>)</span> é uma leitura obrigatória, mostrando como as medidas tradicionais falham e propondo uma classe de medidas que atende os axiomas propostos.</p>
 <p>Dito isso, cabe a pergunta: existe uma medida cardinal da desigualdade em educação? Se considerarmos o desempenho dos alunos em provas, pode-se dizer que sim. A lógica é mais ou menos essa: quanto mais preparado o aluno, melhor o desempenho na prova. Se o desempenho é medido em pontuação <em>e não em categorias</em>, podemos usar a pontuação para medir a desigualdade.</p>
 <p>Evidentemente, essa abordagem tem seus problemas, desde provas mal formuladas a seleção de alunos examinados. Esse último é particularmente sério. Como a média das notas de uma escola é tomada como uma indicação da qualidade do seu ensino, um diretor mais mal intencionado pode dificultar a candidatura dos alunos que teriam uma pontuação ruim. Desta forma, a amostra se torna viesada. Isso é mais possível em escolas particulares, já que é mais provável que os alunos tenham condições financeiras de ir para uma faculdade particular.</p>
 <p>A própria percepção do diferencial de desempenho entre escolas públicas e particulares pode ser causar um viés na amostra. O aluno que pensa não ter chance no vestibular não tem muito incentivo para fazer a prova. Existe uma miríade de aspectos socioeconômicos que fazem com que esse comportamento ocorra.</p>
@@ -310,21 +310,21 @@ Vou tentar manter as complicações matemáticas fora da questão e focar na apl
 </ul>
 <p>Em outras palavras: estamos trabalhando com a <em>interseção</em> destes quatro conjuntos de examinados, <em>não a união</em>.</p>
 <p>O gráfico  abaixo mostra como as notas dos extremos se distribuem. Enquanto os melhores desempenhos tendem a se concentrar mais entre domicílios mais ricos, os piores desempenhos se concentram ainda mais entre os domicílios mais pobres. Ou seja, é bem mais provável que uma “nota baixa” venha de um domicílio de baixa renda. O “monte” em vermelho entre os domicílios de catagoria “B” e “C” mostra isso. E a queda se comparado a categoria “A” se deve principalmente a raridade destes indivíduos, seja porque realmente existem poucos domicílios com nenhuma renda, seja porque as pessoas destes domicílios tendem a não fazer a prova.</p>
-<p><img src="https://guilhermejacob.github.io/post/2017-11-12-enem-e-desigualdade-na-educa%C3%A7%C3%A3o_files/figure-html/dist_extreme-1.png" width="672" /></p>
+<p><img src="https://guilhermejacob.github.io/2017/11/enem-desigualdade-educa%C3%A7%C3%A3o/index_files/figure-html/dist_extreme-1.png" width="672" /></p>
 <p>Ok, mas e as médias? A média da pontuação dos extremos é bem diferente, como de se esperar. De fato, a pontuação dos melhores é aproximadamente 2.7 vezes melhor que a dos piores. O gráfico  abaixo mostra esta discrepâncias.
-<img src="https://guilhermejacob.github.io/post/2017-11-12-enem-e-desigualdade-na-educa%C3%A7%C3%A3o_files/figure-html/avg_extreme-1.png" width="672" /></p>
+<img src="https://guilhermejacob.github.io/2017/11/enem-desigualdade-educa%C3%A7%C3%A3o/index_files/figure-html/avg_extreme-1.png" width="672" /></p>
 </div>
 <div id="como-medir-um-exercício-de-decomposição-por-subgrupos." class="section level2">
 <h2>Como medir: um exercício de decomposição por subgrupos.</h2>
-<p>Se você já leu alguma coisa sobre desigualdade, você deve ter visto estimativas do índice de Gini. Essa é, de longe, a medida de desigualdade mais conhecida. Mas também existem outras medidas bem interessantes. Uma medida recente é a J-divergência, proposta por <span class="citation">Rohde (2016)</span>. Ela tem uma vantagem sobre o índice de Gini: decomposição por subgrupos. I.e., a estimativa pode mostrar o quanto se deve a desigualdade entre grupos e intra-grupos.</p>
-<p>As duas medidas estão disponíveis no pacote <code>convey</code> <span class="citation">(Pessoa, Damico e Jacob, 2017a)</span>, incluindo a decomposição da J-divergência. Facilmente encontradas em <span class="citation">Pessoa, Damico e Jacob (2017b)</span>, as fórmulas dos indicadores são essas:</p>
+<p>Se você já leu alguma coisa sobre desigualdade, você deve ter visto estimativas do índice de Gini. Essa é, de longe, a medida de desigualdade mais conhecida. Mas também existem outras medidas bem interessantes. Uma medida recente é a J-divergência, proposta por <span class="citation"><a href="#ref-rohde2016" role="doc-biblioref">Rohde</a> (<a href="#ref-rohde2016" role="doc-biblioref">2016</a>)</span>. Ela tem uma vantagem sobre o índice de Gini: decomposição por subgrupos. I.e., a estimativa pode mostrar o quanto se deve a desigualdade entre grupos e intra-grupos.</p>
+<p>As duas medidas estão disponíveis no pacote <code>convey</code> <span class="citation">(<a href="#ref-convey" role="doc-biblioref">Pessoa, Damico e Jacob, 2017a</a>)</span>, incluindo a decomposição da J-divergência. Facilmente encontradas em <span class="citation"><a href="#ref-context" role="doc-biblioref">Pessoa, Damico e Jacob</a> (<a href="#ref-context" role="doc-biblioref">2017b</a>)</span>, as fórmulas dos indicadores são essas:</p>
 <p><span class="math display">\[
 \begin{aligned}
 G &amp;= 1 - 2 \int_{0}^{1} L(p)dp \\
 J &amp;= \int_{0}^{\infty} \bigg( \frac{ y_i - \mu }{ \mu } \bigg) \log \bigg( \frac{y_i}{\mu} \bigg) f \big( y_i \big) dy
 \end{aligned}
-\]</span>
-onde <span class="math inline">\(L(\cdot)\)</span> é a curva de Lorenz.</p>
+\]</span></p>
+<p>onde <span class="math inline">\(L(\cdot)\)</span> é a curva de Lorenz.</p>
 <p><del>Nota: talvez eu devesse parar com o marketing pessoal.</del></p>
 </div>
 <div id="na-prática" class="section level2">
@@ -374,7 +374,7 @@ onde <span class="math inline">\(L(\cdot)\)</span> é a curva de Lorenz.</p>
 <p>As primeiras coisas que percebemos ao olhar a tabela  são: (1) existe menos desigualdade nesta distribuição do que em distribuições de renda, e (2) o índice de Gini é maior que a J-divergência. A primeira observação decorre de um aspecto um tanto óbvio: as pontuações tem um limite superior, ao contrário das distribuições de renda. Em outras palavras, uma pessoa não pode ter mais do que 1 000 pontos, embora sua renda pode extrapolar esse limite. O segundo aspecto também é interessante: o índice de Gini é mais sensível às desigualdades próximas da média, enquanto a J-divergência tende a ser mais sensível às desigualdades nas caudas. Consequentemente, podemos supor que a maior parte da desigualdade está no meio da distribuição.</p>
 <p>É normal que a diferença entre categorias apresente um valor menor que a desigualdade dentro das categorias, mesmo para renda. Dito isso, a decomposição da J-divergência, na tabela  abaixo, mostra alguns padrões interessantes. <del>Apesar de todo retrocesso recente,</del> A desigualdade no desempenho entre os gêneros<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a> praticamente não se deve a este aspecto. A decomposição captou impactos das diferenças entre cor/raça, embora esses sejam menores que os impactos decorrentes do tipo de escola<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a> ou da renda. No caso da renda, 30% da desigualdade pode ser atribuída à desigualdade entre as classes.</p>
 <table>
-<caption><span id="tab:tabela2">Tabela 1: </span>Decomposição da J-divergência - Brasil, 2015</caption>
+<caption><span id="tab:tabela2">Table 1: </span>Decomposição da J-divergência - Brasil, 2015</caption>
 <thead>
 <tr class="header">
 <th align="left"></th>
@@ -684,16 +684,16 @@ ROHDE, N. J-divergence measurements of economic inequality. <strong>Journal of t
           <div class="media">
             
             <div class="media-body">
-              <a class="link-unstyled" href="https://guilhermejacob.github.io/2022/05/pobreza-previsao-2021/">
-                <h3 class="media-heading">Prevendo a taxa de pobreza em 2021</h3>
+              <a class="link-unstyled" href="https://guilhermejacob.github.io/2022/06/pnadc-pobreza-2021/">
+                <h3 class="media-heading">Taxa de Pobreza por Estratos Geográficos em 2021</h3>
               </a>
               <span class="media-meta">
                 <span class="media-date text-small">
-                  May 5, 2022
+                  Jun 6, 2022
                 </span>
               </span>
-              <div class="media-content hide-xs font-merryweather">Data da previsão: 24/05/2022.
- No próximo dia 10 de junho, o IBGE vai divulgar as informações sobre renda de todas as fontes, permitindo estimar taxas de pobreza. Depois de ler um pouco sobre nowcasting e modelos SPREE, resolvi tentar uma coisa. A Tabela 1 minhas previsões para a taxa de pobreza em 2021, considerando uma linha de pobreza de US$ PPC 3.20 por dia para a renda domiciliar per capita.</div>
+              <div class="media-content hide-xs font-merryweather">No dia 10/6, o IBGE divulgou os rendimentos de outras fontes, coletado pela PNADC durante a 5ª visita de cada trimestre de 2021; clique aqui para acessar o release completo. Isso me mostrou duas coisas:
+Meu modelo de previsão errou bem mais do que eu gostaria. Por que? A relação entre rendimento do trabalho e rendimento de outras fontes mudou muito com a retirada do auxílio emergencial; É possível estimar a taxa de pobreza por estratos geográficos (outra novidade).</div>
             </div>
             <div style="clear:both;"></div>
             <hr>
@@ -729,7 +729,8 @@ Deville (1991) discutiu esse tema com muito cuidado, sugerindo onde o método po
                 </span>
               </span>
               <div class="media-content hide-xs font-merryweather">Recentemente, a PNAD Contínua passou por duas mudanças:
-Mudança de pós-estratificação para raking; Mudança no método de estimação da variância dos estimadores, do Método do Conglomerado Primário para bootstrap.  Mas o que isso significa? E como considerar isso na estimação usando o R? Bom, esse é o tema desse post. Primeiro, vou explicar muito superficialmente o que é raking e porque a mudança no método de calcular variância</div>
+Mudança de pós-estratificação para raking; Mudança no método de estimação da variância dos estimadores, do Método do Conglomerado Primário para bootstrap.  Mas o que isso significa? E como considerar isso na estimação usando o R? Bom, esse é o tema desse post. Primeiro, vou explicar muito superficialmente o que é raking e porque a mudança no método de calcular variância
+Calibração e raking Calibração (Deville e Särndal, 1992; Deville, Särndal e Sautory, 1993) é o nome de uma classe de métodos que, por conseguinte, definem uma classe de estimadores.</div>
             </div>
             <div style="clear:both;"></div>
             <hr>
@@ -820,7 +821,7 @@ Um pouco de história Em alguns países, os registros de nascimentos e mortes é
                 </span>
               </span>
               <div class="media-content hide-xs font-merryweather">Em julho, pensei em estudar uma técnica de decomposição de medidas de desigualdade/pobreza. Procurando as bases de dados, encontrei a a Pesquisa de Orçamentos Familiares (POF) 2017-2018, que tem muita informação interessante. Mas, com 30 dias para escrever um artigo, não achei que teria tempo para entender bem a pesquisa e produzir estimativas adequadas.
-Tirei alguns dias para ler a documentação e comecei a fazer algumas tentativas de análise.</div>
+Tirei alguns dias para ler a documentação e comecei a fazer algumas tentativas de análise. Uma pergunta bem interessante que a POF permite analisar é: quanto seria a desigualdade de renda se retirássemos as rendas transferidas pelos programas sociais federais?</div>
             </div>
             <div style="clear:both;"></div>
             <hr>
@@ -868,7 +869,7 @@ O momento chegou. Neste post, vou tentar explicar um pouco do que é polarizaç�
          data-message-zero=""
          data-message-one=""
          data-message-other="">
-         30 posts found
+         29 posts found
       </p>
     </div>
   </div>

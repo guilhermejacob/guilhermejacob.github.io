@@ -360,12 +360,12 @@ y_{qi} = m_q + e_{i} ,  \quad e_i \sim \mathcal{N} ( 0 , \sigma_q^2 )
 <p>A ausência de viés, <span class="math inline">\(E[ \widehat{\overline{Y}}_{Pred} - \overline{Y}] = 0\)</span>, resulta de <span class="math inline">\(E[ e_i ] = 0\)</span>. Além disso, <span class="math inline">\(\text{Var}\big[ \widehat{\overline{Y}}_{Pred} - \overline{Y}\big] = \sum_{q \in Q} \frac{ N_q^2 }{N^2} \bigg( 1 - \frac{n_q}{N_q} \bigg) \frac{\sigma^2_q}{n_q}\)</span>.</p>
 <p>Este estimador pode ser visto como uma forma <em>model-based</em> do estimador de pós-estratificação: se o modelo explica bem a distribuição de <span class="math inline">\(Y\)</span>, o erro da média amostral decorre das diferenças na distribuição dos grupos <span class="math inline">\(Q\)</span>. Ao utilizar o estimador de predição, usamos os totais conhecidos <span class="math inline">\(N_q\)</span> para reconstruir o valor esperado da distribuição populacional.</p>
 </div>
-<div id="conclusão" class="section level2">
-<h2>Conclusão</h2>
+</div>
+<div id="conclusão" class="section level1">
+<h1>Conclusão</h1>
 <p>Há outras abordagens possíveis para esse problema. Acho muito interessante mas não encontrei muitas
 pesquisas não-probabilísticas para trabalhar. Hoje, fiquei sabendo de uma pesquisa de opinião
 relativamente recente. Pode ser que volte a escrever sobre isso no futuro. (Ou não.)</p>
-</div>
 </div>
 <div id="referências" class="section level1 unnumbered">
 <h1>Referências</h1>
@@ -399,7 +399,7 @@ DEVILLE, J.-C. A Theory of Quota Surveys. <strong>Survey Methodology</strong>, v
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://guilhermejacob.github.io/2022/05/pobreza-previsao-2021/" data-tooltip="Prevendo a taxa de pobreza em 2021">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://guilhermejacob.github.io/2022/06/pnadc-pobreza-2021/" data-tooltip="Taxa de Pobreza por Estratos Geográficos em 2021">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">PRÓXIMO</span>
@@ -479,7 +479,7 @@ DEVILLE, J.-C. A Theory of Quota Surveys. <strong>Survey Methodology</strong>, v
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://guilhermejacob.github.io/2022/05/pobreza-previsao-2021/" data-tooltip="Prevendo a taxa de pobreza em 2021">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://guilhermejacob.github.io/2022/06/pnadc-pobreza-2021/" data-tooltip="Taxa de Pobreza por Estratos Geográficos em 2021">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">PRÓXIMO</span>
@@ -608,16 +608,16 @@ DEVILLE, J.-C. A Theory of Quota Surveys. <strong>Survey Methodology</strong>, v
           <div class="media">
             
             <div class="media-body">
-              <a class="link-unstyled" href="https://guilhermejacob.github.io/2022/05/pobreza-previsao-2021/">
-                <h3 class="media-heading">Prevendo a taxa de pobreza em 2021</h3>
+              <a class="link-unstyled" href="https://guilhermejacob.github.io/2022/06/pnadc-pobreza-2021/">
+                <h3 class="media-heading">Taxa de Pobreza por Estratos Geográficos em 2021</h3>
               </a>
               <span class="media-meta">
                 <span class="media-date text-small">
-                  May 5, 2022
+                  Jun 6, 2022
                 </span>
               </span>
-              <div class="media-content hide-xs font-merryweather">Data da previsão: 24/05/2022.
- No próximo dia 10 de junho, o IBGE vai divulgar as informações sobre renda de todas as fontes, permitindo estimar taxas de pobreza. Depois de ler um pouco sobre nowcasting e modelos SPREE, resolvi tentar uma coisa. A Tabela 1 minhas previsões para a taxa de pobreza em 2021, considerando uma linha de pobreza de US$ PPC 3.20 por dia para a renda domiciliar per capita.</div>
+              <div class="media-content hide-xs font-merryweather">No dia 10/6, o IBGE divulgou os rendimentos de outras fontes, coletado pela PNADC durante a 5ª visita de cada trimestre de 2021; clique aqui para acessar o release completo. Isso me mostrou duas coisas:
+Meu modelo de previsão errou bem mais do que eu gostaria. Por que? A relação entre rendimento do trabalho e rendimento de outras fontes mudou muito com a retirada do auxílio emergencial; É possível estimar a taxa de pobreza por estratos geográficos (outra novidade).</div>
             </div>
             <div style="clear:both;"></div>
             <hr>
@@ -653,7 +653,8 @@ Deville (1991) discutiu esse tema com muito cuidado, sugerindo onde o método po
                 </span>
               </span>
               <div class="media-content hide-xs font-merryweather">Recentemente, a PNAD Contínua passou por duas mudanças:
-Mudança de pós-estratificação para raking; Mudança no método de estimação da variância dos estimadores, do Método do Conglomerado Primário para bootstrap.  Mas o que isso significa? E como considerar isso na estimação usando o R? Bom, esse é o tema desse post. Primeiro, vou explicar muito superficialmente o que é raking e porque a mudança no método de calcular variância</div>
+Mudança de pós-estratificação para raking; Mudança no método de estimação da variância dos estimadores, do Método do Conglomerado Primário para bootstrap.  Mas o que isso significa? E como considerar isso na estimação usando o R? Bom, esse é o tema desse post. Primeiro, vou explicar muito superficialmente o que é raking e porque a mudança no método de calcular variância
+Calibração e raking Calibração (Deville e Särndal, 1992; Deville, Särndal e Sautory, 1993) é o nome de uma classe de métodos que, por conseguinte, definem uma classe de estimadores.</div>
             </div>
             <div style="clear:both;"></div>
             <hr>
@@ -744,7 +745,7 @@ Um pouco de história Em alguns países, os registros de nascimentos e mortes é
                 </span>
               </span>
               <div class="media-content hide-xs font-merryweather">Em julho, pensei em estudar uma técnica de decomposição de medidas de desigualdade/pobreza. Procurando as bases de dados, encontrei a a Pesquisa de Orçamentos Familiares (POF) 2017-2018, que tem muita informação interessante. Mas, com 30 dias para escrever um artigo, não achei que teria tempo para entender bem a pesquisa e produzir estimativas adequadas.
-Tirei alguns dias para ler a documentação e comecei a fazer algumas tentativas de análise.</div>
+Tirei alguns dias para ler a documentação e comecei a fazer algumas tentativas de análise. Uma pergunta bem interessante que a POF permite analisar é: quanto seria a desigualdade de renda se retirássemos as rendas transferidas pelos programas sociais federais?</div>
             </div>
             <div style="clear:both;"></div>
             <hr>
@@ -792,7 +793,7 @@ O momento chegou. Neste post, vou tentar explicar um pouco do que é polarizaç�
          data-message-zero=""
          data-message-one=""
          data-message-other="">
-         30 posts found
+         29 posts found
       </p>
     </div>
   </div>

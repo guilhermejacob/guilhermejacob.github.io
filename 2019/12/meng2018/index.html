@@ -284,19 +284,19 @@
   <p><b>Atualização (27/05/2020):</b> o professor Pedro Nascimento Silva (ENCE/IBGE) fez uma apresentação sobre o mesmo tópico em 2019 para o Colóquio do IME-USP. O link para slides e vídeo da apresentação podem ser encontrados <a href="https://www.ime.usp.br/coloquio/2019/10/16/pedro-luis-do-nascimento-silva-ibge-ence/">aqui</a>.<br></p>
 </div>
 
-<p>Eu queria fechar esse ano com um problema que andei lendo a respeito no passado recente: inferência <del>descritiva</del> com amostras não-probabilísticas. Alguns dos textos mais interessantes são <span class="citation">Smith (1983)</span>, <span class="citation">Meng (2014)</span>, <span class="citation">Elliott e Valliant (2017)</span> e <span class="citation">Meng (2018)</span>. Vamos focar neste último. Ele tenta responder uma pergunta muito simples:<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a></p>
+<p>Eu queria fechar esse ano com um problema que andei lendo a respeito no passado recente: inferência <del>descritiva</del> com amostras não-probabilísticas. Alguns dos textos mais interessantes são <span class="citation"><a href="#ref-smith1983" role="doc-biblioref">Smith</a> (<a href="#ref-smith1983" role="doc-biblioref">1983</a>)</span>, <span class="citation"><a href="#ref-meng2014" role="doc-biblioref">Meng</a> (<a href="#ref-meng2014" role="doc-biblioref">2014</a>)</span>, <span class="citation"><a href="#ref-elliott2017" role="doc-biblioref">Elliott e Valliant</a> (<a href="#ref-elliott2017" role="doc-biblioref">2017</a>)</span> e <span class="citation"><a href="#ref-meng2018" role="doc-biblioref">Meng</a> (<a href="#ref-meng2018" role="doc-biblioref">2018</a>)</span>. Vamos focar neste último. Ele tenta responder uma pergunta muito simples:<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a></p>
 <blockquote>
 <p>O que é melhor: uma amostra probabilística de 5% da população ou uma amostra não-probabilística de 80% da população?</p>
 </blockquote>
 <p>Esta pergunta é crucial e a resposta é importante para pensar sobre os cuidados no uso de registros administrativos e questionar o <strong>uso inadequado</strong> de <em>big data</em>.</p>
 <div id="a-identidade-fundamental-de-meng2018" class="section level1">
-<h1>A identidade fundamental de <span class="citation">Meng (2018)</span></h1>
-<p>Vamos partir do problema colocado em <span class="citation">Meng (2018, p. 689)</span>.</p>
+<h1>A identidade fundamental de <span class="citation"><a href="#ref-meng2018" role="doc-biblioref">Meng</a> (<a href="#ref-meng2018" role="doc-biblioref">2018</a>)</span></h1>
+<p>Vamos partir do problema colocado em <span class="citation"><a href="#ref-meng2018" role="doc-biblioref">Meng</a> (<a href="#ref-meng2018" role="doc-biblioref">2018, p. 689</a>)</span>.</p>
 <p>Considere uma população com <span class="math inline">\(N\)</span> indivíduos rotulados <span class="math inline">\(j \in J, J = \{ 1, \dots , N \}\)</span>. Os <span class="math inline">\(p\)</span> atributos destes indivíduos são registrados numa matriz <span class="math inline">\(\mathbf{X}\)</span> de dimensão <span class="math inline">\(N \times p\)</span>. Suponha que você queira estudar a média do atributo <span class="math inline">\(G \in \mathbf{X}\)</span> na população, dada por <span class="math inline">\(\overline{G}_N\)</span>. Dispomos, no entanto, da amostra <span class="math inline">\(I_n \subset \{ 1, \dots , N \}\)</span> de tamanho <span class="math inline">\(n\)</span> dos indivíduos da população. Vamos estimar a média populacional a partir do estimador da média amostral, definido abaixo:</p>
 <p><span class="math display">\[
 \overline{G}_n = \cfrac{ \sum_{j \in I_n} G_j }{ n } = \cfrac{ \sum_{j \in J} R_j G_j }{ \sum_{j \in J} R_j } .
 \]</span>
-onde <span class="math inline">\(R_j\)</span> é uma variável indicadora que representa a presença do indivíduo <span class="math inline">\(j\)</span> na amostra <span class="math inline">\(I_n\)</span>. Como diz <span class="citation">Meng (2018, p. 689)</span>, a variável <span class="math inline">\(R_j\)</span> representa o mecanismo de registro através do qual obtemos a amostra <span class="math inline">\(I_n\)</span>. O viés deste estimador é dado por:</p>
+onde <span class="math inline">\(R_j\)</span> é uma variável indicadora que representa a presença do indivíduo <span class="math inline">\(j\)</span> na amostra <span class="math inline">\(I_n\)</span>. Como diz <span class="citation"><a href="#ref-meng2018" role="doc-biblioref">Meng</a> (<a href="#ref-meng2018" role="doc-biblioref">2018, p. 689</a>)</span>, a variável <span class="math inline">\(R_j\)</span> representa o mecanismo de registro através do qual obtemos a amostra <span class="math inline">\(I_n\)</span>. O viés deste estimador é dado por:</p>
 <p><span class="math display">\[
 \begin{aligned}
 \overline{G}_n - \overline{G}_N &amp;= \cfrac{ \sum_{j \in U} R_j G_j }{ \sum_{j \in U} R_j } - \cfrac{ \sum_{j \in U} G_j }{ N } 
@@ -320,7 +320,7 @@ e o fato de que <span class="math inline">\(E_J ( R_J ) = n / N = f\)</span>, on
 EQM \big( \overline{G}_n \big) &amp;= \rho^2_{R,G} \times { \cfrac{ 1 - f }{ f } } \times \sigma^2_G = D_I \times D_O \times D_U,
 \end{aligned}
 \]</span>
-onde <span class="math inline">\(D_I\)</span> é o que Meng chama de <em>Data Defect Index</em>. <span class="citation">Meng (2018)</span> explora vários detalhes e insights desta fórmula, mas vamos manter o foco na nossa pergunta principal: escolher uma amostra probabilística de 5% da população ou uma amostra não-probabilística de 80% da população?</p>
+onde <span class="math inline">\(D_I\)</span> é o que Meng chama de <em>Data Defect Index</em>. <span class="citation"><a href="#ref-meng2018" role="doc-biblioref">Meng</a> (<a href="#ref-meng2018" role="doc-biblioref">2018</a>)</span> explora vários detalhes e insights desta fórmula, mas vamos manter o foco na nossa pergunta principal: escolher uma amostra probabilística de 5% da população ou uma amostra não-probabilística de 80% da população?</p>
 </div>
 <div id="comparando-amostras-aleatórias-simples-aas-e-amostras-não-probabilísticas-anp" class="section level1">
 <h1>Comparando Amostras Aleatórias Simples (AAS) e Amostras Não-Probabilísticas (ANP)</h1>
@@ -332,7 +332,7 @@ onde <span class="math inline">\(D_I\)</span> é o que Meng chama de <em>Data De
 \end{aligned}
 \]</span>
 Ou seja: sob AAS, o <span class="math inline">\(D_I\)</span> desaparece <em>muito rápido</em>. Por exemplo, se a população tem tamanho 11, teríamos <span class="math inline">\(D_I^{AAS} = 1/10\)</span>. Para uma população de tamanho 1001, , teríamos <span class="math inline">\(D_I^{AAS} = 0,001\)</span>.</p>
-<p>Para ajudar a entender o impacto comparativo disso, <span class="citation">Meng (2018)</span> propõe uma medida do “Efeito do Plano Amostral” (EPA) para . Coloco entre aspas porque, embora ela se pareça o EPA da teoria de amostragem, tem uma diferença importante: no contexto de amostragem, estamos comparando variâncias de planos amostrais alternativos em relação ao plano AAS; neste caso, estamos comparando o EQM de estimativas baseadas em um plano não probabilístico com a variância do plano AAS. Então, considerando <span class="math inline">\(D_O\)</span> e <span class="math inline">\(D_U\)</span> fixos, temos:</p>
+<p>Para ajudar a entender o impacto comparativo disso, <span class="citation"><a href="#ref-meng2018" role="doc-biblioref">Meng</a> (<a href="#ref-meng2018" role="doc-biblioref">2018</a>)</span> propõe uma medida do “Efeito do Plano Amostral” (EPA) para . Coloco entre aspas porque, embora ela se pareça o EPA da teoria de amostragem, tem uma diferença importante: no contexto de amostragem, estamos comparando variâncias de planos amostrais alternativos em relação ao plano AAS; neste caso, estamos comparando o EQM de estimativas baseadas em um plano não probabilístico com a variância do plano AAS. Então, considerando <span class="math inline">\(D_O\)</span> e <span class="math inline">\(D_U\)</span> fixos, temos:</p>
 <p><span class="math display">\[
 \begin{aligned}
 EPA = \cfrac{ E_R \big[ \overline{G}_n - \overline{G}_N ]^2 }{ Var_{AAS} ( G_n ) } = (N - 1) D_I.
@@ -343,7 +343,7 @@ A interpretação dela é a seguinte: considerando os mesmos estimadores, <span 
 <div id="big-data-versus-amostras-probabilísticas" class="section level1">
 <h1><em>Big data</em> versus Amostras Probabilísticas</h1>
 <p>A vantagem de registros administrativos e <em>big data</em> é o tamanho da sua cobertura. Precisamos fazer uma comparação mais realista. Passamos, então, a considerar os casos quando os <span class="math inline">\(f\)</span> são diferentes.</p>
-<p><span class="citation">Meng (2018, p. 698)</span> aplica o seguinte procedimento: iguala-se o EQM com a respectiva variância sob AAS. Vou usar um resultado diferente, mas que serve para mostrar a mesma ideia<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a>:</p>
+<p><span class="citation"><a href="#ref-meng2018" role="doc-biblioref">Meng</a> (<a href="#ref-meng2018" role="doc-biblioref">2018, p. 698</a>)</span> aplica o seguinte procedimento: iguala-se o EQM com a respectiva variância sob AAS. Vou usar um resultado diferente, mas que serve para mostrar a mesma ideia<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a>:</p>
 <p><span class="math display">\[
 D_O^{AAS} = (N - 1) D_I \times D_O^{ANP} \\
 f_{AAS} = \cfrac{1}{ (N - 1) ( 1/f_{ANP} - 1) D_I + 1 }.
@@ -353,9 +353,9 @@ f_{AAS} = \cfrac{1}{ (N - 1) ( 1/f_{ANP} - 1) D_I + 1 }.
 <h5>Caso 1: <span class="math inline">\(D_I = 0.001\)</span></h5>
 <p>A Figura 1 mostra o impacto dramático que <span class="math inline">\(D_I = 0.001\)</span>, um valor que parece bem pequeno, tem sobre as ANPs. Por exemplo, tomemos uma ANP que cobre 80% da população. Em uma população de 100 000 indivíduos, uma AAS de 5% já é melhor do essa ANP. <em>Em uma população de 1 000 000 indivíduos, uma AAS de 0.4% da população já é melhor que esta ANP!</em></p>
 <div class="figure"><span style="display:block;" id="fig:unnamed-chunk-1"></span>
-<img src="https://guilhermejacob.github.io/post/2019-12-22-meng2018_files/figure-html/unnamed-chunk-1-1.png" alt="\label{fig:fig1}Equivalência entre AAS e ANP para populações de diferentes tamanhos." width="576" />
+<img src="https://guilhermejacob.github.io/2019/12/meng2018/index_files/figure-html/unnamed-chunk-1-1.png" alt="\label{fig:fig1}Equivalência entre AAS e ANP para populações de diferentes tamanhos." width="576" />
 <p class="caption">
-Figura 1: Equivalência entre AAS e ANP para populações de diferentes tamanhos.
+Figure 1: Equivalência entre AAS e ANP para populações de diferentes tamanhos.
 </p>
 </div>
 </div>
@@ -364,9 +364,9 @@ Figura 1: Equivalência entre AAS e ANP para populações de diferentes tamanhos
 <p>Vamos considerar uma população com aproximadamente o mesmo tamanho da população brasileira. A Figura 2 mostra a equivalência entre as frações amostrais neste caso, variando apenas <span class="math inline">\(D_I\)</span>.</p>
 <p><em>Não, o gráfico não está errado:</em> para esses <span class="math inline">\(D_I\)</span>, o gráfico só é legível quando limitamos as frações AAS equivalentes menores que 1%! Para <span class="math inline">\(D_I = 10^{-6} = 0.000001\)</span>, um valor ínfimo, uma AAS de 0.75% da população é equivalente a uma ANP de 60%. Com <span class="math inline">\(D_I = 10^{-5} = 0.00001\)</span>, uma AAS de 0.45% da população é melhor que uma ANP de 90%. Com <span class="math inline">\(D_I = 10^{-4} = 0.0001\)</span>, uma ANP que cobre 99% da população tão boa quanto uma AAS de aproximadamente 0.5% da população!</p>
 <div class="figure"><span style="display:block;" id="fig:unnamed-chunk-2"></span>
-<img src="https://guilhermejacob.github.io/post/2019-12-22-meng2018_files/figure-html/unnamed-chunk-2-1.png" alt="\label{fig:fig2}Equivalência entre AAS e ANP para uma população de 200 milhões de indivíduos." width="576" />
+<img src="https://guilhermejacob.github.io/2019/12/meng2018/index_files/figure-html/unnamed-chunk-2-1.png" alt="\label{fig:fig2}Equivalência entre AAS e ANP para uma população de 200 milhões de indivíduos." width="576" />
 <p class="caption">
-Figura 2: Equivalência entre AAS e ANP para uma população de 200 milhões de indivíduos.
+Figure 2: Equivalência entre AAS e ANP para uma população de 200 milhões de indivíduos.
 </p>
 </div>
 </div>
@@ -375,9 +375,9 @@ Figura 2: Equivalência entre AAS e ANP para uma população de 200 milhões de 
 <h1>Comentários finais</h1>
 <p>Skinner e Wakefield alertam:</p>
 <blockquote>
-<p>[…] Há também um enorme interesse atual na avalanche de novas técnicas de análise de dados, que frequentemente têm suas origens em machine learning. No entanto, embora muitos desses métodos pareçam inebriantes, eles devem ser avaliados cuidadosamente em face das múltiplas fontes de não-cobertura e seleção. <strong>Se tais aspectos forem ignorados, existe uma possibilidade genuína que análises de big data produzirão grandes desastres inferenciais.</strong> <span class="citation">(Skinner e Wakefield, 2017, p. 174, grifo nosso)</span></p>
+<p>[…] Há também um enorme interesse atual na avalanche de novas técnicas de análise de dados, que frequentemente têm suas origens em machine learning. No entanto, embora muitos desses métodos pareçam inebriantes, eles devem ser avaliados cuidadosamente em face das múltiplas fontes de não-cobertura e seleção. <strong>Se tais aspectos forem ignorados, existe uma possibilidade genuína que análises de big data produzirão grandes desastres inferenciais.</strong> <span class="citation">(<a href="#ref-skinner2017" role="doc-biblioref">Skinner e Wakefield, 2017, p. 174</a>, grifo nosso)</span></p>
 </blockquote>
-<p><span class="citation">Meng (2018)</span> mostra que este alerta se estende para técnicas “menos moderninhas”, como é o caso de uma média simples. Mas nem tudo é má notícia para as ANPs. Sob a hipótese de ausência de não-resposta, o viés na análise é explicado pelo <span class="math inline">\(D_I\)</span>, um componente associado à auto-seleção/qualidade da cobertura da ANP. Entretanto, na prática, não temos como calcular o <span class="math inline">\(D_I\)</span>. <span class="citation">Kalton (2019, p. S25)</span> aponta que “[o] valor de uma grande ANP pode ser maior para estimativas analíticas, cujos vieses podem ser menores, e para pequenos grupos que não podem ser amostrados eficientemente com os métodos padrões baseados no desenho”. <span class="citation">Kim e Wang (2019)</span> propõem duas técnicas para reduzir o viés de seleção: <em>amostragem inversa</em> e <em>survey data integration</em>. <span class="citation">Elliott e Valliant (2017)</span> exploram abordagens baseadas em quasi-aleatorização e modelos de superpopulação. <span class="citation">Sen <em>et al.</em> (2019)</span> propõem um quadro conceitual análogo ao <em>Total Survey Error</em> para ajudar a entender as limitações e possibilidades do <em>big data</em>, que também se aplica para ANPs em geral. Mas isso é tema para outro post.</p>
+<p><span class="citation"><a href="#ref-meng2018" role="doc-biblioref">Meng</a> (<a href="#ref-meng2018" role="doc-biblioref">2018</a>)</span> mostra que este alerta se estende para técnicas “menos moderninhas”, como é o caso de uma média simples. Mas nem tudo é má notícia para as ANPs. Sob a hipótese de ausência de não-resposta, o viés na análise é explicado pelo <span class="math inline">\(D_I\)</span>, um componente associado à auto-seleção/qualidade da cobertura da ANP. Entretanto, na prática, não temos como calcular o <span class="math inline">\(D_I\)</span>. <span class="citation"><a href="#ref-graham2019" role="doc-biblioref">Kalton</a> (<a href="#ref-graham2019" role="doc-biblioref">2019, p. S25</a>)</span> aponta que “[o] valor de uma grande ANP pode ser maior para estimativas analíticas, cujos vieses podem ser menores, e para pequenos grupos que não podem ser amostrados eficientemente com os métodos padrões baseados no desenho”. <span class="citation"><a href="#ref-kim2019" role="doc-biblioref">Kim e Wang</a> (<a href="#ref-kim2019" role="doc-biblioref">2019</a>)</span> propõem duas técnicas para reduzir o viés de seleção: <em>amostragem inversa</em> e <em>survey data integration</em>. <span class="citation"><a href="#ref-elliott2017" role="doc-biblioref">Elliott e Valliant</a> (<a href="#ref-elliott2017" role="doc-biblioref">2017</a>)</span> exploram abordagens baseadas em quasi-aleatorização e modelos de superpopulação. <span class="citation"><a href="#ref-sen2019" role="doc-biblioref">Sen <em>et al.</em></a> (<a href="#ref-sen2019" role="doc-biblioref">2019</a>)</span> propõem um quadro conceitual análogo ao <em>Total Survey Error</em> para ajudar a entender as limitações e possibilidades do <em>big data</em>, que também se aplica para ANPs em geral. Mas isso é tema para outro post.</p>
 <p>O ponto central deste artigo é que, para estatística oficial, se os seus sistemas de registro administrativo não forem <strong>excelentes</strong>, uma amostra probabilística é <strong>muito melhor</strong>.</p>
 </div>
 <div id="referências" class="section level1 unnumbered">
@@ -650,16 +650,16 @@ SMITH, T. M. F. On the Validity of Inferences from Non-random Sample. <strong>Jo
           <div class="media">
             
             <div class="media-body">
-              <a class="link-unstyled" href="https://guilhermejacob.github.io/2022/05/pobreza-previsao-2021/">
-                <h3 class="media-heading">Prevendo a taxa de pobreza em 2021</h3>
+              <a class="link-unstyled" href="https://guilhermejacob.github.io/2022/06/pnadc-pobreza-2021/">
+                <h3 class="media-heading">Taxa de Pobreza por Estratos Geográficos em 2021</h3>
               </a>
               <span class="media-meta">
                 <span class="media-date text-small">
-                  May 5, 2022
+                  Jun 6, 2022
                 </span>
               </span>
-              <div class="media-content hide-xs font-merryweather">Data da previsão: 24/05/2022.
- No próximo dia 10 de junho, o IBGE vai divulgar as informações sobre renda de todas as fontes, permitindo estimar taxas de pobreza. Depois de ler um pouco sobre nowcasting e modelos SPREE, resolvi tentar uma coisa. A Tabela 1 minhas previsões para a taxa de pobreza em 2021, considerando uma linha de pobreza de US$ PPC 3.20 por dia para a renda domiciliar per capita.</div>
+              <div class="media-content hide-xs font-merryweather">No dia 10/6, o IBGE divulgou os rendimentos de outras fontes, coletado pela PNADC durante a 5ª visita de cada trimestre de 2021; clique aqui para acessar o release completo. Isso me mostrou duas coisas:
+Meu modelo de previsão errou bem mais do que eu gostaria. Por que? A relação entre rendimento do trabalho e rendimento de outras fontes mudou muito com a retirada do auxílio emergencial; É possível estimar a taxa de pobreza por estratos geográficos (outra novidade).</div>
             </div>
             <div style="clear:both;"></div>
             <hr>
@@ -695,7 +695,8 @@ Deville (1991) discutiu esse tema com muito cuidado, sugerindo onde o método po
                 </span>
               </span>
               <div class="media-content hide-xs font-merryweather">Recentemente, a PNAD Contínua passou por duas mudanças:
-Mudança de pós-estratificação para raking; Mudança no método de estimação da variância dos estimadores, do Método do Conglomerado Primário para bootstrap.  Mas o que isso significa? E como considerar isso na estimação usando o R? Bom, esse é o tema desse post. Primeiro, vou explicar muito superficialmente o que é raking e porque a mudança no método de calcular variância</div>
+Mudança de pós-estratificação para raking; Mudança no método de estimação da variância dos estimadores, do Método do Conglomerado Primário para bootstrap.  Mas o que isso significa? E como considerar isso na estimação usando o R? Bom, esse é o tema desse post. Primeiro, vou explicar muito superficialmente o que é raking e porque a mudança no método de calcular variância
+Calibração e raking Calibração (Deville e Särndal, 1992; Deville, Särndal e Sautory, 1993) é o nome de uma classe de métodos que, por conseguinte, definem uma classe de estimadores.</div>
             </div>
             <div style="clear:both;"></div>
             <hr>
@@ -786,7 +787,7 @@ Um pouco de história Em alguns países, os registros de nascimentos e mortes é
                 </span>
               </span>
               <div class="media-content hide-xs font-merryweather">Em julho, pensei em estudar uma técnica de decomposição de medidas de desigualdade/pobreza. Procurando as bases de dados, encontrei a a Pesquisa de Orçamentos Familiares (POF) 2017-2018, que tem muita informação interessante. Mas, com 30 dias para escrever um artigo, não achei que teria tempo para entender bem a pesquisa e produzir estimativas adequadas.
-Tirei alguns dias para ler a documentação e comecei a fazer algumas tentativas de análise.</div>
+Tirei alguns dias para ler a documentação e comecei a fazer algumas tentativas de análise. Uma pergunta bem interessante que a POF permite analisar é: quanto seria a desigualdade de renda se retirássemos as rendas transferidas pelos programas sociais federais?</div>
             </div>
             <div style="clear:both;"></div>
             <hr>
@@ -834,7 +835,7 @@ O momento chegou. Neste post, vou tentar explicar um pouco do que é polarizaç�
          data-message-zero=""
          data-message-one=""
          data-message-other="">
-         30 posts found
+         29 posts found
       </p>
     </div>
   </div>

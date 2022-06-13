@@ -3,8 +3,8 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://guilhermejacob.github.io/2022/05/pobreza-previsao-2021/</loc>
-    <lastmod>2022-05-24T00:00:00+00:00</lastmod>
+    <loc>https://guilhermejacob.github.io/2022/06/pnadc-pobreza-2021/</loc>
+    <lastmod>2022-06-12T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -113,11 +113,6 @@
   </url>
   
   <url>
-    <loc>https://guilhermejacob.github.io/research/</loc>
-    <lastmod>2018-03-03T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://guilhermejacob.github.io/2017/12/analise-censo-superior-genero-2016/</loc>
     <lastmod>2017-12-11T00:00:00+00:00</lastmod>
   </url>
@@ -143,11 +138,6 @@
   </url>
   
   <url>
-    <loc>https://guilhermejacob.github.io/2017/11/birth-registration-map/</loc>
-    <lastmod>2017-11-21T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://guilhermejacob.github.io/2017/11/ethnic-composition-brazilian-cities/</loc>
     <lastmod>2017-11-17T00:00:00+00:00</lastmod>
   </url>
@@ -162,14 +152,14 @@
   </url>
   
   <url>
-    <loc>https://guilhermejacob.github.io/categories/amostragem/</loc>
-    <lastmod>2022-04-19T00:00:00+00:00</lastmod>
+    <loc>https://guilhermejacob.github.io/tags/amostragem/</loc>
+    <lastmod>2021-05-23T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://guilhermejacob.github.io/tags/amostragem/</loc>
-    <lastmod>2021-05-23T00:00:00+00:00</lastmod>
+    <loc>https://guilhermejacob.github.io/categories/amostragem/</loc>
+    <lastmod>2022-04-19T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -245,13 +235,13 @@
   </url>
   
   <url>
-    <loc>https://guilhermejacob.github.io/categories/demografia/</loc>
+    <loc>https://guilhermejacob.github.io/tags/demografia/</loc>
     <lastmod>2020-09-12T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://guilhermejacob.github.io/tags/demografia/</loc>
+    <loc>https://guilhermejacob.github.io/categories/demografia/</loc>
     <lastmod>2020-09-12T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
@@ -263,13 +253,13 @@
   </url>
   
   <url>
-    <loc>https://guilhermejacob.github.io/categories/desigualdade/</loc>
+    <loc>https://guilhermejacob.github.io/tags/desigualdade/</loc>
     <lastmod>2020-08-31T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://guilhermejacob.github.io/tags/desigualdade/</loc>
+    <loc>https://guilhermejacob.github.io/categories/desigualdade/</loc>
     <lastmod>2020-08-31T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
@@ -329,20 +319,20 @@
   </url>
   
   <url>
-    <loc>https://guilhermejacob.github.io/categories/pobreza/</loc>
-    <lastmod>2021-01-27T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>https://guilhermejacob.github.io/tags/pobreza/</loc>
     <lastmod>2021-05-23T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
+    <loc>https://guilhermejacob.github.io/categories/pobreza/</loc>
+    <lastmod>2021-01-27T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://guilhermejacob.github.io/post/</loc>
-    <lastmod>2022-05-24T00:00:00+00:00</lastmod>
+    <lastmod>2022-06-12T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -372,7 +362,7 @@
   
   <url>
     <loc>https://guilhermejacob.github.io/</loc>
-    <lastmod>2022-05-24T00:00:00+00:00</lastmod>
+    <lastmod>2022-06-12T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

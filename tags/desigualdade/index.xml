@@ -18,7 +18,7 @@
       
       <guid>https://guilhermejacob.github.io/2020/08/diferenca-gini/</guid>
       <description>Em julho, pensei em estudar uma técnica de decomposição de medidas de desigualdade/pobreza. Procurando as bases de dados, encontrei a a Pesquisa de Orçamentos Familiares (POF) 2017-2018, que tem muita informação interessante. Mas, com 30 dias para escrever um artigo, não achei que teria tempo para entender bem a pesquisa e produzir estimativas adequadas.
-Tirei alguns dias para ler a documentação e comecei a fazer algumas tentativas de análise.</description>
+Tirei alguns dias para ler a documentação e comecei a fazer algumas tentativas de análise. Uma pergunta bem interessante que a POF permite analisar é: quanto seria a desigualdade de renda se retirássemos as rendas transferidas pelos programas sociais federais?</description>
     </item>
     
     <item>
@@ -76,18 +76,6 @@ Todos as estimativas a seguir foram feitas por mim.</description>
       <description>Atualização (21/12/2019): refiz todas as análises usando a nova definição de renda domiciliar per capita e seu respectivo deflator.
  Na última quarta (29/11), o IBGE finalmente apresentou as estimativas relativas aos rendimentos de todas as fontes, além de disponibilizar os microdados para os cálculos.
 Ok, mas o que isso quer dizer? Aguardei ansiosamente1 para saber como as coisas irão funcionar com o fim da PNAD anual e introdução da PNAD Contínua.</description>
-    </item>
-    
-    <item>
-      <title>Mapeando crianças sem registro civil</title>
-      <link>https://guilhermejacob.github.io/2017/11/birth-registration-map/</link>
-      <pubDate>Tue, 21 Nov 2017 00:00:00 +0000</pubDate>
-      
-      <guid>https://guilhermejacob.github.io/2017/11/birth-registration-map/</guid>
-      <description>Esse post é um pequeno follow-up da discussão sobre mapas de densidade de pontos, mas com um pouco mais de diretos da infância e adolescência. Vamos analisar como se distribuem espacialmente as crianças com e sem registro de nascimento, usando dados dos agregados de setores censitários do Censo 2010.
-Dessa vez, vamos focar em 4 capitais: Belém, Manaus , Fortaleza e São Luís.
-Sem mais conversa, prossigamos.
-Belém  Manaus  Fortaleza  São Luís  </description>
     </item>
     
     <item>
