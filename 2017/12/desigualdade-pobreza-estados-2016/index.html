@@ -279,8 +279,8 @@ Ok, mas o que isso quer dizer? Aguardei ansiosamente1 para saber como as coisas 
           
           <div class="post-content markdown" itemprop="articleBody">
             <div class="main-content-wrap">
-              <script src="https://guilhermejacob.github.io/2017/12/desigualdade-pobreza-estados-2016/index_files/kePrint/kePrint.js"></script>
-<link href="https://guilhermejacob.github.io/2017/12/desigualdade-pobreza-estados-2016/index_files/lightable/lightable.css" rel="stylesheet" />
+              <script src="https://guilhermejacob.github.io/rmarkdown-libs/kePrint/kePrint.js"></script>
+<link href="https://guilhermejacob.github.io/rmarkdown-libs/lightable/lightable.css" rel="stylesheet" />
 
 
 
@@ -304,21 +304,21 @@ Bom, isso acaba de ser respondido.</p>
 <div id="índice-de-gini" class="section level5">
 <h5>Índice de Gini</h5>
 <p>Vamos começar com a medida de desigualdade mais utilizada, o <a href="https://pt.wikipedia.org/wiki/Coeficiente_de_Gini">índice de Gini</a>. O Distrito Federal é o estado mais desigual do país. Ainda assim, os intervalos de confiança não permitem dizer que existam diferenças estatisticamente significativas entre muitos estados.
-<img src="https://guilhermejacob.github.io/2017/12/desigualdade-pobreza-estados-2016/index_files/figure-html/gini_plot-1.png" width="672" /></p>
+<img src="https://guilhermejacob.github.io/post/2017-12-01-desigualdade-pobreza-brasil-2016_files/figure-html/gini_plot-1.png" width="672" /></p>
 <p>A outra coisa clara neste gráfico é que Santa Catarina é o estado menos desigual, embora a diferença em relação ao segundo menos desigual, Mato Grosso, não seja estatisticamente significativa.</p>
 <p>No entanto, é importante lembrar que o índice de Gini tem seus problemas<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a>. Por conta disso, vamos explorar algumas alternativas, como a razão de Palma e o índice de Zenga.</p>
 </div>
 <div id="razão-de-palma" class="section level5">
 <h5>Razão de Palma</h5>
 <p>A <a href="http://www.un.org/esa/desa/papers/2015/wp143_2015.pdf">razão de Palma</a> é bastante intuitiva. Basicamente, este índice é a razão entre as rendas dos 10% mais ricos sobre a dos 40% mais pobres. Dessa forma, ele consegue ser mais sensível aos extremos da distribuição de renda do que o índice de Gini, por exemplo. Vejamos os resultados para o Brasil.
-<img src="https://guilhermejacob.github.io/2017/12/desigualdade-pobreza-estados-2016/index_files/figure-html/palma_plot-1.png" width="672" /></p>
+<img src="https://guilhermejacob.github.io/post/2017-12-01-desigualdade-pobreza-brasil-2016_files/figure-html/palma_plot-1.png" width="672" /></p>
 <p>Bom, o ordenamento muda um pouco. Embora o DF continue sendo o mais desigual, Pernambuco cai uma posição. Isso se deve ao fato deste índice ser um pouco mais sensível aos extremos da distribuição.
 Entretanto, este índice também sofre algumas críticas. De fato, ele não atende muitos axiomas esperados dos índices de desigualdade. Com isso em mente, incluiremos mais um índice.</p>
 </div>
 <div id="índice-de-zenga" class="section level5">
 <h5>Índice de Zenga</h5>
 <p>O <a href="https://link.springer.com/article/10.1007/s10687-013-0177-2">índice de Zenga</a> é uma medida relativamente recente. Ele satisfaz os mesmos axiomas que o índice de Gini, mas “pesa” todas as observações igualmente, mantendo a mesma sensibilidade ao longo de toda a distribuição de renda.
-<img src="https://guilhermejacob.github.io/2017/12/desigualdade-pobreza-estados-2016/index_files/figure-html/zenga_plot-1.png" width="672" /></p>
+<img src="https://guilhermejacob.github.io/post/2017-12-01-desigualdade-pobreza-brasil-2016_files/figure-html/zenga_plot-1.png" width="672" /></p>
 <p>O gráfico revela uma distribuição similar ao da razão de Palma.
 Em todos os casos, o Distrito Federal apresenta a maior desigualdade.</p>
 </div>
@@ -330,14 +330,14 @@ Neste exercício, consideramos a linha de pobreza equivalente a 1/4 do salário 
 <div id="taxa-de-pobreza" class="section level5">
 <h5>Taxa de Pobreza</h5>
 <p>O indicador mais utilizado quando se discute pobreza é a taxa de pobreza. Basicamente, essa medida é a proporção de pessoas consideradas pobres em determinada população.
-<img src="https://guilhermejacob.github.io/2017/12/desigualdade-pobreza-estados-2016/index_files/figure-html/fgt0_plot-1.png" width="672" />
+<img src="https://guilhermejacob.github.io/post/2017-12-01-desigualdade-pobreza-brasil-2016_files/figure-html/fgt0_plot-1.png" width="672" />
 As estimativas revelam que, na prática, existe um <em>empate</em> entre a proporção de pessoas pobres no Acre e Amazonas. Olhando o resto da lista, pode-se ver que os estados do Norte e Nordeste tendem a “liderar” neste ranking.</p>
 </div>
 <div id="hiato-de-pobreza" class="section level5">
 <h5>Hiato de Pobreza</h5>
 <p>Em que pese a sua simplicidade, a taxa de pobreza tem um problema: a pessoa que tem R$ 1 a menos da linha de pobreza recebe o mesmo peso da pessoa que tem R$ 200. Desta forma, perde muito da informação a respeito da intensidade da pobreza.<br />
 A classe <em>Foster-Greer-Thorbecke (FGT)</em> de índices de pobreza apresenta como solução o <em>Hiato de Pobreza</em>. Este índice pondera cada obervação pela distância em relação à linha de pobreza.</p>
-<p><img src="https://guilhermejacob.github.io/2017/12/desigualdade-pobreza-estados-2016/index_files/figure-html/fgt1_plot-1.png" width="672" /></p>
+<p><img src="https://guilhermejacob.github.io/post/2017-12-01-desigualdade-pobreza-brasil-2016_files/figure-html/fgt1_plot-1.png" width="672" /></p>
 <p>Aqui, o ordenamento muda um pouco. Embora Maranhão continue liderando, o Amazonas cai algumas posições. Comparando Amazonas e Acre, isto indica que, embora a <em>extensão</em> da pobreza entre as duas populações seja praticamente idêntica, a pobreza no Acre é <em>mais intensa</em>. Em outras palavras: a renda domiciliar per capita entre as pessoas em situação de pobreza neste estado é inferior à do Amazonas.<br />
 Isso tem impactos importantes quanto às políticas públicas. Por exemplo, um programa de transferência de renda exigiria, <em>proporcionalmente</em>, mais recursos no Acre do que no Amazonas.</p>
 </div>
@@ -351,7 +351,7 @@ FGT_{2}= \frac{FGT_1^2}{FGT_0} \cdot \bigg( 1 + 2 \cdot GEI_{2}^{*} \bigg) \text
 \]</span></p>
 <p>onde <span class="math inline">\(GEI_{2}^{*}\)</span> é o índice GEI(<span class="math inline">\(\epsilon\)</span>=2) das insuficiências de renda.</p>
 <p>Vejamos os resultados dos estados brasileiros.
-<img src="https://guilhermejacob.github.io/2017/12/desigualdade-pobreza-estados-2016/index_files/figure-html/fgt2_plot-1.png" width="672" /></p>
+<img src="https://guilhermejacob.github.io/post/2017-12-01-desigualdade-pobreza-brasil-2016_files/figure-html/fgt2_plot-1.png" width="672" /></p>
 <p>De novo, Maranhão é o primeiro do ranking. Porém, o Amazonas se distancia bastante agora. O que isso quer dizer? Talvez a decomposição do índice pode nos ajudar a entender as diferenças nas estimativas do FGT(2) entre as populações.</p>
 <table style="NAborder-bottom: 0;">
 <caption>
@@ -1317,7 +1317,7 @@ O momento chegou. Neste post, vou tentar explicar um pouco do que é polarizaç�
          data-message-zero=""
          data-message-one=""
          data-message-other="">
-         29 posts found
+         30 posts found
       </p>
     </div>
   </div>
