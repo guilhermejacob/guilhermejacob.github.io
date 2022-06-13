@@ -1,3 +1,4 @@
 *.Rmd
 post/_bookdown.yml
 .DS_Store
+*_cache
