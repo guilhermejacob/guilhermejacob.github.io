@@ -22,6 +22,17 @@ Deville (1991) discutiu esse tema com muito cuidado, sugerindo onde o método po
     </item>
     
     <item>
+      <title>Mudanças na PNAD Contínua: Raking e Bootstrap</title>
+      <link>https://guilhermejacob.github.io/2021/12/pnadc-raking-bootstrap/</link>
+      <pubDate>Wed, 01 Dec 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://guilhermejacob.github.io/2021/12/pnadc-raking-bootstrap/</guid>
+      <description>Recentemente, a PNAD Contínua passou por duas mudanças:
+Mudança de pós-estratificação para raking; Mudança no método de estimação da variância dos estimadores, do Método do Conglomerado Primário para bootstrap.  Mas o que isso significa? E como considerar isso na estimação usando o R? Bom, esse é o tema desse post. Primeiro, vou explicar muito superficialmente o que é raking e porque a mudança no método de calcular variância
+Calibração e raking Calibração (Deville e Särndal, 1992; Deville, Särndal e Sautory, 1993) é o nome de uma classe de métodos que, por conseguinte, definem uma classe de estimadores.</description>
+    </item>
+    
+    <item>
       <title>Modelos epidemiológicos, amostragem e cadeias de Markov</title>
       <link>https://guilhermejacob.github.io/2020/04/sir-markov/</link>
       <pubDate>Fri, 24 Apr 2020 00:00:00 +0000</pubDate>

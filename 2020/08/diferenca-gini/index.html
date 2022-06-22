@@ -278,8 +278,8 @@ Tirei alguns dias para ler a documentação e comecei a fazer algumas tentativas
           
           <div class="post-content markdown" itemprop="articleBody">
             <div class="main-content-wrap">
-              <script src="https://guilhermejacob.github.io/rmarkdown-libs/kePrint/kePrint.js"></script>
-<link href="https://guilhermejacob.github.io/rmarkdown-libs/lightable/lightable.css" rel="stylesheet" />
+              <script src="https://guilhermejacob.github.io/2020/08/diferenca-gini/index_files/kePrint/kePrint.js"></script>
+<link href="https://guilhermejacob.github.io/2020/08/diferenca-gini/index_files/lightable/lightable.css" rel="stylesheet" />
 
 
 <p>Em julho, pensei em estudar uma técnica de decomposição de medidas de desigualdade/pobreza. Procurando as bases de dados, encontrei a a Pesquisa de Orçamentos Familiares (POF) 2017-2018, que tem muita informação interessante. Mas, com 30 dias para escrever um artigo, não achei que teria tempo para entender bem a pesquisa e produzir estimativas adequadas.</p>
@@ -289,7 +289,7 @@ Tirei alguns dias para ler a documentação e comecei a fazer algumas tentativas
 <p>Vamos ao que interessa. As estimativas a seguir usam apenas as rendas monetárias, das quais eu separei as rendas de programas sociais federais. Vamos olhar a média da renda familiar per capita. A Tabela <a href="#tab:tab1">1</a> mostra que a renda familiar per capita era R$ 1 683,31. A média das rendas do trabalho divida pelo número de moradores no domicílio era R$ 1 045,06. Por sua vez, as transferências sociais federais eram R$ 19,02 por morador. Por fim, R$ 619,23 eram auferidos de outras fontes (aposentadores, outras transferências, etc.) Esses números são um pouco estranhos porque são “médias de médias”, mas fazem sentido: somando as componentes, temos a renda média total.</p>
 <table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;border-bottom: 0;">
 <caption>
-<span id="tab:tab1">Tabela 1: </span>Média das rendas familiares per capita por fonte – Brasil, 2017-2018
+<span id="tab:tab1">Table 1: </span>Média das rendas familiares per capita por fonte – Brasil, 2017-2018
 </caption>
 <thead>
 <tr>
@@ -387,7 +387,7 @@ Outras fontes
 <p>E o índice de Gini? A Tabela <a href="#tab:tab2">2</a> apresenta as estimativas do índice de Gini da renda total e da renda sem transferências sociais federais. Observe que o intervalo de confiança das duas estimativas se sobrepõem parcialmente. Com a suposição de independência, isso seria evidência de que as transferências sociais governamentais não têm impacto significativo sobre o índice de Gini.</p>
 <table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;border-bottom: 0;">
 <caption>
-<span id="tab:tab2">Tabela 2: </span>Índice de Gini das rendas familiares per capita por fonte – Brasil, 2017-2018
+<span id="tab:tab2">Table 2: </span>Índice de Gini das rendas familiares per capita por fonte – Brasil, 2017-2018
 </caption>
 <thead>
 <tr>
@@ -457,7 +457,7 @@ Renda Total - Transferências Sociais Federais
 <p>Como sabemos, estas estimativas são produzidas sobre a mesma amostra, indicando que a suposição de independência das estimativas é muito improvável. Estimando a matriz de variância-covariância, podemos ter uma estimativa mais adequada da diferença, conforme mostra a Tabela <a href="#tab:tab3">3</a>. Subtraindo a covariância, o erro-padrão da diferença é bem menor, resultando em intervalo de confiança mais estreito. Como este intervalo não “cobre” o valor 0, a diferença é estatisticamente significativa!</p>
 <table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;border-bottom: 0;">
 <caption>
-<span id="tab:tab3">Tabela 3: </span>Diferença dos Índices de Gini – Brasil, 2017-2018
+<span id="tab:tab3">Table 3: </span>Diferença dos Índices de Gini – Brasil, 2017-2018
 </caption>
 <thead>
 <tr>
@@ -548,7 +548,7 @@ Covariância
 <p>O Rogério Barbosa me avisou (e me explicou!) sobre outro método, descrito em <span class="citation"><a href="#ref-shorrocks1982" role="doc-biblioref">Shorrocks</a> (<a href="#ref-shorrocks1982" role="doc-biblioref">1982</a>)</span>. Li rapidamente artigo e acho que consigo implementar. <span class="citation"><a href="#ref-shorrocks1982" role="doc-biblioref">Shorrocks</a> (<a href="#ref-shorrocks1982" role="doc-biblioref">1982</a>)</span> distribui o índice de Gini ponderando por uma função das covariâncias entre a renda total e a parcela de cada fonte. A Tabela <a href="#tab:tab4">4</a> mostra que os resultados são consistentes com o resultado anterior.</p>
 <table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;border-bottom: 0;">
 <caption>
-<span id="tab:tab4">Tabela 4: </span>Decomposição do Índice de Gini por fonte – Brasil, 2017-2018
+<span id="tab:tab4">Table 4: </span>Decomposição do Índice de Gini por fonte – Brasil, 2017-2018
 </caption>
 <thead>
 <tr>
@@ -900,6 +900,24 @@ SHORROCKS, A. F. Inequality Decomposition by Factor Components. <strong>Economet
           <div class="media">
             
             <div class="media-body">
+              <a class="link-unstyled" href="https://guilhermejacob.github.io/2022/06/serie-ipca-202001/">
+                <h3 class="media-heading">Visualizando a inflação desde janeiro de 2020</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Jun 6, 2022
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Esse vai ser bem curtinho porque estou de férias. A minha conterrânea Milena1, mostrou uma animação bem interessante sobre inflação nos EUA (ou UK; não lembro direito). Perguntou se dava para fazer algo parecido com os dados do Brasil.
+O Gráfico abaixo mostra o quanto a inflação cresceu ao longo dos meses em relação à janeiro de 2020. Ou seja: a barra de “Alimentação e bebidas” aponta para 15,3%, isso significa que o preço naquele mês era 15,3% maior que o preço de janeiro de 2020.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
               <a class="link-unstyled" href="https://guilhermejacob.github.io/2022/06/pnadc-pobreza-2021/">
                 <h3 class="media-heading">Taxa de Pobreza por Estratos Geográficos em 2021</h3>
               </a>
@@ -1060,24 +1078,6 @@ Tirei alguns dias para ler a documentação e comecei a fazer algumas tentativas
             <hr>
           </div>
         
-          <div class="media">
-            
-            <div class="media-body">
-              <a class="link-unstyled" href="https://guilhermejacob.github.io/2020/08/polarizacao-desigualdade/">
-                <h3 class="media-heading">Desigualdade e polarização</h3>
-              </a>
-              <span class="media-meta">
-                <span class="media-date text-small">
-                  Aug 8, 2020
-                </span>
-              </span>
-              <div class="media-content hide-xs font-merryweather">Há algum tempo atrás, vi uma discussão bem interessante sobre desigualdade e a Grazielle David do podcast É da sua conta! levantou o tema da polarização de renda. Eu já tinha lido um pouco a respeito e tinha até começado a escrever uma apresentação sobre o tema, mas não tinha calculado nada de fato. Deixei anotado para o futuro.
-O momento chegou. Neste post, vou tentar explicar um pouco do que é polarização e como essa abordagem se diferencia da desigualdade.</div>
-            </div>
-            <div style="clear:both;"></div>
-            <hr>
-          </div>
-        
       </div>
     </div>
     <div class="modal-footer">
@@ -1085,7 +1085,7 @@ O momento chegou. Neste post, vou tentar explicar um pouco do que é polarizaç�
          data-message-zero=""
          data-message-one=""
          data-message-other="">
-         30 posts found
+         31 posts found
       </p>
     </div>
   </div>

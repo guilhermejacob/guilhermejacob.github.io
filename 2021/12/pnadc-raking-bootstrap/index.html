@@ -267,6 +267,14 @@ Calibração e raking Calibração (Deville e Särndal, 1992; Deville, Särndal 
       </time>
     
     
+  
+  
+    <span>em</span>
+    
+      <a class="category-link" href="https://guilhermejacob.github.io/categories/amostragem">Amostragem</a>
+    
+  
+
   </div>
 
 </div>
@@ -310,14 +318,8 @@ library( survey )
 
 ### usando os pesos de replicação
 
-# coleta matriz de pesos
-bootweights.cols &lt;- grep( &quot;v1028[0-9]{3}&quot; , colnames( pnadc.df ) , value = TRUE )
-bootweights.mat &lt;- pnadc.df[ , bootweights.cols ]
-bootweights.mat &lt;- as.matrix( bootweights.mat )
-pnadc.df[ , bootweights.cols ] &lt;- NULL
-
 # declarando o plano amostral
-pnadc.boot &lt;- svrepdesign( data = pnadc.df , type = &quot;bootstrap&quot; , weights = ~v1028 , repweights = bootweights.mat )
+pnadc.boot &lt;- svrepdesign( data = pnadc.df , type = &quot;bootstrap&quot; , weights = ~v1028 , repweights = &quot;^v1028[0-9]{3}&quot; , mse = TRUE )
 
 # estima proporções de ocupados e desocupados no Brasil
 txunemp.boot.br &lt;- svymean( ~factor( vd4002 ) , pnadc.boot , na.rm = TRUE )
@@ -369,8 +371,8 @@ txunemp.ucm.uf &lt;- svymean( ~factor( vd4002 ) , subset( pnadc.ucm , uf == 13 )
 <p>Já os resultados para o Amazonas diferem um pouco nas estimativas dos erros-padrões:</p>
 <pre class="r"><code>txunemp.boot.uf</code></pre>
 <pre><code>##                    mean     SE
-## factor(vd4002)1 0.86553 0.0067
-## factor(vd4002)2 0.13447 0.0067</code></pre>
+## factor(vd4002)1 0.86553 0.0068
+## factor(vd4002)2 0.13447 0.0068</code></pre>
 <pre class="r"><code>txunemp.ucm.uf</code></pre>
 <pre><code>##                    mean     SE
 ## factor(vd4002)1 0.86553 0.0072
@@ -398,7 +400,7 @@ RAO, J. N. K.; WU, C. F. J. Resampling Inference With Complex Survey Data. <stro
 <hr />
 <ol>
 <li id="fn1"><p>As propriedades de simetria e desigualdade triangular, que definem distâncias, podem ser desnecessárias neste caso.<a href="#fnref1" class="footnote-back">↩︎</a></p></li>
-<li id="fn2"><p>Mas não muito, afinal os métodos tentam estimar a mesma quantidade<a href="#fnref2" class="footnote-back">↩︎</a></p></li>
+<li id="fn2"><p>Não muito, afinal os métodos tentam estimar a mesma quantidade<a href="#fnref2" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
 
@@ -625,6 +627,24 @@ RAO, J. N. K.; WU, C. F. J. Resampling Inference With Complex Survey Data. <stro
           <div class="media">
             
             <div class="media-body">
+              <a class="link-unstyled" href="https://guilhermejacob.github.io/2022/06/serie-ipca-202001/">
+                <h3 class="media-heading">Visualizando a inflação desde janeiro de 2020</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Jun 6, 2022
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Esse vai ser bem curtinho porque estou de férias. A minha conterrânea Milena1, mostrou uma animação bem interessante sobre inflação nos EUA (ou UK; não lembro direito). Perguntou se dava para fazer algo parecido com os dados do Brasil.
+O Gráfico abaixo mostra o quanto a inflação cresceu ao longo dos meses em relação à janeiro de 2020. Ou seja: a barra de “Alimentação e bebidas” aponta para 15,3%, isso significa que o preço naquele mês era 15,3% maior que o preço de janeiro de 2020.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
               <a class="link-unstyled" href="https://guilhermejacob.github.io/2022/06/pnadc-pobreza-2021/">
                 <h3 class="media-heading">Taxa de Pobreza por Estratos Geográficos em 2021</h3>
               </a>
@@ -785,24 +805,6 @@ Tirei alguns dias para ler a documentação e comecei a fazer algumas tentativas
             <hr>
           </div>
         
-          <div class="media">
-            
-            <div class="media-body">
-              <a class="link-unstyled" href="https://guilhermejacob.github.io/2020/08/polarizacao-desigualdade/">
-                <h3 class="media-heading">Desigualdade e polarização</h3>
-              </a>
-              <span class="media-meta">
-                <span class="media-date text-small">
-                  Aug 8, 2020
-                </span>
-              </span>
-              <div class="media-content hide-xs font-merryweather">Há algum tempo atrás, vi uma discussão bem interessante sobre desigualdade e a Grazielle David do podcast É da sua conta! levantou o tema da polarização de renda. Eu já tinha lido um pouco a respeito e tinha até começado a escrever uma apresentação sobre o tema, mas não tinha calculado nada de fato. Deixei anotado para o futuro.
-O momento chegou. Neste post, vou tentar explicar um pouco do que é polarização e como essa abordagem se diferencia da desigualdade.</div>
-            </div>
-            <div style="clear:both;"></div>
-            <hr>
-          </div>
-        
       </div>
     </div>
     <div class="modal-footer">
@@ -810,7 +812,7 @@ O momento chegou. Neste post, vou tentar explicar um pouco do que é polarizaç�
          data-message-zero=""
          data-message-one=""
          data-message-other="">
-         30 posts found
+         31 posts found
       </p>
     </div>
   </div>

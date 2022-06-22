@@ -6,10 +6,20 @@
     <description>Recent content in Posts on Something Random</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>pt-br</language>
-    <lastBuildDate>Sun, 12 Jun 2022 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 22 Jun 2022 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://guilhermejacob.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Visualizando a inflação desde janeiro de 2020</title>
+      <link>https://guilhermejacob.github.io/2022/06/serie-ipca-202001/</link>
+      <pubDate>Wed, 22 Jun 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://guilhermejacob.github.io/2022/06/serie-ipca-202001/</guid>
+      <description>Esse vai ser bem curtinho porque estou de férias. A minha conterrânea Milena1, mostrou uma animação bem interessante sobre inflação nos EUA (ou UK; não lembro direito). Perguntou se dava para fazer algo parecido com os dados do Brasil.
+O Gráfico abaixo mostra o quanto a inflação cresceu ao longo dos meses em relação à janeiro de 2020. Ou seja: a barra de “Alimentação e bebidas” aponta para 15,3%, isso significa que o preço naquele mês era 15,3% maior que o preço de janeiro de 2020.</description>
+    </item>
     
     <item>
       <title>Taxa de Pobreza por Estratos Geográficos em 2021</title>
