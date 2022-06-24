@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Pobreza on Something Random</title>
@@ -6,11 +6,7 @@
     <description>Recent content in Pobreza on Something Random</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>pt-br</language>
-    <lastBuildDate>Wed, 27 Jan 2021 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://guilhermejacob.github.io/categories/pobreza/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Wed, 27 Jan 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://guilhermejacob.github.io/categories/pobreza/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>(Algumas) Estatísticas sobre fome no Brasil (2017-2018)</title>
       <link>https://guilhermejacob.github.io/2021/01/fome-pof-2017-2018/</link>

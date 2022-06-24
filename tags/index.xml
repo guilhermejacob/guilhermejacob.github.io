@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on Something Random</title>
@@ -6,11 +6,7 @@
     <description>Recent content in Tags on Something Random</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>pt-br</language>
-    <lastBuildDate>Sun, 23 May 2021 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://guilhermejacob.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Sun, 23 May 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://guilhermejacob.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Amostragem</title>
       <link>https://guilhermejacob.github.io/tags/amostragem/</link>
@@ -21,20 +17,65 @@
     </item>
     
     <item>
-      <title>Big Data</title>
-      <link>https://guilhermejacob.github.io/tags/big-data/</link>
-      <pubDate>Sun, 22 Dec 2019 00:00:00 +0000</pubDate>
+      <title>Pobreza</title>
+      <link>https://guilhermejacob.github.io/tags/pobreza/</link>
+      <pubDate>Sun, 23 May 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://guilhermejacob.github.io/tags/big-data/</guid>
+      <guid>https://guilhermejacob.github.io/tags/pobreza/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Bolsa Família</title>
-      <link>https://guilhermejacob.github.io/tags/bolsa-fam%C3%ADlia/</link>
-      <pubDate>Thu, 23 Nov 2017 00:00:00 +0000</pubDate>
+      <title>Fome</title>
+      <link>https://guilhermejacob.github.io/tags/fome/</link>
+      <pubDate>Wed, 27 Jan 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://guilhermejacob.github.io/tags/bolsa-fam%C3%ADlia/</guid>
+      <guid>https://guilhermejacob.github.io/tags/fome/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>rstats</title>
+      <link>https://guilhermejacob.github.io/tags/rstats/</link>
+      <pubDate>Wed, 27 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://guilhermejacob.github.io/tags/rstats/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Demografia</title>
+      <link>https://guilhermejacob.github.io/tags/demografia/</link>
+      <pubDate>Sat, 12 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://guilhermejacob.github.io/tags/demografia/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Saúde</title>
+      <link>https://guilhermejacob.github.io/tags/sa%C3%BAde/</link>
+      <pubDate>Sat, 12 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://guilhermejacob.github.io/tags/sa%C3%BAde/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Desigualdade</title>
+      <link>https://guilhermejacob.github.io/tags/desigualdade/</link>
+      <pubDate>Mon, 31 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://guilhermejacob.github.io/tags/desigualdade/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Educação</title>
+      <link>https://guilhermejacob.github.io/tags/educa%C3%A7%C3%A3o/</link>
+      <pubDate>Thu, 20 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://guilhermejacob.github.io/tags/educa%C3%A7%C3%A3o/</guid>
       <description></description>
     </item>
     
@@ -44,6 +85,123 @@
       <pubDate>Wed, 08 Apr 2020 00:00:00 +0000</pubDate>
       
       <guid>https://guilhermejacob.github.io/tags/brasil/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Cidades</title>
+      <link>https://guilhermejacob.github.io/tags/cidades/</link>
+      <pubDate>Wed, 08 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://guilhermejacob.github.io/tags/cidades/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Mapas</title>
+      <link>https://guilhermejacob.github.io/tags/mapas/</link>
+      <pubDate>Wed, 08 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://guilhermejacob.github.io/tags/mapas/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Infância</title>
+      <link>https://guilhermejacob.github.io/tags/inf%C3%A2ncia/</link>
+      <pubDate>Tue, 31 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://guilhermejacob.github.io/tags/inf%C3%A2ncia/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Big data</title>
+      <link>https://guilhermejacob.github.io/tags/big-data/</link>
+      <pubDate>Sun, 22 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://guilhermejacob.github.io/tags/big-data/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Modelos</title>
+      <link>https://guilhermejacob.github.io/tags/modelos/</link>
+      <pubDate>Sun, 22 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://guilhermejacob.github.io/tags/modelos/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Desemprego</title>
+      <link>https://guilhermejacob.github.io/tags/desemprego/</link>
+      <pubDate>Fri, 18 May 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://guilhermejacob.github.io/tags/desemprego/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Mercado de Trabalho</title>
+      <link>https://guilhermejacob.github.io/tags/mercado-de-trabalho/</link>
+      <pubDate>Fri, 18 May 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://guilhermejacob.github.io/tags/mercado-de-trabalho/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Direitos Reprodutivos</title>
+      <link>https://guilhermejacob.github.io/tags/direitos-reprodutivos/</link>
+      <pubDate>Wed, 02 May 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://guilhermejacob.github.io/tags/direitos-reprodutivos/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>DataViz</title>
+      <link>https://guilhermejacob.github.io/tags/dataviz/</link>
+      <pubDate>Mon, 11 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://guilhermejacob.github.io/tags/dataviz/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Migração</title>
+      <link>https://guilhermejacob.github.io/tags/migra%C3%A7%C3%A3o/</link>
+      <pubDate>Wed, 29 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://guilhermejacob.github.io/tags/migra%C3%A7%C3%A3o/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>CAGED</title>
+      <link>https://guilhermejacob.github.io/tags/caged/</link>
+      <pubDate>Mon, 27 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://guilhermejacob.github.io/tags/caged/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>RAIS</title>
+      <link>https://guilhermejacob.github.io/tags/rais/</link>
+      <pubDate>Mon, 27 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://guilhermejacob.github.io/tags/rais/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Bolsa Família</title>
+      <link>https://guilhermejacob.github.io/tags/bolsa-fam%C3%ADlia/</link>
+      <pubDate>Thu, 23 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://guilhermejacob.github.io/tags/bolsa-fam%C3%ADlia/</guid>
       <description></description>
     </item>
     
@@ -62,168 +220,6 @@
       <pubDate>Thu, 23 Nov 2017 00:00:00 +0000</pubDate>
       
       <guid>https://guilhermejacob.github.io/tags/cadastro-%C3%BAnico/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Caged</title>
-      <link>https://guilhermejacob.github.io/tags/caged/</link>
-      <pubDate>Mon, 27 Nov 2017 00:00:00 +0000</pubDate>
-      
-      <guid>https://guilhermejacob.github.io/tags/caged/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Cidades</title>
-      <link>https://guilhermejacob.github.io/tags/cidades/</link>
-      <pubDate>Wed, 08 Apr 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://guilhermejacob.github.io/tags/cidades/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Dataviz</title>
-      <link>https://guilhermejacob.github.io/tags/dataviz/</link>
-      <pubDate>Mon, 11 Dec 2017 00:00:00 +0000</pubDate>
-      
-      <guid>https://guilhermejacob.github.io/tags/dataviz/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Demografia</title>
-      <link>https://guilhermejacob.github.io/tags/demografia/</link>
-      <pubDate>Sat, 12 Sep 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://guilhermejacob.github.io/tags/demografia/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Desemprego</title>
-      <link>https://guilhermejacob.github.io/tags/desemprego/</link>
-      <pubDate>Fri, 18 May 2018 00:00:00 +0000</pubDate>
-      
-      <guid>https://guilhermejacob.github.io/tags/desemprego/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Desigualdade</title>
-      <link>https://guilhermejacob.github.io/tags/desigualdade/</link>
-      <pubDate>Mon, 31 Aug 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://guilhermejacob.github.io/tags/desigualdade/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Direitos Reprodutivos</title>
-      <link>https://guilhermejacob.github.io/tags/direitos-reprodutivos/</link>
-      <pubDate>Wed, 02 May 2018 00:00:00 +0000</pubDate>
-      
-      <guid>https://guilhermejacob.github.io/tags/direitos-reprodutivos/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Educação</title>
-      <link>https://guilhermejacob.github.io/tags/educa%C3%A7%C3%A3o/</link>
-      <pubDate>Thu, 20 Aug 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://guilhermejacob.github.io/tags/educa%C3%A7%C3%A3o/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Fome</title>
-      <link>https://guilhermejacob.github.io/tags/fome/</link>
-      <pubDate>Wed, 27 Jan 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://guilhermejacob.github.io/tags/fome/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Infância</title>
-      <link>https://guilhermejacob.github.io/tags/inf%C3%A2ncia/</link>
-      <pubDate>Tue, 31 Dec 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://guilhermejacob.github.io/tags/inf%C3%A2ncia/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Mapas</title>
-      <link>https://guilhermejacob.github.io/tags/mapas/</link>
-      <pubDate>Wed, 08 Apr 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://guilhermejacob.github.io/tags/mapas/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Mercado De Trabalho</title>
-      <link>https://guilhermejacob.github.io/tags/mercado-de-trabalho/</link>
-      <pubDate>Fri, 18 May 2018 00:00:00 +0000</pubDate>
-      
-      <guid>https://guilhermejacob.github.io/tags/mercado-de-trabalho/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Migração</title>
-      <link>https://guilhermejacob.github.io/tags/migra%C3%A7%C3%A3o/</link>
-      <pubDate>Wed, 29 Nov 2017 00:00:00 +0000</pubDate>
-      
-      <guid>https://guilhermejacob.github.io/tags/migra%C3%A7%C3%A3o/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Modelos</title>
-      <link>https://guilhermejacob.github.io/tags/modelos/</link>
-      <pubDate>Sun, 22 Dec 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://guilhermejacob.github.io/tags/modelos/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Pobreza</title>
-      <link>https://guilhermejacob.github.io/tags/pobreza/</link>
-      <pubDate>Sun, 23 May 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://guilhermejacob.github.io/tags/pobreza/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Rais</title>
-      <link>https://guilhermejacob.github.io/tags/rais/</link>
-      <pubDate>Mon, 27 Nov 2017 00:00:00 +0000</pubDate>
-      
-      <guid>https://guilhermejacob.github.io/tags/rais/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Rstats</title>
-      <link>https://guilhermejacob.github.io/tags/rstats/</link>
-      <pubDate>Wed, 27 Jan 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://guilhermejacob.github.io/tags/rstats/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Saúde</title>
-      <link>https://guilhermejacob.github.io/tags/sa%C3%BAde/</link>
-      <pubDate>Sat, 12 Sep 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://guilhermejacob.github.io/tags/sa%C3%BAde/</guid>
       <description></description>
     </item>
     

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Migração on Something Random</title>
@@ -6,11 +6,7 @@
     <description>Recent content in Migração on Something Random</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>pt-br</language>
-    <lastBuildDate>Wed, 29 Nov 2017 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://guilhermejacob.github.io/tags/migra%C3%A7%C3%A3o/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Wed, 29 Nov 2017 00:00:00 +0000</lastBuildDate><atom:link href="https://guilhermejacob.github.io/tags/migra%C3%A7%C3%A3o/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>CGIg/CNIg e SINCRE: analisando os microdados do OBMigra</title>
       <link>https://guilhermejacob.github.io/2017/11/microdados-obmigra/</link>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Censo on Something Random</title>
@@ -6,11 +6,7 @@
     <description>Recent content in Censo on Something Random</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>pt-br</language>
-    <lastBuildDate>Wed, 08 Apr 2020 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://guilhermejacob.github.io/categories/censo/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Wed, 08 Apr 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://guilhermejacob.github.io/categories/censo/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Juros, taxas de crescimento e aproximações</title>
       <link>https://guilhermejacob.github.io/2020/04/taylor-maclaurin-taxa/</link>
@@ -18,8 +14,8 @@
       
       <guid>https://guilhermejacob.github.io/2020/04/taylor-maclaurin-taxa/</guid>
       <description>Esse post vai fugir um pouco do usual. Não vamos fazer análise de dados, nem escrever código. Vamos ter algumas equações e gráficos, mas nada muito complicado. Vamos tentar responder duas perguntas:
- Tenho uma série de crescimento do PIB nos trimestres de um ano. O crescimento acumulado no período é igual à soma das taxas de crescimento?
-  Tenho valores de inflação e taxa de juros nominal. A taxa de juros real é igual à taxa de juros nominal menos a inflação?</description>
+Tenho uma série de crescimento do PIB nos trimestres de um ano. O crescimento acumulado no período é igual à soma das taxas de crescimento?
+Tenho valores de inflação e taxa de juros nominal. A taxa de juros real é igual à taxa de juros nominal menos a inflação?</description>
     </item>
     
     <item>
@@ -28,10 +24,10 @@
       <pubDate>Tue, 21 Nov 2017 00:00:00 +0000</pubDate>
       
       <guid>https://guilhermejacob.github.io/2017/11/birth-registration-map/</guid>
-      <description>Esse post é um pequeno follow-up da discussão sobre mapas de densidade de pontos, mas com um pouco mais de diretos da infância e adolescência. Vamos analisar como se distribuem espacialmente as crianças com e sem registro de nascimento, usando dados dos agregados de setores censitários do Censo 2010.
+      <description> Esse post é um pequeno follow-up da discussão sobre mapas de densidade de pontos, mas com um pouco mais de diretos da infância e adolescência. Vamos analisar como se distribuem espacialmente as crianças com e sem registro de nascimento, usando dados dos agregados de setores censitários do Censo 2010.
 Dessa vez, vamos focar em 4 capitais: Belém, Manaus , Fortaleza e São Luís.
 Sem mais conversa, prossigamos.
-Belém  Manaus  Fortaleza  São Luís  </description>
+Belém Manaus Fortaleza São Luís </description>
     </item>
     
     <item>
@@ -41,7 +37,7 @@ Belém  Manaus  Fortaleza  São Luís  </description>
       
       <guid>https://guilhermejacob.github.io/2017/11/ethnic-composition-brazilian-cities/</guid>
       <description>Você pode encontrar o código para as imagens deste post aqui.
- Há algum tempo, eu encontrei este post, mostrando como as etnias se distribuem em Londres. Achei muito interessante, já que ele revela padrões sobre como as comunidades se organizam e como a deseigualdade se expressa através da localização dos domicílios.
+Há algum tempo, eu encontrei este post, mostrando como as etnias se distribuem em Londres. Achei muito interessante, já que ele revela padrões sobre como as comunidades se organizam e como a deseigualdade se expressa através da localização dos domicílios.
 Nossa tarefa de hoje é aplicar a mesma técnica no Brasil. Aqui está a nossa lista de cidades: São Paulo, Rio de Janeiro, Brasília, Recife, Salvador, e minha terra natal Manaus.</description>
     </item>
     

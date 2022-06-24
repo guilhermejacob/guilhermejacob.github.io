@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Teoria on Something Random</title>
@@ -6,19 +6,14 @@
     <description>Recent content in Teoria on Something Random</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>pt-br</language>
-    <lastBuildDate>Tue, 19 Apr 2022 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://guilhermejacob.github.io/categories/teoria/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Tue, 19 Apr 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://guilhermejacob.github.io/categories/teoria/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Amostragem por Cotas</title>
       <link>https://guilhermejacob.github.io/2022/04/amostragem-cotas/</link>
       <pubDate>Tue, 19 Apr 2022 00:00:00 +0000</pubDate>
       
       <guid>https://guilhermejacob.github.io/2022/04/amostragem-cotas/</guid>
-      <description>Ontem, eu estava vendo stories no Instagram e me deparei com uma aula com as palavras “Amostragem por cotas e pós-estratificação”. Isso me lembrou de um comentário que fiz na aula de amostragem da semana passada: se você não tem uma amostragem probabilística, sua inferência necessariamente se baseia em um modelo, seja ele sobre o modo como a amostra foi selecionada ou sobre o comportamento da variável na população.
-Deville (1991) discutiu esse tema com muito cuidado, sugerindo onde o método pode ser útil e porque ele não deveria ser usado em estatísticas oficiais.</description>
+      <description>Ontem, eu estava vendo stories no Instagram e me deparei com uma aula com as palavras “Amostragem por cotas e pós-estratificação”. Isso me lembrou de um comentário que fiz na aula de amostragem da semana passada: se você não tem uma amostragem probabilística, sua inferência necessariamente se baseia em um modelo, seja ele sobre o modo como a amostra foi selecionada ou sobre o comportamento da variável na população.</description>
     </item>
     
     <item>
@@ -28,7 +23,7 @@ Deville (1991) discutiu esse tema com muito cuidado, sugerindo onde o método po
       
       <guid>https://guilhermejacob.github.io/2019/12/meng2018/</guid>
       <description>Atualização (27/05/2020): o professor Pedro Nascimento Silva (ENCE/IBGE) fez uma apresentação sobre o mesmo tópico em 2019 para o Colóquio do IME-USP. O link para slides e vídeo da apresentação podem ser encontrados aqui.
- Eu queria fechar esse ano com um problema que andei lendo a respeito no passado recente: inferência descritiva com amostras não-probabilísticas. Alguns dos textos mais interessantes são Smith (1983), Meng (2014), Elliott e Valliant (2017) e Meng (2018).</description>
+Eu queria fechar esse ano com um problema que andei lendo a respeito no passado recente: inferência descritiva com amostras não-probabilísticas. Alguns dos textos mais interessantes são Smith (1983), Meng (2014), Elliott e Valliant (2017) e Meng (2018).</description>
     </item>
     
     <item>
@@ -47,8 +42,8 @@ Deville (1991) discutiu esse tema com muito cuidado, sugerindo onde o método po
       
       <guid>https://guilhermejacob.github.io/2019/08/desigualdade-pobreza-log/</guid>
       <description>Pesquisando no repositório das piores ideias da humanidade1, não é raro encontrar a seguinte frase:
- “A pobreza importa. A desigualdade, não.”
- Aparentemente, tem gente que acredita nisso. Vou mostrar o quanto isso é estúpido.
+“A pobreza importa. A desigualdade, não.”
+Aparentemente, tem gente que acredita nisso. Vou mostrar o quanto isso é estúpido.
 Considere a sociedade A, cuja renda média é $500.10 e o índice de Gini é 0.400. Vejamos a distribuição cumulativa.
 Agora considere a Sociedade B, produzida a partir de \(n\) transferências regressivas para o indivíduo mais rico de modo que os demais indivíduos não-pobres estejam quase na linha de pobreza.</description>
     </item>

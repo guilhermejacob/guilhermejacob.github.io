@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Amostragem on Something Random</title>
@@ -6,19 +6,14 @@
     <description>Recent content in Amostragem on Something Random</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>pt-br</language>
-    <lastBuildDate>Tue, 19 Apr 2022 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://guilhermejacob.github.io/categories/amostragem/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Tue, 19 Apr 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://guilhermejacob.github.io/categories/amostragem/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Amostragem por Cotas</title>
       <link>https://guilhermejacob.github.io/2022/04/amostragem-cotas/</link>
       <pubDate>Tue, 19 Apr 2022 00:00:00 +0000</pubDate>
       
       <guid>https://guilhermejacob.github.io/2022/04/amostragem-cotas/</guid>
-      <description>Ontem, eu estava vendo stories no Instagram e me deparei com uma aula com as palavras “Amostragem por cotas e pós-estratificação”. Isso me lembrou de um comentário que fiz na aula de amostragem da semana passada: se você não tem uma amostragem probabilística, sua inferência necessariamente se baseia em um modelo, seja ele sobre o modo como a amostra foi selecionada ou sobre o comportamento da variável na população.
-Deville (1991) discutiu esse tema com muito cuidado, sugerindo onde o método pode ser útil e porque ele não deveria ser usado em estatísticas oficiais.</description>
+      <description>Ontem, eu estava vendo stories no Instagram e me deparei com uma aula com as palavras “Amostragem por cotas e pós-estratificação”. Isso me lembrou de um comentário que fiz na aula de amostragem da semana passada: se você não tem uma amostragem probabilística, sua inferência necessariamente se baseia em um modelo, seja ele sobre o modo como a amostra foi selecionada ou sobre o comportamento da variável na população.</description>
     </item>
     
     <item>
@@ -28,7 +23,7 @@ Deville (1991) discutiu esse tema com muito cuidado, sugerindo onde o método po
       
       <guid>https://guilhermejacob.github.io/2021/12/pnadc-raking-bootstrap/</guid>
       <description>Recentemente, a PNAD Contínua passou por duas mudanças:
-Mudança de pós-estratificação para raking; Mudança no método de estimação da variância dos estimadores, do Método do Conglomerado Primário para bootstrap.  Mas o que isso significa? E como considerar isso na estimação usando o R? Bom, esse é o tema desse post. Primeiro, vou explicar muito superficialmente o que é raking e porque a mudança no método de calcular variância
+Mudança de pós-estratificação para raking; Mudança no método de estimação da variância dos estimadores, do Método do Conglomerado Primário para bootstrap. Mas o que isso significa? E como considerar isso na estimação usando o R? Bom, esse é o tema desse post. Primeiro, vou explicar muito superficialmente o que é raking e porque a mudança no método de calcular variância
 Calibração e raking Calibração (Deville e Särndal, 1992; Deville, Särndal e Sautory, 1993) é o nome de uma classe de métodos que, por conseguinte, definem uma classe de estimadores.</description>
     </item>
     
@@ -48,7 +43,7 @@ Calibração e raking Calibração (Deville e Särndal, 1992; Deville, Särndal 
       
       <guid>https://guilhermejacob.github.io/2019/12/meng2018/</guid>
       <description>Atualização (27/05/2020): o professor Pedro Nascimento Silva (ENCE/IBGE) fez uma apresentação sobre o mesmo tópico em 2019 para o Colóquio do IME-USP. O link para slides e vídeo da apresentação podem ser encontrados aqui.
- Eu queria fechar esse ano com um problema que andei lendo a respeito no passado recente: inferência descritiva com amostras não-probabilísticas. Alguns dos textos mais interessantes são Smith (1983), Meng (2014), Elliott e Valliant (2017) e Meng (2018).</description>
+Eu queria fechar esse ano com um problema que andei lendo a respeito no passado recente: inferência descritiva com amostras não-probabilísticas. Alguns dos textos mais interessantes são Smith (1983), Meng (2014), Elliott e Valliant (2017) e Meng (2018).</description>
     </item>
     
     <item>
@@ -67,7 +62,7 @@ Calibração e raking Calibração (Deville e Särndal, 1992; Deville, Särndal 
       
       <guid>https://guilhermejacob.github.io/2018/05/temer-desemprego-2018/</guid>
       <description>Atualização (14/02/2021): Que saudades de passar raiva com o Temer&amp;hellip;
- Uma controvérsia relativamente recente foi protagonizada pelo Temer, durante uma palestra na ESPM. Ele teria afirmado que não houve aumento da taxa de desemprego, mas, sim, aumento das pessoas procurando emprego. Antes da divulgação dos dados da PNADC do 1º trimestre de 2018, tive uma conversa com um professor a respeito de até onde aquilo faz ou não faz sentido.</description>
+Uma controvérsia relativamente recente foi protagonizada pelo Temer, durante uma palestra na ESPM. Ele teria afirmado que não houve aumento da taxa de desemprego, mas, sim, aumento das pessoas procurando emprego. Antes da divulgação dos dados da PNADC do 1º trimestre de 2018, tive uma conversa com um professor a respeito de até onde aquilo faz ou não faz sentido.</description>
     </item>
     
     <item>
@@ -77,7 +72,7 @@ Calibração e raking Calibração (Deville e Särndal, 1992; Deville, Särndal 
       
       <guid>https://guilhermejacob.github.io/2018/04/desigualdade-pobreza-infancia-2017/</guid>
       <description>Atualização (21/12/2019): refiz todas as análises usando a nova definição de renda domiciliar per capita e seu respectivo deflator.
- Interrompendo o meu hiato de alguns meses, resolvi voltar com uma comparação os dados de renda das PNADCs anuais 2016-2017. No entanto, vamos falar um pouco da desigualdade em geral e, então, partir para uma questão mais específica: pobreza na infância1.
+Interrompendo o meu hiato de alguns meses, resolvi voltar com uma comparação os dados de renda das PNADCs anuais 2016-2017. No entanto, vamos falar um pouco da desigualdade em geral e, então, partir para uma questão mais específica: pobreza na infância1.
 Mas, antes de tudo, um aviso:
 Todos as estimativas a seguir foram feitas por mim.</description>
     </item>
@@ -89,7 +84,7 @@ Todos as estimativas a seguir foram feitas por mim.</description>
       
       <guid>https://guilhermejacob.github.io/2017/12/desigualdade-pobreza-estados-2016/</guid>
       <description>Atualização (21/12/2019): refiz todas as análises usando a nova definição de renda domiciliar per capita e seu respectivo deflator.
- Na última quarta (29/11), o IBGE finalmente apresentou as estimativas relativas aos rendimentos de todas as fontes, além de disponibilizar os microdados para os cálculos.
+Na última quarta (29/11), o IBGE finalmente apresentou as estimativas relativas aos rendimentos de todas as fontes, além de disponibilizar os microdados para os cálculos.
 Ok, mas o que isso quer dizer? Aguardei ansiosamente1 para saber como as coisas irão funcionar com o fim da PNAD anual e introdução da PNAD Contínua.</description>
     </item>
     
@@ -100,7 +95,7 @@ Ok, mas o que isso quer dizer? Aguardei ansiosamente1 para saber como as coisas 
       
       <guid>https://guilhermejacob.github.io/2017/11/amostra-cadunico-r/</guid>
       <description>Atualização (04/02/2021): modifiquei o código para 2018 pois os pesos não possuíam o separador decimal e porque o pacote MonetDBLite foi removido do CRAN. Sugiro tomar cuidado com análises sobre 2018.
- Você sabe o que é o Cadastro Único? Sabe que uma amostra dos microdados está disponível? Sabe que dá pra analisar no R?
+Você sabe o que é o Cadastro Único? Sabe que uma amostra dos microdados está disponível? Sabe que dá pra analisar no R?
 Não? Até uns dias atrás, eu também não.
 Se você tem interesse nessa base de dados, vamos lá!</description>
     </item>

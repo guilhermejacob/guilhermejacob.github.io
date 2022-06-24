@@ -1,16 +1,12 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Registros Administrativos on Something Random</title>
+    <title>Registros administrativos on Something Random</title>
     <link>https://guilhermejacob.github.io/categories/registros-administrativos/</link>
-    <description>Recent content in Registros Administrativos on Something Random</description>
+    <description>Recent content in Registros administrativos on Something Random</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>pt-br</language>
-    <lastBuildDate>Sun, 22 Dec 2019 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://guilhermejacob.github.io/categories/registros-administrativos/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Sun, 22 Dec 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://guilhermejacob.github.io/categories/registros-administrativos/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Mentiras, mentiras cabeludas e &#34;big data&#34;</title>
       <link>https://guilhermejacob.github.io/2019/12/meng2018/</link>
@@ -18,7 +14,7 @@
       
       <guid>https://guilhermejacob.github.io/2019/12/meng2018/</guid>
       <description>Atualização (27/05/2020): o professor Pedro Nascimento Silva (ENCE/IBGE) fez uma apresentação sobre o mesmo tópico em 2019 para o Colóquio do IME-USP. O link para slides e vídeo da apresentação podem ser encontrados aqui.
- Eu queria fechar esse ano com um problema que andei lendo a respeito no passado recente: inferência descritiva com amostras não-probabilísticas. Alguns dos textos mais interessantes são Smith (1983), Meng (2014), Elliott e Valliant (2017) e Meng (2018).</description>
+Eu queria fechar esse ano com um problema que andei lendo a respeito no passado recente: inferência descritiva com amostras não-probabilísticas. Alguns dos textos mais interessantes são Smith (1983), Meng (2014), Elliott e Valliant (2017) e Meng (2018).</description>
     </item>
     
     <item>

@@ -1,16 +1,12 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Não Resposta on Something Random</title>
+    <title>Não-resposta on Something Random</title>
     <link>https://guilhermejacob.github.io/categories/n%C3%A3o-resposta/</link>
-    <description>Recent content in Não Resposta on Something Random</description>
+    <description>Recent content in Não-resposta on Something Random</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>pt-br</language>
-    <lastBuildDate>Fri, 24 Apr 2020 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://guilhermejacob.github.io/categories/n%C3%A3o-resposta/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Fri, 24 Apr 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://guilhermejacob.github.io/categories/n%C3%A3o-resposta/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Modelos epidemiológicos, amostragem e cadeias de Markov</title>
       <link>https://guilhermejacob.github.io/2020/04/sir-markov/</link>

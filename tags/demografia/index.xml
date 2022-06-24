@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Demografia on Something Random</title>
@@ -6,11 +6,7 @@
     <description>Recent content in Demografia on Something Random</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>pt-br</language>
-    <lastBuildDate>Sat, 12 Sep 2020 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://guilhermejacob.github.io/tags/demografia/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Sat, 12 Sep 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://guilhermejacob.github.io/tags/demografia/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Registro Civil, Ministério da Saúde e Subregistro de óbitos</title>
       <link>https://guilhermejacob.github.io/2020/09/subregistro-obito/</link>
@@ -18,7 +14,7 @@
       
       <guid>https://guilhermejacob.github.io/2020/09/subregistro-obito/</guid>
       <description>TL;DR: subregistro existe, é um problema e as taxas de mortalidade ingênuas estão provavelmente erradas. Mas não são inúteis.
- Estive fazendo alguns exercícios de demografia e pensando sobre subregistro e o quanto isso é um problema. Resolvi pegar algumas leituras que fiz recentemente e tentar mostrar onde isso aparece.
+Estive fazendo alguns exercícios de demografia e pensando sobre subregistro e o quanto isso é um problema. Resolvi pegar algumas leituras que fiz recentemente e tentar mostrar onde isso aparece.
 Um pouco de história Em alguns países, os registros de nascimentos e mortes é tão bom que você pode calcular as estimativas mortalidade infantil diretamente.</description>
     </item>
     

@@ -1,16 +1,12 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Rstats on Something Random</title>
+    <title>rstats on Something Random</title>
     <link>https://guilhermejacob.github.io/tags/rstats/</link>
-    <description>Recent content in Rstats on Something Random</description>
+    <description>Recent content in rstats on Something Random</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>pt-br</language>
-    <lastBuildDate>Wed, 27 Jan 2021 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://guilhermejacob.github.io/tags/rstats/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Wed, 27 Jan 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://guilhermejacob.github.io/tags/rstats/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>(Algumas) Estatísticas sobre fome no Brasil (2017-2018)</title>
       <link>https://guilhermejacob.github.io/2021/01/fome-pof-2017-2018/</link>
@@ -66,7 +62,7 @@ Algumas medidas de desigualdade atendem o princípio de Pigou-Dalton apenas em a
       
       <guid>https://guilhermejacob.github.io/2018/04/desigualdade-pobreza-infancia-2017/</guid>
       <description>Atualização (21/12/2019): refiz todas as análises usando a nova definição de renda domiciliar per capita e seu respectivo deflator.
- Interrompendo o meu hiato de alguns meses, resolvi voltar com uma comparação os dados de renda das PNADCs anuais 2016-2017. No entanto, vamos falar um pouco da desigualdade em geral e, então, partir para uma questão mais específica: pobreza na infância1.
+Interrompendo o meu hiato de alguns meses, resolvi voltar com uma comparação os dados de renda das PNADCs anuais 2016-2017. No entanto, vamos falar um pouco da desigualdade em geral e, então, partir para uma questão mais específica: pobreza na infância1.
 Mas, antes de tudo, um aviso:
 Todos as estimativas a seguir foram feitas por mim.</description>
     </item>
@@ -90,7 +86,7 @@ Censo da Educação Superior O Censo da Educação Superior é conduzido anualme
       
       <guid>https://guilhermejacob.github.io/2017/12/desigualdade-pobreza-estados-2016/</guid>
       <description>Atualização (21/12/2019): refiz todas as análises usando a nova definição de renda domiciliar per capita e seu respectivo deflator.
- Na última quarta (29/11), o IBGE finalmente apresentou as estimativas relativas aos rendimentos de todas as fontes, além de disponibilizar os microdados para os cálculos.
+Na última quarta (29/11), o IBGE finalmente apresentou as estimativas relativas aos rendimentos de todas as fontes, além de disponibilizar os microdados para os cálculos.
 Ok, mas o que isso quer dizer? Aguardei ansiosamente1 para saber como as coisas irão funcionar com o fim da PNAD anual e introdução da PNAD Contínua.</description>
     </item>
     

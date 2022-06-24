@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on Something Random</title>
@@ -6,11 +6,7 @@
     <description>Recent content in Posts on Something Random</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>pt-br</language>
-    <lastBuildDate>Wed, 22 Jun 2022 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://guilhermejacob.github.io/post/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Wed, 22 Jun 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://guilhermejacob.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Visualizando a inflação desde janeiro de 2020</title>
       <link>https://guilhermejacob.github.io/2022/06/serie-ipca-202001/</link>
@@ -37,8 +33,7 @@ Meu modelo de previsão errou bem mais do que eu gostaria. Por que? A relação 
       <pubDate>Tue, 19 Apr 2022 00:00:00 +0000</pubDate>
       
       <guid>https://guilhermejacob.github.io/2022/04/amostragem-cotas/</guid>
-      <description>Ontem, eu estava vendo stories no Instagram e me deparei com uma aula com as palavras “Amostragem por cotas e pós-estratificação”. Isso me lembrou de um comentário que fiz na aula de amostragem da semana passada: se você não tem uma amostragem probabilística, sua inferência necessariamente se baseia em um modelo, seja ele sobre o modo como a amostra foi selecionada ou sobre o comportamento da variável na população.
-Deville (1991) discutiu esse tema com muito cuidado, sugerindo onde o método pode ser útil e porque ele não deveria ser usado em estatísticas oficiais.</description>
+      <description>Ontem, eu estava vendo stories no Instagram e me deparei com uma aula com as palavras “Amostragem por cotas e pós-estratificação”. Isso me lembrou de um comentário que fiz na aula de amostragem da semana passada: se você não tem uma amostragem probabilística, sua inferência necessariamente se baseia em um modelo, seja ele sobre o modo como a amostra foi selecionada ou sobre o comportamento da variável na população.</description>
     </item>
     
     <item>
@@ -48,7 +43,7 @@ Deville (1991) discutiu esse tema com muito cuidado, sugerindo onde o método po
       
       <guid>https://guilhermejacob.github.io/2021/12/pnadc-raking-bootstrap/</guid>
       <description>Recentemente, a PNAD Contínua passou por duas mudanças:
-Mudança de pós-estratificação para raking; Mudança no método de estimação da variância dos estimadores, do Método do Conglomerado Primário para bootstrap.  Mas o que isso significa? E como considerar isso na estimação usando o R? Bom, esse é o tema desse post. Primeiro, vou explicar muito superficialmente o que é raking e porque a mudança no método de calcular variância
+Mudança de pós-estratificação para raking; Mudança no método de estimação da variância dos estimadores, do Método do Conglomerado Primário para bootstrap. Mas o que isso significa? E como considerar isso na estimação usando o R? Bom, esse é o tema desse post. Primeiro, vou explicar muito superficialmente o que é raking e porque a mudança no método de calcular variância
 Calibração e raking Calibração (Deville e Särndal, 1992; Deville, Särndal e Sautory, 1993) é o nome de uma classe de métodos que, por conseguinte, definem uma classe de estimadores.</description>
     </item>
     
@@ -89,7 +84,7 @@ A medida de pobreza (monetária) mais conhecida é a taxa de pobreza, cuja inter
       
       <guid>https://guilhermejacob.github.io/2020/09/subregistro-obito/</guid>
       <description>TL;DR: subregistro existe, é um problema e as taxas de mortalidade ingênuas estão provavelmente erradas. Mas não são inúteis.
- Estive fazendo alguns exercícios de demografia e pensando sobre subregistro e o quanto isso é um problema. Resolvi pegar algumas leituras que fiz recentemente e tentar mostrar onde isso aparece.
+Estive fazendo alguns exercícios de demografia e pensando sobre subregistro e o quanto isso é um problema. Resolvi pegar algumas leituras que fiz recentemente e tentar mostrar onde isso aparece.
 Um pouco de história Em alguns países, os registros de nascimentos e mortes é tão bom que você pode calcular as estimativas mortalidade infantil diretamente.</description>
     </item>
     
@@ -139,7 +134,7 @@ Algumas medidas de desigualdade atendem o princípio de Pigou-Dalton apenas em a
       
       <guid>https://guilhermejacob.github.io/2020/06/variance-sampling/</guid>
       <description>Population variance, sample variance and sampling variance In finite population sampling context, the term variance can be confusing. One of the most common mistakes is mixing up population variance, sample variance and sampling variance. Some definitions may be helpful:
- Population variance \(S^2\): describes the variability of a characteristic in the population; Sample variance \(s^2\): describes the variability of a characteristic in the sample and can be used to estimate the population variance; Sampling variance \(Var( \overline{y} )\): describes the variability of estimates; in this case, the sample mean.</description>
+Population variance \(S^2\): describes the variability of a characteristic in the population; Sample variance \(s^2\): describes the variability of a characteristic in the sample and can be used to estimate the population variance; Sampling variance \(Var( \overline{y} )\): describes the variability of estimates; in this case, the sample mean.</description>
     </item>
     
     <item>
@@ -168,8 +163,8 @@ Hoje, eu não quero fazer gráficos ou tabelas. Eu não quero falar de curvas qu
       
       <guid>https://guilhermejacob.github.io/2020/04/taylor-maclaurin-taxa/</guid>
       <description>Esse post vai fugir um pouco do usual. Não vamos fazer análise de dados, nem escrever código. Vamos ter algumas equações e gráficos, mas nada muito complicado. Vamos tentar responder duas perguntas:
- Tenho uma série de crescimento do PIB nos trimestres de um ano. O crescimento acumulado no período é igual à soma das taxas de crescimento?
-  Tenho valores de inflação e taxa de juros nominal. A taxa de juros real é igual à taxa de juros nominal menos a inflação?</description>
+Tenho uma série de crescimento do PIB nos trimestres de um ano. O crescimento acumulado no período é igual à soma das taxas de crescimento?
+Tenho valores de inflação e taxa de juros nominal. A taxa de juros real é igual à taxa de juros nominal menos a inflação?</description>
     </item>
     
     <item>
@@ -191,7 +186,7 @@ Entendendo a desigualdade regional no Brasil a partir do mundo Na época que eu 
       
       <guid>https://guilhermejacob.github.io/2019/12/meng2018/</guid>
       <description>Atualização (27/05/2020): o professor Pedro Nascimento Silva (ENCE/IBGE) fez uma apresentação sobre o mesmo tópico em 2019 para o Colóquio do IME-USP. O link para slides e vídeo da apresentação podem ser encontrados aqui.
- Eu queria fechar esse ano com um problema que andei lendo a respeito no passado recente: inferência descritiva com amostras não-probabilísticas. Alguns dos textos mais interessantes são Smith (1983), Meng (2014), Elliott e Valliant (2017) e Meng (2018).</description>
+Eu queria fechar esse ano com um problema que andei lendo a respeito no passado recente: inferência descritiva com amostras não-probabilísticas. Alguns dos textos mais interessantes são Smith (1983), Meng (2014), Elliott e Valliant (2017) e Meng (2018).</description>
     </item>
     
     <item>
@@ -210,8 +205,8 @@ Entendendo a desigualdade regional no Brasil a partir do mundo Na época que eu 
       
       <guid>https://guilhermejacob.github.io/2019/08/desigualdade-pobreza-log/</guid>
       <description>Pesquisando no repositório das piores ideias da humanidade1, não é raro encontrar a seguinte frase:
- “A pobreza importa. A desigualdade, não.”
- Aparentemente, tem gente que acredita nisso. Vou mostrar o quanto isso é estúpido.
+“A pobreza importa. A desigualdade, não.”
+Aparentemente, tem gente que acredita nisso. Vou mostrar o quanto isso é estúpido.
 Considere a sociedade A, cuja renda média é $500.10 e o índice de Gini é 0.400. Vejamos a distribuição cumulativa.
 Agora considere a Sociedade B, produzida a partir de \(n\) transferências regressivas para o indivíduo mais rico de modo que os demais indivíduos não-pobres estejam quase na linha de pobreza.</description>
     </item>
@@ -223,7 +218,7 @@ Agora considere a Sociedade B, produzida a partir de \(n\) transferências regre
       
       <guid>https://guilhermejacob.github.io/2018/05/temer-desemprego-2018/</guid>
       <description>Atualização (14/02/2021): Que saudades de passar raiva com o Temer&amp;hellip;
- Uma controvérsia relativamente recente foi protagonizada pelo Temer, durante uma palestra na ESPM. Ele teria afirmado que não houve aumento da taxa de desemprego, mas, sim, aumento das pessoas procurando emprego. Antes da divulgação dos dados da PNADC do 1º trimestre de 2018, tive uma conversa com um professor a respeito de até onde aquilo faz ou não faz sentido.</description>
+Uma controvérsia relativamente recente foi protagonizada pelo Temer, durante uma palestra na ESPM. Ele teria afirmado que não houve aumento da taxa de desemprego, mas, sim, aumento das pessoas procurando emprego. Antes da divulgação dos dados da PNADC do 1º trimestre de 2018, tive uma conversa com um professor a respeito de até onde aquilo faz ou não faz sentido.</description>
     </item>
     
     <item>
@@ -246,7 +241,7 @@ Na volta para Manaus, fiz uma mini-maratona para visitar amigos em Brasília nas
       
       <guid>https://guilhermejacob.github.io/2018/04/desigualdade-pobreza-infancia-2017/</guid>
       <description>Atualização (21/12/2019): refiz todas as análises usando a nova definição de renda domiciliar per capita e seu respectivo deflator.
- Interrompendo o meu hiato de alguns meses, resolvi voltar com uma comparação os dados de renda das PNADCs anuais 2016-2017. No entanto, vamos falar um pouco da desigualdade em geral e, então, partir para uma questão mais específica: pobreza na infância1.
+Interrompendo o meu hiato de alguns meses, resolvi voltar com uma comparação os dados de renda das PNADCs anuais 2016-2017. No entanto, vamos falar um pouco da desigualdade em geral e, então, partir para uma questão mais específica: pobreza na infância1.
 Mas, antes de tudo, um aviso:
 Todos as estimativas a seguir foram feitas por mim.</description>
     </item>
@@ -270,7 +265,7 @@ Censo da Educação Superior O Censo da Educação Superior é conduzido anualme
       
       <guid>https://guilhermejacob.github.io/2017/12/desigualdade-pobreza-estados-2016/</guid>
       <description>Atualização (21/12/2019): refiz todas as análises usando a nova definição de renda domiciliar per capita e seu respectivo deflator.
- Na última quarta (29/11), o IBGE finalmente apresentou as estimativas relativas aos rendimentos de todas as fontes, além de disponibilizar os microdados para os cálculos.
+Na última quarta (29/11), o IBGE finalmente apresentou as estimativas relativas aos rendimentos de todas as fontes, além de disponibilizar os microdados para os cálculos.
 Ok, mas o que isso quer dizer? Aguardei ansiosamente1 para saber como as coisas irão funcionar com o fim da PNAD anual e introdução da PNAD Contínua.</description>
     </item>
     
@@ -302,7 +297,7 @@ Bases do Ministério do Trabalho O Ministério do Trabalho (MTb) permite que o u
       
       <guid>https://guilhermejacob.github.io/2017/11/amostra-cadunico-r/</guid>
       <description>Atualização (04/02/2021): modifiquei o código para 2018 pois os pesos não possuíam o separador decimal e porque o pacote MonetDBLite foi removido do CRAN. Sugiro tomar cuidado com análises sobre 2018.
- Você sabe o que é o Cadastro Único? Sabe que uma amostra dos microdados está disponível? Sabe que dá pra analisar no R?
+Você sabe o que é o Cadastro Único? Sabe que uma amostra dos microdados está disponível? Sabe que dá pra analisar no R?
 Não? Até uns dias atrás, eu também não.
 Se você tem interesse nessa base de dados, vamos lá!</description>
     </item>
@@ -313,10 +308,10 @@ Se você tem interesse nessa base de dados, vamos lá!</description>
       <pubDate>Tue, 21 Nov 2017 00:00:00 +0000</pubDate>
       
       <guid>https://guilhermejacob.github.io/2017/11/birth-registration-map/</guid>
-      <description>Esse post é um pequeno follow-up da discussão sobre mapas de densidade de pontos, mas com um pouco mais de diretos da infância e adolescência. Vamos analisar como se distribuem espacialmente as crianças com e sem registro de nascimento, usando dados dos agregados de setores censitários do Censo 2010.
+      <description> Esse post é um pequeno follow-up da discussão sobre mapas de densidade de pontos, mas com um pouco mais de diretos da infância e adolescência. Vamos analisar como se distribuem espacialmente as crianças com e sem registro de nascimento, usando dados dos agregados de setores censitários do Censo 2010.
 Dessa vez, vamos focar em 4 capitais: Belém, Manaus , Fortaleza e São Luís.
 Sem mais conversa, prossigamos.
-Belém  Manaus  Fortaleza  São Luís  </description>
+Belém Manaus Fortaleza São Luís </description>
     </item>
     
     <item>
@@ -326,7 +321,7 @@ Belém  Manaus  Fortaleza  São Luís  </description>
       
       <guid>https://guilhermejacob.github.io/2017/11/ethnic-composition-brazilian-cities/</guid>
       <description>Você pode encontrar o código para as imagens deste post aqui.
- Há algum tempo, eu encontrei este post, mostrando como as etnias se distribuem em Londres. Achei muito interessante, já que ele revela padrões sobre como as comunidades se organizam e como a deseigualdade se expressa através da localização dos domicílios.
+Há algum tempo, eu encontrei este post, mostrando como as etnias se distribuem em Londres. Achei muito interessante, já que ele revela padrões sobre como as comunidades se organizam e como a deseigualdade se expressa através da localização dos domicílios.
 Nossa tarefa de hoje é aplicar a mesma técnica no Brasil. Aqui está a nossa lista de cidades: São Paulo, Rio de Janeiro, Brasília, Recife, Salvador, e minha terra natal Manaus.</description>
     </item>
     

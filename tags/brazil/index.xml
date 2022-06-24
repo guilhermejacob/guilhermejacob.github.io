@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Brazil on Something Random</title>
@@ -6,11 +6,7 @@
     <description>Recent content in Brazil on Something Random</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>pt-br</language>
-    <lastBuildDate>Thu, 23 Nov 2017 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://guilhermejacob.github.io/tags/brazil/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Thu, 23 Nov 2017 00:00:00 +0000</lastBuildDate><atom:link href="https://guilhermejacob.github.io/tags/brazil/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Analisando a amostra do Cadastro Único com R</title>
       <link>https://guilhermejacob.github.io/2017/11/amostra-cadunico-r/</link>
@@ -18,7 +14,7 @@
       
       <guid>https://guilhermejacob.github.io/2017/11/amostra-cadunico-r/</guid>
       <description>Atualização (04/02/2021): modifiquei o código para 2018 pois os pesos não possuíam o separador decimal e porque o pacote MonetDBLite foi removido do CRAN. Sugiro tomar cuidado com análises sobre 2018.
- Você sabe o que é o Cadastro Único? Sabe que uma amostra dos microdados está disponível? Sabe que dá pra analisar no R?
+Você sabe o que é o Cadastro Único? Sabe que uma amostra dos microdados está disponível? Sabe que dá pra analisar no R?
 Não? Até uns dias atrás, eu também não.
 Se você tem interesse nessa base de dados, vamos lá!</description>
     </item>
