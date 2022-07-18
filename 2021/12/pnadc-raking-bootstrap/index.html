@@ -272,6 +272,8 @@ Calibração e raking Calibração (Deville e Särndal, 1992; Deville, Särndal 
 
       
 
+	<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+	<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       <div id="main" data-behavior="4"
         class="
                hasCoverMetaIn
@@ -315,6 +317,8 @@ Calibração e raking Calibração (Deville e Särndal, 1992; Deville, Särndal 
           <div class="post-content markdown">
             <div class="main-content-wrap">
               
+
+
 <p>Recentemente, a PNAD Contínua passou por <a href="https://biblioteca.ibge.gov.br/visualizacao/livros/liv101882.pdf">duas mudanças</a>:</p>
 <ol style="list-style-type: decimal">
 <li>Mudança de pós-estratificação para <em>raking</em>;</li>
@@ -326,8 +330,8 @@ Calibração e raking Calibração (Deville e Särndal, 1992; Deville, Särndal 
 <p>Calibração <span class="citation">(<a href="#ref-deville1992" role="doc-biblioref">Deville e Särndal, 1992</a>; <a href="#ref-deville1993" role="doc-biblioref">Deville, Särndal e Sautory, 1993</a>)</span> é o nome de uma classe de métodos que, por conseguinte, definem uma classe de estimadores. Estes estimadores incorporam informações adicionais sobre a população. Basicamente, esta classe de métodos procura estabelecer um sistema de ponderação tal que, para uma amostra <span class="math inline">\(S\)</span> extraída de uma população finita <span class="math inline">\(U\)</span> usando um plano amostral <span class="math inline">\(p(S)\)</span>, tenhamos</p>
 <p><span class="math display">\[
 \sum_{k \in S } w_k \mathbf{x}_k = \sum_{ k \in U } \mathbf{x}_k
-\]</span>
-Desta forma, o viés dos totais das variáveis <span class="math inline">\(\mathbf{x}\)</span> são não-viesados (ou com viés pequeno, no caso de raking) e a variância seria 0.</p>
+\]</span></p>
+<p>Desta forma, o viés dos totais das variáveis <span class="math inline">\(\mathbf{x}\)</span> são não-viesados (ou com viés pequeno, no caso de raking) e a variância seria 0.</p>
 <p>Existe uma infinidade de maneiras de estabelecer pesos <span class="math inline">\(w_k\)</span> para satisfazer a equação acima. No entanto, é importante lembrar que a nossa amostra <span class="math inline">\(S\)</span> já tem pesos básicos dados pelo inverso da probabilidade de inclusão – i.e., <span class="math inline">\(d_k = 1/ \pi_k\)</span>. Assim, para garantir a ausência de viés, devemos procurar pesos ajustados <span class="math inline">\(w_k\)</span> que estejam o mais próximo possível dos pesos originais <span class="math inline">\(d_k\)</span>.</p>
 <p>A proximidade entre os vetores <span class="math inline">\(w_k\)</span> e <span class="math inline">\(d_k\)</span> é dada por uma pseudo-distância<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> <span class="math inline">\(G_k ( w_k , d_k )\)</span>. O problema em questão é um problema de otimização restrita: encontre os pesos <span class="math inline">\(w_k\)</span>, <span class="math inline">\((k \in S)\)</span> que minimizem <span class="math inline">\(\sum_{k \in S} G_k( w_k , d_k ) / q_k\)</span> sujeito à restrição <span class="math inline">\(\sum_{k \in S } w_k \mathbf{x}_k = \sum_{ k \in U } \mathbf{x}_k\)</span>.</p>
 <p>Quando resolvemos este problema, temos uma amostra que: (1) possui informações coerentes com as informações externas nas variáveis calibradas, (2) reduz a variãncia do estimador de expansão, e (3) reduz o erro de não-resposta e de cobertura.</p>
