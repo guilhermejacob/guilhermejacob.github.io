@@ -6,7 +6,18 @@
     <description>Recent content on Something Random</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>pt-br</language>
-    <lastBuildDate>Wed, 22 Jun 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://guilhermejacob.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 19 Jul 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://guilhermejacob.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Filtrando subpopulações em amostras complexas</title>
+      <link>https://guilhermejacob.github.io/2022/07/survey-subset/</link>
+      <pubDate>Tue, 19 Jul 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://guilhermejacob.github.io/2022/07/survey-subset/</guid>
+      <description>O Thomas Lumley já escreveu sobre isso; link aqui!
+Uma das coisas mais interessantes que pesquisas domiciliares permitem fazer é filtrar domínios de análise. Por exemplo, além da renda média da população, é possível estimar as rendas médias das áreas urbanas e áreas rurais. Para avaliar a precisão dessas estimativas, estimamos a variância do estimador e o intervalo de confiança.
+No entanto, Tem uma prática problemática em alguns exemplos deste tipo de análise com o pacote survey: deletar as linhas antes de descrever o plano amostral.</description>
+    </item>
+    
     <item>
       <title>Visualizando a inflação desde janeiro de 2020</title>
       <link>https://guilhermejacob.github.io/2022/06/serie-ipca-202001/</link>

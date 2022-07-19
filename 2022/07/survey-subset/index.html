@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    
+    <script type="application/ld+json">
+
+{  
+  "@context":"http://schema.org",
+  "@type":"Website",
+  "@id":"https:\/\/guilhermejacob.github.io\/",
+  "author": {
+    "@type": "Person",
+    "name": "Guilherme Jacob",
+    
+    "image": "https://guilhermejacob.github.io/files/img_2502_recorte.jpg"
+    
+  },
+  "name":"Something Random",
+  "description":"O Thomas Lumley já escreveu sobre isso; link aqui!\nUma das coisas mais interessantes que pesquisas domiciliares permitem fazer é filtrar domínios de análise. Por exemplo, além da renda média da população, é possível estimar as rendas médias das áreas urbanas e áreas rurais. Para avaliar a precisão dessas estimativas, estimamos a variância do estimador e o intervalo de confiança.\nNo entanto, Tem uma prática problemática em alguns exemplos deste tipo de análise com o pacote survey: deletar as linhas antes de descrever o plano amostral.",
+  "url":"https:\/\/guilhermejacob.github.io\/2022\/07\/survey-subset\/",
+  "keywords":"[]"
+}
+
+</script>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.101.0 with theme Tranquilpeak 0.5.3-BETA">
+<meta name="author" content="Guilherme Jacob">
+<meta name="keywords" content="">
+<meta name="description" content="O Thomas Lumley já escreveu sobre isso; link aqui!
+Uma das coisas mais interessantes que pesquisas domiciliares permitem fazer é filtrar domínios de análise. Por exemplo, além da renda média da população, é possível estimar as rendas médias das áreas urbanas e áreas rurais. Para avaliar a precisão dessas estimativas, estimamos a variância do estimador e o intervalo de confiança.
+No entanto, Tem uma prática problemática em alguns exemplos deste tipo de análise com o pacote survey: deletar as linhas antes de descrever o plano amostral.">
+
+
+<meta property="og:description" content="O Thomas Lumley já escreveu sobre isso; link aqui!
+Uma das coisas mais interessantes que pesquisas domiciliares permitem fazer é filtrar domínios de análise. Por exemplo, além da renda média da população, é possível estimar as rendas médias das áreas urbanas e áreas rurais. Para avaliar a precisão dessas estimativas, estimamos a variância do estimador e o intervalo de confiança.
+No entanto, Tem uma prática problemática em alguns exemplos deste tipo de análise com o pacote survey: deletar as linhas antes de descrever o plano amostral.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Filtrando subpopulações em amostras complexas">
+<meta name="twitter:title" content="Filtrando subpopulações em amostras complexas">
+<meta property="og:url" content="https://guilhermejacob.github.io/2022/07/survey-subset/">
+<meta property="twitter:url" content="https://guilhermejacob.github.io/2022/07/survey-subset/">
+<meta property="og:site_name" content="Something Random">
+<meta property="og:description" content="O Thomas Lumley já escreveu sobre isso; link aqui!
+Uma das coisas mais interessantes que pesquisas domiciliares permitem fazer é filtrar domínios de análise. Por exemplo, além da renda média da população, é possível estimar as rendas médias das áreas urbanas e áreas rurais. Para avaliar a precisão dessas estimativas, estimamos a variância do estimador e o intervalo de confiança.
+No entanto, Tem uma prática problemática em alguns exemplos deste tipo de análise com o pacote survey: deletar as linhas antes de descrever o plano amostral.">
+<meta name="twitter:description" content="O Thomas Lumley já escreveu sobre isso; link aqui!
+Uma das coisas mais interessantes que pesquisas domiciliares permitem fazer é filtrar domínios de análise. Por exemplo, além da renda média da população, é possível estimar as rendas médias das áreas urbanas e áreas rurais. Para avaliar a precisão dessas estimativas, estimamos a variância do estimador e o intervalo de confiança.
+No entanto, Tem uma prática problemática em alguns exemplos deste tipo de análise com o pacote survey: deletar as linhas antes de descrever o plano amostral.">
+<meta property="og:locale" content="pt-br">
+
+  
+    <meta property="article:published_time" content="2022-07-19T00:00:00">
+  
+  
+    <meta property="article:modified_time" content="2022-07-19T00:00:00">
+  
+  
+  
+  
+
+
+<meta name="twitter:card" content="summary">
+
+  <meta name="twitter:site" content="@guijacob91">
+
+
+  <meta name="twitter:creator" content="@guijacob91">
+
+
+
+
+
+
+  <meta property="og:image" content="https://guilhermejacob.github.io/files/img_2502_recorte.jpg">
+  <meta property="twitter:image" content="https://guilhermejacob.github.io/files/img_2502_recorte.jpg">
+
+
+
+
+
+
+    <title>Filtrando subpopulações em amostras complexas</title>
+
+    <link rel="icon" href="https://guilhermejacob.github.io/favicon.png">
+    
+
+    
+
+    <link rel="canonical" href="https://guilhermejacob.github.io/2022/07/survey-subset/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha512-H9jrZiiopUdsLpg94A333EfumgUBpO9MdbxStdeITo+KEIMaNfHNvwyjjDJb+ERPaRS6DpyRlKbvPUasNItRyw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    
+    
+    <link rel="stylesheet" href="https://guilhermejacob.github.io/css/style-h6ccsoet3mzkbb0wngshlfbaweimexgqcxj0h5hu4h82olsdzz6wmqdkajm.min.css" />
+    
+    
+
+    
+      
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="4">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://guilhermejacob.github.io/" aria-label="Vá para a página inicial">Something Random</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://guilhermejacob.github.io/#about" aria-label="Abra o link: /#about">
+    
+    
+    
+      
+        <img class="header-picture" src="https://guilhermejacob.github.io/files/img_2502_recorte.jpg" alt="Foto do autor" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="4">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://guilhermejacob.github.io/#about" aria-label="Leia mais sobre o autor">
+          <img class="sidebar-profile-picture" src="https://guilhermejacob.github.io/files/img_2502_recorte.jpg" alt="Foto do autor" />
+        </a>
+        <h4 class="sidebar-profile-name">Guilherme Jacob</h4>
+        
+          <h5 class="sidebar-profile-bio">Manauara.<br>Doutorando em População, Território e Estatísticas Públicas (ENCE/IBGE).<br>Bacharel em Direito e Economia.</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://guilhermejacob.github.io/" title="Home">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">Início</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://guilhermejacob.github.io/#about" title="About">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+      
+      <span class="sidebar-button-desc">Sobre</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://guilhermejacob.github.io/tags" title="Tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">Tags</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://guilhermejacob.github.io/categories" title="Categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+      
+      <span class="sidebar-button-desc">Categorias</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://guilhermejacob.github.io/archives" title="Archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">Arquivo</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://guilhermejacob.github.io/files/cv_english.pdf" title="CV">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-briefcase"></i>
+      
+      <span class="sidebar-button-desc">CV</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://guilhermejacob.github.io/research" title="Pesquisa">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-code"></i>
+      
+      <span class="sidebar-button-desc">Pesquisa</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="mailto:guilhermejacob91@gmail.com" target="_blank" rel="noopener" title="Contato">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-envelope-o"></i>
+      
+      <span class="sidebar-button-desc">Contato</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/guilhermejacob" target="_blank" rel="noopener" title="GitHub">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="http://stackoverflow.com/users/6419956/guilherme-jacob" target="_blank" rel="noopener" title="Stack Overflow">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-stack-overflow"></i>
+      
+      <span class="sidebar-button-desc">Stack Overflow</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://www.instagram.com/guilhermejacob9" target="_blank" rel="noopener" title="Instagram">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-instagram"></i>
+      
+      <span class="sidebar-button-desc">Instagram</span>
+    </a>
+  </li>
+
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+	<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+	<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      <div id="main" data-behavior="4"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" id="top">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title">
+      Filtrando subpopulações em amostras complexas
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time datetime="2022-07-19T00:00:00Z">
+        
+  
+  
+  
+  
+    19/07/2022
+  
+
+      </time>
+    
+    
+  </div>
+
+</div>
+          
+          <div class="post-content markdown">
+            <div class="main-content-wrap">
+              
+
+
+<blockquote>
+<p>O Thomas Lumley já escreveu sobre isso; <a href="https://notstatschat.rbind.io/2021/07/22/subsets-and-subpopulations-in-survey-inference/">link aqui</a>!</p>
+</blockquote>
+<p>Uma das coisas mais interessantes que pesquisas domiciliares permitem fazer é filtrar domínios de análise. Por exemplo, além da renda média da população, é possível estimar as rendas médias das áreas urbanas e áreas rurais. Para avaliar a precisão dessas estimativas, estimamos a variância do estimador e o intervalo de confiança.</p>
+<p>No entanto, Tem uma prática problemática em alguns exemplos deste tipo de análise com o pacote <code>survey</code>: deletar as linhas antes de descrever o plano amostral. Sempre que eu comento filtrar observações desta maneira é arriscado, ouço o algo nas linhas de “minha análise é sobre populações indígenas, deletar informações de pessoas de outra cor/raça não influencia na análise!”.</p>
+<p><em>O problema é que elas influenciam.</em></p>
+<div id="o-caso-da-pof" class="section level1">
+<h1>O caso da POF</h1>
+<p>Vamos considerar o seguinte problema: tomando a população de referência da POF, qual é o tamanho da população de indígenas em São Paulo?</p>
+<p>Deletando linhas na crianção do objeto de plano amostral:</p>
+<pre class="r"><code># cria variável unitária
+pof.df$one &lt;- 1
+
+# cria objeto de desenho amostral só com as linhas de pessoas indígenas em São Paulo
+pof.des.rows &lt;- svydesign( ids = ~cod_upa , strata = ~estrato_pof , data = pof.df[ uf == 35 &amp; v0405 == 5 ] , weights = ~peso_final )
+
+# # opção &quot;conservadora&quot; para tratar estratos unitários
+options( survey.lonely.psu=&quot;adjust&quot; )
+
+# estima totais e variâncias
+svytotal( ~one , pof.des.rows )</code></pre>
+<pre><code>##      total    SE
+## one 148046 41047</code></pre>
+<p>Usando a amostra completa e a função <code>subset</code>:</p>
+<pre class="r"><code># cria objeto de desenho amostral com amostra completa
+pof.des.survobj &lt;- svydesign( ids = ~cod_upa , strata = ~estrato_pof , data = pof.df , weights = ~peso_final )
+
+# filtra domínio de interesse: pessoas indígenas em São Paulo
+pof.des.survobj &lt;- subset( pof.des.survobj , uf == 35 &amp; v0405 == 5 )
+
+# estima totais e variâncias
+svytotal( ~one , pof.des.survobj )</code></pre>
+<pre><code>##      total    SE
+## one 148046 44622</code></pre>
+<p>Como podemos notar, as estimativas dos totais são idênticas, mas as variâncias são diferentes. Mas temos o mesmo estimador, (aparentemente) a mesma amostra… Os valores deveriam ser idênticos. Então, fazemos a pergunta:</p>
+<blockquote>
+<p>Qual é a forma correta?</p>
+</blockquote>
+<p>Resposta: a <em>segunda</em>, que considera o plano amostral com a amostra completa.</p>
+<blockquote>
+<p>Por quê?</p>
+</blockquote>
+<p>Compare as contagem de PSUs<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> nas saídas abaixo.</p>
+<pre class="r"><code>summary( pof.des.rows )</code></pre>
+<pre><code>## Stratified 1 - level Cluster Sampling design (with replacement)
+## With (28) clusters.
+## svydesign(ids = ~cod_upa, strata = ~estrato_pof, data = pof.df[uf == 
+##     35 &amp; v0405 == 5], weights = ~peso_final)
+## Probabilities:
+##      Min.   1st Qu.    Median      Mean   3rd Qu.      Max. 
+## 0.0001323 0.0002264 0.0002532 0.0006395 0.0003734 0.0080181 
+## Stratum Sizes: 
+##            3501 3502 3505 3508 3510 3517 3522 3523 3526 3530 3531 3535 3538
+## obs           2    1   12    2    6    1    1    1    2    1    3    2    1
+## design.PSU    2    1    7    2    1    1    1    1    2    1    1    2    1
+## actual.PSU    2    1    7    2    1    1    1    1    2    1    1    2    1
+##            3540 3541 3542 3547 3551
+## obs           1    1    2    2    1
+## design.PSU    1    1    1    1    1
+## actual.PSU    1    1    1    1    1
+## Data variables:
+##  [1] &quot;cod_upa&quot;     &quot;uf&quot;          &quot;estrato_pof&quot; &quot;num_dom&quot;     &quot;num_uc&quot;     
+##  [6] &quot;v0306&quot;       &quot;peso_final&quot;  &quot;v0405&quot;       &quot;pos_estrato&quot; &quot;npes&quot;       
+## [11] &quot;one&quot;</code></pre>
+<pre class="r"><code>summary( pof.des.survobj )</code></pre>
+<pre><code>## Stratified 1 - level Cluster Sampling design (with replacement)
+## With (28) clusters.
+## subset(pof.des.survobj, uf == 35 &amp; v0405 == 5)
+## Probabilities:
+##      Min.   1st Qu.    Median      Mean   3rd Qu.      Max. 
+## 0.0001323 0.0002264 0.0002532 0.0006395 0.0003734 0.0080181 
+## Stratum Sizes: 
+##            3501 3502 3505 3508 3510 3517 3522 3523 3526 3530 3531 3535 3538
+## obs           2    1   12    2    6    1    1    1    2    1    3    2    1
+## design.PSU   23   13   19   12   25    7   20   10   10    3   14   13    3
+## actual.PSU    2    1    7    2    1    1    1    1    2    1    1    2    1
+##            3540 3541 3542 3547 3551
+## obs           1    1    2    2    1
+## design.PSU    3    3    3    3    5
+## actual.PSU    1    1    1    1    1
+## Data variables:
+##  [1] &quot;cod_upa&quot;     &quot;uf&quot;          &quot;estrato_pof&quot; &quot;num_dom&quot;     &quot;num_uc&quot;     
+##  [6] &quot;v0306&quot;       &quot;peso_final&quot;  &quot;v0405&quot;       &quot;pos_estrato&quot; &quot;npes&quot;       
+## [11] &quot;one&quot;</code></pre>
+<p>Na primeira, a contagem de UPAs do plano amostral coincide com a contagem de UPAs no domínio. Já na segunda, estas contagens divergem. O que isso significa? Quando vamos estimar a variância em cada estrato, a primeira considera apenas as UPAs onde há pelo menos uma pessoa indígenas na amostra. Já na segunda, todas as UPAs são consideradas. Ou seja: não é porque uma pessoa indígena não foi selecionada naquela UPA que não existem pessoas indígenas nela. Se fizermos isso, estamos subestimando a variabilidade dessa característica entre as UPAs. De outra maneira, ignorar as outras UPAs seria similar a dizer que <span class="math inline">\(\sum ( x - \overline{x} )^2 = \sum_{x&gt;0} ( x - \overline{x} )^2\)</span>, o que não faz o menor sentido.</p>
+<p>Assim, como regra<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a>, o melhor é deixar que a função <code>subset</code> faça o trabalho.</p>
+<div id="como-isso-afeta-a-convey" class="section level2">
+<h2>Como isso afeta a <code>convey</code></h2>
+<p>No caso da <code>convey</code>, o modo correto de declarar o plano amostral é rodando todo e qualquer <code>subset()</code> <strong>depois</strong> da <code>convey_prep()</code>. O motivo é o mesmo: não fazer isso declara incorretamente o plano amostral. Assim, o certo é fazer:</p>
+<pre class="r"><code># cria objeto de desenho amostral com amostra completa
+pof.des.survobj &lt;- svydesign( ids = ~cod_upa , strata = ~estrato_pof , data = pof.df , weights = ~peso_final )
+
+# cria objeto convey
+pof.des.survobj &lt;- convey_prep( pof.des.survobj )
+
+# filtra domínio de interesse: pessoas indígenas em São Paulo
+pof.des.survobj &lt;- subset( pof.des.survobj , uf == 35 &amp; v0405 == 5 )</code></pre>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>Unidades Primárias de Amostragem (UPA) em português.<a href="#fnref1" class="footnote-back">↩︎</a></p></li>
+<li id="fn2"><p>Existem casos onde isso não é um problema.<a href="#fnref2" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+
+              
+
+
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+            
+            
+<div class="post-actions-wrap">
+  <nav >
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--disabled">
+          
+              <i class="fa fa-angle-left"></i>
+              <span class="hide-xs hide-sm text-small icon-ml">PRÓXIMO</span>
+            </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://guilhermejacob.github.io/2022/06/serie-ipca-202001/" data-tooltip="Visualizando a inflação desde janeiro de 2020" aria-label="ANTERIOR: Visualizando a inflação desde janeiro de 2020">
+          
+              <span class="hide-xs hide-sm text-small icon-mr">ANTERIOR</span>
+              <i class="fa fa-angle-right"></i>
+            </a>
+        </li>
+      
+    </ul>
+  </nav>
+<ul class="post-actions post-action-share" >
+  
+    <li class="post-action hide-lg hide-md hide-sm">
+      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Compartilhe esta postagem">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://guilhermejacob.github.io/2022/07/survey-subset/" title="Compartilhar no Facebook" aria-label="Compartilhar no Facebook">
+          <i class="fa-facebook-official" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://guilhermejacob.github.io/2022/07/survey-subset/" title="Compartilhar no Twitter" aria-label="Compartilhar no Twitter">
+          <i class="fa-twitter" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://guilhermejacob.github.io/2022/07/survey-subset/" title="Compartilhar no Google&#43;" aria-label="Compartilhar no Google&#43;">
+          <i class="fa-google-plus" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+  
+  
+  <li class="post-action">
+    
+      <a class="post-action-btn btn btn--default" href="#top" aria-label="De volta ao topo">
+      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    
+    </a>
+  </li>
+</ul>
+</div>
+
+
+            
+  
+
+
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2022 Guilherme Jacob. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+        
+<div class="post-actions-wrap">
+  <nav >
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--disabled">
+          
+              <i class="fa fa-angle-left"></i>
+              <span class="hide-xs hide-sm text-small icon-ml">PRÓXIMO</span>
+            </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://guilhermejacob.github.io/2022/06/serie-ipca-202001/" data-tooltip="Visualizando a inflação desde janeiro de 2020" aria-label="ANTERIOR: Visualizando a inflação desde janeiro de 2020">
+          
+              <span class="hide-xs hide-sm text-small icon-mr">ANTERIOR</span>
+              <i class="fa fa-angle-right"></i>
+            </a>
+        </li>
+      
+    </ul>
+  </nav>
+<ul class="post-actions post-action-share" >
+  
+    <li class="post-action hide-lg hide-md hide-sm">
+      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Compartilhe esta postagem">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://guilhermejacob.github.io/2022/07/survey-subset/" title="Compartilhar no Facebook" aria-label="Compartilhar no Facebook">
+          <i class="fa-facebook-official" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://guilhermejacob.github.io/2022/07/survey-subset/" title="Compartilhar no Twitter" aria-label="Compartilhar no Twitter">
+          <i class="fa-twitter" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://guilhermejacob.github.io/2022/07/survey-subset/" title="Compartilhar no Google&#43;" aria-label="Compartilhar no Google&#43;">
+          <i class="fa-google-plus" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+  
+  
+  <li class="post-action">
+    
+      <a class="post-action-btn btn btn--default" href="#top" aria-label="De volta ao topo">
+      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    
+    </a>
+  </li>
+</ul>
+</div>
+
+
+      </div>
+      
+<div id="share-options-bar" class="share-options-bar" data-behavior="4">
+  <i id="btn-close-shareoptions" class="fa fa-times"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fguilhermejacob.github.io%2F2022%2F07%2Fsurvey-subset%2F" aria-label="Compartilhar no Facebook">
+          <i class="fa-facebook-official" aria-hidden="true"></i><span>Compartilhar no Facebook</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Fguilhermejacob.github.io%2F2022%2F07%2Fsurvey-subset%2F" aria-label="Compartilhar no Twitter">
+          <i class="fa-twitter" aria-hidden="true"></i><span>Compartilhar no Twitter</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https%3A%2F%2Fguilhermejacob.github.io%2F2022%2F07%2Fsurvey-subset%2F" aria-label="Compartilhar no Google&#43;">
+          <i class="fa-google-plus" aria-hidden="true"></i><span>Compartilhar no Google&#43;</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+
+
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-times"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://guilhermejacob.github.io/files/img_2502_recorte.jpg" alt="Foto do autor" />
+    
+    <h4 id="about-card-name">Guilherme Jacob</h4>
+    
+      <div id="about-card-bio">Manauara.<br>Doutorando em População, Território e Estatísticas Públicas (ENCE/IBGE).<br>Bacharel em Direito e Economia.</div>
+    
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker-alt"></i>
+        <br/>
+        Rio de Janeiro, Brasil
+      </div>
+    
+  </div>
+</div>
+
+    
+
+    
+  
+    
+      <div id="cover" style="background-image:url('https://guilhermejacob.github.io/files/manaus.jpg');"></div>
+    
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha512-uURl+ZXMBrF4AwGaWmEetzrd+J5/8NRkWAvJx5sbPSSuOb0bZLqf+tOzniObO00BjHa/dD7gub9oCGMLPQHtQA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+<script src="https://guilhermejacob.github.io/js/script-yqzy9wdlzix4lbbwdnzvwx3egsne77earqmn73v9uno8aupuph8wfguccut.min.js"></script>
+
+
+
+
+
+
+    
+  </body>
+</html>
+
