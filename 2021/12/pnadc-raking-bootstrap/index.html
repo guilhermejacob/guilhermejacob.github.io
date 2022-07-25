@@ -16,7 +16,7 @@
     
   },
   "name":"Something Random",
-  "description":"Recentemente, a PNAD Contínua passou por duas mudanças:\nMudança de pós-estratificação para raking; Mudança no método de estimação da variância dos estimadores, do Método do Conglomerado Primário para bootstrap. Mas o que isso significa? E como considerar isso na estimação usando o R? Bom, esse é o tema desse post. Primeiro, vou explicar muito superficialmente o que é raking e porque a mudança no método de calcular variância\nCalibração e raking Calibração (Deville e Särndal, 1992; Deville, Särndal e Sautory, 1993) é o nome de uma classe de métodos que, por conseguinte, definem uma classe de estimadores.",
+  "description":"Atualização (25\/05\/2022): eu e prof. Pedro Silva (ENCE\/IBGE) fizemos uma apresentação no IPEA sobre métodos dos conglomerados primários e estimação de variância com o estimador de calibração usando a PNADC. Os slides estão disponíveis neste link.\nRecentemente, a PNAD Contínua passou por duas mudanças:\nMudança de pós-estratificação para raking; Mudança no método de estimação da variância dos estimadores, do Método do Conglomerado Primário para bootstrap. Mas o que isso significa?",
   "url":"https:\/\/guilhermejacob.github.io\/2021\/12\/pnadc-raking-bootstrap\/",
   "keywords":"[]"
 }
@@ -28,26 +28,26 @@
 <meta name="generator" content="Hugo 0.101.0 with theme Tranquilpeak 0.5.3-BETA">
 <meta name="author" content="Guilherme Jacob">
 <meta name="keywords" content="">
-<meta name="description" content="Recentemente, a PNAD Contínua passou por duas mudanças:
-Mudança de pós-estratificação para raking; Mudança no método de estimação da variância dos estimadores, do Método do Conglomerado Primário para bootstrap. Mas o que isso significa? E como considerar isso na estimação usando o R? Bom, esse é o tema desse post. Primeiro, vou explicar muito superficialmente o que é raking e porque a mudança no método de calcular variância
-Calibração e raking Calibração (Deville e Särndal, 1992; Deville, Särndal e Sautory, 1993) é o nome de uma classe de métodos que, por conseguinte, definem uma classe de estimadores.">
+<meta name="description" content="Atualização (25/05/2022): eu e prof. Pedro Silva (ENCE/IBGE) fizemos uma apresentação no IPEA sobre métodos dos conglomerados primários e estimação de variância com o estimador de calibração usando a PNADC. Os slides estão disponíveis neste link.
+Recentemente, a PNAD Contínua passou por duas mudanças:
+Mudança de pós-estratificação para raking; Mudança no método de estimação da variância dos estimadores, do Método do Conglomerado Primário para bootstrap. Mas o que isso significa?">
 
 
-<meta property="og:description" content="Recentemente, a PNAD Contínua passou por duas mudanças:
-Mudança de pós-estratificação para raking; Mudança no método de estimação da variância dos estimadores, do Método do Conglomerado Primário para bootstrap. Mas o que isso significa? E como considerar isso na estimação usando o R? Bom, esse é o tema desse post. Primeiro, vou explicar muito superficialmente o que é raking e porque a mudança no método de calcular variância
-Calibração e raking Calibração (Deville e Särndal, 1992; Deville, Särndal e Sautory, 1993) é o nome de uma classe de métodos que, por conseguinte, definem uma classe de estimadores.">
+<meta property="og:description" content="Atualização (25/05/2022): eu e prof. Pedro Silva (ENCE/IBGE) fizemos uma apresentação no IPEA sobre métodos dos conglomerados primários e estimação de variância com o estimador de calibração usando a PNADC. Os slides estão disponíveis neste link.
+Recentemente, a PNAD Contínua passou por duas mudanças:
+Mudança de pós-estratificação para raking; Mudança no método de estimação da variância dos estimadores, do Método do Conglomerado Primário para bootstrap. Mas o que isso significa?">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Mudanças na PNAD Contínua: Raking e Bootstrap">
 <meta name="twitter:title" content="Mudanças na PNAD Contínua: Raking e Bootstrap">
 <meta property="og:url" content="https://guilhermejacob.github.io/2021/12/pnadc-raking-bootstrap/">
 <meta property="twitter:url" content="https://guilhermejacob.github.io/2021/12/pnadc-raking-bootstrap/">
 <meta property="og:site_name" content="Something Random">
-<meta property="og:description" content="Recentemente, a PNAD Contínua passou por duas mudanças:
-Mudança de pós-estratificação para raking; Mudança no método de estimação da variância dos estimadores, do Método do Conglomerado Primário para bootstrap. Mas o que isso significa? E como considerar isso na estimação usando o R? Bom, esse é o tema desse post. Primeiro, vou explicar muito superficialmente o que é raking e porque a mudança no método de calcular variância
-Calibração e raking Calibração (Deville e Särndal, 1992; Deville, Särndal e Sautory, 1993) é o nome de uma classe de métodos que, por conseguinte, definem uma classe de estimadores.">
-<meta name="twitter:description" content="Recentemente, a PNAD Contínua passou por duas mudanças:
-Mudança de pós-estratificação para raking; Mudança no método de estimação da variância dos estimadores, do Método do Conglomerado Primário para bootstrap. Mas o que isso significa? E como considerar isso na estimação usando o R? Bom, esse é o tema desse post. Primeiro, vou explicar muito superficialmente o que é raking e porque a mudança no método de calcular variância
-Calibração e raking Calibração (Deville e Särndal, 1992; Deville, Särndal e Sautory, 1993) é o nome de uma classe de métodos que, por conseguinte, definem uma classe de estimadores.">
+<meta property="og:description" content="Atualização (25/05/2022): eu e prof. Pedro Silva (ENCE/IBGE) fizemos uma apresentação no IPEA sobre métodos dos conglomerados primários e estimação de variância com o estimador de calibração usando a PNADC. Os slides estão disponíveis neste link.
+Recentemente, a PNAD Contínua passou por duas mudanças:
+Mudança de pós-estratificação para raking; Mudança no método de estimação da variância dos estimadores, do Método do Conglomerado Primário para bootstrap. Mas o que isso significa?">
+<meta name="twitter:description" content="Atualização (25/05/2022): eu e prof. Pedro Silva (ENCE/IBGE) fizemos uma apresentação no IPEA sobre métodos dos conglomerados primários e estimação de variância com o estimador de calibração usando a PNADC. Os slides estão disponíveis neste link.
+Recentemente, a PNAD Contínua passou por duas mudanças:
+Mudança de pós-estratificação para raking; Mudança no método de estimação da variância dos estimadores, do Método do Conglomerado Primário para bootstrap. Mas o que isso significa?">
 <meta property="og:locale" content="pt-br">
 
   
@@ -319,6 +319,9 @@ Calibração e raking Calibração (Deville e Särndal, 1992; Deville, Särndal 
               
 
 
+<blockquote>
+<p>Atualização (25/05/2022): eu e prof. Pedro Silva (ENCE/IBGE) fizemos uma apresentação no IPEA sobre métodos dos conglomerados primários e estimação de variância com o estimador de calibração usando a PNADC. Os slides estão disponíveis <a href="https://guilhermejacob.github.io/files/slides-ipea-072022.pdf">neste link</a>.</p>
+</blockquote>
 <p>Recentemente, a PNAD Contínua passou por <a href="https://biblioteca.ibge.gov.br/visualizacao/livros/liv101882.pdf">duas mudanças</a>:</p>
 <ol style="list-style-type: decimal">
 <li>Mudança de pós-estratificação para <em>raking</em>;</li>
@@ -338,11 +341,11 @@ Calibração e raking Calibração (Deville e Särndal, 1992; Deville, Särndal 
 <p>Em geral, conhecemos poucos totais populacionais. Vamos pensar em uma tabela com o seguinte formato: nas linhas, temos faixas etárias, enquanto nas colunas temos o sexo. Quando conhecemos os valores dos totais na população para cada célula da tabela, podemos “corrigir” os pesos da amostra usando uma razão entre os totais na população e os totais estimados na amostra. Esta técnica é chamada de <em>pós-estratificação</em>: de certa forma, estamos criando (ou reajustando) estratos após a seleção da amostra.</p>
 <p>Porém, em alguns casos, só conhecemos os totais nas margens desta tabela. O <em>raking</em> funciona neste caso: ajustamos iterativamente as marginais estimadas pela amostra às marginais da população. O problema é que este processo pode levar a pesos extremos, até negativos. É possível estabelecer restrições aos fatores de ajuste para evitar variações extremas. Além disso, em pesquisas domiciliares, costumamos trabalhar com pesos que não variam entre moradores do mesmo domicílio, restrição que também pode ser adicionada ao método.</p>
 <p>Mesmo quando conhecemos muitas variáveis na população, devemos escolher variáveis associadas às variáveis de interesse. Quando as variáveis de calibração estão pouco relacionadas às variáveis de interesse, o método apenas aumenta a variabilidade dos pesos, aumentando a variância dos estimadores. As estimativas, no entanto, permanecem (aproximadamente) não-viesadas.</p>
-<p>Até aqui, vimos que o processo de calibração gera novos pesos. Estes pesos reajustadas são estimadores de calibração, cuja fórmula para estimação de variância é diferente daquela utilizada para o estimador de Horvitz-Thompson. <span class="citation"><a href="#ref-silva2004" role="doc-biblioref">Nascimento Silva</a> (<a href="#ref-silva2004" role="doc-biblioref">2004</a>)</span> apresenta maiores detalhes sobre o procedimento e a estimação de variância por linearização. Alternativamente, é possível utilizar estimadores de variância baseados em replicação, como <em>bootstrap</em>.</p>
+<p>Até aqui, vimos que o processo de calibração gera novos pesos. Estes pesos reajustadas são estimadores de calibração, cuja fórmula para estimação de variância é diferente daquela utilizada para o estimador de Horvitz-Thompson. <span class="citation">Nascimento Silva (<a href="#ref-silva2004" role="doc-biblioref">2004</a>)</span> apresenta maiores detalhes sobre o procedimento e a estimação de variância por linearização. Alternativamente, é possível utilizar estimadores de variância baseados em replicação, como <em>bootstrap</em>.</p>
 </div>
 <div id="bootstrap-raking" class="section level1">
 <h1><em>Bootstrap</em> + <em>Raking</em></h1>
-<p>A estimação de variância por <em>bootstrap</em> consiste em extrair várias réplicas da amostra obtida utilizando amostragem com reposição. No entanto, a “reamostragem” deve considerar o plano amostral, respeitando a estratificação, conglomeração e probabilidades de inclusão, por exemplo. Além disso, é importante que a fração amostral seja pequena, de modo que se possa aproximar um plano amostral sem reposição por um plano com reposição. Existem variações do <em>bootstrap</em> em amostras complexas, mas o artigo principal é <span class="citation"><a href="#ref-rao1988" role="doc-biblioref">Rao e Wu</a> (<a href="#ref-rao1988" role="doc-biblioref">1988</a>)</span>, que explica o método utilizado pelo IBGE.</p>
+<p>A estimação de variância por <em>bootstrap</em> consiste em extrair várias réplicas da amostra obtida utilizando amostragem com reposição. No entanto, a “reamostragem” deve considerar o plano amostral, respeitando a estratificação, conglomeração e probabilidades de inclusão, por exemplo. Além disso, é importante que a fração amostral seja pequena, de modo que se possa aproximar um plano amostral sem reposição por um plano com reposição. Existem variações do <em>bootstrap</em> em amostras complexas, mas o artigo principal é <span class="citation">Rao e Wu (<a href="#ref-rao1988" role="doc-biblioref">1988</a>)</span>, que explica o método utilizado pelo IBGE.</p>
 <p>Suponha que tenhamos extraído <span class="math inline">\(R\)</span> réplicas da amostra original. Repetimos o procedimento de estimação em cada uma das <span class="math inline">\(R\)</span> réplicas. Por exemplo, no caso de uma média, estimamos a estimativa pontual com o peso final da amostra completa. Repetimos este procedimento <span class="math inline">\(R\)</span> vezes, utilizando as <span class="math inline">\(R\)</span> réplicas. Utilizando a distribuição das réplicas, estimamos a variância. Note que mesmo no caso de um estimador de médias por razão de totais, não há nenhum procedimento de linearização: o <em>bootstrap</em> contorna a necessidade de linearização, evitando o uso de fórmulas mais complicadas.</p>
 <p>Para incorporar o efeito do <em>raking</em>, o procedimento de raking deve ser repetido em cada réplica. Novamente, o uso de fórmulas complicadas é contornado.</p>
 </div>
@@ -421,20 +424,20 @@ txunemp.ucm.uf &lt;- svymean( ~factor( vd4002 ) , subset( pnadc.ucm , uf == 13 )
 <h1>Referências</h1>
 <div id="refs" class="references csl-bib-body">
 <div id="ref-deville1992" class="csl-entry">
-DEVILLE, J.-C.; SÄRNDAL, C.-E. Calibration Estimators in Survey Sampling. <strong>Journal of the American Statistical Association</strong>, v. 87, n. 418, p. 376–382, 1992.
+DEVILLE, J.-C.; SÄRNDAL, C.-E. <a href="http://www.jstor.org/stable/2290268">Calibration Estimators in Survey Sampling</a>. <strong>Journal of the American Statistical Association</strong>, v. 87, n. 418, p. 376–382, 1992.
 </div>
 <div id="ref-deville1993" class="csl-entry">
-DEVILLE, J.-C.; SÄRNDAL, C.-E.; SAUTORY, O. Generalized Raking Procedures in Survey Sampling. <strong>Journal of the American Statistical Association</strong>, v. 88, n. 423, p. 1013–1020, 1993.
+DEVILLE, J.-C.; SÄRNDAL, C.-E.; SAUTORY, O. <a href="http://www.jstor.org/stable/2290793">Generalized Raking Procedures in Survey Sampling</a>. <strong>Journal of the American Statistical Association</strong>, v. 88, n. 423, p. 1013–1020, 1993.
 </div>
 <div id="ref-silva2004" class="csl-entry">
 NASCIMENTO SILVA, P. L. <strong>Calibration Estimation: When and Why,How Much and How</strong>: Textos para discussão. Rio de Janeiro: IBGE, Diretoria de Pesquisas, 2004. Disponível em: &lt;<a href="https://biblioteca.ibge.gov.br/visualizacao/livros/liv66414.pdf">https://biblioteca.ibge.gov.br/visualizacao/livros/liv66414.pdf</a>&gt;.
 </div>
 <div id="ref-rao1988" class="csl-entry">
-RAO, J. N. K.; WU, C. F. J. Resampling Inference With Complex Survey Data. <strong>Journal of the American Statistical Association</strong>, v. 83, n. 401, p. 231–241, 1988.
+RAO, J. N. K.; WU, C. F. J. <a href="http://www.jstor.org/stable/2288945">Resampling Inference With Complex Survey Data</a>. <strong>Journal of the American Statistical Association</strong>, v. 83, n. 401, p. 231–241, 1988.
 </div>
 </div>
 </div>
-<div class="footnotes">
+<div class="footnotes footnotes-end-of-document">
 <hr />
 <ol>
 <li id="fn1"><p>As propriedades de simetria e desigualdade triangular, que definem distâncias, podem ser desnecessárias neste caso.<a href="#fnref1" class="footnote-back">↩︎</a></p></li>

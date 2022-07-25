@@ -301,6 +301,8 @@ Meu modelo de previsão errou bem mais do que eu gostaria. Por que? A relação 
           <div class="post-content markdown">
             <div class="main-content-wrap">
               
+
+
 <p>No dia 10/6, o IBGE divulgou os rendimentos de outras fontes, coletado pela PNADC durante a 5ª visita de cada trimestre de 2021; <a href="https://agenciadenoticias.ibge.gov.br/agencia-noticias/2012-agencia-de-noticias/noticias/34052-em-2021-rendimento-domiciliar-per-capita-cai-ao-menor-nivel-desde-2012">clique aqui para acessar o release completo</a>.
 Isso me mostrou duas coisas:</p>
 <ol style="list-style-type: decimal">
@@ -325,7 +327,7 @@ Figure 1: Taxa de Pobreza no Brasil de 2012 a 2021
 Figure 2: Taxa de Pobreza por Estrato Geográfico em 2021
 </p>
 </div>
-<p>Se você viu os intervalos de confiança e está achando que tem alguma coisa estranha, você está certo. O Teorema Central do Limite (TCL) estabelece que as distribuição do estimador se aproxima de uma distribuição normal quando o tamanho da amostra tende a infinito. Como a distribuição normal é simétrica, os intervalos de confiança deveriam ser simétricos. O problema é que a amostra ainda não é grande o suficiente para o TCL ser uma aproximação razoável. Por isso, usei a distribuição das réplicas de <em>bootstrap</em> para construir estes ICs, <del>que acredito estar</del> produzindo resultados melhores. Há outras maneiras de construir ICs assimétricos para proporções que não se basiam nas réplicas, como o método de Clopper-Pearson, mas já fugimos bastante do tema.</p>
+<p>Se você viu os intervalos de confiança e está achando que tem alguma coisa estranha, você está certo. O Teorema Central do Limite (TCL) estabelece que as distribuição do estimador se aproxima de uma distribuição normal quando o tamanho da amostra tende a infinito. Como a distribuição normal é simétrica, os intervalos de confiança deveriam ser simétricos. O problema é que a amostra ainda não é grande o suficiente para o TCL ser uma aproximação razoável. Por isso, usei a distribuição das réplicas de <em>bootstrap</em> para construir estes ICs, <del>que acredito estar</del> produzindo resultados melhores. Há outras maneiras de construir ICs assimétricos para proporções que não se baseiam nas réplicas, como o método de Clopper-Pearson, mas já fugimos bastante do tema.</p>
 <p>Os intervalos de confiança também são importantes para avaliar a mudança entre 2020 e 2021. Como mostra o Gráfico <a href="#fig:estrato-2020-2021">3</a>, embora a maioria dos ICs se interceptem, o movimento de aumento generalizado nas taxas de pobreza é bastante evidente. No entanto, não estamos exatamente testando a diferença entre as estimativas, já que ignoramos a covariância entre elas. Acho que essas covariâncias são positivas. Ou seja: estamos sendo (estatisticamente) conservadores.</p>
 <div class="figure"><span style="display:block;" id="fig:estrato-2020-2021"></span>
 <img src="https://guilhermejacob.github.io/2022/06/pnadc-pobreza-2021/index_files/figure-html/estrato-2020-2021-1.png" alt="Taxa de Pobreza por Estrato Geográfico em 2020 e 2021" width="960" />
@@ -345,7 +347,7 @@ Figure 4: Nível de Pobreza por Estrato Geográfico em 2021
 <p>Se você acha que existem <strong>cidades perdidas na Amazônia</strong>, você está <strong>certo</strong>. O Vale do Rio Purus (AM) é composto por 13 cidades: Anamã, Anori, Beruri, Boca do Acre, Caapiranga, Canutama, Careiro, Coari, Codajás, Lábrea, Manaquiri, Pauini e Tapauá. Para esta região, a estimativa da taxa de pobreza em 2021 é de 73%, com IC (95%) de 66%-79%. É razoável pensar que algumas dessas cidades podem ter mais de 70% da sua população em situação de pobreza. <strong>Uma cidade vivendo sob estas condições certamente está perdida.</strong></p>
 </blockquote>
 </div>
-<div class="footnotes">
+<div class="footnotes footnotes-end-of-document">
 <hr />
 <ol>
 <li id="fn1"><p>Posso tentar de novo no início do ano que vem.<a href="#fnref1" class="footnote-back">↩︎</a></p></li>
