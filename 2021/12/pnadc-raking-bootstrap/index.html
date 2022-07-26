@@ -341,11 +341,11 @@ Mudança de pós-estratificação para raking; Mudança no método de estimaçã
 <p>Em geral, conhecemos poucos totais populacionais. Vamos pensar em uma tabela com o seguinte formato: nas linhas, temos faixas etárias, enquanto nas colunas temos o sexo. Quando conhecemos os valores dos totais na população para cada célula da tabela, podemos “corrigir” os pesos da amostra usando uma razão entre os totais na população e os totais estimados na amostra. Esta técnica é chamada de <em>pós-estratificação</em>: de certa forma, estamos criando (ou reajustando) estratos após a seleção da amostra.</p>
 <p>Porém, em alguns casos, só conhecemos os totais nas margens desta tabela. O <em>raking</em> funciona neste caso: ajustamos iterativamente as marginais estimadas pela amostra às marginais da população. O problema é que este processo pode levar a pesos extremos, até negativos. É possível estabelecer restrições aos fatores de ajuste para evitar variações extremas. Além disso, em pesquisas domiciliares, costumamos trabalhar com pesos que não variam entre moradores do mesmo domicílio, restrição que também pode ser adicionada ao método.</p>
 <p>Mesmo quando conhecemos muitas variáveis na população, devemos escolher variáveis associadas às variáveis de interesse. Quando as variáveis de calibração estão pouco relacionadas às variáveis de interesse, o método apenas aumenta a variabilidade dos pesos, aumentando a variância dos estimadores. As estimativas, no entanto, permanecem (aproximadamente) não-viesadas.</p>
-<p>Até aqui, vimos que o processo de calibração gera novos pesos. Estes pesos reajustadas são estimadores de calibração, cuja fórmula para estimação de variância é diferente daquela utilizada para o estimador de Horvitz-Thompson. <span class="citation">Nascimento Silva (<a href="#ref-silva2004" role="doc-biblioref">2004</a>)</span> apresenta maiores detalhes sobre o procedimento e a estimação de variância por linearização. Alternativamente, é possível utilizar estimadores de variância baseados em replicação, como <em>bootstrap</em>.</p>
+<p>Até aqui, vimos que o processo de calibração gera novos pesos. Estes pesos reajustadas são estimadores de calibração, cuja fórmula para estimação de variância é diferente daquela utilizada para o estimador de Horvitz-Thompson. <span class="citation">Silva (<a href="#ref-silva2004" role="doc-biblioref">2004</a>)</span> apresenta maiores detalhes sobre o procedimento e a estimação de variância por linearização. Alternativamente, é possível utilizar estimadores de variância baseados em replicação, como <em>bootstrap</em>.</p>
 </div>
 <div id="bootstrap-raking" class="section level1">
 <h1><em>Bootstrap</em> + <em>Raking</em></h1>
-<p>A estimação de variância por <em>bootstrap</em> consiste em extrair várias réplicas da amostra obtida utilizando amostragem com reposição. No entanto, a “reamostragem” deve considerar o plano amostral, respeitando a estratificação, conglomeração e probabilidades de inclusão, por exemplo. Além disso, é importante que a fração amostral seja pequena, de modo que se possa aproximar um plano amostral sem reposição por um plano com reposição. Existem variações do <em>bootstrap</em> em amostras complexas, mas o artigo principal é <span class="citation">Rao e Wu (<a href="#ref-rao1988" role="doc-biblioref">1988</a>)</span>, que explica o método utilizado pelo IBGE.</p>
+<p>A estimação de variância por <em>bootstrap</em> consiste em extrair várias réplicas da amostra obtida utilizando amostragem com reposição. No entanto, a “reamostragem” deve considerar o plano amostral, respeitando a estratificação, conglomeração e probabilidades de inclusão, por exemplo. Além disso, é importante que a fração amostral seja pequena, de modo que se possa aproximar um plano amostral sem reposição por um plano com reposição. Existem variações do <em>bootstrap</em> em amostras complexas, mas os artigo principal é <span class="citation">Rao, Wu e Yue (<a href="#ref-rao1992" role="doc-biblioref">1992</a>)</span><a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a>, que explica o método utilizado pelo IBGE.</p>
 <p>Suponha que tenhamos extraído <span class="math inline">\(R\)</span> réplicas da amostra original. Repetimos o procedimento de estimação em cada uma das <span class="math inline">\(R\)</span> réplicas. Por exemplo, no caso de uma média, estimamos a estimativa pontual com o peso final da amostra completa. Repetimos este procedimento <span class="math inline">\(R\)</span> vezes, utilizando as <span class="math inline">\(R\)</span> réplicas. Utilizando a distribuição das réplicas, estimamos a variância. Note que mesmo no caso de um estimador de médias por razão de totais, não há nenhum procedimento de linearização: o <em>bootstrap</em> contorna a necessidade de linearização, evitando o uso de fórmulas mais complicadas.</p>
 <p>Para incorporar o efeito do <em>raking</em>, o procedimento de raking deve ser repetido em cada réplica. Novamente, o uso de fórmulas complicadas é contornado.</p>
 </div>
@@ -399,7 +399,7 @@ txunemp.ucm.uf &lt;- svymean( ~factor( vd4002 ) , subset( pnadc.ucm , uf == 13 )
 </div>
 <div id="comparando-resultados" class="section level2">
 <h2>Comparando resultados</h2>
-<p>É importante lembrar o que muda em relação aos resultados: o métodos de estimação das variâncias. Ou seja: <strong>as estimativas das proporções devem ser idênticas</strong>, mas as <em>estimativas de variâncias podem diferir</em><a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a>.</p>
+<p>É importante lembrar o que muda em relação aos resultados: o métodos de estimação das variâncias. Ou seja: <strong>as estimativas das proporções devem ser idênticas</strong>, mas as <em>estimativas de variâncias podem diferir</em><a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a>.</p>
 <p>Os resultados para o Brasil são praticamente idênticos:</p>
 <pre class="r"><code>txunemp.boot.br</code></pre>
 <pre><code>##                    mean     SE
@@ -429,11 +429,14 @@ DEVILLE, J.-C.; SÄRNDAL, C.-E. <a href="http://www.jstor.org/stable/2290268">Ca
 <div id="ref-deville1993" class="csl-entry">
 DEVILLE, J.-C.; SÄRNDAL, C.-E.; SAUTORY, O. <a href="http://www.jstor.org/stable/2290793">Generalized Raking Procedures in Survey Sampling</a>. <strong>Journal of the American Statistical Association</strong>, v. 88, n. 423, p. 1013–1020, 1993.
 </div>
-<div id="ref-silva2004" class="csl-entry">
-NASCIMENTO SILVA, P. L. <strong>Calibration Estimation: When and Why,How Much and How</strong>: Textos para discussão. Rio de Janeiro: IBGE, Diretoria de Pesquisas, 2004. Disponível em: &lt;<a href="https://biblioteca.ibge.gov.br/visualizacao/livros/liv66414.pdf">https://biblioteca.ibge.gov.br/visualizacao/livros/liv66414.pdf</a>&gt;.
-</div>
 <div id="ref-rao1988" class="csl-entry">
 RAO, J. N. K.; WU, C. F. J. <a href="http://www.jstor.org/stable/2288945">Resampling Inference With Complex Survey Data</a>. <strong>Journal of the American Statistical Association</strong>, v. 83, n. 401, p. 231–241, 1988.
+</div>
+<div id="ref-rao1992" class="csl-entry">
+RAO, J. N. K.; WU, C. F. J.; YUE, K. <a href="https://www150.statcan.gc.ca/n1/en/pub/12-001-x/1992002/article/14486-eng.pdf"><span>Some Recent work on Resampling Methods for Complex Surveys</span></a>. <strong>Survey Methodology</strong>, v. 18, n. 2, p. 209–217, dez. 1992.
+</div>
+<div id="ref-silva2004" class="csl-entry">
+SILVA, P. L. N. <strong>Calibration Estimation: When and Why, How Much and How</strong>: Textos para discussão. Rio de Janeiro: IBGE, Diretoria de Pesquisas, 2004. Disponível em: &lt;<a href="https://biblioteca.ibge.gov.br/visualizacao/livros/liv66414.pdf">https://biblioteca.ibge.gov.br/visualizacao/livros/liv66414.pdf</a>&gt;.
 </div>
 </div>
 </div>
@@ -441,7 +444,8 @@ RAO, J. N. K.; WU, C. F. J. <a href="http://www.jstor.org/stable/2288945">Resamp
 <hr />
 <ol>
 <li id="fn1"><p>As propriedades de simetria e desigualdade triangular, que definem distâncias, podem ser desnecessárias neste caso.<a href="#fnref1" class="footnote-back">↩︎</a></p></li>
-<li id="fn2"><p>Não muito, afinal os métodos tentam estimar a mesma quantidade<a href="#fnref2" class="footnote-back">↩︎</a></p></li>
+<li id="fn2"><p>O método anterior de <span class="citation">Rao e Wu (<a href="#ref-rao1988" role="doc-biblioref">1988</a>)</span> tinha um problema: ele não poderia ser aplicado para estimar a variância de estimadores não-regulares, como quantis. Esse problema é resolvido em <span class="citation">Rao, Wu e Yue (<a href="#ref-rao1992" role="doc-biblioref">1992</a>)</span>.<a href="#fnref2" class="footnote-back">↩︎</a></p></li>
+<li id="fn3"><p>Não muito, afinal os métodos tentam estimar a mesma quantidade<a href="#fnref3" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
 
