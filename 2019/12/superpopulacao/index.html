@@ -317,6 +317,9 @@
           <div class="post-content markdown">
             <div class="main-content-wrap">
               
+
+
+
 <p>Tive a oportunidade de estudar amostragem e análise de dados amostrais na ENCE com excelentes professores<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> esse ano. <em>E foi incrível!</em> Tentei aproveitar da melhor maneira possível. Entre algumas ideias exploradas, existem os modelos de superpopulação, que desempenham um papel fundamental na análise de dados amostrais. É uma ideia tão interessante que resolvi escrever um post sobre isso, mas com uma restrição: ser didático e, se possível, interessante para um público mais amplo.</p>
 <p>As próximas seções explicam os conceitos de população finita, amostra, população infinita e como isso se relaciona com os modelos paramétricos com amostras complexas. Não vai ter muito rigor matemático, mas vou indicar as referências onde o tratamento mais rigoroso pode ser encontrado.</p>
 <div id="população-finita-e-amostragem" class="section level3">
@@ -328,7 +331,7 @@
 </div>
 <div id="inferência-descritiva-inferência-analítica-e-modelos-de-superpopulação" class="section level1">
 <h1>Inferência descritiva, inferência analítica e modelos de superpopulação</h1>
-<p>Estas ideias são interessantes para fazer <em>inferências descritivas</em>, mas o que acontece quando queremos estudar algo mais complicado, como o processo que gera aquela população específica? Neste caso, estamos falando de <em>inferência analítica</em>. É importante distinguir as duas abordagens: a primeira tenta <em>descrever</em> uma quantidade da população a partir de uma amostra; a outra tenta descrever os mecanismos por trás daquela população. Como explica <span class="citation"><a href="#ref-deming1953" role="doc-biblioref">Deming</a> (<a href="#ref-deming1953" role="doc-biblioref">1953, p. 245</a>)</span>, a inferência descritiva tenta responder à pergunta “quanto?”; já a inferência analítica tentaria responder à pergunta “por quê?”. Em outras palavras, a inferência descritiva é uma “fotografia” da população, desconsiderando os processos que a geraram, enquanto a inferência analítica tenta entender este mecanismo <span class="citation">(<a href="#ref-conti2018" role="doc-biblioref">Conti e Di Iorio, 2018</a>)</span>. Assim, a inferência analítica quer entender como as características da população se relacionam. Então, a pergunta da inferência analítica é “como?”</p>
+<p>Estas ideias são interessantes para fazer <em>inferências descritivas</em>, mas o que acontece quando queremos estudar algo mais complicado, como o processo que gera aquela população específica? Neste caso, estamos falando de <em>inferência analítica</em>. É importante distinguir as duas abordagens: a primeira tenta <em>descrever</em> uma quantidade da população a partir de uma amostra; a outra tenta descrever os mecanismos por trás daquela população. Como explica <span class="citation">Deming (<a href="#ref-deming1953" role="doc-biblioref">1953, p. 245</a>)</span>, a inferência descritiva tenta responder à pergunta “quanto?”; já a inferência analítica tentaria responder à pergunta “por quê?”. Em outras palavras, a inferência descritiva é uma “fotografia” da população, desconsiderando os processos que a geraram, enquanto a inferência analítica tenta entender este mecanismo <span class="citation">(<a href="#ref-conti2018" role="doc-biblioref">Conti e Di Iorio, 2018</a>)</span>. Assim, a inferência analítica quer entender como as características da população se relacionam. Então, a pergunta da inferência analítica é “como?”</p>
 <p>A ideia central da inferência analítica pode ser interpretada da seguinte maneira. A minha população finita é uma realização de um processo aleatório mais geral, definida por um <em>modelo paramétrico</em>. Este modelo produz infinitas populações finitas. A nossa amostra é extraída de uma delas.</p>
 </div>
 <div id="sopas-universos-paralelos-e-modelos-de-superpopulação" class="section level1">
@@ -354,9 +357,9 @@
 <p>Nesse texto, a minha intenção era dar uma explicação um pouco mais didática sobre os modelos de superpopulação e como eles relacionam amostra, população finita e população infinita. Ele também mostra uma parte do problema que enfrentamos quando ajustamos modelos em amostras complexas, embora exija um pouco mais de discussão.</p>
 <p>Por fim, não forneço nenhuma solução ou método para ajustar estes modelos. Para entender isso, vale ler a bibliografia citada no texto. Também indico:</p>
 <ul>
-<li>Leituras obrigatórias: <span class="citation"><a href="#ref-silva2018" role="doc-biblioref">Pessoa e Silva</a> (<a href="#ref-silva2018" role="doc-biblioref">2018</a>Cap. 2 e 5)</span>, <span class="citation"><a href="#ref-lohr2010" role="doc-biblioref">Lohr</a> (<a href="#ref-lohr2010" role="doc-biblioref">2010</a>Cap. 11)</span>, <span class="citation"><a href="#ref-heeringa" role="doc-biblioref">Heeringa, West e Berglund</a> (<a href="#ref-heeringa" role="doc-biblioref">2010</a>Cap. 7)</span> e <span class="citation"><a href="#ref-binder2003" role="doc-biblioref">Binder e Skinner</a> (<a href="#ref-binder2003" role="doc-biblioref">2003</a>)</span>;</li>
-<li><span class="citation"><a href="#ref-korn2002" role="doc-biblioref">Graubard e Korn</a> (<a href="#ref-korn2002" role="doc-biblioref">2002</a>)</span>, <span class="citation"><a href="#ref-dorfman2005" role="doc-biblioref">Dorfman e Valliant</a> (<a href="#ref-dorfman2005" role="doc-biblioref">2005</a>)</span> e <span class="citation"><a href="#ref-lumley2017" role="doc-biblioref">Lumley e Scott</a> (<a href="#ref-lumley2017" role="doc-biblioref">2017</a>)</span> trazem uma discussão interessante sobre alguns aspectos práticos do ajuste destes modelos com amostras complexas;</li>
-<li>Para economistas, <span class="citation"><a href="#ref-deaton1995" role="doc-biblioref">Deaton</a> (<a href="#ref-deaton1995" role="doc-biblioref">1995</a>)</span>, <span class="citation"><a href="#ref-ullah1998" role="doc-biblioref">Ullah e Breunig</a> (<a href="#ref-ullah1998" role="doc-biblioref">1998</a>)</span>, <span class="citation"><a href="#ref-cameron2005" role="doc-biblioref">Cameron e Trivedi</a> (<a href="#ref-cameron2005" role="doc-biblioref">2005</a>Cap. 24)</span> e <span class="citation"><a href="#ref-jeff2010" role="doc-biblioref">Wooldridge</a> (<a href="#ref-jeff2010" role="doc-biblioref">2010</a>Cap. 20)</span> podem ser interessantes.</li>
+<li>Leituras obrigatórias: <span class="citation">Pessoa e Silva (<a href="#ref-silva2018" role="doc-biblioref">2018, cap. 2</a> e 5)</span>, <span class="citation">Lohr (<a href="#ref-lohr2010" role="doc-biblioref">2010, cap. 11</a>)</span>, <span class="citation">Heeringa, West e Berglund (<a href="#ref-heeringa" role="doc-biblioref">2010, cap. 7</a>)</span> e <span class="citation">Binder e Skinner (<a href="#ref-binder2003" role="doc-biblioref">2003</a>)</span>;</li>
+<li><span class="citation">Graubard e Korn (<a href="#ref-korn2002" role="doc-biblioref">2002</a>)</span>, <span class="citation">Dorfman e Valliant (<a href="#ref-dorfman2005" role="doc-biblioref">2005</a>)</span> e <span class="citation">Lumley e Scott (<a href="#ref-lumley2017" role="doc-biblioref">2017</a>)</span> trazem uma discussão interessante sobre alguns aspectos práticos do ajuste destes modelos com amostras complexas;</li>
+<li>Para economistas, <span class="citation">Deaton (<a href="#ref-deaton1995" role="doc-biblioref">1995</a>)</span>, <span class="citation">Ullah e Breunig (<a href="#ref-ullah1998" role="doc-biblioref">1998</a>)</span>, <span class="citation">Cameron e Trivedi (<a href="#ref-cameron2005" role="doc-biblioref">2005, cap. 24</a>)</span> e <span class="citation">Wooldridge (<a href="#ref-jeff2010" role="doc-biblioref">2010, cap. 20</a>)</span> podem ser interessantes.</li>
 </ul>
 </div>
 <div id="referências" class="section level1 unnumbered">
@@ -366,28 +369,28 @@
 BETHLEHEM, J. <strong>The rise of survey sampling</strong>. Haia, Holanda: Statistics Netherlands, 2009. Disponível em: &lt;<a href="https://www.cbs.nl/-/media/imported/documents/2009/07/2009-15-x10-pub.pdf">https://www.cbs.nl/-/media/imported/documents/2009/07/2009-15-x10-pub.pdf</a>&gt;.
 </div>
 <div id="ref-binder1983" class="csl-entry">
-BINDER, D. A. On the Variances of Asymptotically Normal Estimators from Complex Surveys. <strong>International Statistical Review / Revue Internationale de Statistique</strong>, v. 51, n. 3, p. 279–292, 1983.
+BINDER, D. A. <a href="http://www.jstor.org/stable/1402588">On the Variances of Asymptotically Normal Estimators from Complex Surveys</a>. <strong>International Statistical Review / Revue Internationale de Statistique</strong>, v. 51, n. 3, p. 279–292, 1983.
 </div>
 <div id="ref-binder2003" class="csl-entry">
-BINDER, D. A.; SKINNER, C. J. Design-based and Model-based Methods for Estimating Model Parameters. <em>In</em>: <strong>Analysis of Survey Data</strong>. [s.l.] John Wiley &amp; Sons, 2003. p. 29–48.
+BINDER, D. A.; SKINNER, C. J. <a href="https://doi.org/10.1002/0470867205.ch3">Design-based and Model-based Methods for Estimating Model Parameters</a>. <em>Em</em>: <strong>Analysis of Survey Data</strong>. [s.l.] John Wiley &amp; Sons, 2003. p. 29–48.
 </div>
 <div id="ref-cameron2005" class="csl-entry">
 CAMERON, A. C.; TRIVEDI, P. K. <strong>Microeconometrics: Methods and Applications</strong>. Cambridge: Cambridge University Press, 2005.
 </div>
 <div id="ref-conti2018" class="csl-entry">
-CONTI, P. L.; DI IORIO, A. <strong>Analytic inference in finite population framework via resampling</strong>, 2018. Disponível em: &lt;<a href="http://arxiv.org/abs/1809.08035">http://arxiv.org/abs/1809.08035</a>&gt;
+CONTI, P. L.; DI IORIO, A. <strong>Analytic inference in finite population framework via resampling</strong>, 2018. Disponível em: &lt;<a href="https://arxiv.org/abs/1809.08035">https://arxiv.org/abs/1809.08035</a>&gt;
 </div>
 <div id="ref-deaton1995" class="csl-entry">
-DEATON, A. Data and econometric tools for development analysis. <em>In</em>: BEHRMAN, J.; SRINIVASAN, T. N. (Eds.). Handbook of Development Economics, parte 3A. Amsterdã: North-Holland, 1995. p. 1785–1882.
+DEATON, A. <a href="https://doi.org/10.1016/S1573-4471(05)80005-1">Data and econometric tools for development analysis</a>. <em>Em</em>: BEHRMAN, J.; SRINIVASAN, T. N. (Eds.). Handbook of Development Economics, Part 3A. Amsterdã: North-Holland, 1995. p. 1785–1882.
 </div>
 <div id="ref-deming1953" class="csl-entry">
-DEMING, W. E. On the Distinction between Enumerative and Analytic Surveys. <strong>Journal of the American Statistical Association</strong>, v. 48, n. 262, p. 244–255, jun. 1953.
+DEMING, W. E. <a href="https://doi.org/10.1080/01621459.1953.10483470">On the Distinction between Enumerative and Analytic Surveys</a>. <strong>Journal of the American Statistical Association</strong>, v. 48, n. 262, p. 244–255, jun. 1953.
 </div>
 <div id="ref-dorfman2005" class="csl-entry">
-DORFMAN, A. H.; VALLIANT, R. Superpopulation Models in Survey Sampling. <em>In</em>: <strong>Encyclopedia of Biostatistics</strong>. [s.l.] American Cancer Society, 2005.
+DORFMAN, A. H.; VALLIANT, R. <a href="https://doi.org/10.1002/0470011815.b2a16076">Superpopulation Models in Survey Sampling</a>. <em>Em</em>: <strong>Encyclopedia of Biostatistics</strong>. [s.l.] American Cancer Society, 2005.
 </div>
 <div id="ref-korn2002" class="csl-entry">
-GRAUBARD, B. I.; KORN, E. L. Inference for Superpopulation Parameters Using Sample Surveys. <strong>Statistical Science</strong>, v. 17, n. 1, p. 73–96, 2002.
+GRAUBARD, B. I.; KORN, E. L. <a href="https://doi.org/10.1214/ss/1023798999">Inference for Superpopulation Parameters Using Sample Surveys</a>. <strong>Statistical Science</strong>, v. 17, n. 1, p. 73–96, 2002.
 </div>
 <div id="ref-heeringa" class="csl-entry">
 HEERINGA, S. G.; WEST, B. T.; BERGLUND, P. A. <strong>Applied Survey Data Analysis</strong>. Boca Raton, Florida: <span>Chapman &amp; Hall/CRC</span>, 2010.
@@ -396,24 +399,24 @@ HEERINGA, S. G.; WEST, B. T.; BERGLUND, P. A. <strong>Applied Survey Data Analys
 LOHR, S. <strong><span>Sampling Design and Analysis</span></strong>. 2nd. ed. Boston: Brooks/Cole, 2010. p. 596
 </div>
 <div id="ref-lumley2017" class="csl-entry">
-LUMLEY, T.; SCOTT, A. Fitting Regression Models to Survey Data. <strong>Statist. Sci.</strong>, v. 32, n. 2, p. 265–278, maio 2017.
+LUMLEY, T.; SCOTT, A. <a href="https://doi.org/10.1214/16-STS605">Fitting Regression Models to Survey Data</a>. <strong>Statist. Sci.</strong>, v. 32, n. 2, p. 265–278, maio 2017.
 </div>
 <div id="ref-silva2018" class="csl-entry">
 PESSOA, D. G. C.; SILVA, P. L. N. <strong>Análise de Dados Amostrais Complexos</strong>, maio 2018. Disponível em: &lt;<a href="https://djalmapessoa.github.io/adac/bookdown-adac.pdf">https://djalmapessoa.github.io/adac/bookdown-adac.pdf</a>&gt;
 </div>
 <div id="ref-ullah1998" class="csl-entry">
-ULLAH, A.; BREUNIG, R. V. Econometric Analysis in Complex Surveys. <em>In</em>: <strong>Handbook of Applied Economic Statistics</strong>. Boca Raton, Florida: CRC Press, 1998. p. 325–363.
+ULLAH, A.; BREUNIG, R. V. Econometric Analysis in Complex Surveys. <em>Em</em>: <strong>Handbook of Applied Economic Statistics</strong>. Boca Raton, Florida: CRC Press, 1998. p. 325–363.
 </div>
 <div id="ref-jeff2010" class="csl-entry">
 WOOLDRIDGE, J. M. <strong>Econometric Analysis of Cross Section and Panel Data</strong>. 2. ed. Cambridge, Massachusetts: The MIT Press, 2010.
 </div>
 </div>
 </div>
-<div class="footnotes">
+<div class="footnotes footnotes-end-of-document">
 <hr />
 <ol>
-<li id="fn1"><p>Se tiver algo errado nesse texto, peço que me corrijam!<a href="#fnref1" class="footnote-back">↩︎</a></p></li>
-<li id="fn2"><p>Para quem quiser ler mais a respeito de como amostragem passou a ser reconhecida como um método científico, a sugestão de leitura é <span class="citation"><a href="#ref-belem2009" role="doc-biblioref">Bethlehem</a> (<a href="#ref-belem2009" role="doc-biblioref">2009</a>)</span>.<a href="#fnref2" class="footnote-back">↩︎</a></p></li>
+<li id="fn1"><p>Se houver algo errado nesse texto, peço que me corrijam!<a href="#fnref1" class="footnote-back">↩︎</a></p></li>
+<li id="fn2"><p>Para quem quiser ler mais a respeito de como amostragem passou a ser reconhecida como um método científico, a sugestão de leitura é <span class="citation">Bethlehem (<a href="#ref-belem2009" role="doc-biblioref">2009</a>)</span>.<a href="#fnref2" class="footnote-back">↩︎</a></p></li>
 <li id="fn3"><p>Não confundir as “margens de erros” de pesquisas não-probabilísticas com “intervalos de confiança”. <em>Até onde eu sei</em>, só os intervalos de confiança de amostra probabilística têm fundamento teórico.<a href="#fnref3" class="footnote-back">↩︎</a></p></li>
 <li id="fn4"><p>Provavelmente maior do que a de mestrando.<a href="#fnref4" class="footnote-back">↩︎</a></p></li>
 </ol>
@@ -509,7 +512,7 @@ WOOLDRIDGE, J. M. <strong>Econometric Analysis of Cross Section and Panel Data</
         </article>
         <footer id="footer" class="main-content-wrap">
   <span class="copyrights">
-    &copy; 2022 Guilherme Jacob. All Rights Reserved
+    &copy; 2023 Guilherme Jacob. All Rights Reserved
   </span>
 </footer>
 

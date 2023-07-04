@@ -6,7 +6,17 @@
     <description>Recent content on Something Random</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>pt-br</language>
-    <lastBuildDate>Wed, 02 Nov 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://guilhermejacob.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 19 Jun 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://guilhermejacob.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Quebrando o TCL para Populações Finitas sob Amostragem Sem Reposição</title>
+      <link>https://guilhermejacob.github.io/2023/06/clt-srswor/</link>
+      <pubDate>Mon, 19 Jun 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://guilhermejacob.github.io/2023/06/clt-srswor/</guid>
+      <description>Aviso: Esse exemplo é discutido na aula sobre Métodos de Monte Carlo em Populações Finitas, escrito como parte do meu estágio de docência em Estatística Computacional 2.
+Um dos resultados teóricos com maior resultado prático é o Teorema Central do Limite. Ele fundamenta a aproximação da distribuição (assintótica) de um estimador pela distribuição normal, sendo a base da construção dos intervalos de confiança “tradicionais”. Em linhas gerais, a interpretação usual é que quanto maior \(n\) — o tamanho da amostra —, melhor é a aproximação pela distribuição normal.</description>
+    </item>
+    
     <item>
       <title>Minicurso no Encontro da ABEP 2022!</title>
       <link>https://guilhermejacob.github.io/2022/11/minicurso-abep-2022/</link>
@@ -166,16 +176,6 @@ Population variance \(S^2\): describes the variability of a characteristic in th
       
       <guid>https://guilhermejacob.github.io/2020/04/sir-markov/</guid>
       <description>É notório que há uma grande subnotificação de casos da COVID-19. Como se pode imaginar, testar as pessoas na porta do hospital enviesaria as amostras. Então, como fazer testagem em massa? Uma estratégia possível seria usar uma amostra aleatória. Usando uma ideia antiga desenvolvida pelo economista estatístico Robert Dorfman (Dorfman, 1943), é possível reduzir os custos da testagem. Por exemplo, em vez de testar imediatamente todas as pessoas de um domicílio, testamos o conjunto de pessoas.</description>
-    </item>
-    
-    <item>
-      <title>Sobre as vidas perdidas em Manaus</title>
-      <link>https://guilhermejacob.github.io/2020/04/stat-pes/</link>
-      <pubDate>Wed, 22 Apr 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://guilhermejacob.github.io/2020/04/stat-pes/</guid>
-      <description>No dia que eu escrevo esse post, o Brasil enfrenta uma epidemia severa que custou a vida de milhares de pessoas. O número oficial de mortos já passa de 2.700. E é evidente a subnotificação, já que só os casos graves hospitalizados foram testados.
-Hoje, eu não quero fazer gráficos ou tabelas. Eu não quero falar de curvas que se achatam, de picos ou vales. Eu não quero falar de números.</description>
     </item>
     
     <item>
