@@ -25,7 +25,7 @@
     <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.101.0 with theme Tranquilpeak 0.5.3-BETA">
+<meta name="generator" content="Hugo 0.115.3 with theme Tranquilpeak 0.5.3-BETA">
 <meta name="author" content="Guilherme Jacob">
 <meta name="keywords" content="">
 <meta name="description" content="TL;DR: subregistro existe, é um problema e as taxas de mortalidade ingênuas estão provavelmente erradas. Mas não são inúteis.
@@ -333,11 +333,11 @@ Um pouco de história Em alguns países, os registros de nascimentos e mortes é
 <p>Estive fazendo alguns exercícios de demografia e pensando sobre subregistro e o quanto isso é um problema. Resolvi pegar algumas leituras que fiz recentemente e tentar mostrar onde isso aparece.</p>
 <div id="um-pouco-de-história" class="section level1">
 <h1>Um pouco de história</h1>
-<p>Em alguns países, os registros de nascimentos e mortes é tão bom que você pode calcular as estimativas mortalidade infantil diretamente. Esse é o caso da Suécia, por exemplo. E não é por acaso. As paróquias luteranas da Suécia registravam casamentos, batismos, e enterros desde 1608, passando a ser responsabilidade do Estado em 1686, e produzindo estatísticas vitais desde 1748 <span class="citation">(<a href="#ref-hakkert" role="doc-biblioref">Hakkert, 1996, p. 32</a>)</span>.</p>
-<p>No Brasil, as coisas são um pouco mais complicadas. Embora houvesse um registro administrado pela Igreja, o Registro Civil só foi criado em 1888. Os próprios párocos até estimulavam o registro eclesiástico em detrimento do registro civil: o número de nascimentos no registro das igrejas <em>superava</em> o do próprio registro civil “até poucos anos atrás”, segundo <span class="citation"><a href="#ref-hakkert" role="doc-biblioref">Hakkert</a> (<a href="#ref-hakkert" role="doc-biblioref">1996, p. 34</a>)</span>. Só com o <a href="http://www.planalto.gov.br/ccivil_03/decreto/1930-1949/D4857.htm">Decreto 4.857 de 1939</a> que o atestado de óbito se tornou obrigatório para a realização de enterros. Esse decreto foi revogado pela <a href="http://www.planalto.gov.br/ccivil_03/LEIS/L6015consolidado.htm">Lei 6.015 de 1973</a>, A Lei dos Registros Públicos. Além disso, os registros de nascimentos e de óbitos só passaram a ser gratuitos a partir da <a href="http://www.planalto.gov.br/ccivil_03/LEIS/L9534.htm#art1">Lei 9.534 de 1997</a>, sem necessidade de comprovação do “estado de pobreza” <span class="citation">(<a href="#ref-silveira" role="doc-biblioref">Silveira e Soboll, 1973</a>)</span>. <span class="citation"><a href="#ref-jannuzzi" role="doc-biblioref">Jannuzzi</a> (<a href="#ref-jannuzzi" role="doc-biblioref">2012, p. 61</a>)</span> explica que o Registro Civil é responsabilidade do Poder Judiciário, que delega para os cartórios essa atividade, com alguns autores sustentando que esta é uma das causas da nossa falha de cobertura.</p>
-<p>Além do registro civil, existe outra fonte importante de informações sobre mortalidade: o Sistema de Informação de Mortalidade do Ministério da Saúde (SIM/MS), criado em 1975 <span class="citation">(<a href="#ref-sim2009" role="doc-biblioref">Mello Jorge, Laurenti e Gotlieb, 2009</a>)</span>. Existe uma diferença fundamental deste em relação ao Registro Civil: esse é o único que registra a causa do óbito.</p>
+<p>Em alguns países, os registros de nascimentos e mortes é tão bom que você pode calcular as estimativas mortalidade infantil diretamente. Esse é o caso da Suécia, por exemplo. E não é por acaso. As paróquias luteranas da Suécia registravam casamentos, batismos, e enterros desde 1608, passando a ser responsabilidade do Estado em 1686, e produzindo estatísticas vitais desde 1748 <span class="citation">(<a href="#ref-hakkert">Hakkert, 1996, p. 32</a>)</span>.</p>
+<p>No Brasil, as coisas são um pouco mais complicadas. Embora houvesse um registro administrado pela Igreja, o Registro Civil só foi criado em 1888. Os próprios párocos até estimulavam o registro eclesiástico em detrimento do registro civil: o número de nascimentos no registro das igrejas <em>superava</em> o do próprio registro civil “até poucos anos atrás”, segundo <span class="citation">Hakkert (<a href="#ref-hakkert">1996, p. 34</a>)</span>. Só com o <a href="http://www.planalto.gov.br/ccivil_03/decreto/1930-1949/D4857.htm">Decreto 4.857 de 1939</a> que o atestado de óbito se tornou obrigatório para a realização de enterros. Esse decreto foi revogado pela <a href="http://www.planalto.gov.br/ccivil_03/LEIS/L6015consolidado.htm">Lei 6.015 de 1973</a>, A Lei dos Registros Públicos. Além disso, os registros de nascimentos e de óbitos só passaram a ser gratuitos a partir da <a href="http://www.planalto.gov.br/ccivil_03/LEIS/L9534.htm#art1">Lei 9.534 de 1997</a>, sem necessidade de comprovação do “estado de pobreza” <span class="citation">(<a href="#ref-silveira">Silveira e Soboll, 1973</a>)</span>. <span class="citation">Jannuzzi (<a href="#ref-jannuzzi">2012, p. 61</a>)</span> explica que o Registro Civil é responsabilidade do Poder Judiciário, que delega para os cartórios essa atividade, com alguns autores sustentando que esta é uma das causas da nossa falha de cobertura.</p>
+<p>Além do registro civil, existe outra fonte importante de informações sobre mortalidade: o Sistema de Informação de Mortalidade do Ministério da Saúde (SIM/MS), criado em 1975 <span class="citation">(<a href="#ref-sim2009">Mello Jorge, Laurenti e Gotlieb, 2009</a>)</span>. Existe uma diferença fundamental deste em relação ao Registro Civil: esse é o único que registra a causa do óbito.</p>
 <p>O registro civil compila as <a href="https://atos.cnj.jus.br/files//provimento/provimento_63_14112017_19032018150944.pdf">certidões de óbito</a>, enquanto o SIM compila as <a href="http://bvsms.saude.gov.br/bvs/publicacoes/declaracao_obito_3ed.pdf">declarações de óbito</a>. Esses documentos são bastante diferentes: a primeira é um ato notarial, enquanto o segundo é um ato médico. Em poucas palavras, a primeira está mais próxima de um procedimento jurídico, enquanto a segunda é mais próxima de um instrumento de investigação epidemiológica.</p>
-<p>O SIM/MS tem um atraso de dois anos na divulgação, enquanto o Registro Civil costuma ser atualizado continuamente. No entanto, o SIM tem microdados disponíveis e isso possibilita que diversos pesquisadores estudem a qualidade dos dados e sua cobertura. De fato, houve pesquisas de busca ativa de óbitos para avaliar a completude do SIM <span class="citation">(<a href="#ref-almeida" role="doc-biblioref">Almeida <em>et al.</em>, 2017</a>)</span>.</p>
+<p>O SIM/MS tem um atraso de dois anos na divulgação, enquanto o Registro Civil costuma ser atualizado continuamente. No entanto, o SIM tem microdados disponíveis e isso possibilita que diversos pesquisadores estudem a qualidade dos dados e sua cobertura. De fato, houve pesquisas de busca ativa de óbitos para avaliar a completude do SIM <span class="citation">(<a href="#ref-almeida">Almeida <em>et al.</em>, 2017</a>)</span>.</p>
 <p>Além dessas fontes mais tradicionais, o Censo Demográfico de 2010 perguntou sobre a ocorrência de mortes nos domicílios e a antiga Pesquisa Nacional por Amostra de Domicílio (PNAD) tinha perguntas que poderiam ser usadas para estimar algumas estatísticas de mortalidade por métodos indiretos.</p>
 </div>
 <div id="subregistro" class="section level1">
@@ -777,10 +777,10 @@ Distrito Federal
 </div>
 <div id="estatísticas-de-qualidade" class="section level1">
 <h1>Estatísticas de Qualidade</h1>
-<p>Um ponto que é frequentemente ignorado por cientistas de dados é o “Total Survey Error Framework”. A figura abaixo é extraída de <span class="citation"><a href="#ref-saris2014" role="doc-biblioref">Saris</a> (<a href="#ref-saris2014" role="doc-biblioref">2014</a>)</span>. Ela é voltada para entender os erros nas estatísticas coletadas por pesquisas amostras, mas também ajuda a entender o erro de dados não-amostrais.</p>
-<div class="figure">
-<img src="https://guilhermejacob.github.io/img/TSEFig.png" alt="" />
-<p class="caption">Diagrama do Total Survey Error</p>
+<p>Um ponto que é frequentemente ignorado por cientistas de dados é o “Total Survey Error Framework”. A figura abaixo é extraída de <span class="citation">Saris (<a href="#ref-saris2014">2014</a>)</span>. Ela é voltada para entender os erros nas estatísticas coletadas por pesquisas amostras, mas também ajuda a entender o erro de dados não-amostrais.</p>
+<div class="float">
+<img src="https://guilhermejacob.github.io/img/TSEFig.png" alt="Diagrama do Total Survey Error" />
+<div class="figcaption">Diagrama do Total Survey Error</div>
 </div>
 <p>O que normalmente se vê é uma ênfase na última etapa, na produção dos números, com pouca reflexão sobre todos os outros erros: erros de medida, de cobertura, de não-resposta, etc. O desenvolvimento de métodos para lidar com esses problemas é parte do dia-a-dia dos amostristas.</p>
 </div>
@@ -795,26 +795,26 @@ Distrito Federal
 <h1>Referências</h1>
 <div id="refs" class="references csl-bib-body">
 <div id="ref-almeida" class="csl-entry">
-ALMEIDA, W. DA S. DE <em>et al.</em> Captação de óbitos não informados ao Ministério da Saúde: pesquisa de busca ativa de óbitos em municípios brasileiros. <strong>Revista Brasileira de Epidemiologia</strong>, v. 20, p. 200–211, jun. 2017.
+ALMEIDA, W. DA S. DE <em>et al.</em> <a href="http://www.scielo.br/scielo.php?script=sci_arttext&amp;pid=S1415-790X2017000200200&amp;nrm=iso">Captação de óbitos não informados ao Ministério da Saúde: pesquisa de busca ativa de óbitos em municípios brasileiros</a>. <strong>Revista Brasileira de Epidemiologia</strong>, v. 20, p. 200–211, jun. 2017.
 </div>
 <div id="ref-hakkert" class="csl-entry">
-HAKKERT, R. <strong>Fontes de Dados Demográficos</strong>. Belo Horizonte, Brasil: ABEP, 1996.
+HAKKERT, R. <strong><a href="http://www.abep.org.br/publicacoes/index.php/textos/article/view/2987">Fontes de Dados Demográficos</a></strong>. Belo Horizonte, Brasil: ABEP, 1996.
 </div>
 <div id="ref-jannuzzi" class="csl-entry">
 JANNUZZI, P. DE M. <strong>Indicadores Sociais no Brasil: conceitos, fontes de dados e aplicações</strong>. 5. ed. Campinas, São Paulo: Alínea, 2012.
 </div>
 <div id="ref-sim2009" class="csl-entry">
-MELLO JORGE, M. H. P. DE; LAURENTI, R.; GOTLIEB, S. L. D. O sistema de Informações sobre Mortalidade – SIM: Concepção, Implantação e Avaliação. <em>In</em>: FUNDAÇÃO OSWALDO CRUZ, M. DA S. A. O. P.-A. DA S. A. (Ed.). <strong>A experiência brasileira em sistemas de informação em saúde</strong>. Brasília: [s.n.]. p. 71–108.
+MELLO JORGE, M. H. P. DE; LAURENTI, R.; GOTLIEB, S. L. D. O sistema de Informações sobre Mortalidade – SIM: Concepção, Implantação e Avaliação. <em>Em</em>: FUNDAÇÃO OSWALDO CRUZ, M. DA S. A. O. P.-A. DA S. A. (Ed.). <strong>A experiência brasileira em sistemas de informação em saúde</strong>. Brasília: [s.n.]. p. 71–108.
 </div>
 <div id="ref-saris2014" class="csl-entry">
-SARIS, W. E. Total Survey Error. <em>In</em>: MICHALOS, A. C. (Ed.). <strong>Encyclopedia of Quality of Life and Well-Being Research</strong>. Dordrecht: Springer Netherlands, 2014. p. 6703–6704.
+SARIS, W. E. <a href="https://doi.org/10.1007/978-94-007-0753-5_3034">Total Survey Error</a>. <em>Em</em>: MICHALOS, A. C. (Ed.). <strong>Encyclopedia of Quality of Life and Well-Being Research</strong>. Dordrecht: Springer Netherlands, 2014. p. 6703–6704.
 </div>
 <div id="ref-silveira" class="csl-entry">
-SILVEIRA, M. H.; SOBOLL, M. L. <span>Sub-registro de nascimento: aspectos educativos visando à sua diminuição</span>. <strong><span>Revista de Saúde Pública</span></strong>, v. 7, p. 151–160, jun. 1973.
+SILVEIRA, M. H.; SOBOLL, M. L. <a href="http://www.scielo.br/scielo.php?script=sci_arttext&amp;pid=S0034-89101973000200008&amp;nrm=iso"><span>Sub-registro de nascimento: aspectos educativos visando à sua diminuição</span></a>. <strong><span>Revista de Saúde Pública</span></strong>, v. 7, p. 151–160, jun. 1973.
 </div>
 </div>
 </div>
-<div class="footnotes">
+<div class="footnotes footnotes-end-of-document">
 <hr />
 <ol>
 <li id="fn1"><p>No caso do SIM/MS, o termo correto seria subnotificação, mas não quero complicar ainda mais.<a href="#fnref1" class="footnote-back">↩︎</a></p></li>
@@ -860,7 +860,7 @@ SILVEIRA, M. H.; SOBOLL, M. L. <span>Sub-registro de nascimento: aspectos educat
         </li>
         <li class="post-action">
           
-            <a class="post-action-btn btn btn--default tooltip--top" href="https://guilhermejacob.github.io/2020/08/diferenca-gini/" data-tooltip="Índice de Gini e transferências sociais federais" aria-label="ANTERIOR: Índice de Gini e transferências sociais federais">
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://guilhermejacob.github.io/2020/08/educacao-padronizacao/" data-tooltip="Estrutura etária e anos de estudo" aria-label="ANTERIOR: Estrutura etária e anos de estudo">
           
               <span class="hide-xs hide-sm text-small icon-mr">ANTERIOR</span>
               <i class="fa fa-angle-right"></i>
@@ -916,7 +916,7 @@ SILVEIRA, M. H.; SOBOLL, M. L. <span>Sub-registro de nascimento: aspectos educat
         </article>
         <footer id="footer" class="main-content-wrap">
   <span class="copyrights">
-    &copy; 2023 Guilherme Jacob. All Rights Reserved
+    &copy; 2024 Guilherme Jacob. All Rights Reserved
   </span>
 </footer>
 
@@ -937,7 +937,7 @@ SILVEIRA, M. H.; SOBOLL, M. L. <span>Sub-registro de nascimento: aspectos educat
         </li>
         <li class="post-action">
           
-            <a class="post-action-btn btn btn--default tooltip--top" href="https://guilhermejacob.github.io/2020/08/diferenca-gini/" data-tooltip="Índice de Gini e transferências sociais federais" aria-label="ANTERIOR: Índice de Gini e transferências sociais federais">
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://guilhermejacob.github.io/2020/08/educacao-padronizacao/" data-tooltip="Estrutura etária e anos de estudo" aria-label="ANTERIOR: Estrutura etária e anos de estudo">
           
               <span class="hide-xs hide-sm text-small icon-mr">ANTERIOR</span>
               <i class="fa fa-angle-right"></i>

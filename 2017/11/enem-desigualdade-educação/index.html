@@ -25,7 +25,7 @@
     <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.101.0 with theme Tranquilpeak 0.5.3-BETA">
+<meta name="generator" content="Hugo 0.115.3 with theme Tranquilpeak 0.5.3-BETA">
 <meta name="author" content="Guilherme Jacob">
 <meta name="keywords" content="">
 <meta name="description" content="Há alguns dias atrás, rolou o ENEM desse ano. E daí veio a ideia para este post: analisar a desigualdade na educação entre os jovens do Ensino Médio a partir das pontuações dos candidatos. Usando R, como sempre.
@@ -325,6 +325,8 @@ Vou tentar manter as complicações matemáticas fora da questão e focar na apl
           <div class="post-content markdown">
             <div class="main-content-wrap">
               
+
+
 <p>Há alguns dias atrás, rolou o ENEM desse ano. E daí veio a ideia para este post: analisar a desigualdade na educação entre os jovens do Ensino Médio a partir das pontuações dos candidatos. Usando R, como sempre.</p>
 <p>Vou tentar manter as complicações matemáticas fora da questão e focar na aplicação da técnica para entender o contexto da desigualdade educacional. Assim, pretendo trazer gente de outras áreas, como pedagogos e sociólogos, que podem se beneficiar de mais uma ferramenta para analisar o problema, além de contribuir com novas perspectivas para “aqueles que só pensam com números”<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>.</p>
 <p>E, sim, hoje vai ser tudo em português.</p>
@@ -342,7 +344,7 @@ Vou tentar manter as complicações matemáticas fora da questão e focar na apl
 </div>
 
 <p>O estudo da desigualdade é uma mistura de economia, filosofia, matemática e estatística. Embora os estudos neste campo se voltem majoritariamente às distribuições de renda e riqueza, existem vários trabalhos discutindo outras formas de desigualdade.</p>
-<p>No entanto, o tipo de variável costuma ser o principal desafio: renda é uma variável contínua, enquanto o estado de saúde, por exemplo, costuma ser uma variável ordinal. Esse tipo de problema é comum na análise de aspectos qualitativos do bem-estar. Em outras palavras, quando perguntadas a respeito de sua saúde, as pessoas não respondem “estou com 75 de saúde” <del>a não ser que você esteja jogando LOL ou algo do tipo</del>, mas algo como “ruim” , “bem”, “excelente”. Quando temos esse tipo de resposta, não dá pra simplesmente calcular um índice de Gini. Caso você se interesse por esses problemas, <span class="citation"><a href="#ref-cowell2017" role="doc-biblioref">Cowell e Flachaire</a> (<a href="#ref-cowell2017" role="doc-biblioref">2017</a>)</span> é uma leitura obrigatória, mostrando como as medidas tradicionais falham e propondo uma classe de medidas que atende os axiomas propostos.</p>
+<p>No entanto, o tipo de variável costuma ser o principal desafio: renda é uma variável contínua, enquanto o estado de saúde, por exemplo, costuma ser uma variável ordinal. Esse tipo de problema é comum na análise de aspectos qualitativos do bem-estar. Em outras palavras, quando perguntadas a respeito de sua saúde, as pessoas não respondem “estou com 75 de saúde” <del>a não ser que você esteja jogando LOL ou algo do tipo</del>, mas algo como “ruim” , “bem”, “excelente”. Quando temos esse tipo de resposta, não dá pra simplesmente calcular um índice de Gini. Caso você se interesse por esses problemas, <span class="citation">Cowell e Flachaire (<a href="#ref-cowell2017">2017</a>)</span> é uma leitura obrigatória, mostrando como as medidas tradicionais falham e propondo uma classe de medidas que atende os axiomas propostos.</p>
 <p>Dito isso, cabe a pergunta: existe uma medida cardinal da desigualdade em educação? Se considerarmos o desempenho dos alunos em provas, pode-se dizer que sim. A lógica é mais ou menos essa: quanto mais preparado o aluno, melhor o desempenho na prova. Se o desempenho é medido em pontuação <em>e não em categorias</em>, podemos usar a pontuação para medir a desigualdade.</p>
 <p>Evidentemente, essa abordagem tem seus problemas, desde provas mal formuladas a seleção de alunos examinados. Esse último é particularmente sério. Como a média das notas de uma escola é tomada como uma indicação da qualidade do seu ensino, um diretor mais mal intencionado pode dificultar a candidatura dos alunos que teriam uma pontuação ruim. Desta forma, a amostra se torna viesada. Isso é mais possível em escolas particulares, já que é mais provável que os alunos tenham condições financeiras de ir para uma faculdade particular.</p>
 <p>A própria percepção do diferencial de desempenho entre escolas públicas e particulares pode ser causar um viés na amostra. O aluno que pensa não ter chance no vestibular não tem muito incentivo para fazer a prova. Existe uma miríade de aspectos socioeconômicos que fazem com que esse comportamento ocorra.</p>
@@ -358,15 +360,15 @@ Vou tentar manter as complicações matemáticas fora da questão e focar na apl
 <li>Não estavam fazendo a prova apenas para medir seus conhecimentos.</li>
 </ul>
 <p>Em outras palavras: estamos trabalhando com a <em>interseção</em> destes quatro conjuntos de examinados, <em>não a união</em>.</p>
-<p>O gráfico  abaixo mostra como as notas dos extremos se distribuem. Enquanto os melhores desempenhos tendem a se concentrar mais entre domicílios mais ricos, os piores desempenhos se concentram ainda mais entre os domicílios mais pobres. Ou seja, é bem mais provável que uma “nota baixa” venha de um domicílio de baixa renda. O “monte” em vermelho entre os domicílios de catagoria “B” e “C” mostra isso. E a queda se comparado a categoria “A” se deve principalmente a raridade destes indivíduos, seja porque realmente existem poucos domicílios com nenhuma renda, seja porque as pessoas destes domicílios tendem a não fazer a prova.</p>
+<p>O gráfico <span class="math inline">\(\ref{dist_extreme}\)</span> abaixo mostra como as notas dos extremos se distribuem. Enquanto os melhores desempenhos tendem a se concentrar mais entre domicílios mais ricos, os piores desempenhos se concentram ainda mais entre os domicílios mais pobres. Ou seja, é bem mais provável que uma “nota baixa” venha de um domicílio de baixa renda. O “monte” em vermelho entre os domicílios de catagoria “B” e “C” mostra isso. E a queda se comparado a categoria “A” se deve principalmente a raridade destes indivíduos, seja porque realmente existem poucos domicílios com nenhuma renda, seja porque as pessoas destes domicílios tendem a não fazer a prova.</p>
 <p><img src="https://guilhermejacob.github.io/2017/11/enem-desigualdade-educa%C3%A7%C3%A3o/index_files/figure-html/dist_extreme-1.png" width="672" /></p>
-<p>Ok, mas e as médias? A média da pontuação dos extremos é bem diferente, como de se esperar. De fato, a pontuação dos melhores é aproximadamente 2.7 vezes melhor que a dos piores. O gráfico  abaixo mostra esta discrepâncias.
+<p>Ok, mas e as médias? A média da pontuação dos extremos é bem diferente, como de se esperar. De fato, a pontuação dos melhores é aproximadamente 2.7 vezes melhor que a dos piores. O gráfico <span class="math inline">\(\ref{avg_extreme}\)</span> abaixo mostra esta discrepâncias.
 <img src="https://guilhermejacob.github.io/2017/11/enem-desigualdade-educa%C3%A7%C3%A3o/index_files/figure-html/avg_extreme-1.png" width="672" /></p>
 </div>
 <div id="como-medir-um-exercício-de-decomposição-por-subgrupos." class="section level2">
 <h2>Como medir: um exercício de decomposição por subgrupos.</h2>
-<p>Se você já leu alguma coisa sobre desigualdade, você deve ter visto estimativas do índice de Gini. Essa é, de longe, a medida de desigualdade mais conhecida. Mas também existem outras medidas bem interessantes. Uma medida recente é a J-divergência, proposta por <span class="citation"><a href="#ref-rohde2016" role="doc-biblioref">Rohde</a> (<a href="#ref-rohde2016" role="doc-biblioref">2016</a>)</span>. Ela tem uma vantagem sobre o índice de Gini: decomposição por subgrupos. I.e., a estimativa pode mostrar o quanto se deve a desigualdade entre grupos e intra-grupos.</p>
-<p>As duas medidas estão disponíveis no pacote <code>convey</code> <span class="citation">(<a href="#ref-convey" role="doc-biblioref">Pessoa, Damico e Jacob, 2017a</a>)</span>, incluindo a decomposição da J-divergência. Facilmente encontradas em <span class="citation"><a href="#ref-context" role="doc-biblioref">Pessoa, Damico e Jacob</a> (<a href="#ref-context" role="doc-biblioref">2017b</a>)</span>, as fórmulas dos indicadores são essas:</p>
+<p>Se você já leu alguma coisa sobre desigualdade, você deve ter visto estimativas do índice de Gini. Essa é, de longe, a medida de desigualdade mais conhecida. Mas também existem outras medidas bem interessantes. Uma medida recente é a J-divergência, proposta por <span class="citation">Rohde (<a href="#ref-rohde2016">2016</a>)</span>. Ela tem uma vantagem sobre o índice de Gini: decomposição por subgrupos. I.e., a estimativa pode mostrar o quanto se deve a desigualdade entre grupos e intra-grupos.</p>
+<p>As duas medidas estão disponíveis no pacote <code>convey</code> <span class="citation">(<a href="#ref-convey">Pessoa, Damico e Jacob, 2017a</a>)</span>, incluindo a decomposição da J-divergência. Facilmente encontradas em <span class="citation">Pessoa, Damico e Jacob (<a href="#ref-context">2017b</a>)</span>, as fórmulas dos indicadores são essas:</p>
 <p><span class="math display">\[
 \begin{aligned}
 G &amp;= 1 - 2 \int_{0}^{1} L(p)dp \\
@@ -420,8 +422,8 @@ onde <span class="math inline">\(L(\cdot)\)</span> é a curva de Lorenz.</p>
 </tr>
 </tbody>
 </table>
-<p>As primeiras coisas que percebemos ao olhar a tabela  são: (1) existe menos desigualdade nesta distribuição do que em distribuições de renda, e (2) o índice de Gini é maior que a J-divergência. A primeira observação decorre de um aspecto um tanto óbvio: as pontuações tem um limite superior, ao contrário das distribuições de renda. Em outras palavras, uma pessoa não pode ter mais do que 1 000 pontos, embora sua renda pode extrapolar esse limite. O segundo aspecto também é interessante: o índice de Gini é mais sensível às desigualdades próximas da média, enquanto a J-divergência tende a ser mais sensível às desigualdades nas caudas. Consequentemente, podemos supor que a maior parte da desigualdade está no meio da distribuição.</p>
-<p>É normal que a diferença entre categorias apresente um valor menor que a desigualdade dentro das categorias, mesmo para renda. Dito isso, a decomposição da J-divergência, na tabela  abaixo, mostra alguns padrões interessantes. <del>Apesar de todo retrocesso recente,</del> A desigualdade no desempenho entre os gêneros<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a> praticamente não se deve a este aspecto. A decomposição captou impactos das diferenças entre cor/raça, embora esses sejam menores que os impactos decorrentes do tipo de escola<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a> ou da renda. No caso da renda, 30% da desigualdade pode ser atribuída à desigualdade entre as classes.</p>
+<p>As primeiras coisas que percebemos ao olhar a tabela <span class="math inline">\(\ref{tabela1}\)</span> são: (1) existe menos desigualdade nesta distribuição do que em distribuições de renda, e (2) o índice de Gini é maior que a J-divergência. A primeira observação decorre de um aspecto um tanto óbvio: as pontuações tem um limite superior, ao contrário das distribuições de renda. Em outras palavras, uma pessoa não pode ter mais do que 1 000 pontos, embora sua renda pode extrapolar esse limite. O segundo aspecto também é interessante: o índice de Gini é mais sensível às desigualdades próximas da média, enquanto a J-divergência tende a ser mais sensível às desigualdades nas caudas. Consequentemente, podemos supor que a maior parte da desigualdade está no meio da distribuição.</p>
+<p>É normal que a diferença entre categorias apresente um valor menor que a desigualdade dentro das categorias, mesmo para renda. Dito isso, a decomposição da J-divergência, na tabela <span class="math inline">\(\ref{tabela2}\)</span> abaixo, mostra alguns padrões interessantes. <del>Apesar de todo retrocesso recente,</del> A desigualdade no desempenho entre os gêneros<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a> praticamente não se deve a este aspecto. A decomposição captou impactos das diferenças entre cor/raça, embora esses sejam menores que os impactos decorrentes do tipo de escola<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a> ou da renda. No caso da renda, 30% da desigualdade pode ser atribuída à desigualdade entre as classes.</p>
 <table>
 <caption><span id="tab:tabela2">Table 1: </span>Decomposição da J-divergência - Brasil, 2015</caption>
 <thead>
@@ -470,20 +472,20 @@ onde <span class="math inline">\(L(\cdot)\)</span> é a curva de Lorenz.</p>
 <h2>Referências</h2>
 <div id="refs" class="references csl-bib-body">
 <div id="ref-cowell2017" class="csl-entry">
-COWELL, F. A.; FLACHAIRE, E. Inequality with Ordinal Data. <strong>Economica</strong>, v. 84, abr. 2017.
+COWELL, F. A.; FLACHAIRE, E. <a href="https://doi.org/10.1111/ecca.12232">Inequality with Ordinal Data</a>. <strong>Economica</strong>, v. 84, abr. 2017.
 </div>
 <div id="ref-context" class="csl-entry">
 PESSOA, D.; DAMICO, A.; JACOB, G. <strong>Poverty and Inequality with Complex Survey Data</strong>, b2017. Disponível em: &lt;<a href="https://guilhermejacob.github.io/context">https://guilhermejacob.github.io/context</a>&gt;
 </div>
 <div id="ref-convey" class="csl-entry">
-___. <strong>convey: Income Concentration Analysis with Complex Survey Samples</strong>. [s.l: s.n.].
+___. <strong><a href="https://CRAN.R-project.org/package=convey">convey: Income Concentration Analysis with Complex Survey Samples</a></strong>. [s.l: s.n.].
 </div>
 <div id="ref-rohde2016" class="csl-entry">
-ROHDE, N. J-divergence measurements of economic inequality. <strong>Journal of the Royal Statistical Society: Series A (Statistics in Society)</strong>, v. 179, n. 3, p. 847–870, 2016.
+ROHDE, N. <a href="https://doi.org/10.1111/rssa.12153">J-divergence measurements of economic inequality</a>. <strong>Journal of the Royal Statistical Society: Series A (Statistics in Society)</strong>, v. 179, n. 3, p. 847–870, 2016.
 </div>
 </div>
 </div>
-<div class="footnotes">
+<div class="footnotes footnotes-end-of-document">
 <hr />
 <ol>
 <li id="fn1"><p>Já me chamaram de coisa pior.<a href="#fnref1" class="footnote-back">↩︎</a></p></li>
@@ -590,7 +592,7 @@ ROHDE, N. J-divergence measurements of economic inequality. <strong>Journal of t
         </article>
         <footer id="footer" class="main-content-wrap">
   <span class="copyrights">
-    &copy; 2023 Guilherme Jacob. All Rights Reserved
+    &copy; 2024 Guilherme Jacob. All Rights Reserved
   </span>
 </footer>
 

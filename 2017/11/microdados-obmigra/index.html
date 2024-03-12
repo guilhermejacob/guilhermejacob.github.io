@@ -25,7 +25,7 @@
     <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.101.0 with theme Tranquilpeak 0.5.3-BETA">
+<meta name="generator" content="Hugo 0.115.3 with theme Tranquilpeak 0.5.3-BETA">
 <meta name="author" content="Guilherme Jacob">
 <meta name="keywords" content="">
 <meta name="description" content="O assunto de hoje são os microdados do OBMigra. Mas, antes disso, vamos apresentar um pouco do contexto institucional.
@@ -317,6 +317,8 @@ OBMigra O Observatório das migrações internacionais (OBMigra) é fruto de um 
           <div class="post-content markdown">
             <div class="main-content-wrap">
               
+
+
 <p>O assunto de hoje são os microdados do OBMigra. Mas, antes disso, vamos apresentar um pouco do contexto institucional.</p>
 <div id="obmigra" class="section level3">
 <h3>OBMigra</h3>
@@ -410,9 +412,9 @@ sincre %&gt;%
 # 5    PROVISÓRIO   415   138    41    20    33   114  2115   693   347  9441   959   114    48     8    24
 # 6    TEMPORÁRIO 12010 12132 12116 12904 14544 16508 17642 20234 24001 32134 32492 46743 64969 83615 83194</code></pre>
 <p>Esses números coincidem com a Tabela 1.1.1 desse <a href="http://obmigra.mte.gov.br/index.php/anuarios/item/download/37_37a922b62de319b94214ba6c9cb594b8">arquivo</a>. Confira:</p>
-<div class="figure">
-<img src="../../../img/tabela_sincre.png" alt="" />
-<p class="caption">Tabela extraída do Anuário SINCRE</p>
+<div class="float">
+<img src="../../../img/tabela_sincre.png" alt="Tabela extraída do Anuário SINCRE" />
+<div class="figcaption">Tabela extraída do Anuário SINCRE</div>
 </div>
 <p>Agora, vamos olhar os dados do CGIg/CNIg e calcular agregados.</p>
 <pre class="r"><code># cria referência para tabela de pedidos do cgig/cnig
@@ -438,9 +440,9 @@ cgig_cnig %&gt;%
 # disconecta da base de dados
 dbDisconnect( con , shutdown = TRUE )</code></pre>
 <p>Mas será que esses números fazem sentido? Vamos comparar com a Tabela 2.9 na página 20 <a href="http://acesso.mte.gov.br/data/files/8A7C816A4FF110CB0153321BB87F5A40/Relatório%20CGIg.29.02.2016.pdf">deste documento</a>:</p>
-<div class="figure">
-<img src="../../../img/tabela_cnig.png" alt="" />
-<p class="caption">Tabela 2.9 na publicação.</p>
+<div class="float">
+<img src="../../../img/tabela_cnig.png" alt="Tabela 2.9 na publicação." />
+<div class="figcaption">Tabela 2.9 na publicação.</div>
 </div>
 <p><em>Acertamos!</em></p>
 </div>
@@ -452,7 +454,7 @@ Pra mim, essa música traz uma saudade da infância na beira do rio, ouvindo os 
 <div style="position:relative;height:0;padding-bottom:56.21%"><iframe src="https://www.youtube.com/embed/V6udqPvETy8?ecver=2" style="position:absolute;width:100%;height:100%;left:0" width="641" height="360" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe></div>
 
 </div>
-<div class="footnotes">
+<div class="footnotes footnotes-end-of-document">
 <hr />
 <ol>
 <li id="fn1"><p>Sim, esse é o nome dele.<a href="#fnref1" class="footnote-back">↩︎</a></p></li>
@@ -549,7 +551,7 @@ Pra mim, essa música traz uma saudade da infância na beira do rio, ouvindo os 
         </article>
         <footer id="footer" class="main-content-wrap">
   <span class="copyrights">
-    &copy; 2023 Guilherme Jacob. All Rights Reserved
+    &copy; 2024 Guilherme Jacob. All Rights Reserved
   </span>
 </footer>
 

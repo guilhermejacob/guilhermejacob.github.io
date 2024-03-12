@@ -28,16 +28,6 @@ A última Pesquisa de Orçamentos Familliares (POF), realizada em 2017-2018, tra
     </item>
     
     <item>
-      <title>Índice de Gini e transferências sociais federais</title>
-      <link>https://guilhermejacob.github.io/2020/08/diferenca-gini/</link>
-      <pubDate>Mon, 31 Aug 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://guilhermejacob.github.io/2020/08/diferenca-gini/</guid>
-      <description>Em julho, pensei em estudar uma técnica de decomposição de medidas de desigualdade/pobreza. Procurando as bases de dados, encontrei a a Pesquisa de Orçamentos Familiares (POF) 2017-2018, que tem muita informação interessante. Mas, com 30 dias para escrever um artigo, não achei que teria tempo para entender bem a pesquisa e produzir estimativas adequadas.
-Tirei alguns dias para ler a documentação e comecei a fazer algumas tentativas de análise. Uma pergunta bem interessante que a POF permite analisar é: quanto seria a desigualdade de renda se retirássemos as rendas transferidas pelos programas sociais federais?</description>
-    </item>
-    
-    <item>
       <title>Desigualdade e polarização</title>
       <link>https://guilhermejacob.github.io/2020/08/polarizacao-desigualdade/</link>
       <pubDate>Sun, 16 Aug 2020 00:00:00 +0000</pubDate>
@@ -76,18 +66,6 @@ Algumas medidas de desigualdade atendem o princípio de Pigou-Dalton apenas em a
 Interrompendo o meu hiato de alguns meses, resolvi voltar com uma comparação os dados de renda das PNADCs anuais 2016-2017. No entanto, vamos falar um pouco da desigualdade em geral e, então, partir para uma questão mais específica: pobreza na infância1.
 Mas, antes de tudo, um aviso:
 Todos as estimativas a seguir foram feitas por mim.</description>
-    </item>
-    
-    <item>
-      <title>Censo da Educação Superior: gênero e cursos em 2016</title>
-      <link>https://guilhermejacob.github.io/2017/12/analise-censo-superior-genero-2016/</link>
-      <pubDate>Mon, 11 Dec 2017 00:00:00 +0000</pubDate>
-      
-      <guid>https://guilhermejacob.github.io/2017/12/analise-censo-superior-genero-2016/</guid>
-      <description>Encerrando1 as análises usando bases de dados públicas, vamos focar no ensino superior.
-Inicialmente, vamos explicar o que é o Censo da Educação Superior. Depois, vamos mostrar como montar as bases de dados. E, concluindo, vamos fazer um pequeno exercício de visualização de dados.
-Ah, e eu vou ser muito breve neste post, por motivos de: tenho que escrever um projeto de pesquisa (:
-Censo da Educação Superior O Censo da Educação Superior é conduzido anualmente pelo Inep.</description>
     </item>
     
     <item>

@@ -25,7 +25,7 @@
     <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.101.0 with theme Tranquilpeak 0.5.3-BETA">
+<meta name="generator" content="Hugo 0.115.3 with theme Tranquilpeak 0.5.3-BETA">
 <meta name="author" content="Guilherme Jacob">
 <meta name="keywords" content="">
 <meta name="description" content="Uma reportagem da Folha apontou que 26 mil brasileiros tomaram vacina vencida.
@@ -311,12 +311,12 @@ Essa reportagem me lembrou de dois textos que li recentemente.">
 
 <p>Uma reportagem da <a href="https://www1.folha.uol.com.br/equilibrioesaude/2021/07/milhares-no-brasil-tomaram-vacina-vencida-contra-covid-veja-se-voce-e-um-deles.shtml">Folha</a> apontou que 26 mil brasileiros tomaram vacina vencida.</p>
 <p>Como eles descobriram isso? Verificando as datas de validade e de aplicação das doses nos registros do Ministério da Saúde. As prefeituras responderam com diversos argumentos. Um deles é o seguinte: há incorreções na data de aplicação em alguns registros. <a href="https://twitter.com/fernandoemm/status/1411049460856131585?s=20">Uma análise relativamente simples indica que esse dado realmente tem problemas.</a></p>
-<p>Essa reportagem me lembrou de dois textos que li recentemente. Num deles, <span class="citation"><a href="#ref-hand2018" role="doc-biblioref">Hand</a> (<a href="#ref-hand2018" role="doc-biblioref">2018</a>)</span> aponta 15 desafios para a análise de dados administrativos. No outro, <span class="citation"><a href="#ref-zhang2012" role="doc-biblioref">Zhang</a> (<a href="#ref-zhang2012" role="doc-biblioref">2012</a>)</span> discute uma teoria para erros em dados administrativos.</p>
+<p>Essa reportagem me lembrou de dois textos que li recentemente. Num deles, <span class="citation">Hand (<a href="#ref-hand2018">2018</a>)</span> aponta 15 desafios para a análise de dados administrativos. No outro, <span class="citation">Zhang (<a href="#ref-zhang2012">2012</a>)</span> discute uma teoria para erros em dados administrativos.</p>
 <div id="desafios-para-a-análise-de-dados-adminsitrativos" class="section level1">
 <h1>Desafios para a análise de dados adminsitrativos</h1>
-<p>De acordo com <span class="citation"><a href="#ref-hand2018" role="doc-biblioref">Hand</a> (<a href="#ref-hand2018" role="doc-biblioref">2018</a>)</span>, dados administrativos são dados gerados no curso de alguma operação (administrativa) e armazenados em uma base de dados. Muitas vezes, estes dados são utilizados para análise secundária - ou seja, os dados estão sendo utilizados para finalidades além daquela para a qual foram planejados.</p>
-<p><span class="citation"><a href="#ref-nordbotten2010" role="doc-biblioref">Nordbotten</a> (<a href="#ref-nordbotten2010" role="doc-biblioref">2010</a>)</span> distingue dados administrativos de dados estatísticos em razão da sua finalidade: o segundo tipo é coletado com fins estatísticos, enquanto o primeiro é coletado para realizar alguma tarefa administrativa. Por exemplo, no caso do CAGED, os dados são utilizados para organizar o sistema do Programa de Seguro-Desemprego e conferir informações referentes aos vínculos trabalhistas, embora estes dados também podem ser utilizados para pesquisas sobre mercado de trabalho formal. No caso das vacinas, o registro acompanhar o número de doses e qual vacina foi aplicada<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>.</p>
-<p>Então, <span class="citation"><a href="#ref-hand2018" role="doc-biblioref">Hand</a> (<a href="#ref-hand2018" role="doc-biblioref">2018</a>)</span> aponta o primeiro desafio:</p>
+<p>De acordo com <span class="citation">Hand (<a href="#ref-hand2018">2018</a>)</span>, dados administrativos são dados gerados no curso de alguma operação (administrativa) e armazenados em uma base de dados. Muitas vezes, estes dados são utilizados para análise secundária - ou seja, os dados estão sendo utilizados para finalidades além daquela para a qual foram planejados.</p>
+<p><span class="citation">Nordbotten (<a href="#ref-nordbotten2010">2010</a>)</span> distingue dados administrativos de dados estatísticos em razão da sua finalidade: o segundo tipo é coletado com fins estatísticos, enquanto o primeiro é coletado para realizar alguma tarefa administrativa. Por exemplo, no caso do CAGED, os dados são utilizados para organizar o sistema do Programa de Seguro-Desemprego e conferir informações referentes aos vínculos trabalhistas, embora estes dados também podem ser utilizados para pesquisas sobre mercado de trabalho formal. No caso das vacinas, o registro acompanhar o número de doses e qual vacina foi aplicada<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>.</p>
+<p>Então, <span class="citation">Hand (<a href="#ref-hand2018">2018</a>)</span> aponta o primeiro desafio:</p>
 <blockquote>
 <p>Desafio 1. O ensino de estatística deve cobrir questões relacionadas à qualidade de dados.</p>
 </blockquote>
@@ -331,10 +331,10 @@ Desafio 4. Auditar a qualidade de fontes de dados.</p>
 </div>
 <div id="erros-em-registros-administrativos" class="section level1">
 <h1>Erros em registros administrativos</h1>
-<p><span class="citation"><a href="#ref-zhang2012" role="doc-biblioref">Zhang</a> (<a href="#ref-zhang2012" role="doc-biblioref">2012</a>)</span> apresenta uma estrutura teórica para analisar os erros para estatísticas baseadas em registros administrativos. A Figura 1 abaixo mostra a origem dos erros em uma base de dados administrativos.</p>
-<div class="figure">
-<img src="https://guilhermejacob.github.io/post/2021-07-03-dados-administrativos_files/Zhang2012_Error.png" alt="" />
-<p class="caption">Estrutura dos erros em registros administrativos.</p>
+<p><span class="citation">Zhang (<a href="#ref-zhang2012">2012</a>)</span> apresenta uma estrutura teórica para analisar os erros para estatísticas baseadas em registros administrativos. A Figura 1 abaixo mostra a origem dos erros em uma base de dados administrativos.</p>
+<div class="float">
+<img src="https://guilhermejacob.github.io/post/2021-07-03-dados-administrativos_files/Zhang2012_Error.png" alt="Estrutura dos erros em registros administrativos." />
+<div class="figcaption">Estrutura dos erros em registros administrativos.</div>
 </div>
 <p>Existem dois “eixos” de erros: erros de <em>mensuração</em> e erros de <em>representação</em>. Vamos focar no primeiro eixo. A diferença entre o conceito-alvo e a medida-alvo é chamada erro de validade. Já a diferença entre a medida-alvo e a medida obtida é chamada de erro de medida. A diferenças entre a resposta obtida e a medida editada (ou processada) é chamada de erro de processamento. Cada medida na base de dados está sujeita a estes erros.</p>
 <p>Ao contrário de pesquisas amostrais, que tendem a ser muito bem documentadas em todo o processo, essa não é a regra para dados administrativos. As definições podem ser alteradas para atendem melhor a finalidade operacional da base, prejudicando o uso estatístico da informação. Isso é ainda pior quando se pensa que essas medidas podem ser tomadas de modo descontínuo no tempo e no espaço.</p>
@@ -356,17 +356,17 @@ Quando você programa um questionário, algumas checagens são feitas no momento
 <h1>Referências</h1>
 <div id="refs" class="references csl-bib-body">
 <div id="ref-hand2018" class="csl-entry">
-HAND, D. J. Statistical challenges of administrative and transaction data. <strong>Journal of the Royal Statistical Society: Series A (Statistics in Society)</strong>, v. 181, n. 3, p. 555–605, 2018.
+HAND, D. J. <a href="https://doi.org/10.1111/rssa.12315">Statistical challenges of administrative and transaction data</a>. <strong>Journal of the Royal Statistical Society: Series A (Statistics in Society)</strong>, v. 181, n. 3, p. 555–605, 2018.
 </div>
 <div id="ref-nordbotten2010" class="csl-entry">
-NORDBOTTEN, S. The use of administrative data in official statistics—past, present and future: with special reference to the Nordic countries. <em>In</em>: CARLSON, M.; NYQUIST, H.; VILLANI, M. (Eds.). <strong>Official Statistics: Methodology and Applications in Honour of Daniel Thorburn</strong>. Estocolmo, Suécia: Statistics Sweden, 2010. p. 205–223.
+NORDBOTTEN, S. The use of administrative data in official statistics—past, present and future: with special reference to the Nordic countries. <em>Em</em>: CARLSON, M.; NYQUIST, H.; VILLANI, M. (Eds.). <strong>Official Statistics: Methodology and Applications in Honour of Daniel Thorburn</strong>. Estocolmo, Suécia: Statistics Sweden, 2010. p. 205–223.
 </div>
 <div id="ref-zhang2012" class="csl-entry">
-ZHANG, L.-C. Topics of statistical theory for register-based statistics and data integration. <strong>Statistica Neerlandica</strong>, v. 66, n. 1, p. 41–63, 2012.
+ZHANG, L.-C. <a href="https://doi.org/10.1111/j.1467-9574.2011.00508.x">Topics of statistical theory for register-based statistics and data integration</a>. <strong>Statistica Neerlandica</strong>, v. 66, n. 1, p. 41–63, 2012.
 </div>
 </div>
 </div>
-<div class="footnotes">
+<div class="footnotes footnotes-end-of-document">
 <hr />
 <ol>
 <li id="fn1"><p>Apesar do que algumas figuras dizem, essa informação parece ser bastante fidedigna.<a href="#fnref1" class="footnote-back">↩︎</a></p></li>
@@ -453,7 +453,7 @@ ZHANG, L.-C. Topics of statistical theory for register-based statistics and data
         </article>
         <footer id="footer" class="main-content-wrap">
   <span class="copyrights">
-    &copy; 2023 Guilherme Jacob. All Rights Reserved
+    &copy; 2024 Guilherme Jacob. All Rights Reserved
   </span>
 </footer>
 

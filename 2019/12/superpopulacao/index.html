@@ -25,7 +25,7 @@
     <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.101.0 with theme Tranquilpeak 0.5.3-BETA">
+<meta name="generator" content="Hugo 0.115.3 with theme Tranquilpeak 0.5.3-BETA">
 <meta name="author" content="Guilherme Jacob">
 <meta name="keywords" content="">
 <meta name="description" content="Tive a oportunidade de estudar amostragem e análise de dados amostrais na ENCE com excelentes professores1 esse ano. E foi incrível! Tentei aproveitar da melhor maneira possível. Entre algumas ideias exploradas, existem os modelos de superpopulação, que desempenham um papel fundamental na análise de dados amostrais. É uma ideia tão interessante que resolvi escrever um post sobre isso, mas com uma restrição: ser didático e, se possível, interessante para um público mais amplo.">
@@ -331,7 +331,7 @@
 </div>
 <div id="inferência-descritiva-inferência-analítica-e-modelos-de-superpopulação" class="section level1">
 <h1>Inferência descritiva, inferência analítica e modelos de superpopulação</h1>
-<p>Estas ideias são interessantes para fazer <em>inferências descritivas</em>, mas o que acontece quando queremos estudar algo mais complicado, como o processo que gera aquela população específica? Neste caso, estamos falando de <em>inferência analítica</em>. É importante distinguir as duas abordagens: a primeira tenta <em>descrever</em> uma quantidade da população a partir de uma amostra; a outra tenta descrever os mecanismos por trás daquela população. Como explica <span class="citation">Deming (<a href="#ref-deming1953" role="doc-biblioref">1953, p. 245</a>)</span>, a inferência descritiva tenta responder à pergunta “quanto?”; já a inferência analítica tentaria responder à pergunta “por quê?”. Em outras palavras, a inferência descritiva é uma “fotografia” da população, desconsiderando os processos que a geraram, enquanto a inferência analítica tenta entender este mecanismo <span class="citation">(<a href="#ref-conti2018" role="doc-biblioref">Conti e Di Iorio, 2018</a>)</span>. Assim, a inferência analítica quer entender como as características da população se relacionam. Então, a pergunta da inferência analítica é “como?”</p>
+<p>Estas ideias são interessantes para fazer <em>inferências descritivas</em>, mas o que acontece quando queremos estudar algo mais complicado, como o processo que gera aquela população específica? Neste caso, estamos falando de <em>inferência analítica</em>. É importante distinguir as duas abordagens: a primeira tenta <em>descrever</em> uma quantidade da população a partir de uma amostra; a outra tenta descrever os mecanismos por trás daquela população. Como explica <span class="citation">Deming (<a href="#ref-deming1953">1953, p. 245</a>)</span>, a inferência descritiva tenta responder à pergunta “quanto?”; já a inferência analítica tentaria responder à pergunta “por quê?”. Em outras palavras, a inferência descritiva é uma “fotografia” da população, desconsiderando os processos que a geraram, enquanto a inferência analítica tenta entender este mecanismo <span class="citation">(<a href="#ref-conti2018">Conti e Di Iorio, 2018</a>)</span>. Assim, a inferência analítica quer entender como as características da população se relacionam. Então, a pergunta da inferência analítica é “como?”</p>
 <p>A ideia central da inferência analítica pode ser interpretada da seguinte maneira. A minha população finita é uma realização de um processo aleatório mais geral, definida por um <em>modelo paramétrico</em>. Este modelo produz infinitas populações finitas. A nossa amostra é extraída de uma delas.</p>
 </div>
 <div id="sopas-universos-paralelos-e-modelos-de-superpopulação" class="section level1">
@@ -348,7 +348,7 @@
 <p>Voltando ao nosso exemplo gastronômico, só precisamos de uma colher (amostra) da sopa (população finita) para ter uma ideia do quão salgada ela está (parâmetro populacional). Neste contexto, o modelo paramétrico permite saber, em média, o quão salgada a sopa estaria se para uma dada quantidade de sal. Isso acontece porque calculamos, <em>a partir de uma colher</em>, o <em>impacto</em> da quantidade de sal (parâmetro do modelo) sobre o gosto de <em>todas as sopas possíveis</em> (população infinita).</p>
 <p>Na prática, a modelagem de superpopulação tem algumas limitações. Por exemplo,</p>
 <blockquote>
-<p>Deve-se reconhecer que para muitos estudos, especialmente nas ciências sociais, o modelo é apenas uma aproximação conveniente para o mundo real, e os parâmetros de um modelo são frequentemente utilizados para entender as interdependências aproximadas, em vez de ter uma interpretação científica. <span class="citation">(<a href="#ref-binder1983" role="doc-biblioref">Binder, 1983, p. 279</a>, tradução nossa)</span></p>
+<p>Deve-se reconhecer que para muitos estudos, especialmente nas ciências sociais, o modelo é apenas uma aproximação conveniente para o mundo real, e os parâmetros de um modelo são frequentemente utilizados para entender as interdependências aproximadas, em vez de ter uma interpretação científica. <span class="citation">(<a href="#ref-binder1983">Binder, 1983, p. 279</a>, tradução nossa)</span></p>
 </blockquote>
 <p>Essa é uma distinção importante entre inferência analítica e inferência causal, mas isso é tema para outro texto…</p>
 </div>
@@ -357,9 +357,9 @@
 <p>Nesse texto, a minha intenção era dar uma explicação um pouco mais didática sobre os modelos de superpopulação e como eles relacionam amostra, população finita e população infinita. Ele também mostra uma parte do problema que enfrentamos quando ajustamos modelos em amostras complexas, embora exija um pouco mais de discussão.</p>
 <p>Por fim, não forneço nenhuma solução ou método para ajustar estes modelos. Para entender isso, vale ler a bibliografia citada no texto. Também indico:</p>
 <ul>
-<li>Leituras obrigatórias: <span class="citation">Pessoa e Silva (<a href="#ref-silva2018" role="doc-biblioref">2018, cap. 2</a> e 5)</span>, <span class="citation">Lohr (<a href="#ref-lohr2010" role="doc-biblioref">2010, cap. 11</a>)</span>, <span class="citation">Heeringa, West e Berglund (<a href="#ref-heeringa" role="doc-biblioref">2010, cap. 7</a>)</span> e <span class="citation">Binder e Skinner (<a href="#ref-binder2003" role="doc-biblioref">2003</a>)</span>;</li>
-<li><span class="citation">Graubard e Korn (<a href="#ref-korn2002" role="doc-biblioref">2002</a>)</span>, <span class="citation">Dorfman e Valliant (<a href="#ref-dorfman2005" role="doc-biblioref">2005</a>)</span> e <span class="citation">Lumley e Scott (<a href="#ref-lumley2017" role="doc-biblioref">2017</a>)</span> trazem uma discussão interessante sobre alguns aspectos práticos do ajuste destes modelos com amostras complexas;</li>
-<li>Para economistas, <span class="citation">Deaton (<a href="#ref-deaton1995" role="doc-biblioref">1995</a>)</span>, <span class="citation">Ullah e Breunig (<a href="#ref-ullah1998" role="doc-biblioref">1998</a>)</span>, <span class="citation">Cameron e Trivedi (<a href="#ref-cameron2005" role="doc-biblioref">2005, cap. 24</a>)</span> e <span class="citation">Wooldridge (<a href="#ref-jeff2010" role="doc-biblioref">2010, cap. 20</a>)</span> podem ser interessantes.</li>
+<li>Leituras obrigatórias: <span class="citation">Pessoa e Silva (<a href="#ref-silva2018">2018, cap. 2</a> e 5)</span>, <span class="citation">Lohr (<a href="#ref-lohr2010">2010, cap. 11</a>)</span>, <span class="citation">Heeringa, West e Berglund (<a href="#ref-heeringa">2010, cap. 7</a>)</span> e <span class="citation">Binder e Skinner (<a href="#ref-binder2003">2003</a>)</span>;</li>
+<li><span class="citation">Graubard e Korn (<a href="#ref-korn2002">2002</a>)</span>, <span class="citation">Dorfman e Valliant (<a href="#ref-dorfman2005">2005</a>)</span> e <span class="citation">Lumley e Scott (<a href="#ref-lumley2017">2017</a>)</span> trazem uma discussão interessante sobre alguns aspectos práticos do ajuste destes modelos com amostras complexas;</li>
+<li>Para economistas, <span class="citation">Deaton (<a href="#ref-deaton1995">1995</a>)</span>, <span class="citation">Ullah e Breunig (<a href="#ref-ullah1998">1998</a>)</span>, <span class="citation">Cameron e Trivedi (<a href="#ref-cameron2005">2005, cap. 24</a>)</span> e <span class="citation">Wooldridge (<a href="#ref-jeff2010">2010, cap. 20</a>)</span> podem ser interessantes.</li>
 </ul>
 </div>
 <div id="referências" class="section level1 unnumbered">
@@ -416,7 +416,7 @@ WOOLDRIDGE, J. M. <strong>Econometric Analysis of Cross Section and Panel Data</
 <hr />
 <ol>
 <li id="fn1"><p>Se houver algo errado nesse texto, peço que me corrijam!<a href="#fnref1" class="footnote-back">↩︎</a></p></li>
-<li id="fn2"><p>Para quem quiser ler mais a respeito de como amostragem passou a ser reconhecida como um método científico, a sugestão de leitura é <span class="citation">Bethlehem (<a href="#ref-belem2009" role="doc-biblioref">2009</a>)</span>.<a href="#fnref2" class="footnote-back">↩︎</a></p></li>
+<li id="fn2"><p>Para quem quiser ler mais a respeito de como amostragem passou a ser reconhecida como um método científico, a sugestão de leitura é <span class="citation">Bethlehem (<a href="#ref-belem2009">2009</a>)</span>.<a href="#fnref2" class="footnote-back">↩︎</a></p></li>
 <li id="fn3"><p>Não confundir as “margens de erros” de pesquisas não-probabilísticas com “intervalos de confiança”. <em>Até onde eu sei</em>, só os intervalos de confiança de amostra probabilística têm fundamento teórico.<a href="#fnref3" class="footnote-back">↩︎</a></p></li>
 <li id="fn4"><p>Provavelmente maior do que a de mestrando.<a href="#fnref4" class="footnote-back">↩︎</a></p></li>
 </ol>
@@ -512,7 +512,7 @@ WOOLDRIDGE, J. M. <strong>Econometric Analysis of Cross Section and Panel Data</
         </article>
         <footer id="footer" class="main-content-wrap">
   <span class="copyrights">
-    &copy; 2023 Guilherme Jacob. All Rights Reserved
+    &copy; 2024 Guilherme Jacob. All Rights Reserved
   </span>
 </footer>
 

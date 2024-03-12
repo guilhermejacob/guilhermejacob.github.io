@@ -6,19 +6,7 @@
     <description>Recent content in DataViz on Something Random</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>pt-br</language>
-    <lastBuildDate>Mon, 11 Dec 2017 00:00:00 +0000</lastBuildDate><atom:link href="https://guilhermejacob.github.io/tags/dataviz/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Censo da Educação Superior: gênero e cursos em 2016</title>
-      <link>https://guilhermejacob.github.io/2017/12/analise-censo-superior-genero-2016/</link>
-      <pubDate>Mon, 11 Dec 2017 00:00:00 +0000</pubDate>
-      
-      <guid>https://guilhermejacob.github.io/2017/12/analise-censo-superior-genero-2016/</guid>
-      <description>Encerrando1 as análises usando bases de dados públicas, vamos focar no ensino superior.
-Inicialmente, vamos explicar o que é o Censo da Educação Superior. Depois, vamos mostrar como montar as bases de dados. E, concluindo, vamos fazer um pequeno exercício de visualização de dados.
-Ah, e eu vou ser muito breve neste post, por motivos de: tenho que escrever um projeto de pesquisa (:
-Censo da Educação Superior O Censo da Educação Superior é conduzido anualmente pelo Inep.</description>
-    </item>
-    
+    <lastBuildDate>Wed, 15 Nov 2017 00:00:00 +0000</lastBuildDate><atom:link href="https://guilhermejacob.github.io/tags/dataviz/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>ENEM e desigualdade na educação: uma análise dos dados de 2015</title>
       <link>https://guilhermejacob.github.io/2017/11/enem-desigualdade-educa%C3%A7%C3%A3o/</link>

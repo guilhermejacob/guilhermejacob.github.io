@@ -625,7 +625,7 @@ stopCluster(cl)
 ##### save maps
 plotlist <- grep( "plot$" , ls() , value = TRUE )
 lapply( plotlist , function( this_plot ) {
-  ggsave( normalizePath( paste0( "~/Documents/GitLab/src-website/static/img/ethnic_" , this_plot , ".pdf" ) , mustWork = FALSE ) , 
+  ggsave( normalizePath( paste0( "~/Documents/GitHub/website-source/static/img/ethnic_" , this_plot , ".pdf" ) , mustWork = FALSE ) , 
           get( this_plot ) , 
           width = 14 , height = 14 , 
           dpi = 300 )
@@ -635,7 +635,7 @@ lapply( plotlist , function( this_plot ) {
 ##### converts pdf to png
 for ( this_plot in plotlist ) {
   
-  this_pdf <- normalizePath( paste0( "~/Documents/GitLab/src-website/static/img/ethnic_" , this_plot , ".pdf" ) , mustWork = FALSE )
+  this_pdf <- normalizePath( paste0( "~/Documents/GitHub/website-source/static/img/ethnic_" , this_plot , ".pdf" ) , mustWork = FALSE )
   these_png_files <- paste0( gsub( "\\.pdf$" , "" , this_pdf ) , c("_highres" , "_lowres" ) , ".png" )
   
   pdftools::pdf_convert( pdf = this_pdf , filenames = these_png_files[1] , dpi = 300 ) 

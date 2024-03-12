@@ -25,7 +25,7 @@
     <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.101.0 with theme Tranquilpeak 0.5.3-BETA">
+<meta name="generator" content="Hugo 0.115.3 with theme Tranquilpeak 0.5.3-BETA">
 <meta name="author" content="Guilherme Jacob">
 <meta name="keywords" content="">
 <meta name="description" content="Esse post vai fugir um pouco do usual. Não vamos fazer análise de dados, nem escrever código. Vamos ter algumas equações e gráficos, mas nada muito complicado. Vamos tentar responder duas perguntas:
@@ -344,11 +344,11 @@ Tenho valores de inflação e taxa de juros nominal. A taxa de juros real é igu
 <p>Quando dizemos que <span class="math inline">\(x_{(0)}\)</span> cresceu <span class="math inline">\(r\)</span>%, isso significa que <span class="math inline">\(x_{(1)} = x_{(0)} ( 1 + r )\)</span>. Como temos 4 trimestres, podemos escrever o crescimento do PIB como</p>
 <p><span class="math display">\[
 \begin{align}
-\frac{x_{(1)}}{x_{(0)}} 
+\frac{x_{(1)}}{x_{(0)}}
           &amp;= ( 1 + r_1 ) ( 1 + r_2 ) ( 1 + r_3 ) ( 1 + r_4 ) \\
-          &amp;= \prod_{i=1}^4 (1+r_i) \\ 
-          &amp;= 1 + \sum_{i=1} r_i 
-               + \sum_{ i \neq j } \sum_{ j \neq i } r_i r_j 
+          &amp;= \prod_{i=1}^4 (1+r_i) \\
+          &amp;= 1 + \sum_{i=1} r_i
+               + \sum_{ i \neq j } \sum_{ j \neq i } r_i r_j
                + \sum_{ \substack{ i \neq j \\ i \neq k } } \sum_{ \substack{ j \neq i \\ j \neq k } } \sum_{ \substack{ k \neq i \\ k \neq j } } r_i r_j r_k + \prod_{i=1}^4 r_i
 \end{align}
 \]</span></p>
@@ -370,7 +370,7 @@ D_f ( \mathbf{0} ) =
 (1+0) (1+0) (1+0) \\
 (1+0) (1+0) (1+0) \\
 (1+0) (1+0) (1+0) \\
-\end{bmatrix}  = 
+\end{bmatrix}  =
 \begin{bmatrix} 1 \\ 1 \\ 1 \\ 1 \end{bmatrix}
 \]</span></p>
 <p>Logo, usando a série de Taylor multivariada de 1ª ordem em torno de <span class="math inline">\(\mathbf{0}\)</span>,<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> temos</p>
@@ -559,7 +559,7 @@ D_f ( r , \lambda ) &amp;=
 \end{bmatrix} \\
 \therefore D_f ( 0,0 ) &amp;=
 \begin{bmatrix} 1 \\- 1 \\
-\end{bmatrix} 
+\end{bmatrix}
 \end{align}
 \]</span></p>
 <p>Logo, aproximando ao redor do ponto <span class="math inline">\((0,0)\)</span>,</p>
@@ -724,7 +724,7 @@ E
 </table>
 <p>Portanto, <a href="https://super.abril.com.br/mundo-estranho/como-era-a-vida-no-brasil-da-hiperinflacao/">se você viveu no Brasil durante a década de 1980, essa aproximação era bem ruim.</a></p>
 </div>
-<div class="footnotes">
+<div class="footnotes footnotes-end-of-document">
 <hr />
 <ol>
 <li id="fn1"><p>Na verdade, uma série de Maclaurin, um caso específico da série de Taylor.<a href="#fnref1" class="footnote-back">↩︎</a></p></li>
@@ -827,7 +827,7 @@ E
         </article>
         <footer id="footer" class="main-content-wrap">
   <span class="copyrights">
-    &copy; 2023 Guilherme Jacob. All Rights Reserved
+    &copy; 2024 Guilherme Jacob. All Rights Reserved
   </span>
 </footer>
 

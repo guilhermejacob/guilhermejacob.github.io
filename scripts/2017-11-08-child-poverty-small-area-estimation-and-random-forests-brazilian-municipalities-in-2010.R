@@ -16,7 +16,7 @@ if ( any( !these_file_exists ) ) {
 
 ## ----cv_plot , echo=FALSE, message=FALSE, warning=FALSE , cache = TRUE----
 library(survey)
-load( file.path( "~/Documents/GitLab/src-website" , "static/datasets/BR2010_PovEsts.Rdata" ) )
+load( file.path( "~/Documents/GitHub/website-source" , "static/datasets/BR2010_PovEsts.Rdata" ) )
 gini_data <- data.frame( 
   codmun7 = as.character(gini_list[,1]) , 
   gini_est = coef(gini_list) ,
@@ -145,14 +145,14 @@ gini_map_init <-
         subtitle ="Low-precision areas are highlighted." , 
         caption = "Source: Brazil 2010 Census Sample. Microdata." )
 
-# ggsave( normalizePath( file.path( "~/Documents/GitLab/src-website" , "static/img/gini_map_init.pdf" ) , mustWork = FALSE ) , gini_map_init , width = 15 , height = 20 )
-ggsave( normalizePath( file.path( "~/Documents/GitLab/src-website" , "static/img/gini_map_init.png" ) , mustWork = FALSE ) , gini_map_init , width = 15 , height = 20 , dpi = 100 )
+# ggsave( normalizePath( file.path( "~/Documents/GitHub/website-source" , "static/img/gini_map_init.pdf" ) , mustWork = FALSE ) , gini_map_init , width = 15 , height = 20 )
+ggsave( normalizePath( file.path( "~/Documents/GitHub/website-source" , "static/img/gini_map_init.png" ) , mustWork = FALSE ) , gini_map_init , width = 15 , height = 20 , dpi = 100 )
 
 ## ----train_rf, echo=FALSE, message=FALSE, warning=FALSE , cache = TRUE----
 rm( gini_map_init )
 
 # if IDHM dataset doesn't exist, download it:
-idhm.mun_path <- file.path( "~/Documents/GitLab/src-website/" , "static/datasets/MunIDHM.Rds" )
+idhm.mun_path <- file.path( "~/Documents/GitHub/website-source/" , "static/datasets/MunIDHM.Rds" )
 idhm.mun_path <- normalizePath( idhm.mun_path , mustWork = FALSE )
 if ( !file.exists( idhm.mun_path ) ){
   tf <- tempfile()
@@ -257,6 +257,6 @@ gini_map_final <-
         subtitle ="Results from a Random Forest Small Area Estimation model." , 
         caption = "Source: Brazil 2010 Census Sample. Microdata." )
 
-# ggsave( normalizePath( file.path( "~/Documents/GitLab/src-website" , "static/img/gini_map_final.pdf" ) , mustWork = FALSE ) , gini_map_final , width = 15 , height = 20 )
-ggsave( normalizePath( file.path( "~/Documents/GitLab/src-website" , "static/img/gini_map_final.png" ) , mustWork = FALSE ) , gini_map_final , width = 15 , height = 20 , dpi = 100 )
+# ggsave( normalizePath( file.path( "~/Documents/GitHub/website-source" , "static/img/gini_map_final.pdf" ) , mustWork = FALSE ) , gini_map_final , width = 15 , height = 20 )
+ggsave( normalizePath( file.path( "~/Documents/GitHub/website-source" , "static/img/gini_map_final.png" ) , mustWork = FALSE ) , gini_map_final , width = 15 , height = 20 , dpi = 100 )
 

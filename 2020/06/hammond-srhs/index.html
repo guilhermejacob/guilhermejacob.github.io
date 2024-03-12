@@ -25,7 +25,7 @@
     <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.101.0 with theme Tranquilpeak 0.5.3-BETA">
+<meta name="generator" content="Hugo 0.115.3 with theme Tranquilpeak 0.5.3-BETA">
 <meta name="author" content="Guilherme Jacob">
 <meta name="keywords" content="">
 <meta name="description" content="O princípio de Pigou-Dalton é uma das ideias mais fundamentais na mensuração de desigualdade em variáveis cardinais. Basicamente, quando determinada quantidade de renda é transferida de alguém pobre para alguém rico (i.e., uma transferência regressiva), a desigualdade aumenta.
@@ -319,6 +319,9 @@ Algumas medidas de desigualdade atendem o princípio de Pigou-Dalton apenas em a
           <div class="post-content markdown">
             <div class="main-content-wrap">
               
+
+
+
 <p>O princípio de Pigou-Dalton é uma das ideias mais fundamentais na mensuração de desigualdade em variáveis cardinais. Basicamente, quando determinada quantidade de renda é transferida de alguém pobre para alguém rico (i.e., uma transferência regressiva), a desigualdade aumenta.</p>
 <p>Algumas medidas de desigualdade atendem o princípio de Pigou-Dalton apenas em alguns conjuntos da distribuição de renda: por exemplo, a razão entre as rendas dos 10% mais ricos sobre os 50% mais pobres – i.e., o índice de Palma – é sensível às transferências nestes grupos, mas independe das transferências entre 50%-90% mais pobres. Essa escolha metodológica pode ser interessante por se restringir aos extremos da distribuição, isolando as desigualdades de uma “classe média”.</p>
 <p>Em geral, quando explico essa ideia costumo usar um pensamento social muito relevante da década de 1990: quando <em>“o de cima sobe e o de baixo desce”</em>, a desigualdade aumenta. No entato, eu estou errado. Para ser exato na formulação, o princípio de Pigou-Dalton diz: quando <em>“o de cima sobe <span class="math inline">\(\delta\)</span> e o de baixo desce <span class="math inline">\(\delta\)</span>”</em>, sendo <span class="math inline">\(\delta\)</span> uma quantidade fixa, a desigualdade aumenta. A quantidade recebida por um deve ser a quantidade retirada do outro.</p>
@@ -329,20 +332,20 @@ Algumas medidas de desigualdade atendem o princípio de Pigou-Dalton apenas em a
 <p>Uma ideia inicial seria atribuir valores numéricos às categorias de uma variável ordinal e, sobre estes valores, calcular uma medida de desigualdade tradicional, como o índice de Gini. O primeiro problema seria a escolha da escala <span class="math inline">\(f\)</span>: quaisquer 3 números que atendam <span class="math inline">\(f(R) &lt; f(B) &lt; f(E)\)</span> são bons candidatos. <span class="math inline">\((1,2,3),(1,10,100),(10,15,16), \dots\)</span>. Embora o ordenamento das medidas não seja afetado pela escola das escalas, nada garante que o valor da medida de desigualdade será o mesmo.</p>
 <p>Variáveis ordinais são exatamente isto: categorias com uma relação de ordem, mas sem uma <em>distância</em> clara. Sem suposições adicionais, não é possível afirmar que a distância entre <span class="math inline">\(R\)</span> e <span class="math inline">\(B\)</span> é a mesma entre <span class="math inline">\(B\)</span> e <span class="math inline">\(E\)</span>. Portanto, não faz sentido transferir “unidades do estado de saúde” entre duas pessoas. Logo, <em>o princípio de Pigou-Dalton não se aplica neste tipo de comparação</em>.</p>
 <p>Existe, no entanto, uma intuição evidente: uma distribuição em que todo mundo esteja na mesma categoria é menos desigual do que outra distribuição que se divide nos extremos. De fato, existe um princípio capaz de guiar este tipo de comparação.</p>
-<p><span class="citation"><a href="#ref-hammond1976" role="doc-biblioref">Hammond</a> (<a href="#ref-hammond1976" role="doc-biblioref">1976</a>)</span> mostrou que, sob um princípio mínimo de equidade, ainda seria possível estabelecer comparações sobre desigualdade de distribuições de atributos ordinais. Como explicam <span class="citation"><a href="#ref-gravel2017rank" role="doc-biblioref">Gravel, Magdalou e Moyes</a> (<a href="#ref-gravel2017rank" role="doc-biblioref">2020, p. 3</a>)</span>, “subir” um indivíduo de uma categoria mais baixa e “descer” um indivíduo de uma categoria mais alta reduziriam a desigualdade. Não existe restrição sobre o valor da transferência, apenas que as mudanças de posição não revertam as posições dos indivíduos. Na outra direção, uma transferência regressiva de Hammond pode ser descrita como: <em>“o de cima sobe e o de baixo desce”</em>. E, sob este princípio, uma transferência regressiva de Hammond aumenta a desigualdade na sociedade.</p>
-<p>Usando esta ideia, <span class="citation"><a href="#ref-gravel2017rank" role="doc-biblioref">Gravel, Magdalou e Moyes</a> (<a href="#ref-gravel2017rank" role="doc-biblioref">2020</a>)</span> desenvolvem várias ideias importantes, mas uma é particularmente interessante: uma versão ordinal do Teorema de Hardy-Littlewood-Pólya. Usando a dominância estocástica de segunda ordem, analisam a desigualdade de regiões da Suíça e comparam com os ordenamentos produzidos com o critério de <span class="citation"><a href="#ref-yalcin2008" role="doc-biblioref">Abul Naga e Yalcin</a> (<a href="#ref-yalcin2008" role="doc-biblioref">2008</a>)</span>.</p>
+<p><span class="citation">Hammond (<a href="#ref-hammond1976">1976</a>)</span> mostrou que, sob um princípio mínimo de equidade, ainda seria possível estabelecer comparações sobre desigualdade de distribuições de atributos ordinais. Como explicam <span class="citation">Gravel, Magdalou e Moyes (<a href="#ref-gravel2017rank">2020, p. 3</a>)</span>, “subir” um indivíduo de uma categoria mais baixa e “descer” um indivíduo de uma categoria mais alta reduziriam a desigualdade. Não existe restrição sobre o valor da transferência, apenas que as mudanças de posição não revertam as posições dos indivíduos. Na outra direção, uma transferência regressiva de Hammond pode ser descrita como: <em>“o de cima sobe e o de baixo desce”</em>. E, sob este princípio, uma transferência regressiva de Hammond aumenta a desigualdade na sociedade.</p>
+<p>Usando esta ideia, <span class="citation">Gravel, Magdalou e Moyes (<a href="#ref-gravel2017rank">2020</a>)</span> desenvolvem várias ideias importantes, mas uma é particularmente interessante: uma versão ordinal do Teorema de Hardy-Littlewood-Pólya. Usando a dominância estocástica de segunda ordem, analisam a desigualdade de regiões da Suíça e comparam com os ordenamentos produzidos com o critério de <span class="citation">Abul Naga e Yalcin (<a href="#ref-yalcin2008">2008</a>)</span>.</p>
 <p>Na verdade, a ideia original da minha dissertação era calcular medidas de desigualdade em autoavaliação de saúde no Brasil considerando o desenho amostral complexo da PNS. No entanto, por motivos diversos, acabei mudando de tema e pretendo retomar essa ideia em breve <em>with a little help from my friends</em>. A ideia de dominância estocástica de segunda ordem também pode ser explorada, mas ainda não sei como. Vamos ver o que acontece <strong>depois da dissertação</strong>.</p>
 <div id="referências" class="section level1 unnumbered">
 <h1>Referências</h1>
 <div id="refs" class="references csl-bib-body">
 <div id="ref-yalcin2008" class="csl-entry">
-ABUL NAGA, R. H.; YALCIN, T. Inequality measurement for ordered response health data. <strong>Journal of Health Economics</strong>, v. 27, n. 6, p. 1614–1625, 2008.
+ABUL NAGA, R. H.; YALCIN, T. <a href="https://doi.org/10.1016/j.jhealeco.2008.07.015">Inequality measurement for ordered response health data</a>. <strong>Journal of Health Economics</strong>, v. 27, n. 6, p. 1614–1625, 2008.
 </div>
 <div id="ref-gravel2017rank" class="csl-entry">
-GRAVEL, N.; MAGDALOU, B.; MOYES, P. Ranking distributions of an ordinal variable. <strong>Economic Theory</strong>, jan. 2020.
+GRAVEL, N.; MAGDALOU, B.; MOYES, P. <a href="https://doi.org/10.1007/s00199-019-01241-4">Ranking distributions of an ordinal variable</a>. <strong>Economic Theory</strong>, jan. 2020.
 </div>
 <div id="ref-hammond1976" class="csl-entry">
-HAMMOND, P. J. Equity, Arrow’s Conditions, and Rawls’ Difference Principle. <strong>Econometrica</strong>, v. 44, n. 4, p. 793–804, 1976.
+HAMMOND, P. J. <a href="http://www.jstor.org/stable/1913445">Equity, Arrow’s Conditions, and Rawls’ Difference Principle</a>. <strong>Econometrica</strong>, v. 44, n. 4, p. 793–804, 1976.
 </div>
 </div>
 </div>
@@ -439,7 +442,7 @@ HAMMOND, P. J. Equity, Arrow’s Conditions, and Rawls’ Difference Principle. 
         </article>
         <footer id="footer" class="main-content-wrap">
   <span class="copyrights">
-    &copy; 2023 Guilherme Jacob. All Rights Reserved
+    &copy; 2024 Guilherme Jacob. All Rights Reserved
   </span>
 </footer>
 

@@ -25,7 +25,7 @@
     <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.101.0 with theme Tranquilpeak 0.5.3-BETA">
+<meta name="generator" content="Hugo 0.115.3 with theme Tranquilpeak 0.5.3-BETA">
 <meta name="author" content="Guilherme Jacob">
 <meta name="keywords" content="">
 <meta name="description" content="O Thomas Lumley já escreveu sobre isso; link aqui!
@@ -369,8 +369,8 @@ svytotal( ~one , pof.des.survobj )</code></pre>
 ## actual.PSU    1    1    1    1    1
 ## Data variables:
 ##  [1] &quot;cod_upa&quot;     &quot;uf&quot;          &quot;estrato_pof&quot; &quot;num_dom&quot;     &quot;num_uc&quot;     
-##  [6] &quot;v0306&quot;       &quot;peso_final&quot;  &quot;v0405&quot;       &quot;pos_estrato&quot; &quot;npes&quot;       
-## [11] &quot;one&quot;</code></pre>
+##  [6] &quot;v0306&quot;       &quot;peso&quot;        &quot;peso_final&quot;  &quot;v0405&quot;       &quot;pos_estrato&quot;
+## [11] &quot;npes&quot;        &quot;one&quot;</code></pre>
 <pre class="r"><code>summary( pof.des.survobj )</code></pre>
 <pre><code>## Stratified 1 - level Cluster Sampling design (with replacement)
 ## With (28) clusters.
@@ -389,8 +389,8 @@ svytotal( ~one , pof.des.survobj )</code></pre>
 ## actual.PSU    1    1    1    1    1
 ## Data variables:
 ##  [1] &quot;cod_upa&quot;     &quot;uf&quot;          &quot;estrato_pof&quot; &quot;num_dom&quot;     &quot;num_uc&quot;     
-##  [6] &quot;v0306&quot;       &quot;peso_final&quot;  &quot;v0405&quot;       &quot;pos_estrato&quot; &quot;npes&quot;       
-## [11] &quot;one&quot;</code></pre>
+##  [6] &quot;v0306&quot;       &quot;peso&quot;        &quot;peso_final&quot;  &quot;v0405&quot;       &quot;pos_estrato&quot;
+## [11] &quot;npes&quot;        &quot;one&quot;</code></pre>
 <p>Na primeira, a contagem de UPAs do plano amostral coincide com a contagem de UPAs no domínio. Já na segunda, estas contagens divergem. O que isso significa? Quando vamos estimar a variância em cada estrato, a primeira considera apenas as UPAs onde há pelo menos uma pessoa indígenas na amostra. Já na segunda, todas as UPAs são consideradas. Ou seja: não é porque uma pessoa indígena não foi selecionada naquela UPA que não existem pessoas indígenas nela. Se fizermos isso, estamos subestimando a variabilidade dessa característica entre as UPAs. De outra maneira, ignorar as outras UPAs seria similar a dizer que <span class="math inline">\(\sum ( x - \bar{x} )^2 = \sum_{x&gt;0} ( x - \bar{x} )^2\)</span>, o que não faz o menor sentido.</p>
 <p>Assim, como regra<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a>, o melhor é deixar que a função <code>subset</code> faça o trabalho.</p>
 <div id="como-isso-afeta-a-convey" class="section level2">
@@ -406,7 +406,7 @@ pof.des.survobj &lt;- convey_prep( pof.des.survobj )
 pof.des.survobj &lt;- subset( pof.des.survobj , uf == 35 &amp; v0405 == 5 )</code></pre>
 </div>
 </div>
-<div class="footnotes">
+<div class="footnotes footnotes-end-of-document">
 <hr />
 <ol>
 <li id="fn1"><p>Unidades Primárias de Amostragem (UPA) em português.<a href="#fnref1" class="footnote-back">↩︎</a></p></li>
@@ -494,7 +494,7 @@ pof.des.survobj &lt;- subset( pof.des.survobj , uf == 35 &amp; v0405 == 5 )</cod
         </article>
         <footer id="footer" class="main-content-wrap">
   <span class="copyrights">
-    &copy; 2023 Guilherme Jacob. All Rights Reserved
+    &copy; 2024 Guilherme Jacob. All Rights Reserved
   </span>
 </footer>
 

@@ -6,14 +6,35 @@
     <description>Recent content on Something Random</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>pt-br</language>
-    <lastBuildDate>Mon, 19 Jun 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://guilhermejacob.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 11 Mar 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://guilhermejacob.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Começando 2024! (um pouco atrasado)</title>
+      <link>https://guilhermejacob.github.io/2024/03/southampton-2024/</link>
+      <pubDate>Mon, 11 Mar 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://guilhermejacob.github.io/2024/03/southampton-2024/</guid>
+      <description>Como vocês podem ter notado, eu ando meio low-profile sumido por aqui. Do ano passado pra cá, também trabalhei em outras coisas, incluindo a nova versão da convey, já no CRAN. Anthony e eu trabalhamos um bocado nisso nos meses em que ele estava de visita no Rio. Levei ele para conhecer alguns lugares no Rio mas ele não quis ir pra Ilha Grande comigo e com a Thaís. Ele reecontrou a Canela, minha gatinha, de quem tinha saudades.</description>
+    </item>
+    
+    <item>
+      <title>gb2-lorenz</title>
+      <link>https://guilhermejacob.github.io/2023/08/index.pt-br/</link>
+      <pubDate>Wed, 02 Aug 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://guilhermejacob.github.io/2023/08/index.pt-br/</guid>
+      <description>
+
+
+</description>
+    </item>
+    
     <item>
       <title>Quebrando o TCL para Populações Finitas sob Amostragem Sem Reposição</title>
       <link>https://guilhermejacob.github.io/2023/06/clt-srswor/</link>
       <pubDate>Mon, 19 Jun 2023 00:00:00 +0000</pubDate>
       
       <guid>https://guilhermejacob.github.io/2023/06/clt-srswor/</guid>
-      <description>Aviso: Esse exemplo é discutido na aula sobre Métodos de Monte Carlo em Populações Finitas, escrito como parte do meu estágio de docência em Estatística Computacional 2.
+      <description>Aviso: Esse exemplo é discutido na aula sobre Métodos de Monte Carlo em Populações Finitas, elaborada ao longo do meu estágio de docência em Estatística Computacional 2.
 Um dos resultados teóricos com maior resultado prático é o Teorema Central do Limite. Ele fundamenta a aproximação da distribuição (assintótica) de um estimador pela distribuição normal, sendo a base da construção dos intervalos de confiança “tradicionais”. Em linhas gerais, a interpretação usual é que quanto maior \(n\) — o tamanho da amostra —, melhor é a aproximação pela distribuição normal.</description>
     </item>
     
@@ -118,16 +139,6 @@ A última Pesquisa de Orçamentos Familliares (POF), realizada em 2017-2018, tra
       <description>TL;DR: subregistro existe, é um problema e as taxas de mortalidade ingênuas estão provavelmente erradas. Mas não são inúteis.
 Estive fazendo alguns exercícios de demografia e pensando sobre subregistro e o quanto isso é um problema. Resolvi pegar algumas leituras que fiz recentemente e tentar mostrar onde isso aparece.
 Um pouco de história Em alguns países, os registros de nascimentos e mortes é tão bom que você pode calcular as estimativas mortalidade infantil diretamente.</description>
-    </item>
-    
-    <item>
-      <title>Índice de Gini e transferências sociais federais</title>
-      <link>https://guilhermejacob.github.io/2020/08/diferenca-gini/</link>
-      <pubDate>Mon, 31 Aug 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://guilhermejacob.github.io/2020/08/diferenca-gini/</guid>
-      <description>Em julho, pensei em estudar uma técnica de decomposição de medidas de desigualdade/pobreza. Procurando as bases de dados, encontrei a a Pesquisa de Orçamentos Familiares (POF) 2017-2018, que tem muita informação interessante. Mas, com 30 dias para escrever um artigo, não achei que teria tempo para entender bem a pesquisa e produzir estimativas adequadas.
-Tirei alguns dias para ler a documentação e comecei a fazer algumas tentativas de análise. Uma pergunta bem interessante que a POF permite analisar é: quanto seria a desigualdade de renda se retirássemos as rendas transferidas pelos programas sociais federais?</description>
     </item>
     
     <item>
@@ -244,19 +255,6 @@ Uma controvérsia relativamente recente foi protagonizada pelo Temer, durante um
     </item>
     
     <item>
-      <title>Qual a relação entre a hora de nascimento e o tipo de parto?</title>
-      <link>https://guilhermejacob.github.io/2018/05/partos-brasil-2016/</link>
-      <pubDate>Wed, 02 May 2018 00:00:00 +0000</pubDate>
-      
-      <guid>https://guilhermejacob.github.io/2018/05/partos-brasil-2016/</guid>
-      <description>O último post foi corrido, eu sei. Esse vai ser um pouco menos corrido, acho.
-Se você quiser pular direto para a análise, clique aqui.
-Muita coisa acontecendo por aqui.
-Semana passada, fui pro Rio. Serei propositalmente misterioso neste ponto, mas acho que vem coisa por aí.
-Na volta para Manaus, fiz uma mini-maratona para visitar amigos em Brasília nas 7 horas de escala. Para quem eu fiquei devendo visita: vou para a Campus Party Brasília no fim de maio!</description>
-    </item>
-    
-    <item>
       <title>PNAD Contínua 2017: extrema pobreza na infância e desigualdade</title>
       <link>https://guilhermejacob.github.io/2018/04/desigualdade-pobreza-infancia-2017/</link>
       <pubDate>Tue, 24 Apr 2018 00:00:00 +0000</pubDate>
@@ -279,18 +277,6 @@ Books Poverty and Inequality with Complex Survey Data. With Djalma Pessoa and An
 Articles and other publications Panorama da distorção idade-série no Brasil. With UNICEF Brazil. Available here.
 Journal of Official Statistics. Listed as editorial collaborator in v.33, n.4, p. 1097. Available here.
 Análise de dados utilizando as libraries survey e convey do R.</description>
-    </item>
-    
-    <item>
-      <title>Censo da Educação Superior: gênero e cursos em 2016</title>
-      <link>https://guilhermejacob.github.io/2017/12/analise-censo-superior-genero-2016/</link>
-      <pubDate>Mon, 11 Dec 2017 00:00:00 +0000</pubDate>
-      
-      <guid>https://guilhermejacob.github.io/2017/12/analise-censo-superior-genero-2016/</guid>
-      <description>Encerrando1 as análises usando bases de dados públicas, vamos focar no ensino superior.
-Inicialmente, vamos explicar o que é o Censo da Educação Superior. Depois, vamos mostrar como montar as bases de dados. E, concluindo, vamos fazer um pequeno exercício de visualização de dados.
-Ah, e eu vou ser muito breve neste post, por motivos de: tenho que escrever um projeto de pesquisa (:
-Censo da Educação Superior O Censo da Educação Superior é conduzido anualmente pelo Inep.</description>
     </item>
     
     <item>

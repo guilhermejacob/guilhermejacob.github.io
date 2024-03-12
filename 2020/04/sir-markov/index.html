@@ -25,7 +25,7 @@
     <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.101.0 with theme Tranquilpeak 0.5.3-BETA">
+<meta name="generator" content="Hugo 0.115.3 with theme Tranquilpeak 0.5.3-BETA">
 <meta name="author" content="Guilherme Jacob">
 <meta name="keywords" content="">
 <meta name="description" content="É notório que há uma grande subnotificação de casos da COVID-19. Como se pode imaginar, testar as pessoas na porta do hospital enviesaria as amostras. Então, como fazer testagem em massa? Uma estratégia possível seria usar uma amostra aleatória. Usando uma ideia antiga desenvolvida pelo economista estatístico Robert Dorfman (Dorfman, 1943), é possível reduzir os custos da testagem. Por exemplo, em vez de testar imediatamente todas as pessoas de um domicílio, testamos o conjunto de pessoas.">
@@ -322,7 +322,7 @@
 
 
 
-<p>É notório que há uma grande subnotificação de casos da COVID-19. Como se pode imaginar, testar as pessoas na porta do hospital enviesaria as amostras. Então, como fazer testagem em massa? Uma estratégia possível seria usar uma amostra aleatória. Usando uma ideia antiga desenvolvida pelo <del>economista</del> estatístico Robert Dorfman <span class="citation">(<a href="#ref-dorfman1943" role="doc-biblioref">Dorfman, 1943</a>)</span>, é possível reduzir os custos da testagem. Por exemplo, em vez de testar imediatamente todas as pessoas de um domicílio, testamos o conjunto de pessoas. Se o resultado dessa amostra for positivos, testamos cada indivíduo. Se for negativo, ninguém possui a doença.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> Recentemente, <span class="citation"><a href="#ref-graubard2018" role="doc-biblioref">Hyun, Gastwirth e Graubard</a> (<a href="#ref-graubard2018" role="doc-biblioref">2018</a>)</span> mostraram como combinar esta estratégia com planos amostrais complexos.</p>
+<p>É notório que há uma grande subnotificação de casos da COVID-19. Como se pode imaginar, testar as pessoas na porta do hospital enviesaria as amostras. Então, como fazer testagem em massa? Uma estratégia possível seria usar uma amostra aleatória. Usando uma ideia antiga desenvolvida pelo <del>economista</del> estatístico Robert Dorfman <span class="citation">(<a href="#ref-dorfman1943">Dorfman, 1943</a>)</span>, é possível reduzir os custos da testagem. Por exemplo, em vez de testar imediatamente todas as pessoas de um domicílio, testamos o conjunto de pessoas. Se o resultado dessa amostra for positivos, testamos cada indivíduo. Se for negativo, ninguém possui a doença.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> Recentemente, <span class="citation">Hyun, Gastwirth e Graubard (<a href="#ref-graubard2018">2018</a>)</span> mostraram como combinar esta estratégia com planos amostrais complexos.</p>
 <p>Mas isso é assunto para outra conversa. Prometi ao meu orientador que não ia desviar do tema da minha dissertação, que trata de estimação de fluxos ocupacionais brutos. No entanto, a metodologia que uso para isso também é aplicável em uma perspectiva epidemiológica.</p>
 <div id="fluxos-líquidos-e-brutos" class="section level1">
 <h1>Fluxos líquidos e brutos</h1>
@@ -335,7 +335,7 @@
 <h1>Estimando fluxos brutos com não-resposta</h1>
 <p>Se temos uma amostra que acompanha os mesmos indivíduos em dois períodos, podemos estimar os fluxos. A princípio, com resposta completa, isso não é um grande problema: seria o mesmo que fazer uma tabela de contingência com a mesma variável medida em momentos distintos.</p>
 <p>Porém, na prática, as coisas são um pouco mais complicadas. Quando coletamos os dados, é possível que pessoas se recusem a participar da entrevista. E, em muitos casos, essa recusa em responder pode enviesar os resultados.</p>
-<p><span class="citation"><a href="#ref-stasny1987" role="doc-biblioref">Stasny</a> (<a href="#ref-stasny1987" role="doc-biblioref">1987</a>)</span> desenvolve um método para obter estimativas de fluxos brutos com não-resposta diferencial. Alguns anos mais tarde, <span class="citation"><a href="#ref-rojas2014a" role="doc-biblioref">Rojas, Trujillo e Silva</a> (<a href="#ref-rojas2014a" role="doc-biblioref">2014</a>)</span> mostram como aplicar esta metodologia usando planos amostrais complexos. nos dois casos, a aplicação envolve estimação de fluxos ocupacionais — i.e., quem perdeu emprego, quem saiu do desemprego, etc.</p>
+<p><span class="citation">Stasny (<a href="#ref-stasny1987">1987</a>)</span> desenvolve um método para obter estimativas de fluxos brutos com não-resposta diferencial. Alguns anos mais tarde, <span class="citation">Rojas, Trujillo e Silva (<a href="#ref-rojas2014a">2014</a>)</span> mostram como aplicar esta metodologia usando planos amostrais complexos. nos dois casos, a aplicação envolve estimação de fluxos ocupacionais — i.e., quem perdeu emprego, quem saiu do desemprego, etc.</p>
 <p>Mas o que isso tem a ver com epidemia?</p>
 </div>
 <div id="fluxos-brutos-em-modelos-epidemiológicos" class="section level1">
@@ -404,20 +404,20 @@ M = \begin{pmatrix} \mu_{ij} \end{pmatrix} =
 <h1>Referências</h1>
 <div id="refs" class="references csl-bib-body">
 <div id="ref-dorfman1943" class="csl-entry">
-DORFMAN, R. The Detection of Defective Members of Large Populations. <strong>Ann. Math. Statist.</strong>, v. 14, n. 4, p. 436–440, dez. 1943.
+DORFMAN, R. <a href="https://doi.org/10.1214/aoms/1177731363">The Detection of Defective Members of Large Populations</a>. <strong>Ann. Math. Statist.</strong>, v. 14, n. 4, p. 436–440, dez. 1943.
 </div>
 <div id="ref-graubard2018" class="csl-entry">
-HYUN, N.; GASTWIRTH, J. L.; GRAUBARD, B. I. Grouping methods for estimating the prevalences of rare traits from complex survey data that preserve confidentiality of respondents. <strong>Statistics in Medicine</strong>, v. 37, n. 13, p. 2174–2186, 2018.
+HYUN, N.; GASTWIRTH, J. L.; GRAUBARD, B. I. <a href="https://doi.org/10.1002/sim.7648">Grouping methods for estimating the prevalences of rare traits from complex survey data that preserve confidentiality of respondents</a>. <strong>Statistics in Medicine</strong>, v. 37, n. 13, p. 2174–2186, 2018.
 </div>
 <div id="ref-rojas2014a" class="csl-entry">
-ROJAS, H. A. G.; TRUJILLO, L.; SILVA, P. L. N. The estimation of gross flows in complex surveys with random nonresponse. <strong>Survey Methodology</strong>, v. 40, n. 2, p. 285–321, dez. 2014.
+ROJAS, H. A. G.; TRUJILLO, L.; SILVA, P. L. N. <a href="https://www150.statcan.gc.ca/n1/en/catalogue/12-001-X201400214113">The estimation of gross flows in complex surveys with random nonresponse</a>. <strong>Survey Methodology</strong>, v. 40, n. 2, p. 285–321, dez. 2014.
 </div>
 <div id="ref-stasny1987" class="csl-entry">
-STASNY, E. A. Some Markov-Chain Models for Nonresponse in Estimating Gross Labor Force Flows. <strong>Journal of Official Statistics</strong>, v. 3, n. 4, p. 359–373, 1987.
+STASNY, E. A. <a href="https://www.scb.se/contentassets/ca21efb41fee47d293bbee5bf7be7fb3/some-markov-chain-models-for-nonresponse-in-estimating-gross-labor-force-flows.pdf">Some Markov-Chain Models for Nonresponse in Estimating Gross Labor Force Flows</a>. <strong>Journal of Official Statistics</strong>, v. 3, n. 4, p. 359–373, 1987.
 </div>
 </div>
 </div>
-<div class="footnotes">
+<div class="footnotes footnotes-end-of-document">
 <hr />
 <ol>
 <li id="fn1"><p>Existe a possibilidade de falsos positivos e falsos negativos, mas tem como levar isso em consideração na estimação.<a href="#fnref1" class="footnote-back">↩︎</a></p></li>
@@ -516,7 +516,7 @@ STASNY, E. A. Some Markov-Chain Models for Nonresponse in Estimating Gross Labor
         </article>
         <footer id="footer" class="main-content-wrap">
   <span class="copyrights">
-    &copy; 2023 Guilherme Jacob. All Rights Reserved
+    &copy; 2024 Guilherme Jacob. All Rights Reserved
   </span>
 </footer>
 

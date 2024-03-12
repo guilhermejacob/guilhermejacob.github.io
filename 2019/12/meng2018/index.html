@@ -25,7 +25,7 @@
     <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.101.0 with theme Tranquilpeak 0.5.3-BETA">
+<meta name="generator" content="Hugo 0.115.3 with theme Tranquilpeak 0.5.3-BETA">
 <meta name="author" content="Guilherme Jacob">
 <meta name="keywords" content="">
 <meta name="description" content="Atualização (27/05/2020): o professor Pedro Nascimento Silva (ENCE/IBGE) fez uma apresentação sobre o mesmo tópico em 2019 para o Colóquio do IME-USP. O link para slides e vídeo da apresentação podem ser encontrados aqui.
@@ -325,30 +325,34 @@ Eu queria fechar esse ano com um problema que andei lendo a respeito no passado 
           <div class="post-content markdown">
             <div class="main-content-wrap">
               
+
+
+
+
 <div class="alert info ">
   <p><b>Atualização (27/05/2020):</b> o professor Pedro Nascimento Silva (ENCE/IBGE) fez uma apresentação sobre o mesmo tópico em 2019 para o Colóquio do IME-USP. O link para slides e vídeo da apresentação podem ser encontrados <a href="https://www.ime.usp.br/coloquio/2019/10/16/pedro-luis-do-nascimento-silva-ibge-ence/">aqui</a>.<br></p>
 </div>
 
-<p>Eu queria fechar esse ano com um problema que andei lendo a respeito no passado recente: inferência <del>descritiva</del> com amostras não-probabilísticas. Alguns dos textos mais interessantes são <span class="citation"><a href="#ref-smith1983" role="doc-biblioref">Smith</a> (<a href="#ref-smith1983" role="doc-biblioref">1983</a>)</span>, <span class="citation"><a href="#ref-meng2014" role="doc-biblioref">Meng</a> (<a href="#ref-meng2014" role="doc-biblioref">2014</a>)</span>, <span class="citation"><a href="#ref-elliott2017" role="doc-biblioref">Elliott e Valliant</a> (<a href="#ref-elliott2017" role="doc-biblioref">2017</a>)</span> e <span class="citation"><a href="#ref-meng2018" role="doc-biblioref">Meng</a> (<a href="#ref-meng2018" role="doc-biblioref">2018</a>)</span>. Vamos focar neste último. Ele tenta responder uma pergunta muito simples:<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a></p>
+<p>Eu queria fechar esse ano com um problema que andei lendo a respeito no passado recente: inferência <del>descritiva</del> com amostras não-probabilísticas. Alguns dos textos mais interessantes são <span class="citation">Smith (<a href="#ref-smith1983">1983</a>)</span>, <span class="citation">Meng (<a href="#ref-meng2014">2014</a>)</span>, <span class="citation">Elliott e Valliant (<a href="#ref-elliott2017">2017</a>)</span> e <span class="citation">Meng (<a href="#ref-meng2018">2018</a>)</span>. Vamos focar neste último. Ele tenta responder uma pergunta muito simples:<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a></p>
 <blockquote>
 <p>O que é melhor: uma amostra probabilística de 5% da população ou uma amostra não-probabilística de 80% da população?</p>
 </blockquote>
 <p>Esta pergunta é crucial e a resposta é importante para pensar sobre os cuidados no uso de registros administrativos e questionar o <strong>uso inadequado</strong> de <em>big data</em>.</p>
 <div id="a-identidade-fundamental-de-meng2018" class="section level1">
-<h1>A identidade fundamental de <span class="citation"><a href="#ref-meng2018" role="doc-biblioref">Meng</a> (<a href="#ref-meng2018" role="doc-biblioref">2018</a>)</span></h1>
-<p>Vamos partir do problema colocado em <span class="citation"><a href="#ref-meng2018" role="doc-biblioref">Meng</a> (<a href="#ref-meng2018" role="doc-biblioref">2018, p. 689</a>)</span>.</p>
+<h1>A identidade fundamental de <span class="citation">Meng (<a href="#ref-meng2018">2018</a>)</span></h1>
+<p>Vamos partir do problema colocado em <span class="citation">Meng (<a href="#ref-meng2018">2018, p. 689</a>)</span>.</p>
 <p>Considere uma população com <span class="math inline">\(N\)</span> indivíduos rotulados <span class="math inline">\(j \in J, J = \{ 1, \dots , N \}\)</span>. Os <span class="math inline">\(p\)</span> atributos destes indivíduos são registrados numa matriz <span class="math inline">\(\mathbf{X}\)</span> de dimensão <span class="math inline">\(N \times p\)</span>. Suponha que você queira estudar a média do atributo <span class="math inline">\(G \in \mathbf{X}\)</span> na população, dada por <span class="math inline">\(\overline{G}_N\)</span>. Dispomos, no entanto, da amostra <span class="math inline">\(I_n \subset \{ 1, \dots , N \}\)</span> de tamanho <span class="math inline">\(n\)</span> dos indivíduos da população. Vamos estimar a média populacional a partir do estimador da média amostral, definido abaixo:</p>
 <p><span class="math display">\[
 \overline{G}_n = \cfrac{ \sum_{j \in I_n} G_j }{ n } = \cfrac{ \sum_{j \in J} R_j G_j }{ \sum_{j \in J} R_j } .
 \]</span>
-onde <span class="math inline">\(R_j\)</span> é uma variável indicadora que representa a presença do indivíduo <span class="math inline">\(j\)</span> na amostra <span class="math inline">\(I_n\)</span>. Como diz <span class="citation"><a href="#ref-meng2018" role="doc-biblioref">Meng</a> (<a href="#ref-meng2018" role="doc-biblioref">2018, p. 689</a>)</span>, a variável <span class="math inline">\(R_j\)</span> representa o mecanismo de registro através do qual obtemos a amostra <span class="math inline">\(I_n\)</span>. O viés deste estimador é dado por:</p>
+onde <span class="math inline">\(R_j\)</span> é uma variável indicadora que representa a presença do indivíduo <span class="math inline">\(j\)</span> na amostra <span class="math inline">\(I_n\)</span>. Como diz <span class="citation">Meng (<a href="#ref-meng2018">2018, p. 689</a>)</span>, a variável <span class="math inline">\(R_j\)</span> representa o mecanismo de registro através do qual obtemos a amostra <span class="math inline">\(I_n\)</span>. O viés deste estimador é dado por:</p>
 <p><span class="math display">\[
 \begin{aligned}
-\overline{G}_n - \overline{G}_N &amp;= \cfrac{ \sum_{j \in U} R_j G_j }{ \sum_{j \in U} R_j } - \cfrac{ \sum_{j \in U} G_j }{ N } 
+\overline{G}_n - \overline{G}_N &amp;= \cfrac{ \sum_{j \in U} R_j G_j }{ \sum_{j \in U} R_j } - \cfrac{ \sum_{j \in U} G_j }{ N }
                                  = \cfrac{ \sum_{j \in U} R_j G_j }{ N } \bigg( \cfrac{ \sum_{j \in U} R_j }{ N } \bigg)^{-1} - \cfrac{ \sum_{j \in U} G_j }{ N } \\
                                 &amp;= \cfrac{ E_J \big( R_J G_J \big) }{ E_J \big( R_J \big) } - E_J \big( G_J \big) \\
                                 &amp;= \cfrac{ E_J \big( R_J G_J \big) - E_J \big( R_J \big) E_J \big( G_J \big) }{ E_J \big( R_J \big) } \\
-                                &amp;= \cfrac{ Cov \big( R_J , G_J \big) }{ E_J \big( R_J \big) } 
+                                &amp;= \cfrac{ Cov \big( R_J , G_J \big) }{ E_J \big( R_J \big) }
 \end{aligned}
 \]</span>
 e o fato de que <span class="math inline">\(E_J ( R_J ) = n / N = f\)</span>, onde <span class="math inline">\(f\)</span> é a fração amostral de <span class="math inline">\(I_n\)</span>, cuja variância é <span class="math inline">\(\sigma^2_R = f ( 1 - f)\)</span>. Usando estas informações e a fórmula da correlação, temos:
@@ -365,7 +369,7 @@ e o fato de que <span class="math inline">\(E_J ( R_J ) = n / N = f\)</span>, on
 EQM \big( \overline{G}_n \big) &amp;= \rho^2_{R,G} \times { \cfrac{ 1 - f }{ f } } \times \sigma^2_G = D_I \times D_O \times D_U,
 \end{aligned}
 \]</span>
-onde <span class="math inline">\(D_I\)</span> é o que Meng chama de <em>Data Defect Index</em>. <span class="citation"><a href="#ref-meng2018" role="doc-biblioref">Meng</a> (<a href="#ref-meng2018" role="doc-biblioref">2018</a>)</span> explora vários detalhes e insights desta fórmula, mas vamos manter o foco na nossa pergunta principal: escolher uma amostra probabilística de 5% da população ou uma amostra não-probabilística de 80% da população?</p>
+onde <span class="math inline">\(D_I\)</span> é o que Meng chama de <em>Data Defect Index</em>. <span class="citation">Meng (<a href="#ref-meng2018">2018</a>)</span> explora vários detalhes e insights desta fórmula, mas vamos manter o foco na nossa pergunta principal: escolher uma amostra probabilística de 5% da população ou uma amostra não-probabilística de 80% da população?</p>
 </div>
 <div id="comparando-amostras-aleatórias-simples-aas-e-amostras-não-probabilísticas-anp" class="section level1">
 <h1>Comparando Amostras Aleatórias Simples (AAS) e Amostras Não-Probabilísticas (ANP)</h1>
@@ -377,7 +381,7 @@ onde <span class="math inline">\(D_I\)</span> é o que Meng chama de <em>Data De
 \end{aligned}
 \]</span>
 Ou seja: sob AAS, o <span class="math inline">\(D_I\)</span> desaparece <em>muito rápido</em>. Por exemplo, se a população tem tamanho 11, teríamos <span class="math inline">\(D_I^{AAS} = 1/10\)</span>. Para uma população de tamanho 1001, , teríamos <span class="math inline">\(D_I^{AAS} = 0,001\)</span>.</p>
-<p>Para ajudar a entender o impacto comparativo disso, <span class="citation"><a href="#ref-meng2018" role="doc-biblioref">Meng</a> (<a href="#ref-meng2018" role="doc-biblioref">2018</a>)</span> propõe uma medida do “Efeito do Plano Amostral” (EPA) para . Coloco entre aspas porque, embora ela se pareça o EPA da teoria de amostragem, tem uma diferença importante: no contexto de amostragem, estamos comparando variâncias de planos amostrais alternativos em relação ao plano AAS; neste caso, estamos comparando o EQM de estimativas baseadas em um plano não probabilístico com a variância do plano AAS. Então, considerando <span class="math inline">\(D_O\)</span> e <span class="math inline">\(D_U\)</span> fixos, temos:</p>
+<p>Para ajudar a entender o impacto comparativo disso, <span class="citation">Meng (<a href="#ref-meng2018">2018</a>)</span> propõe uma medida do “Efeito do Plano Amostral” (EPA) para . Coloco entre aspas porque, embora ela se pareça o EPA da teoria de amostragem, tem uma diferença importante: no contexto de amostragem, estamos comparando variâncias de planos amostrais alternativos em relação ao plano AAS; neste caso, estamos comparando o EQM de estimativas baseadas em um plano não probabilístico com a variância do plano AAS. Então, considerando <span class="math inline">\(D_O\)</span> e <span class="math inline">\(D_U\)</span> fixos, temos:</p>
 <p><span class="math display">\[
 \begin{aligned}
 EPA = \cfrac{ E_R \big[ \overline{G}_n - \overline{G}_N ]^2 }{ Var_{AAS} ( G_n ) } = (N - 1) D_I.
@@ -388,7 +392,7 @@ A interpretação dela é a seguinte: considerando os mesmos estimadores, <span 
 <div id="big-data-versus-amostras-probabilísticas" class="section level1">
 <h1><em>Big data</em> versus Amostras Probabilísticas</h1>
 <p>A vantagem de registros administrativos e <em>big data</em> é o tamanho da sua cobertura. Precisamos fazer uma comparação mais realista. Passamos, então, a considerar os casos quando os <span class="math inline">\(f\)</span> são diferentes.</p>
-<p><span class="citation"><a href="#ref-meng2018" role="doc-biblioref">Meng</a> (<a href="#ref-meng2018" role="doc-biblioref">2018, p. 698</a>)</span> aplica o seguinte procedimento: iguala-se o EQM com a respectiva variância sob AAS. Vou usar um resultado diferente, mas que serve para mostrar a mesma ideia<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a>:</p>
+<p><span class="citation">Meng (<a href="#ref-meng2018">2018, p. 698</a>)</span> aplica o seguinte procedimento: iguala-se o EQM com a respectiva variância sob AAS. Vou usar um resultado diferente, mas que serve para mostrar a mesma ideia<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a>:</p>
 <p><span class="math display">\[
 D_O^{AAS} = (N - 1) D_I \times D_O^{ANP} \\
 f_{AAS} = \cfrac{1}{ (N - 1) ( 1/f_{ANP} - 1) D_I + 1 }.
@@ -420,41 +424,41 @@ Figure 2: Equivalência entre AAS e ANP para uma população de 200 milhões de 
 <h1>Comentários finais</h1>
 <p>Skinner e Wakefield alertam:</p>
 <blockquote>
-<p>[…] Há também um enorme interesse atual na avalanche de novas técnicas de análise de dados, que frequentemente têm suas origens em machine learning. No entanto, embora muitos desses métodos pareçam inebriantes, eles devem ser avaliados cuidadosamente em face das múltiplas fontes de não-cobertura e seleção. <strong>Se tais aspectos forem ignorados, existe uma possibilidade genuína que análises de big data produzirão grandes desastres inferenciais.</strong> <span class="citation">(<a href="#ref-skinner2017" role="doc-biblioref">Skinner e Wakefield, 2017, p. 174</a>, grifo nosso)</span></p>
+<p>[…] Há também um enorme interesse atual na avalanche de novas técnicas de análise de dados, que frequentemente têm suas origens em machine learning. No entanto, embora muitos desses métodos pareçam inebriantes, eles devem ser avaliados cuidadosamente em face das múltiplas fontes de não-cobertura e seleção. <strong>Se tais aspectos forem ignorados, existe uma possibilidade genuína que análises de big data produzirão grandes desastres inferenciais.</strong> <span class="citation">(<a href="#ref-skinner2017">Skinner e Wakefield, 2017, p. 174</a>, grifo nosso)</span></p>
 </blockquote>
-<p><span class="citation"><a href="#ref-meng2018" role="doc-biblioref">Meng</a> (<a href="#ref-meng2018" role="doc-biblioref">2018</a>)</span> mostra que este alerta se estende para técnicas “menos moderninhas”, como é o caso de uma média simples. Mas nem tudo é má notícia para as ANPs. Sob a hipótese de ausência de não-resposta, o viés na análise é explicado pelo <span class="math inline">\(D_I\)</span>, um componente associado à auto-seleção/qualidade da cobertura da ANP. Entretanto, na prática, não temos como calcular o <span class="math inline">\(D_I\)</span>. <span class="citation"><a href="#ref-graham2019" role="doc-biblioref">Kalton</a> (<a href="#ref-graham2019" role="doc-biblioref">2019, p. S25</a>)</span> aponta que “[o] valor de uma grande ANP pode ser maior para estimativas analíticas, cujos vieses podem ser menores, e para pequenos grupos que não podem ser amostrados eficientemente com os métodos padrões baseados no desenho”. <span class="citation"><a href="#ref-kim2019" role="doc-biblioref">Kim e Wang</a> (<a href="#ref-kim2019" role="doc-biblioref">2019</a>)</span> propõem duas técnicas para reduzir o viés de seleção: <em>amostragem inversa</em> e <em>survey data integration</em>. <span class="citation"><a href="#ref-elliott2017" role="doc-biblioref">Elliott e Valliant</a> (<a href="#ref-elliott2017" role="doc-biblioref">2017</a>)</span> exploram abordagens baseadas em quasi-aleatorização e modelos de superpopulação. <span class="citation"><a href="#ref-sen2019" role="doc-biblioref">Sen <em>et al.</em></a> (<a href="#ref-sen2019" role="doc-biblioref">2019</a>)</span> propõem um quadro conceitual análogo ao <em>Total Survey Error</em> para ajudar a entender as limitações e possibilidades do <em>big data</em>, que também se aplica para ANPs em geral. Mas isso é tema para outro post.</p>
+<p><span class="citation">Meng (<a href="#ref-meng2018">2018</a>)</span> mostra que este alerta se estende para técnicas “menos moderninhas”, como é o caso de uma média simples. Mas nem tudo é má notícia para as ANPs. Sob a hipótese de ausência de não-resposta, o viés na análise é explicado pelo <span class="math inline">\(D_I\)</span>, um componente associado à auto-seleção/qualidade da cobertura da ANP. Entretanto, na prática, não temos como calcular o <span class="math inline">\(D_I\)</span>. <span class="citation">Kalton (<a href="#ref-graham2019">2019, p. S25</a>)</span> aponta que “[o] valor de uma grande ANP pode ser maior para estimativas analíticas, cujos vieses podem ser menores, e para pequenos grupos que não podem ser amostrados eficientemente com os métodos padrões baseados no desenho”. <span class="citation">Kim e Wang (<a href="#ref-kim2019">2019</a>)</span> propõem duas técnicas para reduzir o viés de seleção: <em>amostragem inversa</em> e <em>survey data integration</em>. <span class="citation">Elliott e Valliant (<a href="#ref-elliott2017">2017</a>)</span> exploram abordagens baseadas em quasi-aleatorização e modelos de superpopulação. <span class="citation">Sen <em>et al.</em> (<a href="#ref-sen2019">2019</a>)</span> propõem um quadro conceitual análogo ao <em>Total Survey Error</em> para ajudar a entender as limitações e possibilidades do <em>big data</em>, que também se aplica para ANPs em geral. Mas isso é tema para outro post.</p>
 <p>O ponto central deste artigo é que, para estatística oficial, se os seus sistemas de registro administrativo não forem <strong>excelentes</strong>, uma amostra probabilística é <strong>muito melhor</strong>.</p>
 </div>
 <div id="referências" class="section level1 unnumbered">
 <h1>Referências</h1>
 <div id="refs" class="references csl-bib-body">
 <div id="ref-elliott2017" class="csl-entry">
-ELLIOTT, M. R.; VALLIANT, R. Inference for Nonprobability Samples. <strong>Statist. Sci.</strong>, v. 32, n. 2, p. 249–264, 2017.
+ELLIOTT, M. R.; VALLIANT, R. <a href="https://doi.org/10.1214/16-STS598">Inference for Nonprobability Samples</a>. <strong>Statist. Sci.</strong>, v. 32, n. 2, p. 249–264, 2017.
 </div>
 <div id="ref-graham2019" class="csl-entry">
-KALTON, G. Developments in Survey Research over the Past 60 Years: A Personal Perspective. <strong>International Statistical Review</strong>, v. 87, n. S1, p. S10–S30, 2019.
+KALTON, G. <a href="https://doi.org/10.1111/insr.12287">Developments in Survey Research over the Past 60 Years: A Personal Perspective</a>. <strong>International Statistical Review</strong>, v. 87, n. S1, p. S10–S30, 2019.
 </div>
 <div id="ref-kim2019" class="csl-entry">
-KIM, J. K.; WANG, Z. Sampling Techniques for Big Data Analysis. <strong>International Statistical Review</strong>, v. 87, n. S1, p. S177–S191, 2019.
+KIM, J. K.; WANG, Z. <a href="https://doi.org/10.1111/insr.12290">Sampling Techniques for Big Data Analysis</a>. <strong>International Statistical Review</strong>, v. 87, n. S1, p. S177–S191, 2019.
 </div>
 <div id="ref-meng2014" class="csl-entry">
-MENG, X.-L. A trio of inference problems that could winyou a Nobel Prize in statistics (if you help fund it). <em>In</em>: <strong>Past, Present, and Future of Statistical Science</strong>. [s.l.] <span>Chapman &amp; Hall/CRC</span>, 2014.
+MENG, X.-L. <a href="http://nrs.harvard.edu/urn-3:HUL.InstRepos:11718181">A trio of inference problems that could winyou a Nobel Prize in statistics (if you help fund it)</a>. <em>Em</em>: <strong>Past, Present, and Future of Statistical Science</strong>. [s.l.] <span>Chapman &amp; Hall/CRC</span>, 2014.
 </div>
 <div id="ref-meng2018" class="csl-entry">
-___. Statistical paradises and paradoxes in big data (I): Law of large populations, big data paradox, and the 2016 <span>US</span> presidential election. <strong>The Annals of Applied Statistics</strong>, v. 12, n. 2, p. 685–726, 2018.
+___. <a href="https://doi.org/10.1214/18-aoas1161sf">Statistical paradises and paradoxes in big data (I): Law of large populations, big data paradox, and the 2016 <span>US</span> presidential election</a>. <strong>The Annals of Applied Statistics</strong>, v. 12, n. 2, p. 685–726, 2018.
 </div>
 <div id="ref-sen2019" class="csl-entry">
-SEN, I. <em>et al.</em> <strong>A Total Error Framework for Digital Traces of Humans</strong>, 2019. Disponível em: &lt;<a href="http://arxiv.org/abs/1907.08228">http://arxiv.org/abs/1907.08228</a>&gt;
+SEN, I. <em>et al.</em> <strong>A Total Error Framework for Digital Traces of Humans</strong>, 2019. Disponível em: &lt;<a href="https://arxiv.org/abs/1907.08228">https://arxiv.org/abs/1907.08228</a>&gt;
 </div>
 <div id="ref-skinner2017" class="csl-entry">
-SKINNER, C.; WAKEFIELD, J. Introduction to the Design and Analysis of Complex Survey Data. <strong>Statist. Sci.</strong>, v. 32, n. 2, p. 165–175, 2017.
+SKINNER, C.; WAKEFIELD, J. <a href="https://doi.org/10.1214/17-STS614">Introduction to the Design and Analysis of Complex Survey Data</a>. <strong>Statist. Sci.</strong>, v. 32, n. 2, p. 165–175, 2017.
 </div>
 <div id="ref-smith1983" class="csl-entry">
-SMITH, T. M. F. On the Validity of Inferences from Non-random Sample. <strong>Journal of the Royal Statistical Society. Series A (General)</strong>, v. 146, n. 4, p. 394–403, 1983.
+SMITH, T. M. F. <a href="http://www.jstor.org/stable/2981454">On the Validity of Inferences from Non-random Sample</a>. <strong>Journal of the Royal Statistical Society. Series A (General)</strong>, v. 146, n. 4, p. 394–403, 1983.
 </div>
 </div>
 </div>
-<div class="footnotes">
+<div class="footnotes footnotes-end-of-document">
 <hr />
 <ol>
 <li id="fn1"><p>Você pode ver a uma palestra dele sobre esse tema <a href="https://www.youtube.com/watch?v=8YLdIDOMEZs">aqui</a>.<a href="#fnref1" class="footnote-back">↩︎</a></p></li>
@@ -552,7 +556,7 @@ SMITH, T. M. F. On the Validity of Inferences from Non-random Sample. <strong>Jo
         </article>
         <footer id="footer" class="main-content-wrap">
   <span class="copyrights">
-    &copy; 2023 Guilherme Jacob. All Rights Reserved
+    &copy; 2024 Guilherme Jacob. All Rights Reserved
   </span>
 </footer>
 

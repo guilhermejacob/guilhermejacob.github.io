@@ -7,7 +7,7 @@ datavault_dir <- "/home/guilherme/DataVault/DataSUS"
 # SIASUS
 
 # lê funções
-source("/home/guilherme/GitLab/src-website/content/private_scripts/siasus.R")
+source("/home/guilherme/GitHub/website-source/content/private_scripts/siasus.R")
 
 # unlink( file.path( output_dir , "siasus" ), recursive = TRUE)
 
@@ -19,7 +19,7 @@ monetdb_siasus( catalog = catalog_final , skipExist = FALSE )
 # SINAN
 
 # lê funções
-source("/home/guilherme/GitLab/src-website/content/private_scripts/sinan.R")
+source("/home/guilherme/GitHub/website-source/content/private_scripts/sinan.R")
 
 # unlink( file.path( output_dir , "sinan" ), recursive = TRUE)
 
@@ -31,7 +31,7 @@ monetdb_sinan( catalog = catalog_final , skipExist = FALSE )
 # PNI
 
 # lê funções
-source("/home/guilherme/GitLab/src-website/content/private_scripts/pni.R")
+source("/home/guilherme/GitHub/website-source/content/private_scripts/pni.R")
 
 # unlink( file.path( output_dir , "pni" ), recursive = TRUE)
 
@@ -43,7 +43,7 @@ monetdb_pni( catalog = catalog_final )
 # SIM, SINASC, SISPRENATAL
 
 # lê funções
-source("/home/guilherme/GitLab/src-website/content/private_scripts/datasus.R")
+source("/home/guilherme/GitHub/website-source/content/private_scripts/datasus.R")
 
 # unlink( file.path( output_dir , c( "sim" , "sinasc" , "sisprenatal" ) ) , recursive = TRUE)
 

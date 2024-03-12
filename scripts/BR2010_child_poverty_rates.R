@@ -1,7 +1,7 @@
 # estimate child poverty for brazilian municipalities
 
 # set parameters
-setwd("/Users/guilhermejacob/Documents/GitLab/src-website")
+setwd("/Users/guilhermejacob/Documents/GitHub/website-source")
 output_dir <- "/Volumes/Trabalho/Censo"
 poverty.line = 510/4
 subset.area = FALSE
