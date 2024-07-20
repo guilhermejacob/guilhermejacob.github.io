@@ -6,7 +6,17 @@
     <description>Recent content in Posts on Something Random</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>pt-br</language>
-    <lastBuildDate>Sat, 08 Jun 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://guilhermejacob.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 19 Jul 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://guilhermejacob.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Sobre a interpretação do intervalo de confiança na inferência frequentista</title>
+      <link>https://guilhermejacob.github.io/2024/07/index.pt-br/</link>
+      <pubDate>Fri, 19 Jul 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://guilhermejacob.github.io/2024/07/index.pt-br/</guid>
+      <description>Na semana passada, eu fui perguntar do professor Gustavo sobre uns cálculos relacionados a um modelo que estou tentando ajustar. Acabei ficando para a aula do primeiro semestre do mestrado/doutorado.
+A aula era sobre intervalos de confiança. E um dos pontos principais deste assunto é a interpretação do intervalo de confiança. A interpretação (frequentista) correta é que, sob amostragem repetida, 95% dos intervalos de confiança cobrem o parâmetro populacional. Ou seja: não é uma afirmação sobre o intervalo em si, mas sobre o método de construção do intervalo.</description>
+    </item>
+    
     <item>
       <title>Conferência de Estimação em Pequenas Áreas em Lima</title>
       <link>https://guilhermejacob.github.io/2024/06/sae-peru-2024/</link>
