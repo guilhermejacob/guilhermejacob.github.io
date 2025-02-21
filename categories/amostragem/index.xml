@@ -6,7 +6,19 @@
     <description>Recent content in Amostragem on Something Random</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>pt-br</language>
-    <lastBuildDate>Fri, 19 Jul 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://guilhermejacob.github.io/categories/amostragem/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 21 Feb 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://guilhermejacob.github.io/categories/amostragem/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Tamanhos de amostra para pesquisas eleitorais com margens de 2 p.p.</title>
+      <link>https://guilhermejacob.github.io/2025/02/ic-eleicao/</link>
+      <pubDate>Fri, 21 Feb 2025 00:00:00 +0000</pubDate>
+      
+      <guid>https://guilhermejacob.github.io/2025/02/ic-eleicao/</guid>
+      <description>Em todo período eleitoral, a gente vê gráficos com pontos e margens de erro de \(\pm\) 2 p.p. com nível de confiança de 95%. Estas de margens de erro são obtidas a partir do tamanho da amostra para determinado nível de confiança.
+A pergunta central é: será que eles funcionam?
+Bom, vamos investigar.
+Definição formal do problema Sejam \(n_1 , n_2 , \dots , n_K\) as contagens observadas em uma amostra de tamanho \(n\) extraída da distribuição multinomial com \(K\) categorias — i.</description>
+    </item>
+    
     <item>
       <title>Sobre a interpretação do intervalo de confiança na inferência frequentista</title>
       <link>https://guilhermejacob.github.io/2024/07/ic-freq/</link>

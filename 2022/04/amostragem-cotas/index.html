@@ -325,6 +325,10 @@
 
 
 
+
+
+
+
 <p>Ontem, eu estava vendo stories no Instagram e me deparei com uma aula com as palavras
 “Amostragem por cotas e pós-estratificação”.
 Isso me lembrou de um comentário que fiz na aula de amostragem da semana passada:
@@ -342,7 +346,7 @@ comum em pesquisas de opinião, marketing, etc.</p>
 \overline{Y}= \sum_{ q \in Q } \frac{N_q}{N} \overline{Y}_q
 \]</span></p>
 <p>Em outras palavras, a média populacional é uma média ponderada das médias (populacionais) dos grupos <span class="math inline">\(q \in Q\)</span>. Suponha que <span class="math inline">\(N_q\)</span> sejam quantidades conhecidas na população.
-Consequentemente, um estimador do tipo <span class="math inline">\(\widehat{\overline{Y}} = \sum_{ q \in Q } \frac{N_q}{N} \widehat{\overline{Y}_q}\)</span> é não-viesado se <span class="math inline">\(E \big[ \widehat{\overline{Y}_q} \big] =\overline{Y}_q\)</span>. Este resultado justifica o uso de amostragem estratificada, onde uma amostra <em>probabilística</em> é selecionada em cada grupo <span class="math inline">\(q\)</span>, garantindo a ausência de viés. No entanto, esse resultado não é suficiente para justificar o uso de amostragem por cotas.</p>
+Consequentemente, um estimador do tipo <span class="math inline">\(\widehat{\overline{Y}} = \sum_{ q \in Q } \frac{N_q}{N} \widehat{\overline{Y}_q}\)</span> é não-viesado se <span class="math inline">\(\text{E}\big[ \widehat{\overline{Y}_q} \big] =\overline{Y}_q\)</span>. Este resultado justifica o uso de amostragem estratificada, onde uma amostra <em>probabilística</em> é selecionada em cada grupo <span class="math inline">\(q\)</span>, garantindo a ausência de viés. No entanto, esse resultado não é suficiente para justificar o uso de amostragem por cotas.</p>
 <p>No caso de amostragem por cotas, uma amostragem não-probabilística é realizada com a restrição de que a distribuição amostral das categorias <span class="math inline">\(Q\)</span> seja idêntica à distribuição populacional. Ou seja, uma amostra de <span class="math inline">\(n\)</span> unidades é selecionada de tal forma que <span class="math inline">\(\frac{n_q}{n} = \frac{N_q}{N} , \forall q \in Q\)</span>. Em geral, o procedimento de estimação se baseia no estimador</p>
 <p><span class="math display">\[
 \widehat{\overline{Y}} = \sum_{ q \in Q } \frac{N_q}{N} \bar{y}_q , \quad \bar{y}_q = \frac{1}{n_q} \sum_{i \in s_q} y_{qi}
@@ -352,16 +356,16 @@ Consequentemente, um estimador do tipo <span class="math inline">\(\widehat{\ove
 \begin{aligned}
 \widehat{\overline{Y}} &amp;= \sum_{q \in Q} \frac{N_q}{N} \big( \overline{Y}_q + \bar{\epsilon}_q \big) = \sum_{q \in Q} \frac{N_q}{N} \overline{Y}_q + \sum_{q \in Q} \frac{N_q}{N} \bar{\epsilon}_q \\
 \therefore \widehat{\overline{Y}} &amp;= \overline{Y}+ \sum_{q \in Q} \frac{N_q}{N} \bar{\epsilon}_q \\
-\therefore E \bigg[ \widehat{\overline{Y}} - \overline{Y}\bigg] &amp;= E \bigg[ \overline{Y}+ \sum_{q \in Q} \frac{N_q}{N} \bar{\epsilon}_q \bigg] - \overline{Y}= E \bigg[ \sum_{q \in Q} \frac{N_q}{N} \bar{\epsilon}_q \bigg] \\
-\therefore E \bigg[ \widehat{\overline{Y}} - \overline{Y}\bigg] &amp;= \sum_{q \in Q} \frac{N_q}{N} E \big[ \bar{\epsilon}_q \big]
+\therefore \text{E}\bigg[ \widehat{\overline{Y}} - \overline{Y}\bigg] &amp;= \text{E}\bigg[ \overline{Y}+ \sum_{q \in Q} \frac{N_q}{N} \bar{\epsilon}_q \bigg] - \overline{Y}= \text{E}\bigg[ \sum_{q \in Q} \frac{N_q}{N} \bar{\epsilon}_q \bigg] \\
+\therefore \text{E}\bigg[ \widehat{\overline{Y}} - \overline{Y}\bigg] &amp;= \sum_{q \in Q} \frac{N_q}{N} \text{E}\big[ \bar{\epsilon}_q \big]
 \end{aligned}
 \]</span></p>
 <p>Porém,</p>
 <p><span class="math display">\[
 \begin{aligned}
-E \big[ \bar{\epsilon}_q \big] &amp;= E \bigg[ \frac{1}{n_q} \sum_{i \in \mathcal{U}_q} \mathbb{1}( i \in s_q ) \epsilon_{qi} \bigg] \\
-      &amp;= \frac{1}{n_q} \sum_{i \in \mathcal{U}_q} \epsilon_{qi} E \big[ \mathbb{1}( i \in s_q ) \big] \\
-      &amp;= \frac{1}{n_q} \sum_{i \in \mathcal{U}_q} \epsilon_{qi} \pi_{qi} , \quad \pi_{qi} = E \big[ \mathbb{1}( i \in s_q ) \big] . \\
+\text{E}\big[ \bar{\epsilon}_q \big] &amp;= \text{E}\bigg[ \frac{1}{n_q} \sum_{i \in \mathcal{U}_q} \mathbb{1}( i \in s_q ) \epsilon_{qi} \bigg] \\
+      &amp;= \frac{1}{n_q} \sum_{i \in \mathcal{U}_q} \epsilon_{qi} \text{E}\big[ \mathbb{1}( i \in s_q ) \big] \\
+      &amp;= \frac{1}{n_q} \sum_{i \in \mathcal{U}_q} \epsilon_{qi} \pi_{qi} , \quad \pi_{qi} = \text{E}\big[ \mathbb{1}( i \in s_q ) \big] . \\
 \end{aligned}
 \]</span></p>
 <p>onde <span class="math inline">\(\pi_{qi}\)</span> é a probabilidade de inclusão da unidade <span class="math inline">\(i\)</span> do grupo <span class="math inline">\(q\)</span> na amostra.</p>
@@ -369,42 +373,61 @@ E \big[ \bar{\epsilon}_q \big] &amp;= E \bigg[ \frac{1}{n_q} \sum_{i \in \mathca
 <p>Mesmo assim, na falta de escolha melhor, podemos utilizar a média amostral <span class="math inline">\(\bar{y}_q\)</span>. Ao fazer isso, temos</p>
 <p><span class="math display">\[
 \begin{aligned}
-E \bigg[ \widehat{\overline{Y}} - \overline{Y}\bigg] &amp;= \sum_{q \in Q} \frac{N_q}{N} E \big[ \bar{\epsilon}_q \big] \\
+\text{E}\bigg[ \widehat{\overline{Y}} - \overline{Y}\bigg] &amp;= \sum_{q \in Q} \frac{N_q}{N} \text{E}\big[ \bar{\epsilon}_q \big] \\
     &amp;= \sum_{q \in Q} \frac{N_q}{N} \bigg[ \frac{1}{n_q} \sum_{i \in \mathcal{U}_q} \epsilon_{qi} \pi_{qi} \bigg] \\
     &amp;= \sum_{q \in Q} \frac{N_q}{N} \bigg[ \frac{1}{n_q} \sum_{i \in \mathcal{U}_q} ( y_{qi} - \overline{Y}_q) \pi_{qi} \bigg] \\
     &amp;= \frac{N}{n} \sum_{q \in Q} \frac{N_q}{N} \bigg[ \frac{1}{N_q} \sum_{i \in \mathcal{U}_q} ( y_{qi} - \overline{Y}_q) \pi_{qi} \bigg] , \quad \frac{n_q}{n} = \frac{N_q}{N} \\
 \therefore
-E \bigg[ \widehat{\overline{Y}} - \overline{Y}\bigg]
+\text{E}\bigg[ \widehat{\overline{Y}} - \overline{Y}\bigg]
   &amp;= \frac{N}{n} \sum_{q \in Q} \frac{N_q}{N} \text{Cov}\big[ Y_q , \Pi_q \big]  .
 \end{aligned}
 \]</span></p>
 <p>Ou seja: o viés é uma função da média ponderada das covariâncias entre a variável <span class="math inline">\(y_{qi}\)</span> e as probabilidades de inclusão <span class="math inline">\(\pi_{qi}\)</span> nos grupos. A hipótese <span class="math inline">\(\text{Cov}\big[ Y_q , \Pi_q \big] = 0\)</span> é “amostragem não-informativa”. Em parte, isso justificaria usar testes de doadores de sangue para estimar prevalência de infecções assintomáticas por coronavírus.</p>
 <p>A princípio, é possível pensar em duas maneiras de diminuir esta covariância. A primeira seria fazendo <span class="math inline">\(\pi_{qi}\)</span> constante, mas isso é improvável em amostragens não-probabilísticas. A segunda seria reduzir a variância de <span class="math inline">\(\overline{Y}_q\)</span>: i.e., definir um conjunto de grupos <span class="math inline">\(Q\)</span> tal que a variância da característica de estudo seja a menor possível. Uma combinação das duas ideias também é possível, criando categorias que expliquem a variabilidade de <span class="math inline">\(Y\)</span> e fazendo o possível para que a variabilidade de <span class="math inline">\(\pi_{qi}\)</span> dentro de cada grupo seja a menor possível.</p>
-<p>Adicionalmente, como <span class="math inline">\(\Pi\)</span> é de ordem <span class="math inline">\(n/N\)</span>, temos <span class="math inline">\(\text{Cov}\big[ Y_q , \frac{N}{n} \Pi_q \big]\)</span>, de modo que o tamanho do viés se torna independente do tamanho da amostra. Ou seja: ao contrário da amostragem probabilística, aumentar o tamanho da amostra de uma amostra por cotas não reduz o viés!</p>
+<p>Adicionalmente, como <span class="math inline">\(\Pi\)</span> é de ordem <span class="math inline">\(n/N\)</span>, temos <span class="math inline">\(\text{Cov}\big[ Y_q , \frac{N}{n} \Pi_q \big]\)</span>, de modo que o tamanho do viés se torna praticamente independente do tamanho da amostra. Ou seja: ao contrário da amostragem probabilística, aumentar o tamanho da amostra de uma amostra por cotas não reduz o viés!</p>
+<div id="abordagem-baseada-em-pseudo-aleatorização" class="section level2">
+<h2>Abordagem baseada em pseudo-aleatorização</h2>
+<p>Uma abordagem possível envolve tentar estimar as probabilidades de inclusão na amostra <span class="citation">(<a href="#ref-wu2022">Wu, 2022, seç. 5</a>)</span>. Um método comum é o uso de estimadores de pós-estratificação, supondo que a probabilidade de inclusão é igual dentro de cada grupo da amostragem por cotas.
+Desta forma, fazendo <span class="math inline">\(\hat{\pi}_{qi} = \hat{\pi}_{q} = \frac{n_q}{N_q}\)</span>:</p>
+<p><span class="math display">\[
+\begin{aligned}
+\widehat{\overline{Y}}_{\text{IPW}}
+    &amp;= \frac{1}{N} \sum_{q \in Q } \sum_{q \in Q } \frac{y_{qi}}{\hat{\pi}_{qi}} \\
+    &amp;= \sum_{q \in Q } \sum_{q \in Q } \widehat{W}_q y_{qi} , \quad \widehat{W}_q = \frac{N_q}{N}
+\end{aligned}
+\]</span></p>
+<p>Quando os totais <span class="math inline">\(N_q\)</span> são desconhecidos, mas dispomos de estimativas <span class="math inline">\(\widehat{N}_q\)</span>, a incerteza desta estimativas influencia no processo de estimação<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a>.</p>
+<p>Este caso é menos relevante, no sentido que as variáveis que definem as cotas seriam as mesmas que definem os pós-estratos. Ainda assim, ela seria capaz de recompor parte da não-resposta, por exemplo.
+Ou se os totais usados para planejar o tamanho da amostra das cotas estiverem defasados em relação ao momento da estimação.</p>
+<p>O caso mais interessante seria corrigir por pós-estratos definidos por outras variáveis mais associadas ao processo de (auto-)seleção para a amostra. Por outro lado, este caso tem uma restrição importante: se o tamanho da amostra nos pós-estratos forem pequenos, a variabilidade dos pesos corrigidos aumenta a variância do estimador.<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a>
+Ou seja: temos um caso do <em>trade-off</em> viés-variância.</p>
+<p>Para entender este raciocínio, imagine que <span class="math inline">\(\hat{\pi}_{qi}\)</span> é uma função de uma variável categórica <span class="math inline">\(x\)</span>. Para cada categoria de <span class="math inline">\(x\)</span>, temos uma probabilidade de inclusão estimada <span class="math inline">\(\hat{\pi}_{qi}  = \hat{\pi}_{qi} ( x_{qi} )\)</span> constante.
+Assim, se as probabilidades de inclusão forem aproximadamente homogêneas dentro das categorias de <span class="math inline">\(x\)</span>, o viés se torna menor.</p>
+</div>
 <div id="abordagem-baseada-em-modelos" class="section level2">
 <h2>Abordagem baseada em modelos</h2>
-<p>Embora não seja a única abordagem possível, é interessante pensar em como a modelagem de superpopulação pode ajudar a resolver o problema. Reescrevendo a média populacional, temos:</p>
+<p>Também é interessante pensar em como a modelagem de superpopulação pode ajudar a resolver o problema. Reescrevendo a média populacional, temos:</p>
 <p><span class="math display">\[
 \begin{aligned}
 \overline{Y}&amp;= \frac{1}{N} \bigg( \sum_{i \in s} y_i + \sum_{i \in \mathcal{U}\setminus s } y_i \bigg) \\
               &amp;= \frac{1}{N} \bigg[ \sum_{i \in s} ( \hat{y}_i + e_i ) + \sum_{i \in \mathcal{U}\setminus s } ( \hat{y}_i + e_i ) ] \bigg] \\
 \therefore \overline{Y}&amp;= \frac{1}{N} \bigg( \sum_{i \in \mathcal{U}} \hat{y}_i + \sum_{i \in \mathcal{U}} e_i \bigg) \\
 \end{aligned}
-\]</span>
-Sob o modelo de superpopulação, a população é vista como uma amostra aleatória da distribuição</p>
+\]</span></p>
+<p>Sob um modelo de superpopulação, a variável <span class="math inline">\(Y\)</span> na população é vista como uma amostra aleatória de tamanho <span class="math inline">\(N\)</span> baseada em:<a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a></p>
 <p><span class="math display">\[
 y_{qi} = m_q + e_{i} ,  \quad e_i \sim \mathcal{N} ( 0 , \sigma_q^2 )
 \]</span></p>
 <p>Os estimadores de Gauss-Markov de <span class="math inline">\(m_q\)</span> são as médias amostrais <span class="math inline">\(\bar{y}_q\)</span>. Assim, o estimador preditivo toma a forma</p>
 <p><span class="math display">\[
 \begin{aligned}
-\widehat{\overline{Y}}_{Pred} &amp;= \frac{1}{N} \bigg( \sum_{i \in s } \bar{y}_q + \sum_{i \in \mathcal{U}\setminus s } \bar{y}_q \bigg) \\
+\widehat{\overline{Y}}_{\text{Pred}} &amp;= \frac{1}{N} \bigg( \sum_{i \in s } \bar{y}_q + \sum_{i \in \mathcal{U}\setminus s } \bar{y}_q \bigg) \\
 &amp;= \frac{1}{N} \bigg[ \sum_{q \in Q} ( N_q - n_q ) \hat{y}_q + \sum_{q \in Q} n_q \hat{y}_q \bigg] \\
 \therefore
-\widehat{\overline{Y}}_{Pred} &amp;= \sum_{q \in Q} \frac{ N_q }{N} \hat{y}_q \\
+\widehat{\overline{Y}}_{\text{Pred}} &amp;= \sum_{q \in Q} \frac{ N_q }{N} \hat{y}_q \\
 \end{aligned}
 \]</span></p>
-<p>A ausência de viés, <span class="math inline">\(E[ \widehat{\overline{Y}}_{Pred} - \overline{Y}] = 0\)</span>, resulta de <span class="math inline">\(E[ e_i ] = 0\)</span>. Além disso, <span class="math inline">\(\text{Var}\big[ \widehat{\overline{Y}}_{Pred} - \overline{Y}\big] = \sum_{q \in Q} \frac{ N_q^2 }{N^2} \bigg( 1 - \frac{n_q}{N_q} \bigg) \frac{\sigma^2_q}{n_q}\)</span>.</p>
+<p>A ausência de viés, <span class="math inline">\(\text{E}[ \widehat{\overline{Y}}_{\text{Pred}} - \overline{Y}] = 0\)</span>, resulta de <span class="math inline">\(\text{E}[ e_i ] = 0\)</span>. Além disso, <span class="math inline">\(\text{Var}\big[ \widehat{\overline{Y}}_{\text{Pred}} - \overline{Y}\big] = \sum_{q \in Q} \frac{ N_q^2 }{N^2} \bigg( 1 - \frac{n_q}{N_q} \bigg) \frac{\sigma^2_q}{n_q}\)</span>.</p>
 <p>Este estimador pode ser visto como uma forma <em>model-based</em> do estimador de pós-estratificação: se o modelo explica bem a distribuição de <span class="math inline">\(Y\)</span>, o erro da média amostral decorre das diferenças na distribuição dos grupos <span class="math inline">\(Q\)</span>. Ao utilizar o estimador de predição, usamos os totais conhecidos <span class="math inline">\(N_q\)</span> para reconstruir o valor esperado da distribuição populacional.</p>
 </div>
 </div>
@@ -416,19 +439,28 @@ relativamente recente. Pode ser que volte a escrever sobre isso no futuro. (Ou n
 </div>
 <div id="referências" class="section level1 unnumbered">
 <h1>Referências</h1>
-<div id="refs" class="references csl-bib-body">
+<div id="refs" class="references csl-bib-body" entry-spacing="0">
 <div id="ref-ardilly2006" class="csl-entry">
 ARDILLY, P. <strong>Les techniques de sondage</strong>. Paris: Technip, 2006.
 </div>
+<div id="ref-valliant2019" class="csl-entry">
+CHEN, J. K. T.; VALLIANT, R. L.; ELLIOTT, M. R. <a href="https://doi.org/10.1111/rssc.12327"><span>Calibrating Non-Probability Surveys to Estimated Control Totals Using LASSO, with An Application to Political Polling</span></a>. <strong>Journal of the Royal Statistical Society Series C: Applied Statistics</strong>, v. 68, n. 3, p. 657–681, abr. 2019.
+</div>
 <div id="ref-deville1991" class="csl-entry">
 DEVILLE, J.-C. <a href="https://www150.statcan.gc.ca/n1/en/catalogue/12-001-X199100214504">A Theory of Quota Surveys</a>. <strong>Survey Methodology</strong>, v. 17, n. 2, p. 163–181, 1991.
+</div>
+<div id="ref-wu2022" class="csl-entry">
+WU, C. <a href="http://www.statcan.gc.ca/pub/12-001-x/2022002/article/00002-eng.htm"><span>Statistical inference with non-probability survey samples</span></a>. <strong>Survey Methodology</strong>, v. 48, n. 2, p. 283–311, dez. 2022.
 </div>
 </div>
 </div>
 <div class="footnotes footnotes-end-of-document">
 <hr />
 <ol>
-<li id="fn1"><p>Tropecei nesse livro quando marquei um date na Gibert Joseph em 2017. Não me arrependo.<a href="#fnref1" class="footnote-back">↩︎</a></p></li>
+<li id="fn1"><p>Tropecei nesse livro em 2017, quando marquei um <em>date</em> na Gibert Joseph perto do <em>Quartier Latin</em>. Não me arrependo.<a href="#fnref1" class="footnote-back">↩︎</a></p></li>
+<li id="fn2"><p>E na escolha de variáveis de calibração; por exemplo, <span class="citation">Chen, Valliant e Elliott (<a href="#ref-valliant2019">2019</a>)</span>.<a href="#fnref2" class="footnote-back">↩︎</a></p></li>
+<li id="fn3"><p>Isso me leva a suspeitar que alguns resultados podem ser “muito calibrados”, especialmente quando a pesquisa é feita esporadicamente.<a href="#fnref3" class="footnote-back">↩︎</a></p></li>
+<li id="fn4"><p>Algumas suposições sobre o modelo podem ser simplificadas.<a href="#fnref4" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
 
@@ -512,7 +544,7 @@ DEVILLE, J.-C. <a href="https://www150.statcan.gc.ca/n1/en/catalogue/12-001-X199
         </article>
         <footer id="footer" class="main-content-wrap">
   <span class="copyrights">
-    &copy; 2024 Guilherme Jacob. All Rights Reserved
+    &copy; 2025 Guilherme Jacob. All Rights Reserved
   </span>
 </footer>
 
