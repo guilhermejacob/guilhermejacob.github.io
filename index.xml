@@ -6,7 +6,18 @@
     <description>Recent content on Something Random</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>pt-br</language>
-    <lastBuildDate>Fri, 21 Feb 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://guilhermejacob.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 03 Jul 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://guilhermejacob.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>O mistério do &#34;n-1&#34;</title>
+      <link>https://guilhermejacob.github.io/2025/07/variancia-n-1/</link>
+      <pubDate>Thu, 03 Jul 2025 00:00:00 +0000</pubDate>
+      
+      <guid>https://guilhermejacob.github.io/2025/07/variancia-n-1/</guid>
+      <description>As minhas quintas-feiras costumam ser divertidas. É o dia que eu almoço junto com os colegas de um dos trabalhos1 Hoje, um colega me perguntou:
+Por que tem \(n-1\) no denominador da variância amostral?
+Eu dei uma resposta curta, mas não muito boa: é o desconto da informação utilizada para estimar a média. Depois, lembrei de umas anotações sobre graus de liberdade; porém essa é muito resposta para outra coisa, e não resolve o problema.</description>
+    </item>
+    
     <item>
       <title>Tamanhos de amostra para pesquisas eleitorais com margens de 2 p.p.</title>
       <link>https://guilhermejacob.github.io/2025/02/ic-eleicao/</link>
