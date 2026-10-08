@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    
+    <script type="application/ld+json">
+
+{  
+  "@context":"http://schema.org",
+  "@type":"Website",
+  "@id":"https:\/\/guilhermejacob.github.io\/",
+  "author": {
+    "@type": "Person",
+    "name": "Guilherme Jacob",
+    
+    "image": "https://guilhermejacob.github.io/files/img_2502_recorte.jpg"
+    
+  },
+  "name":"Something Random",
+  "description":"\n\n\n\u003cp\u003eDepois do 1º turno, voltou o argumento de que “renda se correlaciona inversamente com voto no Lula”.\nA gente tem os resultados por município e a PNADC, então dá para olhar. A pergunta central é: \u003cstrong\u003eo que esses dados realmente permitem concluir?\u003c\/strong\u003e\u003c\/p\u003e\n\u003cp\u003eSpoiler: a correlação existe, mas ela é entre \u003cem\u003eáreas\u003c\/em\u003e, e isso não diz o que acontece entre \u003cem\u003epessoas\u003c\/em\u003e.\u003c\/p\u003e\n",
+  "url":"https:\/\/guilhermejacob.github.io\/2026\/10\/renda-voto-inferencia-ecologica\/",
+  "keywords":"[]"
+}
+
+</script>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.115.3 with theme Tranquilpeak 0.5.3-BETA">
+<meta name="author" content="Guilherme Jacob">
+<meta name="keywords" content="">
+<meta name="description" content="
+
+
+Depois do 1º turno, voltou o argumento de que “renda se correlaciona inversamente com voto no Lula”.
+A gente tem os resultados por município e a PNADC, então dá para olhar. A pergunta central é: o que esses dados realmente permitem concluir?
+Spoiler: a correlação existe, mas ela é entre áreas, e isso não diz o que acontece entre pessoas.
+">
+
+
+<meta property="og:description" content="
+
+
+Depois do 1º turno, voltou o argumento de que “renda se correlaciona inversamente com voto no Lula”.
+A gente tem os resultados por município e a PNADC, então dá para olhar. A pergunta central é: o que esses dados realmente permitem concluir?
+Spoiler: a correlação existe, mas ela é entre áreas, e isso não diz o que acontece entre pessoas.
+">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Renda e voto no 1º turno de 2026: o que dá (e o que não dá) para dizer com dados agregados">
+<meta name="twitter:title" content="Renda e voto no 1º turno de 2026: o que dá (e o que não dá) para dizer com dados agregados">
+<meta property="og:url" content="https://guilhermejacob.github.io/2026/10/renda-voto-inferencia-ecologica/">
+<meta property="twitter:url" content="https://guilhermejacob.github.io/2026/10/renda-voto-inferencia-ecologica/">
+<meta property="og:site_name" content="Something Random">
+<meta property="og:description" content="
+
+
+Depois do 1º turno, voltou o argumento de que “renda se correlaciona inversamente com voto no Lula”.
+A gente tem os resultados por município e a PNADC, então dá para olhar. A pergunta central é: o que esses dados realmente permitem concluir?
+Spoiler: a correlação existe, mas ela é entre áreas, e isso não diz o que acontece entre pessoas.
+">
+<meta name="twitter:description" content="
+
+
+Depois do 1º turno, voltou o argumento de que “renda se correlaciona inversamente com voto no Lula”.
+A gente tem os resultados por município e a PNADC, então dá para olhar. A pergunta central é: o que esses dados realmente permitem concluir?
+Spoiler: a correlação existe, mas ela é entre áreas, e isso não diz o que acontece entre pessoas.
+">
+<meta property="og:locale" content="pt-br">
+
+  
+    <meta property="article:published_time" content="2026-10-07T00:00:00">
+  
+  
+    <meta property="article:modified_time" content="2026-10-07T00:00:00">
+  
+  
+  
+    
+      <meta property="article:section" content="Inferência Ecológica">
+    
+      <meta property="article:section" content="Teoria">
+    
+  
+  
+    
+      <meta property="article:tag" content="eleições 2026">
+    
+      <meta property="article:tag" content="PNADC">
+    
+      <meta property="article:tag" content="falácia ecológica">
+    
+      <meta property="article:tag" content="R">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+
+  <meta property="og:image" content="https://guilhermejacob.github.io/files/img_2502_recorte.jpg">
+  <meta property="twitter:image" content="https://guilhermejacob.github.io/files/img_2502_recorte.jpg">
+
+
+
+
+
+  <meta property="og:image" content="https://guilhermejacob.github.io/img/posts/renda-voto-thumb.png">
+  <meta property="twitter:image" content="https://guilhermejacob.github.io/img/posts/renda-voto-thumb.png">
+
+
+    <title>Renda e voto no 1º turno de 2026: o que dá (e o que não dá) para dizer com dados agregados</title>
+
+    <link rel="icon" href="https://guilhermejacob.github.io/favicon.png">
+    
+
+    
+
+    <link rel="canonical" href="https://guilhermejacob.github.io/2026/10/renda-voto-inferencia-ecologica/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha512-H9jrZiiopUdsLpg94A333EfumgUBpO9MdbxStdeITo+KEIMaNfHNvwyjjDJb+ERPaRS6DpyRlKbvPUasNItRyw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    
+    
+    <link rel="stylesheet" href="https://guilhermejacob.github.io/css/style-h6ccsoet3mzkbb0wngshlfbaweimexgqcxj0h5hu4h82olsdzz6wmqdkajm.min.css" />
+    
+    
+
+    
+      
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="4">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://guilhermejacob.github.io/" aria-label="Vá para a página inicial">Something Random</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://guilhermejacob.github.io/#about" aria-label="Abra o link: /#about">
+    
+    
+    
+      
+        <img class="header-picture" src="https://guilhermejacob.github.io/files/img_2502_recorte.jpg" alt="Foto do autor" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="4">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://guilhermejacob.github.io/#about" aria-label="Leia mais sobre o autor">
+          <img class="sidebar-profile-picture" src="https://guilhermejacob.github.io/files/img_2502_recorte.jpg" alt="Foto do autor" />
+        </a>
+        <h4 class="sidebar-profile-name">Guilherme Jacob</h4>
+        
+          <h5 class="sidebar-profile-bio">Manauara.<br>Doutor em População, Território e Estatísticas Públicas (ENCE/IBGE).<br>Bacharel em Direito e Economia.</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://guilhermejacob.github.io/" title="Home">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">Início</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://guilhermejacob.github.io/#about" title="About">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+      
+      <span class="sidebar-button-desc">Sobre</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://guilhermejacob.github.io/tags" title="Tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">Tags</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://guilhermejacob.github.io/categories" title="Categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+      
+      <span class="sidebar-button-desc">Categorias</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://guilhermejacob.github.io/archives" title="Archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">Arquivo</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://guilhermejacob.github.io/files/cv_english.pdf" title="CV">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-briefcase"></i>
+      
+      <span class="sidebar-button-desc">CV</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://guilhermejacob.github.io/research" title="Pesquisa">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-code"></i>
+      
+      <span class="sidebar-button-desc">Pesquisa</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="mailto:guilhermejacob91@gmail.com" target="_blank" rel="noopener" title="Contato">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-envelope-o"></i>
+      
+      <span class="sidebar-button-desc">Contato</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/guilhermejacob" target="_blank" rel="noopener" title="GitHub">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="http://stackoverflow.com/users/6419956/guilherme-jacob" target="_blank" rel="noopener" title="Stack Overflow">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-stack-overflow"></i>
+      
+      <span class="sidebar-button-desc">Stack Overflow</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://www.instagram.com/guilhermejacob9" target="_blank" rel="noopener" title="Instagram">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-instagram"></i>
+      
+      <span class="sidebar-button-desc">Instagram</span>
+    </a>
+  </li>
+
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+	<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+	<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      <div id="main" data-behavior="4"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" id="top">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title">
+      Renda e voto no 1º turno de 2026: o que dá (e o que não dá) para dizer com dados agregados
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time datetime="2026-10-07T00:00:00Z">
+        
+  
+  
+  
+  
+    07/10/2026
+  
+
+      </time>
+    
+    
+  
+  
+    <span>em</span>
+    
+      <a class="category-link" href="https://guilhermejacob.github.io/categories/infer%c3%aancia-ecol%c3%b3gica">Inferência Ecológica</a>, 
+    
+      <a class="category-link" href="https://guilhermejacob.github.io/categories/teoria">Teoria</a>
+    
+  
+
+  </div>
+
+</div>
+          
+          <div class="post-content markdown">
+            <div class="main-content-wrap">
+              <p>Depois do 1º turno, voltou o argumento de que “renda se correlaciona inversamente com voto no Lula”.
+A gente tem os resultados por município e a PNADC, então dá para olhar. A pergunta central é: <strong>o que esses dados realmente permitem concluir?</strong></p>
+<p>Spoiler: a correlação existe, mas ela é entre <em>áreas</em>, e isso não diz o que acontece entre <em>pessoas</em>.</p>
+<div id="resultados-observáveis" class="section level2">
+<h2>Resultados observáveis</h2>
+<ul>
+<li><strong>Votos:</strong> resultado do 1º turno de 2026 para presidente (4 de outubro) por município, a partir dos arquivos JSON de divulgação do TSE. Foram 5.571 municípios com estrato; os votos do exterior ficaram de fora. Boa Esperança do Norte (MT), município novo desmembrado de Sorriso que não aparece na tabela de estratos, foi atribuído ao estrato de Sorriso.</li>
+<li><strong>Estratos:</strong> os 146 estratos geográficos da PNADC. Cada município pertence a um estrato, e um estrato pode ter de 1 a 186 municípios.</li>
+<li><strong>Renda:</strong> renda domiciliar per capita média de cada estrato, estimada com a PNADC 2025 (1ª visita).</li>
+</ul>
+<p>Todas as porcentagens abaixo são sobre <strong>votos válidos</strong>. Abstenções, brancos e nulos ficam de fora, e eles somam de 17% a 30% do eleitorado dependendo do estrato.</p>
+</div>
+<div id="o-que-aparece-nos-estratos" class="section level2">
+<h2>O que aparece nos estratos</h2>
+<p>Se a gente regride o percentual de votos válidos de Lula na renda do estrato (em log, ponderando pelos votos válidos), a inclinação é de <strong>−15,9 pontos percentuais a cada duplicação da renda</strong> (IC de 95%: −21,8 a −10,1). Para Flávio Bolsonaro, o sinal é o oposto: +12,7. A correlação simples entre log da renda e voto em Lula é −0,67.</p>
+<p>Ou seja: estratos mais ricos votaram menos em Lula. Se a história acabasse aqui, o argumento estaria confirmado.</p>
+</div>
+<div id="só-que-isso-é-em-boa-parte-geografia" class="section level2">
+<h2>Só que isso é, em boa parte, geografia</h2>
+<p>Os estratos mais pobres estão quase todos no Norte e no Nordeste, onde Lula é mais forte. Se a gente comparar estratos <strong>dentro da mesma região</strong>, a história muda bastante:</p>
+<table>
+<colgroup>
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Modelo</th>
+<th>Lula (p.p. por duplicação da renda)</th>
+<th>Flávio (p.p. por duplicação da renda)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Todos os estratos</td>
+<td>−15,9 (−21,8 a −10,1)</td>
+<td>+12,7 (+6,9 a +18,6)</td>
+</tr>
+<tr class="even">
+<td>Dentro da região (5 regiões)</td>
+<td>−3,6 (−9,2 a +2,0)</td>
+<td>+1,3 (−4,4 a +7,1)</td>
+</tr>
+<tr class="odd">
+<td>Dentro da UF (27 UFs)</td>
+<td>−2,9 (−8,8 a +2,9)</td>
+<td>+0,5 (−5,4 a +6,4)</td>
+</tr>
+</tbody>
+</table>
+<p>O efeito encolhe para pouco mais de um quinto do original, e o intervalo passa a incluir o zero. No gráfico abaixo, a reta preta é a de todos os estratos e as cinzas são as de cada região: bem mais planas, e no Sudeste, Centro-Oeste e Sul até ligeiramente positivas.</p>
+<div class="float">
+<img src="renda-voto-estratos.png" alt="Renda do estrato e voto em Lula, geral e dentro de cada região" />
+<div class="figcaption">Renda do estrato e voto em Lula, geral e dentro de cada região</div>
+</div>
+</div>
+<div id="e-a-relação-não-é-uma-reta" class="section level2">
+<h2>E a relação não é uma reta</h2>
+<p>Quando a gente separa os estratos em terços de renda, o sinal muda:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Terço de renda</th>
+<th>Faixa (R$)</th>
+<th>Inclinação (p.p. por duplicação)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Menor</td>
+<td>723 a 1.357</td>
+<td>−31,9 (EP 9,3)</td>
+</tr>
+<tr class="even">
+<td>Médio</td>
+<td>1.366 a 2.048</td>
+<td>−33,1 (EP 8,4)</td>
+</tr>
+<tr class="odd">
+<td>Maior</td>
+<td>2.050 a 4.674</td>
+<td>+9,2 (EP 4,4)</td>
+</tr>
+</tbody>
+</table>
+<p>Um ajuste quadrático confirma o formato de U (termo quadrático de 15,9, EP 2,6, com mínimo perto de R$ 2.550), e ele continua aparecendo com efeito fixo de região (11,2, EP 1,9). Por região e UF, o sinal negativo domina no Norte (−21,3) e no Nordeste (−12,1). No Sudeste, Centro-Oeste e Sul as inclinações são positivas, mas os intervalos incluem o zero.</p>
+<div class="float">
+<img src="niveis-renda-voto.png" alt="Inclinação por faixa de renda, região e UF" />
+<div class="figcaption">Inclinação por faixa de renda, região e UF</div>
+</div>
+<p>Uma ressalva importante: os terços de renda são muito regionais. O terço mais pobre tem 46 de 49 estratos no Norte ou Nordeste, e o mais rico tem 34 de 49 no Sul ou Sudeste. Então “faixa de renda” e “região” andam juntas, e com 146 estratos é difícil separar as duas coisas.</p>
+</div>
+<div id="o-que-isso-não-mostra" class="section level2">
+<h2>O que isso NÃO mostra</h2>
+<p>A pergunta que interessa a quem faz o argumento é sobre <strong>pessoas</strong>: <em>eleitores mais pobres votam mais no Lula?</em> Os dados acima respondem outra: <em>áreas mais pobres votam mais no Lula?</em> Passar de uma para outra é a <strong>falácia ecológica</strong> (Robinson, 1950).</p>
+<p>Um exemplo numérico inventado, com a conta feita na seção de matemática logo abaixo, mostra que os dois enunciados podem ser verdadeiros ao mesmo tempo: o estrato mais rico vota <em>menos</em> em Lula, mas dentro de cada estrato quem tem renda maior vota <em>mais</em>. Esse padrão de sinais invertidos entre os níveis não é só um exemplo de livro: Gelman e coautores (2008) documentam, nos Estados Unidos, que os estados mais ricos votam mais nos Democratas, enquanto dentro de cada estado os eleitores mais ricos votam mais nos Republicanos.</p>
+<p>Com isso, os mesmos dados são compatíveis com uma hipótese oposta à que circula: “dentro de cada lugar, eleitores de renda maior votam mais em Lula, e a relação entre áreas vem só da região”. Não estou dizendo que ela é verdadeira, só que estes dados não conseguem rejeitá-la.</p>
+<p>Além disso, há limites específicos desta análise:</p>
+<div class="float">
+<img src="limites-estratos.png" alt="Quatro limites da análise por estrato" />
+<div class="figcaption">Quatro limites da análise por estrato</div>
+</div>
+<ul>
+<li><strong>Perda de informação.</strong> Os estratos explicam cerca de 82% da variância do voto municipal em Lula, mas 90% dos municípios ficam entre −10 e +15 pontos do valor do seu estrato.</li>
+<li><strong>Poucas unidades.</strong> São só 146 estratos, 36 deles com até 5 municípios e 29 com um único município (as 27 capitais mais Santana, no Amapá, e o entorno de Teresina, no Maranhão). Isso dá pouco poder para qualquer regressão ou inferência ecológica.</li>
+<li><strong>Votos válidos não são o eleitorado.</strong> A abstenção pode produzir uma associação com renda que não vem de quem vota em quem.</li>
+<li><strong>Renda não varia dentro do estrato.</strong> Todo município de um estrato recebe a mesma renda, então não há como estimar uma inclinação dentro do estrato, que é justamente onde a falácia ecológica aparece.</li>
+</ul>
+</div>
+<div id="quantificando-a-perda-de-informação" class="section level2">
+<h2>Quantificando a perda de informação</h2>
+<p>Esta seção segue o capítulo de Steel, Beh e Chambers (2004), que mede quanta informação sobre relações individuais se perde quando só observamos agregados.
+Uso o caso mais simples, que já mostra o essencial.</p>
+<div id="o-problema-22-em-cada-unidade" class="section level3">
+<h3>O problema 2×2 em cada unidade</h3>
+<p>Em cada unidade <span class="math inline">\(i\)</span> (município ou estrato), classifique os eleitores por <span class="math inline">\(X\)</span> (1 = renda alta, 0 = renda baixa) e por <span class="math inline">\(Y\)</span> (1 = votou em Lula, 0 = não). Com microdados, veríamos esta tabela:</p>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th><span class="math inline">\(Y=1\)</span></th>
+<th><span class="math inline">\(Y=0\)</span></th>
+<th>Total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(X=1\)</span></td>
+<td><span class="math inline">\(n_{11i}\)</span></td>
+<td><span class="math inline">\(n_{12i}\)</span></td>
+<td><span class="math inline">\(n_{1\bullet i}\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(X=0\)</span></td>
+<td><span class="math inline">\(n_{21i}\)</span></td>
+<td><span class="math inline">\(n_{22i}\)</span></td>
+<td><span class="math inline">\(n_{2\bullet i}\)</span></td>
+</tr>
+<tr class="odd">
+<td>Total</td>
+<td><span class="math inline">\(n_{\bullet 1i}\)</span></td>
+<td><span class="math inline">\(n_{\bullet 2i}\)</span></td>
+<td><span class="math inline">\(n_i\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>Com dados agregados, só enxergamos as margens: quantos eleitores há em cada grupo de renda (<span class="math inline">\(n_{1\bullet i}\)</span> e <span class="math inline">\(n_{2\bullet i}\)</span>) e quantos votos Lula teve (<span class="math inline">\(n_{\bullet 1i}\)</span>). As células <span class="math inline">\(n_{11i}\)</span> e <span class="math inline">\(n_{21i}\)</span> ficam escondidas. O que queremos conhecer, em cada unidade, é a probabilidade de votar em Lula dentro de cada grupo de renda,</p>
+<p><span class="math display">\[ \pi_{1i} = P(Y=1 \mid X=1), \qquad \pi_{2i} = P(Y=1 \mid X=0), \]</span></p>
+<p>e, para o debate, a diferença <span class="math inline">\(\pi_{1i} - \pi_{2i}\)</span>. Condicionando nas margens de linha, <span class="math inline">\(n_{11i} \sim \text{Bin}(n_{1\bullet i}, \pi_{1i})\)</span> e <span class="math inline">\(n_{21i} \sim \text{Bin}(n_{2\bullet i}, \pi_{2i})\)</span>.</p>
+</div>
+<div id="uma-equação-duas-incógnitas-a-linha-de-tomografia" class="section level3">
+<h3>Uma equação, duas incógnitas: a linha de tomografia</h3>
+<p>O total de votos em Lula é <span class="math inline">\(n_{\bullet 1i} = n_{11i} + n_{21i}\)</span>, com valor esperado <span class="math inline">\(n_{1\bullet i}\pi_{1i} + n_{2\bullet i}\pi_{2i}\)</span>. Igualando ao observado, obtemos a <em>linha de tomografia</em> (King, 1997; equação 2.12 do capítulo):</p>
+<p><span class="math display">\[ \pi_{2i} = \frac{n_{\bullet 1i}}{n_{2\bullet i}} - \frac{n_{1\bullet i}}{n_{2\bullet i}}\,\pi_{1i}. \]</span></p>
+<p>Cada unidade dá uma observação (<span class="math inline">\(n_{\bullet 1i}\)</span>) para dois parâmetros. Com <span class="math inline">\(p\)</span> unidades, são <span class="math inline">\(p\)</span> observações para <span class="math inline">\(2p\)</span> parâmetros: sem hipóteses adicionais, os dados só dizem que <span class="math inline">\((\pi_{1i}, \pi_{2i})\)</span> está sobre uma reta. Os limites de Duncan e Davis (1953) são os pontos em que essa reta entra e sai do quadrado <span class="math inline">\([0,1]^2\)</span>, e são tudo o que cada unidade garante sozinha. Os autores mostram ainda que a verossimilhança é uma crista ao longo da reta: o mínimo está na independência (<span class="math inline">\(\pi_{1i} = \pi_{2i}\)</span>) e o máximo, numa das pontas.</p>
+</div>
+<div id="quanto-se-perde-o-princípio-da-informação-perdida" class="section level3">
+<h3>Quanto se perde: o princípio da informação perdida</h3>
+<p>Seja <span class="math inline">\(\phi\)</span> o vetor de parâmetros, <span class="math inline">\(d^{(1)}\)</span> os dados individuais e <span class="math inline">\(d^{(2)}\)</span> os agregados. O escore e a informação observada dos agregados se relacionam com os individuais por (Breckling et al., 1994; equações 2.5 e 2.6 do capítulo)</p>
+<p><span class="math display">\[ \text{sc}^{(2)}(\phi) = E\left[\text{sc}^{(1)}(\phi) \mid d^{(2)}\right], \qquad \text{info}^{(2)}(\phi) = E\left[\text{info}^{(1)}(\phi) \mid d^{(2)}\right] - \text{Var}\left[\text{sc}^{(1)}(\phi) \mid d^{(2)}\right]. \]</span></p>
+<p>O último termo é a perda de informação: a variância do escore individual dado o que vemos nos agregados. Nas tabelas 2×2, em cada unidade essa matriz tem posto 1 e correlação −1 entre as duas componentes (é a linha de tomografia reaparecendo). O que se perde é a capacidade de separar <span class="math inline">\(\pi_{1i}\)</span> de <span class="math inline">\(\pi_{2i}\)</span>, e por isso a diferença <span class="math inline">\(\pi_1 - \pi_2\)</span> é a quantidade mais prejudicada.</p>
+</div>
+<div id="com-homogeneidade-o-parâmetro-é-identificado-e-a-perda-tem-fórmula" class="section level3">
+<h3>Com homogeneidade o parâmetro é identificado, e a perda tem fórmula</h3>
+<p>A saída usual é supor <span class="math inline">\(\pi_{1i} = \pi_1\)</span> e <span class="math inline">\(\pi_{2i} = \pi_2\)</span> em todas as unidades (homogeneidade). É o que está por trás da regressão ecológica de Goodman (1953), <span class="math inline">\(T_i = \pi_2 + (\pi_1 - \pi_2)X_i + e_i\)</span>, em que <span class="math inline">\(T_i = n_{\bullet 1i}/n_i\)</span> é a fração de votos em Lula e <span class="math inline">\(X_i = n_{1\bullet i}/n_i\)</span> a fração de eleitores de renda alta. Agora são 2 parâmetros e <span class="math inline">\(p\)</span> observações, e dá para estimar.</p>
+<p>Com a aproximação normal para <span class="math inline">\(n_{\bullet 1i}\)</span>, as variâncias do estimador de <span class="math inline">\(\pi_1 - \pi_2\)</span> com microdados e só com agregados são</p>
+<p><span class="math display">\[ \text{Var}^{(1)} = \frac{\pi_1(1-\pi_1)}{N\bar X} + \frac{\pi_2(1-\pi_2)}{N(1-\bar X)}, \qquad \text{Var}^{(2)} \approx \frac{\bar X\,\pi_1(1-\pi_1) + (1-\bar X)\,\pi_2(1-\pi_2)}{N\,\text{Var}(X)}, \]</span></p>
+<p>onde <span class="math inline">\(N\)</span> é o total de eleitores, <span class="math inline">\(\bar X\)</span> a fração média de renda alta e <span class="math inline">\(\text{Var}(X)\)</span> a variância de <span class="math inline">\(X_i\)</span> entre as unidades, ponderada pelo tamanho. Se as variâncias binomiais dos dois grupos são parecidas, a razão fica</p>
+<p><span class="math display">\[ \frac{\text{Var}^{(2)}}{\text{Var}^{(1)}} \approx \frac{\bar X(1-\bar X)}{\text{Var}(X)} = \frac{1}{\rho}, \qquad \rho = \frac{\text{Var}(X_i)}{\bar X(1-\bar X)}. \]</span></p>
+<p>O número <span class="math inline">\(\rho\)</span> é a fração da variância de <span class="math inline">\(X\)</span> que está <em>entre</em> unidades. Os agregados valem, grosso modo, <span class="math inline">\(\rho N\)</span> microdados: quanto mais parecidas as unidades entre si na composição, menos informação sobrevive. Essas duas fórmulas são minhas (inverto a matriz de informação sob aproximação normal; o capítulo trabalha com a distribuição hipergeométrica não central) e concordam com uma simulação de Monte Carlo: num cenário com 50 unidades de 450 eleitores, o desvio-padrão do estimador agregado deu 0,0469 na simulação e 0,0466 pela fórmula.</p>
+<p><strong>O exemplo do capítulo.</strong> Os autores usam o Censo australiano de 1996, com 50 distritos de Brisbane e 22.323 pessoas. <span class="math inline">\(X=1\)</span> é ter de 15 a 24 anos e <span class="math inline">\(Y=1\)</span> é ter renda semanal abaixo de AU$ 160. Como os microdados do censo existem, dá para comparar os dois tipos de análise:</p>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th>Microdados</th>
+<th>Só agregados (homogeneidade)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(\hat\pi_1\)</span></td>
+<td>0,505 (EP 0,008)</td>
+<td>0,518 (EP 0,035)</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\hat\pi_2\)</span></td>
+<td>0,195 (EP 0,003)</td>
+<td>0,192 (EP 0,009)</td>
+</tr>
+<tr class="odd">
+<td>EP de <span class="math inline">\(\hat\pi_1 - \hat\pi_2\)</span></td>
+<td>0,008</td>
+<td>0,043</td>
+</tr>
+<tr class="even">
+<td>Correlação entre <span class="math inline">\(\hat\pi_1\)</span> e <span class="math inline">\(\hat\pi_2\)</span></td>
+<td>0</td>
+<td>−0,92</td>
+</tr>
+</tbody>
+</table>
+<p>As estimativas pontuais ficam parecidas, mas os erros-padrão crescem de 3 a 5 vezes, e a variância da diferença é multiplicada por cerca de 28. Os autores traduzem isso em “tamanho de amostra equivalente”: os 50 distritos valem 803 pessoas, ou cerca de 16 pessoas por distrito, para estimar <span class="math inline">\(\pi_1 - \pi_2\)</span>. Eles também testam a homogeneidade: a estatística da razão de verossimilhanças é 502,7 com microdados e 339,3 só com agregados, contra um valor crítico de 122 (5%). Os dois rejeitam, e o agregado tem menos poder.</p>
+</div>
+<div id="o-que-ajuda-juntar-uma-amostra-de-microdados" class="section level3">
+<h3>O que ajuda: juntar uma amostra de microdados</h3>
+<p>As informações somam: <span class="math inline">\(\text{info}^{(c)} = \text{info}^{(2)} + \text{info}^{(0)}\)</span>, em que <span class="math inline">\(\text{info}^{(0)}\)</span> vem de uma amostra de <span class="math inline">\(n_0\)</span> pessoas. No exemplo, a variância de <span class="math inline">\(\hat\pi_1 - \hat\pi_2\)</span> cai assim:</p>
+<table>
+<thead>
+<tr class="header">
+<th><span class="math inline">\(n_0\)</span></th>
+<th>0</th>
+<th>100</th>
+<th>500</th>
+<th>1.000</th>
+<th>5.000</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Variância</td>
+<td>0,001869</td>
+<td>0,001656</td>
+<td>0,001138</td>
+<td>0,000818</td>
+<td>0,000253</td>
+</tr>
+<tr class="even">
+<td>Redução</td>
+<td>–</td>
+<td>11%</td>
+<td>39%</td>
+<td>56%</td>
+<td>86%</td>
+</tr>
+</tbody>
+</table>
+<p>A amostra individual não precisa dizer a que unidade cada pessoa pertence. Ela reforça justamente os termos da diagonal da matriz de informação e reduz a correlação entre as estimativas. Esse é o argumento técnico para combinar resultados agregados com uma pesquisa de opinião ou de boca de urna.</p>
+</div>
+<div id="resultados-clássicos-que-explicam-o-nosso-caso" class="section level3">
+<h3>Resultados clássicos que explicam o nosso caso</h3>
+<p>Estes não vêm do capítulo, são resultados básicos de regressão.</p>
+<p><strong>1. A inclinação mistura a relação entre e dentro das unidades.</strong> Se <span class="math inline">\(b_W\)</span> e <span class="math inline">\(b_B\)</span> são as inclinações dentro e entre grupos, e <span class="math inline">\(S^W_{xx}\)</span> e <span class="math inline">\(S^B_{xx}\)</span> as variações de <span class="math inline">\(x\)</span> dentro e entre grupos, a inclinação da regressão com todos os dados é</p>
+<p><span class="math display">\[ b = \frac{S^W_{xx}\, b_W + S^B_{xx}\, b_B}{S^W_{xx} + S^B_{xx}}. \]</span></p>
+<p>Regredir médias de grupos entrega só <span class="math inline">\(b_B\)</span>. No nosso caso, a renda é a mesma para todos os municípios de um estrato, então <span class="math inline">\(S^W_{xx} = 0\)</span> e <span class="math inline">\(b = b_B\)</span>: foi por isso que a regressão com 5.571 municípios deu exatamente a mesma inclinação que a de 146 estratos.</p>
+<p><strong>2. Efeito contextual e inversão de sinal.</strong> Suponha que o voto em Lula no estrato <span class="math inline">\(g\)</span> seja <span class="math inline">\(\bar y_g = a_g + \beta\, p_g\)</span>, em que <span class="math inline">\(p_g\)</span> é a fração de eleitores de renda alta, <span class="math inline">\(\beta\)</span> o efeito individual de ter renda alta (igual em todos os estratos) e <span class="math inline">\(a_g\)</span> o nível de base do estrato (por exemplo, o efeito da região). Então a inclinação entre estratos é</p>
+<p><span class="math display">\[ b_B = \beta + \frac{\Delta a}{\Delta p}. \]</span></p>
+<p>Um exemplo numérico, o mesmo de antes:</p>
+<table>
+<colgroup>
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th>Voto em Lula, menor renda</th>
+<th>Voto em Lula, maior renda</th>
+<th>Fração de maior renda</th>
+<th>Voto em Lula no estrato</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Estrato A</strong> (pobre, Nordeste)</td>
+<td>70%</td>
+<td>80%</td>
+<td>20%</td>
+<td>72%</td>
+</tr>
+<tr class="even">
+<td><strong>Estrato B</strong> (rico, Sul)</td>
+<td>35%</td>
+<td>45%</td>
+<td>70%</td>
+<td>42%</td>
+</tr>
+</tbody>
+</table>
+<p>Aqui <span class="math inline">\(\beta = +10\)</span>, <span class="math inline">\(\Delta a = 35 - 70 = -35\)</span> e <span class="math inline">\(\Delta p = 0{,}7 - 0{,}2 = 0{,}5\)</span>, então <span class="math inline">\(b_B = 10 - 35/0{,}5 = -60\)</span>. Dentro de cada estrato, ter renda alta aumenta o voto em Lula em 10 pontos, e entre estratos a relação é fortemente negativa. A diferença entre os dois sinais é o efeito contextual <span class="math inline">\(\Delta a/\Delta p\)</span>, e as regressões por estrato não conseguem separá-lo de <span class="math inline">\(\beta\)</span>.</p>
+<p>Há ainda um terceiro problema, que os dados agregados não revelam: a renda do estrato é uma média estimada com erro amostral, o que atenua a inclinação por um fator <span class="math inline">\(\lambda = \text{Var(renda verdadeira)} / [\text{Var(renda verdadeira)} + \text{Var(erro)}]\)</span> (menor que 1). Com os erros-padrão do bootstrap da PNADC, estimei <span class="math inline">\(\hat\lambda = 0{,}95\)</span> para o log2 da renda dos estratos: o erro amostral atenua a inclinação em menos de 5% (de <span class="math inline">\(-15{,}9\)</span> para algo em torno de <span class="math inline">\(-16{,}7\)</span> se corrigíssemos), então esse é o menor dos problemas.</p>
+</div>
+<div id="voltando-à-nossa-análise" class="section level3">
+<h3>Voltando à nossa análise</h3>
+<p>Nossa situação é pior do que o caso 2×2 do capítulo, por dois motivos. Primeiro, temos só a renda <strong>média</strong> do estrato, e não a fração <span class="math inline">\(n_{1\bullet i}\)</span> de eleitores em cada faixa de renda, então nem dá para traçar as linhas de tomografia. Segundo, a regressão ecológica supõe homogeneidade, e as diferenças regionais mostradas acima (o efeito contextual <span class="math inline">\(\Delta a\)</span>) são justamente uma violação dela.</p>
+<p>O análogo de <span class="math inline">\(\rho\)</span> para renda contínua é a fração da variância do log da renda <em>individual</em> que está entre grupos (a razão <span class="math inline">\(1/\rho\)</span> vale também para um modelo linear com renda contínua). Estimei com os microdados da PNADC (renda domiciliar per capita positiva, em log, com os pesos amostrais e erro-padrão por bootstrap com os pesos de replicação), para três níveis de agregação:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Agrupamento</th>
+<th>Grupos</th>
+<th><span class="math inline">\(\hat\rho\)</span> (EP)</th>
+<th><span class="math inline">\(1/\hat\rho\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Estrato geográfico</td>
+<td>146</td>
+<td>0,163 (0,006)</td>
+<td>6,1</td>
+</tr>
+<tr class="even">
+<td>UF</td>
+<td>27</td>
+<td>0,118 (0,004)</td>
+<td>8,5</td>
+</tr>
+<tr class="odd">
+<td>Região</td>
+<td>5</td>
+<td>0,108 (0,004)</td>
+<td>9,3</td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code># d: microdados da PNADC (peso v1032, estrato estrato.geo, renda domiciliar per capita rdpc)
+d  &lt;- d[d$rdpc &gt; 0, ]
+d$ly &lt;- log(d$rdpc)
+mu  &lt;- weighted.mean(d$ly, d$v1032)
+mug &lt;- ave(d$ly * d$v1032, d$estrato.geo, FUN = sum) / ave(d$v1032, d$estrato.geo, FUN = sum)
+rho &lt;- sum(d$v1032 * (mug - mu)^2) / sum(d$v1032 * (d$ly - mu)^2)
+rho   # fração da variância do log da renda que está entre estratos</code></pre>
+<p>Só 16% da variância do log da renda está entre estratos. Os outros 84% estão <em>dentro</em> deles, e é exatamente essa parte que a nossa análise não vê. Num cenário em que valesse a homogeneidade, <span class="math inline">\(1/\hat\rho \approx 6{,}1\)</span> diz que a variância do estimador agregado do efeito individual da renda seria cerca de seis vezes a dos microdados (erro-padrão cerca de 2,5 vezes maior), e agregar por UF ou por região só piora (8,5 e 9,3). Com heterogeneidade, como a regional, o problema é pior, porque sem hipóteses adicionais os parâmetros deixam de ser identificados.</p>
+</div>
+</div>
+<div id="um-exemplo-real-de-como-a-agregação-muda-a-conclusão" class="section level2">
+<h2>Um exemplo real de como a agregação muda a conclusão</h2>
+<p>Para ver o mecanismo com dados reais, usei como covariável auxiliar o tamanho do eleitorado do município (e não a renda, que só tenho no nível do estrato):</p>
+<div class="float">
+<img src="vies-agregacao.png" alt="A inclinação depende do nível de agregação" />
+<div class="figcaption">A inclinação depende do nível de agregação</div>
+</div>
+<p>A inclinação entre estratos é praticamente zero (+0,07), a municipal agrupada também (+0,15). Mas dentro de 86% dos 104 estratos com pelo menos 10 municípios a inclinação é negativa, com mediana de −1,6 ponto por duplicação do eleitorado. Quem olhasse só o nível agregado concluiria “não há relação”, e estaria perdendo um padrão consistente por dentro. É um exemplo de mecanismo, não uma previsão do que a renda mostraria: os “indivíduos” aqui são municípios, que também são agregados.</p>
+</div>
+<div id="o-que-seria-preciso-para-responder-à-pergunta" class="section level2">
+<h2>O que seria preciso para responder à pergunta</h2>
+<p>Para estimar como eleitores de rendas diferentes votam, precisamos de informação individual ou de uma segunda margem em cada unidade:</p>
+<ol style="list-style-type: decimal">
+<li><strong>Pesquisas de opinião ou pesquisas de boca de urna</strong>, que perguntam renda e voto para as mesmas pessoas.</li>
+<li><strong>Inferência ecológica propriamente dita</strong>, com a distribuição de renda em faixas para cada unidade (por exemplo, a fração de eleitores em cada faixa de renda por município ou zona eleitoral). Métodos como o de King (1997) e o modelo multinomial-Dirichlet de Rosen et al. (2001), implementado no pacote <code>eiPack</code>, usam essa segunda margem para estimar a matriz de transição. Eles dependem de hipóteses fortes, e os resultados costumam ser sensíveis a elas. Combinar os agregados com uma amostra de microdados também ajuda muito (veja a tabela da seção de matemática).</li>
+<li><strong>Unidades menores</strong>, como zonas ou seções eleitorais, que têm mais variação nas margens do que municípios inteiros. O TSE disse que vai publicar os boletins de urna depois da totalização, então esses dados devem sair.</li>
+</ol>
+</div>
+<div id="conclusão" class="section level2">
+<h2>Conclusão</h2>
+<ul>
+<li>Existe uma <strong>associação entre áreas</strong>: estratos de renda mais baixa deram mais votos válidos a Lula.</li>
+<li>Boa parte dela desaparece quando se compara dentro da região, e o sinal não é constante ao longo da renda.</li>
+<li>Isso <strong>não diz</strong> que eleitores mais pobres votam mais em Lula, nem o contrário. Para isso é preciso dado individual ou inferência ecológica com uma segunda margem.</li>
+</ul>
+<p>Por isso, quando alguém disser que “os dados mostram que renda determina voto”, vale perguntar: <em>dados de quem?</em></p>
+<!-- ## Código e reprodutibilidade -->
+<!-- O código (download dos resultados do TSE, agregação por estrato e regressões) está em `[preencher: link do repositório]`. Os resultados do TSE estão em `https://resultados.tse.jus.br`, e o código dos estratos veio da tabela de municípios por estrato da PNADC. -->
+</div>
+<div id="referências" class="section level2">
+<h2>Referências</h2>
+<ul>
+<li>Robinson, W. S. (1950). Ecological correlations and the behavior of individuals. <em>American Sociological Review</em>, 15(3), 351–357.</li>
+<li>Goodman, L. A. (1953). Ecological regressions and behavior of individuals. <em>American Sociological Review</em>, 18(6), 663–664.</li>
+<li>King, G. (1997). <em>A Solution to the Ecological Inference Problem</em>. Princeton University Press.</li>
+<li>Rosen, O., Jiang, W., King, G., Tanner, M. A. (2001). Bayesian and frequentist inference for ecological inference: the R×C case. <em>Statistica Neerlandica</em>, 55(2), 134–156.</li>
+<li>Gelman, A., Park, D., Shor, B., Bafumi, J., Cortina, J. (2008). Rich state, poor state, red state, blue state: What’s the matter with Connecticut? <em>Quarterly Journal of Political Science</em>, 2(4), 345–367.</li>
+<li>Duncan, O. D., Davis, B. (1953). An alternative to ecological correlation. <em>American Sociological Review</em>, 18(6), 665–666.</li>
+<li>Breckling, J. U., Chambers, R. L., Dorfman, A. H., Tam, S. M., Welsh, A. H. (1994). Maximum likelihood inference from sample survey data. <em>International Statistical Review</em>, 62, 349–363.</li>
+<li>Steel, D. G., Beh, E. J., Chambers, R. L. (2004). The information in aggregate data. Em: King, G., Rosen, O., Tanner, M. A. (orgs.), <em>Ecological Inference: New Methodological Strategies</em>, cap. 2, pp. 51–68. Cambridge University Press.</li>
+</ul>
+</div>
+
+              
+
+
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">ETIQUETADO em</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://guilhermejacob.github.io/tags/elei%C3%A7%C3%B5es-2026/">eleições 2026</a>
+
+  <a class="tag tag--primary tag--small" href="https://guilhermejacob.github.io/tags/pnadc/">PNADC</a>
+
+  <a class="tag tag--primary tag--small" href="https://guilhermejacob.github.io/tags/fal%C3%A1cia-ecol%C3%B3gica/">falácia ecológica</a>
+
+  <a class="tag tag--primary tag--small" href="https://guilhermejacob.github.io/tags/r/">R</a>
+
+                  </div>
+                
+              
+            
+            
+<div class="post-actions-wrap">
+  <nav >
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--disabled">
+          
+              <i class="fa fa-angle-left"></i>
+              <span class="hide-xs hide-sm text-small icon-ml">PRÓXIMO</span>
+            </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://guilhermejacob.github.io/2025/07/variancia-n-1/" data-tooltip="O mistério do &#34;n-1&#34;" aria-label="ANTERIOR: O mistério do &#34;n-1&#34;">
+          
+              <span class="hide-xs hide-sm text-small icon-mr">ANTERIOR</span>
+              <i class="fa fa-angle-right"></i>
+            </a>
+        </li>
+      
+    </ul>
+  </nav>
+<ul class="post-actions post-action-share" >
+  
+    <li class="post-action hide-lg hide-md hide-sm">
+      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Compartilhe esta postagem">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://guilhermejacob.github.io/2026/10/renda-voto-inferencia-ecologica/" title="Compartilhar no Facebook" aria-label="Compartilhar no Facebook">
+          <i class="fa-facebook-official" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://guilhermejacob.github.io/2026/10/renda-voto-inferencia-ecologica/" title="Compartilhar no Google&#43;" aria-label="Compartilhar no Google&#43;">
+          <i class="fa-google-plus" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+  
+  
+  <li class="post-action">
+    
+      <a class="post-action-btn btn btn--default" href="#top" aria-label="De volta ao topo">
+      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    
+    </a>
+  </li>
+</ul>
+</div>
+
+
+            
+  
+
+
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2026 Guilherme Jacob. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+        
+<div class="post-actions-wrap">
+  <nav >
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--disabled">
+          
+              <i class="fa fa-angle-left"></i>
+              <span class="hide-xs hide-sm text-small icon-ml">PRÓXIMO</span>
+            </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://guilhermejacob.github.io/2025/07/variancia-n-1/" data-tooltip="O mistério do &#34;n-1&#34;" aria-label="ANTERIOR: O mistério do &#34;n-1&#34;">
+          
+              <span class="hide-xs hide-sm text-small icon-mr">ANTERIOR</span>
+              <i class="fa fa-angle-right"></i>
+            </a>
+        </li>
+      
+    </ul>
+  </nav>
+<ul class="post-actions post-action-share" >
+  
+    <li class="post-action hide-lg hide-md hide-sm">
+      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Compartilhe esta postagem">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://guilhermejacob.github.io/2026/10/renda-voto-inferencia-ecologica/" title="Compartilhar no Facebook" aria-label="Compartilhar no Facebook">
+          <i class="fa-facebook-official" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://guilhermejacob.github.io/2026/10/renda-voto-inferencia-ecologica/" title="Compartilhar no Google&#43;" aria-label="Compartilhar no Google&#43;">
+          <i class="fa-google-plus" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+  
+  
+  <li class="post-action">
+    
+      <a class="post-action-btn btn btn--default" href="#top" aria-label="De volta ao topo">
+      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    
+    </a>
+  </li>
+</ul>
+</div>
+
+
+      </div>
+      
+<div id="share-options-bar" class="share-options-bar" data-behavior="4">
+  <i id="btn-close-shareoptions" class="fa fa-times"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fguilhermejacob.github.io%2F2026%2F10%2Frenda-voto-inferencia-ecologica%2F" aria-label="Compartilhar no Facebook">
+          <i class="fa-facebook-official" aria-hidden="true"></i><span>Compartilhar no Facebook</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https%3A%2F%2Fguilhermejacob.github.io%2F2026%2F10%2Frenda-voto-inferencia-ecologica%2F" aria-label="Compartilhar no Google&#43;">
+          <i class="fa-google-plus" aria-hidden="true"></i><span>Compartilhar no Google&#43;</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+
+
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-times"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://guilhermejacob.github.io/files/img_2502_recorte.jpg" alt="Foto do autor" />
+    
+    <h4 id="about-card-name">Guilherme Jacob</h4>
+    
+      <div id="about-card-bio">Manauara.<br>Doutor em População, Território e Estatísticas Públicas (ENCE/IBGE).<br>Bacharel em Direito e Economia.</div>
+    
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker-alt"></i>
+        <br/>
+        Rio de Janeiro, Brasil
+      </div>
+    
+  </div>
+</div>
+
+    
+
+    
+  
+    
+      <div id="cover" style="background-image:url('https://guilhermejacob.github.io/files/manaus.jpg');"></div>
+    
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha512-uURl+ZXMBrF4AwGaWmEetzrd+J5/8NRkWAvJx5sbPSSuOb0bZLqf+tOzniObO00BjHa/dD7gub9oCGMLPQHtQA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+<script src="https://guilhermejacob.github.io/js/script-yqzy9wdlzix4lbbwdnzvwx3egsne77earqmn73v9uno8aupuph8wfguccut.min.js"></script>
+
+
+
+
+
+
+    
+  </body>
+</html>
+

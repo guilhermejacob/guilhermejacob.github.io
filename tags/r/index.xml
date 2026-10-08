@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>R on Something Random</title>
+    <link>https://guilhermejacob.github.io/tags/r/</link>
+    <description>Recent content in R on Something Random</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>pt-br</language>
+    <lastBuildDate>Wed, 07 Oct 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://guilhermejacob.github.io/tags/r/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Renda e voto no 1º turno de 2026: o que dá (e o que não dá) para dizer com dados agregados</title>
+      <link>https://guilhermejacob.github.io/2026/10/renda-voto-inferencia-ecologica/</link>
+      <pubDate>Wed, 07 Oct 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://guilhermejacob.github.io/2026/10/renda-voto-inferencia-ecologica/</guid>
+      <description>
+
+
+&lt;p&gt;Depois do 1º turno, voltou o argumento de que “renda se correlaciona inversamente com voto no Lula”.
+A gente tem os resultados por município e a PNADC, então dá para olhar. A pergunta central é: &lt;strong&gt;o que esses dados realmente permitem concluir?&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Spoiler: a correlação existe, mas ela é entre &lt;em&gt;áreas&lt;/em&gt;, e isso não diz o que acontece entre &lt;em&gt;pessoas&lt;/em&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
