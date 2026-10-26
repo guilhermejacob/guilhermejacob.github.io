@@ -1,0 +1,1039 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    
+    <script type="application/ld+json">
+
+{  
+  "@context":"http://schema.org",
+  "@type":"Website",
+  "@id":"https:\/\/guilhermejacob.github.io\/",
+  "author": {
+    "@type": "Person",
+    "name": "Guilherme Jacob",
+    
+    "image": "https://guilhermejacob.github.io/files/img_2502_recorte.jpg"
+    
+  },
+  "name":"Something Random",
+  "description":"Na noite da eleição, a Justiça Eleitoral costuma anunciar o vencedor antes de todas as urnas terem sido apuradas. Usando a decomposição observado-não observado da inferência baseada em modelos para populações finitas, podemos deduzir o momento exato em que o resultado se torna certo, com demonstrações simples e uma regra prática que só usa os percentuais atuais e a fração do eleitorado já apurada. Aceitando um risco pequeno de erro, a desigualdade de Cantelli permite anunciar ainda mais cedo.",
+  "url":"https:\/\/guilhermejacob.github.io\/2026\/10\/quando-uma-elei%C3%A7%C3%A3o-est%C3%A1-decidida\/",
+  "keywords":"[]"
+}
+
+</script>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.115.3 with theme Tranquilpeak 0.5.3-BETA">
+<meta name="author" content="Guilherme Jacob">
+<meta name="keywords" content="">
+<meta name="description" content="Na noite da eleição, a Justiça Eleitoral costuma anunciar o vencedor antes de todas as urnas terem sido apuradas. Usando a decomposição observado-não observado da inferência baseada em modelos para populações finitas, podemos deduzir o momento exato em que o resultado se torna certo, com demonstrações simples e uma regra prática que só usa os percentuais atuais e a fração do eleitorado já apurada. Aceitando um risco pequeno de erro, a desigualdade de Cantelli permite anunciar ainda mais cedo.">
+
+
+<meta property="og:description" content="Na noite da eleição, a Justiça Eleitoral costuma anunciar o vencedor antes de todas as urnas terem sido apuradas. Usando a decomposição observado-não observado da inferência baseada em modelos para populações finitas, podemos deduzir o momento exato em que o resultado se torna certo, com demonstrações simples e uma regra prática que só usa os percentuais atuais e a fração do eleitorado já apurada. Aceitando um risco pequeno de erro, a desigualdade de Cantelli permite anunciar ainda mais cedo.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Quando uma eleição está decidida?">
+<meta name="twitter:title" content="Quando uma eleição está decidida?">
+<meta property="og:url" content="https://guilhermejacob.github.io/2026/10/quando-uma-elei%C3%A7%C3%A3o-est%C3%A1-decidida/">
+<meta property="twitter:url" content="https://guilhermejacob.github.io/2026/10/quando-uma-elei%C3%A7%C3%A3o-est%C3%A1-decidida/">
+<meta property="og:site_name" content="Something Random">
+<meta property="og:description" content="Na noite da eleição, a Justiça Eleitoral costuma anunciar o vencedor antes de todas as urnas terem sido apuradas. Usando a decomposição observado-não observado da inferência baseada em modelos para populações finitas, podemos deduzir o momento exato em que o resultado se torna certo, com demonstrações simples e uma regra prática que só usa os percentuais atuais e a fração do eleitorado já apurada. Aceitando um risco pequeno de erro, a desigualdade de Cantelli permite anunciar ainda mais cedo.">
+<meta name="twitter:description" content="Na noite da eleição, a Justiça Eleitoral costuma anunciar o vencedor antes de todas as urnas terem sido apuradas. Usando a decomposição observado-não observado da inferência baseada em modelos para populações finitas, podemos deduzir o momento exato em que o resultado se torna certo, com demonstrações simples e uma regra prática que só usa os percentuais atuais e a fração do eleitorado já apurada. Aceitando um risco pequeno de erro, a desigualdade de Cantelli permite anunciar ainda mais cedo.">
+<meta property="og:locale" content="pt-br">
+
+  
+    <meta property="article:published_time" content="2026-10-26T00:00:00">
+  
+  
+    <meta property="article:modified_time" content="2026-10-26T00:00:00">
+  
+  
+  
+  
+    
+      <meta property="article:tag" content="amostragem">
+    
+      <meta property="article:tag" content="inferência baseada em modelos">
+    
+      <meta property="article:tag" content="eleições">
+    
+      <meta property="article:tag" content="Brasil">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+
+  <meta property="og:image" content="https://guilhermejacob.github.io/files/img_2502_recorte.jpg">
+  <meta property="twitter:image" content="https://guilhermejacob.github.io/files/img_2502_recorte.jpg">
+
+
+
+
+
+
+    <title>Quando uma eleição está decidida?</title>
+
+    <link rel="icon" href="https://guilhermejacob.github.io/favicon.png">
+    
+
+    
+
+    <link rel="canonical" href="https://guilhermejacob.github.io/2026/10/quando-uma-elei%C3%A7%C3%A3o-est%C3%A1-decidida/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha512-H9jrZiiopUdsLpg94A333EfumgUBpO9MdbxStdeITo+KEIMaNfHNvwyjjDJb+ERPaRS6DpyRlKbvPUasNItRyw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    
+    
+    <link rel="stylesheet" href="https://guilhermejacob.github.io/css/style-h6ccsoet3mzkbb0wngshlfbaweimexgqcxj0h5hu4h82olsdzz6wmqdkajm.min.css" />
+    
+    
+
+    
+      
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="4">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://guilhermejacob.github.io/" aria-label="Vá para a página inicial">Something Random</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://guilhermejacob.github.io/#about" aria-label="Abra o link: /#about">
+    
+    
+    
+      
+        <img class="header-picture" src="https://guilhermejacob.github.io/files/img_2502_recorte.jpg" alt="Foto do autor" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="4">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://guilhermejacob.github.io/#about" aria-label="Leia mais sobre o autor">
+          <img class="sidebar-profile-picture" src="https://guilhermejacob.github.io/files/img_2502_recorte.jpg" alt="Foto do autor" />
+        </a>
+        <h4 class="sidebar-profile-name">Guilherme Jacob</h4>
+        
+          <h5 class="sidebar-profile-bio">Manauara.<br>Doutor em População, Território e Estatísticas Públicas (ENCE/IBGE).<br>Bacharel em Direito e Economia.</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://guilhermejacob.github.io/" title="Home">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">Início</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://guilhermejacob.github.io/#about" title="About">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+      
+      <span class="sidebar-button-desc">Sobre</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://guilhermejacob.github.io/tags" title="Tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">Tags</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://guilhermejacob.github.io/categories" title="Categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+      
+      <span class="sidebar-button-desc">Categorias</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://guilhermejacob.github.io/archives" title="Archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">Arquivo</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://guilhermejacob.github.io/files/cv_english.pdf" title="CV">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-briefcase"></i>
+      
+      <span class="sidebar-button-desc">CV</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://guilhermejacob.github.io/research" title="Pesquisa">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-code"></i>
+      
+      <span class="sidebar-button-desc">Pesquisa</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="mailto:guilhermejacob91@gmail.com" target="_blank" rel="noopener" title="Contato">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-envelope-o"></i>
+      
+      <span class="sidebar-button-desc">Contato</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/guilhermejacob" target="_blank" rel="noopener" title="GitHub">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="http://stackoverflow.com/users/6419956/guilherme-jacob" target="_blank" rel="noopener" title="Stack Overflow">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-stack-overflow"></i>
+      
+      <span class="sidebar-button-desc">Stack Overflow</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://www.instagram.com/guilhermejacob9" target="_blank" rel="noopener" title="Instagram">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-instagram"></i>
+      
+      <span class="sidebar-button-desc">Instagram</span>
+    </a>
+  </li>
+
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+	<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+	<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      <div id="main" data-behavior="4"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" id="top">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title">
+      Quando uma eleição está decidida?
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time datetime="2026-10-26T00:00:00Z">
+        
+  
+  
+  
+  
+    26/10/2026
+  
+
+      </time>
+    
+    
+  </div>
+
+</div>
+          
+          <div class="post-content markdown">
+            <div class="main-content-wrap">
+              
+
+
+<p>Na noite da eleição, os resultados chegam aos poucos. Cada urna eletrônica é encerrada,
+imprime o boletim de urna e transmite os dados para a Justiça Eleitoral.
+Os totais nacionais vão sendo atualizados conforme esses lotes chegam.
+Em algum momento, muitas vezes bem antes de 100% das urnas apuradas, a imprensa
+passa a dizer que um candidato está <em>matematicamente eleito</em>.</p>
+<p>O que exatamente quer dizer “matematicamente eleito”? E dá para escrever isso de
+forma precisa?</p>
+<p>Acho útil olhar para esse problema pela ótica da amostragem.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>
+Os eleitores estão agrupados em seções eleitorais, e cada seção é apurada de uma vez só.
+Ou seja, é uma <strong>amostra de conglomerados</strong>: as seções já apuradas são os conglomerados
+observados por inteiro, as que faltam são a <strong>parte não observada</strong> da população,
+e o resultado final é um <strong>total populacional</strong>.
+É exatamente o cenário da inferência baseada em modelos (ou abordagem preditiva)
+para populações finitas.
+A única diferença é que, para a decisão determinística, o “modelo” é o mais fraco
+possível: ele só diz quais valores são <em>possíveis</em>.</p>
+<div id="notação" class="section level2">
+<h2>Notação</h2>
+<p>Antes de fazer as contas, precisamos definir algumas coisas.
+Começando pelos conglomerados:</p>
+<ul>
+<li><span class="math inline">\(U = \{1, \dots, N\}\)</span> é o conjunto das <span class="math inline">\(N\)</span> seções eleitorais.</li>
+<li><span class="math inline">\(s \subset U\)</span> é o conjunto das <span class="math inline">\(n\)</span> seções já apuradas; chamaremos isso de amostra.</li>
+<li><span class="math inline">\(r = U \setminus s\)</span> é o conjunto das <span class="math inline">\(N - n\)</span> seções ainda não apuradas: a parte não observada da população.</li>
+<li><span class="math inline">\(M_i\)</span> é o eleitorado da seção <span class="math inline">\(i\)</span> — i.e., o tamanho do conglomerado. Ele é conhecido para <strong>todas</strong> as seções antes da eleição.</li>
+<li><span class="math inline">\(M_0 = \sum_{i \in U} M_i\)</span> é o eleitorado total.</li>
+</ul>
+<p>Dentro da seção <span class="math inline">\(i\)</span>, os eleitores são indexados por <span class="math inline">\(j = 1, \dots, M_i\)</span>.
+Fixe um candidato <span class="math inline">\(k\)</span> e defina, para o eleitor <span class="math inline">\(j\)</span> da seção <span class="math inline">\(i\)</span>:</p>
+<ul>
+<li><span class="math inline">\(y_{ij} = 1\)</span> se ele vota em <span class="math inline">\(k\)</span>, e <span class="math inline">\(y_{ij} = 0\)</span> caso contrário;</li>
+<li><span class="math inline">\(z_{ij} = 1\)</span> se ele dá um voto válido (em qualquer candidato), e <span class="math inline">\(z_{ij} = 0\)</span> caso contrário — i.e., se vota em branco, anula ou não comparece.</li>
+</ul>
+<p>Para qualquer variável <span class="math inline">\(v_{ij}\)</span>, denotamos o total da seção <span class="math inline">\(i\)</span> por</p>
+<p><span class="math display">\[v_i = \sum_{j = 1}^{M_i} v_{ij}.\]</span></p>
+<p>Assim, <span class="math inline">\(y_i\)</span> é o número de votos de <span class="math inline">\(k\)</span> e <span class="math inline">\(z_i\)</span> é o número de votos válidos na seção <span class="math inline">\(i\)</span>.
+Os totais populacional, da amostra e da parte não observada são</p>
+<p><span class="math display">\[t_v = \sum_{i \in U} v_i,\]</span></p>
+<p><span class="math display">\[t_{vs} = \sum_{i \in s} v_i,\]</span></p>
+<p><span class="math display">\[t_{vr} = \sum_{i \in r} v_i,\]</span></p>
+<p>de modo que, trivialmente,</p>
+<p><span class="math display">\[t_v = t_{vs} + t_{vr}.\]</span></p>
+<p>Essa identidade é o ponto central.
+A qualquer momento da noite, o primeiro termo é <strong>conhecido</strong> e o segundo é <strong>desconhecido</strong>.
+Tudo o que queremos dizer sobre o resultado final é uma afirmação sobre <span class="math inline">\(t_{vr}\)</span>.</p>
+<p>Do mesmo jeito, o eleitorado das seções apuradas e não apuradas é</p>
+<p><span class="math display">\[M_s = \sum_{i \in s} M_i,\]</span></p>
+<p><span class="math display">\[M_r = \sum_{i \in r} M_i,\]</span></p>
+<p>e ambos são conhecidos durante toda a noite.</p>
+</div>
+<div id="quem-vence" class="section level2">
+<h2>Quem vence?</h2>
+<p>No Brasil, um candidato a presidente vence no primeiro turno se obtiver a <strong>maioria absoluta dos votos válidos</strong>,
+ou seja, estritamente mais da metade.
+O candidato <span class="math inline">\(k\)</span> vence se</p>
+<p><span class="math display">\[t_y &gt; \frac{t_z}{2}.\]</span></p>
+<p>É mais conveniente reescrever isso como uma margem.
+Para cada eleitor, defina o <strong>escore</strong></p>
+<p><span class="math display">\[a_{ij} = 2 y_{ij} - z_{ij}.\]</span></p>
+<p>Ele só pode assumir três valores:
+<span class="math inline">\(a_{ij} = +1\)</span> se o eleitor vota em <span class="math inline">\(k\)</span>,
+<span class="math inline">\(a_{ij} = -1\)</span> se ele vota validamente em outro candidato,
+e <span class="math inline">\(a_{ij} = 0\)</span> se ele vota em branco, anula ou não comparece.
+O total da seção,</p>
+<p><span class="math display">\[d_i = \sum_{j = 1}^{M_i} a_{ij} = 2 y_i - z_i,\]</span></p>
+<p>é a margem de <span class="math inline">\(k\)</span> na seção <span class="math inline">\(i\)</span>: os votos de <span class="math inline">\(k\)</span> menos os votos válidos de todos os demais.
+O candidato <span class="math inline">\(k\)</span> vence se, e somente se,</p>
+<p><span class="math display">\[t_d &gt; 0.\]</span></p>
+<p>Separando o total populacional em termos de amostra e parte não observada, temos</p>
+<p><span class="math display">\[t_d = t_{ds} + t_{dr}.\]</span></p>
+<p>O primeiro termo, a margem entre os votos já apurados, está na tela.
+O segundo é o que ainda falta ser apurado.</p>
+</div>
+<div id="o-pior-caso-numa-seção" class="section level2">
+<h2>O pior caso numa seção</h2>
+<p>Este é o único fato de que precisamos.</p>
+<p><strong>Lema.</strong> Em qualquer seção <span class="math inline">\(i\)</span>, a margem satisfaz <span class="math inline">\(-M_i \le d_i \le M_i\)</span>.</p>
+<details>
+<summary>
+<em>Demonstração</em> (clique para expandir)
+</summary>
+<p>Cada escore satisfaz <span class="math inline">\(|a_{ij}| \le 1\)</span>. Logo,</p>
+<p><span class="math display">\[|d_i| \le \sum_{j = 1}^{M_i} |a_{ij}| \le M_i.\]</span></p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+</details>
+<p>Em palavras: cada eleitor mexe na margem em no máximo um voto.
+O pior que pode acontecer ao candidato <span class="math inline">\(k\)</span> numa seção é todos os eleitores
+comparecerem e votarem (validamente) em outro candidato.</p>
+</div>
+<div id="quando-o-vencedor-é-certo" class="section level2">
+<h2>Quando o vencedor é certo?</h2>
+<p><strong>Proposição 1.</strong> O candidato <span class="math inline">\(k\)</span> vence com certeza, aconteça o que acontecer nas
+seções não apuradas, se, e somente se,</p>
+<p><span class="math display">\[t_{ds} &gt; M_r.\]</span></p>
+<p>Ou seja, a margem já apurada precisa superar o número de eleitores das seções que
+ainda faltam.</p>
+<details>
+<summary>
+<em>Demonstração</em> (clique para expandir)
+</summary>
+<p>(Se.) Some o lema sobre as seções não apuradas:</p>
+<p><span class="math display">\[t_{dr} \ge -M_r.\]</span></p>
+<p>Então</p>
+<p><span class="math display">\[t_d = t_{ds} + t_{dr} \ge t_{ds} - M_r &gt; 0.\]</span></p>
+<p>(Somente se.) Suponha que <span class="math inline">\(t_{ds} \le M_r\)</span>. Considere o resultado em que
+todos os eleitores das seções não apuradas comparecem e votam validamente em outro candidato,
+isto é, <span class="math inline">\(a_{ij} = -1\)</span> para todo <span class="math inline">\(i \in r\)</span>.
+Esse resultado é possível e, nele, <span class="math inline">\(t_{dr} = -M_r\)</span>. Logo,</p>
+<p><span class="math display">\[t_d = t_{ds} - M_r \le 0,\]</span></p>
+<p>e <span class="math inline">\(k\)</span> não vence. <span class="math inline">\(\blacksquare\)</span></p>
+</details>
+<p>A parte do “somente se” é importante.
+Ela diz que a regra é <strong>exata</strong>: nenhuma outra regra determinística consegue decidir a
+eleição mais cedo.</p>
+</div>
+<div id="quem-fica-à-frente-de-quem" class="section level2">
+<h2>Quem fica à frente de quem?</h2>
+<p>O mesmo argumento resolve qualquer comparação entre dois candidatos.
+É isso que importa no primeiro turno, quando a pergunta muitas vezes é quem vai
+para o segundo turno.</p>
+<p>Para comparar <span class="math inline">\(k\)</span> com outro candidato <span class="math inline">\(k&#39;\)</span>, basta trocar o escore. Defina</p>
+<p><span class="math display">\[b_{ij} = \begin{cases} +1, &amp; \text{se o eleitor vota em } k, \\ -1, &amp; \text{se o eleitor vota em } k&#39;, \\ 0, &amp; \text{caso contrário,} \end{cases}\]</span></p>
+<p>e seja <span class="math inline">\(c_i = \sum_{j=1}^{M_i} b_{ij}\)</span> a vantagem de <span class="math inline">\(k\)</span> sobre <span class="math inline">\(k&#39;\)</span> na seção <span class="math inline">\(i\)</span>.</p>
+<p><strong>Proposição 2.</strong> O candidato <span class="math inline">\(k\)</span> termina estritamente à frente do candidato <span class="math inline">\(k&#39;\)</span>
+com certeza se, e somente se,</p>
+<p><span class="math display">\[t_{cs} &gt; M_r.\]</span></p>
+<details>
+<summary>
+<em>Demonstração</em> (clique para expandir)
+</summary>
+<p>Como <span class="math inline">\(|b_{ij}| \le 1\)</span>, o lema vale com <span class="math inline">\(c_i\)</span> no lugar de <span class="math inline">\(d_i\)</span>: <span class="math inline">\(-M_i \le c_i \le M_i\)</span>.
+Repita o argumento da Proposição 1.
+O pior caso, atingido quando todos os eleitores restantes votam em <span class="math inline">\(k&#39;\)</span>, mostra que
+a condição também é necessária. <span class="math inline">\(\blacksquare\)</span></p>
+</details>
+</div>
+<div id="uma-regra-prática-baseada-nos-percentuais-observados-e-fração-apurada" class="section level2">
+<h2>Uma regra prática baseada nos percentuais observados e fração apurada</h2>
+<p>Na TV, é difícil trabalhar com os totais: é bem mais fácil considerar
+os percentuais.
+Então, faz mais sentido reescrever a Proposição 1 nesses termos. Defina:</p>
+<ul>
+<li><span class="math inline">\(\hat p_k = t_{ys} / t_{zs}\)</span>, o percentual do candidato <span class="math inline">\(k\)</span> entre os votos válidos já apurados;</li>
+<li><span class="math inline">\(f = M_s / M_0\)</span>, a fração do eleitorado nas seções já apuradas;</li>
+<li><span class="math inline">\(\hat v = t_{zs} / M_s\)</span>, os votos válidos por eleitor nas seções apuradas, que combina comparecimento e votos válidos.</li>
+</ul>
+<p>A margem apurada é</p>
+<p><span class="math display">\[t_{ds} = t_{zs} \times (2\hat p_k - 1) = f \times M_0 \times \hat v \times (2\hat p_k - 1),\]</span></p>
+<p>e o eleitorado não apurado é</p>
+<p><span class="math display">\[M_r = (1 - f) M_0.\]</span></p>
+<p>Substituindo na Proposição 1 e dividindo por <span class="math inline">\(M_0\)</span>, chegamos ao seguinte:</p>
+<p><strong>Regra prática.</strong> O candidato <span class="math inline">\(k\)</span> está matematicamente eleito assim que</p>
+<p><span class="math display">\[\hat p_k &gt; \frac{1}{2} + \frac{1 - f}{2 f \hat v}.\]</span></p>
+<p>Para a comparação entre dois candidatos, sendo <span class="math inline">\(\hat p_{k&#39;}\)</span> o percentual apurado de <span class="math inline">\(k&#39;\)</span>, a condição análoga é</p>
+<p><span class="math display">\[\hat p_k - \hat p_{k&#39;} &gt; \frac{1 - f}{f \hat v}.\]</span></p>
+<p>Este limiar cai rapidamente quando <span class="math inline">\(f\)</span> se aproxima de 1.
+Com <span class="math inline">\(\hat v = 0{,}75\)</span>, algo como 80% de comparecimento e 94% de votos válidos:</p>
+<table>
+<colgroup>
+<col width="63%" />
+<col width="9%" />
+<col width="9%" />
+<col width="9%" />
+<col width="9%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Fração do eleitorado apurada, <span class="math inline">\(f\)</span></th>
+<th align="center">0,80</th>
+<th align="center">0,90</th>
+<th align="center">0,95</th>
+<th align="center">0,99</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Percentual necessário para a certeza, <span class="math inline">\(\hat p_k\)</span></td>
+<td align="center">66,7%</td>
+<td align="center">57,4%</td>
+<td align="center">53,5%</td>
+<td align="center">50,7%</td>
+</tr>
+</tbody>
+</table>
+<p>Assim, um candidato com 52% dos votos válidos apurados só fica matematicamente eleito depois que cerca de 97% do eleitorado foi apurado. Uma vitória folgada é decidida muito antes.</p>
+<!-- Note que $\hat v$ quase não importa: o que manda é a fração apurada. -->
+<!-- A figura abaixo mostra o limiar como função de $f$ para alguns valores de $\hat v$. -->
+<p>A figura abaixo mostra o limiar como função de <span class="math inline">\(f\)</span> para alguns valores de <span class="math inline">\(\hat v\)</span>.
+Em outras palavras, o eixo horizontal é a fração do eleitorado já apurada, <span class="math inline">\(f\)</span>, e o eixo vertical é o percentual dos votos válidos apurados de que o candidato <span class="math inline">\(k\)</span> precisa para estar matematicamente eleito.
+Cada curva corresponde a um valor de <span class="math inline">\(\hat v\)</span>.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:fig-limiar"></span>
+<img src="https://guilhermejacob.github.io/2026/10/quando-uma-elei%C3%A7%C3%A3o-est%C3%A1-decidida/index_files/figure-html/fig-limiar-1.png" alt="Percentual de votos válidos necessário para estar matematicamente eleito, em função da fração do eleitorado apurada." width="100%" />
+<p class="caption">
+Figure 1: Percentual de votos válidos necessário para estar matematicamente eleito, em função da fração do eleitorado apurada.
+</p>
+</div>
+<p>Para usar a figura, basta localizar o momento da apuração e o percentual atual do candidato.
+Se o ponto estiver acima da curva, o resultado está decidido: nem o pior cenário nas seções restantes muda o vencedor.
+Se estiver abaixo, a eleição ainda pode virar.
+Isso não quer dizer que o candidato está perdendo, apenas que a vantagem dele ainda não é grande o bastante para resistir ao pior caso.
+Por exemplo, com <span class="math inline">\(\hat v = 0{,}75\)</span> e 80% do eleitorado apurado, o candidato precisa de cerca de 67% dos votos válidos; com 90%, de cerca de 57%; com 95%, de cerca de 53,5%.</p>
+<p>O formato das curvas conta a história da noite da eleição.
+No começo da apuração, o limiar é tão alto que só uma vitória esmagadora pode ser anunciada.
+Ele só se aproxima de 50% no fim, porque o termo <span class="math inline">\((1 - f)/(2f\hat v)\)</span> é proporcional ao eleitorado que ainda falta.
+Por isso, eleições apertadas só são decididas com quase todas as urnas apuradas.</p>
+<p>Já o valor de <span class="math inline">\(\hat v\)</span> quase não importa: com 90% do eleitorado apurado, o limiar vai de cerca de 57,9% com <span class="math inline">\(\hat v = 0{,}70\)</span> a cerca de 56,9% com <span class="math inline">\(\hat v = 0{,}80\)</span>.
+Isso acontece porque <span class="math inline">\(\hat v\)</span> só muda a escala do termo que já está encolhendo com <span class="math inline">\(f\)</span>, e porque, na prática, <span class="math inline">\(\hat v\)</span> varia pouco de uma eleição para outra.
+Quem manda é a fração apurada.</p>
+</div>
+<div id="e-se-só-conhecermos-a-fração-de-seções-apuradas" class="section level2">
+<h2>E se só conhecermos a fração de seções apuradas?</h2>
+<p>Há um problema prático: o TSE divulga o percentual de <strong>seções totalizadas</strong>, e não a fração <span class="math inline">\(f\)</span> do eleitorado.
+Na linguagem de amostragem por conglomerados, o TSE mostra a fração de conglomerados apurados,
+enquanto a regra precisa da fração de elementos.
+Como as seções têm tamanhos diferentes, as duas frações não coincidem.</p>
+<p>Felizmente, dá para contornar isso sendo um pouco restritivo.
+Defina:</p>
+<ul>
+<li><span class="math inline">\(g = n / N\)</span>, a fração de seções apuradas;</li>
+<li><span class="math inline">\(M_{\max} = \max_{i \in U} M_i\)</span>, o eleitorado da maior seção, conhecido antes da eleição.</li>
+</ul>
+<p><strong>Proposição 3.</strong> Se</p>
+<p><span class="math display">\[t_{ds} &gt; (N - n) \times M_{\max},\]</span></p>
+<p>então o candidato <span class="math inline">\(k\)</span> vence com certeza.</p>
+<details>
+<summary>
+<em>Demonstração</em> (clique para expandir)
+</summary>
+<p>Como cada uma das <span class="math inline">\(N - n\)</span> seções não apuradas tem no máximo <span class="math inline">\(M_{\max}\)</span> eleitores,</p>
+<p><span class="math display">\[M_r = \sum_{i \in r} M_i \le (N - n) \times M_{\max}.\]</span></p>
+<p>Logo, a hipótese implica <span class="math inline">\(t_{ds} &gt; M_r\)</span>, e o resultado segue da Proposição 1. <span class="math inline">\(\blacksquare\)</span></p>
+</details>
+<p>Usando <span class="math inline">\(t_{ds} = t_{zs} \times (2 \hat p_k - 1)\)</span>, a regra prática fica</p>
+<p><span class="math display">\[\hat p_k &gt; \frac{1}{2} + \frac{(1 - g) \times N \times M_{\max}}{2 \times t_{zs}}.\]</span></p>
+<p>Tudo aqui está disponível na noite da eleição: <span class="math inline">\(g\)</span> e <span class="math inline">\(t_{zs}\)</span> (o total de votos válidos apurados) aparecem na tela, e <span class="math inline">\(N\)</span> e <span class="math inline">\(M_{\max}\)</span> são conhecidos de antemão.</p>
+<p>Diferente da Proposição 1, essa condição é só <strong>suficiente</strong>: ela supõe que todas as seções restantes têm o tamanho da maior seção.
+O preço é decidir um pouco mais tarde.</p>
+</div>
+<div id="uma-regra-de-risco-controlado-baseada-na-desigualdade-de-cantelli" class="section level2">
+<h2>Uma regra de risco controlado baseada na desigualdade de Cantelli</h2>
+<p>As regras anteriores só anunciam o resultado quando ele é <strong>certo</strong>.
+Isso tem um custo: elas tratam cada eleitor que falta como se fosse votar contra <span class="math inline">\(k\)</span>, o que na prática não acontece.
+<strong>Se aceitarmos um risco (pequeno) <span class="math inline">\(\alpha\)</span> de errar, podemos anunciar bem antes.</strong>
+A questão é como fazer isso supondo o mínimo possível.</p>
+<p>Na abordagem baseada em modelos, a incerteza está nos valores das seções não apuradas.
+Então podemos tratar a margem que falta apurar, <span class="math inline">\(t_{dr}\)</span>, como uma variável aleatória, e definir:</p>
+<ul>
+<li><span class="math inline">\(\mu_r\)</span>: a média de <span class="math inline">\(t_{dr}\)</span>, ou o quanto esperamos que as seções restantes acrescentem à margem de <span class="math inline">\(k\)</span>;</li>
+<li><span class="math inline">\(\sigma_r\)</span>: o desvio-padrão de <span class="math inline">\(t_{dr}\)</span>, ou o quanto isso pode variar em torno da média.</li>
+</ul>
+<p><strong>E só.</strong>
+Não supomos normalidade, nem nenhuma outra forma para a distribuição, nem independência entre seções:
+choques regionais e correlação entre seções vizinhas entram em <span class="math inline">\(\sigma_r\)</span>, sem mais hipóteses.</p>
+<p>Com isso, podemos usar a <a href="https://en.wikipedia.org/wiki/Cantelli&#39;s_inequality">desigualdade de Cantelli</a> para derivar a “regra de Cantelli”:</p>
+<p><strong>Proposição 4 (Cantelli).</strong> Se <span class="math inline">\(t_{ds} + \mu_r &gt; 0\)</span>, então</p>
+<p><span class="math display">\[\Pr (\text{virada}) = \Pr (t_{dr} \le -t_{ds}) \le \frac{\sigma_r^2}{\sigma_r^2 + (t_{ds} + \mu_r)^2}.\]</span></p>
+<details>
+<summary>
+<em>Demonstração</em> (clique para expandir)
+</summary>
+<p>Sejam <span class="math inline">\(x = t_{ds} + \mu_r &gt; 0\)</span> e <span class="math inline">\(W = \mu_r - t_{dr}\)</span>, de modo que <span class="math inline">\(E(W) = 0\)</span>, <span class="math inline">\(\operatorname{Var}(W) = \sigma_r^2\)</span> e a virada é o evento <span class="math inline">\(W \ge x\)</span>.
+Para qualquer <span class="math inline">\(u \ge 0\)</span>, como <span class="math inline">\(x + u &gt; 0\)</span>, a desigualdade de Markov aplicada a <span class="math inline">\((W + u)^2\)</span> dá</p>
+<p><span class="math display">\[\Pr (W \ge x) \le \Pr\{(W + u)^2 \ge (x + u)^2\} \le \frac{E\{(W + u)^2\}}{(x + u)^2} = \frac{\sigma_r^2 + u^2}{(x + u)^2}.\]</span></p>
+<p>O lado direito é mínimo em <span class="math inline">\(u = \sigma_r^2 / x\)</span>, e nesse ponto vale <span class="math inline">\(\sigma_r^2 / (\sigma_r^2 + x^2)\)</span>. <span class="math inline">\(\blacksquare\)</span></p>
+</details>
+<p>Para garantir que o risco de virada seja no máximo <span class="math inline">\(\alpha\)</span>, basta exigir que esse limite seja no máximo <span class="math inline">\(\alpha\)</span>, o que dá a regra:</p>
+<p><span class="math display">\[\text{anuncie } k \text{ quando } t_{ds} + \mu_r \ge z_\alpha \times \sigma_r, \quad \text{com } z_\alpha = \sqrt{\frac{1 - \alpha}{\alpha}}.\]</span></p>
+<p>O fator <span class="math inline">\(z_\alpha\)</span> faz o papel do quantil da normal, mas é bem maior, porque a garantia vale para qualquer distribuição:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Risco <span class="math inline">\(\alpha\)</span></th>
+<th>10%</th>
+<th>5%</th>
+<th>1%</th>
+<th>0,1%</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Cantelli, <span class="math inline">\(z_\alpha\)</span></td>
+<td>3,00</td>
+<td>4,36</td>
+<td>9,95</td>
+<td>31,6</td>
+</tr>
+<tr class="even">
+<td>Normal</td>
+<td>1,28</td>
+<td>1,64</td>
+<td>2,33</td>
+<td>3,09</td>
+</tr>
+</tbody>
+</table>
+<p>Uma forma natural de estabelecer valores para <span class="math inline">\(\mu_r\)</span> e <span class="math inline">\(\sigma_r\)</span> é escrever estas quantidades por eleitor restante:</p>
+<p><span class="math display">\[\mu_r = \lambda \times M_r,\]</span></p>
+<p><span class="math display">\[\sigma_r = \tau \times M_r.\]</span></p>
+<p>Aqui, <span class="math inline">\(\lambda\)</span> é a margem média por eleitor que esperamos nas seções restantes, e <span class="math inline">\(\tau\)</span> é o desvio-padrão dessa margem.
+Com isso, a regra fica</p>
+<p><span class="math display">\[t_{ds} &gt; (z_\alpha \tau - \lambda) \times M_r,\]</span></p>
+<p>que é a Proposição 1 com o eleitorado restante multiplicado por <span class="math inline">\(z_\alpha \tau - \lambda\)</span>.<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a>
+Em termos de percentuais, como na regra prática,</p>
+<p><span class="math display">\[\hat p_k &gt; \frac{1}{2} + (z_\alpha \tau - \lambda) \times \frac{1 - f}{2 f \hat v}.\]</span></p>
+<p>A garantia continua valendo se <span class="math inline">\(\mu_r\)</span> for <em>menor</em> que a média verdadeira e <span class="math inline">\(\sigma_r\)</span> for <em>maior</em> que o desvio-padrão verdadeiro.
+Ou seja, ser conservador é subestimar <span class="math inline">\(\lambda\)</span> e superestimar <span class="math inline">\(\tau\)</span>.</p>
+<!-- Quão conservadoras são essas escolhas? -->
+<!-- - **A garantia sobrevive a erros na direção certa.** O limite de Cantelli cresce com $\sigma_r$ e decresce com $\mu_r$. Então a regra continua valendo se $\mu_r$ for *menor* que a média verdadeira e $\sigma_r$ for *maior* que o desvio-padrão verdadeiro. Ser conservador é subestimar $\lambda$ e superestimar $\tau$. O contrário, superestimar $\lambda$ ou subestimar $\tau$, faz o risco real passar de $\alpha$. -->
+<!-- - **Sobre $\lambda$.** Usar a tendência das seções já apuradas, $\lambda = \hat v (2 \hat p_k - 1)$, é tentador, mas supõe que a ordem de chegada não importa, que é justamente o que falha na noite da eleição. A escolha $\lambda = 0$ diz que as seções restantes, em média, não favorecem ninguém. Ela é conservadora quando $k$ está à frente e as seções restantes não são sistematicamente hostis a ele. A escolha mais segura é um $\lambda$ negativo, igual à maior desvantagem que as últimas seções já impuseram ao líder em eleições anteriores. -->
+<!-- - **Sobre $\tau$.** Tomar $\sigma_r$ proporcional a $M_r$ trata os eleitores restantes como um bloco sujeito a um choque comum. Isso já é conservador: se as seções fossem independentes, $\sigma_r$ cresceria com $\sqrt{\sum_{i \in r} M_i^2}$, que é muito menor que $M_r$. O valor de $\tau$ precisa incluir os choques regionais, e não só a variação entre seções. -->
+<!-- - **Há um limite para o conservadorismo.** Como $|t_{dr}| \le M_r$, nunca é preciso usar $\tau > 1$. E, se $z_\alpha \tau - \lambda \ge 1$, Cantelli decide depois da Proposição 1, e não serve para nada. Por exemplo, com $\alpha = 1\%$ e $\lambda = 0$, a regra só ajuda se $\tau < 1 / 9{,}95 \approx 0{,}10$. -->
+<p>Talvez o melhor jeito de escolher <span class="math inline">\(\lambda\)</span> e <span class="math inline">\(\tau\)</span> seja olhar para eleições anteriores:
+em cada momento da apuração, quanto a margem por eleitor das seções restantes se desviou da margem por eleitor das seções já apuradas?
+A média desses desvios sugere <span class="math inline">\(\lambda\)</span>, e a sua dispersão, incluindo o pior caso observado, sugere <span class="math inline">\(\tau\)</span>.</p>
+<p>Na prática, a regra de Cantelli pode ser utilizada seguindo estes passos:</p>
+<ol style="list-style-type: decimal">
+<li>Escolha o risco <span class="math inline">\(\alpha\)</span> aceitável.</li>
+<li>Escolha <span class="math inline">\(\mu_r\)</span> e <span class="math inline">\(\sigma_r\)</span> para as seções que ainda faltam (por exemplo, via <span class="math inline">\(\lambda\)</span> e <span class="math inline">\(\tau\)</span>).</li>
+<li>A cada atualização, verifique se <span class="math inline">\(t_{ds} + \mu_r \ge z_\alpha \times \sigma_r\)</span>.</li>
+<li>Verifique também a Proposição 1. Ela não depende de nenhuma hipótese, e às vezes decide antes; anuncie quando qualquer uma das duas for satisfeita.</li>
+</ol>
+</div>
+<div id="uma-noite-de-apuração-simulada" class="section level2">
+<h2>Uma noite de apuração simulada</h2>
+<p>Para ver as regras em ação, simulei uma eleição com 20.000 seções divididas em cinco regiões.
+O candidato <span class="math inline">\(k\)</span> é mais forte nas regiões que chegam por último, como costuma acontecer quando os primeiros boletins vêm das capitais.
+O resultado final é 52,6% dos votos válidos para <span class="math inline">\(k\)</span>.</p>
+<p>Para a regra de Cantelli, usei <span class="math inline">\(\alpha = 0{,}01\)</span>, <span class="math inline">\(\lambda = 0\)</span> e <span class="math inline">\(\tau = 0{,}03\)</span>.
+Esses valores são ilustrativos, não calibrados.
+Com eles, o eleitorado restante é multiplicado por <span class="math inline">\(0{,}3\)</span>.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:fig-noite"></span>
+<img src="https://guilhermejacob.github.io/2026/10/quando-uma-elei%C3%A7%C3%A3o-est%C3%A1-decidida/index_files/figure-html/fig-noite-1.png" alt="Percentual apurado do candidato k ao longo da noite, com os limiares exato, conservador e de Cantelli." width="100%" />
+<p class="caption">
+Figure 2: Percentual apurado do candidato k ao longo da noite, com os limiares exato, conservador e de Cantelli.
+</p>
+</div>
+<p>O candidato <span class="math inline">\(k\)</span> começa a noite perdendo e só passa dos 50% com 66,7% das seções apuradas.
+A virada é real, mas ainda não garante nada: o limiar exato só é cruzado com 96,6% das seções apuradas, e o conservador com 97,8%.
+Aceitando um risco de virada de no máximo 1%, Cantelli permite anunciar o resultado já com 91,3% das seções apuradas, desde que as escolhas de <span class="math inline">\(\lambda\)</span> e <span class="math inline">\(\tau\)</span> sejam conservadoras.</p>
+<p>Outra forma de ver a mesma coisa é pelo “intervalo” de valores possíveis para a margem final, <span class="math inline">\([t_{ds} - M_r,\ t_{ds} + M_r]\)</span>.
+A eleição está decidida quando o intervalo inteiro fica acima de zero.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:fig-intervalo"></span>
+<img src="https://guilhermejacob.github.io/2026/10/quando-uma-elei%C3%A7%C3%A3o-est%C3%A1-decidida/index_files/figure-html/fig-intervalo-1.png" alt="Intervalo de valores possíveis para a margem final do candidato k no fim da apuração." width="100%" />
+<p class="caption">
+Figure 3: Intervalo de valores possíveis para a margem final do candidato k no fim da apuração.
+</p>
+</div>
+<p>Duas observações:</p>
+<ol style="list-style-type: decimal">
+<li><strong>Pondere pelo eleitorado, não pelo número de urnas.</strong> O “percentual de seções apuradas” mostrado na tela conta conglomerados, mas os conglomerados têm tamanhos diferentes. A regra exata precisa de <span class="math inline">\(f\)</span> em termos de eleitores; com <span class="math inline">\(g\)</span>, use a Proposição 3.</li>
+<li><strong>O cadastro precisa estar completo.</strong> A demonstração usa o fato de que todo eleitor pertence a alguma seção de <span class="math inline">\(U\)</span> com eleitorado <span class="math inline">\(M_i\)</span> conhecido. Votos que não estão ligados ao eleitorado de uma seção comum, como os votos no exterior ou o voto em trânsito, precisam estar em <span class="math inline">\(U\)</span> como conglomerados próprios. Caso contrário, o pior caso fica subestimado.</li>
+</ol>
+</div>
+<div id="por-que-o-tse-pode-anunciar-antes-de-100" class="section level2">
+<h2>Por que o TSE pode anunciar antes de 100%</h2>
+<p>Nada na Proposição 1 exige que <span class="math inline">\(r\)</span> seja vazio.
+Ela só exige que a margem apurada supere o que as seções restantes poderiam, no
+máximo, desfazer.
+No fim da noite, as seções não apuradas são uma pequena cauda de áreas remotas,
+seções no exterior e eventuais urnas que precisam de apuração manual.
+O eleitorado total dessas seções, <span class="math inline">\(M_r\)</span>, é pequeno, e a condição é satisfeita.
+A apuração continua até o fim.
+Ela só não pode mais mudar o resultado.</p>
+</div>
+<div id="dá-para-prever-quando-a-eleição-vai-ser-decidida" class="section level2">
+<h2>Dá para prever quando a eleição vai ser decidida?</h2>
+<p>As proposições acima respondem à pergunta “a eleição já está decidida?”.
+Elas não dizem <em>quando</em> isso vai acontecer: o momento exato da decisão só é conhecido quando chegamos nele.</p>
+<p>Ainda assim, dá para dizer alguma coisa.
+Suponha que a eleição ainda não está decidida e defina:</p>
+<ul>
+<li><span class="math inline">\(G = M_r - t_{ds} &gt; 0\)</span>, a distância que ainda falta para a condição da Proposição 1;</li>
+<li><span class="math inline">\(m\)</span>, o eleitorado das seções que serão apuradas daqui para frente.</li>
+</ul>
+<p>Cada eleitor apurado reduz <span class="math inline">\(M_r\)</span> em um e muda <span class="math inline">\(t_{ds}\)</span> pelo seu escore <span class="math inline">\(a_{ij}\)</span>.
+Isso dá duas respostas, uma sem modelo e outra com.</p>
+<p><strong>Proposição 5.</strong> A eleição não pode ser decidida a favor de <span class="math inline">\(k\)</span> antes de serem apurados mais de <span class="math inline">\(G/2\)</span> eleitores, isto é, antes de</p>
+<p><span class="math display">\[m &gt; \frac{G}{2}.\]</span></p>
+<p>Esse limite é atingido quando todos os eleitores das próximas seções comparecem e votam em <span class="math inline">\(k\)</span>.</p>
+<details>
+<summary>
+<em>Demonstração</em> (clique para expandir)
+</summary>
+<p>Depois de apuradas seções com <span class="math inline">\(m\)</span> eleitores, a margem apurada é no máximo <span class="math inline">\(t_{ds} + m\)</span>, já que cada <span class="math inline">\(a_{ij} \le 1\)</span>, e o eleitorado restante é exatamente <span class="math inline">\(M_r - m\)</span>.
+Pela Proposição 1, a eleição só está decidida se</p>
+<p><span class="math display">\[t_{ds} + m &gt; M_r - m,\]</span></p>
+<p>o que exige <span class="math inline">\(m &gt; G / 2\)</span>.
+Se todos os <span class="math inline">\(m\)</span> eleitores tiverem <span class="math inline">\(a_{ij} = +1\)</span>, a margem apurada é exatamente <span class="math inline">\(t_{ds} + m\)</span>, e a condição vale assim que <span class="math inline">\(m &gt; G/2\)</span>. <span class="math inline">\(\blacksquare\)</span></p>
+</details>
+<p>Não existe um limite no sentido contrário: se as seções restantes favorecerem o adversário, a eleição pode ficar indefinida até a última seção.</p>
+<p>A segunda resposta precisa de uma hipótese sobre o que ainda falta.
+Se as seções restantes se parecerem com as já apuradas, cada eleitor apurado acrescenta, em média, <span class="math inline">\(\hat v (2 \hat p_k - 1)\)</span> à margem.
+A distância <span class="math inline">\(G\)</span> então cai <span class="math inline">\(1 + \hat v (2 \hat p_k - 1)\)</span> por eleitor apurado, e a decisão viria depois de</p>
+<p><span class="math display">\[m^* = \frac{G}{1 + \hat v (2 \hat p_k - 1)}\]</span></p>
+<p>eleitores.
+Se <span class="math inline">\(m^* &gt; M_r\)</span>, essa projeção diz que a eleição não será decidida a favor de <span class="math inline">\(k\)</span>.
+Quando o percentual de <span class="math inline">\(k\)</span> é o mesmo do começo ao fim da apuração, a decisão acontece na fração do eleitorado</p>
+<p><span class="math display">\[f^* = \frac{1}{1 + \hat v (2 \hat p_k - 1)},\]</span></p>
+<p>que é de onde veio o “cerca de 97%” para um candidato com 52%.</p>
+<p>O problema é que essa projeção é tão boa quanto a hipótese de que o resto se parece com o que já foi apurado.
+Na noite simulada, ela erra bastante:</p>
+<table>
+<colgroup>
+<col width="15%" />
+<col width="17%" />
+<col width="16%" />
+<col width="33%" />
+<col width="16%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">Seções apuradas</th>
+<th align="center">Eleitorado apurado</th>
+<th align="center">Percentual de <span class="math inline">\(k\)</span></th>
+<th align="center">Decisão mais cedo possível (Prop. 5)</th>
+<th align="center">Decisão projetada</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">30%</td>
+<td align="center">29,9%</td>
+<td align="center">47,7%</td>
+<td align="center">65,4%</td>
+<td align="center">não decide</td>
+</tr>
+<tr class="even">
+<td align="center">50%</td>
+<td align="center">50,0%</td>
+<td align="center">48,9%</td>
+<td align="center">75,4%</td>
+<td align="center">não decide</td>
+</tr>
+<tr class="odd">
+<td align="center">80%</td>
+<td align="center">80,0%</td>
+<td align="center">51,1%</td>
+<td align="center">89,4%</td>
+<td align="center">98,5%</td>
+</tr>
+<tr class="even">
+<td align="center">90%</td>
+<td align="center">90,0%</td>
+<td align="center">51,8%</td>
+<td align="center">93,8%</td>
+<td align="center">97,4%</td>
+</tr>
+<tr class="odd">
+<td align="center">95%</td>
+<td align="center">95,0%</td>
+<td align="center">52,2%</td>
+<td align="center">96,0%</td>
+<td align="center">96,8%</td>
+</tr>
+</tbody>
+</table>
+<p>As duas últimas colunas estão em fração do eleitorado.
+A decisão de fato aconteceu com 96,7% do eleitorado apurado.
+Enquanto <span class="math inline">\(k\)</span> estava atrás, a projeção dizia que ele não seria eleito; depois da virada, ela passou a acertar cada vez mais.</p>
+</div>
+<div id="onde-entra-a-inferência-baseada-em-modelos" class="section level2">
+<h2>Onde entra a inferência baseada em modelos</h2>
+<p>A regra determinística usa o modelo mais fraco possível: ela só sabe que cada escore
+<span class="math inline">\(a_{ij}\)</span> está entre <span class="math inline">\(-1\)</span> e <span class="math inline">\(1\)</span>.
+O seu “intervalo de predição” para a margem da parte não observada é</p>
+<p><span class="math display">\[[-M_r,\ M_r],\]</span></p>
+<p>e a eleição é decidida quando esse intervalo inteiro está de um lado de <span class="math inline">\(-t_{ds}\)</span>.</p>
+<p>A regra de Cantelli já dá um passo além: ela troca o intervalo de pior caso por
+duas hipóteses, sobre a média e o desvio-padrão de <span class="math inline">\(t_{dr}\)</span>, e aceita uma probabilidade
+pequena e controlada de erro.
+Um modelo estatístico completo, que liga o resultado de cada seção ao resultado dela na
+eleição anterior, vai mais longe: ele dá um intervalo preditivo ainda mais estreito
+para <span class="math inline">\(t_{dr}\)</span>, e a eleição pode ser decidida mais cedo ainda.
+É isso que quem faz projeções na noite da eleição faz há décadas.
+A parte difícil é que os primeiros resultados não são uma amostra aleatória:
+algumas regiões sistematicamente chegam antes das outras.
+Mas isso fica para um próximo post.</p>
+</div>
+<div class="footnotes footnotes-end-of-document">
+<hr />
+<ol>
+<li id="fn1"><p>Provavelmente porque eu gosto bastante de amostragem.<a href="#fnref1" class="footnote-back">↩︎</a></p></li>
+<li id="fn2"><p>Dá para ler todas essas regras como uma relação sinal-ruído.
+O sinal é a margem que esperamos ao final, <span class="math inline">\(S = t_{ds} + \mu_r\)</span>, e o ruído é a incerteza sobre o que falta apurar, <span class="math inline">\(\sigma_r\)</span>.
+Com <span class="math inline">\(\rho = S / \sigma_r\)</span>, a desigualdade de Cantelli diz que <span class="math inline">\(\Pr(\text{virada}) \le 1/(1 + \rho^2)\)</span>, e a regra é simplesmente anunciar quando <span class="math inline">\(\rho \ge z_\alpha\)</span>.
+Com <span class="math inline">\(\lambda = 0\)</span>, essa razão é <span class="math inline">\(\rho = \frac{f}{1 - f} \times \frac{\hat v (2 \hat p_k - 1)}{\tau}\)</span>:
+a chance de apuração, <span class="math inline">\(f/(1-f)\)</span>, vezes a margem por eleitor medida em unidades de ruído.
+<!-- Isso também se conecta à decomposição de Meng (2018).  -->
+<!-- Seja $\bar a_s$ o escore médio dos eleitores já apurados, $\bar a$ o escore médio de todo o eleitorado, $\sigma_a$ o desvio-padrão populacional dos escores e $\rho_{R,a}$ a correlação entre ser apurado cedo e o escore do eleitor.  -->
+<!-- Então $\bar a_s - \bar a = \rho_{R,a} \times \sqrt{(1 - f)/f} \times \sigma_a$: o erro da apuração parcial é o produto da qualidade dos dados, da quantidade de dados e da dificuldade do problema.  -->
+<!-- Escolher $\lambda$ e $\tau$ é, no fundo, fazer uma hipótese sobre $\rho_{R,a}$, a "correlação de defeito" da ordem de chegada das urnas.  -->
+<!-- (Meng, X.-L. (2018). Statistical paradises and paradoxes in big data (I): Law of large populations, big data paradox, and the 2016 US presidential election. *The Annals of Applied Statistics*, 12(2), 685–726.) --><a href="#fnref2" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+
+              
+
+
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">ETIQUETADO em</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://guilhermejacob.github.io/tags/amostragem/">amostragem</a>
+
+  <a class="tag tag--primary tag--small" href="https://guilhermejacob.github.io/tags/infer%C3%AAncia-baseada-em-modelos/">inferência baseada em modelos</a>
+
+  <a class="tag tag--primary tag--small" href="https://guilhermejacob.github.io/tags/elei%C3%A7%C3%B5es/">eleições</a>
+
+  <a class="tag tag--primary tag--small" href="https://guilhermejacob.github.io/tags/brasil/">Brasil</a>
+
+                  </div>
+                
+              
+            
+            
+<div class="post-actions-wrap">
+  <nav >
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--disabled">
+          
+              <i class="fa fa-angle-left"></i>
+              <span class="hide-xs hide-sm text-small icon-ml">PRÓXIMO</span>
+            </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://guilhermejacob.github.io/2026/10/renda-voto-inferencia-ecologica/" data-tooltip="Renda e voto no 1º turno de 2026: o que dá (e o que não dá) para dizer com dados agregados" aria-label="ANTERIOR: Renda e voto no 1º turno de 2026: o que dá (e o que não dá) para dizer com dados agregados">
+          
+              <span class="hide-xs hide-sm text-small icon-mr">ANTERIOR</span>
+              <i class="fa fa-angle-right"></i>
+            </a>
+        </li>
+      
+    </ul>
+  </nav>
+<ul class="post-actions post-action-share" >
+  
+    <li class="post-action hide-lg hide-md hide-sm">
+      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Compartilhe esta postagem">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://guilhermejacob.github.io/2026/10/quando-uma-elei%C3%A7%C3%A3o-est%C3%A1-decidida/" title="Compartilhar no Facebook" aria-label="Compartilhar no Facebook">
+          <i class="fa-facebook-official" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://guilhermejacob.github.io/2026/10/quando-uma-elei%C3%A7%C3%A3o-est%C3%A1-decidida/" title="Compartilhar no Google&#43;" aria-label="Compartilhar no Google&#43;">
+          <i class="fa-google-plus" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+  
+  
+  <li class="post-action">
+    
+      <a class="post-action-btn btn btn--default" href="#top" aria-label="De volta ao topo">
+      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    
+    </a>
+  </li>
+</ul>
+</div>
+
+
+            
+  
+
+
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2026 Guilherme Jacob. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+        
+<div class="post-actions-wrap">
+  <nav >
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--disabled">
+          
+              <i class="fa fa-angle-left"></i>
+              <span class="hide-xs hide-sm text-small icon-ml">PRÓXIMO</span>
+            </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://guilhermejacob.github.io/2026/10/renda-voto-inferencia-ecologica/" data-tooltip="Renda e voto no 1º turno de 2026: o que dá (e o que não dá) para dizer com dados agregados" aria-label="ANTERIOR: Renda e voto no 1º turno de 2026: o que dá (e o que não dá) para dizer com dados agregados">
+          
+              <span class="hide-xs hide-sm text-small icon-mr">ANTERIOR</span>
+              <i class="fa fa-angle-right"></i>
+            </a>
+        </li>
+      
+    </ul>
+  </nav>
+<ul class="post-actions post-action-share" >
+  
+    <li class="post-action hide-lg hide-md hide-sm">
+      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Compartilhe esta postagem">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://guilhermejacob.github.io/2026/10/quando-uma-elei%C3%A7%C3%A3o-est%C3%A1-decidida/" title="Compartilhar no Facebook" aria-label="Compartilhar no Facebook">
+          <i class="fa-facebook-official" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://guilhermejacob.github.io/2026/10/quando-uma-elei%C3%A7%C3%A3o-est%C3%A1-decidida/" title="Compartilhar no Google&#43;" aria-label="Compartilhar no Google&#43;">
+          <i class="fa-google-plus" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+  
+  
+  <li class="post-action">
+    
+      <a class="post-action-btn btn btn--default" href="#top" aria-label="De volta ao topo">
+      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    
+    </a>
+  </li>
+</ul>
+</div>
+
+
+      </div>
+      
+<div id="share-options-bar" class="share-options-bar" data-behavior="4">
+  <i id="btn-close-shareoptions" class="fa fa-times"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fguilhermejacob.github.io%2F2026%2F10%2Fquando-uma-elei%25C3%25A7%25C3%25A3o-est%25C3%25A1-decidida%2F" aria-label="Compartilhar no Facebook">
+          <i class="fa-facebook-official" aria-hidden="true"></i><span>Compartilhar no Facebook</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https%3A%2F%2Fguilhermejacob.github.io%2F2026%2F10%2Fquando-uma-elei%25C3%25A7%25C3%25A3o-est%25C3%25A1-decidida%2F" aria-label="Compartilhar no Google&#43;">
+          <i class="fa-google-plus" aria-hidden="true"></i><span>Compartilhar no Google&#43;</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+
+
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-times"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://guilhermejacob.github.io/files/img_2502_recorte.jpg" alt="Foto do autor" />
+    
+    <h4 id="about-card-name">Guilherme Jacob</h4>
+    
+      <div id="about-card-bio">Manauara.<br>Doutor em População, Território e Estatísticas Públicas (ENCE/IBGE).<br>Bacharel em Direito e Economia.</div>
+    
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker-alt"></i>
+        <br/>
+        Rio de Janeiro, Brasil
+      </div>
+    
+  </div>
+</div>
+
+    
+
+    
+  
+    
+      <div id="cover" style="background-image:url('https://guilhermejacob.github.io/files/manaus.jpg');"></div>
+    
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha512-uURl+ZXMBrF4AwGaWmEetzrd+J5/8NRkWAvJx5sbPSSuOb0bZLqf+tOzniObO00BjHa/dD7gub9oCGMLPQHtQA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+<script src="https://guilhermejacob.github.io/js/script-yqzy9wdlzix4lbbwdnzvwx3egsne77earqmn73v9uno8aupuph8wfguccut.min.js"></script>
+
+
+
+
+  <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS_CHTML-full" integrity="sha256-GhM+5JHb6QUzOQPXSJLEWP7R73CbkisjzK5Eyij4U9w=" crossorigin="anonymous"></script>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      CommonHTML: { linebreaks: { automatic: true } },
+      tex2jax: { inlineMath: [ ['$', '$'], ['\\(','\\)'] ], displayMath: [ ['$$','$$'], ['\\[', '\\]'] ], processEscapes: false },
+      messageStyle: 'none'
+    });
+  </script>
+
+
+
+    
+  </body>
+</html>
+

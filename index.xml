@@ -6,7 +6,16 @@
     <description>Recent content on Something Random</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>pt-br</language>
-    <lastBuildDate>Wed, 07 Oct 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://guilhermejacob.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 26 Oct 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://guilhermejacob.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Quando uma eleição está decidida?</title>
+      <link>https://guilhermejacob.github.io/2026/10/quando-uma-elei%C3%A7%C3%A3o-est%C3%A1-decidida/</link>
+      <pubDate>Mon, 26 Oct 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://guilhermejacob.github.io/2026/10/quando-uma-elei%C3%A7%C3%A3o-est%C3%A1-decidida/</guid>
+      <description>Na noite da eleição, a Justiça Eleitoral costuma anunciar o vencedor antes de todas as urnas terem sido apuradas. Usando a decomposição observado-não observado da inferência baseada em modelos para populações finitas, podemos deduzir o momento exato em que o resultado se torna certo, com demonstrações simples e uma regra prática que só usa os percentuais atuais e a fração do eleitorado já apurada. Aceitando um risco pequeno de erro, a desigualdade de Cantelli permite anunciar ainda mais cedo.</description>
+    </item>
+    
     <item>
       <title>Renda e voto no 1º turno de 2026: o que dá (e o que não dá) para dizer com dados agregados</title>
       <link>https://guilhermejacob.github.io/2026/10/renda-voto-inferencia-ecologica/</link>
