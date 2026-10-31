@@ -6,22 +6,31 @@
     <description>Recent content in Categories on Something Random</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>pt-br</language>
-    <lastBuildDate>Wed, 07 Oct 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://guilhermejacob.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 31 Oct 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://guilhermejacob.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Inferência Ecológica</title>
-      <link>https://guilhermejacob.github.io/categories/infer%C3%AAncia-ecol%C3%B3gica/</link>
-      <pubDate>Wed, 07 Oct 2026 00:00:00 +0000</pubDate>
+      <title>Probabilidade</title>
+      <link>https://guilhermejacob.github.io/categories/probabilidade/</link>
+      <pubDate>Sat, 31 Oct 2026 00:00:00 +0000</pubDate>
       
-      <guid>https://guilhermejacob.github.io/categories/infer%C3%AAncia-ecol%C3%B3gica/</guid>
+      <guid>https://guilhermejacob.github.io/categories/probabilidade/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Teoria</title>
       <link>https://guilhermejacob.github.io/categories/teoria/</link>
-      <pubDate>Wed, 07 Oct 2026 00:00:00 +0000</pubDate>
+      <pubDate>Sat, 31 Oct 2026 00:00:00 +0000</pubDate>
       
       <guid>https://guilhermejacob.github.io/categories/teoria/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Inferência Ecológica</title>
+      <link>https://guilhermejacob.github.io/categories/infer%C3%AAncia-ecol%C3%B3gica/</link>
+      <pubDate>Wed, 07 Oct 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://guilhermejacob.github.io/categories/infer%C3%AAncia-ecol%C3%B3gica/</guid>
       <description></description>
     </item>
     

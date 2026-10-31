@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    
+    <script type="application/ld+json">
+
+{  
+  "@context":"http://schema.org",
+  "@type":"Website",
+  "@id":"https:\/\/guilhermejacob.github.io\/",
+  "author": {
+    "@type": "Person",
+    "name": "Guilherme Jacob",
+    
+    "image": "https://guilhermejacob.github.io/files/img_2502_recorte.jpg"
+    
+  },
+  "name":"Something Random",
+  "description":"Desde 1989, o presidente eleito venceu em Minas Gerais e no Amazonas em todas as eleições. Com um modelo simples de sorteio, a chance de alguma das 27 UFs ter um histórico perfeito só por acaso é de cerca de 50%. O erro está em escolher as UFs depois de ver os dados: o problema das comparações múltiplas, ou falácia do atirador do Texas.",
+  "url":"https:\/\/guilhermejacob.github.io\/2026\/10\/eleicoes-mg-am\/",
+  "keywords":"[]"
+}
+
+</script>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.115.3 with theme Tranquilpeak 0.5.3-BETA">
+<meta name="author" content="Guilherme Jacob">
+<meta name="keywords" content="">
+<meta name="description" content="Desde 1989, o presidente eleito venceu em Minas Gerais e no Amazonas em todas as eleições. Com um modelo simples de sorteio, a chance de alguma das 27 UFs ter um histórico perfeito só por acaso é de cerca de 50%. O erro está em escolher as UFs depois de ver os dados: o problema das comparações múltiplas, ou falácia do atirador do Texas.">
+
+
+<meta property="og:description" content="Desde 1989, o presidente eleito venceu em Minas Gerais e no Amazonas em todas as eleições. Com um modelo simples de sorteio, a chance de alguma das 27 UFs ter um histórico perfeito só por acaso é de cerca de 50%. O erro está em escolher as UFs depois de ver os dados: o problema das comparações múltiplas, ou falácia do atirador do Texas.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Desde 1989, quem vence em Minas Gerais e no Amazonas vence a eleição. Isso é sorte?">
+<meta name="twitter:title" content="Desde 1989, quem vence em Minas Gerais e no Amazonas vence a eleição. Isso é sorte?">
+<meta property="og:url" content="https://guilhermejacob.github.io/2026/10/eleicoes-mg-am/">
+<meta property="twitter:url" content="https://guilhermejacob.github.io/2026/10/eleicoes-mg-am/">
+<meta property="og:site_name" content="Something Random">
+<meta property="og:description" content="Desde 1989, o presidente eleito venceu em Minas Gerais e no Amazonas em todas as eleições. Com um modelo simples de sorteio, a chance de alguma das 27 UFs ter um histórico perfeito só por acaso é de cerca de 50%. O erro está em escolher as UFs depois de ver os dados: o problema das comparações múltiplas, ou falácia do atirador do Texas.">
+<meta name="twitter:description" content="Desde 1989, o presidente eleito venceu em Minas Gerais e no Amazonas em todas as eleições. Com um modelo simples de sorteio, a chance de alguma das 27 UFs ter um histórico perfeito só por acaso é de cerca de 50%. O erro está em escolher as UFs depois de ver os dados: o problema das comparações múltiplas, ou falácia do atirador do Texas.">
+<meta property="og:locale" content="pt-br">
+
+  
+    <meta property="article:published_time" content="2026-10-31T00:00:00">
+  
+  
+    <meta property="article:modified_time" content="2026-10-31T00:00:00">
+  
+  
+  
+    
+      <meta property="article:section" content="Probabilidade">
+    
+      <meta property="article:section" content="Teoria">
+    
+  
+  
+    
+      <meta property="article:tag" content="eleições">
+    
+      <meta property="article:tag" content="eleições 2026">
+    
+      <meta property="article:tag" content="comparações múltiplas">
+    
+      <meta property="article:tag" content="R">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+
+  <meta property="og:image" content="https://guilhermejacob.github.io/files/img_2502_recorte.jpg">
+  <meta property="twitter:image" content="https://guilhermejacob.github.io/files/img_2502_recorte.jpg">
+
+
+
+
+
+
+    <title>Desde 1989, quem vence em Minas Gerais e no Amazonas vence a eleição. Isso é sorte?</title>
+
+    <link rel="icon" href="https://guilhermejacob.github.io/favicon.png">
+    
+
+    
+
+    <link rel="canonical" href="https://guilhermejacob.github.io/2026/10/eleicoes-mg-am/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha512-H9jrZiiopUdsLpg94A333EfumgUBpO9MdbxStdeITo+KEIMaNfHNvwyjjDJb+ERPaRS6DpyRlKbvPUasNItRyw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    
+    
+    <link rel="stylesheet" href="https://guilhermejacob.github.io/css/style-h6ccsoet3mzkbb0wngshlfbaweimexgqcxj0h5hu4h82olsdzz6wmqdkajm.min.css" />
+    
+    
+
+    
+      
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="4">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://guilhermejacob.github.io/" aria-label="Vá para a página inicial">Something Random</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://guilhermejacob.github.io/#about" aria-label="Abra o link: /#about">
+    
+    
+    
+      
+        <img class="header-picture" src="https://guilhermejacob.github.io/files/img_2502_recorte.jpg" alt="Foto do autor" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="4">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://guilhermejacob.github.io/#about" aria-label="Leia mais sobre o autor">
+          <img class="sidebar-profile-picture" src="https://guilhermejacob.github.io/files/img_2502_recorte.jpg" alt="Foto do autor" />
+        </a>
+        <h4 class="sidebar-profile-name">Guilherme Jacob</h4>
+        
+          <h5 class="sidebar-profile-bio">Manauara.<br>Doutor em População, Território e Estatísticas Públicas (ENCE/IBGE).<br>Bacharel em Direito e Economia.</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://guilhermejacob.github.io/" title="Home">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">Início</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://guilhermejacob.github.io/#about" title="About">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+      
+      <span class="sidebar-button-desc">Sobre</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://guilhermejacob.github.io/tags" title="Tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">Tags</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://guilhermejacob.github.io/categories" title="Categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+      
+      <span class="sidebar-button-desc">Categorias</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://guilhermejacob.github.io/archives" title="Archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">Arquivo</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://guilhermejacob.github.io/files/cv_english.pdf" title="CV">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-briefcase"></i>
+      
+      <span class="sidebar-button-desc">CV</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://guilhermejacob.github.io/research" title="Pesquisa">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-code"></i>
+      
+      <span class="sidebar-button-desc">Pesquisa</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="mailto:guilhermejacob91@gmail.com" target="_blank" rel="noopener" title="Contato">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-envelope-o"></i>
+      
+      <span class="sidebar-button-desc">Contato</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/guilhermejacob" target="_blank" rel="noopener" title="GitHub">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="http://stackoverflow.com/users/6419956/guilherme-jacob" target="_blank" rel="noopener" title="Stack Overflow">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-stack-overflow"></i>
+      
+      <span class="sidebar-button-desc">Stack Overflow</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://www.instagram.com/guilhermejacob9" target="_blank" rel="noopener" title="Instagram">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-instagram"></i>
+      
+      <span class="sidebar-button-desc">Instagram</span>
+    </a>
+  </li>
+
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+	<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+	<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      <div id="main" data-behavior="4"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" id="top">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title">
+      Desde 1989, quem vence em Minas Gerais e no Amazonas vence a eleição. Isso é sorte?
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time datetime="2026-10-31T00:00:00Z">
+        
+  
+  
+  
+  
+    31/10/2026
+  
+
+      </time>
+    
+    
+  
+  
+    <span>em</span>
+    
+      <a class="category-link" href="https://guilhermejacob.github.io/categories/probabilidade">Probabilidade</a>, 
+    
+      <a class="category-link" href="https://guilhermejacob.github.io/categories/teoria">Teoria</a>
+    
+  
+
+  </div>
+
+</div>
+          
+          <div class="post-content markdown">
+            <div class="main-content-wrap">
+              
+
+
+<p>No último domingo (25), Lula venceu Flávio Bolsonaro no 2º turno.
+Ele ganhou em 13 UFs, entre elas <a href="https://www.correio24horas.com.br/eleicoes/virada-em-mg-e-vitoria-historica-no-rio-a-votacao-de-lula-e-flavio-nos-estados-1026">Amazonas e Minas Gerais</a>.
+Com isso, voltou a circular uma curiosidade: desde 1989, quem vence nesses dois estados vence a eleição.
+São 10 eleições sem nenhuma exceção.</p>
+<p>Minas costuma ser chamada de <a href="https://www.ubs.com/br/pt/wealthmanagement/insights/brazil-elections-2026/articles/minas-gerais.html">principal estado-pêndulo do país</a> justamente por isso.
+A pergunta central é: <strong>qual a chance de alguma UF ter um histórico perfeito por puro acaso?</strong></p>
+<p>Spoiler: é mais ou menos cara ou coroa.
+Com 27 UFs, a chance de existir pelo menos uma UF em que o eleito venceu nas 10 eleições, por puro acaso, é de cerca de <strong>50%</strong>.</p>
+<div id="notação" class="section level1">
+<h1>Notação</h1>
+<p>Antes de fazer as contas, precisamos definir algumas coisas.</p>
+<ul>
+<li><span class="math inline">\(N = 27\)</span> é o número de unidades da federação (26 estados e o Distrito Federal).</li>
+<li><span class="math inline">\(T = 10\)</span> é o número de eleições presidenciais diretas desde 1989.</li>
+<li>Para cada eleição <span class="math inline">\(t = 1, \dots, T\)</span>, <span class="math inline">\(k_t\)</span> é o número de UFs em que o candidato eleito venceu, considerando o turno que decidiu a eleição.</li>
+<li><span class="math inline">\(A_{it}\)</span> é o evento “o candidato eleito na eleição <span class="math inline">\(t\)</span> venceu na UF <span class="math inline">\(i\)</span>”.</li>
+<li>Uma UF é um <strong>termômetro perfeito</strong> se <span class="math inline">\(A_{it}\)</span> ocorre para todo <span class="math inline">\(t\)</span>. O nome vem da ideia de que, como um termômetro que mede a temperatura do corpo inteiro, o resultado dessa UF “mede” o resultado do país.</li>
+</ul>
+<p>O que queremos é a probabilidade de que pelo menos uma das <span class="math inline">\(N\)</span> UFs seja um termômetro perfeito, se a sequência fosse fruto do acaso.</p>
+</div>
+<div id="o-modelo-da-moeda-honesta" class="section level1">
+<h1>O modelo da moeda honesta</h1>
+<p>O primeiro impulso é pensar que, em cada eleição, o eleito vence ou não vence numa UF, como uma moeda que dá cara ou coroa.
+Ou seja, <span class="math inline">\(\Pr(A_{it}) = 1/2\)</span>, com eleições independentes entre si.</p>
+<p>Nesse caso, ter o eleito vencendo numa mesma UF nas <span class="math inline">\(T = 10\)</span> eleições é como tirar cara 10 vezes seguidas:
+<span class="math display">\[
+\left( \frac{1}{2} \right)^{10} = \frac{1}{1024} \approx 0{,}1\%.
+\]</span>
+Com <span class="math inline">\(N = 27\)</span> UFs, a chance de pelo menos uma ter histórico perfeito é de apenas 2,6%.
+Se isso estivesse certo, Minas e Amazonas seriam mesmo notáveis.</p>
+<p>Mas a moeda é viciada.
+O eleito costuma ganhar na <strong>maioria</strong> das UFs, não em metade delas.
+Em 2002, por exemplo, Serra venceu o 2º turno <a href="https://congressoemfoco.com.br/noticia/99915/o-raio-x-da-disputa-presidencial">em um único estado</a>: Alagoas.
+Lula venceu nas outras 26.</p>
+<p>Pense num meteorologista em Fortaleza no segundo semestre, que todo dia diz “hoje não chove”.
+Ele vai acertar quase sempre, e não porque é bom de previsão: é que quase nunca chove nessa época.
+Numa eleição como a de 2002, acontece o mesmo: como o eleito venceu em 26 das 27 UFs, quase todas continuaram com o histórico perfeito, sem nenhum mérito especial.</p>
+<p>Ou seja: <span class="math inline">\(\Pr(A_{it}) \neq 1/2\)</span>.
+Ela depende de quantas UFs o eleito levou naquele ano.</p>
+</div>
+<div id="um-modelo-melhor" class="section level1">
+<h1>Um modelo melhor</h1>
+<p>Por que um modelo melhor?
+Porque ele usa uma informação que a moeda joga fora: em quantas UFs o eleito venceu em cada eleição.</p>
+<p>Com uma moeda por UF, o eleito venceria, em média, em 13,5 das 27 UFs, todo ano.
+A média observada foi de 19,2.
+E, se a moeda valesse, uma eleição como a de 2002, com o eleito vencendo em 26 das 27 UFs, teria chance de cerca de 2 em 10 milhões.
+Ou seja: a moeda não descreve as eleições que a gente viu.</p>
+<p>O modelo abaixo corrige isso sem abrir mão do acaso.
+Ele aceita o número de UFs vencidas em cada eleição exatamente como foi, e deixa ao acaso só uma coisa: <strong>em quais</strong> UFs o eleito venceu.
+É como julgar o meteorologista de Fortaleza sabendo quantos dias choveu de fato: aí dá para separar o que é mérito do que é regularidade climática.
+A pergunta passa a ser: sabendo em quantas UFs o eleito venceu em cada eleição, um histórico perfeito ainda é surpreendente?</p>
+<p>A ideia é tratar cada eleição como um sorteio.
+Imagine uma caixa com <span class="math inline">\(N = 27\)</span> bolinhas, uma para cada UF.
+Na eleição <span class="math inline">\(t\)</span>, sorteamos <span class="math inline">\(k_t\)</span> bolinhas sem reposição: são as UFs em que o eleito venceu.
+<span class="citation">Freedman, Pisani e Purves (<a href="#ref-freedman2007">2007</a>)</span> usam essa mesma imagem para ensinar probabilidade, chamada de modelo da caixa.</p>
+<p>Os <span class="math inline">\(k_t\)</span> são fixos e iguais aos observados (gráfico abaixo).
+Em 2002 tiramos 26 bolinhas; em 2026, só 13.
+O que é aleatório é <strong>quais</strong> bolinhas saem.</p>
+<div id="hipóteses" class="section level2">
+<h2>Hipóteses</h2>
+<p>Condicional aos <span class="math inline">\(k_t\)</span>, vamos assumir duas coisas:</p>
+<ul>
+<li><strong>H1 (permutabilidade):</strong> em cada eleição <span class="math inline">\(t\)</span>, todos os conjuntos de <span class="math inline">\(k_t\)</span> UFs têm a mesma probabilidade de ser o conjunto em que o eleito venceu. Na caixa, isso quer dizer que as bolinhas são todas iguais e bem misturadas: nenhuma tem, de antemão, mais chance de sair que outra.</li>
+<li><strong>H2 (independência entre eleições):</strong> os sorteios de eleições diferentes são independentes. Na caixa, isso quer dizer que, depois de cada eleição, todas as bolinhas voltam e a caixa é sacudida de novo. Sair em 2022 não muda a chance de sair em 2026.</li>
+</ul>
+<p>Para escrever o resultado, defina <span class="math inline">\(V_i = 1\)</span> se a UF <span class="math inline">\(i\)</span> é um termômetro perfeito (isto é, se <span class="math inline">\(A_{it}\)</span> ocorre para todo <span class="math inline">\(t\)</span>) e <span class="math inline">\(V_i = 0\)</span> caso contrário.
+O número de termômetros perfeitos é
+<span class="math display">\[
+S = \sum_{i=1}^{N} V_i.
+\]</span></p>
+</div>
+<div id="uma-uf-específica" class="section level2">
+<h2>Uma UF específica</h2>
+<p><strong>Proposição.</strong> Sob H1 e H2, para qualquer UF <span class="math inline">\(i\)</span>,
+<span class="math display">\[
+p = \Pr(V_i = 1) = \prod_{t=1}^{T} \frac{k_t}{N}.
+\]</span></p>
+<p>A intuição é a de uma rifa.
+Se há 27 bilhetes e 13 prêmios, e os prêmios são sorteados ao acaso, cada bilhete tem 13 chances em 27 de ser premiado.
+Ter o eleito vencendo numa UF em todas as eleições é como ter o mesmo bilhete premiado em 10 rifas seguidas, com as rifas independentes entre si.
+A probabilidade é o produto das probabilidades de cada rifa, do mesmo jeito que a chance de tirar cara duas vezes é <span class="math inline">\(1/2 \times 1/2\)</span>.</p>
+<details>
+<summary>
+<em>Demonstração</em> (clique para expandir)
+</summary>
+<p>Sob H1, o conjunto de UFs vencidas na eleição <span class="math inline">\(t\)</span> é um dos <span class="math inline">\(\binom{N}{k_t}\)</span> conjuntos possíveis, todos com a mesma probabilidade.
+Desses, <span class="math inline">\(\binom{N-1}{k_t-1}\)</span> contêm a UF <span class="math inline">\(i\)</span>.
+Logo,
+<span class="math display">\[
+\Pr(A_{it}) = \binom{N-1}{k_t-1} \bigg/ \binom{N}{k_t} = \frac{k_t}{N}.
+\]</span>
+Sob H2, os eventos <span class="math inline">\(A_{i1}, \dots, A_{iT}\)</span> são independentes, e <span class="math inline">\(\Pr(V_i = 1)\)</span> é o produto dessas probabilidades.</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+</details>
+<p>Como <span class="math inline">\(E(V_i) = p\)</span> para toda UF, o número esperado de termômetros perfeitos é
+<span class="math display">\[
+E(S) = N p.
+\]</span>
+É como uma sala com 27 pessoas, cada uma com 2,4% de chance de ganhar: em média, <span class="math inline">\(27 \times 2{,}4\% \approx 0{,}65\)</span> pessoa ganha.
+Isso vale sem nenhuma hipótese adicional.</p>
+</div>
+<div id="alguma-uf" class="section level2">
+<h2>Alguma UF</h2>
+<p>A pergunta do post, porém, é sobre <span class="math inline">\(\Pr(S \geq 1)\)</span>: a chance de existir <strong>pelo menos uma</strong> UF com histórico perfeito.
+Aqui há um detalhe.
+Dentro de uma mesma eleição, as UFs não são independentes.</p>
+<p>Pense numa dança das cadeiras com 27 pessoas e 13 cadeiras.
+Se Minas conseguiu sentar, sobrou uma cadeira a menos para as outras 26.
+Do mesmo jeito, se o eleito venceu em exatamente <span class="math inline">\(k_t\)</span> UFs, saber que ele venceu na UF <span class="math inline">\(i\)</span> diminui um pouco a chance de ter vencido na UF <span class="math inline">\(j\)</span>.</p>
+<p>Por isso, vamos usar uma aproximação:</p>
+<ul>
+<li><strong>H3 (aproximação binomial):</strong> tratar <span class="math inline">\(V_1, \dots, V_N\)</span> como independentes. É como se cada UF tivesse a sua própria caixa, sem disputar cadeiras com as outras.</li>
+</ul>
+<p>Sob H3, <span class="math inline">\(S\)</span> segue uma distribuição binomial com parâmetros <span class="math inline">\(N\)</span> e <span class="math inline">\(p\)</span>, e
+<span class="math display">\[
+\Pr(S \geq 1) = 1 - (1 - p)^N.
+\]</span>
+Essa fórmula diz uma coisa simples: a chance de alguém ganhar é 1 menos a chance de ninguém ganhar.
+A chance de uma UF <strong>não</strong> ter histórico perfeito é <span class="math inline">\(1 - p\)</span>; a de nenhuma das 27 ter é <span class="math inline">\((1 - p)^N\)</span>.</p>
+<p>Como H3 é só uma aproximação, também vamos calcular <span class="math inline">\(\Pr(S \geq 1)\)</span> por simulação, usando apenas H1 e H2.
+A simulação faz o que um professor faria com uma caixa de bolinhas de verdade, só que 100 mil vezes: sorteia as 10 eleições, anota quantas UFs têm histórico perfeito, e repete.
+A fração de repetições com pelo menos um termômetro perfeito estima <span class="math inline">\(\Pr(S \geq 1)\)</span>.</p>
+</div>
+<div id="os-valores-de-k_t" class="section level2">
+<h2>Os valores de <span class="math inline">\(k_t\)</span></h2>
+<p>Falta só o <span class="math inline">\(k_t\)</span> de cada eleição.
+A tabela abaixo traz os valores e de onde eles vêm.</p>
+<table>
+<colgroup>
+<col width="29%" />
+<col width="25%" />
+<col width="22%" />
+<col width="22%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">Eleição</th>
+<th align="left">Eleito</th>
+<th align="center"><span class="math inline">\(k_t\)</span></th>
+<th align="left">Fonte</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">1989</td>
+<td align="left">Collor</td>
+<td align="center">23</td>
+<td align="left"><a href="https://en.wikipedia.org/wiki/1989_Brazilian_presidential_election">Wikipedia</a></td>
+</tr>
+<tr class="even">
+<td align="center">1994</td>
+<td align="left">FHC</td>
+<td align="center">25</td>
+<td align="left"><a href="https://bibliotecadigital.tse.jus.br/bitstreams/54ba71b6-eb11-4a84-9f32-3a65f83102cf/download">TSE</a></td>
+</tr>
+<tr class="odd">
+<td align="center">1998</td>
+<td align="left">FHC</td>
+<td align="center">24</td>
+<td align="left"><a href="https://bibliotecadigital.tse.jus.br/bitstreams/54ba71b6-eb11-4a84-9f32-3a65f83102cf/download">TSE</a></td>
+</tr>
+<tr class="even">
+<td align="center">2002</td>
+<td align="left">Lula</td>
+<td align="center">26</td>
+<td align="left"><a href="https://congressoemfoco.com.br/noticia/99915/o-raio-x-da-disputa-presidencial">Congresso em Foco</a></td>
+</tr>
+<tr class="odd">
+<td align="center">2006</td>
+<td align="left">Lula</td>
+<td align="center">20</td>
+<td align="left"><a href="https://www.alainet.org/pt/node/117972">ALAI</a></td>
+</tr>
+<tr class="even">
+<td align="center">2010</td>
+<td align="left">Dilma</td>
+<td align="center">17</td>
+<td align="left"><a href="https://congressoemfoco.com.br/noticia/99915/o-raio-x-da-disputa-presidencial">Congresso em Foco</a></td>
+</tr>
+<tr class="odd">
+<td align="center">2014</td>
+<td align="left">Dilma</td>
+<td align="center">15</td>
+<td align="left"><a href="https://www.congressoemfoco.com.br/noticia/53577/a-geografia-dos-votos-obtidos-por-dilma-e-aecio">Congresso em Foco</a></td>
+</tr>
+<tr class="even">
+<td align="center">2018</td>
+<td align="left">Bolsonaro</td>
+<td align="center">16</td>
+<td align="left"><a href="https://www.jb.com.br/pais/eleicoes_2018/2018/10/951717-bolsonaro-vence-em-16-unidades-da-federacao-haddad-em-11.html">Jornal do Brasil</a></td>
+</tr>
+<tr class="odd">
+<td align="center">2022</td>
+<td align="left">Lula</td>
+<td align="center">13</td>
+<td align="left"><a href="https://www.diariodepernambuco.com.br/noticia/politica/2022/10/eleicoes-2022-lula-vence-em-13-estados-melhor-resultado-veio-do-nord.html">Diário de Pernambuco</a></td>
+</tr>
+<tr class="even">
+<td align="center">2026</td>
+<td align="left">Lula</td>
+<td align="center">13</td>
+<td align="left"><a href="https://www.correio24horas.com.br/eleicoes/virada-em-mg-e-vitoria-historica-no-rio-a-votacao-de-lula-e-flavio-nos-estados-1026">Correio</a></td>
+</tr>
+</tbody>
+</table>
+<p>Os números contam uma história por si só.
+Fernando Henrique ganhou em 1994 e 1998 com folga, perdendo só em duas e em três UFs.
+A partir de 2010 as eleições ficaram mais apertadas, e em 2022 e 2026 o eleito levou só 13 das 27.</p>
+<p>Entre 1989 e 2006, o eleito venceu em pelo menos 20 das 27 UFs; em 2002, em 26.
+Essas eleições custam quase nada a um candidato a termômetro: com 26 bolinhas sorteadas em 27, é difícil ficar de fora.
+São as eleições divididas ao meio, as mais recentes, que realmente testam a sequência.
+Em 2022 e 2026, a chance de o eleito vencer numa dada UF era de 13/27, menos da metade; cada uma dessas eleições, sozinha, corta as chances de um histórico perfeito um pouco mais que pela metade.</p>
+</div>
+</div>
+<div id="fazendo-as-contas" class="section level1">
+<h1>Fazendo as contas</h1>
+<p>Com os <span class="math inline">\(k_t\)</span> da tabela, as contas cabem em poucas linhas.
+Para não depender de H3, também vamos fazer um estudo de simulação: em cada uma das <span class="math inline">\(R = 10^5\)</span> réplicas, sorteamos exatamente <span class="math inline">\(k_t\)</span> UFs vencedoras em cada eleição e contamos em quantas UFs o eleito venceu em todas as eleições.</p>
+<p>Resumindo:</p>
+<table>
+<colgroup>
+<col width="63%" />
+<col width="36%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Quantidade</th>
+<th align="center">Valor</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Chance de o eleito ter vencido numa UF qualquer nas 10 eleições (<span class="math inline">\(p\)</span>)</td>
+<td align="center">2,4%</td>
+</tr>
+<tr class="even">
+<td align="left">Número esperado de termômetros perfeitos (<span class="math inline">\(N p\)</span>)</td>
+<td align="center">0,65</td>
+</tr>
+<tr class="odd">
+<td align="left">Chance de pelo menos um termômetro perfeito</td>
+<td align="center">48,1% (50,2% na simulação)</td>
+</tr>
+<tr class="even">
+<td align="left">Chance de pelo menos dois termômetros perfeitos</td>
+<td align="center">13,7% (12,6% na simulação)</td>
+</tr>
+<tr class="odd">
+<td align="left">Pelo menos um, no modelo da moeda honesta</td>
+<td align="center">2,6%</td>
+</tr>
+</tbody>
+</table>
+<p>Ou seja: no modelo da caixa, a chance de uma UF específica ter histórico perfeito é cerca de 25 vezes maior que na moeda honesta (2,4% contra 0,1%).
+E a chance de <strong>alguma</strong> UF ter esse histórico é praticamente cara ou coroa.
+Ter duas, como o Brasil tem, é mais raro: algo como uma chance em oito.</p>
+<p>Repare também que a fórmula com H3 e a simulação dão quase o mesmo resultado.
+A dança das cadeiras existe, mas, com 27 UFs, ela pesa pouco.</p>
+</div>
+<div id="escolher-depois-de-ver-os-dados" class="section level1">
+<h1>Escolher depois de ver os dados</h1>
+<p>Por que olhar para os cerca de 50%, e não para os 2,4% de Minas?
+Porque ninguém apontou Minas e Amazonas em 1989 e ficou esperando.
+A sequência foi notada depois, olhando para as 27 UFs e procurando as que tinham histórico perfeito.</p>
+<p>Pense na Mega-Sena.
+A chance de <em>você</em> acertar as seis dezenas é de uma em 50 milhões, mas numa Mega da Virada é quase certo que <em>alguém</em> acerte, e ninguém conclui que o ganhador tem um dom.
+Perguntar pela chance de Minas (2,4%) é perguntar pela chance de um bilhete escolhido antes do sorteio.
+A pergunta relevante é pela chance de <em>alguma</em> UF (cerca de 50%).</p>
+<p>Um golpe antigo mostra o mesmo mecanismo, só que montado de propósito <span class="citation">(<a href="#ref-paulos1988">Paulos, 1988</a>)</span>.
+O golpista manda uma “dica” de investimento para 10.240 pessoas: metade ouve que uma ação vai subir; a outra metade, que vai cair.
+A cada semana, descarta quem recebeu a previsão errada e repete o truque com o resto.
+Depois de 10 rodadas, sobram 10 pessoas que viram 10 acertos seguidos e acham que isso tinha chance de 1 em 1.024.
+Elas não veem as outras 10.230.
+Quem se impressiona com Minas e Amazonas está no lugar delas.</p>
+<p>Em estatística, isso tem nome: é o <strong>problema das comparações múltiplas</strong>.
+Quanto mais lugares a gente olha, mais fácil é achar uma coincidência impressionante; <span class="citation">Diaconis e Mosteller (<a href="#ref-diaconis1989">1989</a>)</span> chamam isso de lei dos números realmente grandes.
+No golpe, aparece ainda um parente próximo, o <strong>viés de sobrevivência</strong>: só se veem os casos que passaram pelo filtro, e os descartados ficam invisíveis.</p>
+<p>Este erro lógivo também é conhecido como <strong>falácia do atirador do Texas</strong>.
+O atirador dá vários tiros na parede de um celeiro e só depois pinta o alvo em volta do grupo de furos mais próximos.
+Parece pontaria, mas o alvo foi escolhido depois dos tiros, assim como Minas e Amazonas foram escolhidos depois de ver os resultados.
+<span class="citation">Thompson (<a href="#ref-thompson2009">2009</a>)</span> discute a mesma falácia na interpretação de exames de DNA.</p>
+</div>
+<div id="o-que-o-modelo-deixa-de-fora" class="section level1">
+<h1>O que o modelo deixa de fora</h1>
+<p>O modelo é simples de propósito.
+Vale olhar para o que ele ignora.</p>
+<ol style="list-style-type: decimal">
+<li><strong>Minas é bastante particular.</strong> Pense numa panela de sopa bem mexida: uma colherada basta para saber o gosto da panela inteira. O eleitorado mineiro funciona um pouco como essa colherada. Ele mistura um sul e um Triângulo mais conservadores com um norte mais parecido com o Nordeste, e o resultado fica perto do resultado nacional. Ou seja, a bolinha de Minas não é igual às outras, e H1 subestima as chances dela. A sequência de Minas é, em parte, sinal, e não só sorte. O Amazonas não tem a mesma fama de pêndulo; no caso dele, a explicação da sorte pesa mais.</li>
+<li><strong>As UFs têm memória.</strong> H2 sacode a caixa de novo a cada eleição, mas na vida real as bolinhas quase não se misturam de uma eleição para a outra. É como um baralho mal embaralhado: as cartas que estavam juntas na última rodada tendem a continuar juntas na próxima. O PT vence no Nordeste desde 2006, e o adversário do PT vence em boa parte do Sul e do Centro-Oeste. Esses redutos não podem ser termômetros quando o partido vencedor muda. A persistência concentra a probabilidade nas poucas UFs realmente pendulares.</li>
+<li><strong>Pequenos erros nos <span class="math inline">\(k_t\)</span> mudam pouco.</strong> Se o eleito tivesse vencido em uma UF a menos em qualquer uma das 10 eleições, a chance de pelo menos um termômetro perfeito cairia de 48% para algo entre 45% e 47%.</li>
+</ol>
+</div>
+<div id="conclusão" class="section level1">
+<h1>Conclusão</h1>
+<p>As contas apresentadas aqui são simples, mas mostram um ponto importante: por puro acaso, o Brasil deveria ter um termômetro perfeito mais ou menos metade das vezes.
+Como na Mega da Virada, alguém ganhar não é notável.
+Encontrar dois termômetros é menos comum, mas não é raro o bastante para descartar a sorte.</p>
+<p>O que faz diferença no caso de Minas é a estrutura.
+Como a colherada de uma sopa bem mexida, num estado parecido com o país tende a vencer quem vence no país.</p>
+<p>Vale separar duas coisas.
+A falácia está na <strong>inferência</strong>, não na observação: é fato que o eleito venceu em Minas desde 1989; o erro é concluir, só por isso, que Minas prevê a eleição.
+E cometer a falácia não torna a conclusão falsa.
+Minas pode, sim, ser um bom termômetro; a sequência, sozinha, só não é evidência disso.</p>
+<p>Ou seja: <strong>10 coincidências seguidas são uma boa história, não uma lei</strong>.
+Quem quiser usar Minas para prever 2030 vai estar usando um termômetro razoável, não uma bola de cristal.</p>
+<p>Um modelo que leve em conta a memória das UFs (por exemplo, uma cadeia de Markov para o partido que vence em cada estado) daria uma resposta mais honesta.
+Mas isso fica para um próximo post.</p>
+</div>
+<div id="referências" class="section level1 unnumbered">
+<h1>Referências</h1>
+<div id="refs" class="references csl-bib-body" entry-spacing="0">
+<div id="ref-diaconis1989" class="csl-entry">
+DIACONIS, P.; MOSTELLER, F. <a href="https://doi.org/10.1080/01621459.1989.10478847"><span>Methods for Studying Coincidences</span></a>. <strong>Journal of the American Statistical Association</strong>, v. 84, n. 408, p. 853–861, dez. 1989.
+</div>
+<div id="ref-freedman2007" class="csl-entry">
+FREEDMAN, D.; PISANI, R.; PURVES, R. <strong>Statistics</strong>. 4. ed. New York: W. W. Norton, 2007.
+</div>
+<div id="ref-paulos1988" class="csl-entry">
+PAULOS, J. A. <strong><span>Innumeracy: Mathematical Illiteracy and Its Consequences</span></strong>. New York: <span>Hill and Wang</span>, 1988.
+</div>
+<div id="ref-thompson2009" class="csl-entry">
+THOMPSON, W. C. <a href="https://doi.org/10.1093/lpr/mgp013"><span>Painting the target around the matching profile: the Texas sharpshooter fallacy in forensic DNA interpretation</span></a>. <strong>Law, Probability and Risk</strong>, v. 8, n. 3, p. 257–276, set. 2009.
+</div>
+</div>
+</div>
+
+              
+
+
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">ETIQUETADO em</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://guilhermejacob.github.io/tags/elei%C3%A7%C3%B5es/">eleições</a>
+
+  <a class="tag tag--primary tag--small" href="https://guilhermejacob.github.io/tags/elei%C3%A7%C3%B5es-2026/">eleições 2026</a>
+
+  <a class="tag tag--primary tag--small" href="https://guilhermejacob.github.io/tags/compara%C3%A7%C3%B5es-m%C3%BAltiplas/">comparações múltiplas</a>
+
+  <a class="tag tag--primary tag--small" href="https://guilhermejacob.github.io/tags/r/">R</a>
+
+                  </div>
+                
+              
+            
+            
+<div class="post-actions-wrap">
+  <nav >
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--disabled">
+          
+              <i class="fa fa-angle-left"></i>
+              <span class="hide-xs hide-sm text-small icon-ml">PRÓXIMO</span>
+            </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://guilhermejacob.github.io/2026/10/quando-uma-elei%C3%A7%C3%A3o-est%C3%A1-decidida/" data-tooltip="Quando uma eleição está decidida?" aria-label="ANTERIOR: Quando uma eleição está decidida?">
+          
+              <span class="hide-xs hide-sm text-small icon-mr">ANTERIOR</span>
+              <i class="fa fa-angle-right"></i>
+            </a>
+        </li>
+      
+    </ul>
+  </nav>
+<ul class="post-actions post-action-share" >
+  
+    <li class="post-action hide-lg hide-md hide-sm">
+      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Compartilhe esta postagem">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://guilhermejacob.github.io/2026/10/eleicoes-mg-am/" title="Compartilhar no Facebook" aria-label="Compartilhar no Facebook">
+          <i class="fa-facebook-official" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://guilhermejacob.github.io/2026/10/eleicoes-mg-am/" title="Compartilhar no Google&#43;" aria-label="Compartilhar no Google&#43;">
+          <i class="fa-google-plus" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+  
+  
+  <li class="post-action">
+    
+      <a class="post-action-btn btn btn--default" href="#top" aria-label="De volta ao topo">
+      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    
+    </a>
+  </li>
+</ul>
+</div>
+
+
+            
+  
+
+
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2026 Guilherme Jacob. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+        
+<div class="post-actions-wrap">
+  <nav >
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--disabled">
+          
+              <i class="fa fa-angle-left"></i>
+              <span class="hide-xs hide-sm text-small icon-ml">PRÓXIMO</span>
+            </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://guilhermejacob.github.io/2026/10/quando-uma-elei%C3%A7%C3%A3o-est%C3%A1-decidida/" data-tooltip="Quando uma eleição está decidida?" aria-label="ANTERIOR: Quando uma eleição está decidida?">
+          
+              <span class="hide-xs hide-sm text-small icon-mr">ANTERIOR</span>
+              <i class="fa fa-angle-right"></i>
+            </a>
+        </li>
+      
+    </ul>
+  </nav>
+<ul class="post-actions post-action-share" >
+  
+    <li class="post-action hide-lg hide-md hide-sm">
+      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Compartilhe esta postagem">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://guilhermejacob.github.io/2026/10/eleicoes-mg-am/" title="Compartilhar no Facebook" aria-label="Compartilhar no Facebook">
+          <i class="fa-facebook-official" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://guilhermejacob.github.io/2026/10/eleicoes-mg-am/" title="Compartilhar no Google&#43;" aria-label="Compartilhar no Google&#43;">
+          <i class="fa-google-plus" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+  
+  
+  <li class="post-action">
+    
+      <a class="post-action-btn btn btn--default" href="#top" aria-label="De volta ao topo">
+      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    
+    </a>
+  </li>
+</ul>
+</div>
+
+
+      </div>
+      
+<div id="share-options-bar" class="share-options-bar" data-behavior="4">
+  <i id="btn-close-shareoptions" class="fa fa-times"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fguilhermejacob.github.io%2F2026%2F10%2Feleicoes-mg-am%2F" aria-label="Compartilhar no Facebook">
+          <i class="fa-facebook-official" aria-hidden="true"></i><span>Compartilhar no Facebook</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https%3A%2F%2Fguilhermejacob.github.io%2F2026%2F10%2Feleicoes-mg-am%2F" aria-label="Compartilhar no Google&#43;">
+          <i class="fa-google-plus" aria-hidden="true"></i><span>Compartilhar no Google&#43;</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+
+
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-times"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://guilhermejacob.github.io/files/img_2502_recorte.jpg" alt="Foto do autor" />
+    
+    <h4 id="about-card-name">Guilherme Jacob</h4>
+    
+      <div id="about-card-bio">Manauara.<br>Doutor em População, Território e Estatísticas Públicas (ENCE/IBGE).<br>Bacharel em Direito e Economia.</div>
+    
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker-alt"></i>
+        <br/>
+        Rio de Janeiro, Brasil
+      </div>
+    
+  </div>
+</div>
+
+    
+
+    
+  
+    
+      <div id="cover" style="background-image:url('https://guilhermejacob.github.io/files/manaus.jpg');"></div>
+    
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha512-uURl+ZXMBrF4AwGaWmEetzrd+J5/8NRkWAvJx5sbPSSuOb0bZLqf+tOzniObO00BjHa/dD7gub9oCGMLPQHtQA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+<script src="https://guilhermejacob.github.io/js/script-yqzy9wdlzix4lbbwdnzvwx3egsne77earqmn73v9uno8aupuph8wfguccut.min.js"></script>
+
+
+
+
+
+
+    
+  </body>
+</html>
+
